@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>光是什么? — 四十个角度的追问 (第一卷)</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .part-header {
+    margin: 2.4em 0 0.6em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-size: 1.05em;
+  }
+  .part-header .part-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72em;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+  }
+  .part-header .part-blurb {
+    display: block;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .toc ol.toc-list {
+    counter-reset: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<header class="chapter-header">
+  <span class="tag">第一卷</span>
+  <h1>光是什么?</h1>
+  <div class="subtitle">—— 四十个角度的追问</div>
+</header>
+
+<p class="intro">
+围绕一个问题: <b>光到底是什么?</b> 从 Fermat 的几何直线到真空零点场, 从蜜蜂眼里的紫外到银河中心黑洞旁的光锥, 四十个具体可计算的子问题展开一条由浅入深的阶梯 — 光线、波动、速度能量动量、量子热辐射、与物质的相互作用、信息载体、宇宙信号、生命感知. 每一层描述都是真的, 但没有一层是完整的. 每一节从一个能观察到的现象出发, 第一性原理推到一个具体的数字.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>光线: 从费马到斯涅尔的几何学
+  <span class="part-blurb">把光当作一条理想射线就足够 — 但它在短波长极限下才严格成立</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-straight-line.html"><span class="title">光为什么按直线传播?</span><span class="sub">—— 费马原理与几何光学的波动根据</span></a></li>
+  <li><a href="02-refraction.html"><span class="title">光为什么在水里"变慢"?</span><span class="sub">—— 从电子响应推导折射率</span></a></li>
+  <li><a href="03-rainbow.html"><span class="title">彩虹为什么总挂在太阳对面 42°?</span><span class="sub">—— 从斯涅尔到笛卡儿的几何极值</span></a></li>
+  <li><a href="04-bending.html"><span class="title">光为什么会弯曲 — 从折射到引力透镜?</span><span class="sub">—— 折射与广义相对论的同一件事</span></a></li>
+  <li><a href="05-fresnel.html"><span class="title">阳光如何穿过一张玻璃? 多少能量返回?</span><span class="sub">—— 菲涅耳方程、Brewster 角与全内反射</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>光波: 干涉、衍射、偏振
+  <span class="part-blurb">两束光能叠加出黑暗, 一束光能绕过障碍物 — 射线描述开始让位于波</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-double-slit.html"><span class="title">两束光为什么能叠加出黑暗?</span><span class="sub">—— 杨氏双缝与相位的代数</span></a></li>
+  <li><a href="07-single-slit.html"><span class="title">光为什么能绕过障碍物?</span><span class="sub">—— 惠更斯原理与单缝衍射的 sinc 图案</span></a></li>
+  <li><a href="08-diffraction-limit.html"><span class="title">衍射极限让望远镜"看不到"什么?</span><span class="sub">—— 瑞利判据与角分辨率</span></a></li>
+  <li><a href="09-polarization.html"><span class="title">光为什么会偏振?</span><span class="sub">—— 电磁波的横波本质与 Brewster 角</span></a></li>
+  <li><a href="10-laser.html"><span class="title">激光为什么能保持方向不散?</span><span class="sub">—— 相干性、受激辐射与束腰扩张</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>光的速度、能量与动量
+  <span class="part-blurb">光输运了什么? 速度从哪来, 能量和动量各自如何进入方程</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-speed-measurement.html"><span class="title">光速究竟怎么被测出来?</span><span class="sub">—— 从 Römer 到 Fizeau 到现代</span></a></li>
+  <li><a href="12-maxwell-c.html"><span class="title">光速为什么恰好是 299,792,458 米每秒?</span><span class="sub">—— 麦克斯韦方程组自然地给出 c = 1/√(ε₀μ₀)</span></a></li>
+  <li><a href="13-phase-group.html"><span class="title">"相速度"与"群速度"哪个是光的真速度?</span><span class="sub">—— 信息、包络与"超光速"错觉</span></a></li>
+  <li><a href="14-radiation-pressure.html"><span class="title">光竟然有动量?</span><span class="sub">—— 辐射压、太阳帆与激光冷却</span></a></li>
+  <li><a href="15-solar-constant.html"><span class="title">阳光每秒在地面送来多少能量?</span><span class="sub">—— 从太阳参数反推太阳常数</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>光的量子性与热辐射
+  <span class="part-blurb">波动图景走到头 — 光必须是"量子", 而真空不空</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-photon-walk.html"><span class="title">光子从太阳核心走到表面要多久?</span><span class="sub">—— 随机游走与光学深度</span></a></li>
+  <li><a href="17-blackbody.html"><span class="title">为什么炉火先红后白?</span><span class="sub">—— 维恩位移、斯特藩玻尔兹曼与普朗克公式</span></a></li>
+  <li><a href="18-photoelectric.html"><span class="title">光电效应为什么粉碎了经典波动图景?</span><span class="sub">—— 爱因斯坦 1905 的光量子假说</span></a></li>
+  <li><a href="19-duality.html"><span class="title">光到底是波还是粒子?</span><span class="sub">—— 单光子干涉与波粒互补</span></a></li>
+  <li><a href="20-vacuum.html"><span class="title">真空里真的没有光吗?</span><span class="sub">—— 零点能、Casimir 效应与"虚"光子</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>光与物质的相互作用
+  <span class="part-blurb">从带隙到激光冷却 — 光遇到物质时发生什么</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-glass-metal.html"><span class="title">玻璃为什么透明, 金属为什么反射?</span><span class="sub">—— 带隙与等离子体频率</span></a></li>
+  <li><a href="22-thin-film.html"><span class="title">肥皂泡为什么会有彩色?</span><span class="sub">—— 薄膜干涉与反射相位</span></a></li>
+  <li><a href="23-grating.html"><span class="title">CD 和 DVD 上的彩虹从哪来?</span><span class="sub">—— 光栅方程与多缝干涉</span></a></li>
+  <li><a href="24-compton.html"><span class="title">Compton 散射为什么是"光是粒子"的关键实验?</span><span class="sub">—— 1923 年 X 光与电子的弹性碰撞</span></a></li>
+  <li><a href="25-laser-cooling.html"><span class="title">激光冷却怎么把原子冷到 nK?</span><span class="sub">—— 用光的动量拦住原子</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>光与信息
+  <span class="part-blurb">当代通信、传感与密码的物理基础</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-fiber.html"><span class="title">光纤里的光怎么传 100 公里不散?</span><span class="sub">—— 全内反射、低损耗硅玻璃与 EDFA</span></a></li>
+  <li><a href="27-wdm.html"><span class="title">一根光纤能同时送多少路信号?</span><span class="sub">—— WDM 与 Shannon 容量极限</span></a></li>
+  <li><a href="28-lidar.html"><span class="title">激光雷达怎么测毫米级的距离?</span><span class="sub">—— ToF、FMCW 与干涉测距</span></a></li>
+  <li><a href="29-holography.html"><span class="title">全息图为什么能存储 3D 信息?</span><span class="sub">—— 记录波前的相位</span></a></li>
+  <li><a href="30-quantum-crypto.html"><span class="title">量子密钥分发为什么"不可破解"?</span><span class="sub">—— 不可克隆定理与 BB84 协议</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 7 部分</span>光与宇宙
+  <span class="part-blurb">宇宙尺度上的信号 — 光如何携带宇宙学的全部信息</span>
+</div>
+<ol class="toc-list" start="31">
+  <li><a href="31-redshift.html"><span class="title">红移告诉我们宇宙在膨胀 — 怎么告诉的?</span><span class="sub">—— Hubble 定律与宇宙学红移的起源</span></a></li>
+  <li><a href="32-lensing.html"><span class="title">引力透镜如何称出看不见的暗物质?</span><span class="sub">—— 用光的弯曲测量大质量的分布</span></a></li>
+  <li><a href="33-grav-redshift.html"><span class="title">中子星表面出发的光, 为什么会变红?</span><span class="sub">—— 引力红移与广义相对论的钟</span></a></li>
+  <li><a href="34-cmb-peaks.html"><span class="title">CMB 各向异性的第一个声学峰藏着什么?</span><span class="sub">—— 声学振荡、曲率与宇宙学参数</span></a></li>
+  <li><a href="35-pulsar.html"><span class="title">脉冲星的光为什么像钟摆一样精确?</span><span class="sub">—— 中子星、磁偶极辐射与纳赫兹引力波</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 8 部分</span>光与生命
+  <span class="part-blurb">看见、发光、感知 — 生物化学如何把光变成信号</span>
+</div>
+<ol class="toc-list" start="36">
+  <li><a href="36-photosynthesis.html"><span class="title">光合作用的第一步用到了什么量子效应?</span><span class="sub">—— 激子传输与可能的量子相干</span></a></li>
+  <li><a href="37-single-photon-eye.html"><span class="title">人眼真能看到一个光子吗?</span><span class="sub">—— 视杆细胞、视黄醛与神经放大</span></a></li>
+  <li><a href="38-bee-uv.html"><span class="title">人眼看不见紫外, 蜜蜂却看得见 — 为什么?</span><span class="sub">—— 视锥色素的吸收谱与"蜜导"</span></a></li>
+  <li><a href="39-bioluminescence.html"><span class="title">萤火虫的冷光是怎么来的?</span><span class="sub">—— 生物发光的化学与量子效率</span></a></li>
+  <li><a href="40-eye-resolution.html"><span class="title">眼睛的分辨极限真的就是物理极限吗?</span><span class="sub">—— 瞳孔、视锥密度与衍射的巧合优化</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第一卷 · 共 40 节
+</p>
+
+</div>
+
+</body>
+</html>
