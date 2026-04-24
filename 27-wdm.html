@@ -68,20 +68,7 @@
 
   <p>历史上对 Shannon 容量的逼近经历了两次关键跳跃。第一次是 1990 年代后期的 DWDM 商用化, 把容量从"单波几 Gbps"一下推到"几十波各 10 Gbps"; 第二次是 2008 年前后相干检测 (coherent detection) 的商用化, 接收端不再只看光强, 而是同时拿下振幅与相位, 使得 QPSK、16-QAM、64-QAM 这些原本只在电子通信里用的高阶调制格式可以搬到光波上。相干检测让单波道容量在 10 年内从 10 Gbps 爬到 400 Gbps, 逼近 Shannon 限的最后一米。</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · WDM 系统与 C-band 波道频谱</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一根光纤的波分复用 (WDM) 链路: 左端 N 台不同波长的激光器经合波器汇入单根光纤, 右端经分波器分发到 N 台接收机; 上方叠加一张"光谱图"示意 C-band 内等间距波道分布</dd>
-      <dt>必含元素</dt><dd>(1) 左侧 8 个小方框的激光器 LD₁…LD₈, 每个输出一条不同颜色 (彩虹色序) 的光箭头, 分别标 λ₁…λ₈; (2) 合波器 (Mux) 梯形, 将 8 条光合成一根水平黑线 (光纤), 光纤中间用虚线表示几百公里跨度; (3) 分波器 (Demux) 梯形, 将一根光纤再分成 8 条彩色箭头进入 8 个接收机 RX₁…RX₈; (4) 上方坐标系: 横轴 λ (nm), 纵轴 I (相对强度), 在 1530-1565 nm 区间内等间距画 8 个高斯峰, 间距约 4-5 nm 示意, 每峰染对应颜色; (5) 右下方小公式块写 Shannon 容量 $C = B\log_2(1+\mathrm{SNR})$, 以及 $\text{总容量} = N \times C_\text{per channel}$</dd>
-      <dt>几何精度</dt><dd>8 条波道等间距, 峰宽远小于峰间距 (~1:4); 光纤水平对齐 Mux 与 Demux 中心; 光谱图坐标原点对齐, x 轴标 1530, 1540, 1550, 1560, 1565 五个刻度</dd>
-      <dt>标签与公式</dt><dd>C-band: 1530–1565 nm = Δν ≈ 4.4 THz; 波道间隔 Δνₛ = 100 GHz ≈ 0.8 nm; Shannon: $C = B\log_2(1+\mathrm{SNR})$; 总容量: $C_\text{total} = N\cdot C$</dd>
-      <dt>风格建议</dt><dd>白底, 黑色细线勾边; 激光器方框用浅灰填充; 波道颜色按光谱排布 (紫蓝青绿黄橙红深红); 光纤用粗黑线带一段波浪示意长度; 公式以衬线体排版, 突出 log₂</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  WDM 发送端、单根光纤链路与接收端示意, 叠加 C-band 内等间距波道的频谱</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/27.svg" alt="图 1 · WDM 系统与 C-band 波道频谱" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  WDM 发送端、单根光纤链路与接收端示意, 叠加 C-band 内等间距波道的频谱</figcaption></figure>
 
   <h2>三、总容量: 波道数 × 比特率 = Tbps 级的单纤</h2>
 
