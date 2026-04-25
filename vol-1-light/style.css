@@ -1,255 +1,699 @@
-/* Shared stylesheet for the chapter "一抬头看到的宇宙" */
+/* DevCollection — shared blog stylesheet
+ * Reading-first. Restrained. Serif body, sans headings.
+ * Per-volume tints are set in :root.--accent (override at volume level).
+ */
 
 :root {
-  --ink: #1b1b1b;
-  --rule: #c9c3b5;
-  --panel-bg: #f3efe6;
-  --accent: #8b2f1a;
-  --muted: #6b6559;
-  --link: #3b5a8e;
-  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Georgia", serif;
-  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Hiragino Sans GB", "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", "Consolas", monospace;
+  /* ink + paper */
+  --ink:        #1a1a1a;
+  --ink-soft:   #2c2c2c;
+  --muted:      #6b6b6b;
+  --muted-soft: #8a8a8a;
+  --paper:      #fbfaf6;
+  --paper-tint: #f3f1ea;
+  --rule:       #d8d4c8;
+  --rule-soft:  #e8e4d8;
+
+  /* link / accent */
+  --link:       #2f5b8a;
+  --link-hover: #1d3f63;
+
+  /* per-volume accent — vol-1 amber/ember (default) */
+  --accent:        #b8632a;   /* vol-1 light: warm amber */
+  --accent-soft:   #d8a58a;
+  --accent-bg:     #fbf2e8;
+
+  /* type */
+  --serif: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "STSong", Georgia, "Times New Roman", serif;
+  --sans:  "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", -apple-system, "Segoe UI", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+  /* layout */
+  --reading-width: 38rem;     /* ~ 64ch at 18px / 1.6 — comfortable for zh+en+math */
+  --wide-width:    46rem;
+  --side-pad:      clamp(1rem, 4vw, 2.25rem);
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: #faf8f3; color: var(--ink); }
+/* ----------------------------------------------------------------- *
+ * reset + base
+ * ----------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { margin: 0; padding: 0; }
 body {
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.85;
+  font-size: 18px;
+  line-height: 1.78;
+  font-feature-settings: "palt", "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+/* top accent ribbon — a thin colored strip identifies the volume */
+body::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: var(--accent);
+  width: 100%;
+}
+
+img, svg { max-width: 100%; height: auto; }
+
+/* ----------------------------------------------------------------- *
+ * containers
+ * ----------------------------------------------------------------- */
 
 article, .toc {
-  max-width: 760px;
+  max-width: var(--reading-width);
   margin: 0 auto;
-  padding: 32px 32px 96px 32px;
+  padding: 2.5rem var(--side-pad) 5rem;
 }
 
+.toc { max-width: var(--wide-width); }
+
+/* ----------------------------------------------------------------- *
+ * chapter navigation (top + bottom of article pages)
+ * ----------------------------------------------------------------- */
+
 .chapter-nav {
-  max-width: 760px;
+  max-width: var(--wide-width);
   margin: 0 auto;
-  padding: 14px 32px;
+  padding: 0.85rem var(--side-pad);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
   font-family: var(--sans);
-  font-size: 0.88em;
-  border-bottom: 1px solid var(--rule);
-  background: #f3efe6;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
   flex-wrap: wrap;
+  background: transparent;
 }
-.chapter-nav.bottom {
-  border-bottom: none;
-  border-top: 1px solid var(--rule);
-  margin-top: 0;
-}
+.chapter-nav.top    { border-bottom: 1px solid var(--rule-soft); }
+.chapter-nav.bottom { border-top:    1px solid var(--rule-soft); margin-top: 0; }
+
 .chapter-nav a {
-  color: var(--link);
+  color: var(--ink-soft);
   text-decoration: none;
-  padding: 3px 10px;
+  padding: 0.25rem 0.6rem;
   border-radius: 3px;
-  transition: background .15s;
+  transition: color .15s ease, background .15s ease;
 }
-.chapter-nav a:hover { background: rgba(59, 90, 142, 0.08); }
-.chapter-nav a.disabled { color: var(--muted); pointer-events: none; }
+.chapter-nav a:hover {
+  color: var(--link-hover);
+  background: var(--paper-tint);
+}
+.chapter-nav a.disabled {
+  color: var(--muted-soft);
+  pointer-events: none;
+}
 .chapter-nav .chapter-title {
   flex: 1;
   text-align: center;
   color: var(--muted);
-  font-size: 0.9em;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  line-height: 1.5;
+  min-width: 0;
+}
+.chapter-nav .chapter-title a {
+  color: var(--muted);
+  padding: 0.15rem 0.4rem;
 }
 
-h1, h2, h3, h4 { font-family: var(--sans); color: var(--ink); }
-h1 {
-  font-size: 1.85em;
-  line-height: 1.35;
-  margin: 0.15em 0 0.1em;
-  letter-spacing: 0.5px;
+/* ----------------------------------------------------------------- *
+ * headings — sans, tightly tracked, deliberate hierarchy
+ * ----------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0;
 }
-h1 + .sub {
-  font-size: 1.05em;
-  color: var(--muted);
-  margin-bottom: 1.8em;
+
+article h1 {
+  font-size: clamp(1.7rem, 1.4rem + 1.2vw, 2.15rem);
+  line-height: 1.25;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.005em;
+}
+article h1 + .sub {
+  font-family: var(--serif);
   font-style: italic;
+  font-size: 1.06rem;
+  color: var(--muted);
+  margin: 0 0 2rem;
+  line-height: 1.55;
 }
-h2 {
-  font-size: 1.22em;
-  margin: 2.2em 0 0.6em;
-  border-left: 4px solid var(--accent);
-  padding-left: 0.6em;
+
+article h2 {
+  font-size: 1.18rem;
+  line-height: 1.45;
+  margin: 2.6rem 0 0.7rem;
+  padding-left: 0.7rem;
+  border-left: 3px solid var(--accent);
 }
-h3 {
-  font-size: 1.05em;
-  margin: 1.6em 0 0.4em;
+
+article h3 {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  margin: 1.9rem 0 0.5rem;
+  color: var(--ink);
+}
+article h3::before {
+  content: "§ ";
   color: var(--accent);
+  font-weight: 500;
 }
-p, ol, ul { margin: 0.7em 0; text-align: justify; text-justify: inter-ideograph; }
-li { margin: 0.2em 0; }
+
+article h4 {
+  font-size: 0.96rem;
+  margin: 1.4rem 0 0.4rem;
+  color: var(--ink-soft);
+}
+
+/* ----------------------------------------------------------------- *
+ * body type — paragraphs, lists, emphasis
+ * ----------------------------------------------------------------- */
+
+p, ul, ol {
+  margin: 0.85rem 0;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  hanging-punctuation: allow-end;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+p { text-indent: 0; }
+article p + p { margin-top: 0.95rem; }
+
+li { margin: 0.25rem 0; }
+ul, ol { padding-left: 1.6rem; }
+ul li::marker { color: var(--muted-soft); }
+ol li::marker { color: var(--muted); font-family: var(--sans); font-size: 0.92em; }
+
+strong, b { font-weight: 700; color: var(--ink); }
+em, i    { font-style: italic; }
+mark     { background: var(--accent-bg); padding: 0 0.15em; }
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--link) 35%, transparent);
+  transition: color .15s ease, border-color .15s ease;
+}
+a:hover {
+  color: var(--link-hover);
+  border-bottom-color: var(--link-hover);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--paper-tint);
+  padding: 0.08em 0.32em;
+  border-radius: 3px;
+}
+
+/* ----------------------------------------------------------------- *
+ * abstract — the bordered "摘要" panel above the article body
+ * ----------------------------------------------------------------- */
 
 .abstract {
-  background: var(--panel-bg);
+  position: relative;
+  background: var(--paper-tint);
   border-left: 3px solid var(--accent);
-  padding: 14px 18px;
-  margin: 1.2em 0 2em;
-  font-size: 0.97em;
+  padding: 1rem 1.2rem 1rem 1.25rem;
+  margin: 1.4rem 0 2.4rem;
+  font-size: 0.97rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  border-radius: 0 4px 4px 0;
 }
-.abstract::before { content: "摘要  "; font-weight: 600; color: var(--accent); }
+.abstract::before {
+  content: "摘要 · ";
+  display: inline;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-right: 0.2rem;
+}
+
+/* ----------------------------------------------------------------- *
+ * blockquote
+ * ----------------------------------------------------------------- */
 
 blockquote {
-  margin: 1em 0; padding: 0.2em 0 0.2em 1em;
-  border-left: 3px solid var(--muted);
-  color: var(--muted); font-style: italic;
+  margin: 1.4rem 0;
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+  font-style: italic;
 }
+
+/* ----------------------------------------------------------------- *
+ * tables
+ * ----------------------------------------------------------------- */
 
 table {
   border-collapse: collapse;
-  margin: 1em auto;
+  margin: 1.4rem auto;
   font-family: var(--sans);
-  font-size: 0.95em;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  width: auto;
+  max-width: 100%;
 }
-th, td { border-bottom: 1px solid var(--rule); padding: 6px 14px; text-align: center; }
-th { background: var(--panel-bg); font-weight: 600; }
+th, td {
+  padding: 0.45rem 1rem;
+  border-bottom: 1px solid var(--rule-soft);
+  text-align: center;
+}
+thead th {
+  border-bottom: 2px solid var(--ink-soft);
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+}
+tbody tr:hover { background: var(--paper-tint); }
 
-hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
+/* ----------------------------------------------------------------- *
+ * horizontal rule
+ * ----------------------------------------------------------------- */
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--rule-soft);
+  margin: 2.4rem auto;
+  max-width: 6rem;
+}
+
+/* ----------------------------------------------------------------- *
+ * small-summary — closing summary block
+ * ----------------------------------------------------------------- */
 
 .small-summary {
-  margin-top: 2.4em;
-  padding-top: 1em;
+  margin-top: 3rem;
+  padding-top: 1.2rem;
   border-top: 1px dashed var(--rule);
+  font-size: 0.97rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
 }
-.small-summary h4 { margin: 0 0 0.4em; font-size: 1em; }
+.small-summary h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  font-weight: 700;
+}
 
-/* Diagram placeholder — will be replaced by a TikZ-rendered SVG later */
-figure.diagram-placeholder {
-  margin: 1.8em 0;
+/* ----------------------------------------------------------------- *
+ * figures + tikz svg — quiet, framed
+ * ----------------------------------------------------------------- */
+
+figure {
+  margin: 2rem 0;
+  text-align: center;
 }
+figure.diagram { padding: 0; }
+figure img,
+figure svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  background: #fff;
+  border: 1px solid var(--rule-soft);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+figcaption {
+  font-family: var(--sans);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0.7rem auto 0;
+  max-width: 90%;
+  text-align: center;
+}
+
+/* placeholder block kept for legacy "diagram-placeholder" markup */
+figure.diagram-placeholder { margin: 2rem 0; }
 .placeholder-box {
-  background: repeating-linear-gradient(
-    45deg,
-    #f7f0dc,
-    #f7f0dc 14px,
-    #f0e8cf 14px,
-    #f0e8cf 28px
-  );
+  background: repeating-linear-gradient(45deg,
+    #f7f0dc, #f7f0dc 14px, #f0e8cf 14px, #f0e8cf 28px);
   border: 2px dashed #b99a45;
   border-radius: 6px;
-  padding: 22px 28px;
+  padding: 1.25rem 1.5rem;
   font-family: var(--sans);
-  font-size: 0.92em;
-  line-height: 1.55;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: #2b2a24;
+  text-align: left;
 }
 .placeholder-box .tag {
   display: inline-block;
   background: #b99a45;
   color: #fff;
-  font-size: 0.8em;
-  padding: 2px 9px;
+  font-size: 0.78rem;
+  padding: 0.1rem 0.55rem;
   border-radius: 3px;
-  letter-spacing: 0.3px;
-  margin-right: 8px;
+  letter-spacing: 0.04em;
+  margin-right: 0.5rem;
   font-weight: 600;
 }
 .placeholder-box h4 {
-  margin: 0 0 6px; font-size: 1em; color: #5a4a1a;
+  margin: 0 0 0.3rem;
+  font-size: 0.98rem;
+  color: #5a4a1a;
   font-family: var(--sans);
 }
 .placeholder-box .tikz-req {
-  margin: 10px 0 0;
-  background: rgba(255,255,255,0.6);
-  padding: 10px 14px;
+  margin: 0.6rem 0 0;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.55rem 0.8rem;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.88rem;
 }
-.placeholder-box .tikz-req dt {
-  font-weight: 600;
-  color: var(--accent);
-  margin-top: 5px;
-}
-.placeholder-box .tikz-req dd {
-  margin: 0 0 4px 16px;
-  color: #333;
-}
-figcaption {
-  font-size: 0.88em;
-  color: var(--muted);
-  margin-top: 0.5em;
-  font-family: var(--sans);
-  text-align: center;
-}
+.placeholder-box .tikz-req dt { font-weight: 600; color: var(--accent); margin-top: 0.3rem; }
+.placeholder-box .tikz-req dd { margin: 0 0 0.2rem 1rem; color: #333; }
 
-/* TOC (index.html) */
+/* ----------------------------------------------------------------- *
+ * MathJax breathing room — display equations need air
+ * ----------------------------------------------------------------- */
+
+mjx-container[display="true"] {
+  margin: 1.3rem 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+}
+mjx-container[display="true"]::-webkit-scrollbar { height: 6px; }
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+  background: var(--rule);
+  border-radius: 3px;
+}
+mjx-container { max-width: 100%; }
+
+/* ----------------------------------------------------------------- *
+ * volume index page (.toc) — archive-style layout
+ * ----------------------------------------------------------------- */
+
 .toc .chapter-header {
   text-align: left;
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
 }
 .toc .chapter-header .tag {
   display: inline-block;
-  background: var(--accent);
-  color: #fff;
-  padding: 3px 12px;
-  border-radius: 3px;
   font-family: var(--sans);
-  font-size: 0.8em;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.18rem 0.7rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  background: transparent;
 }
 .toc .chapter-header h1 {
-  font-size: 2em;
-  margin: 0.1em 0;
+  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.5rem);
+  line-height: 1.2;
+  margin: 0.1rem 0;
+  letter-spacing: -0.01em;
 }
 .toc .chapter-header .subtitle {
   color: var(--muted);
   font-style: italic;
-  font-size: 1.05em;
-  margin-top: 0.3em;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin-top: 0.4rem;
+  line-height: 1.5;
 }
 .toc .intro {
-  font-size: 1em;
-  margin: 1.5em 0 2em;
-  color: #333;
+  font-size: 1rem;
+  line-height: 1.78;
+  margin: 1.2rem 0 2.4rem;
+  color: var(--ink-soft);
 }
+
+/* part-header — used inside vol/index.html, defined inline there too */
+.part-header {
+  margin: 2.6rem 0 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.005em;
+  font-size: 1.02rem;
+}
+.part-header .part-num {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.55rem;
+  border-radius: 2px;
+  margin-right: 0.65rem;
+  vertical-align: middle;
+}
+.part-header .part-blurb {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 0.4rem;
+  line-height: 1.55;
+}
+
+.toc { counter-reset: tocitem; }
 .toc ol.toc-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  counter-reset: tocitem;
 }
 .toc ol.toc-list li {
   counter-increment: tocitem;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--rule);
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--rule-soft);
   display: flex;
-  gap: 18px;
+  gap: 1.1rem;
   align-items: baseline;
+  transition: padding .15s ease;
 }
 .toc ol.toc-list li:last-child { border-bottom: none; }
 .toc ol.toc-list li::before {
   content: counter(tocitem, decimal-leading-zero);
   font-family: var(--sans);
-  font-size: 0.85em;
-  color: var(--muted);
-  min-width: 30px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted-soft);
+  min-width: 2rem;
+  letter-spacing: 0.05em;
 }
 .toc ol.toc-list a {
   color: var(--ink);
   text-decoration: none;
+  border-bottom: none;
   flex: 1;
+  display: block;
+  transition: color .15s ease;
 }
 .toc ol.toc-list a:hover { color: var(--accent); }
+.toc ol.toc-list a:hover .title { color: var(--accent); }
 .toc ol.toc-list .title {
-  font-size: 1.1em;
+  font-family: var(--sans);
+  font-size: 1.04rem;
   font-weight: 600;
   display: block;
-  margin-bottom: 3px;
-  font-family: var(--sans);
+  margin-bottom: 0.18rem;
+  line-height: 1.45;
+  transition: color .15s ease;
 }
 .toc ol.toc-list .sub {
+  display: block;
   color: var(--muted);
-  font-size: 0.93em;
+  font-size: 0.88rem;
   font-style: italic;
+  line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------------- *
+ * collection root index (index.html at repo root) — volume cards
+ * ----------------------------------------------------------------- */
+
+.collection-header {
+  text-align: left;
+  margin-bottom: 2.2rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+.collection-header .badge {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  padding: 0.2rem 0.7rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+.collection-header h1 {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 1.6rem + 1.8vw, 2.7rem);
+  line-height: 1.18;
+  margin: 0.1em 0;
+  letter-spacing: -0.012em;
+}
+.collection-header .subtitle {
+  font-family: var(--serif);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 1.08rem;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.toc > p.intro {
+  font-size: 1.02rem;
+  line-height: 1.78;
+  margin: 1.4rem 0 2.6rem;
+  color: var(--ink-soft);
+}
+
+ol.volumes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: volitem;
+}
+ol.volumes-list li {
+  counter-increment: volitem;
+  position: relative;
+  padding: 1.4rem 0 1.4rem 0;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  gap: 1.4rem;
+  align-items: baseline;
+}
+ol.volumes-list li:last-child { border-bottom: none; }
+ol.volumes-list li::before {
+  content: "Vol. " counter(volitem, decimal-leading-zero);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted-soft);
+  min-width: 4.5rem;
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+}
+ol.volumes-list a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: none;
+  flex: 1;
+  display: block;
+}
+ol.volumes-list a:hover .volume-title { color: var(--accent); }
+ol.volumes-list .volume-title {
+  font-family: var(--sans);
+  font-size: 1.32rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  transition: color .15s ease;
+}
+ol.volumes-list .volume-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.98rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+ol.volumes-list .volume-meta {
+  font-family: var(--sans);
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+ol.volumes-list li.upcoming     { opacity: 0.45; }
+ol.volumes-list li.upcoming a   { pointer-events: auto; }
+ol.volumes-list li.upcoming .volume-title { font-weight: 500; }
+
+/* ----------------------------------------------------------------- *
+ * mobile
+ * ----------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  body { font-size: 17px; line-height: 1.78; }
+
+  article, .toc { padding: 1.5rem var(--side-pad) 3.5rem; }
+
+  article h2 { font-size: 1.1rem; }
+
+  .chapter-nav { font-size: 0.78rem; padding: 0.7rem var(--side-pad); }
+  .chapter-nav .chapter-title {
+    flex: 1 1 100%;
+    order: 3;
+    text-align: center;
+    margin-top: 0.3rem;
+    font-size: 0.74rem;
+  }
+
+  ol.volumes-list li {
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.2rem 0;
+  }
+  ol.volumes-list li::before { padding-top: 0; min-width: 0; }
+  ol.volumes-list .volume-title { font-size: 1.18rem; }
+
+  .toc ol.toc-list li { gap: 0.7rem; padding: 0.8rem 0; }
+  .toc ol.toc-list li::before { min-width: 1.6rem; }
+}
+
+/* ----------------------------------------------------------------- *
+ * print
+ * ----------------------------------------------------------------- */
+
+@media print {
+  body { background: #fff; color: #000; font-size: 11pt; }
+  body::before { display: none; }
+  .chapter-nav { display: none; }
+  article, .toc { padding: 0; max-width: none; }
+  a { color: #000; border-bottom: none; }
+  .abstract, .small-summary { background: transparent; }
 }

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>度规 g_μν 究竟编码了什么? · 第五卷·引力是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="05-rindler.html">← 上一节</a>
+  <span class="chapter-title">第 6 节 / 30 · 第 2 部分 · 弯曲时空 — 度规、测地线、曲率 · 第五卷·引力是什么?</span>
+  <a href="07-geodesic.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>度规 $g_{\mu\nu}$ 究竟编码了什么?</h1>
+  <div class="sub">—— 线元、时空间隔、对称性</div>
+
+  <div class="abstract">
+    走出第 1 部分的"等效原理 + Minkowski + Rindler", 我们正式进入第 2 部分: 弯曲时空. 这一节把<strong>度规</strong>这个对象拎出来单独审视. 度规 $g_{\mu\nu}(x)$ 是时空中每一点上的一张<strong>对称矩阵表</strong>, 它的工作只有一项: 告诉你"邻近两点之间的距离 (或时空间隔) 是多少". 写出来就一行: $\mathrm{d}s^2 = g_{\mu\nu}\,\mathrm{d}x^\mu\mathrm{d}x^\nu$. 这一行同时编码了<strong>三件大事</strong>: (i) 长度与时间; (ii) 内积与正交; (iii) 因果与光锥. 把度规一选定, 全部几何信息 — 测地线、Christoffel 符号、Riemann 曲率、Einstein 张量 — 全是它的导数构成的. 我们用三个具体例子建立直觉: 平面 $\mathrm{d}s^2 = \mathrm{d}x^2+\mathrm{d}y^2$、球面 $\mathrm{d}s^2 = R^2(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2)$、Schwarzschild 时空 $\mathrm{d}s^2 = -(1-r_s/r)c^2\mathrm{d}t^2 + (1-r_s/r)^{-1}\mathrm{d}r^2 + r^2\mathrm{d}\Omega^2$. 三个例子里, 度规分量分别是常数、随位置变化、且在 $r=r_s$ 处一个分量趋于零 — 它们涵盖了从平直到弯曲再到视界出现的全部基本现象.
+  </div>
+
+  <p>第 4 节我们写下 Minkowski 度规 $\eta_{\mu\nu} = \mathrm{diag}(-1,1,1,1)$, 第 5 节看了它在加速观察者的"皮肤"下变成 Rindler 形式 $\mathrm{d}s^2 = -\xi^2\mathrm{d}\eta^2 + \mathrm{d}\xi^2$. 这两件事告诉我们一个共同的事实: <strong>同一个时空, 用不同坐标写出来的度规分量可以完全不同, 但 $\mathrm{d}s^2$ 这个标量永远不变</strong>. 这正是度规作为"几何身份证"的根本性质. 在弯曲时空里这件事更尖锐: 我们写不出全局笛卡尔, 只能依靠 $g_{\mu\nu}$ 在每一点告诉我们"如何丈量". 这一节把这个对象从头到尾解剖清楚.</p>
+
+  <h2>一、从 Pythagoras 到线元 — 度规的诞生</h2>
+
+  <p>初中你就学过欧几里得平面上的勾股定理: 两点 $P_1=(x_1,y_1)$ 与 $P_2=(x_2,y_2)$ 的距离 $\Delta s = \sqrt{(\Delta x)^2 + (\Delta y)^2}$. 把它写成微分形式 — 取无穷接近的两点, 距离的平方就是</p>
+
+  <p>$$ \mathrm{d}s^2 = \mathrm{d}x^2 + \mathrm{d}y^2. \tag{1}$$</p>
+
+  <p>方程 (1) 看起来平凡, 但它隐藏一件事: 系数 $1, 1$ (在 $\mathrm{d}x^2$ 与 $\mathrm{d}y^2$ 前) 不是天上掉下来的, 它们是<strong>选了笛卡尔坐标</strong>之后, 平面欧几里得几何赏给你的礼物. 换一套坐标 (比如极坐标 $x = r\cos\phi, y = r\sin\phi$), 同样一片平面, 同一个 $\mathrm{d}s$, 系数变成</p>
+
+  <p>$$ \mathrm{d}s^2 = \mathrm{d}r^2 + r^2\,\mathrm{d}\phi^2. \tag{2}$$</p>
+
+  <p>这下系数就不全是 $1$ 了 — $\mathrm{d}\phi^2$ 前面挂着 $r^2$, 它依赖于点的位置. 把方程 (1) 与 (2) 摆在一起, 你会注意一件让 Riemann 1854 受启发的事: <strong>"度规系数依赖位置"并不一定意味着空间本身弯曲</strong>, 也可能只是坐标的选择碰巧让它们看起来在变. 真正区分"曲与不曲"的不是 $g_{ij}$ 长什么样, 而是它的<strong>二阶导数</strong>组成的<strong>Riemann 张量</strong>. 这件事我们留到第 9 节展开, 这里先把度规这个对象本身看清楚.</p>
+
+  <p>把 (1) 的两条系数收拢成一张矩阵, 就是平面欧几里得度规:</p>
+
+  <p>$$ g_{ij}^{\,\text{flat}} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \qquad g_{ij}^{\,\text{polar}} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}. \tag{3}$$</p>
+
+  <p>左是笛卡尔, 右是极坐标. 两种写法描述的是同一个平面 — 你用尺子在桌上画一个三角形, 它的边长可以用 (1) 量也可以用 (2) 量, 数字一致. 这就是<strong>坐标变换不变性</strong>的最朴素体现.</p>
+
+  <h2>二、度规的形式定义 — 对称二阶张量</h2>
+
+  <p>把上面的写法从二维欧氏空间推到 $n$ 维流形, Riemann 给的定义是: 在每一点 $x \in M$ 上, 度规是一个<strong>对称、非退化的二阶协变张量</strong> $g_{\mu\nu}(x)$. 写成线元的语言:</p>
+
+  <p>$$ \mathrm{d}s^2 = g_{\mu\nu}(x)\,\mathrm{d}x^\mu\,\mathrm{d}x^\nu, \qquad g_{\mu\nu} = g_{\nu\mu}. \tag{4}$$</p>
+
+  <p>方程 (4) 是本节的<strong>主公式</strong>. 重复求和约定: $\mu, \nu$ 各跑遍 $0, 1, 2, \ldots, n-1$. 在 4 维时空 ($n=4$), $g_{\mu\nu}$ 是一个 $4\times 4$ 对称矩阵, 独立分量数 $4(4+1)/2 = 10$ — 这正是 Einstein 场方程要求解的 10 个未知函数.</p>
+
+  <p>"对称"意味着 $g_{\mu\nu} = g_{\nu\mu}$ — 它的反对称部分对 $\mathrm{d}s^2$ 没有贡献 (因为 $\mathrm{d}x^\mu\mathrm{d}x^\nu$ 关于 $\mu\nu$ 对称, 反对称部分缩并为零). "非退化"意味着 $\det(g_{\mu\nu}) \neq 0$, 它的逆矩阵 $g^{\mu\nu}$ 是良定义的 vector ↔ co-vector 字典:</p>
+
+  <p>$$ g^{\mu\alpha}\,g_{\alpha\nu} = \delta^\mu{}_\nu. \tag{5}$$</p>
+
+  <p>用 $g_{\mu\nu}$ 把指标"压下" (vector 变成 1-form), 用 $g^{\mu\nu}$ 把指标"举起" (1-form 变回 vector) — 这是张量分析里"升降指标"的全部内容.</p>
+
+  <p>"非退化"还有一个几何意涵: $g_{\mu\nu}$ 作为对称矩阵, 可以对角化成 $\mathrm{diag}(\pm 1, \pm 1, \ldots)$ 的形式. 正负号的个数差称为<strong>signature (符号差)</strong>. 黎曼几何取 signature $(+, +, \ldots, +)$, 全正 — $\mathrm{d}s^2$ 是正定的, 总为正. 而我们的时空取 signature $(-, +, +, +)$, 一个负号三个正号 — $\mathrm{d}s^2$ 可正可负可零, 正负不同对应不同的<strong>因果类型</strong>. 这就是 SR / GR 与纯粹空间几何的关键区别.</p>
+
+  <p>规定:</p>
+  <ul>
+    <li><strong>类时</strong> (timelike): $\mathrm{d}s^2 \lt  0$, 物质粒子的世界线就走这种间隔. 定义固有时 $\mathrm{d}\tau^2 = -\mathrm{d}s^2/c^2$.</li>
+    <li><strong>类空</strong> (spacelike): $\mathrm{d}s^2 \gt  0$, 这是"同时"的两件事, 它们之间不能有因果联系. 此时 $\mathrm{d}\ell = \sqrt{\mathrm{d}s^2}$ 是空间距离.</li>
+    <li><strong>类光</strong> (null): $\mathrm{d}s^2 = 0$, 光线走这种轨迹, 张出光锥结构.</li>
+  </ul>
+
+  <p>这一切, 都浓缩在一个对称矩阵 $g_{\mu\nu}(x)$ 里.</p>
+
+  <p><strong>等价类的视角.</strong> 也许你会想问: 为什么定义里要求"非退化"? 因为如果 $\det g_{\mu\nu} = 0$, 就存在一个非零向量 $v^\mu$ 使 $g_{\mu\nu}v^\nu = 0$ — 这个向量在度规眼里"长度为零却不是零向量", 升降指标不再可逆, 整个张量代数崩溃. 数学上这意味着流形的某些方向"失踪了", 物理上这通常对应某种坐标病变, 比如球极点 $\theta = 0$ 处的 $\sin\theta \to 0$ 让 $g_{\phi\phi}$ 退化, 或 Schwarzschild 视界处 $1-r_s/r \to 0$ 让 $g_{tt}$ 退化. 它们都不是物理时空真坏了, 而是<strong>那一套坐标</strong>不再合用 — 换一套坐标 (比如球面用立体投影, 视界用 Kruskal-Szekeres) 度规就重新非退化. 这就是为什么 GR 老师反复念叨"度规分量看起来奇异, 不一定意味着时空奇异; 要看曲率张量分量是否真的发散".</p>
+
+  <figure class="diagram">
+    <img src="build/06.svg" alt="三栏并列: 平面 ds²=dx²+dy² 配二维 xy 网格, 球面 ds²=R²(dθ²+sin²θ dφ²) 配 3D 透视经纬线, Schwarzschild ds²=-(1-r_s/r)c²dt²+(1-r_s/r)^{-1}dr²+... 配 r-t 平面与 r=r_s 红色虚线视界" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;">
+    <figcaption>图 1  度规 $g_{\mu\nu}$ 的三副面孔. 左: 二维欧氏平面, $g_{ij}=\mathrm{diag}(1,1)$ 是常矩阵, 红色向量 $\mathrm{d}s$ 由 $\mathrm{d}x,\mathrm{d}y$ 勾股. 中: 半径 $R$ 的球面 $S^2$, $g_{\phi\phi} = R^2\sin^2\theta$ 随纬度变化 — 赤道 ($\theta=\pi/2$) 一周长 $2\pi R$, 极点 ($\theta\to 0,\pi$) 一周长退化为零. 右: Schwarzschild 时空在 $(r,t)$ 平面投影, 红色虚线是 $r=r_s$ 视界, 那里 $g_{tt} = -(1-r_s/r)c^2 \to 0$, $g_{rr}\to\infty$; 蓝色光锥从远处的 $45^\circ$ 逐步倾斜, 到视界处变成几乎竖直的"针". 三个图共同的主角是同一对象 $g_{\mu\nu}$.</figcaption>
+  </figure>
+
+  <h2>三、三个例子 — 平面、球面、Schwarzschild</h2>
+
+  <p>度规这个对象再抽象, 也得落到具体例子才看得见. 我们走三个台阶, 由易到难.</p>
+
+  <p><strong>例 (a) 二维欧氏平面.</strong> 度规 (1), 矩阵 $g_{ij} = \mathrm{diag}(1,1)$. 处处一样, 不依赖坐标. 这是最简单的"flat space". 任何长度计算都用勾股定理. 一根 $\mathrm{d}x = 3, \mathrm{d}y = 4$ 的小段长度 $\mathrm{d}s = 5$.</p>
+
+  <p><strong>例 (b) 球面 $S^2$ (半径 $R$).</strong> 在球坐标 $(\theta, \phi)$ ($\theta$ 余纬度, $\phi$ 经度) 下, 球面线元写成</p>
+
+  <p>$$ \mathrm{d}s^2 = R^2\left(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2\right). \tag{6}$$</p>
+
+  <p>对照 (4), 度规矩阵</p>
+
+  <p>$$ g_{ij} = \begin{pmatrix} R^2 & 0 \\ 0 & R^2\sin^2\theta \end{pmatrix}. \tag{7}$$</p>
+
+  <p>关键之处: $g_{\phi\phi} = R^2\sin^2\theta$ <strong>依赖位置</strong> (依赖纬度 $\theta$). 在赤道 $\theta = \pi/2$, $g_{\phi\phi} = R^2$, 一圈周长 $\int_0^{2\pi}\sqrt{g_{\phi\phi}}\,\mathrm{d}\phi = 2\pi R$. 在极点附近 $\theta \to 0$, $g_{\phi\phi} \to 0$, 一圈周长趋于零 — 这反映极点是坐标奇点, 物理上球面在那儿一切照旧. 取 $R = 1$ 的具体数: 沿赤道走 $\mathrm{d}\phi$ 弧度, 移动距离正好 $\mathrm{d}\phi$; 沿 $\theta = 60^\circ$ 的纬度圈走 $\mathrm{d}\phi$, 距离 $\sin 60^\circ \cdot \mathrm{d}\phi \approx 0.866\,\mathrm{d}\phi$. 度规分量给出"局部缩放因子".</p>
+
+  <p>球面是<strong>真正弯曲</strong>的二维流形 (与平面不同), 这从 (6) 一眼看不出, 但 Gauss 1827 用<strong>Theorema Egregium</strong>证明了: 不必嵌入到三维, 仅凭 $g_{ij}$ 与它的导数, 就能算出一个<strong>内蕴曲率</strong>, 球面的高斯曲率 $K = 1/R^2 \gt  0$. 这是 Riemann 把 Gauss 推广到任意维数后的核心起点.</p>
+
+  <p><strong>例 (c) Schwarzschild 时空.</strong> 一个静态、球对称、真空 (除中心外无物质) 解. 1916 年 Karl Schwarzschild 在第一次世界大战的俄国战壕里几个星期里写出, 用 $(t, r, \theta, \phi)$ 坐标:</p>
+
+  <p>$$ \mathrm{d}s^2 = -\left(1 - \frac{r_s}{r}\right)c^2\,\mathrm{d}t^2 + \left(1 - \frac{r_s}{r}\right)^{-1}\mathrm{d}r^2 + r^2\left(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2\right). \tag{8}$$</p>
+
+  <p>这里 $r_s = 2GM/c^2$ 是<strong>Schwarzschild 半径</strong>. 给定一个质量 $M$ — 太阳 $M_\odot \approx 2\times 10^{30}\,\mathrm{kg}$ — 数 $r_s$ 算出 $\approx 2.95\,\mathrm{km}$. 地球 $r_s \approx 8.87\,\mathrm{mm}$. 如果整个地球被压缩进半径 $\approx 9$ mm, 它就坍缩成黑洞.</p>
+
+  <p>方程 (8) 三件值得逐项看的事:</p>
+
+  <ul>
+    <li><strong>$g_{tt} = -(1-r_s/r)c^2$.</strong> $r \to \infty$ 时 $g_{tt} \to -c^2$, 就是 Minkowski 的时间分量 $-c^2$. 这叫"asymptotically flat" — Schwarzschild 时空在远处趋于平直, 与我们日常的 SR 直觉接得上. $r \to r_s$ 时 $g_{tt} \to 0$ — 时间分量"消失". 这就是<strong>事件视界</strong>: 远处观察者 (用 $t$ 计时) 看到落入物体永远到不了 $r_s$, 因为 $\mathrm{d}t \to \infty$ 才能换得有限的固有时间.</li>
+    <li><strong>$g_{rr} = (1-r_s/r)^{-1}$.</strong> $r \to r_s$ 时 $g_{rr} \to \infty$ — 一个被坐标膨胀到无限的径向"长度". 跟 Rindler $\xi \to 0$ 处的奇异性同一性质, 是<strong>坐标奇点</strong>而非物理奇点. 真正物理奇点在 $r = 0$, 那里曲率张量分量发散.</li>
+    <li><strong>$g_{\theta\theta} = r^2$, $g_{\phi\phi} = r^2\sin^2\theta$.</strong> 这部分是球面线元的"放大版" — 半径变成 $r$. 注意这个 $r$ 不是"中心到那点的距离" (那个距离要积分 $\int\sqrt{g_{rr}}\,\mathrm{d}r$, 比 $r$ 大), 而是"那个 $r$-球的几何半径" (使一个完整球面面积等于 $4\pi r^2$ 的参数). Schwarzschild 把 $r$ 这样定义, 使度规简洁.</li>
+  </ul>
+
+  <p>把这三件事放一起, (8) 描绘了一个"远处平直、近处时间被卷起、$r=r_s$ 处一类坐标失效"的弯曲时空. 第 12 节我们会从 Einstein 场方程导出 (8); 这一节先把它当成一个"度规长什么样"的代表. 写在矩阵里:</p>
+
+  <p>$$ g_{\mu\nu} = \mathrm{diag}\!\left(-(1-r_s/r)c^2,\ \tfrac{1}{1-r_s/r},\ r^2,\ r^2\sin^2\theta\right). \tag{9}$$</p>
+
+  <p>对角的, 因为 Schwarzschild 是静态球对称解 — 没有混合项 $\mathrm{d}t\mathrm{d}r$. 旋转黑洞 (Kerr) 度规会在 $\mathrm{d}t\mathrm{d}\phi$ 项产生非对角元素, 那是后话.</p>
+
+  <h2>四、度规决定一切几何 — 派生量的链式结构</h2>
+
+  <p>度规之所以是 GR 的"基本变量", 是因为<strong>所有几何量都是它的导数</strong>. 我们把这个链条点出来 (具体推导留到第 7-10 节).</p>
+
+  <p><strong>第一层: Christoffel 符号</strong> $\Gamma^\rho_{\mu\nu}$. 由度规的一阶导数构成:</p>
+
+  <p>$$ \Gamma^\rho_{\mu\nu} = \tfrac{1}{2}\,g^{\rho\sigma}\big(\partial_\mu g_{\nu\sigma} + \partial_\nu g_{\mu\sigma} - \partial_\sigma g_{\mu\nu}\big). \tag{10}$$</p>
+
+  <p>它本身不是张量 (随坐标变换不按张量规则变), 但它告诉<strong>"如何把一个向量从一点平移到邻近点而不改变方向"</strong>. 这就是<strong>测地方程</strong>的灵魂 (第 7 节).</p>
+
+  <p><strong>第二层: Riemann 曲率张量</strong> $R^\rho{}_{\sigma\mu\nu}$. 由 $\Gamma$ 的一阶导数加 $\Gamma\Gamma$ 二次项构成 — 即度规的二阶导数. 它衡量"沿一条小回路平移一个向量, 它会偏多少". 偏 $0$ 意味着空间平直; 偏不为 $0$ 意味着<strong>真正弯曲</strong>. 这是 Gauss 的 Theorema Egregium 在任意维的推广 (第 9 节).</p>
+
+  <p><strong>第三层: Ricci 张量</strong> $R_{\mu\nu} = R^\rho{}_{\mu\rho\nu}$, <strong>标量曲率</strong> $R = g^{\mu\nu}R_{\mu\nu}$. 把 Riemann 缩并掉得到的更"粗"但更易处理的曲率指标 — 它们直接出现在 Einstein 场方程的左端 (第 10 节).</p>
+
+  <p>关键结论: 一旦写下 $g_{\mu\nu}(x)$, 整个 GR 的剧情 — 测地线、潮汐力、黑洞视界、引力波、宇宙学膨胀 — 全是它派生出来的. 这就是为什么 Einstein 1915 把 $g_{\mu\nu}$ 选作引力的<strong>基本场变量</strong>: 引力不再是一种"力", 而是<strong>时空几何的弯曲</strong>, 而几何由度规完全编码.</p>
+
+  <p><strong>历史路线.</strong> 这条路不是 Einstein 一人走出. 1854 年 Bernhard Riemann 在哥廷根的就职演讲 "Über die Hypothesen, welche der Geometrie zu Grunde liegen" (论几何基础所依赖的假设) 把 Gauss 的二维曲面理论推到任意 $n$ 维, 引入 $g_{ij}$ 作为流形上"长度"的统一来源, 并构造了曲率张量. 这个工作对当时数学界过于超前 — Riemann 三十九岁早逝, 演讲稿在他死后才出版. 接力的是 Christoffel (1869, 引入 Christoffel 符号), Ricci-Curbastro 与 Levi-Civita (1900, 整理出"绝对微分学"即张量演算), 直到 1912 年 Einstein 听 Marcel Grossmann 说"你要的数学工具都在 Ricci-Levi-Civita 那里了". 1913-1915 年, Einstein 与 Grossmann (后者负责数学) 把度规 $g_{\mu\nu}$ 选作动力学变量, 试错三年 (期间一度走错路, 1914 年的"Entwurf 理论"差一点错过 Mercury 进动), 最终在 1915 年 11 月 25 日的 Berlin Academy 报告里写出场方程 $G_{\mu\nu} = (8\pi G/c^4) T_{\mu\nu}$. 度规作为引力场的故事至此定型.</p>
+
+  <p><strong>对称性视角.</strong> 度规还藏着另一件事: <strong>对称性</strong>. 一个度规 $g_{\mu\nu}$ 若在某个无穷小坐标变换 $x^\mu \to x^\mu + \epsilon\,\xi^\mu$ 下保持不变, 称 $\xi^\mu$ 为<strong>Killing 向量场</strong>. Killing 方程 $\nabla_\mu \xi_\nu + \nabla_\nu \xi_\mu = 0$. Schwarzschild 度规 (8) 因为不依赖 $t$, 所以 $\partial_t$ 是 Killing 向量 — 时间平移对称性 — 它直接给出能量守恒. 因为不依赖 $\phi$, $\partial_\phi$ 也是 Killing 向量 — 旋转对称性 — 给出角动量守恒. 度规的对称性, 通过 Killing 向量, 直接翻译成守恒律. 这是 Noether 定理在弯曲时空里的化身, 也是我们在第 12 节算 Schwarzschild 测地线时的核心工具.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>度规 $g_{\mu\nu}$ 是这一卷往后所有故事的<strong>母题</strong>. 它是一张随位置变化的对称矩阵表, 通过线元 $\mathrm{d}s^2 = g_{\mu\nu}\mathrm{d}x^\mu\mathrm{d}x^\nu$ 编码"局部如何丈量"; 通过其导数派生 Christoffel、Riemann、Ricci, 进而决定测地线与场方程; 通过其对称性 (Killing 向量) 决定守恒律. 三个例子构成本节的台阶: 平面 (常度规)、球面 (位置相关、内蕴弯曲)、Schwarzschild (时空、视界、奇点). 三个度规系数的<strong>signature</strong>都让我们一眼看清空间是黎曼几何 (全正) 还是时空几何 ($(-,+,+,+)$). 接下来第 7 节我们把度规交给"测地线方程": 在弯曲时空里, 自由落体的物体走 $g_{\mu\nu}$ 给出的"最直"路径 — 这就是为什么 Newton 的"引力"在 Einstein 这里变成"几何". 第 8 节讲平移如何依赖路径, 第 9 节直接构造 Riemann, 第 10 节缩并得到 Einstein 张量. 度规是这条链子的第一环, 后面每一节都把它推进一步.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="05-rindler.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="07-geodesic.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

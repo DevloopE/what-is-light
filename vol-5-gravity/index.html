@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第五卷 · 引力是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<header class="chapter-header">
+  <span class="tag">第五卷</span>
+  <h1>引力是什么?</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+牛顿说引力是一种力, 在远处瞬间作用. 但这与他自己讲过的因果与相对运动相抵触, 他自己也讲不清. Einstein 1915 年给出的答案是: 引力不是力 — 它是时空的几何, 物质告诉时空怎么弯, 弯的时空告诉物质怎么动. 本卷追问"引力到底是什么", 从 Einstein 的电梯思想实验出发, 一路推到 Schwarzschild 黑洞、引力波、Friedmann 宇宙、Hawking 辐射、量子引力的边界. 每一节落到一个能算出来的具体数字: GPS 一天偏 38 微秒、Sun 的史瓦西半径 3 公里、Mercury 进动 43"/世纪、GW150914 应变 10⁻²¹.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>等效原理 — 引力为什么不是力
+  <span class="part-blurb">从 Einstein 的电梯思想实验, 到引力红移、光线偏折、Minkowski 时空</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-equivalence.html"><span class="title">引力为什么不是一种力?</span><span class="sub">—— Einstein 的电梯与等效原理</span></a></li>
+  <li><a href="02-time-dilation.html"><span class="title">时间真的会变快慢吗?</span><span class="sub">—— 引力红移与 Pound-Rebka</span></a></li>
+  <li><a href="03-light-bending.html"><span class="title">光为什么会被太阳偏折?</span><span class="sub">—— 1919 日食与 1.75 角秒</span></a></li>
+  <li><a href="04-minkowski.html"><span class="title">Minkowski 时空 — 距离怎么定义?</span><span class="sub">—— 度规、光锥、世界线</span></a></li>
+  <li><a href="05-rindler.html"><span class="title">匀加速观察者的世界长什么样?</span><span class="sub">—— Rindler 坐标与视界</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>弯曲时空 — 度规、测地线、曲率
+  <span class="part-blurb">把"几何"翻成可算的张量: $g_{\mu\nu}$, $\Gamma^\lambda_{\mu\nu}$, $R^\rho{}_{\sigma\mu\nu}$</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-metric.html"><span class="title">度规 $g_{\mu\nu}$ 究竟编码了什么?</span><span class="sub">—— 线元、时空间隔、对称性</span></a></li>
+  <li><a href="07-geodesic.html"><span class="title">自由下落的轨迹怎么算?</span><span class="sub">—— 测地线方程与 Christoffel 符号</span></a></li>
+  <li><a href="08-parallel-transport.html"><span class="title">为什么"平行"在弯曲时空里有歧义?</span><span class="sub">—— 协变导数与平行运输</span></a></li>
+  <li><a href="09-riemann.html"><span class="title">潮汐力是怎么从曲率张量里浮出来的?</span><span class="sub">—— Riemann 张量与测地偏离</span></a></li>
+  <li><a href="10-einstein-tensor.html"><span class="title">为什么 Einstein 张量是这个组合?</span><span class="sub">—— Ricci, $R$, Bianchi 与守恒</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>Einstein 场方程
+  <span class="part-blurb">$G_{\mu\nu}=8\pi G\,T_{\mu\nu}/c^4$ 怎么来的, 它在弱场和强场里给出什么</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-einstein-equations.html"><span class="title">$G_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4$ 是怎么写下来的?</span><span class="sub">—— 物质告诉时空怎么弯</span></a></li>
+  <li><a href="12-schwarzschild.html"><span class="title">Schwarzschild 解 — 球对称真空里时空长什么样?</span><span class="sub">—— $r_s = 2GM/c^2$</span></a></li>
+  <li><a href="13-newtonian-limit.html"><span class="title">Newton 引力是怎么从 GR 里浮现的?</span><span class="sub">—— 弱场极限与 $g_{00}\approx -(1+2\Phi/c^2)$</span></a></li>
+  <li><a href="14-gravitational-waves.html"><span class="title">引力波 — 时空真的会涟漪吗?</span><span class="sub">—— 线性化 GR 与 $h_{\mu\nu}$</span></a></li>
+  <li><a href="15-action.html"><span class="title">Einstein-Hilbert 作用量怎么变出场方程?</span><span class="sub">—— $S = \int R\sqrt{-g}\,d^4x/16\pi G$</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>黑洞
+  <span class="part-blurb">视界、潮汐、Kerr 旋转、Hawking 辐射、面积熵</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-event-horizon.html"><span class="title">视界 — 进得去, 出不来, 究竟是什么意思?</span><span class="sub">—— Schwarzschild 视界与 Penrose 图</span></a></li>
+  <li><a href="17-falling-in.html"><span class="title">落入黑洞 — 你看到的与外面看到的有何不同?</span><span class="sub">—— 固有时 vs 坐标时</span></a></li>
+  <li><a href="18-kerr.html"><span class="title">旋转黑洞为什么有"能层"?</span><span class="sub">—— Kerr 度规与 Penrose 过程</span></a></li>
+  <li><a href="19-hawking.html"><span class="title">黑洞会蒸发吗?</span><span class="sub">—— Hawking 温度 $T_H = \hbar c^3/8\pi G M k_B$</span></a></li>
+  <li><a href="20-bh-thermo.html"><span class="title">为什么黑洞熵正比于面积?</span><span class="sub">—— 黑洞热力学四定律</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>宇宙学
+  <span class="part-blurb">FLRW 宇宙、Friedmann 方程、暗能量、CMB 与 BBN</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-flrw.html"><span class="title">宇宙真的是均匀各向同性的吗?</span><span class="sub">—— 宇宙学原理与 FLRW 度规</span></a></li>
+  <li><a href="22-friedmann.html"><span class="title">膨胀宇宙的方程是什么样的?</span><span class="sub">—— Friedmann 方程</span></a></li>
+  <li><a href="23-dark-energy.html"><span class="title">为什么宇宙在加速膨胀?</span><span class="sub">—— 宇宙学常数 $\Lambda$ 与暗能量</span></a></li>
+  <li><a href="24-cmb.html"><span class="title">CMB 是宇宙最早的快照吗?</span><span class="sub">—— 2.725 K, $z\sim 1100$</span></a></li>
+  <li><a href="25-bbn.html"><span class="title">为什么宇宙里 25% 是氦?</span><span class="sub">—— 大爆炸核合成</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>检验与前沿
+  <span class="part-blurb">Mercury 进动、GPS、LIGO、EHT, 以及量子引力的边界</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-mercury.html"><span class="title">Mercury 近日点为什么每百年多偏 43 角秒?</span><span class="sub">—— GR 的第一个检验</span></a></li>
+  <li><a href="27-gps.html"><span class="title">GPS 一天偏 38 微秒, 你怎么校正?</span><span class="sub">—— SR 与 GR 在身边</span></a></li>
+  <li><a href="28-ligo.html"><span class="title">LIGO 怎么测出 $10^{-21}$ 的应变?</span><span class="sub">—— 双黑洞合并 GW150914</span></a></li>
+  <li><a href="29-eht.html"><span class="title">EHT 拍到的"黑洞照片"是什么?</span><span class="sub">—— M87* 与 Sgr A* 的阴影</span></a></li>
+  <li><a href="30-quantum-gravity.html"><span class="title">量子引力 — 为什么至今没解决?</span><span class="sub">—— Planck 尺度与全息原理</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第五卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPS 一天偏 38 微秒, 你怎么校正? · 第五卷·引力是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="26-mercury.html">← 上一节</a>
+  <span class="chapter-title">第 27 节 / 30 · 第 6 部分 · 检验与前沿 · 第五卷·引力是什么?</span>
+  <a href="28-ligo.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>GPS 一天偏 38 微秒, 你怎么校正?</h1>
+  <div class="sub">—— SR 与 GR 在身边</div>
+
+  <div class="abstract">本节我们把广义相对论从 Mercury 进动那种"实验室"尺度的现象, 拽到你今天出门骑共享单车都在用的工程系统里: GPS. 全球定位系统的 24 颗卫星各带一台铷 (或铯) 原子钟, 海拔 $\approx 20200$ km, 切向速度 $\approx 3.87$ km/s. 我们将看到两件相反的事同时发生: 狭义相对论的时间膨胀让卫星钟<em>变慢</em> $\approx 7.2$ μs/day, 广义相对论的引力时间膨胀让卫星钟<em>变快</em> $\approx 45.7$ μs/day, 净结果是卫星钟比地面快 $\approx 38$ μs/day. 不修正会怎么样? 一束信号以光速跑, $38$ μs 对应 $c\cdot 38\,\mu\text{s}\approx 11$ km 的位置误差 — <em>每天</em>. 一周内你的导航系统会把你定位到隔壁城市. 落到两条编号公式: $\Delta t_{\rm SR}/\Delta t = -v^2/(2c^2)$ 与 $\Delta t_{\rm GR}/\Delta t = (\Phi_{\rm sat}-\Phi_{\rm gnd})/c^2$. 这是广义相对论第一次进入人类的工程基础设施.</div>
+
+  <p>每次你打开手机地图, 屏幕中央那个蓝点漂移到几米精度, 你都在<em>无意识地</em>使用爱因斯坦. GPS 不是"用到一点 GR", 而是<strong>不修正 GR 就完全不能工作</strong>的系统 — 这件事情在 1977 年系统设计阶段曾引发过激烈争论, 我们后面会讲. 上一节我们花了一整篇推 Mercury 近日点进动 $43''$/世纪, 那是个需要望远镜跟踪几十年才能积累出来的微小偏离. 这一节的尺度更夸张: 同一套 Schwarzschild 度规, 应用到地球弱场 + 卫星轨道, 给出每天 38 微秒的修正 — 这个数大到它的一阶贡献必须在<em>每秒</em>都被考虑.</p>
+
+  <p>我们会按这条路径走: 先把 SR 时间膨胀 (运动钟慢) 与 GR 引力时间膨胀 (深势阱里钟慢) 的两个一阶公式写下来; 然后代入 GPS 卫星的实际参数, 算两个数; 然后看怎么把两件事都拽进同一个 Schwarzschild 度规里, 一步推出净修正; 最后聊一下这个工程上是怎么"预补偿"的, 以及它的历史包袱.</p>
+
+  <h2>一、两个一阶效应: 运动慢 vs. 高处快</h2>
+
+  <p>把读者熟悉的 SR 公式 (运动钟比静止钟慢) 写一下. 在地心惯性系 (ECI) 里, 一颗以速度 $v$ 运动的钟, 它的固有时 $\tau$ 与坐标时 $t$ 的关系是 $d\tau = dt\sqrt{1-v^2/c^2}$. 取一阶 ($v\ll c$):</p>
+
+  <p>$$
+  \frac{\Delta t_{\rm SR}}{\Delta t} \;=\; -\frac{v^2}{2c^2}. \tag{1}
+  $$</p>
+
+  <p>负号: 运动钟慢. 把 GPS 卫星的轨道速度 $v=3874$ m/s 代进去:</p>
+
+  <p>$$
+  \frac{v^2}{2c^2} \;=\; \frac{(3874)^2}{2\cdot(2.998\times 10^8)^2} \;\approx\; 8.35\times 10^{-11}.
+  $$</p>
+
+  <p>一天有 $86400$ 秒, 所以一天的累积偏差 $\approx 8.35\times 10^{-11}\cdot 86400$ s $\approx 7.2\times 10^{-6}$ s $= 7.2$ μs. 卫星钟一天因为这条原因慢 $7.2$ 微秒.</p>
+
+  <p>地面观察者也在动 — 地球自转给地面赤道一个 $\approx 465$ m/s 的切向速度. 但我们关心的是<em>卫星钟相对地面钟</em>的差, 在 ECI 系里把两者的 $-v^2/(2c^2)$ 都减掉, 净 SR 修正主要由卫星速度贡献 (地面项小一个数量级以上). 严格的 GPS 文献用的就是 ECI 系, 让两个钟都参考同一个坐标时, 这一点很关键 — 一个常见的错误是把卫星钟与地面钟用 SR 双方各自"看"对方变慢, 那是一对静止与运动钟的对称悖论, 不适用于 GPS 这种存在外部惯性系的场景.</p>
+
+  <p>另一个一阶效应是 GR 引力时间膨胀 — 我们在第 02 节里提过, 在弱场极限下 Schwarzschild 度规给出</p>
+
+  <p>$$
+  \frac{\Delta t_{\rm GR}}{\Delta t} \;=\; \frac{\Phi_{\rm sat}-\Phi_{\rm gnd}}{c^2}. \tag{2}
+  $$</p>
+
+  <p>这里 $\Phi=-GM/r$ 是牛顿引力势 (深处更负). 卫星位置势能比地面大 (更接近零), 所以 $\Phi_{\rm sat}\gt \Phi_{\rm gnd}$, 卫星钟相对地面钟<em>快</em>. 直觉是对的: 你在山顶上, 比我在山脚下钟快一点. 把数字代进去, $r_E=6378$ km (地表), $r_{\rm sat}=26600$ km (从地心起算的轨道半径, 等于地球半径加海拔 20200 km), $GM_\oplus=3.986\times 10^{14}$ m³/s²:</p>
+
+  <p>$$
+  \frac{GM_\oplus}{c^2}\left(\frac{1}{r_E}-\frac{1}{r_{\rm sat}}\right)
+  \;=\; \frac{3.986\times 10^{14}}{(2.998\times 10^8)^2}\left(\frac{1}{6.378\times 10^6}-\frac{1}{2.66\times 10^7}\right)
+  \;\approx\; 5.29\times 10^{-10}.
+  $$</p>
+
+  <p>一天累积 $5.29\times 10^{-10}\cdot 86400$ s $\approx 45.7$ μs. 卫星钟一天因这条原因<em>快</em> $45.7$ 微秒.</p>
+
+  <h2>二、净 38 微秒, 与不修正的 11 公里漂移</h2>
+
+  <figure class="diagram"><img src="build/27.svg" alt="Earth and a GPS satellite at altitude 20200 km, showing the SR slow-down and GR speed-up corrections combining to a net +38 microseconds per day clock offset" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  GPS 卫星的两个相对论修正. 地面钟与卫星钟用同一个地心惯性系 (ECI) 的坐标时为参考. SR 时间膨胀让运动的卫星钟慢 $-7.2$ μs/day (蓝箭头), GR 引力时间膨胀让高势能位置的卫星钟快 $+45.7$ μs/day (红箭头), 两者相加净快 $+38.5$ μs/day. 不在卫星出厂前预补偿这个偏置, 单单一天就会累积出 $c\cdot 38\,\mu\text{s}\approx 11.5$ km 的定位误差.</figcaption></figure>
+
+  <p>把两条加起来:</p>
+
+  <p>$$
+  \boxed{\;\frac{\Delta t_{\rm net}}{\Delta t} \;=\; \frac{\Phi_{\rm sat}-\Phi_{\rm gnd}}{c^2} \;-\; \frac{v_{\rm sat}^2}{2c^2}
+  \;\approx\; 5.29\times 10^{-10} \;-\; 8.35\times 10^{-11} \;\approx\; 4.46\times 10^{-10}.\;}
+  $$</p>
+
+  <p>一天 $86400$ s 后, 累积差 $\approx 4.46\times 10^{-10}\cdot 86400$ s $\approx 38.5$ μs. <strong>卫星钟比地面钟一天快约 38 微秒</strong>. 这是 GPS 工程师每天面对的那个数字.</p>
+
+  <p>不修正会怎么样? GPS 的工作原理是: 卫星广播自己的时间戳与位置, 地面接收机比对来自至少 4 颗卫星的信号到达时间, 通过三角定位反推自己的 $(x,y,z,t)$. 信号以光速传播, 所以钟的偏差直接换算成距离误差: $\Delta x=c\cdot\Delta t$. $38$ 微秒乘以光速 $3\times 10^8$ m/s 等于 $11400$ m, 也就是 <strong>每天漂 11.4 km</strong>. 一小时也有 $\approx 480$ m, 一分钟 $\approx 8$ m, <em>每秒</em> 漂约 $38$ cm. 现代 GPS 的标称精度是 $\sim 3$ m, 这意味着<strong>每秒</strong>的相对论修正都不能被忽略.</p>
+
+  <p>这个估算还忽略了几条更精细的效应, 全在 GPS 系统手册里:</p>
+
+  <ul>
+  <li><em>轨道偏心率</em>: 真实 GPS 轨道有 $e\sim 0.01$ 的偏心率, 远地点钟相对近地点钟会有 $\sim 46$ ns 的额外摆动, 接收机软件里用 Sagnac/eccentricity 修正.</li>
+  <li><em>地面接收机也在转</em>: 地球自转给赤道一个 $465$ m/s, 对接收机也有 SR 修正, 这一项嵌在 ECI ↔ ECEF 坐标转换里.</li>
+  <li><em>Sagnac 效应</em>: 信号在传播过程中, 地球自转让接收点相对发射时刻"挪了几十米", 在解 $(x,y,z,t)$ 的方程时必须加 Sagnac 项.</li>
+  <li><em>电离层与对流层延迟</em>: 与相对论无关, 但同样几十纳秒量级的修正.</li>
+  </ul>
+
+  <p>这些都不是相对论的"二阶修正", 而是同样需要在系统里硬编码的<strong>同等量级</strong>的工程修正. 但 38 μs/day 这个最大头的偏置, 是相对论独有的.</p>
+
+  <h2>三、统一推导: 直接从 Schwarzschild 度规出发</h2>
+
+  <p>上面我们把 SR 与 GR 当成两件独立的事拼起来. 这是正确的一阶图像, 但更优雅的做法是从弱场 Schwarzschild 度规直接读出来 — 我们在第 12-13 节已经导出过它的牛顿极限. 度规</p>
+
+  <p>$$
+  ds^2 \;=\; -\left(1+\frac{2\Phi}{c^2}\right)c^2\,dt^2 + \left(1-\frac{2\Phi}{c^2}\right)d\vec r^{\,2},
+  $$</p>
+
+  <p>对一个沿轨道运动的钟, 它的固有时元是</p>
+
+  <p>$$
+  d\tau \;=\; \sqrt{-ds^2/c^2}\bigg|_{\rm timelike}
+        \;=\; dt\,\sqrt{1+\frac{2\Phi}{c^2}-\frac{v^2}{c^2}\left(1-\frac{2\Phi}{c^2}\right)}.
+  $$</p>
+
+  <p>展开到一阶 ($\Phi/c^2$ 与 $v^2/c^2$ 都是 $\sim 10^{-10}$ 量级, 远小于 1):</p>
+
+  <p>$$
+  \frac{d\tau}{dt} \;\approx\; 1 + \frac{\Phi}{c^2} - \frac{v^2}{2c^2}.
+  $$</p>
+
+  <p>把两个钟的速率比 ($\tau_{\rm sat}$ vs. $\tau_{\rm gnd}$) 相比, 一阶项就是公式 (1)+(2). 我们没有"加" SR 与 GR — 它们本来就在同一个度规里, 是同一件事的两个不同分量. 这一点对建立直觉很重要: GR 不是 SR 的补丁, GR 包含 SR, SR 是 GR 在 $\Phi=0$ 时的特例.</p>
+
+  <p>顺便注意: 我们这里的 SR 修正用了 ECI 系下的卫星速度, 不是从地面"看"的速度. ECI 是一个良定义的局部惯性系 (在地球周围弱场近似下), 在它里面 SR 的判定 — 谁是"运动的" — 没有歧义. 这就是为什么 GPS 文档总在强调 ECI 这个参考系: 让两个钟都对照同一个坐标时, 把 SR 的"对称性悖论"消除掉.</p>
+
+  <h2>四、工程实现: 出厂时把卫星钟拨慢</h2>
+
+  <p>知道 GPS 卫星钟一天比地面钟快 $38$ μs, 工程师怎么处理? 答案漂亮得像一个段子: <strong>在卫星上天之前, 把它的钟在工厂里拨慢一点点</strong>. 具体说, GPS 卫星上的铷/铯钟标称频率是 $10.23$ MHz, 工程师把它调到</p>
+
+  <p>$$
+  f_{\rm fly} \;=\; 10.23\,\text{MHz}\cdot(1 - 4.46\times 10^{-10}) \;\approx\; 10.22999999543\,\text{MHz}.
+  $$</p>
+
+  <p>一进入轨道, 这个被人为"做慢"的频率, 加上 $+4.46\times 10^{-10}$ 的相对论增益, 正好等于地面 $10.23$ MHz. 出厂时拨慢, 上天后自动补回 — 一行频率修正, 几行接收机代码 (处理偏心率与 Sagnac), 整个相对论修正就嵌进了一个工程系统的最底层.</p>
+
+  <p>这件事的<em>历史</em>有点尴尬. GPS 在 1973 年立项, 第一颗原型卫星 Block I-1 (NTS-2) 1977 年发射. 系统设计阶段, 部分工程师 (与一两位航天高层) 怀疑相对论效应是否真的存在 (或是否真的有这么大), 他们坚持<strong>双轨设计</strong>: 卫星上的钟既能按预补偿频率运行, 也能切回标称频率, 由地面确定到底要不要这个修正. NTS-2 升空后第 20 天打开钟, 测量结果与广义相对论预言一致到当时仪器的精度内 ($\sim 1\%$). 此后所有 GPS 卫星都默认带预补偿. 这是相对论第一次<em>在工程合同的功能列表里</em>胜出.</p>
+
+  <p>插一段更老的历史. 1971 年 10 月, Joseph Hafele 与 Richard Keating 把四台 HP 5061A 铯原子钟搬上民航客机, 一架向东绕地球飞一圈 ($\approx 41$ 小时), 一架向西绕一圈 ($\approx 49$ 小时), 与 USNO 留在地面的参考钟比对. 向东飞 (顺地球自转, 速度更大) 那台钟"少走"了 $-59\pm 10$ ns, 向西飞那台"多走"了 $+273\pm 7$ ns; SR + GR 联合预言分别是 $-40\pm 23$ ns 与 $+275\pm 21$ ns. 实验与理论符合到 $\sim 10\%$ 精度, 这是<strong>第一次直接用宏观钟检验时间膨胀</strong>. Hafele-Keating 实验的精度后来被 Pound-Rebka 落塔实验、Vessot-Levine 火箭重力红移实验 (1976, 与 GR 预言符合到 $1.4\times 10^{-4}$ 精度) 远远超过, 但在 1971 年, 这是相对论从"原理"踏进"日常工程"的第一步.</p>
+
+  <p>今天, 你随便打开一台手机, 它每秒都在做爱因斯坦 1915 年方程的近似解. 这件事的可怕之处不在精度本身 (光学钟实验室里能测到 $10^{-19}$, 远超 GPS 所需), 而在于 — 我们日常依赖的导航、电网时间同步、金融交易高频时间戳、地震定位、深空探测 — 几乎所有需要 nanosecond 量级时间标定的工程系统, 都在<em>默默地</em>使用相对论. GR 已经从"基础物理"变成了 "infrastructure".</p>
+
+  <h2>五、视野: 还有多少处用到了它?</h2>
+
+  <p>把 GPS 这个例子推广开, 现代社会里 GR 修正不可忽略的工程系统已经不止一个:</p>
+
+  <p>(a) <em>其他 GNSS</em>. 俄罗斯 GLONASS、欧盟 Galileo、中国北斗 — 全部都做相同的预补偿, 数字略有差异 (轨道半径与海拔不同). Galileo 的 $f_{\rm fly}$ 修正约为 $4.5\times 10^{-10}$, 与 GPS 数量级一致.</p>
+
+  <p>(b) <em>VLBI 与深空网</em>. 甚长基线干涉测量地球自转参数 (LOD, 极移) 时, 站点钟之间的引力红移差 (因海拔不同) 必须修正; NASA 深空网 (DSN) 用三个分布全球的 70 m 天线给行星探测器测距, 时间同步必须做 GR 修正.</p>
+
+  <p>(c) <em>相对论大地测量学</em>. 用光学钟测量两点之间的引力势差 — $\Delta\Phi=c^2\Delta f/f$. 现在的光学锶钟稳定度 $\sim 10^{-19}$, 相当于<strong>测量 1 cm 高度差</strong>的能力. 2018 年 Takano 等人在东京 Skytree 上下做了这个实验, 直接把相对论从"修正项"变成"测量工具".</p>
+
+  <p>(d) <em>金融与电网</em>. 高频交易需要 microsecond 量级时间戳, 北美电网频率同步需要 ms 量级, 都用 GPS 时间, 都"自动"享有 GPS 的 GR 修正成果.</p>
+
+  <p>(e) <em>未来:</em> 引力波探测器的钟同步、月球 GPS 系统 (NASA 的 Lunar Communication and Navigation, 月球 $g$ 比地球小 6 倍, 修正系数完全不同)、Mars 表面定位 — 每一个新场景都需要重新算一遍这个 $\Delta\tau/\Delta t$. 这就是为什么我们一边讨论黑洞一边花一节篇幅讲 GPS: 它把"广义相对论"这件事从黑板拉到供电网.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>这一节我们把 Schwarzschild 度规的弱场极限 — 第 12-13 节那条 $g_{tt}=-(1+2\Phi/c^2)$ — 直接代到 GPS 卫星上, 在公式 (1) 与 (2) 给出两个一阶效应: 运动让卫星钟慢 $-7.2$ μs/day (SR), 高引力势让它快 $+45.7$ μs/day (GR), 净 $+38.5$ μs/day. 不补偿这个偏置, 一天就会漂 $\approx 11$ km, 一秒就会漂 $\approx 38$ cm — 远大于 GPS 标称的米级精度. 工程师的应对方法漂亮: 在卫星出厂时把铷/铯钟的频率 $10.23$ MHz 拨慢 $4.46\times 10^{-10}$, 上天后自动补回. 1977 年 NTS-2 升空 20 天的实测确认了这个修正系数, 此后 GPS / GLONASS / Galileo / 北斗都默认带它. 1971 年 Hafele-Keating 把铯钟搬上飞机绕地球飞一圈, 提前用宏观钟验证了同一件事. 现代社会的导航、电网时间、金融、深空通信、相对论大地测量学, 全部默默使用这个 $4.46\times 10^{-10}$. 广义相对论已经从"原理"走进了 infrastructure. 下一节我们换一个尺度: LIGO 在 2015 年 9 月 14 日测到两颗黑洞合并的引力波 — 同一套度规理论, 给出的是 $h\sim 10^{-21}$ 的应变信号, 一台 4 km 干涉仪需要测出比质子直径小一千倍的距离差. 那就是引力波探测器的故事.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="26-mercury.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="28-ligo.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

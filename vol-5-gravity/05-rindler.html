@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>匀加速观察者的世界长什么样? · 第五卷·引力是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="04-minkowski.html">← 上一节</a>
+  <span class="chapter-title">第 5 节 / 30 · 第 1 部分 · 等效原理 · 第五卷·引力是什么?</span>
+  <a href="06-metric.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>匀加速观察者的世界长什么样?</h1>
+  <div class="sub">—— Rindler 坐标与视界</div>
+
+  <div class="abstract">
+    我们暂时不开广义相对论, 还在 Minkowski 时空里. 但选一类特殊的观察者: 始终保持恒定<strong>固有加速度</strong> $a$ 的人. 他的世界线在惯性系里画出来不是直线, 是一条双曲线 $x^2-c^2 t^2 = c^4/a^2$. 把这一族观察者所"自然"使用的坐标 $(\eta,\xi)$ 写下来, 就得到 Rindler 度规 $\mathrm{d}s^2 = -\xi^2\,\mathrm{d}\eta^2 + \mathrm{d}\xi^2$. 它有件让人吃惊的事: 双曲线的渐近线 $ct=\pm x$ 是一道<strong>视界</strong> — 加速观察者再也接收不到来自其下方的信号. 这与黑洞 Schwarzschild 视界结构完全一样, 也是为什么 Unruh 1976 论证<strong>加速即温度</strong>: $T_U = \hbar a / (2\pi c k_B)$. 本节落到一个具体数: 在地面 $a=g=9.8\,\mathrm{m/s^2}$, $T_U \approx 4\times 10^{-20}\,\mathrm{K}$, 远低于任何已知探测器的本底.
+  </div>
+
+  <p>第 4 节我们把 Minkowski 时空写成 $\mathrm{d}s^2 = -c^2\,\mathrm{d}t^2 + \mathrm{d}x^2 + \mathrm{d}y^2 + \mathrm{d}z^2$, 看见光锥 $\mathrm{d}s^2 = 0$ 把因果结构钉死: 任何信号都待在光锥之内. 但读到那里你或许会有一个疑虑: 既然 SR 是相对的, 为什么我们一直在讲<strong>惯性</strong>观察者? 一个不停加速的人, 他眼里的时空长什么样? 等效原理已经告诉我们, 这位加速观察者在足够小的局部里和"站在引力场中静止的人"是无法区分的 — 那么他眼里的几何, 也许就是黑洞视界附近几何最干净的素描.</p>
+
+  <p>答案出乎意料地丰富. 仅在 Minkowski 平面 $(t, x)$ 里, 一个保持恒定固有加速度的观察者 — 想象一个永不熄火的火箭 — 就已经能"造出"一道视界. 这道视界不是黑洞那样物质堆出来的, 而是观察者运动状态本身造成的: 他抛在身后的某一片时空, 永远再也接收不到. 这一节把这个现象算清楚, 它会成为我们后面讲<strong>黑洞表面引力</strong>与 <strong>Hawking 辐射</strong>的最干净的预演. 我们的路径很短: 写下"恒定固有加速度"的精确含义 → 解一条 ODE 得双曲线 (3) → 用双曲线半径换坐标得 Rindler 度规 (5) → 看到视界 → 量子化场得 Unruh 温度 (6). 整条线索连起来, 就是 Hawking 1974 那个著名计算的"线性近似版".</p>
+
+  <h2>一、恒定固有加速度的世界线 — 一条双曲线</h2>
+
+  <p>"恒定固有加速度"的意思是: 火箭里的乘客感到稳定的 $g$ 力 (你站在地面上感到的就是). 它不等于在惯性系里的 $\mathrm{d}^2 x / \mathrm{d}t^2 =\,$常数 — 那条直线最终会让速度超过 $c$, 不允许. 正确的写法用<strong>固有时</strong> $\tau$ (火箭里挂的钟) 与<strong>四加速</strong> $a^\mu$:</p>
+
+  <p>$$ a^\mu a_\mu = a^2, \quad a^\mu = \frac{\mathrm{d}^2 x^\mu}{\mathrm{d}\tau^2}. \tag{1}$$</p>
+
+  <p>方程 (1) 说四加速的不变模长是恒定的 $a$. 在某一惯性系 $(t,x)$ 里 (火箭沿 $+x$ 方向加速, 起点 $\tau=0$ 时在 $x=c^2/a$, 静止), 解这个 ODE 得</p>
+
+  <p>$$ x(\tau) = \frac{c^2}{a}\cosh\!\left(\frac{a\tau}{c}\right), \qquad t(\tau) = \frac{c}{a}\sinh\!\left(\frac{a\tau}{c}\right). \tag{2}$$</p>
+
+  <p>消去 $\tau$ 立刻得到</p>
+
+  <p>$$ x^2 - c^2 t^2 \;=\; \frac{c^4}{a^2}. \tag{3}$$</p>
+
+  <p>这是一条<strong>双曲线</strong>, 顶点在 $x=c^2/a$, 渐近线是 $ct = \pm x$. 当 $\tau\to+\infty$ 时, 速度 $v = \mathrm{d}x/\mathrm{d}t = c\,\tanh(a\tau/c) \to c$, 但永远到不了 $c$ — 双曲线越来越贴渐近线, 永远在它下面. 这就是 SR 自洽地实现"恒定加速": 在乘客自己的钟看, 始终是 $g$; 在外面的惯性系看, 速度趋近光速却到不了. 双曲函数在这里不是巧合 — Lorentz boost 的群参数本身就是<strong>快度</strong> (rapidity) $\eta = \mathrm{atanh}(v/c)$, 而 (2) 的 $a\tau/c$ 正是火箭累积的快度. 一句话: 加速观察者在快度空间里走的是匀速直线, 在 $(t,x)$ 空间里看就是一条双曲线.</p>
+
+  <p><strong>地面上的"加速火箭".</strong> 把 $a = g = 9.8\,\mathrm{m/s^2}$ 代入. 双曲线顶点 $x = c^2/g \approx (3\times 10^8)^2 / 9.8 \approx 9.2 \times 10^{15}\,\mathrm{m} \approx 0.97$ 光年. 这数字告诉我们: 在地球表面静止站立的我 (相对 free-fall 框架, 我的固有加速度就是 $g$), 我的"有效双曲线顶点"在差不多一光年外. 视界距离这么远, 难怪我们感觉不到它的存在. 把同样的 $a$ 翻一翻方向也可以问: 想体验"双曲线顶点就在一米开外", 我得多快? $\xi = 1\,\mathrm{m}$ 对应 $a = c^2/\xi = 9\times 10^{16}\,\mathrm{m/s^2}$, 也就是 $\sim 10^{16}\,g$. 这种加速度只有在重核加速器或脉冲激光焦点附近的电子身上才会短暂出现.</p>
+
+  <p><strong>到达光速近邻要多久?</strong> 把 $v = 0.99\,c$ 代回 $v = c\tanh(a\tau/c)$ 得 $a\tau/c = \mathrm{atanh}(0.99) \approx 2.65$, 故 $\tau \approx 2.65 c/a \approx 0.84$ 年 ($a=g$ 时). 也就是说, 一艘以 $1\,g$ 持续加速的飞船里, 乘客自己的钟只过了大约 10 个月就以光速贴近度飞行了; 而在地面看, 这位 $\tau=0.84$ yr 的乘客已经走到了 $x \approx 0.30$ 光年外. 加速观察者的钟和地面观察者的钟之间的差异随 $\tau$ 指数级放大, 这是后面讲引力红移时反复用到的图景.</p>
+
+  <figure class="diagram">
+    <img src="build/05.svg" alt="Minkowski 时空中三条匀加速观察者的双曲线世界线, 渐近线 ct=±x 形成 Rindler 视界, 阴影标出右侧的 Rindler 楔形区域" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;">
+    <figcaption>图 1  Rindler 楔形与三条匀加速世界线. 红色双曲线是 $x^2 - c^2 t^2 = c^4/a^2$ 在三个 $a$ 下的样子 (顶点位置 $c^2/a$, 越大越深红); 黑色虚线 $ct = \pm x$ 是渐近线, 也是 Rindler 视界 $\mathcal{H}^\pm$; 黄色阴影是右侧 Rindler 楔形 $x\gt |ct|$, 加速观察者一辈子都在这块区域里; 灰色虚线是 $\eta = $ 常数的"等时面", 全部穿过原点 $O$.</figcaption>
+  </figure>
+
+  <h2>二、Rindler 坐标 — 加速观察者的"自然"地图</h2>
+
+  <p>方程 (2) 提示一种自然的参数化: 把 $a\tau/c$ 看成<strong>角变量</strong> $\eta$ (类似双曲三角中的"快度"), 把双曲线"半径" $c^2/a$ 当成径向坐标 $\xi$ (单位是长度). 一族不同的 $\xi$ 就是一族不同的 $a$ — 离原点近的观察者加速大, 离原点远的加速小. 写</p>
+
+  <p>$$ ct = \xi \,\sinh(\eta), \qquad x = \xi\,\cosh(\eta). \tag{4}$$</p>
+
+  <p>$\eta$ 无量纲 (类似快度), $\xi\gt 0$ 是长度. 这一对 $(\eta,\xi)$ 只能覆盖 $x\gt |ct|$ 的右楔形区域 (Rindler wedge) — 因为 $\cosh\geq 1\gt 0$ 且 $|\tanh|\lt 1$. 把 $\mathrm{d}t,\mathrm{d}x$ 算出来代回 Minkowski 线元 $\mathrm{d}s^2 = -c^2\mathrm{d}t^2 + \mathrm{d}x^2$, 经过几行三角恒等式 ($\cosh^2-\sinh^2 = 1$):</p>
+
+  <p>$$ \mathrm{d}s^2 \;=\; -\xi^2\,\mathrm{d}\eta^2 + \mathrm{d}\xi^2. \tag{5}$$</p>
+
+  <p>这就是<strong>Rindler 度规</strong>. 几个关键解读:</p>
+
+  <ul>
+    <li><strong>$\xi=$ 常数 是世界线</strong>: 沿 $\eta$ 跑就是双曲线 (3), 一个具体的加速观察者. 他的固有加速度 $a = c^2/\xi$ — 越靠近 $\xi=0$, 越剧烈.</li>
+    <li><strong>$\eta=$ 常数 是同时面</strong>: 在加速观察者眼里, "同一时刻"的所有点构成一条过原点的射线 $ct/x = \tanh(\eta)$ (图 1 灰色虚线). 不同 $\eta$ 的同时面像扇子一样张开.</li>
+    <li><strong>$\xi\to 0$ 是奇点</strong>: 度规 $g_{\eta\eta} = -\xi^2 \to 0$ — 但这是<strong>坐标奇点</strong>, 不是物理奇点 (Minkowski 时空在那儿好得很; 是 Rindler 坐标自己破了). 这跟 Schwarzschild $r=r_s$ 处的"视界奇点"完全同性质.</li>
+  </ul>
+
+  <p><strong>固有加速度的对照.</strong> 方程 (4) 的"环面"上, $\xi=1\,\mathrm{m}$ 处观察者的固有加速 $a = c^2/\xi = 9\times 10^{16}\,\mathrm{m/s^2}$ — 大得离谱. $\xi=10^{16}\,\mathrm{m}$ 处则降到约 $9\,\mathrm{m/s^2}$, 也就是地面上的 $g$. 两端跨度 16 个数量级, 显示 Rindler 楔形并不是均匀的: 越靠视界的观察者越"剧烈".</p>
+
+  <p><strong>"刚性加速火箭"为什么不刚性.</strong> 设想一个有限长的火箭, 头尾都保持恒定固有加速度. 头部在 $\xi_2$, 尾部在 $\xi_1 \lt  \xi_2$, 共用同一个 $\eta$ 标记同时面. 在惯性系看, 头尾走在不同的双曲线上, 双曲线之间的"半径差"恒为 $\xi_2 - \xi_1$ — 然而尾部的固有加速 $c^2/\xi_1$ 比头部 $c^2/\xi_2$ 大. 这正是著名的 <strong>Bell 飞船悖论</strong>的几何根源: 如果你强行让头尾在惯性系里加速度<em>相同</em>, 那两条世界线之间的固有距离会被扯长, 把绳子撕断. 真正的"刚性加速"必须让加速度沿火箭线性递减 ($a = c^2/\xi$), 这就是 Rindler 楔形提供的天然"刚性同时面".</p>
+
+  <h2>三、视界 — 一道由运动状态切出的因果墙</h2>
+
+  <p>渐近线 $ct = x$ (取右半轴, $x\gt 0$) 在物理上意味着什么? 想象一束光从原点 $O$ 出发, 沿 $+x$ 方向直射. 它的世界线就是 $ct=x$. 现在这位匀加速观察者: 他的世界线是双曲线 (3), 始终在渐近线下方 — 这束光<strong>永远追不上他</strong>, 因为光的轨迹是渐近线本身, 而双曲线只在 $\tau\to\infty$ 时贴近.</p>
+
+  <p>更准确地说: 任何在 Minkowski 楔形 $ct \geq x$ 之内 (即原点的<strong>未来光锥</strong>之外, 渐近线之上) 发出的事件, 对这位加速观察者来说<strong>因果上不可达</strong>. 他无法接收来自那里的任何信号. 这道分隔墙就是 <strong>Rindler 视界</strong> $\mathcal{H}^+: ct = x$, 它扮演与黑洞事件视界完全同构的角色.</p>
+
+  <p>"墙"的厉害之处不在它存在 (光锥本来就在), 而在: 它对加速观察者是<strong>静止</strong>的. 一个朝你飞奔但还没到的朋友, 他永远只是"还没到"; 但对加速观察者, 视界<strong>稳稳地与他同行</strong>, 永远在他的过去方向某一固定固有距离处. 在 Rindler 坐标 (5) 里, 视界对应 $\xi\to 0^+$, 是坐标的"原点"边界 — 像极了 Schwarzschild 度规 $\mathrm{d}s^2 = -(1-r_s/r)c^2\mathrm{d}t^2 + \mathrm{d}r^2/(1-r_s/r) + \cdots$ 在 $r\to r_s$ 处的退化.</p>
+
+  <p><strong>"表面引力".</strong> 在 GR 里, 一个 Killing 视界有一个不变量叫<strong>表面引力</strong> $\kappa$ (会在第 16 节细讲). 对 Schwarzschild 黑洞 $\kappa = c^4/(4GM)$, 对 Rindler 视界 $\kappa = a$ — 加速度本身就是表面引力. 这就是为什么 Rindler 是黑洞物理的最简模型: 把它<strong>恰好就是</strong>球对称黑洞在视界附近的近似几何 (展开 Schwarzschild 度规到视界附近最低阶, 得到的就是 Rindler).</p>
+
+  <p><strong>引力红移先尝一口.</strong> 在 Rindler 楔形里两个静止观察者 ($\xi_1 \lt  \xi_2$) 互发光信号, 由 (5) 知 $\eta$ 是它们共同的"时间坐标". 一束从 $\xi_1$ 发出的频率 $\omega_1$ 的光到达 $\xi_2$ 时, 频率变为 $\omega_2 = (\xi_1/\xi_2)\,\omega_1$. 红移因子是<strong>距离比</strong>而不是<strong>距离差</strong>, 这正是 Schwarzschild 红移 $\omega_\infty/\omega_R = \sqrt{1-r_s/R}$ 在视界附近的展开形式. 第 6 节我们会把这个观察推广到任意度规, 给出"引力红移 $\Leftrightarrow$ $g_{tt}$ 不为常数"的精准陈述.</p>
+
+  <h2>四、Unruh 效应 — 加速即温度的预告</h2>
+
+  <p>有了视界, 一旦把<strong>量子场论</strong>放进 Rindler 楔形里, 一件意想不到的事就发生: 一个对惯性观察者看起来空空如也的<strong>真空</strong>, 在加速观察者眼里却是一锅热的辐射浴. 温度由 Unruh 1976 算出:</p>
+
+  <p>$$ T_U \;=\; \frac{\hbar a}{2\pi c\, k_B}. \tag{6}$$</p>
+
+  <p>它的逻辑很直: 视界存在 $\Rightarrow$ 加速观察者只能"看到"楔形内部的场模式 $\Rightarrow$ 把楔形外的自由度求迹掉 (partial trace) $\Rightarrow$ 余下的态是<strong>热态</strong>, 温度由表面引力 $\kappa = a$ 决定. 这跟 Hawking 1974 算黑洞辐射的逻辑同构, 只把 $\kappa = c^4/4GM$ 替换成 $\kappa=a$ — 第 19 节会从这里出发讲 Hawking $T_H$.</p>
+
+  <p><strong>地面上算一算.</strong> 取 $a = g = 9.8\,\mathrm{m/s^2}$, $\hbar = 1.055\times 10^{-34}\,\mathrm{J\cdot s}$, $c = 3\times 10^8\,\mathrm{m/s}$, $k_B = 1.381\times 10^{-23}\,\mathrm{J/K}$:</p>
+
+  <p>$$ T_U(g) = \frac{1.055\times 10^{-34} \cdot 9.8}{2\pi \cdot 3\times 10^8 \cdot 1.381\times 10^{-23}} \approx 4.0 \times 10^{-20}\,\mathrm{K}. \tag{7}$$</p>
+
+  <p>这数字比目前最低温度的实验本底 (约 $10^{-12}\,\mathrm{K}$) 还低 8 个数量级 — 测不到, 完全测不到. 那么有什么场景 $T_U$ 才显得出来? 把 (6) 反过来: 想要 $T_U = 1\,\mathrm{K}$, 需要 $a \approx 2\pi c k_B / \hbar \approx 2.5 \times 10^{20}\,\mathrm{m/s^2}$. 这是地球表面引力的两万亿亿倍 — 只在<strong>极端 QED 中加速电子</strong>或<strong>黑洞视界附近</strong>能接近. 这就解释了"为什么我们活在常温世界, 却没尝到 Unruh 暖意": 因为地面的 $a$ 实在太弱.</p>
+
+  <p><strong>实验线索.</strong> 虽然 Unruh 效应至今没有干净的直接探测, 它的影子出现在好几处: 强场激光中加速电子的 Larmor 辐射会被 Unruh 修正; 圆周运动 (向心加速) 的 Sokolov-Ternov 电子极化也与 Unruh 相关; LHC 中夸克对撞瞬间的有效"温度"被解读为 $T_U$. 这些都是间接证据, 干净的桌面实验仍是开放问题. 类比探针 (analogue gravity) 在 BEC 与流体表面波里实现"声学视界", 也间接验证了"视界 + 量子涨落 = 热谱"这一核心论断.</p>
+
+  <p><strong>历史顺序值得记一记.</strong> Wolfgang Rindler 1966 把这套加速坐标整理成现在的形式, 取名"hyperbolic motion" — 真正以他名字定型是后人. Bill Unruh 1976 (在 DeWitt 之后, Davies 几乎同期) 论证: 这个看起来纯几何的视界, 其实必然伴随一个温度. Unruh 的思路是把 Rindler 楔形里的 Bogoliubov 变换写下来, 直接看出 Minkowski 真空在 Rindler 模式上是<strong>热密度矩阵</strong>, 比例恰好是 (6). 这是量子场论与时空几何第一次产生<strong>纠缠</strong>: 哪怕不开 GR, 仅 Minkowski 时空里的加速观察者就已经看到熵. 沿着这条线再往前走一步, 就到了 Bekenstein-Hawking 黑洞熵 $S = A/4\ell_P^2$ — 视界面积本身就是熵, 这把引力、量子与热力学第一次缝合在同一行公式里.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Rindler 楔形是 GR 的"前菜". 它告诉我们: 视界、表面引力、加速诱导温度, 这三件事在 Minkowski 平直时空里就已经出现 — 只是来源不是引力, 而是观察者的运动状态. 把整套语言搬到 Schwarzschild 黑洞上 (第 12, 16, 17 节) 几乎一字不动, 把 $a$ 换成 $\kappa = c^4/(4GM)$ 即可. 同样, Hawking 温度 $T_H = \hbar c^3 / (8\pi G M k_B)$ 与 Unruh 温度 (6) 是同一公式. 这是为什么物理学家说: 黑洞热力学不是 GR 多出来的奇异结果, 它的根扎在 Rindler 几何里 — 一旦时空有边界, 量子场就变成热的. 下一节我们把"度规"这个对象从 Minkowski / Rindler 推广到任意弯曲时空, 看 $g_{\mu\nu}$ 究竟编码了多少几何信息.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="04-minkowski.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="06-metric.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

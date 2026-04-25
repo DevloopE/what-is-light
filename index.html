@@ -6,85 +6,34 @@
 <title>DevCollection</title>
 <link rel="stylesheet" href="vol-1-light/style.css">
 <style>
-  body { font-family: var(--serif, Georgia, serif); }
-  .collection-header {
-    text-align: left;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 16px;
-    margin-bottom: 28px;
+  /* per-volume color dots on the root archive — keep this scoped to index */
+  ol.volumes-list li[data-vol="1"] { --vol-color: #b8632a; }
+  ol.volumes-list li[data-vol="2"] { --vol-color: #a8472b; }
+  ol.volumes-list li[data-vol="3"] { --vol-color: #2a7a7a; }
+  ol.volumes-list li[data-vol="4"] { --vol-color: #6a4a82; }
+  ol.volumes-list li[data-vol="5"] { --vol-color: #2a4a82; }
+  ol.volumes-list li[data-vol]::after {
+    content: "";
+    position: absolute;
+    left: -1.1rem;
+    top: 1.85rem;
+    width: 4px;
+    height: 1.4rem;
+    background: var(--vol-color, var(--accent));
+    border-radius: 2px;
+    opacity: 0.85;
   }
-  .collection-header .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 3px 12px;
-    border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 0.78em;
-    letter-spacing: 1.5px;
-    margin-bottom: 12px;
+  ol.volumes-list li[data-vol] a:hover .volume-title {
+    color: var(--vol-color, var(--accent));
   }
-  .collection-header h1 {
-    font-size: 2em;
-    margin: 0.1em 0;
-    font-family: var(--sans);
+  @media (max-width: 640px) {
+    ol.volumes-list li[data-vol]::after {
+      left: 0;
+      top: 0;
+      width: 2.5rem;
+      height: 3px;
+    }
   }
-  .collection-header .subtitle {
-    color: var(--muted);
-    font-style: italic;
-    font-size: 1.05em;
-    margin-top: 0.3em;
-  }
-  ol.volumes-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    counter-reset: volitem;
-  }
-  ol.volumes-list li {
-    counter-increment: volitem;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    gap: 24px;
-    align-items: baseline;
-  }
-  ol.volumes-list li:last-child { border-bottom: none; }
-  ol.volumes-list li::before {
-    content: "Vol. " counter(volitem, decimal-leading-zero);
-    font-family: var(--sans);
-    font-size: 0.85em;
-    color: var(--muted);
-    min-width: 60px;
-    letter-spacing: 1px;
-  }
-  ol.volumes-list a {
-    color: var(--ink);
-    text-decoration: none;
-    flex: 1;
-  }
-  ol.volumes-list a:hover { color: var(--accent); }
-  ol.volumes-list .volume-title {
-    font-size: 1.3em;
-    font-weight: 600;
-    display: block;
-    margin-bottom: 4px;
-    font-family: var(--sans);
-  }
-  ol.volumes-list .volume-sub {
-    color: var(--muted);
-    font-size: 0.95em;
-    font-style: italic;
-    display: block;
-    margin-bottom: 4px;
-  }
-  ol.volumes-list .volume-meta {
-    color: var(--muted);
-    font-size: 0.82em;
-    font-family: var(--sans);
-  }
-  ol.volumes-list li.upcoming { opacity: 0.42; }
-  ol.volumes-list li.upcoming .volume-title { font-weight: 500; }
 </style>
 </head>
 <body>
@@ -101,32 +50,39 @@
 </p>
 
 <ol class="volumes-list">
-  <li>
+  <li data-vol="1">
     <a href="vol-1-light/">
       <span class="volume-title">光是什么?</span>
       <span class="volume-sub">—— 四十个角度的追问</span>
       <span class="volume-meta">8 部分 · 40 节 · 几何光学 → 波动 → 能量与动量 → 量子与热辐射 → 光与物质 → 光与信息 → 光与宇宙 → 光与生命</span>
     </a>
   </li>
-  <li>
+  <li data-vol="2">
     <a href="vol-2-thermodynamics/">
       <span class="volume-title">热力学与统计力学</span>
       <span class="volume-sub">—— 三十节</span>
       <span class="volume-meta">6 部分 · 30 节 · 热力学根基 → 统计力学核心 → 相变 → 量子统计 → 非平衡 → 信息与黑洞热力学</span>
     </a>
   </li>
-  <li>
+  <li data-vol="3">
     <a href="vol-3-particle-physics/">
       <span class="volume-title">粒子物理</span>
       <span class="volume-sub">—— 三十节</span>
       <span class="volume-meta">6 部分 · 30 节 · QFT 脚手架 → 对称与守恒 → 标准模型 → 计算与发散 → 实验与统计 → BSM</span>
     </a>
   </li>
-  <li>
+  <li data-vol="4">
     <a href="vol-4-math-foundations/">
       <span class="volume-title">物理学的数学基础</span>
       <span class="volume-sub">—— 三十节</span>
       <span class="volume-meta">6 部分 · 30 节 · 微积分与向量分析 → 线性代数 → 群论 → 流形与微分几何 → 函数空间 → 概率/复分析/路径积分</span>
+    </a>
+  </li>
+  <li data-vol="5">
+    <a href="vol-5-gravity/">
+      <span class="volume-title">引力是什么?</span>
+      <span class="volume-sub">—— 三十节</span>
+      <span class="volume-meta">6 部分 · 30 节 · 等效原理 → 弯曲时空 → Einstein 场方程 → 黑洞 → 宇宙学 → 检验与前沿</span>
     </a>
   </li>
 </ol>
