@@ -22,7 +22,7 @@
   <h1>超对称 (SUSY) — 为什么 30 年没找到?</h1>
   <div class="sub">—— 一个漂亮理论与一个 LHC 失望</div>
 
-  <div class="abstract">上一节把标准模型的三个规范耦合向高能外推, 发现它们在 $2\times 10^{16}$ GeV 附近几乎相交 — 但只有"几乎". 本节讲一个把"几乎"变成"精确"的理论: 超对称 (SUSY). 超对称不是把规范群扩大, 而是把时空对称本身扩大: 在 Poincaré 代数之外加一个费米型 generator $Q_\alpha$, 要求 $\{Q_\alpha,\bar Q_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta}P_\mu$. 这一条交换关系的后果非常戏剧: 每个玻色子必须配一个同量子数、自旋差 $1/2$ 的费米伙伴, 每个费米子同样. 夸克得到 squark, 电子得到 selectron, 光子得到 photino, 胶子得到 gluino. 这些 superpartners 不仅漂亮, 而且立刻解决三件旧账: Higgs 自能的 $\Lambda^2$ 发散在 fermion loop 和 boson loop 之间抵消, 剩下有限的 $\sim m_{\tilde t}^2$ (hierarchy 问题); 三个 SM 耦合在 $\sim 2\times 10^{16}$ GeV 精确相交 (统一); 最轻超对称粒子 LSP (通常是 neutralino) 因 $R$ 宇称稳定, 恰好给出 WIMP 类型的冷暗物质候选者. 代价只有一个: superpartners 必须在 $\sim$ TeV scale 出现, 否则 hierarchy 不再"自然". 这个预言在 LHC (2010-) 被直接检验 — 结果截至 2023 年, gluino 质量下限 $> 2.3$ TeV, squark $> 1.5$ TeV, "自然 SUSY"的最舒服窗口已被实验挤到墙角. 本节先从 hierarchy 问题出发, 严格把 Higgs 自能抵消机制推一遍 (本节 deepdive); 再讨论 MSSM 粒子谱与暗物质; 最后诚实地讨论 LHC 没找到这件事意味着什么, 并以此收束本卷 30 节.</div>
+  <div class="abstract">上一节把标准模型的三个规范耦合向高能外推, 发现它们在 $2\times 10^{16}$ GeV 附近几乎相交 — 但只有"几乎". 本节讲一个把"几乎"变成"精确"的理论: 超对称 (SUSY). 超对称不是把规范群扩大, 而是把时空对称本身扩大: 在 Poincaré 代数之外加一个费米型 generator $Q_\alpha$, 要求 $\{Q_\alpha,\bar Q_{\dot\beta}\} = 2\sigma^\mu_{\alpha\dot\beta}P_\mu$. 这一条交换关系的后果非常戏剧: 每个玻色子必须配一个同量子数、自旋差 $1/2$ 的费米伙伴, 每个费米子同样. 夸克得到 squark, 电子得到 selectron, 光子得到 photino, 胶子得到 gluino. 这些 superpartners 不仅漂亮, 而且立刻解决三件旧账: Higgs 自能的 $\Lambda^2$ 发散在 fermion loop 和 boson loop 之间抵消, 剩下有限的 $\sim m_{\tilde t}^2$ (hierarchy 问题); 三个 SM 耦合在 $\sim 2\times 10^{16}$ GeV 精确相交 (统一); 最轻超对称粒子 LSP (通常是 neutralino) 因 $R$ 宇称稳定, 恰好给出 WIMP 类型的冷暗物质候选者. 代价只有一个: superpartners 必须在 $\sim$ TeV scale 出现, 否则 hierarchy 不再"自然". 这个预言在 LHC (2010-) 被直接检验 — 结果截至 2023 年, gluino 质量下限 $\gt  2.3$ TeV, squark $\gt  1.5$ TeV, "自然 SUSY"的最舒服窗口已被实验挤到墙角. 本节先从 hierarchy 问题出发, 严格把 Higgs 自能抵消机制推一遍 (本节 deepdive); 再讨论 MSSM 粒子谱与暗物质; 最后诚实地讨论 LHC 没找到这件事意味着什么, 并以此收束本卷 30 节.</div>
 
   <p>上一节 GUT 已经把我们推到 $10^{16}$ GeV 的能标, 面对三个问题: 耦合只是近乎相交而非精确相交; 最轻 SUSY 伙伴没有加进去; proton 寿命下限把最小 $SU(5)$ 挤掉. 本节要讲的超对称, 是一个比规范统一更大胆的想法 — 不是把内部对称扩大, 而是把 <i>时空对称</i> 本身扩大. Coleman-Mandula 1967 定理证明: 在幺正 S 矩阵、离散质量谱、非平凡散射的前提下, 唯一能和 Poincaré 对易地加进来的对称生成元只能是 <i>玻色型</i> 的 (相对论不变量). 这条禁令似乎堵死了所有路. 但 1975 年 Haag-Łopuszański-Sohnius 发现了一条绕过 Coleman-Mandula 的唯一裂缝: 加一个 <i>费米型</i> 生成元 $Q_\alpha$, 把代数从李代数扩大成"graded Lie algebra" (Z$_2$ 分级的超代数). 这就是超对称. 这条裂缝是物理上 <i>唯一可能</i> 的扩展方向 — 这一点本身就很有吸引力.</p>
 
@@ -93,7 +93,7 @@
       <dl class="tikz-req">
         <dt>左侧 (粒子谱表)</dt><dd>两列表格: 左列 "SM 粒子 (spin)", 右列 "Superpartner (spin)". 行: quark $q$ ($\tfrac12$) $\leftrightarrow$ squark $\tilde q$ (0); lepton $\ell$ ($\tfrac12$) $\leftrightarrow$ slepton $\tilde\ell$ (0); gluon $g$ (1) $\leftrightarrow$ gluino $\tilde g$ ($\tfrac12$); $W, Z$ (1) $\leftrightarrow$ wino/zino ($\tfrac12$); photon $\gamma$ (1) $\leftrightarrow$ photino $\tilde\gamma$ ($\tfrac12$); Higgs $H_{u,d}$ (0) $\leftrightarrow$ higgsino $\tilde H$ ($\tfrac12$). 表头备注 "$\{Q_\alpha,\bar Q_{\dot\beta}\} = 2\sigma^\mu P_\mu$".</dd>
         <dt>右侧 (Higgs 自能两图)</dt><dd>两个并排的 Feynman 图. 上图: Higgs 外线进、出 (虚线), 中间一个闭合 top 圈 (实线箭头), 标 "$t$-loop: $-\frac{3|y_t|^2}{8\pi^2}\Lambda^2$". 下图: Higgs 外线进、出 (虚线), 中间一个闭合 stop 圈 (双虚线或标量线), 标 "$\tilde t$-loop: $+\frac{3|y_t|^2}{8\pi^2}\Lambda^2$". 两图之间一个大等号 / 加号, 最右侧标 "$\Rightarrow \delta m_h^2 \sim |y_t|^2 m_{\tilde t}^2$ (finite)".</dd>
-        <dt>标签</dt><dd>上方标题 "SUSY 粒子谱 与 Higgs 发散抵消". 下方小字: "自然 SUSY: $m_{\tilde t} \lesssim 500$ GeV; LHC 下限 (2023): $m_{\tilde t} > 1.1$ TeV, $m_{\tilde g} > 2.3$ TeV".</dd>
+        <dt>标签</dt><dd>上方标题 "SUSY 粒子谱 与 Higgs 发散抵消". 下方小字: "自然 SUSY: $m_{\tilde t} \lesssim 500$ GeV; LHC 下限 (2023): $m_{\tilde t} \gt  1.1$ TeV, $m_{\tilde g} \gt  2.3$ TeV".</dd>
         <dt>风格</dt><dd>白底, 表格网格清晰, Feynman 图实线/虚线区分. Higgs 外线始终用虚线. top 圈箭头顺时针, stop 圈无箭头 (标量). 简洁, 不要多余装饰.</dd>
       </dl>
     </div>
@@ -123,10 +123,10 @@
   <p><b>实验事实 (2023 LHC Run 2 + Run 3 预览).</b> ATLAS 和 CMS 的超对称搜寻给出的 95% CL 质量下限大致如下:</p>
 
   <ul>
-    <li>Gluino $\tilde g$: $m_{\tilde g} > 2.3$ TeV (简化模型, 假设轻 LSP).</li>
-    <li>First/second generation squark $\tilde q$: $m_{\tilde q} > 1.5 - 1.9$ TeV.</li>
-    <li>Stop $\tilde t$: $m_{\tilde t} > 1.1$ TeV (对 "自然 SUSY" 最直接的打击).</li>
-    <li>Chargino/neutralino (electroweak-ino): $m > 500 - 900$ GeV (依赖衰变链).</li>
+    <li>Gluino $\tilde g$: $m_{\tilde g} \gt  2.3$ TeV (简化模型, 假设轻 LSP).</li>
+    <li>First/second generation squark $\tilde q$: $m_{\tilde q} \gt  1.5 - 1.9$ TeV.</li>
+    <li>Stop $\tilde t$: $m_{\tilde t} \gt  1.1$ TeV (对 "自然 SUSY" 最直接的打击).</li>
+    <li>Chargino/neutralino (electroweak-ino): $m \gt  500 - 900$ GeV (依赖衰变链).</li>
   </ul>
 
   <p>这些数字让"自然"的 stop 窗口 ($\lesssim 500$ GeV) 被关上. 现在要重现 $m_h = 125$ GeV 同时不违反 LHC bound, 需要 $m_{\tilde t} \sim 1.5 - 2$ TeV, 代回式 (2) 算 fine-tuning 程度: $\Delta m_h^2 \sim -\frac{3}{8\pi^2}(2\,\text{TeV})^2\ln(2\,\text{TeV}/\text{electroweak}) \sim (500\,\text{GeV})^2$, 比 $m_h^2 = (125\,\text{GeV})^2$ 大 16 倍, fine-tuning $\sim 1/16 \approx 6\%$ — 已经算"不那么自然". 若 stop 继续向 $3$-$5$ TeV 推, fine-tuning 降到 $\lesssim 0.1\%$, SUSY 解决 hierarchy 的漂亮性就几乎完全失去.</p>
@@ -135,15 +135,15 @@
 
   <p><b>数字估算 1: hierarchy 的数量级.</b> 若真把 $\Lambda = M_{\rm Planck}$ 代入, SM 里 Higgs 自能 $\delta m_h^2 \sim -\frac{3|y_t|^2}{8\pi^2}M_{\rm Pl}^2 \sim -5\times 10^{36}\,\text{GeV}^2$, 和观测 $m_h^2 = 1.56\times 10^4\,\text{GeV}^2$ 差 $3\times 10^{32}$ 倍. "自然"要求抵消精度小数点后 32 位. SUSY 把这个抵消从"要靠奇迹"变成"代数恒等", 只要 $m_{\tilde t} \sim m_h$ 量级.</p>
 
-  <p><b>数字估算 2: Gluino limit 的截面意义.</b> Gluino 对 pair production 在 $m_{\tilde g} = 2.3$ TeV 处截面 $\sigma(pp\to\tilde g\tilde g) \sim 2$ fb (13 TeV LHC, NLO+NLL 估计). LHC Run 2 累计亮度 $139\,{\rm fb}^{-1}$, 理论事件数 $\sim 280$, 但考虑到 gluino 衰变链 ($\tilde g \to q\bar q\chi_1^0$) 和 $b$-jet / missing $E_T$ cuts 的探测效率 $\sim 5\%$, 实际期望 $\sim 14$ 事件. 观测到 $< 3$ 过额, $95\%$ CL 排除. 这是一个"没看到"的硬数据.</p>
+  <p><b>数字估算 2: Gluino limit 的截面意义.</b> Gluino 对 pair production 在 $m_{\tilde g} = 2.3$ TeV 处截面 $\sigma(pp\to\tilde g\tilde g) \sim 2$ fb (13 TeV LHC, NLO+NLL 估计). LHC Run 2 累计亮度 $139\,{\rm fb}^{-1}$, 理论事件数 $\sim 280$, 但考虑到 gluino 衰变链 ($\tilde g \to q\bar q\chi_1^0$) 和 $b$-jet / missing $E_T$ cuts 的探测效率 $\sim 5\%$, 实际期望 $\sim 14$ 事件. 观测到 $\lt  3$ 过额, $95\%$ CL 排除. 这是一个"没看到"的硬数据.</p>
 
   <p><b>历史.</b> 超对称的故事有一条复杂的线. 1966 年 Miyazawa 在核子谱上注意到某种"boson-fermion 对称", 但没做四维相对论理论. 1971 年 Golfand-Likhtman 给出四维超对称代数的第一个例子 (苏联早期工作, 被西方忽视多年). 1971 年 Volkov-Akulov 在乌克兰独立写下非线性超对称. 1974 年 <b>Wess-Zumino</b> 写下第一个四维超对称场论模型 (Wess-Zumino model, 一个手性超场的简单拉氏量), 把超对称带入西方主流. 同年 Salam-Strathdee 引入超空间 (superspace) 形式. 1976 年 Fayet-Ferrara 研究破缺. 1977 年 Fayet 提出最小超对称模型. 1981 年 Dimopoulos-Raby-Wilczek 计算 MSSM 耦合统一 (预言 $M_{\rm GUT} \sim 10^{16}$ GeV). 1985 年 Sohnius 的综述成为经典. 1980 年代 SUSY 被广泛接受为最可能的 BSM 方向, 1990-2000 年代 LEP, Tevatron 搜寻, 什么也没找到, 但依旧被期待 LHC 解决. 2010 年 LHC 启动, 2012 年发现 Higgs ($m_h = 125$ GeV, 和 MSSM 预言窗一致), 2013-2023 年超对称搜寻不断推高质量下限, 没有正信号. 到 2026 年, HL-LHC (高亮度升级) 预计能把 stop 下限推到 $\sim 1.5$ TeV, gluino 到 $\sim 3$ TeV. 如果再没看到, SUSY 的"自然"论据会被完全埋葬.</p>
 
   <div class="small-summary">
   <h4>小结</h4>
-  <p>本节是第三卷的最后一节. 我们从最漂亮的 BSM 候选 — 超对称 — 出发, 先写下它的代数 $\{Q, \bar Q\} = 2\sigma^\mu P_\mu$ (时空对称的 Z$_2$ 扩展, Coleman-Mandula 唯一裂缝), 列出 superpartners 谱 (每个 SM 场配一个自旋差 $\tfrac12$ 的伙伴); 然后把"SUSY 抵消 Higgs 二次发散"这一 cliché 概念严格推了一遍 — top 圈给 $-\frac{3|y_t|^2}{8\pi^2}\Lambda^2$, stop 圈 (因为 SUSY 强制四次耦合由同一个 $y_t$ 决定, 色因子、手性数严格匹配) 给 $+\frac{3|y_t|^2}{8\pi^2}\Lambda^2$, 两者精确抵消, 残余 $\sim |y_t|^2 m_{\tilde t}^2\ln(\Lambda/m_{\tilde t})$. "自然"electroweak 尺度要求 $m_{\tilde t} \lesssim 500$ GeV. 但 LHC 截至 2023 年把 stop 推到 $> 1.1$ TeV, gluino 推到 $> 2.3$ TeV, "自然 SUSY"的窗口几乎关上.</p>
+  <p>本节是第三卷的最后一节. 我们从最漂亮的 BSM 候选 — 超对称 — 出发, 先写下它的代数 $\{Q, \bar Q\} = 2\sigma^\mu P_\mu$ (时空对称的 Z$_2$ 扩展, Coleman-Mandula 唯一裂缝), 列出 superpartners 谱 (每个 SM 场配一个自旋差 $\tfrac12$ 的伙伴); 然后把"SUSY 抵消 Higgs 二次发散"这一 cliché 概念严格推了一遍 — top 圈给 $-\frac{3|y_t|^2}{8\pi^2}\Lambda^2$, stop 圈 (因为 SUSY 强制四次耦合由同一个 $y_t$ 决定, 色因子、手性数严格匹配) 给 $+\frac{3|y_t|^2}{8\pi^2}\Lambda^2$, 两者精确抵消, 残余 $\sim |y_t|^2 m_{\tilde t}^2\ln(\Lambda/m_{\tilde t})$. "自然"electroweak 尺度要求 $m_{\tilde t} \lesssim 500$ GeV. 但 LHC 截至 2023 年把 stop 推到 $\gt  1.1$ TeV, gluino 推到 $\gt  2.3$ TeV, "自然 SUSY"的窗口几乎关上.</p>
   <p>回望本卷 30 节: 从第 1 节的"拉氏量是什么"、第 2 节 Feynman 路径积分 $\int\mathcal D\phi\,e^{iS/\hbar}$ 这个粒子物理语言的根基, 经过 Feynman 传播子、二次量子化、规范场 (QED 的 $U(1)$, QCD 的 $SU(3)$, 电弱的 $SU(2)\times U(1)$), Higgs 机制, CP 破坏, 三代结构, 反常约束, 重整化与跑动耦合, Wick 转动, 非微扰方法 (格点 QCD, 瞬子), 到 BSM 的中微子振荡、GUT 统一、超对称 — 我们看到的是一个惊人成功的图景. 标准模型解决了相当多的事: 所有可见物质在一张 $3000+$ 参数 (其实只 $18$) 的拉氏量里, $10^{-20}$ 精度的电子 $g-2$, $10^{-19}$ 秒的弱衰变, 都从同一条 $SU(3)\times SU(2)\times U(1)$ 出发算得.</p>
-  <p>但问题至少还有五堆没解决. 一, <b>暗物质</b>: 占宇宙物质密度 $84\%$, 性质完全未知 — SUSY 的 neutralino, axion (来自第 14 节强 CP 问题), 原初黑洞, sterile 中微子都是候选, 实验上还没定案. 二, <b>baryogenesis</b>: 宇宙 baryon 不对称 $\eta_B \sim 6\times 10^{-10}$ 大小, 从对称的早期宇宙产生需要 Sakharov 三条件 (B 破坏 + C 与 CP 破坏 + 脱离热平衡), SM 的 CP 破坏幅度不够, 需要 BSM. 三, <b>hierarchy</b>: 本节的主题, 自然性假设和 LHC 数据的张力. 四, <b>强 CP 问题</b> (第 14 节的遗留): $\theta_{\rm QCD} < 10^{-10}$, 为什么? Peccei-Quinn + axion 是漂亮解答, 但 axion 还没找到. 五, <b>引力</b>: 标准模型和广义相对论在 Planck 能标冲突, 没有已知可重整的量子引力理论, 弦论是主要候选但缺乏实验接触面.</p>
+  <p>但问题至少还有五堆没解决. 一, <b>暗物质</b>: 占宇宙物质密度 $84\%$, 性质完全未知 — SUSY 的 neutralino, axion (来自第 14 节强 CP 问题), 原初黑洞, sterile 中微子都是候选, 实验上还没定案. 二, <b>baryogenesis</b>: 宇宙 baryon 不对称 $\eta_B \sim 6\times 10^{-10}$ 大小, 从对称的早期宇宙产生需要 Sakharov 三条件 (B 破坏 + C 与 CP 破坏 + 脱离热平衡), SM 的 CP 破坏幅度不够, 需要 BSM. 三, <b>hierarchy</b>: 本节的主题, 自然性假设和 LHC 数据的张力. 四, <b>强 CP 问题</b> (第 14 节的遗留): $\theta_{\rm QCD} \lt  10^{-10}$, 为什么? Peccei-Quinn + axion 是漂亮解答, 但 axion 还没找到. 五, <b>引力</b>: 标准模型和广义相对论在 Planck 能标冲突, 没有已知可重整的量子引力理论, 弦论是主要候选但缺乏实验接触面.</p>
   <p>这五个未解问题, 加上中微子质量来源 (Dirac 还是 Majorana? seesaw 尺度? 第 15 节)、三代结构为什么 (Yukawa 矩阵的等级)、为什么 $\mathcal U(1)$ 电荷是量子化的 (磁单极? 还是 $\mathcal U(1)$ 嵌入到紧致群?) — 这些是下一代实验 (HL-LHC, DUNE, Hyper-K, LISA, CMB-S4) 和下一代理论的主题. 粒子物理远没结束; 30 节的本卷只是把 1930 - 2020 这 90 年积下来的"可算、可验、可连"的那部分装到一个首尾相连的故事里. 下一卷 (如果读者愿意跟我继续), 大概要从这 30 节的未解问题中挑几个, 去看宇宙学、凝聚态对偶、量子信息里的新出口. 至于本卷 — 到这里结束. 谢谢读者一路走过.</p>
   <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
   </div>

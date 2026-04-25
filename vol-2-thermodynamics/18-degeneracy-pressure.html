@@ -124,7 +124,7 @@
     <h4>图 1 · 白矮星质量-半径关系与 Chandrasekhar 极限</h4>
     <dl class="tikz-req">
       <dt>主题</dt><dd>白矮星半径 $R$ (以地球半径 $R_\oplus$ 为单位) 随质量 $M$ (以太阳质量 $M_\odot$ 为单位) 的变化曲线, 标出 Chandrasekhar 极限 $M_\mathrm{Ch}\approx 1.44\,M_\odot$; 右侧附加一个白矮星剖面示意, 里面画出占满的 Fermi 海</dd>
-      <dt>必含元素</dt><dd>主图: 坐标横轴 $M/M_\odot$ 范围 0-1.5, 纵轴 $R/R_\oplus$ 范围 0-2. 一条 $R(M)$ 曲线: 当 $M\to 0$ 时 $R$ 大 (非相对论极限 $R\propto M^{-1/3}$, 缓慢下降); 当 $M$ 接近 $M_\mathrm{Ch}\approx 1.44$ 时 $R$ 迅速下降到 0. 在 $M=M_\mathrm{Ch}$ 处用红色虚线垂直标注. 实测几颗白矮星 (Sirius B 约 $1.0\,M_\odot$, $0.8\,R_\oplus$; Procyon B 约 $0.6\,M_\odot$, $1.2\,R_\oplus$) 以黑色圆点标在曲线上. 右侧嵌图: 一个圆形剖面代表白矮星, 上标 $\rho\sim 10^9\,\mathrm{kg/m^3}$; 圆内画一个 $k$ 空间中的 Fermi 球 (阴影填充到 $k_F$), 空间中标 $\varepsilon<E_F$ 已占满, $\varepsilon>E_F$ 为空</dd>
+      <dt>必含元素</dt><dd>主图: 坐标横轴 $M/M_\odot$ 范围 0-1.5, 纵轴 $R/R_\oplus$ 范围 0-2. 一条 $R(M)$ 曲线: 当 $M\to 0$ 时 $R$ 大 (非相对论极限 $R\propto M^{-1/3}$, 缓慢下降); 当 $M$ 接近 $M_\mathrm{Ch}\approx 1.44$ 时 $R$ 迅速下降到 0. 在 $M=M_\mathrm{Ch}$ 处用红色虚线垂直标注. 实测几颗白矮星 (Sirius B 约 $1.0\,M_\odot$, $0.8\,R_\oplus$; Procyon B 约 $0.6\,M_\odot$, $1.2\,R_\oplus$) 以黑色圆点标在曲线上. 右侧嵌图: 一个圆形剖面代表白矮星, 上标 $\rho\sim 10^9\,\mathrm{kg/m^3}$; 圆内画一个 $k$ 空间中的 Fermi 球 (阴影填充到 $k_F$), 空间中标 $\varepsilon\lt E_F$ 已占满, $\varepsilon\gt E_F$ 为空</dd>
       <dt>几何精度</dt><dd>曲线在 $M_\mathrm{Ch}$ 处切线近于竖直 (半径在有限斜率下跌到零是相对论效应导致的, 曲率需表达); $M=0.5M_\odot$ 处 $R\approx 1.4 R_\oplus$, $M=1.0M_\odot$ 处 $R\approx 0.8R_\oplus$, $M=1.3M_\odot$ 处 $R\approx 0.4R_\oplus$, 作为示意刻度</dd>
       <dt>标签与公式</dt><dd>主图旁标 $P_\mathrm{deg} = \tfrac{2}{5}nE_F$; $E_F = \tfrac{\hbar^2}{2m}(3\pi^2 n)^{2/3}$; $M_\mathrm{Ch}\approx \left(\tfrac{\hbar c}{G}\right)^{3/2}\tfrac{1}{(\mu_e m_p)^2}\approx 1.44\,M_\odot$; 曲线左段标 "非相对论, $R\propto M^{-1/3}$"; 曲线右段标 "相对论, $R\to 0$"; $M_\mathrm{Ch}$ 红色虚线上方标 "Chandrasekhar 极限"</dd>
       <dt>风格建议</dt><dd>白底, 主曲线黑色实线, $M_\mathrm{Ch}$ 处红色虚竖线, 实测白矮星数据点黑色实心圆, 右侧 Fermi 海示意的球内阴影用浅灰色填充, 所有坐标轴黑色细线</dd>
@@ -163,7 +163,7 @@
 
   $$ \frac{P_\mathrm{deg}}{P_\mathrm{grav}} \;\sim\; \frac{\hbar c}{G(\mu_e m_p)^{4/3} M^{2/3}}. $$
 
-  <p>当 $M$ 小, 比值 $>1$, 简并压支配, 星体稳定; 当 $M$ 大, 比值 $<1$, 引力赢, 星体塌缩. 临界质量是比值恰为 1 的 $M$:</p>
+  <p>当 $M$ 小, 比值 $\gt 1$, 简并压支配, 星体稳定; 当 $M$ 大, 比值 $\lt 1$, 引力赢, 星体塌缩. 临界质量是比值恰为 1 的 $M$:</p>
 
   \begin{equation}
     M_\mathrm{Ch} \;\sim\; \left(\frac{\hbar c}{G}\right)^{3/2}\,\frac{1}{(\mu_e m_p)^2} \label{eq:Mch}
@@ -175,7 +175,7 @@
 
   <p>其中 $\omega_3^0\approx 2.018$ 是 Lane-Emden 多方指数 $n=3$ 的一个数值因子. 对 $\mu_e=2$ (C/O 白矮星), 得 $M_\mathrm{Ch}\approx 1.44\,M_\odot$ — Chandrasekhar 极限.</p>
 
-  <p><strong>物理解释.</strong> 在相对论极限, 每个电子的速度被 $c$ 钉住, $\varepsilon \propto p$, 压强缓升; 而引力压同样按 $n^{4/3}$ 涨. 两者只差一个跟 $M$ 相关的系数. 如果 $M<M_\mathrm{Ch}$, 电子还没达到相对论, 简并压有 $n^{5/3}$ 的"抬头", 比 $n^{4/3}$ 的引力陡, 可以撑住; 如果 $M>M_\mathrm{Ch}$, 电子越挤越相对论, 简并压只能按 $n^{4/3}$ 跟着涨, 永远跟不上引力, 任何扰动都可以压垮星体. 超过 $M_\mathrm{Ch}$ 的白矮星不存在; 这不是一个数值逼近, 是一个 <em>数学上必然</em> 的结构性极限.</p>
+  <p><strong>物理解释.</strong> 在相对论极限, 每个电子的速度被 $c$ 钉住, $\varepsilon \propto p$, 压强缓升; 而引力压同样按 $n^{4/3}$ 涨. 两者只差一个跟 $M$ 相关的系数. 如果 $M\lt M_\mathrm{Ch}$, 电子还没达到相对论, 简并压有 $n^{5/3}$ 的"抬头", 比 $n^{4/3}$ 的引力陡, 可以撑住; 如果 $M\gt M_\mathrm{Ch}$, 电子越挤越相对论, 简并压只能按 $n^{4/3}$ 跟着涨, 永远跟不上引力, 任何扰动都可以压垮星体. 超过 $M_\mathrm{Ch}$ 的白矮星不存在; 这不是一个数值逼近, 是一个 <em>数学上必然</em> 的结构性极限.</p>
 
   <p><strong>历史: Chandrasekhar 1931.</strong> 1930 年夏天, 19 岁的 Subrahmanyan Chandrasekhar 从印度 Madras 乘船去英国剑桥读博. 18 天航程里, 他根据 R. H. Fowler 1926 年把简并压应用到白矮星的论文, 把电子推向相对论区 — Fowler 算的是非相对论简并压, 一定给稳定解, 不存在极限. Chandrasekhar 注意到: 越重的白矮星电子越相对论, 这个极限必须被加进来. 他在船上用初级 $R\propto M^{-1/3}$ 加上相对论修正, 算出极限质量 $\approx 0.91\,M_\odot$ (他用 $\mu_e$ 估偏了). 到剑桥后他把计算精化, 最终发表 1931 年的 <em>Astrophysical Journal</em> 论文, 给出 $M_\mathrm{Ch}\approx 1.4\,M_\odot$.</p>
 

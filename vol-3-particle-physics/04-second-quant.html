@@ -40,7 +40,7 @@
 
   <p>$$ j^\mu = \frac{i}{2m}(\psi^*\partial^\mu\psi - \psi\,\partial^\mu\psi^*), \qquad j^0 = \frac{i}{2m}(\psi^*\dot\psi - \dot\psi^*\psi). \tag{1} $$</p>
 
-  <p>问题立刻冒出来: $j^0$ 的正负号取决于 $\dot\psi$ 的相位, 不像 $|\psi|^2$ 那样恒正. 对一个平面波解 $\psi = e^{-iEt + i\mathbf p\cdot\mathbf x}$, 代进去得到 $j^0 = E/m$ —— 负能解 $E<0$ 给出负概率. 要把它当概率密度解释, 概率就会出现负值. 这是 1926 年 Klein-Gordon 方程刚写出来时最让物理学家沮丧的事; 它后来被 Pauli 与 Weisskopf 1934 年"再解释"为电荷密度 (而不是概率密度), 才算把方程本身救回来. 但这个救法的代价是: 单粒子波函数的概率解释整个没了. $\psi$ 不再是一个粒子的东西.</p>
+  <p>问题立刻冒出来: $j^0$ 的正负号取决于 $\dot\psi$ 的相位, 不像 $|\psi|^2$ 那样恒正. 对一个平面波解 $\psi = e^{-iEt + i\mathbf p\cdot\mathbf x}$, 代进去得到 $j^0 = E/m$ —— 负能解 $E\lt 0$ 给出负概率. 要把它当概率密度解释, 概率就会出现负值. 这是 1926 年 Klein-Gordon 方程刚写出来时最让物理学家沮丧的事; 它后来被 Pauli 与 Weisskopf 1934 年"再解释"为电荷密度 (而不是概率密度), 才算把方程本身救回来. 但这个救法的代价是: 单粒子波函数的概率解释整个没了. $\psi$ 不再是一个粒子的东西.</p>
 
   <p>有人会说, 换成 Dirac 方程呢? Dirac 1928 年的一阶方程给出正定的 $j^0 = \psi^\dagger\psi$, 看上去解决了问题 —— 但它立刻又遇到"负能量解"的新麻烦: $E = \pm\sqrt{p^2+m^2}$ 两支都是解, 负能态能无限制地向下填充, 一束电子在场中会把所有能量辐射殆尽堕入深渊. Dirac 本人的解决方案 ("海洋" + 反粒子) 实质上已经等价于承认单粒子解释不成立 —— 因为一旦认真处理反粒子, 粒子数就不守恒了.</p>
 
@@ -68,7 +68,7 @@
 
   <p>(2) 式里的 $(2\pi)^3 2\omega_k$ 不是神秘常数, 它就是 Lorentz 不变测度 $d^3k/[(2\pi)^3\,2\omega_k]$ 的归一化因子 —— 换一个约定这个数就挪到别处, 物理不变. 重要的是这条关系只有一个自由参数可选 (是对易 $[\cdot,\cdot]$ 还是反对易 $\{\cdot,\cdot\}$), 而旋转统计定理告诉我们整数自旋场必须选对易, 半整数必须反对易 (后文 Pauli 统计的一节里会推). 于是标量场的量子化唯一.</p>
 
-  <p><b>第二步: 单模谐振子级联.</b> 把空间积分想象成一个一个模的和, 取一个模暂时关心, 记 $a \equiv a_k, a^\dagger \equiv a_k^\dagger$, 省去归一化因子, 有 $[a, a^\dagger]=1$. 这是标准谐振子的 Heisenberg 代数. 定义数算符 $\hat N = a^\dagger a$, 验证 $[\hat N, a^\dagger] = a^\dagger$, $[\hat N, a] = -a$: 也就是 $a^\dagger$ 把 $\hat N$ 的本征值升 1, $a$ 降 1. 假设有最低态 $|0\rangle$ 满足 $a|0\rangle = 0$ (因为 $\hat N$ 的本征值必须正 —— 否则 $\langle\psi|a^\dagger a|\psi\rangle<0$ 和内积为正矛盾), 那么所有态</p>
+  <p><b>第二步: 单模谐振子级联.</b> 把空间积分想象成一个一个模的和, 取一个模暂时关心, 记 $a \equiv a_k, a^\dagger \equiv a_k^\dagger$, 省去归一化因子, 有 $[a, a^\dagger]=1$. 这是标准谐振子的 Heisenberg 代数. 定义数算符 $\hat N = a^\dagger a$, 验证 $[\hat N, a^\dagger] = a^\dagger$, $[\hat N, a] = -a$: 也就是 $a^\dagger$ 把 $\hat N$ 的本征值升 1, $a$ 降 1. 假设有最低态 $|0\rangle$ 满足 $a|0\rangle = 0$ (因为 $\hat N$ 的本征值必须正 —— 否则 $\langle\psi|a^\dagger a|\psi\rangle\lt 0$ 和内积为正矛盾), 那么所有态</p>
 
   <p>$$ |n\rangle = \frac{(a^\dagger)^n}{\sqrt{n!}}|0\rangle, \qquad \hat N|n\rangle = n|n\rangle,\ n = 0,1,2,\dots $$</p>
 

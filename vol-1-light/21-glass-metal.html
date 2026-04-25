@@ -50,11 +50,11 @@
 
   <p>这条式子就是 Drude 介电函数, 里面的 $\omega_p$ 叫做等离子频率 —— 它是自由电子气集体振荡的固有频率, 所有金属光学行为的第一个量纲标尺.</p>
 
-  <figure class="diagram"><img src="build/21.svg" alt="图 1 · 带隙与等离子频率: 光在玻璃与金属中的两种分流" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左: 玻璃的价带与导带被 9 eV 的带隙分开, 可见光光子能量不够, 穿而不吸; 中: 金属的自由电子在入射电场中集体振荡, 它们的再辐射与入射波相消, 表现为镜面反射; 右: Drude 介电函数在 $\omega_p$ 处穿过零点, 把频率轴划成反射区 ($\omega<\omega_p$) 与透射区 ($\omega>\omega_p$).</figcaption></figure>
+  <figure class="diagram"><img src="build/21.svg" alt="图 1 · 带隙与等离子频率: 光在玻璃与金属中的两种分流" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左: 玻璃的价带与导带被 9 eV 的带隙分开, 可见光光子能量不够, 穿而不吸; 中: 金属的自由电子在入射电场中集体振荡, 它们的再辐射与入射波相消, 表现为镜面反射; 右: Drude 介电函数在 $\omega_p$ 处穿过零点, 把频率轴划成反射区 ($\omega\lt \omega_p$) 与透射区 ($\omega\gt \omega_p$).</figcaption></figure>
 
-  <p>让我们读一下 (2) 式的符号. 当 $\omega<\omega_p$ 时, $\varepsilon(\omega)<0$, 折射率 $n=\sqrt{\varepsilon}$ 变成一个纯虚数, 波数 $k=n\omega/c$ 也是纯虚的 —— 这意味着入射波进入介质后以指数衰减, 根本无法把能量带到远处. 物理上, 自由电子被电场推着振荡, 它们再辐射出的次级电磁波恰好与入射波相干相消, 净效果就是把入射波原路顶回去. 这就是金属的反射.</p>
+  <p>让我们读一下 (2) 式的符号. 当 $\omega\lt \omega_p$ 时, $\varepsilon(\omega)\lt 0$, 折射率 $n=\sqrt{\varepsilon}$ 变成一个纯虚数, 波数 $k=n\omega/c$ 也是纯虚的 —— 这意味着入射波进入介质后以指数衰减, 根本无法把能量带到远处. 物理上, 自由电子被电场推着振荡, 它们再辐射出的次级电磁波恰好与入射波相干相消, 净效果就是把入射波原路顶回去. 这就是金属的反射.</p>
 
-  <p>当 $\omega>\omega_p$ 时, $\varepsilon(\omega)>0$, 折射率重新变回实数, 电子再也跟不上如此之快的电场, 它们的集体振荡落后于驱动, 再辐射不再能完全相消入射波, 于是光可以像在透明介质里那样传入金属. 这是金属光学最反直觉的部分: 对足够高频的光, 金属其实是透明的.</p>
+  <p>当 $\omega\gt \omega_p$ 时, $\varepsilon(\omega)\gt 0$, 折射率重新变回实数, 电子再也跟不上如此之快的电场, 它们的集体振荡落后于驱动, 再辐射不再能完全相消入射波, 于是光可以像在透明介质里那样传入金属. 这是金属光学最反直觉的部分: 对足够高频的光, 金属其实是透明的.</p>
 
   <h2>三、把 $\omega_p$ 算出来: 铝、金与紫外</h2>
 

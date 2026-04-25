@@ -22,7 +22,7 @@
   <h1>Feynman 传播子 — 自由场的全部内容</h1>
   <div class="sub">—— 一个 Green 函数的几张面孔</div>
 
-  <div class="abstract">上一节我们把自由标量场的生成泛函写成路径积分 $\int\!\mathcal D\phi\,e^{iS_0[\phi] + i\int J\phi}$. 高斯积分一做完, 里面蹦出来的那个核就是本节的主角——Feynman 传播子 $G_F(x-y)$. 我们从"真空两点函数 $\langle 0|T\phi(x)\phi(y)|0\rangle$ 是什么"这个最朴素的问题出发, 先把它写成 Klein-Gordon 方程的 Green 函数, 再做 Fourier 变换得到动量空间的 $\tilde G_F(k) = i/(k^2 - m^2 + i\epsilon)$. 关键一步是 $i\epsilon$ 处方: 它把两个质壳极点分别推到 $k^0$ 复平面上半和下半, 恰好让 $t > 0$ 时闭合下半平面捡到正能量, $t < 0$ 时闭合上半平面捡到反向传播的负能量. 这条轮廓不是惯例, 而是"时间排序 $T$" 一字不差的积分表达. 最后我们把静电 Coulomb 势从 $1/r$ 读成无质量传播子的空间 Fourier 变换, 并把 Stueckelberg 1934 年那张原始图和 Feynman 1949 年的图纸对上号.</div>
+  <div class="abstract">上一节我们把自由标量场的生成泛函写成路径积分 $\int\!\mathcal D\phi\,e^{iS_0[\phi] + i\int J\phi}$. 高斯积分一做完, 里面蹦出来的那个核就是本节的主角——Feynman 传播子 $G_F(x-y)$. 我们从"真空两点函数 $\langle 0|T\phi(x)\phi(y)|0\rangle$ 是什么"这个最朴素的问题出发, 先把它写成 Klein-Gordon 方程的 Green 函数, 再做 Fourier 变换得到动量空间的 $\tilde G_F(k) = i/(k^2 - m^2 + i\epsilon)$. 关键一步是 $i\epsilon$ 处方: 它把两个质壳极点分别推到 $k^0$ 复平面上半和下半, 恰好让 $t \gt  0$ 时闭合下半平面捡到正能量, $t \lt  0$ 时闭合上半平面捡到反向传播的负能量. 这条轮廓不是惯例, 而是"时间排序 $T$" 一字不差的积分表达. 最后我们把静电 Coulomb 势从 $1/r$ 读成无质量传播子的空间 Fourier 变换, 并把 Stueckelberg 1934 年那张原始图和 Feynman 1949 年的图纸对上号.</div>
 
   <p>上一节我们终于把自由场的生成泛函 $Z_0[J] = \int\!\mathcal D\phi\,e^{iS_0+i\int J\phi}$ 形式地写下来, 可那积分真要动手算, 就绕不开一件事: 把二次型 $S_0 = \tfrac12\int d^4x\,\phi(\Box + m^2)\phi$ 的"逆算符"找出来. 这个逆算符, 就是 $G_F$. 只要它到手, 一切自由场的 $n$ 点函数就只剩"把 source 与 $G_F$ 两两配对"的组合学游戏. 更妙的是, 一旦加上相互作用, 这个 $G_F$ 又会化身为 Feynman 图上的内线——每一条虚线、每一段波浪、每一根箭头, 背后都是它. 所以把 $G_F$ 吃透, 等于把自由场的全部内容、以及后面所有微扰论的脚手架, 都先摆好了.</p>
 
@@ -55,7 +55,7 @@
   <p>下一节我们会把这个 $i\epsilon$ 一步步拆开看: 它究竟把极点推到了哪里, 为什么推到那儿, 以及它怎么恰好等价于时间排序 $T$.</p>
 
   <!-- 唯一图占位符 -->
-  <figure class="diagram"><img src="build/03.svg" alt="图 1 · Feynman 传播子在 $k^0$ 复平面上的极点结构与积分轮廓" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $k^0$ 复平面上的两个极点 $k^0 = \pm(\omega_{\mathbf k} - i\epsilon')$: Feynman 轮廓沿实轴从下方绕过负极、从上方绕过正极; 推迟轮廓把两个极点都推到实轴下方, 超前轮廓则相反. $t > 0$ 时闭合下半平面, 只有右极点被圈住; $t < 0$ 时闭合上半平面, 只有左极点被圈住——两个 $\theta$ 函数因此生出.</figcaption></figure>
+  <figure class="diagram"><img src="build/03.svg" alt="图 1 · Feynman 传播子在 $k^0$ 复平面上的极点结构与积分轮廓" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $k^0$ 复平面上的两个极点 $k^0 = \pm(\omega_{\mathbf k} - i\epsilon')$: Feynman 轮廓沿实轴从下方绕过负极、从上方绕过正极; 推迟轮廓把两个极点都推到实轴下方, 超前轮廓则相反. $t \gt  0$ 时闭合下半平面, 只有右极点被圈住; $t \lt  0$ 时闭合上半平面, 只有左极点被圈住——两个 $\theta$ 函数因此生出.</figcaption></figure>
 
   <h2>二、$i\epsilon$ 处方的几何: 极点、轮廓与时间排序</h2>
 
@@ -65,15 +65,15 @@
 
   <p>$$ k^2 - m^2 + i\epsilon = (k^0)^2 - (\mathbf k^2 + m^2) + i\epsilon = (k^0)^2 - \omega_{\mathbf k}^2 + i\epsilon, $$</p>
 
-  <p>其中 $\omega_{\mathbf k} = +\sqrt{\mathbf k^2 + m^2} > 0$. 把它分解成两个一阶因子:</p>
+  <p>其中 $\omega_{\mathbf k} = +\sqrt{\mathbf k^2 + m^2} \gt  0$. 把它分解成两个一阶因子:</p>
 
   <p>$$ (k^0)^2 - \omega_{\mathbf k}^2 + i\epsilon = (k^0 - \omega_{\mathbf k} + i\epsilon')(k^0 + \omega_{\mathbf k} - i\epsilon'), $$</p>
 
-  <p>其中 $\epsilon' = \epsilon/(2\omega_{\mathbf k}) > 0$ (我们用 $\epsilon'$ 只是提醒自己: 正极点和负极点分别被推了一个正的小量, 具体大小是 $\omega_{\mathbf k}$ 的函数, 但这不改变拓扑, 反正 $\epsilon\to 0^+$ 后只关心"上半还是下半"). 可见两个极点的位置精确地是:</p>
+  <p>其中 $\epsilon' = \epsilon/(2\omega_{\mathbf k}) \gt  0$ (我们用 $\epsilon'$ 只是提醒自己: 正极点和负极点分别被推了一个正的小量, 具体大小是 $\omega_{\mathbf k}$ 的函数, 但这不改变拓扑, 反正 $\epsilon\to 0^+$ 后只关心"上半还是下半"). 可见两个极点的位置精确地是:</p>
 
   <ul>
-    <li>正能极点: $k^0 = +\omega_{\mathbf k} - i\epsilon'$, 落在 实轴 下方 ($\text{Im}\,k^0 < 0$);</li>
-    <li>负能极点: $k^0 = -\omega_{\mathbf k} + i\epsilon'$, 落在 实轴 上方 ($\text{Im}\,k^0 > 0$).</li>
+    <li>正能极点: $k^0 = +\omega_{\mathbf k} - i\epsilon'$, 落在 实轴 下方 ($\text{Im}\,k^0 \lt  0$);</li>
+    <li>负能极点: $k^0 = -\omega_{\mathbf k} + i\epsilon'$, 落在 实轴 上方 ($\text{Im}\,k^0 \gt  0$).</li>
   </ul>
 
   <p>这是 Feynman 处方的几何全部. 把两个极点记在图 1 上.</p>
@@ -82,22 +82,22 @@
 
   <p>$$ I(t) = \int_{-\infty}^{+\infty}\frac{dk^0}{2\pi}\,\frac{i\, e^{-i k^0 t}}{(k^0)^2 - \omega_{\mathbf k}^2 + i\epsilon}, \qquad t \equiv x^0 - y^0. $$</p>
 
-  <p>在 $k^0 = R\,e^{i\varphi}$ 的大圆上, $e^{-ik^0 t} = e^{-iRt\cos\varphi} e^{Rt\sin\varphi}$. 要让大圆贡献为零, 必须 $Rt\sin\varphi < 0$:</p>
+  <p>在 $k^0 = R\,e^{i\varphi}$ 的大圆上, $e^{-ik^0 t} = e^{-iRt\cos\varphi} e^{Rt\sin\varphi}$. 要让大圆贡献为零, 必须 $Rt\sin\varphi \lt  0$:</p>
 
   <ul>
-    <li>若 $t > 0$: 需要 $\sin\varphi < 0$, 即 轮廓在下半平面 ($-\pi < \varphi < 0$) 闭合;</li>
-    <li>若 $t < 0$: 需要 $\sin\varphi > 0$, 即 轮廓在上半平面 ($0 < \varphi < \pi$) 闭合.</li>
+    <li>若 $t \gt  0$: 需要 $\sin\varphi \lt  0$, 即 轮廓在下半平面 ($-\pi \lt  \varphi \lt  0$) 闭合;</li>
+    <li>若 $t \lt  0$: 需要 $\sin\varphi \gt  0$, 即 轮廓在上半平面 ($0 \lt  \varphi \lt  \pi$) 闭合.</li>
   </ul>
 
   <p>这就是 "Jordan 引理" 的具体相. 现在把上面两个极点落实到这两种闭合方式里:</p>
 
-  <p><strong>(a) $t > 0$:</strong> 闭合下半平面, 只圈住正能极点 $k^0 = +\omega_{\mathbf k} - i\epsilon'$. 注意下半平面闭合是 顺时针 绕行, 留数定理带一个 $-2\pi i$. 留数本身由 $(k^0 - \omega_{\mathbf k} + i\epsilon')^{-1}$ 在极点处的系数给出, 是 $1/(2\omega_{\mathbf k})$ 乘 $e^{-i\omega_{\mathbf k} t}$. 整理:</p>
+  <p><strong>(a) $t \gt  0$:</strong> 闭合下半平面, 只圈住正能极点 $k^0 = +\omega_{\mathbf k} - i\epsilon'$. 注意下半平面闭合是 顺时针 绕行, 留数定理带一个 $-2\pi i$. 留数本身由 $(k^0 - \omega_{\mathbf k} + i\epsilon')^{-1}$ 在极点处的系数给出, 是 $1/(2\omega_{\mathbf k})$ 乘 $e^{-i\omega_{\mathbf k} t}$. 整理:</p>
 
-  <p>$$ I(t > 0) = \frac{1}{2\pi}\cdot(-2\pi i)\cdot \frac{i\, e^{-i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}} = \frac{e^{-i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}}. $$</p>
+  <p>$$ I(t \gt  0) = \frac{1}{2\pi}\cdot(-2\pi i)\cdot \frac{i\, e^{-i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}} = \frac{e^{-i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}}. $$</p>
 
-  <p><strong>(b) $t < 0$:</strong> 闭合上半平面, 只圈住负能极点 $k^0 = -\omega_{\mathbf k} + i\epsilon'$. 上半平面是 逆时针, 带 $+2\pi i$. 留数由 $(k^0 + \omega_{\mathbf k} - i\epsilon')^{-1}$ 在 $k^0 = -\omega_{\mathbf k}$ 的系数给出, 是 $1/(-2\omega_{\mathbf k})$ 乘 $e^{+i\omega_{\mathbf k} t}$. 整理 (把负号算进去):</p>
+  <p><strong>(b) $t \lt  0$:</strong> 闭合上半平面, 只圈住负能极点 $k^0 = -\omega_{\mathbf k} + i\epsilon'$. 上半平面是 逆时针, 带 $+2\pi i$. 留数由 $(k^0 + \omega_{\mathbf k} - i\epsilon')^{-1}$ 在 $k^0 = -\omega_{\mathbf k}$ 的系数给出, 是 $1/(-2\omega_{\mathbf k})$ 乘 $e^{+i\omega_{\mathbf k} t}$. 整理 (把负号算进去):</p>
 
-  <p>$$ I(t < 0) = \frac{1}{2\pi}\cdot(+2\pi i)\cdot\frac{i}{-2\omega_{\mathbf k}}\cdot e^{+i\omega_{\mathbf k} t} = \frac{e^{+i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}}. $$</p>
+  <p>$$ I(t \lt  0) = \frac{1}{2\pi}\cdot(+2\pi i)\cdot\frac{i}{-2\omega_{\mathbf k}}\cdot e^{+i\omega_{\mathbf k} t} = \frac{e^{+i\omega_{\mathbf k} t}}{2\omega_{\mathbf k}}. $$</p>
 
   <p>两段合并, 再把空间 Fourier 重新装回去, 就得到</p>
 
@@ -105,7 +105,7 @@
 
   <p>第一项是 "正能量向前传", 第二项 (把 $\mathbf k\to -\mathbf k$ 换个名字, 它就变成 $e^{i\omega_{\mathbf k} t - i\mathbf k\cdot(\mathbf x - \mathbf y)}$) 是 "负能量向后传"——或者 Feynman 在 1949 年的著名说法, "反粒子是沿时间反向传播的粒子". 这两项合起来正是 (1) 里那个时间排序的积分表达. $\theta$ 函数不是外面贴上去的, 它是 $i\epsilon$ 选了极点位置后, 由 Jordan 引理强迫出来的.</p>
 
-  <p>这里值得停下来想一下: 如果我们换一种 $i\epsilon$ 会怎样. 推迟传播子 $G_R$: 把 $i\epsilon$ 改成 $i\epsilon\, \text{sgn}(k^0)$, 或者更简单地, 把分母写成 $(k^0 + i\epsilon)^2 - \omega_{\mathbf k}^2$, 两个极点就都跑到实轴 下方 去了. 这样 $t < 0$ 时闭合上半平面, 啥也捡不到, $G_R$ 自动为零——"推迟" 的因果性就从轮廓里跑出来了. 超前传播子 $G_A$ 反过来: 两个极点都在 上方, $t > 0$ 时反而为零. 对称传播子 (主值处方) 则把两个极点都坐在实轴正中间, 用主值积分. 经典电动力学用 $G_R$ 算推迟势, 量子场论用 $G_F$ 算真空振幅——这不是口味问题, 而是因为 Feynman 处方正好对应 "初态和末态都是真空"这一非常具体的物理边界条件: $t \to -\infty$ 时正频模 (粒子) 朝未来传播, $t \to +\infty$ 时负频模 (反粒子) 朝过去传播, 两头连的都是零粒子的真空态. 其他处方对应别的边界条件, 不是量子场论要的.</p>
+  <p>这里值得停下来想一下: 如果我们换一种 $i\epsilon$ 会怎样. 推迟传播子 $G_R$: 把 $i\epsilon$ 改成 $i\epsilon\, \text{sgn}(k^0)$, 或者更简单地, 把分母写成 $(k^0 + i\epsilon)^2 - \omega_{\mathbf k}^2$, 两个极点就都跑到实轴 下方 去了. 这样 $t \lt  0$ 时闭合上半平面, 啥也捡不到, $G_R$ 自动为零——"推迟" 的因果性就从轮廓里跑出来了. 超前传播子 $G_A$ 反过来: 两个极点都在 上方, $t \gt  0$ 时反而为零. 对称传播子 (主值处方) 则把两个极点都坐在实轴正中间, 用主值积分. 经典电动力学用 $G_R$ 算推迟势, 量子场论用 $G_F$ 算真空振幅——这不是口味问题, 而是因为 Feynman 处方正好对应 "初态和末态都是真空"这一非常具体的物理边界条件: $t \to -\infty$ 时正频模 (粒子) 朝未来传播, $t \to +\infty$ 时负频模 (反粒子) 朝过去传播, 两头连的都是零粒子的真空态. 其他处方对应别的边界条件, 不是量子场论要的.</p>
 
   <p>所以一张看似轻描淡写的 "$+i\epsilon$", 背后是一整套时间、因果和真空的选择. 跳过这一页, 后面 Feynman 图的规则就永远含着一丝说不清的味道.</p>
 

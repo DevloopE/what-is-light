@@ -33,7 +33,7 @@
 
   <p><strong>第二层, 径迹探测器 (tracker).</strong> 半径 $10$—$110\,\mathrm{cm}$, 硅条 (silicon strip) 或硅像素补一部分, 共约十几层, 处在强磁场 ($B=2\,\mathrm{T}$ ATLAS, $B=3.8\,\mathrm{T}$ CMS) 中. 带电粒子在磁场里走圆弧, 由测得的曲率 $\rho$ 反推横向动量 $p_T=0.3\,B\,\rho$ (GeV/c, 单位 T 与 m). CMS 的 $3.8\,\mathrm{T}$ 超导螺线管是它相对于 ATLAS 最大的设计差异, 也是它名字 (Compact Muon Solenoid) 的来源 — 强磁场让外层可以更紧凑地测量 $\mu$ 子动量. 径迹探测器不吸收能量 (只测电离), 粒子穿过后继续前进.</p>
 
-  <p><strong>第三层, 电磁量能器 (ECAL).</strong> 厚 $\sim 25\,X_0$ (辐射长度, 电子/光子完全簇射所需深度). CMS 用 $\mathrm{PbWO_4}$ (钨酸铅) 晶体, 共 $75848$ 块, 高发光率与快响应 ($<25\,\mathrm{ns}$, 刚好匹配 LHC 的 $25\,\mathrm{ns}$ 束团间距). ATLAS 用液氩 (LAr) + 铅板的取样结构. 电子与光子进入量能器, 发生轫致辐射+对产生的级联簇射, 能量全部沉积, 分辨 $\sigma_E/E\approx 3\%/\sqrt E\oplus 0.5\%$ ($E$ in GeV). 强子几乎不在 ECAL 里停下, 继续往外.</p>
+  <p><strong>第三层, 电磁量能器 (ECAL).</strong> 厚 $\sim 25\,X_0$ (辐射长度, 电子/光子完全簇射所需深度). CMS 用 $\mathrm{PbWO_4}$ (钨酸铅) 晶体, 共 $75848$ 块, 高发光率与快响应 ($\lt 25\,\mathrm{ns}$, 刚好匹配 LHC 的 $25\,\mathrm{ns}$ 束团间距). ATLAS 用液氩 (LAr) + 铅板的取样结构. 电子与光子进入量能器, 发生轫致辐射+对产生的级联簇射, 能量全部沉积, 分辨 $\sigma_E/E\approx 3\%/\sqrt E\oplus 0.5\%$ ($E$ in GeV). 强子几乎不在 ECAL 里停下, 继续往外.</p>
 
   <p><strong>第四层, 强子量能器 (HCAL).</strong> 厚 $\sim 10$ 个强子相互作用长度 $\lambda_I$, 铁或铜板 + 塑料闪烁体的取样结构. 强子 ($\pi, K, p, n$) 在这里通过强相互作用簇射, 能量沉积, 分辨 $\sigma_E/E\approx 50\%/\sqrt E\oplus 3\%$ — 比 ECAL 差一个量级, 因为强子簇射有中微子和 $\mu$ 的泄漏, 以及电磁-强子比例的涨落. ECAL + HCAL 合起来测量了除 $\mu$ 与 $\nu$ 以外所有粒子的能量, 这使得"缺失横能量" $E_T^{\mathrm{miss}}=-|\sum_i\vec p_{T,i}|$ 可以被当作中微子 (或任何不可见 BSM 粒子) 横动量的间接测量.</p>
 
@@ -63,11 +63,11 @@
 
   <p>LHC 束团以 $25\,\mathrm{ns}$ 间距相互对撞, 所以对撞频率 $40\,\mathrm{MHz}$. 每次对撞含多重质子-质子相互作用 (pileup, PU)—Run 3 名义 PU $\sim 50$—60, HL-LHC 升级后将到 PU $\sim 200$. 原始数据率 $40\,\mathrm{MHz}\times 1\,\mathrm{MB/\text{事件}}=40\,\mathrm{TB/s}$, 完全不可能写入存储 (磁带集群峰值带宽约 $10\,\mathrm{GB/s}$). 所以必须扔掉 $99.999\%$ 的事件, 只留下"有趣"的.</p>
 
-  <p>两级触发系统. <strong>L1 硬件触发</strong> (ATLAS 叫 L1, CMS 类似) — 专用 FPGA 与 ASIC 芯片, 在 $\sim 3\,\mu\mathrm{s}$ 内做粗粒度决定. 输入只是量能器 (降分辨到 $\sim 0.1\times 0.1$ 的 $\eta$-$\phi$ 塔) + $\mu$ 子室 (粗粒度). 判据: 是否有高 $p_T$ 的电磁簇射 ($E_T>22\,\mathrm{GeV}$)、高 $p_T$ $\mu$ 子 ($p_T>20\,\mathrm{GeV}$)、大 $E_T^{\mathrm{miss}}$ 等. 通过 L1 的事件率从 $40\,\mathrm{MHz}$ 降到 $100\,\mathrm{kHz}$, 压缩因子 $400$. <strong>HLT 软件触发</strong> (High Level Trigger) — 大型 CPU 农场 (数万核), 接收 L1 通过的事件的完整信息, 做近似离线重建的"快速版"(电子 ID、$\mu$ 径迹、 jet 聚类), 用几百到几千个具体"trigger path"逐一判断. HLT 耗时 $\sim 200\,\mathrm{ms}$, 输出率 $\sim 1\,\mathrm{kHz}$, 写入磁带. 总压缩因子 $40\,\mathrm{MHz}/1\,\mathrm{kHz}=4\times 10^4$.</p>
+  <p>两级触发系统. <strong>L1 硬件触发</strong> (ATLAS 叫 L1, CMS 类似) — 专用 FPGA 与 ASIC 芯片, 在 $\sim 3\,\mu\mathrm{s}$ 内做粗粒度决定. 输入只是量能器 (降分辨到 $\sim 0.1\times 0.1$ 的 $\eta$-$\phi$ 塔) + $\mu$ 子室 (粗粒度). 判据: 是否有高 $p_T$ 的电磁簇射 ($E_T\gt 22\,\mathrm{GeV}$)、高 $p_T$ $\mu$ 子 ($p_T\gt 20\,\mathrm{GeV}$)、大 $E_T^{\mathrm{miss}}$ 等. 通过 L1 的事件率从 $40\,\mathrm{MHz}$ 降到 $100\,\mathrm{kHz}$, 压缩因子 $400$. <strong>HLT 软件触发</strong> (High Level Trigger) — 大型 CPU 农场 (数万核), 接收 L1 通过的事件的完整信息, 做近似离线重建的"快速版"(电子 ID、$\mu$ 径迹、 jet 聚类), 用几百到几千个具体"trigger path"逐一判断. HLT 耗时 $\sim 200\,\mathrm{ms}$, 输出率 $\sim 1\,\mathrm{kHz}$, 写入磁带. 总压缩因子 $40\,\mathrm{MHz}/1\,\mathrm{kHz}=4\times 10^4$.</p>
 
-  <p>对 $H\to\gamma\gamma$, 用的触发是 "双光子", 阈值两个 $E_T>25$—$35\,\mathrm{GeV}$ 的 ECAL 簇. 双光子触发率在 Run 2 的典型运行条件下约 $50\,\mathrm{Hz}$, 整个 Run 2 积分下约 $10^9$ 事件, 绝大多数是 QCD $\gamma\gamma$ + fake. 真实 Higgs $\to\gamma\gamma$ 约 $1.6\times 10^4$ 个 (分支比估算), 信噪比约 $10^{-5}$ — 但靠窄峰 fit, 照样挑得出. 触发的要求是"别漏掉", 不是"别挑错" — 漏掉的事件永远找不回, 挑错的多挑出来的可以后面再做离线分析剔除.</p>
+  <p>对 $H\to\gamma\gamma$, 用的触发是 "双光子", 阈值两个 $E_T\gt 25$—$35\,\mathrm{GeV}$ 的 ECAL 簇. 双光子触发率在 Run 2 的典型运行条件下约 $50\,\mathrm{Hz}$, 整个 Run 2 积分下约 $10^9$ 事件, 绝大多数是 QCD $\gamma\gamma$ + fake. 真实 Higgs $\to\gamma\gamma$ 约 $1.6\times 10^4$ 个 (分支比估算), 信噪比约 $10^{-5}$ — 但靠窄峰 fit, 照样挑得出. 触发的要求是"别漏掉", 不是"别挑错" — 漏掉的事件永远找不回, 挑错的多挑出来的可以后面再做离线分析剔除.</p>
 
-  <p><strong>触发系统的一个极限: pileup</strong>. 每个束团碰撞同时发生 $\mu$ 个硬 pp 相互作用 (按 Poisson 分布), 其中只有一个是"我们真正关心"的, 剩下的是 MB (minimum-bias) 软强子散射, 贡献几百条低 $p_T$ 径迹、若干低能簇、不相关顶点. PU 主顶点重建可以靠顶点探测器分辨 $\sigma_z\sim 100\,\mu\mathrm{m}$ 与 PU 顶点的平均间距 $\sim 5\,\mathrm{mm}$ 分开, 没问题. 真正的痛点在量能器 — photon 的 $m_{\gamma\gamma}$ 需要精确顶点来计算角度, PU 里挑错顶点会让 $m_{\gamma\gamma}$ 偏离几个 GeV, 把峰抹平. CMS 为此用"$p_T$ 最大的 sum" 选主顶点, 加上 $\gamma$ 簇本身在 ECAL 里的 $z$ 信息 (通过晶体指向对准), 在 PU $=50$ 下信号分辨保持 $\sigma_m\approx 1.3\,\mathrm{GeV}$. 当 PU $>100$ 时顶点混淆率上升, ECAL 里孤立性 (isolation) 切割失效 (PU 带来大量低能尘埃, 假装把信号 $\gamma$ 周围也变脏), fake rate 上升, $S/\sqrt B$ 下降. 这是 HL-LHC 升级要解决的主要问题之一, 也是"precision timing"探测器 (时间分辨 $\sim 30\,\mathrm{ps}$) 在 Phase II 里被加入的原因 — 用时间维度进一步分离 PU 顶点.</p>
+  <p><strong>触发系统的一个极限: pileup</strong>. 每个束团碰撞同时发生 $\mu$ 个硬 pp 相互作用 (按 Poisson 分布), 其中只有一个是"我们真正关心"的, 剩下的是 MB (minimum-bias) 软强子散射, 贡献几百条低 $p_T$ 径迹、若干低能簇、不相关顶点. PU 主顶点重建可以靠顶点探测器分辨 $\sigma_z\sim 100\,\mu\mathrm{m}$ 与 PU 顶点的平均间距 $\sim 5\,\mathrm{mm}$ 分开, 没问题. 真正的痛点在量能器 — photon 的 $m_{\gamma\gamma}$ 需要精确顶点来计算角度, PU 里挑错顶点会让 $m_{\gamma\gamma}$ 偏离几个 GeV, 把峰抹平. CMS 为此用"$p_T$ 最大的 sum" 选主顶点, 加上 $\gamma$ 簇本身在 ECAL 里的 $z$ 信息 (通过晶体指向对准), 在 PU $=50$ 下信号分辨保持 $\sigma_m\approx 1.3\,\mathrm{GeV}$. 当 PU $\gt 100$ 时顶点混淆率上升, ECAL 里孤立性 (isolation) 切割失效 (PU 带来大量低能尘埃, 假装把信号 $\gamma$ 周围也变脏), fake rate 上升, $S/\sqrt B$ 下降. 这是 HL-LHC 升级要解决的主要问题之一, 也是"precision timing"探测器 (时间分辨 $\sim 30\,\mathrm{ps}$) 在 Phase II 里被加入的原因 — 用时间维度进一步分离 PU 顶点.</p>
 
   <figure class="diagram-placeholder">
   <div class="placeholder-box">
@@ -89,13 +89,13 @@
   <p>从原始电子信号到物理对象之间, 还有一整条"事件重建"流水线. 简化成四步:</p>
 
   <ol>
-    <li><strong>径迹拟合</strong> — 顶点 + 径迹探测器里的 hit 串起来, 用 Kalman 滤波器从外向内逐层拟合, 得到每条径迹的 $p_T$、方向、电荷. 效率 $\sim 99\%$ (带电粒子 $p_T>1\,\mathrm{GeV}$), 动量分辨 $\sigma(p_T)/p_T\sim 1\%$ at $100\,\mathrm{GeV}$.</li>
+    <li><strong>径迹拟合</strong> — 顶点 + 径迹探测器里的 hit 串起来, 用 Kalman 滤波器从外向内逐层拟合, 得到每条径迹的 $p_T$、方向、电荷. 效率 $\sim 99\%$ (带电粒子 $p_T\gt 1\,\mathrm{GeV}$), 动量分辨 $\sigma(p_T)/p_T\sim 1\%$ at $100\,\mathrm{GeV}$.</li>
     <li><strong>顶点重建</strong> — 把径迹按起点位置聚类, 找到主顶点 (PV) 与次级顶点 (SV). PU $=50$ 下, 通常 $30$—$50$ 个 PV, 但"真正有趣"的那个 (最大 $\sum p_T^2$) 挑出来.</li>
     <li><strong>量能器簇</strong> — ECAL 与 HCAL 里邻近高能晶格聚类, 用"粒子流" (particle flow) 算法把径迹与簇匹配, 避免重复计数. CMS 的 particle flow 是它的招牌算法, 把 jet 能量分辨提高 $30\%$.</li>
     <li><strong>粒子识别与物理对象</strong> — 按上一节的逻辑, 把径迹+簇+$\mu$ 室的组合标注成 $e/\mu/\gamma/\tau/jet$, 加上 $E_T^{\mathrm{miss}}$. 这些对象是后续分析的输入.</li>
   </ol>
 
-  <p>"看见 Higgs"在这个流水线里的真实含义: 每年累积 $\sim 10^{10}$ 事件 (HLT 通过), 每个事件 $\sim$ 几百个物理对象, 写成 $\sim 1\,\mathrm{MB}$ 的 AOD/MiniAOD/NanoAOD 格式, 存到 WLCG (全球网格). 某个博士生在上面跑选择算法 (两个 $E_T>25\,\mathrm{GeV}$ 的孤立 photon, 双光子系统 $p_T>40\,\mathrm{GeV}$, 等等), 留下 $\sim 10^5$ 候选事件. 在这些事件上画 $m_{\gamma\gamma}$ 直方图, 看 $125\,\mathrm{GeV}$ 处是否有峰, 按 (1)-(2) 做显著性评估. 2012-07-04, ATLAS 与 CMS 分别在同一会议上报告 $\sim 5\sigma$ 过剩, $H\to\gamma\gamma$ 与 $H\to ZZ\to 4\ell$ 两条通道联合. Higgs 粒子发现. 2013 年诺贝尔物理学奖颁给 Peter Higgs 与 François Englert (Brout 于 2011 年已故, 未获奖).</p>
+  <p>"看见 Higgs"在这个流水线里的真实含义: 每年累积 $\sim 10^{10}$ 事件 (HLT 通过), 每个事件 $\sim$ 几百个物理对象, 写成 $\sim 1\,\mathrm{MB}$ 的 AOD/MiniAOD/NanoAOD 格式, 存到 WLCG (全球网格). 某个博士生在上面跑选择算法 (两个 $E_T\gt 25\,\mathrm{GeV}$ 的孤立 photon, 双光子系统 $p_T\gt 40\,\mathrm{GeV}$, 等等), 留下 $\sim 10^5$ 候选事件. 在这些事件上画 $m_{\gamma\gamma}$ 直方图, 看 $125\,\mathrm{GeV}$ 处是否有峰, 按 (1)-(2) 做显著性评估. 2012-07-04, ATLAS 与 CMS 分别在同一会议上报告 $\sim 5\sigma$ 过剩, $H\to\gamma\gamma$ 与 $H\to ZZ\to 4\ell$ 两条通道联合. Higgs 粒子发现. 2013 年诺贝尔物理学奖颁给 Peter Higgs 与 François Englert (Brout 于 2011 年已故, 未获奖).</p>
 
   <p><strong>数字的再检验.</strong> 上面 (2) 里 $Z\approx 64$ 的估算是理想化的 — 实际 ATLAS 2018 年的 $H\to\gamma\gamma$ 分析 ($139\,\mathrm{fb^{-1}}$) 给出整个分析的显著性约 $6.5\sigma$ (统计 + 系统), 单通道 vs 期望的 $S/\sqrt B$ 差一个量级. 差在哪? 系统误差包括: ECAL 能量刻度 (约 $0.3\%$)、 photon 识别效率 ($\sim 1\%$)、 PU 依赖 ($\sim 2\%$)、 理论预测不确定性 (产生截面 $\sim 10\%$). 这些都会把"数数"型的 $S/\sqrt B$ 向下修正. 但核心逻辑 —窄峰 + 平滑背景 + 侧带外推 — 不变. 这也是为什么实验里"在精度时代"重要的不是再发现一个粒子, 而是把 Higgs 耦合精度从 $\sim 10\%$ 推到 $\sim 1\%$, 以此检验 BSM 偏离.</p>
 

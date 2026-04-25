@@ -57,7 +57,7 @@
     <h4>图 1 · Jarzynski 等式从功分布提取自由能</h4>
     <dl class="tikz-req">
       <dt>主题</dt><dd>一次非平衡拉伸实验中功 $W$ 的分布 $P(W)$, 与 $\langle W\rangle$ 和 $\Delta F$ 在 $W$ 轴上的相对位置</dd>
-      <dt>必含元素</dt><dd>横轴 $W$ (单位 $k_B T$), 纵轴 $P(W)$; 画一个右斜的直方图 (lognormal-like), 平均值 $\langle W\rangle$ 用虚线竖线标在分布峰右侧; $\Delta F$ 在分布的左 tail 上 (因为 $\Delta F = -\frac{1}{\beta}\ln \langle e^{-\beta W}\rangle < \langle W\rangle$); 用渐变阴影覆盖 $W < \Delta F$ 的左 tail, 标注"rare low-$W$ events dominate $\langle e^{-\beta W}\rangle$"; 图顶放 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$, 右下放 $\langle W\rangle \ge \Delta F$ 注解</dd>
+      <dt>必含元素</dt><dd>横轴 $W$ (单位 $k_B T$), 纵轴 $P(W)$; 画一个右斜的直方图 (lognormal-like), 平均值 $\langle W\rangle$ 用虚线竖线标在分布峰右侧; $\Delta F$ 在分布的左 tail 上 (因为 $\Delta F = -\frac{1}{\beta}\ln \langle e^{-\beta W}\rangle \lt  \langle W\rangle$); 用渐变阴影覆盖 $W \lt  \Delta F$ 的左 tail, 标注"rare low-$W$ events dominate $\langle e^{-\beta W}\rangle$"; 图顶放 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$, 右下放 $\langle W\rangle \ge \Delta F$ 注解</dd>
       <dt>几何/数学精度</dt><dd>分布 $P(W)$ 取 lognormal 形状, 均值 $\langle W\rangle \approx 65 k_B T$, 标准差 $\sigma_W \approx 5 k_B T$, $\Delta F \approx 60 k_B T$ 放在峰左侧 $\sim 1 \sigma$; 左 tail 渐变色要醒目 (红/橙), 显示"稀有但高权重"</dd>
       <dt>标签与公式</dt><dd>图内: $P(W)$, $\langle W\rangle$, $\Delta F$; 公式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$ 与 $\langle W\rangle - \Delta F = \langle W_{\rm diss}\rangle$; 图侧注"exponential weight amplifies rare low-$W$"</dd>
       <dt>风格建议</dt><dd>白底, 直方图蓝色填充, rare tail 用橙-红渐变覆盖 (半透明), $\langle W\rangle$ 虚线黑色, $\Delta F$ 实线红色; 整体干净几何</dd>
@@ -68,7 +68,7 @@
 
   <h2>二、Deepdive: Jarzynski 等式的严格推导</h2>
 
-  <p>现在正面攻它. 设一个经典 Hamiltonian 系统 $H(x; \lambda)$, $x = (q, p)$ 是相空间坐标, $\lambda$ 是一个外参数 (比如激光镊子的位置). 协议 $\lambda(t)$ 在 $t=0$ 时 $\lambda = \lambda_A$, 在 $t=\tau$ 时 $\lambda = \lambda_B$. $t<0$ 时系统与热浴 $\beta = 1/k_B T$ 接触, 处于 $H(x;\lambda_A)$ 的平衡态, 即相空间分布</p>
+  <p>现在正面攻它. 设一个经典 Hamiltonian 系统 $H(x; \lambda)$, $x = (q, p)$ 是相空间坐标, $\lambda$ 是一个外参数 (比如激光镊子的位置). 协议 $\lambda(t)$ 在 $t=0$ 时 $\lambda = \lambda_A$, 在 $t=\tau$ 时 $\lambda = \lambda_B$. $t\lt 0$ 时系统与热浴 $\beta = 1/k_B T$ 接触, 处于 $H(x;\lambda_A)$ 的平衡态, 即相空间分布</p>
 
   <p>$$ \rho_A(x) = \frac{1}{Z_A} e^{-\beta H(x;\lambda_A)}, \quad Z_A = \int dx\, e^{-\beta H(x;\lambda_A)}, \quad F_A = -\frac{1}{\beta}\ln Z_A. $$</p>
 
@@ -142,7 +142,7 @@
 
   <p>关键看到的是: $\rho_A(x_0) e^{-\beta W}$ 这一乘积等于 $\frac{1}{Z_A} e^{-\beta H(x_\tau;\lambda_B)}$, 仅依赖终态 $x_\tau$. 对 $x_0$ 积分 (等价于对 $x_\tau$ 积分, 因为 Liouville) 给出 $Z_B/Z_A$. 这种"初态 Boltzmann × 功指数 = 终态 Boltzmann"的抵消模式, 是一类"涨落定理" (fluctuation theorems) 的共同骨架. Crooks, Gallavotti-Cohen, Evans-Searles 各种涨落关系都是这个模式的变种. 下一节 Crooks 等式会把它讲透.</p>
 
-  <p>回到物理图景. 第二定律说: 非平衡过程里, 大量微观轨迹中的"坏轨迹"占主导, 它们把能量耗散成热, 导致 $\langle W\rangle > \Delta F$. Jarzynski 说: 但总有一小撮"好轨迹", 它们恰好做了接近可逆的功, 耗散几乎为零; 这些稀有轨迹的概率不为零, 它们携带的信息足以精确地重建 $\Delta F$. 关键是: 你必须用指数权重 $e^{-\beta W}$ 专门去"看"它们, 线性平均看不到它们. 换句话说, Jarzynski 等式的物理内容就是一句: <em>稀有的"近可逆"事件, 在任意快的非平衡协议里都以精确可控的方式存在.</em></p>
+  <p>回到物理图景. 第二定律说: 非平衡过程里, 大量微观轨迹中的"坏轨迹"占主导, 它们把能量耗散成热, 导致 $\langle W\rangle \gt  \Delta F$. Jarzynski 说: 但总有一小撮"好轨迹", 它们恰好做了接近可逆的功, 耗散几乎为零; 这些稀有轨迹的概率不为零, 它们携带的信息足以精确地重建 $\Delta F$. 关键是: 你必须用指数权重 $e^{-\beta W}$ 专门去"看"它们, 线性平均看不到它们. 换句话说, Jarzynski 等式的物理内容就是一句: <em>稀有的"近可逆"事件, 在任意快的非平衡协议里都以精确可控的方式存在.</em></p>
 
   <div class="small-summary">
   <h4>小结</h4>

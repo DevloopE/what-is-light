@@ -51,9 +51,9 @@
     <h4>图 1 · 正反功分布与 Crooks 相交</h4>
     <dl class="tikz-req">
       <dt>主题</dt><dd>$P_F(W)$ 与 $P_R(-W)$ 两条概率分布在 $W = \Delta F$ 处严格相交</dd>
-      <dt>必含元素</dt><dd>横轴: $W$ (功, 单位 $k_B T$); 纵轴: 概率密度; 右偏钟形曲线 $P_F(W)$ (正向, 均值在 $\Delta F$ 右侧); 左偏钟形曲线 $P_R(-W)$ (反向的 $-W$ 分布, 均值在 $\Delta F$ 左侧); 两条曲线的唯一交点在 $W = \Delta F$ 正上方, 垂直虚线从交点落到横轴并标注 $\Delta F$; 图右上角插图小框写 Crooks 比 $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 在 $W > \Delta F$ 区域画阴影标 "$\langle W\rangle \ge \Delta F$ 的耗散"; 在 $W < \Delta F$ 小面积阴影标 "违反第二定律的稀有事件 $\sim e^{-\beta\sigma}$"</dd>
+      <dt>必含元素</dt><dd>横轴: $W$ (功, 单位 $k_B T$); 纵轴: 概率密度; 右偏钟形曲线 $P_F(W)$ (正向, 均值在 $\Delta F$ 右侧); 左偏钟形曲线 $P_R(-W)$ (反向的 $-W$ 分布, 均值在 $\Delta F$ 左侧); 两条曲线的唯一交点在 $W = \Delta F$ 正上方, 垂直虚线从交点落到横轴并标注 $\Delta F$; 图右上角插图小框写 Crooks 比 $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 在 $W \gt  \Delta F$ 区域画阴影标 "$\langle W\rangle \ge \Delta F$ 的耗散"; 在 $W \lt  \Delta F$ 小面积阴影标 "违反第二定律的稀有事件 $\sim e^{-\beta\sigma}$"</dd>
       <dt>几何/数学精度</dt><dd>两条曲线交点严格在 $W=\Delta F$, 交点处两曲线高度相等 (这是 Crooks 在交点的直接推论, $e^0=1$); 正向分布均值 $\langle W\rangle_F$ 在 $\Delta F$ 右侧若干 $k_B T$; 反向 $-W$ 分布均值在 $\Delta F$ 左侧相应距离 (耗散由 $\langle W\rangle - \Delta F \ge 0$ 保证)</dd>
-      <dt>标签与公式</dt><dd>主公式 Crooks $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 交点标注 "$W = \Delta F$: 两分布相等"; 尾部标 "违反第二定律: $W < \Delta F$ 区"</dd>
+      <dt>标签与公式</dt><dd>主公式 Crooks $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 交点标注 "$W = \Delta F$: 两分布相等"; 尾部标 "违反第二定律: $W \lt  \Delta F$ 区"</dd>
       <dt>风格建议</dt><dd>白底, $P_F$ 蓝色实线, $P_R(-W)$ 红色实线, 交点黑圆点, 背景浅灰阴影显示违反与耗散两区; 公式插图放右上角浅灰框</dd>
     </dl>
   </div>
@@ -118,19 +118,19 @@
 
   <p>$$ 1 = \int P_F(W)\, dW = \int e^{\beta(W-\Delta F)} P_R(-W)\, dW \quad\Rightarrow\quad \left\langle e^{-\beta W}\right\rangle_F = e^{-\beta \Delta F}. $$</p>
 
-  <p>这就是 Jarzynski. 用 Jensen 不等式 $\langle e^{-\beta W}\rangle \ge e^{-\beta\langle W\rangle}$, 立刻得 $\langle W\rangle \ge \Delta F$ —— 第二定律的经典陈述. 但 Crooks 比 Jensen 强: 它告诉你在 $W < \Delta F$ 这一区域 (看起来"违反"第二定律的区域), 分布并没有消失, 只是被指数压制.</p>
+  <p>这就是 Jarzynski. 用 Jensen 不等式 $\langle e^{-\beta W}\rangle \ge e^{-\beta\langle W\rangle}$, 立刻得 $\langle W\rangle \ge \Delta F$ —— 第二定律的经典陈述. 但 Crooks 比 Jensen 强: 它告诉你在 $W \lt  \Delta F$ 这一区域 (看起来"违反"第二定律的区域), 分布并没有消失, 只是被指数压制.</p>
 
   <p>具体来说, 把式 (2) 改写成</p>
 
   <p>$$ P_F(W) = e^{\beta(W-\Delta F)} P_R(-W). $$</p>
 
-  <p>令 $\sigma = -\beta(W - \Delta F)$ 为"熵产生" (当 $W > \Delta F$ 时 $\sigma > 0$, 系统不可逆地耗散; $W < \Delta F$ 时 $\sigma < 0$, 观察到的是"违反"). Crooks 重写为</p>
+  <p>令 $\sigma = -\beta(W - \Delta F)$ 为"熵产生" (当 $W \gt  \Delta F$ 时 $\sigma \gt  0$, 系统不可逆地耗散; $W \lt  \Delta F$ 时 $\sigma \lt  0$, 观察到的是"违反"). Crooks 重写为</p>
 
   <p>$$ \frac{P_F(-\sigma/\beta + \Delta F)}{P_R(\sigma/\beta - \Delta F)} = e^{-\sigma}, $$</p>
 
   <p>即熵产生分布的前后比例. 如果过程是对称的 (正向与反向协议相同, 只是时间反演), 这退化为 $P(\sigma)/P(-\sigma) = e^{\sigma}$ —— 熵产生涨落定理 (Evans-Searles 1994, 证于确定性动力学; Crooks 1999 推广到随机动力学).</p>
 
-  <p>第二定律的精确化: "平均熵产生 $\langle\sigma\rangle \ge 0$"在这里是 Jensen 不等式的直接推论. 但单次实验中 $\sigma < 0$ 的概率并不为零, 它被指数压制</p>
+  <p>第二定律的精确化: "平均熵产生 $\langle\sigma\rangle \ge 0$"在这里是 Jensen 不等式的直接推论. 但单次实验中 $\sigma \lt  0$ 的概率并不为零, 它被指数压制</p>
 
   <p>$$ \frac{P(\sigma = -s)}{P(\sigma = +s)} = e^{-s}. $$</p>
 

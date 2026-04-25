@@ -55,7 +55,7 @@
     <li><strong>绝热压缩</strong> $D\to A$: 气体与冷源脱离, 被压缩, 温度从 $T_c$ 升回 $T_h$, 回到起点.</li>
   </ul>
 
-  <p>在 $P$-$V$ 图上这就是两条等温双曲线 ($PV = NkT$) 与两条更陡的绝热线 ($PV^{\gamma}$ 守恒, $\gamma = C_P/C_V > 1$) 构成的闭合曲边四边形; 净做功等于它所包围的面积. 在 $T$-$S$ 图上, 两条等温线是水平线 ($T$ 不变), 两条绝热线 (严格讲是可逆绝热, 即等熵) 是竖直线, 四段凑出一个严格的长方形. 长方形的宽是 $\Delta S = S_B - S_A$, 高是 $T_h - T_c$, 面积就是循环净吸热 $Q_h - Q_c = W$. 这种图形把"效率上限"问题一眼看清: 热源吸热 $Q_h = T_h\Delta S$ 是上边那条边扫过的面积, 冷端排热 $Q_c = T_c\Delta S$ 是下边那条边扫过的面积, 于是</p>
+  <p>在 $P$-$V$ 图上这就是两条等温双曲线 ($PV = NkT$) 与两条更陡的绝热线 ($PV^{\gamma}$ 守恒, $\gamma = C_P/C_V \gt  1$) 构成的闭合曲边四边形; 净做功等于它所包围的面积. 在 $T$-$S$ 图上, 两条等温线是水平线 ($T$ 不变), 两条绝热线 (严格讲是可逆绝热, 即等熵) 是竖直线, 四段凑出一个严格的长方形. 长方形的宽是 $\Delta S = S_B - S_A$, 高是 $T_h - T_c$, 面积就是循环净吸热 $Q_h - Q_c = W$. 这种图形把"效率上限"问题一眼看清: 热源吸热 $Q_h = T_h\Delta S$ 是上边那条边扫过的面积, 冷端排热 $Q_c = T_c\Delta S$ 是下边那条边扫过的面积, 于是</p>
 
   <p>$$ \eta_C = 1 - \frac{Q_c}{Q_h} = 1 - \frac{T_c\Delta S}{T_h\Delta S} = 1 - \frac{T_c}{T_h}. \tag{2} $$</p>
 
@@ -82,9 +82,9 @@
 
   <p><strong>步骤 1 · 设反设.</strong> 假设存在一台热机 $X$, 在 $T_h, T_c$ 之间工作, 每循环从热源取 $Q_h^X$, 向冷源排 $Q_c^X$, 做功 $W^X = Q_h^X - Q_c^X$, 效率</p>
 
-  <p>$$ \eta^X = 1 - \frac{Q_c^X}{Q_h^X} > \eta_C = 1 - \frac{T_c}{T_h}. $$</p>
+  <p>$$ \eta^X = 1 - \frac{Q_c^X}{Q_h^X} \gt  \eta_C = 1 - \frac{T_c}{T_h}. $$</p>
 
-  <p>即 $Q_c^X / Q_h^X < T_c/T_h$.</p>
+  <p>即 $Q_c^X / Q_h^X \lt  T_c/T_h$.</p>
 
   <p><strong>步骤 2 · 构造配对.</strong> 再取一台 Carnot 可逆热机 $R$, 并让它<em>倒着跑</em>, 即充当热泵/冰箱. 由于 $R$ 是可逆的 (每一步都准静态且无耗散), 倒着跑是合法的. 把 $R$ 调整规模, 让它每循环恰好从冷源取 $Q_c^X$ 再还回热源 $Q_h^R$, 同时消耗外功 $W^R$. 由 Carnot 关系 $Q_c^R/Q_h^R = T_c/T_h$, 解得 $Q_h^R = Q_c^X \cdot T_h/T_c$, $W^R = Q_h^R - Q_c^X$.</p>
 
@@ -98,9 +98,9 @@
 
   <p><strong>步骤 3 · 导出矛盾.</strong> 把规模关系 $W^X = W^R$ 展开:</p>
 
-  <p>$Q_h^X - Q_c^X = Q_h^R - Q_c^X \Rightarrow Q_h^X = Q_h^R$? — 不对, 这会直接否定假设. 仔细点: 令 $W^X = W^R \equiv W$. 则 $Q_h^X = W/\eta^X$, $Q_h^R = W/\eta_C$ (因 $R$ 作为逆 Carnot 机的 COP 对应效率 $\eta_C$). 由反设 $\eta^X > \eta_C$, 故 $Q_h^X < Q_h^R$, 即</p>
+  <p>$Q_h^X - Q_c^X = Q_h^R - Q_c^X \Rightarrow Q_h^X = Q_h^R$? — 不对, 这会直接否定假设. 仔细点: 令 $W^X = W^R \equiv W$. 则 $Q_h^X = W/\eta^X$, $Q_h^R = W/\eta_C$ (因 $R$ 作为逆 Carnot 机的 COP 对应效率 $\eta_C$). 由反设 $\eta^X \gt  \eta_C$, 故 $Q_h^X \lt  Q_h^R$, 即</p>
 
-  <p>$$ \Delta Q_h \equiv Q_h^R - Q_h^X > 0. $$</p>
+  <p>$$ \Delta Q_h \equiv Q_h^R - Q_h^X \gt  0. $$</p>
 
   <p>换句话说, 复合系统每循环<strong>净地把 $\Delta Q_h$ 的热量从冷源搬到了热源</strong>, 而外界没有消耗任何功 (两台机功相抵), 冷源也没净亏损 (两者热相抵). 这正是 Clausius 第二定律直接禁止的事情 — "不可能有一个循环, 其唯一效果是将热从低温物体传到高温物体". 矛盾出现, 反设不成立. 故 $\eta^X \le \eta_C$, 证毕.</p>
 

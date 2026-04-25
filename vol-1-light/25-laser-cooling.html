@@ -42,13 +42,13 @@
 
   <p>看起来微不足道. 但 Na 的激发态寿命 $\tau\approx 16\text{ ns}$, 一秒钟可以走完 $\sim 3\times 10^7$ 个吸收-辐射循环, 减速可以做到每秒 $\sim 10^5\text{ m/s}^2$ 量级, 相当于十万个 $g$. 原子从炉口飞出时的 $\sim 900$ m/s, 几毫秒内就能刹住. 光的踢, 每次小, 但可以踢得极其频繁.</p>
 
-  <p>关键一步是<strong>如何让踢永远冲着迎面</strong>. 这里出场的是多普勒效应. 把激光频率 $\omega_L$ 调到比原子共振 $\omega_0$ 稍低一点, 失谐 $\delta=\omega_L-\omega_0<0$; 原子静止时, 看到的是红失谐的光, 吸收概率正比于洛伦兹线型 $\gamma^2/[4(\omega_L-\omega_0)^2+\gamma^2]$ 上远离中心的位置, 吸收少. 如果原子以速度 $v$ 朝激光迎面运动, 它在自己参考系里看到的频率被蓝移到 $\omega_L+kv$, 更接近 $\omega_0$, 吸收概率上升; 反过来, 原子若顺着激光跑, 频率被红移到 $\omega_L-kv$, 更偏离共振, 吸收概率下降. 简单讲: <strong>迎头光子更容易被吞, 追尾光子更容易被忽略</strong>. 正是我们想要的方向选择器.</p>
+  <p>关键一步是<strong>如何让踢永远冲着迎面</strong>. 这里出场的是多普勒效应. 把激光频率 $\omega_L$ 调到比原子共振 $\omega_0$ 稍低一点, 失谐 $\delta=\omega_L-\omega_0\lt 0$; 原子静止时, 看到的是红失谐的光, 吸收概率正比于洛伦兹线型 $\gamma^2/[4(\omega_L-\omega_0)^2+\gamma^2]$ 上远离中心的位置, 吸收少. 如果原子以速度 $v$ 朝激光迎面运动, 它在自己参考系里看到的频率被蓝移到 $\omega_L+kv$, 更接近 $\omega_0$, 吸收概率上升; 反过来, 原子若顺着激光跑, 频率被红移到 $\omega_L-kv$, 更偏离共振, 吸收概率下降. 简单讲: <strong>迎头光子更容易被吞, 追尾光子更容易被忽略</strong>. 正是我们想要的方向选择器.</p>
 
   <p>在一维上把两束反向激光一起打开, 把原子放中间, 受力对速度做小量展开就得到</p>
 
   <p>$$ F(v)\;\approx\; -\alpha v,\qquad \alpha=-\hbar k^2\,\frac{4s_0\,\delta/\gamma}{[1+s_0+(2\delta/\gamma)^2]^2}, \tag{2} $$</p>
 
-  <p>其中 $s_0=I/I_{\text{sat}}$ 是饱和参数. 只要 $\delta<0$, 就有 $\alpha>0$——这是一个真正的<strong>阻尼力</strong>, 和把球扔进糖浆里受的黏滞力结构完全一样. 把三对互相正交的反向激光叠在一起, 就得到了 1985 年 Chu 组在贝尔实验室实现的 "光学蜜糖" (optical molasses): 任何方向上动起来的原子都被黏住.</p>
+  <p>其中 $s_0=I/I_{\text{sat}}$ 是饱和参数. 只要 $\delta\lt 0$, 就有 $\alpha\gt 0$——这是一个真正的<strong>阻尼力</strong>, 和把球扔进糖浆里受的黏滞力结构完全一样. 把三对互相正交的反向激光叠在一起, 就得到了 1985 年 Chu 组在贝尔实验室实现的 "光学蜜糖" (optical molasses): 任何方向上动起来的原子都被黏住.</p>
 
   <figure class="diagram"><img src="build/25.svg" alt="图 1 · 光学蜜糖与多普勒挑选" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  光学蜜糖中的多普勒挑选: 红失谐激光让迎面光子被优先吸收, 从而在所有方向上把原子"黏"住.</figcaption></figure>
 

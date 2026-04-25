@@ -37,10 +37,10 @@
 
   <h2>二、deepdive: 为什么 QCD $\beta$ 函数符号反过来</h2>
 
-  <p>这一节必须硬推. 命题是: QED 一阶 $\beta>0$ (耦合往高能跑大), QCD 一阶 $\beta<0$ (往高能跑小). 符号翻转这件事不是任何唯象巧合, 它直接来自规范群的非阿贝尔结构 — 胶子自己带色荷, 胶子能与胶子相互作用, 这种自相互作用以符号相反、数值更大的贡献进入 $\beta$ 函数. 我们一阶图一阶图地看.</p>
+  <p>这一节必须硬推. 命题是: QED 一阶 $\beta\gt 0$ (耦合往高能跑大), QCD 一阶 $\beta\lt 0$ (往高能跑小). 符号翻转这件事不是任何唯象巧合, 它直接来自规范群的非阿贝尔结构 — 胶子自己带色荷, 胶子能与胶子相互作用, 这种自相互作用以符号相反、数值更大的贡献进入 $\beta$ 函数. 我们一阶图一阶图地看.</p>
 
   <p><strong>QED 端.</strong> 在 QED 里, 一圈 $\beta$ 函数只有一张相关图: 光子自能 (vacuum polarization), 也就是电子-正电子圈. 把光子传播子 $\Pi_{\mu\nu}(q)$ 算出来, 横向因子里出现 $\Pi(q^2)=(e^2/12\pi^2)\ln(q^2/m_e^2)+\ldots$ 这个结果符号是正的. 也就是说虚对电子-正电子屏蔽裸电荷, 远看电荷变小, 近看变大. 翻译成 $\beta$ 函数:
-  $$\beta_{\mathrm{QED}}(e)=\frac{e^3}{12\pi^2}+\mathcal O(e^5)>0.$$
+  $$\beta_{\mathrm{QED}}(e)=\frac{e^3}{12\pi^2}+\mathcal O(e^5)\gt 0.$$
   对应 $\alpha=e^2/(4\pi)$ 的形式是 $\mu\,\mathrm d\alpha/\mathrm d\mu=(2/3\pi)\,\alpha^2+\ldots$, 积分起来就是 $\alpha(\mu)=\alpha(\mu_0)/[1-(2\alpha(\mu_0)/3\pi)\ln(\mu/\mu_0)]$ — 高能分母趋零, $\alpha$ 在 Landau pole 发散. 低能的 $\alpha(0)=1/137.036$ 增大到 $M_Z$ 处的 $\alpha(M_Z)\approx 1/127.9$, 增幅约 $7\%$, 这在电弱精确测量里是看得见的.</p>
 
   <p><strong>QCD 端.</strong> 规范群从 $U(1)$ 换成 $SU(3)$, 情形变化在于: 胶子 $A_\mu^a$ ($a=1,\ldots,8$) 本身带色荷. 非阿贝尔张量 $F^a_{\mu\nu}=\partial_\mu A^a_\nu-\partial_\nu A^a_\mu+g f^{abc}A^b_\mu A^c_\nu$ 里的 $gf^{abc}$ 项生成了三胶子顶点与四胶子顶点, 对应拉氏量里的 $-\tfrac{1}{4}F^a_{\mu\nu}F^{a\mu\nu}$ 展开出来的立方与四次项. 一圈胶子自能因此有三组相关图:</p>
@@ -53,11 +53,11 @@
 
   <p>在 $\overline{MS}$ 方案里把三者加起来, 一圈 $\beta$ 函数对 $SU(N_c)$ 一般规范群 + 基础表示费米子是
   $$\boxed{\;\beta(g)\;=\;-\,\frac{g^3}{16\pi^2}\Big[\tfrac{11}{3}C_A-\tfrac{4}{3}T_R N_f\Big]+\mathcal O(g^5).\;} \tag{2}$$
-  数字上对 QCD ($C_A=3$, $T_R=1/2$): $\tfrac{11}{3}\cdot 3=11$ 来自纯规范场 (胶子+鬼) 的贡献, $\tfrac{4}{3}\cdot\tfrac{1}{2}\cdot N_f=\tfrac{2}{3}N_f$ 来自 $N_f$ 味夸克. 括号里变成 $11-\tfrac{2}{3}N_f$. 整体负号使整个 $\beta<0$ 当且仅当 $11>\tfrac{2}{3}N_f$, 即 $N_f<33/2=16.5$. 现实里 $N_f=6$ (有效在高能), 远小于 $16$, 所以 QCD 在物理能标下不折不扣地渐近自由. 如果自然界有超过 $16$ 味夸克, QCD 的 $\beta$ 函数符号翻转, 就和 QED 一样在高能处发散 — 这正是 Banks–Zaks 固定点之前的区域.</p>
+  数字上对 QCD ($C_A=3$, $T_R=1/2$): $\tfrac{11}{3}\cdot 3=11$ 来自纯规范场 (胶子+鬼) 的贡献, $\tfrac{4}{3}\cdot\tfrac{1}{2}\cdot N_f=\tfrac{2}{3}N_f$ 来自 $N_f$ 味夸克. 括号里变成 $11-\tfrac{2}{3}N_f$. 整体负号使整个 $\beta\lt 0$ 当且仅当 $11\gt \tfrac{2}{3}N_f$, 即 $N_f\lt 33/2=16.5$. 现实里 $N_f=6$ (有效在高能), 远小于 $16$, 所以 QCD 在物理能标下不折不扣地渐近自由. 如果自然界有超过 $16$ 味夸克, QCD 的 $\beta$ 函数符号翻转, 就和 QED 一样在高能处发散 — 这正是 Banks–Zaks 固定点之前的区域.</p>
 
   <p><strong>为什么胶子圈给负号?</strong> 直觉性的答案: 费米子圈总是贡献正号 (Pauli 原理, 闭圈带 $-1$ 符号, 经过传播子的 $i^2$ 因子再次翻号, 净贡献与裸传播子同号, 对应电荷屏蔽). 玻色自相互作用圈贡献反过来的符号, 是因为规范玻色子本身带荷 — 它们在"真空涨落"里像磁矩一样反屏蔽色荷. 精确的说法要走 Coulomb 规范里的瞬时势展开, 但最干净的记忆是: 费米子圈给 $+4T_R N_f/3$, 非阿贝尔规范场给 $-11 C_A/3$, 两者同时进, $\beta$ 的符号由两者相对大小决定. QED 没有后者 ($C_A=0$ for $U(1)$), 所以总是正号; QCD 有, 而 $11 C_A\gg 4T_R N_f$ 于现实 $N_f$, 所以总是负号.</p>
 
-  <p>这不是手工调出来的. 它是非阿贝尔规范场论给出的结构性结果, 而且它的发现在历史上几乎到最后一刻才算对 — 1973 年 Gross 与 Wilczek (普林斯顿) 和 Politzer (Harvard) 独立算出 (2) 式, 之前很多人都把符号算错了, 因为鬼圈这一步很容易漏. 确认 $\beta<0$ 之后, 强作用的谜题 (SLAC 深度非弹性散射看到夸克像自由, 低能却禁闭) 瞬间同时解释. 2004 年 Gross/Wilczek/Politzer 共享 Nobel. Wilczek 当时还是 Gross 的研究生.</p>
+  <p>这不是手工调出来的. 它是非阿贝尔规范场论给出的结构性结果, 而且它的发现在历史上几乎到最后一刻才算对 — 1973 年 Gross 与 Wilczek (普林斯顿) 和 Politzer (Harvard) 独立算出 (2) 式, 之前很多人都把符号算错了, 因为鬼圈这一步很容易漏. 确认 $\beta\lt 0$ 之后, 强作用的谜题 (SLAC 深度非弹性散射看到夸克像自由, 低能却禁闭) 瞬间同时解释. 2004 年 Gross/Wilczek/Politzer 共享 Nobel. Wilczek 当时还是 Gross 的研究生.</p>
 
   <h2>三、从 $\beta$ 跑出来的两种物理</h2>
 
@@ -75,9 +75,9 @@
     <h4>图 1 · QCD 与 QED 跑耦合的两种面貌</h4>
     <dl class="tikz-req">
       <dt>主题</dt><dd>在双对数图上画 $\alpha_s(\mu)$ 与 $\alpha_{\mathrm{em}}(\mu)$ 两条曲线, 展示 QCD 渐近自由与 QED Landau pole 的符号相反行为</dd>
-      <dt>必含元素</dt><dd>(a) 横轴: 能标 $\mu$ (GeV), 对数刻度, 范围 $10^{-1}$ 到 $10^{4}$ GeV; (b) 纵轴: $\alpha$, 对数刻度, 范围 $10^{-3}$ 到 $10^{1}$; (c) QCD 曲线 (砖红色): 高能 ($M_Z$ 处) 小, 低能大, 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 处向上发散; 标点 $\alpha_s(M_Z)=0.118$; 在 $1\,\mathrm{GeV}$ 处标 $\alpha_s\approx 0.5$; (d) QED 曲线 (深蓝色): 低能 $\alpha\approx 1/137$ 基本平, 高能缓慢增大, 在 $M_Z$ 处标 $\alpha_{\mathrm{em}}(M_Z)\approx 1/127$; 向高能延伸到 Landau pole 符号性标出 (不画到 $10^{277}$); (e) 垂直虚线标 $\Lambda_{\mathrm{QCD}}$ 位置与 $M_Z$ 位置; (f) 在图角注 $\beta$ 函数符号: QCD $\beta<0$, QED $\beta>0$</dd>
+      <dt>必含元素</dt><dd>(a) 横轴: 能标 $\mu$ (GeV), 对数刻度, 范围 $10^{-1}$ 到 $10^{4}$ GeV; (b) 纵轴: $\alpha$, 对数刻度, 范围 $10^{-3}$ 到 $10^{1}$; (c) QCD 曲线 (砖红色): 高能 ($M_Z$ 处) 小, 低能大, 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 处向上发散; 标点 $\alpha_s(M_Z)=0.118$; 在 $1\,\mathrm{GeV}$ 处标 $\alpha_s\approx 0.5$; (d) QED 曲线 (深蓝色): 低能 $\alpha\approx 1/137$ 基本平, 高能缓慢增大, 在 $M_Z$ 处标 $\alpha_{\mathrm{em}}(M_Z)\approx 1/127$; 向高能延伸到 Landau pole 符号性标出 (不画到 $10^{277}$); (e) 垂直虚线标 $\Lambda_{\mathrm{QCD}}$ 位置与 $M_Z$ 位置; (f) 在图角注 $\beta$ 函数符号: QCD $\beta\lt 0$, QED $\beta\gt 0$</dd>
       <dt>几何精度</dt><dd>log-log 图上两条曲线斜率符号相反, 交叉点约在 $\mu\sim M_Z$; QCD 曲线渐近发散于 $\Lambda_{\mathrm{QCD}}$ 处, QED 曲线在显示范围内平缓</dd>
-      <dt>标签与公式</dt><dd>$\alpha_s(\mu)$, $\alpha_{\mathrm{em}}(\mu)$, $\Lambda_{\mathrm{QCD}}$, $M_Z$, $\alpha_s(M_Z)=0.118$, $\alpha_{\mathrm{em}}(M_Z)=1/127.9$; 公式标注 $\beta(g)=-b\,g^3/(16\pi^2)$, $b>0$ for QCD</dd>
+      <dt>标签与公式</dt><dd>$\alpha_s(\mu)$, $\alpha_{\mathrm{em}}(\mu)$, $\Lambda_{\mathrm{QCD}}$, $M_Z$, $\alpha_s(M_Z)=0.118$, $\alpha_{\mathrm{em}}(M_Z)=1/127.9$; 公式标注 $\beta(g)=-b\,g^3/(16\pi^2)$, $b\gt 0$ for QCD</dd>
       <dt>风格建议</dt><dd>白底; QCD 砖红色粗线, QED 深蓝色粗线, 两色对比分明; 坐标轴与标签黑色; 发散渐近线用虚线</dd>
     </dl>
   </div>
@@ -94,13 +94,13 @@
 
   <p>为什么流管会形成? 定性的答案要回到胶子自相互作用. 如果胶子是阿贝尔光子, 它们彼此不作用, 电力线可以自由散开成球对称库仑场; 非阿贝尔胶子彼此作用, 线之间互相吸引, 真空表现为某种"色磁单极子凝聚", 色电场被挤压到细管 (dual superconductor 图像, 由 't Hooft 与 Mandelstam 1970 年代提出). 这一点从一圈 $\beta$ 函数上看不明显, 但实验上可以通过 lattice QCD 直接验证 — Wilson 圈的面积律 $\langle W(C)\rangle\sim e^{-\sigma\cdot \mathrm{Area}}$ 在低温强耦合极限下是解析可证的 (Wilson 1974), 而 $\sigma$ 与数值模拟结果吻合.</p>
 
-  <p><strong>两面合起来的物理图景.</strong> 放到现实实验里看: 在 LHC 把两个质子对撞, 真正进入硬散射的是其中的一对夸克 (或夸克-胶子), $\sqrt{\hat s}\sim $ 几百 GeV, $\alpha_s\sim 0.1$, 夸克之间像自由粒子, 微扰 Feynman 图逐阶展开 (硬散射矩阵元)可算; 但散射之后夸克带着色荷往外飞, 一走 $1\,\mathrm{fm}$ 就到 $\alpha_s\sim \mathcal O(1)$ 的区域, 流管断裂, 发射出一整束强子, 这就是我们看到的喷注 (jet). 喷注本身的能量、方向、带电多重数都近似地继承了原始夸克, 但单个夸克永远不出现在探测器上. 整个粒子物理实验方法论 (把高能看作硬散射 + 微扰, 把低能看作强子化 + 唯象) 的基础, 就是 $\beta_{\mathrm{QCD}}<0$ 这件事 — 高能微扰可算, 低能微扰失效但可被普适的强子化函数替代. 两个领域用同一个 QCD 描述, 同一个拉氏量, 只是耦合在不同能标上跑到不同区域.</p>
+  <p><strong>两面合起来的物理图景.</strong> 放到现实实验里看: 在 LHC 把两个质子对撞, 真正进入硬散射的是其中的一对夸克 (或夸克-胶子), $\sqrt{\hat s}\sim $ 几百 GeV, $\alpha_s\sim 0.1$, 夸克之间像自由粒子, 微扰 Feynman 图逐阶展开 (硬散射矩阵元)可算; 但散射之后夸克带着色荷往外飞, 一走 $1\,\mathrm{fm}$ 就到 $\alpha_s\sim \mathcal O(1)$ 的区域, 流管断裂, 发射出一整束强子, 这就是我们看到的喷注 (jet). 喷注本身的能量、方向、带电多重数都近似地继承了原始夸克, 但单个夸克永远不出现在探测器上. 整个粒子物理实验方法论 (把高能看作硬散射 + 微扰, 把低能看作强子化 + 唯象) 的基础, 就是 $\beta_{\mathrm{QCD}}\lt 0$ 这件事 — 高能微扰可算, 低能微扰失效但可被普适的强子化函数替代. 两个领域用同一个 QCD 描述, 同一个拉氏量, 只是耦合在不同能标上跑到不同区域.</p>
 
   <p><strong>极限检查与历史.</strong> 形式地令 $N_f$ 增大, 在 $N_f=16$ 附近整个 $\beta$ 几乎为零 — Banks–Zaks 1982 指出在 $\beta$ 函数一阶与二阶系数相反时, 存在一个非零小耦合的红外固定点, 理论是共形的, 没有禁闭. 实际世界 $N_f=6$, 远离此固定点, 所以渐近自由强禁闭都存在. 反过来看 QED, $C_A=0$ 使得 $\beta$ 一阶不可能有 $11/3$ 这种非阿贝尔贡献, 符号永远正; 电弱 $SU(2)\times U(1)$ 里, 对 $SU(2)$ 部分, $C_A=2$, 物质场若足够多则渐近自由可被破坏 — 真实 SM 里弱 $\alpha_w$ 也是渐近自由的, 但 Landau pole 的 $U(1)_Y$ 在大于 Planck 尺度才发散, 不影响唯象. 历史上这条路径走了二十年: Yang-Mills 1954 年提出非阿贝尔规范, 't Hooft 1972 在 Marseille 会议上口头提过 $SU(N)$ 一圈符号, 但没发表; Gross-Wilczek 与 Politzer 1973 年 <em>Phys. Rev. Lett.</em> 的两篇背靠背论文第一次系统给出 (2), 当年 SLAC 深度非弹性实验 (Bjorken scaling) 的观察立即得到解释 — 夸克在高 $Q^2$ 下像自由, 正是渐近自由的直接表现. 2004 年诺贝尔奖颁给三人, 授奖词只有一句: "for the discovery of asymptotic freedom in the theory of the strong interaction".</p>
 
   <div class="small-summary">
   <h4>小结</h4>
-  <p>同一个 QCD 拉氏量, 同一个耦合 $g_s$, 两种完全相反的物理: 高能下 $\alpha_s\sim 0.1$ 微扰可算, 看到的夸克像自由粒子; 低能下 $\alpha_s$ 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 爆发, 夸克被流管锁在强子里永不单独出现. 两面由 $\beta$ 函数的符号唯一决定, 符号来自一圈图的精细结构 — 费米子圈贡献 $+4T_R N_f/3$ (屏蔽), 非阿贝尔胶子圈+鬼圈贡献 $-11C_A/3$ (反屏蔽), 在 $N_f\le 16$ 时后者压倒前者, $\beta<0$, QCD 渐近自由. 1973 年 Gross-Wilczek-Politzer 算出这一步, 2004 年得诺贝尔奖. 这条符号翻转直接导出了标准模型里最特别的一件事: 质子质量的 $99\%$ 不来自夸克, 而来自 $\Lambda_{\mathrm{QCD}}$ 这个 dimensional transmutation 尺度上形成的胶子场能量 — 下一节讲 CP 破坏时, 我们会看到同样的非阿贝尔结构允许 $\theta$-项与强 CP 问题, 以及 Kobayashi-Maskawa 相位如何在弱相互作用里写入 CP 不对称.</p>
+  <p>同一个 QCD 拉氏量, 同一个耦合 $g_s$, 两种完全相反的物理: 高能下 $\alpha_s\sim 0.1$ 微扰可算, 看到的夸克像自由粒子; 低能下 $\alpha_s$ 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 爆发, 夸克被流管锁在强子里永不单独出现. 两面由 $\beta$ 函数的符号唯一决定, 符号来自一圈图的精细结构 — 费米子圈贡献 $+4T_R N_f/3$ (屏蔽), 非阿贝尔胶子圈+鬼圈贡献 $-11C_A/3$ (反屏蔽), 在 $N_f\le 16$ 时后者压倒前者, $\beta\lt 0$, QCD 渐近自由. 1973 年 Gross-Wilczek-Politzer 算出这一步, 2004 年得诺贝尔奖. 这条符号翻转直接导出了标准模型里最特别的一件事: 质子质量的 $99\%$ 不来自夸克, 而来自 $\Lambda_{\mathrm{QCD}}$ 这个 dimensional transmutation 尺度上形成的胶子场能量 — 下一节讲 CP 破坏时, 我们会看到同样的非阿贝尔结构允许 $\theta$-项与强 CP 问题, 以及 Kobayashi-Maskawa 相位如何在弱相互作用里写入 CP 不对称.</p>
   <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
   </div>
 </article>

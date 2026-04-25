@@ -64,9 +64,9 @@
 
   <p>$$ \Delta_F(p) = \frac{i}{p^2 - m^2 + i\epsilon}, \qquad p^2 = (p^0)^2 - |\mathbf p|^2. $$</p>
 
-  <p>这里的 $i\epsilon$ ($\epsilon > 0$ 无穷小) 不是装饰, 它决定了传播子在 $p^0$ 平面上的极点位置. 把分母因式分解: $p^2 - m^2 + i\epsilon = (p^0 - E_p + i\epsilon')(p^0 + E_p - i\epsilon')$, 其中 $E_p = \sqrt{|\mathbf p|^2 + m^2}$, $\epsilon'$ 是同号的无穷小量. 两个极点分别在 $p^0 = E_p - i\epsilon'$ (第四象限) 和 $p^0 = -E_p + i\epsilon'$ (第二象限).</p>
+  <p>这里的 $i\epsilon$ ($\epsilon \gt  0$ 无穷小) 不是装饰, 它决定了传播子在 $p^0$ 平面上的极点位置. 把分母因式分解: $p^2 - m^2 + i\epsilon = (p^0 - E_p + i\epsilon')(p^0 + E_p - i\epsilon')$, 其中 $E_p = \sqrt{|\mathbf p|^2 + m^2}$, $\epsilon'$ 是同号的无穷小量. 两个极点分别在 $p^0 = E_p - i\epsilon'$ (第四象限) 和 $p^0 = -E_p + i\epsilon'$ (第二象限).</p>
 
-  <p><b>关键事实.</b> 极点在第二和第四象限, <b>第一和第三象限是空的</b>. 第一象限对应 $\text{Re}(p^0) > 0$, $\text{Im}(p^0) > 0$; 第三象限对应 $\text{Re}(p^0) < 0$, $\text{Im}(p^0) < 0$. 这两个象限构成 $p^0$ 轴顺时针 $90^\circ$ 旋转所扫过的区域 — 实轴 $p^0 \in \mathbb R$ 旋转到虚轴 $p^0 = ip_E^0$ (即 $p^0$ 从正实转到正虚). 这个旋转方向<b>顺时针</b>正好避开两个极点.</p>
+  <p><b>关键事实.</b> 极点在第二和第四象限, <b>第一和第三象限是空的</b>. 第一象限对应 $\text{Re}(p^0) \gt  0$, $\text{Im}(p^0) \gt  0$; 第三象限对应 $\text{Re}(p^0) \lt  0$, $\text{Im}(p^0) \lt  0$. 这两个象限构成 $p^0$ 轴顺时针 $90^\circ$ 旋转所扫过的区域 — 实轴 $p^0 \in \mathbb R$ 旋转到虚轴 $p^0 = ip_E^0$ (即 $p^0$ 从正实转到正虚). 这个旋转方向<b>顺时针</b>正好避开两个极点.</p>
 
   <p><b>Cauchy 定理起效.</b> 对 $p^0$ 的围道积分</p>
 
@@ -131,9 +131,9 @@
 
   <p>这件事只在 Euclidean 空间做得了. 原因回到 Section 二: Monte Carlo 需要一个正定权重, Minkowski 的 $e^{iS_M}$ 是纯相位, sign problem 让采样失败. Wick 旋转把 $iS_M$ 换成 $-S_E$, 后者正定, Monte Carlo 立刻走得通. 这是 Wilson 1974 年提出格点规范理论时的核心洞察 — 他发明了"Wilson action"和"Wilson loop", 并证明了 quark confinement 在强耦合 lattice QCD 上是一个显而易见的 (strong-coupling expansion 的领导项) 后果.</p>
 
-  <p><b>数字代入 1: 格距.</b> 现代 lattice QCD 典型格距 $a \approx 0.05-0.1\,\text{fm}$, 即 $0.05-0.1\times 10^{-15}\,\text{m}$. 物理上需要 $a < 1/\Lambda_{\text{QCD}} \approx 1/(200\,\text{MeV}) \approx 1\,\text{fm}$ 才能 resolve 强作用的非微扰结构. 反过来 $a > 1/m_{\text{heaviest}}$, 才不会把最重的相关模式 (譬如 $b$ 夸克 $\sim 4\,\text{GeV}$, 对应 $\sim 0.05\,\text{fm}$) 错过. 所以 $a\approx 0.1\,\text{fm}$ 是一个典型工作点.</p>
+  <p><b>数字代入 1: 格距.</b> 现代 lattice QCD 典型格距 $a \approx 0.05-0.1\,\text{fm}$, 即 $0.05-0.1\times 10^{-15}\,\text{m}$. 物理上需要 $a \lt  1/\Lambda_{\text{QCD}} \approx 1/(200\,\text{MeV}) \approx 1\,\text{fm}$ 才能 resolve 强作用的非微扰结构. 反过来 $a \gt  1/m_{\text{heaviest}}$, 才不会把最重的相关模式 (譬如 $b$ 夸克 $\sim 4\,\text{GeV}$, 对应 $\sim 0.05\,\text{fm}$) 错过. 所以 $a\approx 0.1\,\text{fm}$ 是一个典型工作点.</p>
 
-  <p><b>数字代入 2: 格大小.</b> 典型格大小 $32^3 \times 64$ — 空间 $32$ 格, 时间 $64$ 格 (时间方向拉长是为了分辨 hadron 在大时间下的衰减, 提取能量本征值). 物理尺度: $32\times 0.1\,\text{fm} = 3.2\,\text{fm}$, 时间方向 $6.4\,\text{fm}$. 需要 $L > 1/m_\pi \approx 1.4\,\text{fm}$ 才能容纳最轻的 pion, 所以 $3.2\,\text{fm}$ 绰绰有余. 自由度总数: $32^3\times 64 \times 4\text{ (SU(3) links per site)}\times 8\text{ (real params per link)} \approx 6.7\times 10^7$ — 每次 Monte Carlo 更新要动 $10^7$ 个连续变量. 高性能超算上一个 ensemble 要跑几百万 CPU 小时.</p>
+  <p><b>数字代入 2: 格大小.</b> 典型格大小 $32^3 \times 64$ — 空间 $32$ 格, 时间 $64$ 格 (时间方向拉长是为了分辨 hadron 在大时间下的衰减, 提取能量本征值). 物理尺度: $32\times 0.1\,\text{fm} = 3.2\,\text{fm}$, 时间方向 $6.4\,\text{fm}$. 需要 $L \gt  1/m_\pi \approx 1.4\,\text{fm}$ 才能容纳最轻的 pion, 所以 $3.2\,\text{fm}$ 绰绰有余. 自由度总数: $32^3\times 64 \times 4\text{ (SU(3) links per site)}\times 8\text{ (real params per link)} \approx 6.7\times 10^7$ — 每次 Monte Carlo 更新要动 $10^7$ 个连续变量. 高性能超算上一个 ensemble 要跑几百万 CPU 小时.</p>
 
   <p><b>数字代入 3: 精度.</b> 十年努力, lattice QCD 现在可以把 hadron 质量谱算到几 $\%$ 精度. 例如质子质量: 实验 $938.272\,\text{MeV}$, lattice 在物理夸克质量点上给 $\sim 935(10)\,\text{MeV}$, 误差约 $1\%$. 更精细的例子 — 强作用耦合常数 $\alpha_s(m_Z)$, lattice 给 $0.1184(8)$, 与 global fit $0.1179(10)$ 完全吻合, 这是对 QCD 框架的非微扰检验. 一个更精彩的成就是 $g_\mu - 2$ (muon anomalous magnetic moment) 的 hadronic vacuum polarization 贡献, lattice 最近几年把它算到 $\sim 0.5\%$ — 直接影响 muon $g-2$ 异常是否真实的判断. 所有这些数字, 都是在 Euclidean 时空 $S^1_\beta \times L^3$ 上算的, 然后通过 spectroscopy (在大 $\tau$ 下提取 $e^{-E\tau}$ 的指数衰减) 恢复物理量.</p>
 
