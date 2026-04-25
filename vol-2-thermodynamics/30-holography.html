@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>全息原理 — 体积里的信息真的存在边界面上吗? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="29-bh-entropy.html">← 上一节</a>
+  <span class="chapter-title">第 30 节 / 30 · 第 6 部分 · 信息热力学与黑洞 · 第二卷·热力学与统计力学</span>
+  <a class="disabled" href="#">下一节 →</a>
+</nav>
+
+<article>
+  <h1>全息原理 — 体积里的信息真的存在边界面上吗?</h1>
+  <div class="sub">—— 't Hooft, Susskind 与 AdS/CFT 的疯狂猜测</div>
+
+  <div class="abstract">本节从上一节黑洞熵 $S=A/(4l_P^2)$ 出发, 追问一个表面看和热力学无关, 其实把整套统计力学的"自由度数"往死里拧的问题: 如果任何把能量塞进一个半径 $R$ 的区域都最终会形成黑洞, 而黑洞的熵只随面积涨, 那这个区域可允许的最大信息量是多少? 推论会是: 体系真正的自由度数不随 $V$ 涨, 而随 $\partial V$ 涨 —— 这就是 't Hooft 1993 与 Susskind 1995 的全息原理. 我们把这一论证严格做一遍, 再到 Maldacena 1997 给出的具体实例 AdS$_5\times$S$^5 \leftrightarrow$ 4D $\mathcal{N}=4$ super-Yang-Mills 对偶, 看一个 5 维引力理论如何被 4 维无引力的量子场论 "等价地讲完". 最后代 Planck 面积做两个数字估计, 并在经典极限 $\hbar\to 0$ 下检验这条原理恰好失效的原因, 为整卷作一次收束.</div>
+
+  <p>过去 29 节, 我们一路把 "热力学与统计力学" 这把手术刀磨得越来越细: 从 Carnot 的循环, 到 Boltzmann 的 $k\log W$, 到 Wilson 的重整化群, 到 Landauer 1 bit $= k_B T\ln 2$, 最后到 Bekenstein-Hawking 的 $S=A/(4 l_P^2)$. 那个面积律的公式在第 29 节给出时, 我们把它当作一个 "黑洞的熵" 来理解. 但它的真正杀伤力出现在我们把它对比常识时: 一间 $1\,\mathrm{m}^3$ 的房间能装的信息, 应该正比于房间体积 $V$ 才对 —— 每一个原子、每一个光子, 都是独立的自由度. 但 Bekenstein-Hawking 在告诉我们另一件事: 你真的往里面塞, 塞到极限, 它最后会是一个黑洞, 熵 $\propto$ 视界的 <em>面积</em>, 和体积 $V$ 没有直接关系.</p>
+
+  <p>如果极限是这样, 那所谓体积里的 "独立自由度" 是不是一种错觉? 信息是不是真的存在边界面上, 而我们在三维世界里看到的, 不过是一张全息照片? 本节要回答这个问题, 并把它严格从面积律推出来.</p>
+
+  <h2>一、从 Bekenstein bound 到面积律: 信息的最外层围栏</h2>
+
+  <p>把一片能量 $E$ 装进一个半径 $R$ 的球壳里, 问这片内容最多能携带多少信息 $S$. 1981 年 Bekenstein 给出一条很紧的上界, 他做的实际上是一个矛盾论证: 假设一个物体带熵 $S$ 能量 $E$ 尺度 $R$, 把它慢慢放进一个大黑洞. 黑洞面积增量应满足广义第二定律 $\Delta S_{\rm total}\ge 0$. 细算配合 Hawking 温度后, 得</p>
+
+  <p>$$ S \;\le\; \frac{2\pi R E}{\hbar c} \quad\text{(Bekenstein bound)}. \tag{1} $$</p>
+
+  <p>这个界不带 $G$ (没有显式引力常数), 但它是来自把物体投进黑洞的 gedanken, 骨子里引力是在的. 对一间 $R=1\,\mathrm{m}$、 $E=1\,\mathrm{J}$ 的房间, $S/k_B \le 2\pi\cdot 1\cdot 1/(1.05\times 10^{-34}\cdot 3\times 10^8) \approx 2\times 10^{41}$ —— 非常庞大的数字, 但它 <em>有限</em>, 这是第一次有人把 "任意体系的最大信息量" 给出有限界.</p>
+
+  <p>那 't Hooft 1993 更进一步的不等式怎么来? 想问 "把这片物质压缩到同样大小还能再塞吗", 答案是到 Schwarzschild 半径 $R_s=2GE/c^4$ (以能量写, 用 $E=Mc^2$) 就停了 —— 再塞就溢出视界, 物体会陷入黑洞. 这时 Bekenstein bound 里的 $E$ 与 $R$ 相互受限, 代入黑洞面积公式 $A=4\pi R_s^2$ 得到最紧版本:</p>
+
+  <p>$$ S \;\le\; \frac{A}{4 l_P^2},\qquad l_P=\sqrt{\frac{\hbar G}{c^3}} \approx 1.616\times 10^{-35}\,\mathrm{m}. \tag{2} $$</p>
+
+  <p>这就是 't Hooft-Susskind 形式的 <strong>共变熵界</strong>. 注意它的结构: 任何装进半径 $R$ 区域内的东西, 信息最多能占到 $A/(4 l_P^2)$ 比特 (准确说是 nats, 差个 $\ln 2$). 用数字感受: 地球表面积 $A_\oplus\approx 5.1\times 10^{14}\,\mathrm{m}^2$, Planck 面积 $l_P^2 \approx 2.6\times 10^{-70}\,\mathrm{m}^2$, 给出 $S/k_B \le A_\oplus/(4 l_P^2)\approx 5\times 10^{83}$. 这是一个真正庞大的数 —— 远远大于地球实际的熵 ($\sim 10^{44} k_B$, 主要来自海水、大气和地幔的分子混乱) —— 但它是有限的, 而且只按面积算.</p>
+
+  <h2>二、Deepdive: 为什么面积律必然暗示全息?</h2>
+
+  <p>$(2)$ 看起来只是个不等式, 说某个系统的熵最多多少. 为什么我们能从它推出一个远远更强的结论 —— 描述一个 3 维量子引力理论的全部自由度, 只需要它边界 2 维表面上的那些自由度? 这一节我们不挥手, 一步一步推.</p>
+
+  <p><strong>第一步: 如果自由度 "均匀地" 散布在体积里, 会怎样?</strong> 假设我们有一片半径 $R$ 的区域, 天真地把它想成每立方 Planck 体积装一个自由度 (一个 qubit). 这样得到的熵应为</p>
+
+  <p>$$ S_{\rm vol}\;=\;\frac{V}{l_P^3}\;=\;\frac{4\pi}{3}\left(\frac{R}{l_P}\right)^{\!3}. $$</p>
+
+  <p><strong>第二步: 把它和面积律 $(2)$ 对比.</strong> 面积律给的上限是</p>
+
+  <p>$$ S_{\rm BH}\;=\;\frac{A}{4l_P^2}\;=\;\pi\left(\frac{R}{l_P}\right)^{\!2}. $$</p>
+
+  <p>两者的比 $S_{\rm vol}/S_{\rm BH} = (4/3)(R/l_P)$. 对任何宏观尺度 $R\gg l_P$, 这个比都远大于 1 —— <em>体积计数给出的自由度数, 比真正允许的上限多出一个比值 $R/l_P$ 因子</em>. 地球 $R\sim 6.4\times 10^6\,\mathrm{m}$, 这个因子 $\sim 4\times 10^{41}$; 可观测宇宙 $R\sim 4\times 10^{26}\,\mathrm{m}$, 比值 $\sim 2.5\times 10^{61}$. "每立方 Planck 体积一比特" 这种最朴素的计数, 过估了几十个数量级.</p>
+
+  <p><strong>第三步: 信息密度随 R 越涨反而越稀.</strong> 把 $S$ 除以 $V$ 得到的 "信息密度" 是</p>
+
+  <p>$$ \rho_S\;=\;\frac{S_{\rm BH}}{V}\;=\;\frac{3}{4 R l_P^2}, $$</p>
+
+  <p>在 $R$ 越大时越小. 这和 "每立方 $l_P^3$ 一比特" 常数密度的图像直接矛盾 —— 真实的自由度, 并不能在 3 维体积里密集排布; 给定总体积, 越大的区域单位体积容纳的自由度反而越少. 这是个奇怪到违反直觉的事. 只有一个自然的解释: 真正 <em>独立</em> 的自由度数, 按面积 $A$ 涨, 不按 $V$ 涨.</p>
+
+  <p><strong>第四步: 那么体积里的 "自由度" 应如何重新解释?</strong> 我们不是说体积里没有原子、没有光子. 我们是说: 体积中看起来 "独立" 的那 $V/l_P^3$ 个自由度, 必然有大量彼此耦合的约束, 使真实的 Hilbert 空间维数只有 $e^{A/(4 l_P^2)}$. 换话说, 三维体积的态空间不是 $(\text{每 Planck cell Hilbert})^{V/l_P^3}$, 而是一个小得多的子空间, 其维数恰好由表面积决定. 这立刻让人想起一个线性代数事实: 如果一个空间的维数是 $e^{A/4}$, 那自然可以用一个 <em>生活在面积 $A$ 表面上</em> 的等价理论来描述它. 't Hooft 1993 的原文 "Dimensional Reduction in Quantum Gravity" 的核心就在这里, Susskind 1995 "The World as a Hologram" 把这个 image 说成 全息照片.</p>
+
+  <p><strong>第五步: 写成定量的全息原理.</strong> 一个 $D$ 维量子引力理论, 其 Hilbert 空间的真实维数 $\dim\mathcal{H} \le \exp[A/(4 l_P^{D-2})]$, 恰好是一个生活在 $(D-1)$ 维边界、没有引力的量子场论所能给出的维数. 这就是全息原理:</p>
+
+  <p>$$\boxed{\;\text{$D$ 维量子引力} \;\;\equiv\;\; \text{$(D-1)$ 维无引力 QFT (在边界上)}\;}$$</p>
+
+  <p>它是一条 <em>猜想</em>, 从 $(2)$ 的面积律推出它合理; 但要把 "合理的上限" 升级为 "确定的等价", 还需要一个具体例子存在. 这个具体例子 Maldacena 1997 给了.</p>
+
+  <!-- 唯一图占位符 -->
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 全息原理 — 体积内系统等价于边界上的全息照片</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>左右两栏对比; 左栏: 一个 3 维体积 (画成半透明球体或圆柱, 表示 bulk 空间), 内部画 3-4 个粒子 (小球) 和它们之间的连线表示 "引力/相互作用"; 右栏: 同一个系统被压扁在 2 维边界上 (球面或圆柱侧面), 画成一些点和线条表示 "边界自由度/全息照片"; 中间一个水平双向箭头标 "等价" 或 "$\equiv$"</dd>
+      <dt>必含元素</dt><dd>左栏球体内画至少 3 个粒子, 画引力或弦场线若干条; 右栏球面上画对应的几何图案 (像全息板条纹); 在中间双向箭头上方或下方标 AdS/CFT; 左栏下方写 "$S_{\rm bulk}\le A/(4l_P^2)$"; 右栏下方写 "边界 QFT, 无引力"</dd>
+      <dt>几何/数学精度</dt><dd>概念性图示, 不需精确几何, 只需清晰表现 "体内 vs 边界" 的对比以及二者相互等价</dd>
+      <dt>标签与公式</dt><dd>左侧 "AdS$_5\times$S$^5$ (bulk)", 右侧 "$\mathcal{N}=4$ SYM on $\partial$AdS$_5$"; 中间箭头标 "Maldacena 1997"</dd>
+      <dt>风格建议</dt><dd>白底两栏; 体内深色填充 (如浅灰或蓝) 表示 bulk, 粒子用深色小球; 边界黄色 (或金色) 表示 "全息板", 上面条纹/点阵显示 "信息写在边界上"; 中间箭头黑色粗线, "$\equiv$" 符号居中大字号</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  左: 3 维体积内若干粒子在引力/规范场下相互作用, 总熵受 $S\le A/(4l_P^2)$ 限制. 右: 同一个系统被完整地记录在 2 维边界上的一个无引力量子场论里. 箭头 "$\equiv$" 表示二者在物理上完全等价, 是 't Hooft 1993 / Susskind 1995 的全息原理及 Maldacena 1997 的 AdS/CFT 的核心. 一个 bulk 观察者看到的一切现象, 原则上都能从边界 QFT 计算出来.</figcaption>
+  </figure>
+
+  <h2>三、AdS/CFT: 一个被反复验证的全息实例</h2>
+
+  <p>Juan Maldacena 1997 年底在 <em>Adv. Theor. Math. Phys.</em> 上那篇 "The Large N Limit of Superconformal Field Theories and Supergravity" 的文章, 把这条原理从猜测变成了一个可以 <em>算</em> 的对偶. 他写下这样一个对偶的两边:</p>
+
+  <p><strong>Bulk 一侧:</strong> Type IIB 弦论, 在一个 10 维时空 AdS$_5\times$S$^5$ 上. 其中 AdS$_5$ (5 维反 de Sitter 空间) 半径 $L$, 5 维球面 $S^5$ 半径也是 $L$. 弦长 $l_s$, 弦耦合 $g_s$. 低能极限下它就是 5 维 supergravity on AdS$_5$.</p>
+
+  <p><strong>边界一侧:</strong> 4 维 $\mathcal{N}=4$ super-Yang-Mills theory with gauge group $SU(N)$, 无引力, 在 AdS$_5$ 的 4 维边界 $\mathbb{R}^{1,3}$ (或 $S^3\times\mathbb{R}$) 上. 这个 QFT 是已知最对称的非引力量子场论之一: 共形, 超对称, 没有 running coupling, $\beta(g)\equiv 0$.</p>
+
+  <p>对偶的字典 (dictionary) 是:</p>
+
+  <p>$$ L^4 \;=\; 4\pi g_s N\, l_s^4\;=\; g_{\rm YM}^2 N\, l_s^4 \;\equiv\; \lambda\, l_s^4, \qquad g_{\rm YM}^2\;=\;4\pi g_s. $$</p>
+
+  <p>这里 $\lambda=g_{\rm YM}^2 N$ 叫 't Hooft 耦合, 是 QFT 一侧的有效耦合强度. 关键洞察在于两件事:</p>
+
+  <ol>
+    <li>当 $\lambda\gg 1$ (QFT 强耦合), AdS 半径 $L\gg l_s$, 弦论退到 supergravity 经典极限, <em>bulk 一侧可计算</em>;</li>
+    <li>当 $\lambda\ll 1$ (QFT 弱耦合), bulk 一侧大量弦激发都被激活, 不可处理; 但 QFT 一侧可微扰展开, <em>边界一侧可计算</em>.</li>
+  </ol>
+
+  <p>这就是 AdS/CFT 的 <strong>强弱对偶</strong> 结构: 一侧难算时, 另一侧简单. 二者对应的不是两个完全不同的物理, 而是同一个物理的两种 "坐标系" —— 选最容易算的那一边. 这和重整化群下的对偶 (Kramers-Wannier, T-duality) 精神一样, 但尺度更猛: 一边有引力, 一边没有引力, 一边 $D$ 维, 一边 $D-1$ 维.</p>
+
+  <p>验证: 有哪些定量检验做过? 举几个:</p>
+
+  <ol>
+    <li><strong>共形维度匹配.</strong> QFT 一侧某个算符 $\mathcal{O}(x)$ 的共形维度 $\Delta$, 对偶到 bulk 一侧某个场的质量 $m$ 通过 $\Delta(\Delta-4)=m^2 L^2$. 已在多个超对称保护的算符上验证.</li>
+    <li><strong>自由能.</strong> 高温有限温度 $\mathcal{N}=4$ SYM 的自由能密度 $f= -c\cdot N^2 T^4$, 强耦合极限系数来自 AdS-Schwarzschild 黑洞的 Hawking 熵, 弱耦合系数来自 perturbative QFT, 比值预期为 $3/4$ (Gubser-Klebanov-Tseytlin 1998 的著名结果), 非平凡但 <em>不矛盾</em> 任何已知 QCD 相似体系.</li>
+    <li><strong>反常维度.</strong> 一些半 BPS 算符的 anomalous dimensions, 来自 bulk 的 Kaluza-Klein 分析, 精确匹配.</li>
+  </ol>
+
+  <p>二十多年过去, AdS/CFT 已经积累了 <em>数以千计</em> 的定量检验, 没有一次证伪. 它仍然不是一条被 "完全证明" 的等价 —— 数学上没人写下了严格定义的两侧并给出同构 —— 但作为物理猜想, 它的成色已接近 S 矩阵 unitarity 这种级别.</p>
+
+  <h2>四、应用: 强耦合问题变成弱耦合引力</h2>
+
+  <p>AdS/CFT 最实用的那一面不是 "证明全息原理", 而是把那些原本在 QFT 侧无法下手的 <em>强耦合</em> 问题, 翻译成 bulk 侧一个可以解的 <em>经典引力</em> 问题. 两个标志性例子:</p>
+
+  <p><strong>夸克-胶子等离子体粘度.</strong> 2005 年前后, Kovtun-Son-Starinets 用 AdS/CFT 计算了一类强耦合 plasma 的剪切粘度 $\eta$ 与熵密度 $s$ 之比, 得到</p>
+
+  <p>$$ \frac{\eta}{s}\;\ge\;\frac{\hbar}{4\pi k_B} \;\approx\; 6.3\times 10^{-13}\,\mathrm{K\cdot s}, $$</p>
+
+  <p>即一个 <em>universal lower bound</em> on $\eta/s$. 奇妙地, RHIC 与 LHC 观测到的夸克-胶子等离子体 $\eta/s \approx (1\text{-}3)\times\hbar/(4\pi k_B)$, 非常接近这条全息下限 —— 真实的 QCD 等离子体行为很像一个强耦合 large-$N$ $\mathcal{N}=4$ 理论. 这不是 QCD 的精确对偶, 但 universality 让结论跨越细节延伸下来.</p>
+
+  <p><strong>量子临界点 (QCP) 与奇异金属.</strong> 许多高温超导体的 "奇异金属" 相, 表现出线性电阻率 $\rho(T)\propto T$, 按 Boltzmann 方程根本讲不通 (见第 21 节). 但 AdS/CFT 提供的全息强耦合模型, 自然产生这种线性电阻率, 机制是 bulk 一侧一个 AdS$_2\times\mathbb{R}^2$ extremal 黑洞的 near-horizon 几何. 这是凝聚态物理里第一次有人用 "引力" 算出一个表面上与引力毫无关系的材料现象.</p>
+
+  <p>这两个应用不仅是计算层面的便利, 它们暗示了一件更深的事: 某类强耦合量子多体体系, 它们的集体行为可以用 <em>一个高维引力几何</em> 精确描述. 反过来也说, 我们所处的时空几何, 也许就是某个低维量子系统在 large-$N$ 强耦合时的 "涌现" 描述.</p>
+
+  <h2>五、数字、极限与历史收束</h2>
+
+  <p><strong>数字估计 1 (Planck 面积的信息密度).</strong> 面积律每 Planck 面积装 $\frac{1}{4\ln 2}\approx 0.36$ 比特. 换算到平方米: $1/(4 l_P^2\ln 2) \approx 1/(4\cdot 2.6\times 10^{-70}\cdot 0.69)\approx 1.4\times 10^{69}\,\mathrm{bit/m^2}$. 地球视界 (若地球变黑洞, $R_s\approx 8.9\,\mathrm{mm}$) 面积 $\sim 1\,\mathrm{mm}^2$ 量级, 能编码的信息是 $\sim 10^{63}$ 比特. 和所有工业硬盘加起来 ($\sim 10^{23}$ 比特) 相比, 大了 40 个数量级.</p>
+
+  <p><strong>数字估计 2 (可观测宇宙).</strong> 用宇宙学视界 $R_H \approx 4.4\times 10^{26}\,\mathrm{m}$, 面积 $A_H=4\pi R_H^2\approx 2.4\times 10^{54}\,\mathrm{m}^2$, 最大可能熵 $S_H/k_B \approx A_H/(4 l_P^2)\approx 2.3\times 10^{123}$. 这比宇宙实际总熵 (星系、恒星、CMB 等加起来, 最大的那部分是 super-massive 黑洞贡献的 $\sim 10^{104} k_B$) 还要大 19 个数量级 —— 宇宙作为一个整体仍然离它的 "全息容量" 很远, "全息缝隙" 是巨大的, 这留给热力学第二定律一个非常宽的增长空间.</p>
+
+  <p><strong>极限检验: $\hbar\to 0$, 全息消失.</strong> 在经典极限 $\hbar\to 0$, Planck 长度 $l_P=\sqrt{\hbar G/c^3}\to 0$, 面积律上限 $S\le A/(4 l_P^2)\to \infty$. 这就是说: 经典世界里, 体积可以装下无穷多比特, 没有任何 "面积天花板" —— 一切信息都可以自由按体积 $V$ 排布, 全息原理 <em>不出现</em>. 这也恰说明了全息原理的来源: 它是量子力学 ($\hbar$) 和引力 ($G$) 联合的产物, 缺一不可, 必须通过 Planck 尺度才能显形. 同理, 若关掉引力 $G\to 0$, $l_P\to 0$ 面积律再次消失 —— 没有黑洞, 没有视界, 没有面积律. 这条原理严格属于 <em>量子引力</em> 范畴.</p>
+
+  <p><strong>历史.</strong> 黑洞熵的面积律出自 Bekenstein 1973 和 Hawking 1974. Gerard 't Hooft 1993 年的预印本 "Dimensional Reduction in Quantum Gravity" (Utrecht THU-93/26) 最早明确写下 "一个 $D$ 维引力理论的真实自由度数, 被其 $(D-1)$ 维边界上的面积界住" 这层结论并命名 "全息". Leonard Susskind 1995 年的论文 "The World as a Hologram" 用一个更直接的 string-theoretic 论证重新打包, 并把 "全息" 的意象定型. Juan Maldacena 1997 年末的对偶猜想, 把它从概念变成一个可以做计算的工具. Edward Witten 1998 年的 "Anti-de Sitter Space and Holography" 写下了具体的 field-operator 字典, 把 Maldacena 的对偶细化为一套 quantum-gravity/QFT 的同构规则. 2000 年代后是一连串定量验证: Gubser-Klebanov-Polyakov, Witten, Maldacena, Polchinski, Kovtun-Son-Starinets, ... 以及 2010 年后 Ryu-Takayanagi 把 bulk 最小曲面面积与边界纠缠熵用 $S_{\rm EE}=A_{\rm min}/(4 G)$ 联系起来 —— 第 29 节的面积律, 就这样在最细小的纠缠熵尺度上重新出现, 表明它不只是黑洞的特殊性, 而是量子引力与信息的通用语言.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>这一卷从 Clausius 的熵讲到 Boltzmann $k\log W$, 讲到 Shannon 的 $-\sum p\log p$, 讲到 Landauer 擦除的 $k_B T \ln 2$, 最后讲到黑洞熵 $A/(4 l_P^2)$ 与全息原理. 这一路上 "熵" 这个字的含义每一次都变得更深: 它从蒸汽机的效率修饰词, 变成微观状态计数, 变成信息与不确定性, 变成物理擦除的代价, 最后变成时空与自由度本身的结构. 第二卷的主线至此收束 —— 热力学不是一门关于 "热" 的学问, 而是一门关于 "信息如何与物质空间相互作用" 的学问. 全息原理是这条主线最远的一个断崖: 三维世界里的每一块体积, 在量子引力的眼里, 不过是其边界那张二维全息照片的某种解码. 我们还远没有完全理解这张照片如何工作, 但它在告诉我们: 在 Boltzmann 的 $k\log W$ 里, 那个 $W$ 的极限比我们想象的小得多, 小得恰好与面积成正比. 所有热力学的未来 —— 从引力波到量子计算, 从宇宙学到凝聚态奇异金属 —— 都将在这条信息与几何的共同边界上继续写下去.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="29-bh-entropy.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a class="disabled" href="#">下一节 →</a>
+</nav>
+
+</body>
+</html>

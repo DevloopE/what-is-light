@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crooks 涨落定理 — 第二定律的微观陈述 · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="27-jarzynski.html">← 上一节</a>
+  <span class="chapter-title">第 28 节 / 30 · 第 6 部分 · 信息热力学与黑洞 · 第二卷·热力学与统计力学</span>
+  <a href="29-bh-entropy.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Crooks 涨落定理 — 第二定律的微观陈述?</h1>
+  <div class="sub">—— 时间反演下的概率比</div>
+  <div class="abstract">本节从一个单分子拉伸实验出发: 同一条 RNA 发卡, 正向快拉和反向快放回两组实验做出来的"功" 分布不是镜像, 而是相互错开. Crooks 1999 年从微观可逆性一步一步构造出两条轨迹的概率比, 得到 $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$ —— 一个比 Jarzynski 等式更原始、更强的关系式. 我们把这个推导完整走一遍 (从路径概率、细致平衡到比例相消), 用它解释为什么平均功 $\langle W\rangle \ge \Delta F$, 却允许单次实验"违反第二定律"且违反概率按 $e^{-\beta\sigma}$ 指数衰减. 最后代入典型数字, 检验 $\beta\sigma \to \infty$ 的严格第二定律极限, 并引用 Collin 等人 2005 年的单分子实验.</div>
+
+  <p>上一节我们用 Jarzynski 等式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$ 把"平衡态的自由能差"和"远离平衡的功分布"绑在了一起. 但这里有个不太让人舒服的地方: Jarzynski 等式只谈一条过程的统计平均, 它没告诉你"逆过程"长什么样. 自然界的时间箭头本来就是一种正/反不对称, 一个真正刻画不可逆性的定理, 应该把"正向过程"和"反向过程"两张图同时摆出来比.</p>
+
+  <p>这就是 Crooks 1999 年做的事. 他在博士论文里证了一个比 Jarzynski 更强的东西: 做同一个过程的正向 (拉) 和反向 (放回), 观察到功 $W$ 和观察到 $-W$ 的概率, 比值严格等于 $e^{\beta(W - \Delta F)}$. 换句话说, 只要你能把一条轨迹时间反演, 第二定律就可以被拆成一个干净的微观恒等式 —— 不等式变等式, 不可逆性变概率比.</p>
+
+  <p>为什么这是可能的? 单次实验里"功小于 $\Delta F$" 的稀有事件 (看起来违反第二定律) 到底有多罕见? 在 $W = \Delta F$ 处两条分布为什么必然相交? 本节要把这些问题回答清楚.</p>
+
+  <h2>一、正反两条实验: 从 RNA 发卡说起</h2>
+
+  <p>想象一个很具体的装置: 一根 RNA 发卡 (hairpin) 的两端各接一颗微米级聚苯乙烯球, 一颗被光镊固定, 另一颗在另一个可移动光阱里. 你把两阱拉开一段距离, 发卡被撑得从折叠态过渡到展开态. 这是所谓单分子拉伸. Liphardt、Tinoco、Bustamante 一派在 2002 年左右就做了成堆的这种实验, 正是为了检验非平衡涨落定理.</p>
+
+  <p>假设控制参数 $\lambda(t)$ 表示光阱位置, $t=0$ 时 $\lambda = \lambda_0$ (发卡折叠), $t=\tau$ 时 $\lambda = \lambda_1$ (发卡展开). 你用光阱测出的功就是</p>
+
+  <p>$$ W = \int_0^\tau \dot\lambda \, \frac{\partial H}{\partial \lambda}(x(t), \lambda(t))\, dt. \tag{1} $$</p>
+
+  <p>这里 $x$ 是体系的微观态, $H(x, \lambda)$ 是依赖控制参数的 Hamiltonian. 重复拉很多次, 每次得到一个数 $W$; 很多次之后画出一个分布 $P_F(W)$. 然后反过来做: 从 $\lambda_1$ 出发 (先让发卡在 $\lambda_1$ 下热平衡), 以原来速率的时间反演把 $\lambda$ 拉回到 $\lambda_0$ (让发卡缩回去), 测得的功定义为 $W_R$, 分布 $P_R(W_R)$.</p>
+
+  <p>如果过程"准静态"(很慢), 两条分布都塌成 $\delta$ 函数, 正向 $W = \Delta F$, 反向 $W_R = -\Delta F$, 第二定律饱和. 但如果过程很快, 两条分布都变宽, 且 $P_F$ 整体右移 (平均功超过 $\Delta F$), $P_R(-W)$ 整体左移. 神奇的是 —— 无论多快, 这两条分布在 $W = \Delta F$ 处必然相交, 交点之比率严格符合 Crooks:</p>
+
+  <p>$$ \frac{P_F(W)}{P_R(-W)} = e^{\beta(W - \Delta F)}. \tag{2} $$</p>
+
+  <p>这就是 Crooks 涨落定理. 把式 (2) 左右两边乘上 $P_R(-W)e^{-\beta W}$ 再对 $W$ 积分, 立刻得到 $\int P_F(W)e^{-\beta W}dW = e^{-\beta\Delta F}$, 这正是 Jarzynski. 所以 Crooks 是母定理, Jarzynski 是推论.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 正反功分布与 Crooks 相交</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$P_F(W)$ 与 $P_R(-W)$ 两条概率分布在 $W = \Delta F$ 处严格相交</dd>
+      <dt>必含元素</dt><dd>横轴: $W$ (功, 单位 $k_B T$); 纵轴: 概率密度; 右偏钟形曲线 $P_F(W)$ (正向, 均值在 $\Delta F$ 右侧); 左偏钟形曲线 $P_R(-W)$ (反向的 $-W$ 分布, 均值在 $\Delta F$ 左侧); 两条曲线的唯一交点在 $W = \Delta F$ 正上方, 垂直虚线从交点落到横轴并标注 $\Delta F$; 图右上角插图小框写 Crooks 比 $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 在 $W > \Delta F$ 区域画阴影标 "$\langle W\rangle \ge \Delta F$ 的耗散"; 在 $W < \Delta F$ 小面积阴影标 "违反第二定律的稀有事件 $\sim e^{-\beta\sigma}$"</dd>
+      <dt>几何/数学精度</dt><dd>两条曲线交点严格在 $W=\Delta F$, 交点处两曲线高度相等 (这是 Crooks 在交点的直接推论, $e^0=1$); 正向分布均值 $\langle W\rangle_F$ 在 $\Delta F$ 右侧若干 $k_B T$; 反向 $-W$ 分布均值在 $\Delta F$ 左侧相应距离 (耗散由 $\langle W\rangle - \Delta F \ge 0$ 保证)</dd>
+      <dt>标签与公式</dt><dd>主公式 Crooks $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$; 交点标注 "$W = \Delta F$: 两分布相等"; 尾部标 "违反第二定律: $W < \Delta F$ 区"</dd>
+      <dt>风格建议</dt><dd>白底, $P_F$ 蓝色实线, $P_R(-W)$ 红色实线, 交点黑圆点, 背景浅灰阴影显示违反与耗散两区; 公式插图放右上角浅灰框</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  $P_F(W)$ 与 $P_R(-W)$ 的 Crooks 相交: 两条功分布必然在 $W = \Delta F$ 处相交, 左侧小面积阴影为"违反第二定律"的罕见事件.</figcaption>
+  </figure>
+
+  <h2>二、Deepdive: 从微观可逆性严格推导 Crooks</h2>
+
+  <p>Crooks 定理之所以惊人, 是因为它把不等式变成恒等式. 下面一步一步推, 从最基本的微观可逆性出发, 不跳.</p>
+
+  <p><strong>1. 轨迹概率是什么.</strong> 考虑一个被热浴包围的小系统, 坐标 $x$, 控制参数 $\lambda(t)$ 按给定协议 $\Lambda_F = \{\lambda(t)\}_{t=0}^\tau$ 变化. 一条正向轨迹记为 $\gamma = \{x(t)\}_{t=0}^\tau$. 想象把时间离散化为 $N$ 步, $x_0, x_1, \dots, x_N$. 每一步的转移由两部分组成: (a) 参数改变一步 $\lambda_n \to \lambda_{n+1}$ (体系坐标不变, 只是 Hamiltonian 变了, 瞬时做功 $\Delta W_n = H(x_n, \lambda_{n+1}) - H(x_n, \lambda_n)$); (b) 参数不变下体系与热浴交换热量 $Q_n$, 状态 $x_n \to x_{n+1}$ 由一个热浴转移概率 $T_{\lambda_{n+1}}(x_n \to x_{n+1})$ 描述.</p>
+
+  <p><strong>2. 细致平衡是核心假设.</strong> 每一步的热浴动力学要保证: 如果控制参数冻结在 $\lambda$, 系统会驰豫到对应的正则分布 $p_\lambda^{\rm eq}(x) = e^{-\beta H(x,\lambda)}/Z(\lambda)$. 这要求转移核满足细致平衡</p>
+
+  <p>$$ \frac{T_\lambda(x \to x')}{T_\lambda(x' \to x)} = \frac{p_\lambda^{\rm eq}(x')}{p_\lambda^{\rm eq}(x)} = e^{-\beta[H(x',\lambda) - H(x,\lambda)]}. $$</p>
+
+  <p>注意右边的能量差 $H(x',\lambda) - H(x,\lambda)$ 正是这一步体系从热浴吸收的热 $Q_n$ 的负数 (因为参数没动, 体系能量变化全是热). 所以</p>
+
+  <p>$$ \frac{T_\lambda(x \to x')}{T_\lambda(x' \to x)} = e^{\beta Q}. $$</p>
+
+  <p><strong>3. 初态在平衡.</strong> 实验开始时系统和参数 $\lambda_0$ 的热浴早已达到平衡, $x_0$ 按 $p_{\lambda_0}^{\rm eq}(x_0) = e^{-\beta H(x_0,\lambda_0)}/Z(\lambda_0)$ 抽取. 一条完整正向轨迹的概率</p>
+
+  <p>$$ P_F[\gamma] = \frac{e^{-\beta H(x_0,\lambda_0)}}{Z(\lambda_0)} \prod_{n=0}^{N-1} T_{\lambda_{n+1}}(x_n \to x_{n+1}). $$</p>
+
+  <p>这里我采用了常用的"先换参数再热化"时序. 把参数改变做的功一并显式记下: 这一步功 $\Delta W_n = H(x_n,\lambda_{n+1}) - H(x_n, \lambda_n)$, 轨迹总功 $W[\gamma] = \sum_n \Delta W_n$.</p>
+
+  <p><strong>4. 时间反演轨迹.</strong> 反向过程意味着两件事: 第一, 控制参数按反向协议 $\Lambda_R$ 走 ($\lambda_1 \to \lambda_0$, 即原协议的时间反转); 第二, 系统初态抽自 $\lambda_1$ 平衡分布 $p_{\lambda_1}^{\rm eq}$. 把正向轨迹 $\gamma = x_0 x_1 \dots x_N$ 逐点反演得到 $\bar\gamma = x_N x_{N-1} \dots x_0$. 反向轨迹概率</p>
+
+  <p>$$ P_R[\bar\gamma] = \frac{e^{-\beta H(x_N,\lambda_1)}}{Z(\lambda_1)} \prod_{n=0}^{N-1} T_{\lambda_{n}}(x_{n+1} \to x_n). $$</p>
+
+  <p>注意反向中参数先从 $\lambda_1$ 变到 $\lambda_0$, 其每步的参数是正向的反序; 我这里按同一"参数先变、再热化"时序书写, 因此反向第 $n$ 步的热化参数是 $\lambda_n$.</p>
+
+  <p><strong>5. 逐项相除.</strong> 把两条轨迹概率之比写出来:</p>
+
+  <p>$$ \frac{P_F[\gamma]}{P_R[\bar\gamma]} = \frac{Z(\lambda_1)}{Z(\lambda_0)} \, e^{-\beta[H(x_0,\lambda_0) - H(x_N,\lambda_1)]} \prod_n \frac{T_{\lambda_{n+1}}(x_n \to x_{n+1})}{T_{\lambda_n}(x_{n+1} \to x_n)}. $$</p>
+
+  <p>这里的麻烦在于每一项分母的参数和分子不匹配 —— 分子是 $\lambda_{n+1}$, 分母是 $\lambda_n$. 不过细致平衡里的参数是同一个, 所以我们可以先插入恒等式调整. 用细致平衡的一般形式改写</p>
+
+  <p>$$ \frac{T_{\lambda_{n+1}}(x_n \to x_{n+1})}{T_{\lambda_{n+1}}(x_{n+1} \to x_n)} = e^{-\beta[H(x_{n+1},\lambda_{n+1}) - H(x_n,\lambda_{n+1})]} = e^{\beta Q_n}, $$</p>
+
+  <p>其中 $Q_n$ 是第 $n$ 步体系从热浴吸收的热. 由于分母中把 $T_{\lambda_n}(x_{n+1}\to x_n)$ 换成 $T_{\lambda_{n+1}}(x_{n+1}\to x_n)$ 差一个细致平衡修正 —— 而这个修正恰好被分子与分母"先换参数"的不匹配吸收掉. 正式的推导用 telescoping 更清楚. 令 $H_n = H(x_n, \lambda_n)$, $\tilde H_n = H(x_n, \lambda_{n+1})$. 则整条轨迹的总能量变化</p>
+
+  <p>$$ H_N - H_0 = \sum_{n=0}^{N-1}(H_{n+1} - H_n) = \sum_n (H_{n+1} - \tilde H_n) + \sum_n(\tilde H_n - H_n) = Q + W. $$</p>
+
+  <p>第一和为 "参数不变、坐标改变"的能量变化 —— 这就是吸收的热 $Q$; 第二和为 "坐标不变、参数改变"的能量变化 —— 就是对系统做的功 $W$. 这是单次实验层面上的第一定律.</p>
+
+  <p>把每一步的 $e^{\beta Q_n}$ 从细致平衡里取出来, 乘起来拿到 $e^{\beta Q}$. 前因子 $Z(\lambda_1)/Z(\lambda_0) = e^{-\beta \Delta F}$, 而 $e^{-\beta(H_0 - H_N)} = e^{\beta(H_N - H_0)} = e^{\beta(Q + W)}$. 合并:</p>
+
+  <p>$$ \frac{P_F[\gamma]}{P_R[\bar\gamma]} = e^{-\beta\Delta F} \cdot e^{\beta(Q+W)} \cdot e^{-\beta Q} = e^{\beta(W - \Delta F)}. $$</p>
+
+  <p>对任何一条轨迹都成立! 这是一个微观层面的恒等式. 再把所有对应到同一 $W$ 的轨迹求和</p>
+
+  <p>$$ P_F(W) = \int \delta(W - W[\gamma])\, P_F[\gamma]\, \mathcal D\gamma, \quad P_R(-W) = \int \delta(W - W[\gamma])\, P_R[\bar\gamma]\, \mathcal D\gamma, $$</p>
+
+  <p>两边逐轨迹的比都是 $e^{\beta(W-\Delta F)}$ (对固定 $W$ 它是常数), 所以分布之比也是 $e^{\beta(W-\Delta F)}$, 正是式 (2).</p>
+
+  <p>读这个推导的关键: 它没用任何近似, 只用了 (a) 初态按 Boltzmann 分布抽取, (b) 热浴动力学细致平衡, (c) 功与热按能量守恒分解. 这三件事本身就是统计热力学的基础, 所以 Crooks 是"微观可逆性的直接翻译". 第二定律在这个层面上不是不等式, 而是两条概率分布的精确比率.</p>
+
+  <h2>三、从 Crooks 到第二定律: 不等式从哪里来</h2>
+
+  <p>看式 (2) 就很容易看出几件事. 首先, 把两边乘 $P_R(-W)$ 再对 $W$ 积分:</p>
+
+  <p>$$ 1 = \int P_F(W)\, dW = \int e^{\beta(W-\Delta F)} P_R(-W)\, dW \quad\Rightarrow\quad \left\langle e^{-\beta W}\right\rangle_F = e^{-\beta \Delta F}. $$</p>
+
+  <p>这就是 Jarzynski. 用 Jensen 不等式 $\langle e^{-\beta W}\rangle \ge e^{-\beta\langle W\rangle}$, 立刻得 $\langle W\rangle \ge \Delta F$ —— 第二定律的经典陈述. 但 Crooks 比 Jensen 强: 它告诉你在 $W < \Delta F$ 这一区域 (看起来"违反"第二定律的区域), 分布并没有消失, 只是被指数压制.</p>
+
+  <p>具体来说, 把式 (2) 改写成</p>
+
+  <p>$$ P_F(W) = e^{\beta(W-\Delta F)} P_R(-W). $$</p>
+
+  <p>令 $\sigma = -\beta(W - \Delta F)$ 为"熵产生" (当 $W > \Delta F$ 时 $\sigma > 0$, 系统不可逆地耗散; $W < \Delta F$ 时 $\sigma < 0$, 观察到的是"违反"). Crooks 重写为</p>
+
+  <p>$$ \frac{P_F(-\sigma/\beta + \Delta F)}{P_R(\sigma/\beta - \Delta F)} = e^{-\sigma}, $$</p>
+
+  <p>即熵产生分布的前后比例. 如果过程是对称的 (正向与反向协议相同, 只是时间反演), 这退化为 $P(\sigma)/P(-\sigma) = e^{\sigma}$ —— 熵产生涨落定理 (Evans-Searles 1994, 证于确定性动力学; Crooks 1999 推广到随机动力学).</p>
+
+  <p>第二定律的精确化: "平均熵产生 $\langle\sigma\rangle \ge 0$"在这里是 Jensen 不等式的直接推论. 但单次实验中 $\sigma < 0$ 的概率并不为零, 它被指数压制</p>
+
+  <p>$$ \frac{P(\sigma = -s)}{P(\sigma = +s)} = e^{-s}. $$</p>
+
+  <p>所以观察到"违反第二定律"事件的概率不超过观察到同等"遵守"事件概率的 $e^{-s}$ 倍. 这正是第二定律的微观陈述 —— 不是严格禁止, 而是指数稀有.</p>
+
+  <h2>四、数字: 违反概率、自由能读数, 与 $\beta\sigma\to\infty$ 极限</h2>
+
+  <p><strong>估算 1: RNA 发卡的 $\Delta F$.</strong> Liphardt、Onoa、Bustamante、Tinoco 一系的 P5abc RNA 发卡折叠自由能约为 $\Delta F \approx 79\,k_B T$ (室温 $T = 298$ K, 即约 $193$ kJ/mol 或 $46$ kcal/mol 量级). 实验上正向快拉测得的平均功 $\langle W\rangle_F \approx 84\,k_B T$, 反向放回平均功 $\langle W\rangle_R \approx -75\,k_B T$ ($W$ 对反向是负的, 对应功被系统释放出来). 两条分布错开约 $5 k_B T \approx 2$ kcal/mol 的耗散, 但在 $W = 79\,k_B T$ 处严格相交. 直接在交点上读数就是 $\Delta F$ —— 这是 Collin et al 2005 年 <em>Nature</em> 文章的核心方法: 不需要准静态, 只要正反两组实验够多, 用两条分布的交点定位 $\Delta F$ 的精度可以达到亚 $k_B T$.</p>
+
+  <p><strong>估算 2: 违反第二定律的概率.</strong> 取耗散量 $\sigma = \beta(W - \Delta F)$, 看违反事件概率. 由 Crooks, "观察到 $W$ 比 $\Delta F$ 小 $s/\beta$"的概率最多是"观察到 $W$ 比 $\Delta F$ 大 $s/\beta$"概率的 $e^{-s}$ 倍.</p>
+
+  <ul>
+    <li>$\beta\sigma = 0$ (完全可逆极限): 比值 $e^0 = 1$, "违反"与"遵守"概率各 50%. 这是准静态极限, 两条分布完全重合在 $W = \Delta F$.</li>
+    <li>$\beta\sigma = 1$: 违反 / 遵守 $= e^{-1} \approx 0.37$, 即违反占 $1/(1+e) \approx 27\%$. 这是弱耗散, 违反事件仍然常见.</li>
+    <li>$\beta\sigma = 5$: $e^{-5} \approx 6.7 \times 10^{-3}$, 违反占 $\sim 0.67\%$. 已经低于 1%, 需要数百次重复才能看到一次违反.</li>
+    <li>$\beta\sigma = 10$: $e^{-10} \approx 4.5\times 10^{-5}$, 一万次实验出几次.</li>
+    <li>$\beta\sigma = 25$ (宏观弱耗散, $\sigma \approx 25 k_B T$): $e^{-25} \approx 1.4\times 10^{-11}$. 单分子尺度还能偶见, 但宏观实验已经不可见.</li>
+    <li>$\beta\sigma = 100$ (宏观耗散): $e^{-100}\approx 10^{-43}$. 宇宙年龄里也看不到一次违反.</li>
+  </ul>
+
+  <p><strong>极限: $\beta\sigma \to \infty$.</strong> 当耗散量或系统尺度让 $\sigma$ 远超 $k_B$ 时 (任何宏观过程都是如此), $e^{-\beta\sigma} \to 0$, "违反第二定律"事件的概率指数衰减到零, Crooks 退化成传统第二定律 $\langle W\rangle \ge \Delta F$ 且 "从未观察到"被违反的等价陈述. 第二定律在宏观世界的"绝对性"本质上是指数放大的胜利: 一份 $1\,\text{L}$ 气体的典型熵产生是 $\sim 10^{22}\,k_B$ 量级, 对应的违反概率是 $e^{-10^{22}}$, 连写都写不出来.</p>
+
+  <p>反过来, 在单分子、纳米尺度、小时间窗下, $\beta\sigma$ 可以只有 $O(1)$, 违反第二定律的稀有事件不仅原则上存在, 实验上还能被统计到 —— 这正是涨落定理在生物物理与纳米实验里的意义.</p>
+
+  <h2>五、历史与普适性</h2>
+
+  <p>Gavin E. Crooks 在加州大学伯克利的博士论文 (导师是 David Chandler) 1998 年开始酝酿, 1999 年在 <em>Physical Review E</em> 发表的 "Entropy production fluctuation theorem and the nonequilibrium work relation for free energy differences" 是正式成文. Crooks 当时做的事情在历史上有若干前身: Evans、Cohen、Morriss 1993 在确定性混沌系统里证过一个相关的涨落定理; Gallavotti-Cohen 1995 年在稳态里给了一个严格版本; Jarzynski 1997 的等式刚问世两年. Crooks 把 "任意初态在平衡、轨迹可被时间反演、热浴细致平衡" 这三个条件凑齐, 给出了最一般的、从正反向轨迹概率比出发的陈述. 这项工作后来让他在 2013 年获得 ACS 的 Irving Langmuir 奖.</p>
+
+  <p>实验端, Collin, Ritort, Jarzynski, Smith, Tinoco Jr., Bustamante 在 <em>Nature</em> 2005 年 8 月 8 日发表的 "Verification of the Crooks fluctuation theorem and recovery of RNA folding free energies" 是第一次在单分子实验里直接验证 Crooks 定理. 他们用光镊反复拉 P5abc RNA 发卡, 正向和反向各做几百次, 画出 $P_F(W)$ 与 $P_R(-W)$ 两张分布, 交点对应的 $W$ 和独立方法 (准静态极慢拉) 得到的 $\Delta F$ 一致到亚 $k_B T$ 精度. 更厉害的是即使实验本身是远离平衡的 (每次拉都以秒级速度把 RNA 硬扯开), 交点读出的 $\Delta F$ 仍然精确. 这是涨落定理"让非平衡测量自由能"成为实验工具的一个里程碑.</p>
+
+  <p>Crooks 定理的影响面远不止 RNA. 它被用在: 布朗粒子光阱里的小尺度热力学 (Wang et al 2002, Ciliberto 组), 分子马达 (kinesin, ATP synthase) 的功率/效率测量, 冷原子单原子 Maxwell demon 实验, 量子涨落定理的推广 (Tasaki-Crooks 2000; 这里时间反演是幺正演化的反演), 甚至粒状介质中的能量耗散实验. 每一次都是同一个架构: 把"单次实验功"当随机变量, 正反两组数据比比看, $e^{\beta(W-\Delta F)}$ 永远在那里.</p>
+
+  <p>如果要挑一句话概括 Crooks 做了什么: 第二定律不是一条禁令, 而是一个比率. 时间箭头不是"只能朝前", 而是"朝前比朝后概率高 $e^{\beta\sigma}$ 倍". 宏观世界里这个比值大到离谱, 第二定律看起来像铁律; 单分子尺度这个比值是 $O(1)$, 可逆性就露出了概率性的本面. 整个涨落定理家族 —— Jarzynski、Crooks、Evans-Searles、Gallavotti-Cohen、Seifert —— 都在同一件事上汇合: 把"单轨迹概率 = $e^{-\beta H}$ 加上细致平衡"这一条压进去, 不可逆性就被完整翻译成了概率的大小.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Crooks 涨落定理 $P_F(W)/P_R(-W) = e^{\beta(W-\Delta F)}$ 是第二定律的 <em>exact</em> 微观陈述: 从初态 Boltzmann 分布与热浴细致平衡出发, 正反两条轨迹的概率比被严格钉死为 $e^{\beta(W-\Delta F)}$. 第二定律 $\langle W\rangle \ge \Delta F$ 是它的 Jensen 不等式推论, Jarzynski 等式是它对 $W$ 积分一次的推论. 违反第二定律的单次事件按 $e^{-\beta\sigma}$ 指数稀有: 单分子实验里这些事件看得到并能用来精确提取自由能 (Collin 等 2005); 宏观世界里同一个指数把它们压到测不到 —— 指数放大把"概率陈述"变成"铁律陈述". Crooks 让我们看清: 热力学第二定律, 归根结底, 是时间反演下的一个概率比.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="27-jarzynski.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="29-bh-entropy.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

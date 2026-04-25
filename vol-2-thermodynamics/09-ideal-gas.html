@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理想气体的所有性质, 都能从 $Z$ 完整推出来吗? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="08-boltzmann-factor.html">← 上一节</a>
+  <span class="chapter-title">第 9 节 / 30 · 第 2 部分 · 统计力学核心 · 第二卷·热力学与统计力学</span>
+  <a href="10-fluctuations.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>理想气体的所有性质, 都能从 $Z$ 完整推出来吗?</h1>
+  <div class="sub">—— 一个例子从头做到底</div>
+  <div class="abstract">本节以单原子理想气体为对象, 从一个粒子在盒子里的经典相空间积分出发, 构造单粒子配分函数 $Z_1 = V/\lambda_T^3$, 再通过 $Z = Z_1^N/N!$ 把 $N$ 个全同粒子的系综封装成一个数, 然后依次求出 Helmholtz 自由能、状态方程 $PV=NkT$、内能 $U=\tfrac{3}{2}NkT$、比热 $C_V=\tfrac{3}{2}Nk$, 并严格推导 Sackur-Tetrode 熵公式 $S/(Nk)=5/2+\ln(V/(N\lambda_T^3))$. 我们会解释为什么 $1/N!$ 是 Gibbs 悖论的唯一出路, 为什么 $h^3$ 会闯入一个自称经典的计算. 最后用空气在常温常压下的热 de Broglie 波长 $\lambda_T\approx 0.018\,\mathrm{nm}$ 验证经典极限.</div>
+
+  <p>上一节我们写下了 Boltzmann 因子 $e^{-\beta E}$ 和配分函数 $Z=\sum_s e^{-\beta E_s}$, 并宣称 $\ln Z$ 之中"藏着所有的热力学". 这句话听上去像口号. 本节我们选最简单的例子 — 单原子理想气体 — 把它从头做到底, 看看从 $Z$ 一步推出 $P$, $U$, $S$, $C_V$ 这条路到底是不是通的. 理想气体是每一本热力学教科书最早登场的对象; 但很少有教科书认真把经典配分函数中的 $h^3$ 和 $1/N!$ 这两个"量子尾巴"讲清楚. 我们把这件事做一遍.</p>
+
+  <h2>一、单粒子配分函数: 从相空间到 $V/\lambda_T^3$</h2>
+
+  <p>先考虑一个粒子. 它在体积为 $V$ 的容器里自由运动, 没有相互作用, 能量全部是动能 $E=p^2/(2m)$. 经典系统的态由相空间点 $(\mathbf{r},\mathbf{p})$ 标定; 在量子力学里, Heisenberg 不确定关系告诉我们相空间的一个"基本单元"大小为 $h^3$ (即 $(2\pi\hbar)^3$), 每个这样的小盒子对应一个量子态. 所以把"求和"换成"相空间积分"时, 正确的尺度因子是 $1/h^3$:</p>
+
+  <p>$$Z_1 = \frac{1}{h^3}\int_V d^3r\int d^3p\, e^{-\beta\, p^2/(2m)}.$$</p>
+
+  <p>空间积分直接给出 $V$, 因为被积函数不依赖位置. 动量积分三维分离, 每一维是 Gauss 积分:</p>
+
+  <p>$$\int_{-\infty}^{+\infty} dp_x\, e^{-\beta p_x^2/(2m)} = \sqrt{\frac{2\pi m}{\beta}}=\sqrt{2\pi m kT}.$$</p>
+
+  <p>合在一起,</p>
+
+  <p>$$\begin{equation}Z_1 = \frac{V}{h^3}(2\pi m kT)^{3/2} = \frac{V}{\lambda_T^3},\qquad \lambda_T \equiv \frac{h}{\sqrt{2\pi m kT}}.\end{equation}$$</p>
+
+  <p>这里 $\lambda_T$ 叫 <em>热 de Broglie 波长</em>. 量纲上它是一个长度: 把 $h/p$ 里的动量换成热平均动量 $\sqrt{mkT}$ 就得到它. 它的物理意义非常干净 — 单粒子配分函数 $V/\lambda_T^3$ 就是"体积被热波长的立方量出的格子数", 也就是粒子在热平衡下"可以落入的量子态数". 这个几何化的解读, 正是我们后面理解经典极限和量子简并的钥匙.</p>
+
+  <p>稍微提一句为什么动量积分要从 $-\infty$ 到 $+\infty$. 动量没有边界, 因为 Boltzmann 因子 $e^{-\beta p^2/(2m)}$ 在大 $|p|$ 处指数衰减, 把积分自然截断在 $|p|\sim\sqrt{mkT}$ 以内. 把这句话反着读, 就是 Maxwell-Boltzmann 速度分布 — 每个动量分量独立地服从高斯, 宽度由温度决定.</p>
+
+  <h2>二、$N$ 个全同粒子, 与那个多余的 $N!$</h2>
+
+  <p>现在放 $N$ 个独立粒子进去. 每个粒子有自己的配分函数 $Z_1$, 系统的总能量是 $E=\sum_i E_i$, 所以 Boltzmann 因子分离:</p>
+
+  <p>$$Z_{\text{naive}} = Z_1^N.$$</p>
+
+  <p>但这个写法是错的 — 或者更准确地说, 它对应于 $N$ 个<em>可区分</em>粒子. 在自然界里, $N$ 个氮气分子彼此没有名字; 交换其中任意两个的位置和动量, 物理状态没有变化. 在一个宏观状态上我们因此过度计数了 $N!$ 次. 正确的配分函数是</p>
+
+  <p>$$\begin{equation}Z = \frac{Z_1^N}{N!} = \frac{1}{N!}\left(\frac{V}{\lambda_T^3}\right)^N.\end{equation}$$</p>
+
+  <p>这个 $N!$ 不是一个方便的约定, 而是一个必须. 我们在第四节会把它展开成 Sackur-Tetrode 熵公式的一部分. 它叫 <em>Boltzmann 计数</em> 或 <em>正确的 Boltzmann 计数</em> (correct Boltzmann counting), 这个绕口的名字是 Gibbs 起的, 因为他最早看出来不除以 $N!$ 会导致熵不是广延量 (extensive) — 同一种气体混合时, 熵会错增一块, 这就是 <em>Gibbs 悖论</em>. 严格的量子统计 (Bose-Einstein 或 Fermi-Dirac) 在经典极限下会自动退化到 $Z_1^N/N!$, 所以 $N!$ 不是人为放进去的, 而是量子统计在宏观极限下留给我们的"遗产".</p>
+
+  <p>注意 $1/N!$ 和 $1/h^{3N}$ 都是量子力学的痕迹, 但它们进入了一个看起来完全经典的表达式. 这不是矛盾 — 是因为"经典统计力学"本身就是量子统计力学的高温极限, 而这两个因子正是取极限时遗留下来的常数. 换一句话, 一个完全不知道 $\hbar$ 的 19 世纪物理学家能写出 $PV=NkT$, 但他没法给出 $S$ 的绝对值 — 熵有一个积分常数他填不上. Sackur 和 Tetrode 在 1912 年借用了刚诞生不久的量子概念, 把这个常数填了, 这就是我们在第四节要做的事.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 从盒子到 $Z$, 再到 $P,U,S$</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>一个理想气体盒子, 旁边是从 $Z$ 一步步推出 $P,U,S,C_V$ 的流程图</dd>
+      <dt>必含元素</dt><dd>左侧: 立方体盒子, 体积标为 $V$, 内含若干小圆点代表 $N$ 个粒子; 右侧流程框, 从上到下依次为 $Z_1 = V/\lambda_T^3 \to Z = Z_1^N/N! \to F=-kT\ln Z \to \{P=-\partial F/\partial V,\ U=-\partial\ln Z/\partial\beta,\ S=-\partial F/\partial T\}$; 每个箭头旁注明关键方程</dd>
+      <dt>几何/数学精度</dt><dd>流程清晰, 每一步都能追踪到本文的编号公式; 盒子比例接近立方</dd>
+      <dt>标签与公式</dt><dd>$V$, $N$, $\lambda_T$, $F$, $PV=NkT$, $U=\tfrac{3}{2}NkT$, Sackur-Tetrode 熵</dd>
+      <dt>风格建议</dt><dd>白底, 盒子用细线勾勒, 粒子用实心圆点, 流程用框+箭头, 整体保持书稿黑白风格</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  从单粒子配分函数一路推出理想气体所有热力学性质的流程.</figcaption>
+  </figure>
+
+  <h2>三、从 $\ln Z$ 拧出状态方程、内能与比热</h2>
+
+  <p>把 $Z$ 取对数, 用 Stirling 公式 $\ln N!\approx N\ln N - N$ (对 $N\sim 10^{23}$ 这近乎严格成立):</p>
+
+  <p>$$\ln Z = N\ln\frac{V}{\lambda_T^3} - \ln N! \approx N\left[\ln\frac{V}{N\lambda_T^3}+1\right].$$</p>
+
+  <p>Helmholtz 自由能 $F=-kT\ln Z$:</p>
+
+  <p>$$F = -NkT\left[\ln\frac{V}{N\lambda_T^3}+1\right].$$</p>
+
+  <p>这里内含的依赖关系要看清: $F$ 是 $T, V, N$ 的函数; $\lambda_T$ 本身依赖 $T$, 通过 $\lambda_T\propto T^{-1/2}$. 下面做三次偏导.</p>
+
+  <p><strong>状态方程.</strong> 压强是 $P=-(\partial F/\partial V)_{T,N}$. 对 $V$ 求偏导时 $\lambda_T$ 和 $N$ 都是常数,</p>
+
+  <p>$$P = -\frac{\partial F}{\partial V} = -(-NkT)\cdot\frac{1}{V} = \frac{NkT}{V}.$$</p>
+
+  <p>这正是 Boyle 定律 $PV=NkT$. 从一个抽象的相空间积分, 我们在四步之内回到了最熟悉的那句话.</p>
+
+  <p><strong>内能.</strong> 内能用 $U=-(\partial\ln Z/\partial\beta)_{V,N}$, 其中 $\beta=1/(kT)$. 注意到 $\lambda_T\propto \beta^{1/2}$, 即 $\lambda_T^3\propto\beta^{3/2}$. 所以</p>
+
+  <p>$$\ln Z \supset -N\ln\lambda_T^3 = -\frac{3N}{2}\ln\beta+\text{与 }\beta\text{ 无关的项}.$$</p>
+
+  <p>求偏导:</p>
+
+  <p>$$U = -\frac{\partial\ln Z}{\partial\beta} = \frac{3N}{2\beta} = \frac{3}{2}NkT.$$</p>
+
+  <p>这就是能量均分定理的最朴素形式 — 三个平动自由度每个贡献 $\tfrac{1}{2}kT$. 它不是额外假设, 而是 Gauss 动量积分的一个"二次型 → $\tfrac{1}{2}kT$"的副产品.</p>
+
+  <p><strong>比热.</strong> 定容比热 $C_V=(\partial U/\partial T)_{V,N}=\tfrac{3}{2}Nk$. 定压比热则要用 enthalpy $H=U+PV=\tfrac{5}{2}NkT$, 给出 $C_P=\tfrac{5}{2}Nk$. 比热比 $\gamma=C_P/C_V=5/3$. 这是单原子气体 (氦、氖、氩) 的标志, 实验可测: 氩在室温下 $\gamma=1.667$, 和理论符合到四位有效数字.</p>
+
+  <p>到此为止, 我们已经从 $Z$ 的两行表达式 (1), (2) 推出了五个独立的结果: $P$, $U$, $C_V$, $C_P$, $\gamma$. 接下来是最难也最漂亮的一个 — 熵.</p>
+
+  <h2>四、deepdive: Sackur-Tetrode 公式, 以及 $N!$ 和 $h^3$ 到底做了什么</h2>
+
+  <p>熵从 $S=-(\partial F/\partial T)_{V,N}$ 得到. 这一步的细节很能说明问题, 我们不挥手, 一步一步来.</p>
+
+  <p>先把 $F$ 写开. 从公式 (2),</p>
+
+  <p>$$F = -NkT\ln\frac{V}{N\lambda_T^3} - NkT.$$</p>
+
+  <p>关键是 $\lambda_T$ 依赖温度. 把 $\ln\lambda_T^{-3}=\tfrac{3}{2}\ln(2\pi m kT)-3\ln h$ 代入 (只保留和 $T$ 有关的部分):</p>
+
+  <p>$$F = -NkT\left[\ln\frac{V}{N} + \frac{3}{2}\ln(2\pi m kT) - 3\ln h + 1\right].$$</p>
+
+  <p>对 $T$ 求偏导时, 被求导的对象是 $T$ 作为乘法因子, 以及 $\ln T$. 前者给出括号内的一整块 (乘以 $-Nk$), 后者给出 $-NkT\cdot\tfrac{3}{2}\cdot\tfrac{1}{T}=-\tfrac{3}{2}Nk$. 所以</p>
+
+  <p>$$S = -\frac{\partial F}{\partial T} = Nk\left[\ln\frac{V}{N\lambda_T^3} + 1\right] + \frac{3}{2}Nk.$$</p>
+
+  <p>合并两个常数项 $1+3/2=5/2$, 我们就得到了<em>Sackur-Tetrode 熵</em>:</p>
+
+  <p>$$\frac{S}{Nk} = \ln\frac{V}{N\lambda_T^3} + \frac{5}{2}.$$</p>
+
+  <p>这个公式每一块都值得展开讲.</p>
+
+  <p><strong>$\ln(V/N)$ 的出现 — Gibbs 悖论如何被化解.</strong> 注意熵表达式里出现的不是 $\ln V$ 而是 $\ln(V/N)$. 这件事完全由 $1/N!$ 决定. 假设我们没有除以 $N!$, 那么 $\ln Z = N\ln(V/\lambda_T^3)$, 熵就会写成 $S\propto N\ln V$. 现在做一个 Gedanken 实验: 取两个相同气体的盒子, 体积 $V$ 粒子数 $N$, 温度相同. 把挡板抽掉, 体积变 $2V$ 粒子数 $2N$. 没有 $1/N!$ 的版本会给出熵变化 $\Delta S = 2Nk\ln(2V)-2Nk\ln V = 2Nk\ln 2>0$. 这显然是错的 — 同种气体自由混合应该没有熵增. 这就是 Gibbs 悖论. 加上 $1/N!$ 之后, 每个盒子里的 $V$ 都被除以 $N$, 于是 $\ln(2V/2N)=\ln(V/N)$, 混合熵变化为零, 悖论消失.</p>
+
+  <p>换一个角度说: $\ln(V/N)$ 才是广延量 $S$ 应有的样子 — $V$ 和 $N$ 都翻倍, $V/N$ 不变, $S$ 正好也翻倍. 没有 $1/N!$, 熵不再是广延量; 加上 $1/N!$, 它变回广延量. 这是 $N!$ 在物理上的真实作用.</p>
+
+  <p><strong>$\lambda_T^3$ 在熵中的位置 — $h$ 从哪里进来.</strong> 再看 $\lambda_T^3 = h^3/(2\pi mkT)^{3/2}$. 把它代入上面熵的公式,</p>
+
+  <p>$$\frac{S}{Nk} = \ln\frac{V}{N}+\frac{3}{2}\ln\frac{2\pi mkT}{h^2} + \frac{5}{2}.$$</p>
+
+  <p>熵的<em>绝对值</em>显式地依赖于 Planck 常数 $h$. 这在纯经典物理里是无法回避的难题 — 相空间没有自然的"体积单元", 经典配分函数只能定义到一个加性常数. Sackur 和 Tetrode 在 1912 年注意到, 如果用 $h^3$ 作为相空间的单元 (当时量子论还很年轻, Planck 的 $h$ 刚诞生 12 年), 熵就有一个完全确定的绝对值. 他们的结果能够和实验上由 $C_P$ 积分出来的汞蒸气熵 (借助 Nernst 定理从 $T\to 0$ 开始积) 核对上, 精度高于 $1\%$. 这是一个相当惊人的事情: 蒸气的热容测量 + 第三定律, 独立地给出了一个和量子理论一致的 $h$. 我们会在第 10 节讨论涨落时再次看到 $h$ 如何出现在经典公式里.</p>
+
+  <p><strong>小结这两个量子尾巴:</strong> $1/N!$ 保证了广延性 (解决 Gibbs 悖论), $h^3$ 保证了熵有绝对值 (实现 Nernst 定理). 经典统计力学里所有会把 $\ln Z$ 当正经对象看的推导, 都在偷偷借用这两个量子礼物. 今天我们把这件事说破了.</p>
+
+  <h2>五、数字代入与经典极限的边界</h2>
+
+  <p>把空气中的氮分子代进去算一遍. 取 $m\approx 28\times 1.66\times 10^{-27}\,\mathrm{kg}=4.65\times 10^{-26}\,\mathrm{kg}$, 室温 $T=300\,\mathrm{K}$, $k=1.38\times 10^{-23}\,\mathrm{J/K}$, $h=6.63\times 10^{-34}\,\mathrm{J\cdot s}$:</p>
+
+  <p>$$\sqrt{2\pi mkT} = \sqrt{2\pi\cdot 4.65\times 10^{-26}\cdot 1.38\times 10^{-23}\cdot 300}\approx 3.7\times 10^{-23}\,\mathrm{kg\cdot m/s}.$$</p>
+
+  <p>所以</p>
+
+  <p>$$\lambda_T = \frac{h}{\sqrt{2\pi mkT}}\approx \frac{6.63\times 10^{-34}}{3.7\times 10^{-23}}\approx 1.8\times 10^{-11}\,\mathrm{m}=0.018\,\mathrm{nm}.$$</p>
+
+  <p>这比 $\mathrm{N}_2$ 的几何键长 (约 $0.11\,\mathrm{nm}$) 还小一个数量级, 比分子间距 ($\sim 3.3\,\mathrm{nm}$ 在 STP) 小得多. 我们马上能判断简并度. 标态数密度 $n=P/(kT)\approx 2.5\times 10^{25}\,\mathrm{m^{-3}}$, 故</p>
+
+  <p>$$n\lambda_T^3 \approx 2.5\times 10^{25}\cdot (1.8\times 10^{-11})^3 \approx 1.5\times 10^{-7}\ll 1.$$</p>
+
+  <p>这就是经典极限严格成立的含义: 平均每个 de Broglie 立方体里的粒子数远远少于一个. 粒子的波函数重叠可忽略, Bose/Fermi 统计差异显现不出来, $Z_1^N/N!$ 是正确的. 这也解释了为什么教室里那盒空气没人用量子统计对待 — 数量级差着 7 位.</p>
+
+  <p>再算一个内能. 一摩尔 ($N=6.02\times 10^{23}$) 单原子气体在 $T=300\,\mathrm{K}$ 下:</p>
+
+  <p>$$U = \frac{3}{2}NkT = \frac{3}{2}\cdot 6.02\times 10^{23}\cdot 1.38\times 10^{-23}\cdot 300\approx 3.7\,\mathrm{kJ}.$$</p>
+
+  <p>把 1 摩尔氦加热 1 开尔文需要 $C_V=\tfrac{3}{2}R\approx 12.5\,\mathrm{J/K}$. 这是气相比热仪能直接测的.</p>
+
+  <p><strong>量子简并会在哪里出现?</strong> 降温. $\lambda_T\propto T^{-1/2}$, 而 $n$ 如果保持不变则 $n\lambda_T^3\propto T^{-3/2}$. 要把空气的 $n\lambda_T^3$ 从 $10^{-7}$ 拉到 $\sim 1$, 需要 $T$ 降到大约 $300/10^{14/3}\sim 10^{-2}\,\mathrm{K}$. 实际空气早就凝成液体了, 所以它永远不会以气相达到简并. 但对<em>稀的</em>碱金属原子 (比如 $^{87}\mathrm{Rb}$, 实验室里可以把密度降到 $10^{14}\,\mathrm{cm^{-3}}\sim 10^{20}\,\mathrm{m^{-3}}$), 同样的条件会在 $T\sim 10^{-7}\,\mathrm{K}$ 附近达成 — 这就是 1995 年实现的 Bose-Einstein 凝聚. 本节写下的所有公式在那里都会失效. 这就是经典极限的边界.</p>
+
+  <p><strong>和多原子气体的对接.</strong> 单原子只有三个平动自由度; 双原子 ($\mathrm{N}_2, \mathrm{O}_2$) 还有两个转动自由度和一个振动自由度. 在配分函数里它们作为独立因子出现: $Z_1 = Z_{\text{平动}}\cdot Z_{\text{转动}}\cdot Z_{\text{振动}}$. 温度足够高时每个二次型自由度贡献 $\tfrac{1}{2}kT$ 的能量, 所以双原子气体室温下 $C_V=\tfrac{5}{2}Nk$ ($3$ 平动 + $2$ 转动, 振动被冻结), 低温 $C_V=\tfrac{3}{2}Nk$ (转动也被冻结). 双原子氮气的 $C_V(T)$ 实测曲线正是这几级台阶. 这些东西我们留到下一节再说.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>我们从一个粒子在盒子里的相空间积分出发, 用 $Z = Z_1^N/N!$ 把系综封装起来, 取一次对数和几次偏导, 就得到了理想气体的全部热力学 — 状态方程、内能、比热、熵. 上一节宣称的"$\ln Z$ 里藏着热力学的一切", 在这里化成了五条可检验的公式. 更重要的是, 我们看清楚了两个经典统计力学里不应该出现的量子尾巴 $1/N!$ 和 $h^3$: 前者让熵成为广延量, 化解了 Gibbs 悖论; 后者让熵取定绝对值, 兑现了 Nernst 定理. 1912 年 Sackur-Tetrode 公式的历史意义, 就是在经典世界里第一次给出了熵的绝对值. 下一节我们讨论能量涨落 — 一个宏观量背后的微观抖动到底有多大.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="08-boltzmann-factor.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="10-fluctuations.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拉格朗日密度 $\mathcal{L}$ 凭什么能描述一个场? · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a class="disabled" href="#">← 上一节</a>
+  <span class="chapter-title">第 1 节 / 30 · 第 1 部分 · QFT 的脚手架 · 第三卷·粒子物理</span>
+  <a href="02-path-integral.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>拉格朗日密度 $\mathcal{L}$ 凭什么能描述一个场?</h1>
+  <div class="sub">—— 从作用量原理开始</div>
+
+  <div class="abstract">粒子物理的任何一本教科书, 翻开第一页几乎都写着同一行字: "我们从如下拉格朗日密度 $\mathcal L$ 出发——". 可这行字背后藏着一个被跳过去的追问: 为什么一个用 $\phi$ 和 $\partial_\mu\phi$ 拼起来的标量函数, 就能替代整套动力学方程? 本节从经典力学的 $L(q,\dot q)$ 出发, 把作用量原理平移到场论, 老老实实把 Euler-Lagrange 场方程从 $\delta S = 0$ 推一遍; 再把它套在 Klein-Gordon、Dirac、Maxwell 三个模板上, 看着 $\mathcal L$ 如何像一台榨汁机自动吐出场方程. 最后我们代入可见能量尺度的实际数字, 估算一个自由玻色场的振荡频率 $\omega = \sqrt{k^2 + m^2}$, 解释"写下 $\mathcal L$"在粒子物理里意味着什么.</div>
+
+  <p>Weinberg 在《The Quantum Theory of Fields》的序言里写了一句令人难堪的话: "粒子物理这门学科, 如今大学里教的方式, 几乎总是从作用量 $S$ 或拉格朗日密度 $\mathcal L$ 开始." 难堪在哪儿? 它省掉了物理. 你面前摆着一个场 $\phi(x)$, 它在时空每一点上取一个实数值, 你想问它的动力学是怎么演化的 —— 于是老师在黑板上写下 $\mathcal L = \frac12(\partial_\mu\phi)^2 - \frac12 m^2\phi^2$, 然后说"这就是 Klein-Gordon 场". 你被要求当下相信, 这行公式就是这个场的全部内容. 可是 $\mathcal L$ 凭什么是动力学? 它既不是运动方程, 也不是守恒律, 凭什么一个看似随手拼出来的多项式就等价于整套演化规则?</p>
+
+  <p>这一节想把这件事老老实实讲透. 我们会从你大一学过的经典力学出发 —— $L(q,\dot q)$ 是什么、为什么它通过 $S = \int L\,dt$ 的极值决定了粒子轨迹 —— 然后把同一套变分机器搬到场论, 把 $q(t)$ 换成 $\phi(x^\mu)$, 把 $\int dt$ 换成 $\int d^4x$, 严格推出 Euler-Lagrange 场方程. 这条方程是场论的心脏: 只要你写下 $\mathcal L$, 它就替你把运动方程自动吐出来. 之后我们把这架机器用在三个经典例子上 —— 标量、旋量、矢量 —— 观察它怎样自动产生 Klein-Gordon 方程、Dirac 方程、Maxwell 方程.</p>
+
+  <h2>一、从 $L(q,\dot q)$ 到 $\mathcal L(\phi,\partial_\mu\phi)$</h2>
+
+  <p>先回顾经典力学. 一个自由度 $q(t)$ 的系统, 由拉格朗日量 $L(q,\dot q)$ 描述, 其中 $\dot q = dq/dt$. 从 $t_1$ 到 $t_2$ 的作用量是</p>
+
+  <p>$$ S[q] = \int_{t_1}^{t_2} L(q(t),\dot q(t))\, dt. $$</p>
+
+  <p>真实轨迹满足 Hamilton 原理: 在所有以 $q(t_1)$ 开始、$q(t_2)$ 结束的轨迹里, $S$ 取极值, 即 $\delta S = 0$. 变分一算, 得到 Euler-Lagrange 方程 $\frac{d}{dt}\frac{\partial L}{\partial\dot q} - \frac{\partial L}{\partial q} = 0$. 对一个质点 $L = \frac12 m\dot q^2 - V(q)$, 这就是 $m\ddot q = -V'(q)$ —— 牛顿第二定律.</p>
+
+  <p>场论要做的, 是把 $q$ 从单个数推广到整个时空上的函数 $\phi(x^\mu) = \phi(t,\mathbf x)$. 直接的类比里, 每一个空间点 $\mathbf x$ 的 $\phi$ 值都是一个独立的自由度, 因此场相当于无穷多个"广义坐标". 为了让理论满足洛伦兹不变性, 我们不应再区分时间导数和空间导数, 而是把两者并成 $\partial_\mu\phi$, 其中 $\mu = 0,1,2,3$. 于是拉格朗日"量"变成拉格朗日"密度"</p>
+
+  <p>$$ \mathcal L = \mathcal L(\phi, \partial_\mu\phi), $$</p>
+
+  <p>它是时空每一点上的一个标量数. 作用量由密度对整个四维时空积分给出</p>
+
+  <p>$$ S[\phi] = \int d^4x\; \mathcal L(\phi, \partial_\mu\phi). \tag{1} $$</p>
+
+  <p>这里 $d^4x = dt\, d^3x$. 把积分区域看作四维的一个"盒子" $\Omega$, 场在盒子的 3 维边界 $\partial\Omega$ 上取固定值 —— 类比经典力学里固定 $q(t_1),q(t_2)$. 物理原理仍是一句话: 真实场构型让 $S$ 取极值, 即 $\delta S = 0$. 剩下的, 就是变分运算了.</p>
+
+  <h2>二、Euler-Lagrange 场方程的严格推导</h2>
+
+  <p>这一节是全书的根, 值得一个字一个字推. 我们从 (1) 式出发, 给场做一个小变分 $\phi \to \phi + \delta\phi$, 其中 $\delta\phi$ 是一个无穷小函数, 在四维盒子边界 $\partial\Omega$ 上为零 —— 这对应经典力学里 $\delta q(t_1) = \delta q(t_2) = 0$ 的端点固定条件. 与此同时 $\partial_\mu\phi \to \partial_\mu\phi + \delta(\partial_\mu\phi) = \partial_\mu\phi + \partial_\mu(\delta\phi)$ (导数和变分可以交换, 因为 $\delta\phi$ 只改变场构型本身, 不改变坐标). 带入 (1), 作用量的一阶变化是</p>
+
+  <p>$$ \delta S = \int d^4x \left[\frac{\partial\mathcal L}{\partial\phi}\,\delta\phi + \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\partial_\mu(\delta\phi)\right]. $$</p>
+
+  <p>第二项里 $\delta\phi$ 的导数有点碍事 —— 我们希望整个被积函数是 "一团东西 $\times \delta\phi$" 的形式, 这样 $\delta\phi$ 的任意性才能推出"那团东西 = 0". 于是对第二项分部积分. 把 $\partial_\mu(\delta\phi)$ 的导数转到 $\partial\mathcal L/\partial(\partial_\mu\phi)$ 上:</p>
+
+  <p>$$ \frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\partial_\mu(\delta\phi) = \partial_\mu\!\left[\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\delta\phi\right] - \partial_\mu\!\left[\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\right]\delta\phi. $$</p>
+
+  <p>第一项是一个 $\partial_\mu(\cdot)$ 的形式, 用四维散度定理可以转化为边界 $\partial\Omega$ 上的面积分</p>
+
+  <p>$$ \int_\Omega d^4x\;\partial_\mu\!\left[\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\delta\phi\right] = \oint_{\partial\Omega} d\Sigma_\mu\;\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\,\delta\phi. $$</p>
+
+  <p>而 $\delta\phi\big|_{\partial\Omega} = 0$, 这个表面积分直接消掉. 这就是边界条件的角色 —— 没有它, 分部积分会留下一个尾巴, 整个推导就无法收尾. 把清理后的结果合并:</p>
+
+  <p>$$ \delta S = \int d^4x\;\left[\frac{\partial\mathcal L}{\partial\phi} - \partial_\mu\!\left(\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\right)\right]\delta\phi. $$</p>
+
+  <p>要求 $\delta S = 0$ 对任意满足边界条件的 $\delta\phi$ 成立. 根据变分法基本引理, 被积函数里 $[\cdots]$ 那一团必须逐点为零. 于是</p>
+
+  <p>$$ \boxed{\;\partial_\mu\!\left(\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\right) - \frac{\partial\mathcal L}{\partial\phi} = 0.\;} \tag{2} $$</p>
+
+  <p>这就是 Euler-Lagrange 场方程. 它对 Lorentz 指标 $\mu$ 求和, 是一个洛伦兹协变的偏微分方程. 整个推导里有三个关键点值得停下来看:</p>
+
+  <p>(i) <b>为什么分部积分合法?</b> 因为 $\delta\phi$ 在边界上为零. 这听起来像数学家的洁癖, 但物理上它是 "我们固定初、末态" 这句话的数学写法. 如果不给这个条件, 作用量原理就会多出一组边界项, 对应的并不是动力学方程而是边界条件的选择 —— 在带弦论、膜、开边界的问题里, 这个边界项会变成主角.</p>
+
+  <p>(ii) <b>为什么要求对任意 $\delta\phi$ 成立?</b> 这是变分法基本引理的假设. 它断言: 如果函数 $f(x)$ 满足 $\int f(x)\eta(x)\,d^4x = 0$ 对所有光滑的、在边界上为零的 $\eta$ 成立, 那么 $f(x) \equiv 0$. 要点是 $\eta$ 的任意性足够广 —— 可以让它只在一个小邻域内非零, 那里 $f$ 的符号就被它完全采样出来; 取遍所有位置, 于是 $f$ 到处为零.</p>
+
+  <p>(iii) <b>$\partial_\mu$ 和 $\partial/\partial(\partial_\mu\phi)$ 是两回事.</b> 前者是时空坐标的偏导数 (作用在函数上), 后者是把 $\mathcal L$ 当作 $\phi$ 和 $\partial_\mu\phi$ 的多元函数时, 对 $\partial_\mu\phi$ 这个"槽位"求偏导 (把 $\phi$ 和其他分量当常数). 混淆这两个是新手最常见的坑. 记得 $\partial\mathcal L/\partial(\partial_\mu\phi)$ 本身是一个四矢量场, 然后外面再用 $\partial_\mu$ 求发散, 两个指标 $\mu$ 缩并, 得到一个标量.</p>
+
+  <figure class="diagram-placeholder">
+    <div class="placeholder-box">
+      <span class="tag">图占位符</span>
+      <h4>图 1 · 拉格朗日密度 → 作用量 → Euler-Lagrange 场方程流程图</h4>
+      <p>中心主图: 一张从 $\mathcal L(\phi, \partial_\mu\phi)$ 到场方程的流程框图.</p>
+      <dl class="tikz-req">
+        <dt>中心方框</dt><dd>$\mathcal L(\phi, \partial_\mu\phi)$, 淡橙色填充</dd>
+        <dt>上方</dt><dd>"作用量 $S = \int d^4x\,\mathcal L$" 框, 向下箭头标 "$\delta S = 0$"</dd>
+        <dt>下方</dt><dd>"变分 + 分部积分" 环节, 再向下指向 "Euler-Lagrange 场方程" 方框, 公式 $\partial_\mu(\partial\mathcal L/\partial(\partial_\mu\phi)) - \partial\mathcal L/\partial\phi = 0$</dd>
+        <dt>右侧三栏</dt><dd>并列三个例子. 第一栏 Klein-Gordon: $\mathcal L_{\rm KG} = \frac12(\partial_\mu\phi)^2 - \frac12 m^2\phi^2 \Rightarrow (\Box+m^2)\phi = 0$. 第二栏 Dirac: $\mathcal L_{\rm Dirac} = \bar\psi(i\gamma^\mu\partial_\mu-m)\psi \Rightarrow (i\gamma^\mu\partial_\mu-m)\psi=0$. 第三栏 Maxwell: $\mathcal L_{\rm Maxwell} = -\frac14 F_{\mu\nu}F^{\mu\nu} \Rightarrow \partial_\mu F^{\mu\nu} = 0$.</dd>
+        <dt>几何</dt><dd>框图对齐、箭头清晰、三栏宽度一致</dd>
+        <dt>风格</dt><dd>白底, 中心方框淡橙色, 其他方框灰线边框, 字号统一</dd>
+      </dl>
+    </div>
+    <figcaption>图 1  从 $\mathcal L$ 到场方程的流水线: 一个拉氏密度, 经变分机器自动出场方程.</figcaption>
+  </figure>
+
+  <h2>三、三个模板: 标量、旋量、矢量</h2>
+
+  <p>有了 (2) 式, 任何一个场论就退化成一件事: 写下 $\mathcal L$, 套机器. 来看三个经典例子.</p>
+
+  <p><b>(a) Klein-Gordon (自由实标量).</b> 最简单的洛伦兹不变 $\mathcal L$ 是</p>
+
+  <p>$$ \mathcal L_{\rm KG} = \frac12(\partial_\mu\phi)(\partial^\mu\phi) - \frac12 m^2\phi^2. $$</p>
+
+  <p>它是 $\phi$ 和 $\partial_\mu\phi$ 的多项式, 洛伦兹标量 (两个指标缩并). 把它扔进 (2) 式: $\partial\mathcal L/\partial\phi = -m^2\phi$; $\partial\mathcal L/\partial(\partial_\mu\phi) = \partial^\mu\phi$. 于是</p>
+
+  <p>$$ \partial_\mu\partial^\mu\phi - (-m^2\phi) = 0 \quad\Rightarrow\quad (\Box + m^2)\phi = 0, $$</p>
+
+  <p>这就是 Klein-Gordon 方程, $\Box = \partial_\mu\partial^\mu$ 是达朗贝算符. 它是相对论版本的 Schrödinger 方程: 当 $m = 0$ 时退化为无质量波动方程 (光子在 Maxwell 方程中的一个分量), 而 $m \ne 0$ 时解的色散关系是 $\omega^2 = \mathbf k^2 + m^2$, 对应自由粒子的能量-动量关系 $E^2 = p^2 + m^2$. 整个物理直接写在了 $\mathcal L$ 里: 动能项 $\frac12(\partial\phi)^2$ 管"能自由传播", 质量项 $-\frac12 m^2\phi^2$ 管"被拉回原点" —— 后者让一个自由场像一个"弹簧"一样振荡.</p>
+
+  <p><b>(b) 自由 Dirac (旋量).</b> $\mathcal L$ 的变量是 $\psi$ 和 $\bar\psi = \psi^\dagger\gamma^0$, 后者当独立变量:</p>
+
+  <p>$$ \mathcal L_{\rm Dirac} = \bar\psi(i\gamma^\mu\partial_\mu - m)\psi. $$</p>
+
+  <p>对 $\bar\psi$ 作变分 (把它看作独立的场), $\partial\mathcal L/\partial\bar\psi = (i\gamma^\mu\partial_\mu - m)\psi$, 没有 $\partial_\mu\bar\psi$ 的导数, 所以 (2) 式的第一项消失, 直接</p>
+
+  <p>$$ (i\gamma^\mu\partial_\mu - m)\psi = 0, $$</p>
+
+  <p>Dirac 方程. 对 $\psi$ 作变分给出它的伴随方程. 注意 Dirac 拉氏量是 $\psi$ 的一次线性, 看上去"太简单"了 —— 这正是它作为旋量场的本质: 一阶导数足够, 因为旋量有内禀自由度 (自旋 1/2). 而标量场只有一个数, 必须用二阶 $(\Box + m^2)$ 才能写出一个有物理内容的运动方程.</p>
+
+  <p><b>(c) Maxwell (矢量).</b> 自由电磁场由四矢量势 $A_\mu$ 描述, 场强 $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$, 拉氏密度</p>
+
+  <p>$$ \mathcal L_{\rm Maxwell} = -\frac14 F_{\mu\nu}F^{\mu\nu}. $$</p>
+
+  <p>把它展开是 $-\frac14(\partial_\mu A_\nu - \partial_\nu A_\mu)(\partial^\mu A^\nu - \partial^\nu A^\mu)$. 代入 (2) 式 (变量是 $A_\nu$): $\partial\mathcal L/\partial A_\nu = 0$, $\partial\mathcal L/\partial(\partial_\mu A_\nu) = -F^{\mu\nu}$. 于是 $\partial_\mu F^{\mu\nu} = 0$, 即 Maxwell 方程的"源"侧 (高斯定律 + Ampère 定律). 另一侧 $\partial_{[\alpha}F_{\mu\nu]} = 0$ 是 $F$ 定义的 Bianchi 恒等式, 自动满足. 一句"$-\frac14 F^2$"里, 整个电磁学的动力学就藏在里面了. 这也是为什么 Feynman 说: 整个 QED 的"物理" 只有一行 —— $\mathcal L = \bar\psi(i\gamma^\mu D_\mu - m)\psi - \frac14 F^{\mu\nu}F_{\mu\nu}$, 其中 $D_\mu = \partial_\mu + ieA_\mu$. 这行字里既有电子、又有光子、又有两者的全部相互作用.</p>
+
+  <h2>四、数字代入、极限检验、历史线索</h2>
+
+  <p><b>数字 1: 自由玻色场的振荡频率.</b> 把 Klein-Gordon 场 Fourier 分解, 每个动量模 $\mathbf k$ 是一个独立谐振子, 角频率 $\omega = \sqrt{\mathbf k^2 + m^2}$ (自然单位 $\hbar = c = 1$). 取一个 Higgs 玻色子, 静质量 $m_H \approx 125\,\text{GeV}$. 一个静止 Higgs 对应 $\mathbf k = 0$, 于是 $\omega = m_H \approx 125\,\text{GeV} = 1.25\times 10^{11}\,\text{eV}$, 恢复 $\hbar$ 得到周期 $T = 2\pi\hbar/\omega \approx 2\pi\cdot (6.6\times 10^{-16}\,\text{eV·s})/(1.25\times 10^{11}\,\text{eV}) \approx 3\times 10^{-26}\,\text{s}$. 一个静止 Higgs 场的"振荡"快到几乎看不见 —— 这正是它有质量的代价: 质量项 $-\frac12 m^2\phi^2$ 在 $\mathcal L$ 里提供了一个把场拉回零点的"弹簧劲度系数" $m^2$, 质量越大, 振得越快. 相比之下, 光子 $m = 0$, 于是 $\omega = |\mathbf k|$, 任意低频 (长波) 都能存在 —— 因此有可见光、有无线电.</p>
+
+  <p><b>数字 2: "质量等于 Compton 波长倒数" 的尺度检验.</b> 一个质量 $m$ 的玻色场在空间里的特征尺度是 Compton 波长 $\lambda_C = \hbar/(mc)$. 对 Higgs, $\lambda_C \approx 1.6\times 10^{-18}\,\text{m}$. 也就是说, 一个 Higgs 凝聚态的"弹簧"紧到相邻 $10^{-18}\,\text{m}$ 就失相干 —— 远小于质子半径 ($10^{-15}\,\text{m}$). 这解释了为什么 Higgs 场不能是"长程力": 质量项让它只在 Compton 波长范围内相干. 反之光子 $m = 0$, $\lambda_C \to \infty$, 电磁力是长程的. $\mathcal L$ 里那个 "$-\frac12 m^2\phi^2$" 三个字符, 就把力程这件事说清楚了.</p>
+
+  <p><b>极限检验: $m \to 0$.</b> Klein-Gordon 方程退化为无质量波动方程 $\Box\phi = 0$, 解是平面波 $e^{-i(\omega t - \mathbf k\cdot\mathbf x)}$, 满足 $\omega = |\mathbf k|$ —— 光速传播的无质量标量. Dirac 方程 $m\to 0$ 退化为 Weyl 方程, 左右手旋量解耦, 每一支都以光速传播. Maxwell 方程无质量项 (定义光子就是无质量): 对应 $U(1)$ 规范对称, 后面几节会仔细看. 三个模板在 $m\to 0$ 极限下都给出"以光速传播的无质量粒子", 这是洛伦兹对称性对无质量场的铁律: 它们必然是规范场或对称破缺的 Goldstone 玻色子. 另一个极限: $m \to \infty$, $\omega \to \infty$, Compton 波长 $\to 0$. 这种场在任何有限能量下都冻结, 退出动力学 —— 这是有效场论里"积掉重场"的物理基础.</p>
+
+  <p><b>历史线索.</b> 拉格朗日 1788 年出版《Mécanique analytique》, 把牛顿力学重写成一套用 $L(q,\dot q)$ 和变分原理表述的形式 —— 他自豪地写道: "读者不会在这本书里看见任何图." 这是人类第一次意识到, 物理的动力学可以被压缩到一个单独的标量函数里. 四十多年后 Hamilton (1834) 在光学类比的启发下, 把作用量原理从力学推到光学再推回力学, 得到他名字命名的正则方程. 但 Hamilton 和 Lagrange 两人都只面对有限个自由度的系统. 把它推广到场论 —— 即无穷多自由度、而且要求洛伦兹协变 —— 要等到 1940 年代末, Schwinger 1948、Tomonaga 1948、Feynman 1949 各自用不同方法搭起了相对论量子场论的框架. Schwinger 的路径最贴近 Lagrange 原始精神: 他写下一个带拉氏密度的作用量, 施加量子变分原理 $\delta\langle\phi_2|\phi_1\rangle = i\langle\phi_2|\delta S|\phi_1\rangle$, 把所有动力学一锅端. 这套东西后来被改造成现代量子场论的核心语言. 1965 年 Feynman、Schwinger、Tomonaga 共享诺贝尔奖 —— 表彰他们把 Lagrange 1788 年的变分思想, 推广到整个相对论量子场论. 这就是为什么今天任何一本粒子物理教材都以 $\mathcal L$ 开篇: 它不是一种"风格", 它是这门学科的脚手架.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>一个 $\mathcal L(\phi,\partial_\mu\phi)$ 之所以能描述一个场, 是因为作用量原理 $\delta S = 0$ 通过 Euler-Lagrange 场方程 (2), 把 $\mathcal L$ 的形式自动翻译成场的运动方程. 这是一套榨汁机: 标量多项式 $\frac12(\partial\phi)^2 - \frac12 m^2\phi^2$ 给出 Klein-Gordon; 旋量双线性 $\bar\psi(i\gamma^\mu\partial_\mu-m)\psi$ 给出 Dirac; 场强二次式 $-\frac14 F^2$ 给出 Maxwell. 往后的章节, 路径积分会告诉我们为什么是 $\delta S = 0$ 而不是别的原理 (那是量子版本的稳定相位), Noether 定理会告诉我们 $\mathcal L$ 的对称性怎么直接给出守恒量, 规范原理会告诉我们 "$\partial_\mu \to D_\mu$" 这一步替换怎么把相互作用自动塞进 $\mathcal L$. 全部粒子物理, 就是对 $\mathcal L$ 的一次次添项与一次次对称性分析. 而这一切的起点, 就是这节写下的 Euler-Lagrange 场方程.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a class="disabled" href="#">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="02-path-integral.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三代粒子谱 — 为什么是三代? · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="10-cpt.html">← 上一节</a>
+  <span class="chapter-title">第 11 节 / 30 · 第 3 部分 · 标准模型与具体粒子 · 第三卷·粒子物理</span>
+  <a href="12-higgs.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>三代粒子谱 — 为什么是三代?</h1>
+  <div class="sub">—— 中微子振荡告诉我们的一件事</div>
+
+  <div class="abstract">标准模型里物质有三份一模一样的拷贝: $(e,\nu_e,u,d)$, $(\mu,\nu_\mu,c,s)$, $(\tau,\nu_\tau,t,b)$. 同样的电荷、同样的规范量子数, 只有质量从 $0.5$ MeV 跳到 $173$ GeV, 跨 12 个数量级. 为什么是三? 这一节先把这张谱表写清楚, 看 LEP 在 1989-2000 年是怎样用 $Z$ 的宽度测出"轻中微子有且只有 $2.984\pm0.008$ 种"的; 然后进入本节的 cliché: 反常消除. 在 $SU(3)_C\times SU(2)_L\times U(1)_Y$ 里, 单独一个费米子对规范对称有潜在的"量子破坏" (anomaly), 只有一整代的 15 个手性费米子按 Gell-Mann-Glashow-Bouchiat-Iliopoulos-Meyer 关系精确组合起来, 总 anomaly 才消掉. 我们把六种可能的 anomaly diagram 一条条算, 看看 "一代是一个不可分割的包" 这句话凭什么成立. 最后回到 Kobayashi-Maskawa 1973: 他们预言第三代, 只为了给 CP 破缺留一个 phase —— 这是本章最精巧的故事.</div>
+
+  <p>翻开任何一本粒子物理教材, 到"标准模型粒子谱"那页, 你会看到一张三列的表. 第一列 $(e, \nu_e, u, d)$, 这是构成你我和这颗行星的全部物质: 电子绕原子核, 上下夸克拼成质子中子. 第二列 $(\mu, \nu_\mu, c, s)$, 第三列 $(\tau, \nu_\tau, t, b)$ —— 同样的电荷, 同样的自旋, 同样的规范量子数, 只是更重. $\mu$ 是电子的 207 倍, $\tau$ 是 3477 倍; $c$ 夸克是 $u$ 的 650 倍, $t$ 夸克更是 $u$ 的 $8\times10^4$ 倍. 量子数一模一样, 质量却不一样 —— 这看上去像是上帝多做了两遍作业, 而且每遍都把笔压得更重.</p>
+
+  <p>问题摆在这儿: 为什么是三代? 不是一代、不是四代, 而且谁规定"代"必须完整 —— 每代里都恰好有两种轻子 (一带电一中性) 和两种夸克 (一上型一下型)? 这一节想严肃地回答这些问题. 我们会从实验上最干净的一个约束开始 —— LEP 在 Z 极点上测出的宽度, 告诉我们"活跃的轻中微子"的数目是 $N_\nu = 2.984 \pm 0.008$. 然后我们深入反常消除 (anomaly cancellation): 这是一代费米子内容的真正"胶水", 一旦 anomaly 不抵消, 整套规范理论的量子一致性就会崩. 最后我们看 Kobayashi-Maskawa 1973 那个近乎神话般的预言: 为了在夸克部门里放一个 CP 破缺相位, 他们需要至少三代 —— 那时候 $\tau, c, b, t$ 还一个都没发现.</p>
+
+  <h2>一、谱表: 三列十二种费米子</h2>
+
+  <p>先把这张表写到黑板上. 三代费米子, 每代四种 (一个带电轻子 + 一个中微子 + 一个上型夸克 + 一个下型夸克), 每种夸克还额外多三种颜色. 所以实际上每代有 $2+2\times3 = 8$ 种 Dirac 场, 但用手性分解 (左手、右手) 来数, 单代共 $15$ 个 Weyl 自由度 (右手中微子按标准模型原始版本不算, 先搁置). 这 $15$ 正是下面要算 anomaly 的那 15.</p>
+
+  <p>用一句话概括三代的经验事实:</p>
+
+  <p>$$ \text{代 1}: \{e^-,\nu_e,u,d\};\quad \text{代 2}:\{\mu^-,\nu_\mu,c,s\};\quad \text{代 3}:\{\tau^-,\nu_\tau,t,b\}. $$</p>
+
+  <p>带电轻子质量 (PDG 2024 精度): $m_e = 0.5110$ MeV, $m_\mu = 105.66$ MeV, $m_\tau = 1776.9$ MeV. 比例精确到三位: $m_e : m_\mu : m_\tau \approx 1 : 206.8 : 3477$. 这是一个让人难堪的数字 —— 两个比率之间不满足任何简单的几何级数 ($3477/207 \approx 16.8$, $207/1 = 207$), 也不接近任何对称群的表示之比. 无量纲, 无解释. 夸克更糟: $m_u \sim 2.2$ MeV, $m_c \sim 1.27$ GeV, $m_t \sim 173$ GeV (跑动到 $\overline{\rm MS}$ 方案的典型能标); $m_d \sim 4.7$ MeV, $m_s \sim 95$ MeV, $m_b \sim 4.18$ GeV. 整个三代质量谱从中微子的约 $0.1$ eV 跨到 $t$ 的 $173$ GeV $= 1.73\times10^{11}$ eV, 是 $10^{12}$ 倍 —— 十二个数量级. 标准模型不预言任何一个质量, 它们全是 Yukawa 耦合的自由输入. 这是 SM 作为一个理论最不体面的部分.</p>
+
+  <p>然而三代的"份数" $N_g = 3$ 却不是完全自由的. 有两件事强烈限制它. 第一件是实验层面的: 下面要讲的 LEP $Z$ 宽度测量. 第二件是理论层面的: anomaly cancellation —— 这个限制不动 $N_g$ 本身 (它对每一代都自洽), 但它规定了"一代里面必须有什么"—— 下面第二节会严格地展开.</p>
+
+  <h2>二、反常消除: 为什么"一代"是不可分割的包</h2>
+
+  <p>这是本节 deepdive 的核心, 值得一行一行走. 所谓 anomaly, 中文叫"反常", 是一个经典对称在量子化之后不再成立的现象. 具体到规范理论: 一个经典上规范不变的理论, 量子化以后可能出现 $\partial_\mu J^\mu \ne 0$ 形式的破坏, 其中 $J^\mu$ 是与规范对称相关的流. 如果这种破坏发生, 整套规范理论的重整化就会崩溃 —— 计数起来 Ward 恒等式失效, 纵向极化模式不解耦, 幺正性守不住. 因此对任何一个可观测的规范理论, 所有与规范流相关的 anomaly 必须精确地为零.</p>
+
+  <p>Anomaly 的代数结构. 对于手性费米子, 三角 Feynman 图 (三个规范玻色子外腿, 内部一圈费米子) 的发散部分给出一个与费米子表示有关的"反常系数". 对两个轴/矢量流 + 一个矢量流的三角图, 反常正比于</p>
+
+  <p>$$ \mathcal A^{abc} = \text{Tr}\big[T^a\{T^b, T^c\}\big], \tag{1} $$</p>
+
+  <p>其中 $T^a$ 是费米子所携带的规范对称生成元 (Abel 群退化为实数, 即 $U(1)$ 荷). 求迹是在所有手性费米子上取, 左手取正号、右手取负号. 如果 $\mathcal A^{abc}$ 对所有生成元指标组合都为零, 该理论就"无 anomaly". 在 SM 规范群 $SU(3)_C \times SU(2)_L \times U(1)_Y$ 下, 需要检查的独立组合有六种:</p>
+
+  <p>(A) $SU(3)^3$; (B) $SU(2)^3$; (C) $U(1)_Y^3$; (D) $SU(3)^2 \cdot U(1)_Y$; (E) $SU(2)^2 \cdot U(1)_Y$; (F) gravitational, 即 $U(1)_Y \cdot (\text{引力})^2$. 我们一条条看.</p>
+
+  <p><b>(A) $SU(3)^3$.</b> 只有夸克带色. 左手夸克 $q_L = (u_L, d_L)$ 在 $SU(3)$ 的 $\mathbf 3$ 表示, 右手 $u_R, d_R$ 也在 $\mathbf 3$. 左手减右手: $\mathbf 3 - \mathbf 3 - \mathbf 3 = -\mathbf 3$ —— 不对, 这里要按 Weyl 写. SM 里约定所有场都写成左手旋量, 于是 $u_R$ 写成 $u_R^c$ (左手的反夸克), 在 $\mathbf{\bar 3}$. 每代左手夸克是 $q_L (\mathbf 3) + u_R^c (\mathbf{\bar 3}) + d_R^c (\mathbf{\bar 3})$, 色表示内容是 $\mathbf 3 + \mathbf{\bar 3} + \mathbf{\bar 3}$. $SU(3)$ 的 $d^{abc}$ 对称张量在 $\mathbf 3$ 和 $\mathbf{\bar 3}$ 上反号, 于是单独 $\mathbf 3$ 或 $\mathbf{\bar 3}$ 都会给出非零贡献; 但 $\mathbf 3 + \mathbf{\bar 3} + \mathbf{\bar 3}$ 加起来: $1 - 1 - 1 = -1$, 非零! 这看起来不妙. 但注意 $q_L$ 是 $SU(2)$ 的 $\mathbf 2$, 含 $u_L$ 和 $d_L$, 也就是说 $q_L (\mathbf 3, \mathbf 2)$ 实际在色上是 $2\times \mathbf 3 = \mathbf 3 + \mathbf 3$. 重新数: 色贡献是 $(\mathbf 3 + \mathbf 3) + \mathbf{\bar 3} + \mathbf{\bar 3} = 2\mathbf 3 + 2\mathbf{\bar 3}$, 正好成对出现, 总 $SU(3)^3$ anomaly $= 2 - 2 = 0$. 这不算奇迹, 其实只反映了一个事实: SM 里每代夸克内容是 $SU(3)$ 上"矢量型的" (vectorlike), 左右两手在色上同构. 所以 $SU(3)^3$ 自动为零.</p>
+
+  <p><b>(B) $SU(2)^3$.</b> $SU(2)$ 的 $\mathbf 2$ 表示是"拟实" (pseudo-real), Witten 证明了对任何只含 $SU(2)$ 的三角 anomaly, 结果自动为零. 严格讲, $\mathbf 2$ 表示的 $d^{abc}$ 等于零 (唯一非平庸的是 $f^{abc}$ 反对称结构). 所以 $SU(2)^3$ 任何表示内容都不会产生 anomaly. 跳过.</p>
+
+  <p><b>(C) $U(1)_Y^3$.</b> 这是最有代表性的一条. 反常系数是</p>
+
+  <p>$$ \mathcal A_{Y^3} = \sum_{\text{left Weyl}} Y_f^3 - \sum_{\text{right Weyl}} Y_f^3 = \sum_{\text{all, written as left}} Y_f^3. \tag{2} $$</p>
+
+  <p>SM 每代的超荷分配 (约定 $Q = T_3 + Y$): 左手轻子双重态 $\ell_L = (\nu, e)_L$ 取 $Y = -1/2$; 右手电子 $e_R$ 取 $Y = -1$; 左手夸克 $q_L = (u,d)_L$ 取 $Y = +1/6$; 右手 $u_R$ 取 $Y = +2/3$; 右手 $d_R$ 取 $Y = -1/3$. 把右手写成左手 $c$ 态时超荷反号. 每代的 $Y^3$ 求和 (注意 $\ell_L$ 有 2 个 SU(2) 分量, $q_L$ 有 $2\times3 = 6$ 个色+SU(2) 分量, $u_R, d_R, e_R$ 作为左手 $c$ 态, 分别带 $3, 3, 1$ 个内部自由度):</p>
+
+  <p>$$ \mathcal A_{Y^3} = 2\times(-\tfrac12)^3 + 6\times(\tfrac16)^3 - 3\times(\tfrac23)^3 - 3\times(-\tfrac13)^3 - 1\times(-1)^3. $$</p>
+
+  <p>逐项: $2\times(-1/8) = -1/4$; $6\times(1/216) = 1/36$; $-3\times(8/27) = -8/9$; $-3\times(-1/27) = 1/9$; $-1\times(-1) = 1$. 通分到 36: $-9/36 + 1/36 - 32/36 + 4/36 + 36/36 = 0/36 = 0$. 严丝合缝地消掉.</p>
+
+  <p>这个零不是巧合. 它要求 <b>每一代里轻子和夸克的超荷必须按恰好这组比例</b>组合 —— 少了轻子, 或者把夸克的色数从 3 改成 2, 等式立刻不为零. 换句话说: 夸克带 3 色 + 每代有 1 个轻子双重态 + 夸克和轻子超荷按 $1/6, 2/3, -1/3, -1/2, -1$ 分配 —— 这些东西在 anomaly 消除的约束下必须一起出现. 这就是为什么"一代"是一个不可分割的包. 你不能只造一个夸克, 或者只造一个轻子; 你必须一次性凑齐整张表.</p>
+
+  <p><b>(D) $SU(3)^2 U(1)_Y$.</b> 只有色粒子 (夸克) 贡献. 系数正比于 $\sum_\text{quarks, left} Y_f \cdot \text{Tr}(T^aT^b) = (\delta^{ab}/2)\sum_\text{quarks} Y_f$. 每代左手夸克超荷之和: $q_L$ 有 2 个 SU(2) 分量, 每个 $Y = 1/6$; 共 $2\times 1/6 = 1/3$. 右手: $u_R$ 给 $2/3$, $d_R$ 给 $-1/3$; 总共 $2/3 - 1/3 = 1/3$. 左手减右手 = $1/3 - 1/3 = 0$. 消掉.</p>
+
+  <p><b>(E) $SU(2)^2 U(1)_Y$.</b> 只有 $SU(2)$ doublet 贡献 (右手场都是 $SU(2)$ 单重). 每代: 左手轻子 doublet $\ell_L$ 超荷 $-1/2$, 共 1 个 doublet; 左手夸克 doublet $q_L$ 超荷 $1/6$, 共 3 色 $= 3$ 个 doublet. 系数 $\propto \sum Y = 1\times(-1/2) + 3\times(1/6) = -1/2 + 1/2 = 0$. 消掉.</p>
+
+  <p><b>(F) 引力反常 $U(1)_Y\times (\text{graviton})^2$.</b> 正比于所有左手 Weyl 费米子的 $Y$ 之和. 每代: $2\times(-1/2) + 6\times(1/6) + 3\times(-2/3) + 3\times(1/3) + 1\times 1 = -1 + 1 - 2 + 1 + 1 = 0$. 也消掉.</p>
+
+  <p>六种可能反常, 每代都精确消除. 没有一个 SM 代是"残缺的". 这就是 Bouchiat-Iliopoulos-Meyer (1972) 发现的一个令人震惊的巧合 —— 但现在我们知道这不是巧合, 它是 SO(10) 或 SU(5) 之类大统一群分解的后果 (将在本卷后面的 GUT 一节看到: SU(5) 的 $\mathbf{\bar 5}+\mathbf{10}$ 正好装下一代 15 个手性费米子, 而 anomaly 消除在 GUT 层级是自动的).</p>
+
+  <figure class="diagram-placeholder">
+    <div class="placeholder-box">
+      <span class="tag">图占位符</span>
+      <h4>图 1 · 三代标准模型粒子谱表</h4>
+      <p>中心主图: 三列 × 四行的粒子谱表, 每格标注质量、电荷、自旋.</p>
+      <dl class="tikz-req">
+        <dt>表头</dt><dd>三列: "代 1", "代 2", "代 3"; 四行按轻子 (带电 / 中性) + 夸克 (上型 / 下型).</dd>
+        <dt>第一行</dt><dd>$e^-$ $(0.511$ MeV$)$, $\mu^-$ $(106$ MeV$)$, $\tau^-$ $(1.78$ GeV$)$; 电荷 $-1$, 自旋 $1/2$.</dd>
+        <dt>第二行</dt><dd>$\nu_e$, $\nu_\mu$, $\nu_\tau$; 质量 $< 1$ eV (有限但难测); 电荷 $0$.</dd>
+        <dt>第三行</dt><dd>$u$ $(2.2$ MeV$)$, $c$ $(1.27$ GeV$)$, $t$ $(173$ GeV$)$; 电荷 $+2/3$.</dd>
+        <dt>第四行</dt><dd>$d$ $(4.7$ MeV$)$, $s$ $(95$ MeV$)$, $b$ $(4.2$ GeV$)$; 电荷 $-1/3$.</dd>
+        <dt>底部说明</dt><dd>右下角注 "$N_\nu = 2.984$ (LEP Z-width)"; 另注 "CKM + PMNS: 三代间混合与 CP 相位".</dd>
+        <dt>风格</dt><dd>白底, 表格浅灰线, 带电轻子行淡红, 夸克行淡黄, 质量数字粗体.</dd>
+      </dl>
+    </div>
+    <figcaption>图 1  标准模型三代费米子谱表: 量子数全同, 质量跨 12 个数量级.</figcaption>
+  </figure>
+
+  <h2>三、LEP 的 Z 宽度: 用 0.2% 精度说"活跃中微子只有三种"</h2>
+
+  <p>上一节说"anomaly 消除规定每代内部结构", 但并不直接限制代数 $N_g$ 本身 —— 一代、三代、十代在 anomaly 层面都自洽. 那是什么把 $N_g$ 钉在 3? 实验.</p>
+
+  <p>最干净的实验来自 LEP (Large Electron-Positron collider), CERN, 1989-2000. 它对撞 $e^+e^-$ 于 $\sqrt s \approx m_Z \approx 91.2$ GeV, 共振产生 Z 玻色子. Z 会衰变到一切动量允许的轻费米子对. 给定的 Z 全宽度 $\Gamma_Z$ 是所有衰变通道宽度之和</p>
+
+  <p>$$ \Gamma_Z = \Gamma_{\rm had} + \Gamma_{\ell\ell} \cdot 3 + \Gamma_{\rm inv}, $$</p>
+
+  <p>其中 $\Gamma_{\rm had}$ 是衰变到 $q\bar q$ 的宽度 (观察得到: 大多数末态), $\Gamma_{\ell\ell}$ 是单种带电轻子对 $(e^+e^-, \mu^+\mu^-, \tau^+\tau^-)$ 的宽度 (乘 3 因为三代), $\Gamma_{\rm inv}$ 是"看不见"的宽度 —— 即所有产物都是中微子 $\nu\bar\nu$. 每种活跃轻中微子给 $\Gamma_{\rm inv}$ 贡献一份. 标准模型单种中微子的 Z 衰变宽度理论值 $\Gamma_\nu^{\rm SM} \approx 166.9$ MeV.</p>
+
+  <p>LEP 实验上的策略: 测 $\Gamma_Z$ 整体 (从共振峰宽度), 测 $\Gamma_{\rm had}$ 和 $\Gamma_{\ell\ell}$ (从看得见的末态截面), 用 $\Gamma_{\rm inv} = \Gamma_Z - \Gamma_{\rm had} - 3\Gamma_{\ell\ell}$ 反推 "不可见宽度". 除以 $\Gamma_\nu^{\rm SM}$ 得到活跃轻中微子数目:</p>
+
+  <p>$$ N_\nu = \frac{\Gamma_{\rm inv}}{\Gamma_\nu^{\rm SM}} = 2.984 \pm 0.008. \tag{3} $$</p>
+
+  <p>误差 $0.008 \approx 0.3\%$, 是累积 17 百万次 Z 事件之后达到的精度 (ALEPH + DELPHI + L3 + OPAL 四个探测器合并). 这个数字的意义非同小可: 它排除了第四代 Dirac 中微子, 只要该中微子质量低于 $m_Z/2 \approx 45.6$ GeV. 如果世界上还有第四代, 它的中微子必须重过 45 GeV —— 这把直接 LEP bound 说到底.</p>
+
+  <p><b>极限检验: 重中微子能躲过去吗?</b> $N_\nu = 2.984$ 只排除 $m_\nu < m_Z/2$. 如果第四代中微子 $\nu_4$ 有个大质量 $> 45$ GeV (比如 $100$ GeV), 它就不会出现在 Z 衰变里, LEP 看不见. 但这样的 $\nu_4$ 会影响其他精测量: Higgs 到 $\gamma\gamma$ 的有效耦合、电弱精确拟合 ($S, T$ 参数)、Z 的其他末态干涉. 2012 年之后的 Higgs 数据排除了第四代带标准 Yukawa 的完整结构 (因为 $t'$ 夸克会把 $gg\to h$ 的产生率增强到 $\sim 9$ 倍, 与观察不符). 如果第四代存在, 它必须是一种非标准的耦合 —— 基本上就是"不存在"了. 这里我们看见一个物理现象的典型 robustness: 三代这个数字, 来自独立的多路证据相互钉死.</p>
+
+  <h2>四、Kobayashi-Maskawa, CKM, PMNS, 与代数的前奏</h2>
+
+  <p>现在我们来讲三代的一个更深的根 —— CP 破缺. 1964 年 Cronin 和 Fitch 在中性 K 介子的衰变里发现了 CP 对称性破缺: $K_L \to \pi\pi$ 有个小小 $\sim 2\times10^{-3}$ 的分支比, 尽管 CP 要求这衰变禁戒. CP 破缺震惊了物理学界, 因为它说明宇宙在某种微观层面上确实分"左右手". 问题是: 哪种机制产生这个破缺?</p>
+
+  <p><b>历史线索: Kobayashi-Maskawa 1973.</b> 小林诚 (Makoto Kobayashi) 和益川敏英 (Toshihide Maskawa) 两位当时都是名古屋大学的年轻研究者, 1973 年在 <i>Progress of Theoretical Physics</i> 上发表了一篇只有五页的论文, 标题叫 "CP-Violation in the Renormalizable Theory of Weak Interaction". 文章里他们注意到: 如果夸克只有两代 ($u, d, c, s$), 则夸克混合矩阵 —— 即把夸克质量本征态转换到弱作用本征态的 $2\times2$ 酉矩阵 —— 只包含一个 Cabibbo 角 $\theta_C$, 没有可观测的 CP 相位 (任何相位都能被重新吸收到夸克场的 field redefinition 里). 但如果有三代, $3\times3$ 的酉矩阵参数化需要 3 个混合角 + 1 个相位 —— 那一个相位正是 CP 破缺的源头. Kobayashi-Maskawa 因此预言: <b>要解释 CP 破缺, 自然界必须至少有三代夸克</b>.</p>
+
+  <p>他们写下这篇文章时, 第二代都还不完整: $c$ 夸克 (charm) 1974 年才在 $J/\psi$ 里发现, 当时还没影子; $\tau$ 轻子 1975 年才由 Perl 发现; $b$ 夸克 1977 年 (Lederman 在 Fermilab 发现 $\Upsilon$); $t$ 夸克足足等到 1995 年. 也就是说, 他们是从一个理论约束 (CP 破缺必须存在) 预言了四个还没发现的粒子的存在 —— 这是 20 世纪下半叶最漂亮的一次理论预言之一. 2008 年诺贝尔物理学奖颁给小林诚、益川敏英和南部阳一郎, 表彰"对夸克之间破缺对称性起源的发现".</p>
+
+  <p>$3\times3$ 酉矩阵的参数数. 一般的 $N\times N$ 酉矩阵有 $N^2$ 个实参数, 可拆成 $N(N-1)/2$ 个混合角和 $N(N+1)/2$ 个相位. 但对夸克而言, $2N$ 个夸克场 (上型 $N$ 个 + 下型 $N$ 个) 的整体相位能被吸收; 去掉一个整体 $U(1)$ 后, 可吸收的相位数是 $2N - 1$. 剩下的物理相位数是 $N(N+1)/2 - (2N-1) = N(N-1)/2 - (N-1) = (N-1)(N-2)/2$. 代入 $N = 2$: 零个物理相位, 无 CP 破缺. 代入 $N = 3$: $(3-1)(3-2)/2 = 1$ 个物理相位. 代入 $N = 4$: $3$ 个相位. 三代是"刚好够"的最小 $N$ —— 这就是 Kobayashi-Maskawa 矩阵 (简称 CKM 矩阵) 的核心结构. 标准参数化 (PDG 惯例) 用三个角 $\theta_{12}, \theta_{23}, \theta_{13}$ + 一个相位 $\delta_{\rm CKM}$:</p>
+
+  <p>$$ V_{\rm CKM} = \begin{pmatrix} c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta} \\ -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\ s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta} & c_{23}c_{13} \end{pmatrix}. $$</p>
+
+  <p>实验值 (PDG 2024 近似): $\sin\theta_{12} \approx 0.225$ (Cabibbo 角), $\sin\theta_{23} \approx 0.042$, $\sin\theta_{13} \approx 0.0037$, $\delta_{\rm CKM} \approx 1.20$ rad $\approx 69°$. 相位 $\delta$ 非零, 所以 CKM 矩阵的确有 CP 破缺. 这与 K、B 介子系统里观察到的 CP 破缺幅度 $\sim 10^{-3}$ 量级一致. Kobayashi-Maskawa 的机制不仅存在, 而且定量匹配.</p>
+
+  <p><b>PMNS 矩阵.</b> 对轻子部门, 中微子振荡 (1998 年 Super-Kamiokande 首次确认) 揭示中微子质量本征态 $\nu_{1,2,3}$ 不同于弱相互作用本征态 $\nu_{e,\mu,\tau}$. 二者由 $3\times3$ 酉矩阵 $U_{\rm PMNS}$ (Pontecorvo-Maki-Nakagawa-Sakata) 联系. 结构同 CKM, 参数数相同: 3 角 + 1 Dirac 相位 (+ 2 Majorana 相位如果中微子是 Majorana 型). 实验值非常不同: $\sin\theta_{12} \approx 0.55$ (太阳), $\sin\theta_{23} \approx 0.74$ (大气), $\sin\theta_{13} \approx 0.148$ (反应堆), $\delta_{\rm PMNS} \approx 3.4$ rad —— 混合角几乎全都大, 与夸克部门几乎正交的小. 没人知道为什么.</p>
+
+  <p><b>数字 1: 质量比估算.</b> 带电轻子 $m_e : m_\mu : m_\tau \approx 1 : 207 : 3477$. 这两个比率的对数比是 $\ln 207 / \ln 3477 \approx 5.33 / 8.15 \approx 0.65$, 不是任何简单的有理数. 在三代的 Yukawa 耦合层面, $y_f = m_f\sqrt 2/v$, $v = 246$ GeV 是 Higgs VEV. $y_e \approx 3\times 10^{-6}$, $y_\mu \approx 6\times 10^{-4}$, $y_\tau \approx 10^{-2}$, $y_t \approx 1$. Yukawa 耦合跨 6 个数量级, 绝大多数粒子耦合远小于 1 —— 这就是 "Yukawa 等级问题" (Yukawa hierarchy problem), 它至今未解.</p>
+
+  <p><b>数字 2: $N_\nu$ 测量的统计估算.</b> LEP 的精度 $\Delta N_\nu = 0.008$ 从何而来? $\Gamma_\nu^{\rm SM} \approx 167$ MeV, $\Gamma_Z$ 的测量精度是 $\sim 2$ MeV (绝对), 即 $\sim 0.1\%$. 但 $N_\nu$ 本身是 $\Gamma_{\rm inv}/\Gamma_\nu$ 的比, 要减去另外两个 $O(\Gamma_Z)$ 量 —— 误差放大. 最终的 $0.008$ 精度对应 $\Gamma_{\rm inv}$ 测到 $\sim 1$ MeV 量级. 这对应 LEP 统计 $\sim 17\times 10^6$ 次 Z 事件 (四个探测器合并): $1/\sqrt N \sim 2.4\times 10^{-4}$, 再乘上若干系统因子就是 $10^{-3}$ 级的 $N_\nu$ 精度.</p>
+
+  <p><b>回到问题: 为什么是三代?</b> 直到今天没有人真正知道. SM 里代数是完全自由输入. 我们只能说: 自然界明明白白地告诉我们是三代 (LEP), 而三代刚好是放 CP 破缺的最小数 (Kobayashi-Maskawa), 每代内部结构被 anomaly 消除精确规定. 但"为什么是 3 而不是 4"—— 这是悬在 SM 头顶的最大 open question 之一, 大统一理论 (SU(5), SO(10), E6) 给出部分线索, 弦理论和额外维度模型给出另一类 (代数可能与 Calabi-Yau 流形的欧拉数相关). 但截至 2026 年, 没有实验证据支持任何一种推广.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>三代粒子谱是标准模型里最好的 "实验钉在黑板上" 的事实之一: LEP 的 $N_\nu = 2.984 \pm 0.008$ 精确到 $0.3\%$, 排除了任何质量 $< m_Z/2$ 的第四代活跃中微子. 每代内部的结构 (1 个轻子双重态 + 3 色夸克双重态 + 特定的超荷分配) 被 anomaly 消除钉死 —— 这是 SM 里最精巧的自洽性: 把 $U(1)_Y^3, SU(3)^2 U(1)_Y, SU(2)^2 U(1)_Y, U(1)_Y\cdot \text{grav}^2$ 四种 anomaly 全都要求为零, 恰好刻画出每代 15 个手性费米子的全部内容. 至于代数为什么是 3 而不是别的数字, SM 不回答; 但 Kobayashi-Maskawa 1973 告诉我们: 3 是允许 CP 破缺的最小代数, 而 CP 破缺确实存在. 下一节会看 Higgs 机制, 它是三代粒子获得质量的那把钥匙 —— 每个费米子的质量 $m_f = y_f v/\sqrt 2$ 都来自它与 Higgs 场的耦合. 整张三代的谱表, 其实是 Higgs 凝聚与 Yukawa 耦合两件事共同造就的. 再下一步的大统一理论 (GUT) 会给"为什么每代精确是这些量子数"一个更深的解释: $SU(5)$ 的 $\mathbf{\bar 5} + \mathbf{10}$ 正好装下每代 15 个手性场, anomaly 在 GUT 层级自动为零. 但 "为什么是 3 代" 这件事, 至今悬而未决.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="10-cpt.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="12-higgs.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

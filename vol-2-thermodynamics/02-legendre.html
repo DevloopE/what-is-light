@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>内能、焓、自由能, 凭什么是它们? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="01-second-law.html">← 上一节</a>
+  <span class="chapter-title">第 2 节 / 30 · 第 1 部分 · 经典热力学的根 · 第二卷·热力学与统计力学</span>
+  <a href="03-chemical-potential.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>内能、焓、自由能, 凭什么是它们?</h1>
+  <div class="sub">—— Legendre 变换的几何与对偶</div>
+  <div class="abstract">本节从一个看似奇怪的现象出发: 热力学教科书里躺着四个"势"—— 内能 $U$、焓 $H$、Helmholtz 自由能 $F$、Gibbs 自由能 $G$, 形式各异, 却都号称描述同一块系统. 我们先问凭什么是这四个、而不是别的组合, 再把 Legendre 变换的几何 (切线包络) 与代数 (上确界) 两条路都推到底, 证明 $f^{**}=f$ 对凸函数成立, 然后机械地把它套到 $U(S,V)$ 上, 依次得到 $H(S,p)$、$F(T,V)$、$G(T,p)$, 最后代入理想气体与 $\mathrm{H}_2+\tfrac{1}{2}\mathrm{O}_2\to\mathrm{H}_2\mathrm{O}$ 这两组真实数字.</div>
+
+  <p>翻开任何一本热力学课本, 第二章或第三章总会出现一张"势函数表": 内能 $U$、焓 $H=U+pV$、Helmholtz 自由能 $F=U-TS$、Gibbs 自由能 $G=U+pV-TS$. 表头写着"自然变量", 分别是 $(S,V)$、$(S,p)$、$(T,V)$、$(T,p)$. 学生被要求记住, 却很少被告知一个更尖锐的问题: 为什么是这四个? 为什么不是 $U-pV$、为什么不是 $U+TS$、为什么不是 $U-TS+pV$? 答案不在热力学里 — 答案在一条 1786 年被 Legendre 发现、1875 年被 Gibbs 搬进热力学的数学变换里. 它不是记忆题, 是几何题.</p>
+
+  <h2>一、同一个系统, 为什么要写四个势?</h2>
+
+  <p>从第一定律出发, 准静态过程下$$ \mathrm{d}U = T\,\mathrm{d}S - p\,\mathrm{d}V. \tag{1}$$这行就告诉你: 若把 $U$ 看作关于 $(S,V)$ 的函数, 它的偏导数直接就是温度与压强 —— $T=(\partial U/\partial S)_V$, $p=-(\partial U/\partial V)_S$. 换句话说, 一旦把 $U(S,V)$ 的曲面写出来, 所有热力学信息就都编码进去了, 不缺不余. 这种函数有个名字, 叫"特征函数"或"热力学势".</p>
+
+  <p>问题来了: 实验上几乎没人能控制熵 $S$. 熵不是一个你能拧的旋钮, 它是系统自己"算出来"的量. 实验室里真正能控制的, 是温度 $T$ (放进恒温水浴)、压强 $p$ (敞开烧杯接大气)、体积 $V$ (密封容器). 于是一个现实的困境摆在面前: $U(S,V)$ 虽然完整, 但它的自变量不是我能控制的那两个; 如果我强行把 $U$ 写成 $(T,V)$ 的函数, 信息会丢 — 因为从 $U(T,V)$ 反推不出完整的熵.</p>
+
+  <p>这不是哲学, 是数学: 若一个函数 $f(x)$ 的导数 $p=f'(x)$ 是新自变量, 那么把 $f$ 直接写成 $p$ 的函数会损失一个积分常数 —— 所有满足 $f'(x)=p(x)$ 的 $f$ 都给出相同的 $f(p)$, 你再也回不到原函数. 所以"换变量"这件事, 如果只是粗暴地把 $S$ 替换成 $T$, 会丢信息; 必须用一种把信息保留下来的换法. 这就是 Legendre 变换要干的事.</p>
+
+  <h2>二、deepdive: Legendre 变换, 几何与代数两条路</h2>
+
+  <p>先讲几何的一路. 给一条凸的光滑曲线 $y=f(x)$, 它可以被两种信息完全指定: 第一种, 每个 $x$ 点的纵坐标 $f(x)$; 第二种, 每条切线. 第二种乍听奇怪 — 切线是一条条直线, 怎么就"等价"于原曲线了? 事情是这样: 对凸函数, 所有切线的包络恰好还原出原曲线本身. 每条切线的斜率 $p$ 与在 $y$ 轴上的截距 $-f^*(p)$ 两个数就完全确定该切线. 于是只要我给出一张 "斜率 $p$ $\mapsto$ 截距 $b(p)$" 的对照表, 曲线就被复原.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Legendre 变换的几何 — 曲线与其切线包络</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>凸函数 $f(x)$ 与其对偶 $f^*(p)$: 左侧画曲线与切线包络, 右侧画 $f^*(p)$ 对 $p$ 的图</dd>
+      <dt>必含元素</dt><dd>(a) 一条凸曲线 $y=f(x)$ (黑); (b) 四五条不同斜率 $p$ 的切线 (浅灰), 它们的包络勾勒出曲线轮廓; (c) 一条特别选出的切线 (红), 斜率 $p_0$, 切点在 $x_0=x(p_0)$; (d) 该红切线与 $y$ 轴交于 $(0,-f^*(p_0))$, 标出 $-f^*(p_0)$ 这个截距; (e) 右侧子图画 $f^*$ 作为 $p$ 的函数, 也是凸曲线, 用红点标出 $(p_0, f^*(p_0))$</dd>
+      <dt>几何精度</dt><dd>红切线方程严格为 $y=p_0 x - f^*(p_0)$; 切点纵坐标 $f(x_0)$ 与 $p_0 x_0 - f^*(p_0)$ 一致; 右图 $f^*$ 的斜率在 $p_0$ 处应等于 $x_0$ (对偶性)</dd>
+      <dt>标签与公式</dt><dd>左图标注 $y=f(x)$, $p_0=f'(x_0)$, 切线 $y=p_0 x - f^*(p_0)$, 截距 $-f^*(p_0)$; 右图标注 $f^*(p)=p\,x(p)-f(x(p))$, $x_0=\mathrm{d}f^*/\mathrm{d}p$</dd>
+      <dt>风格建议</dt><dd>白底; $f$ 用黑色实线; 切线族用浅灰细线; 高亮的那条切线用砖红色粗线; 坐标轴细灰; 所有公式用 LaTeX 排版</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  Legendre 变换把"在 $x$ 处取的值 $f(x)$"对换为"在斜率 $p$ 处切线的负截距 $f^*(p)$". 对凸 $f$, 两种描述完全等价.</figcaption>
+  </figure>
+
+  <p>代数上写出来更干净. 在 $x$ 处, 切线斜率是 $p=f'(x)$; 切线方程是 $y=f(x)+p\,(X-x)=pX+[f(x)-px]$, 所以它与纵轴的截距是 $f(x)-px$. 我们把这个截距取负号, 定义$$ f^*(p)\;=\;px-f(x), \qquad p=f'(x). \tag{2}$$这就是 Legendre 变换. 注意 $p$ 与 $x$ 互为函数 —— 只要 $f$ 严格凸, $f'$ 严格单调, $p=f'(x)$ 就有唯一的反函数 $x=x(p)$, 上式右端彻底变成 $p$ 的函数.</p>
+
+  <p>还有一种更一般的写法, 不要求光滑, 只要求凸:$$ f^*(p)\;=\;\sup_{x}\,[\,px-f(x)\,]. $$这两种写法在光滑凸情形下等价 —— 对 $x$ 求极值给出 $p=f'(x)$, 代回就是上一个式子. 后一种写法的好处是, 即便 $f$ 在某处折角, 它仍然良定义.</p>
+
+  <p><strong>对偶性: $f^{**}=f$.</strong> 这是 Legendre 变换最关键的性质, 也是它能承担"完整记录信息"这一任务的数学根据. 证明很短. 对凸 $f$, 取 $g(p)=f^*(p)=px(p)-f(x(p))$, 其中 $x(p)$ 由 $f'(x)=p$ 确定. 对 $p$ 求导:
+  $$\frac{\mathrm{d}g}{\mathrm{d}p}=x(p)+p\,x'(p)-f'(x(p))\,x'(p)=x(p)+[p-f'(x(p))]\,x'(p)=x(p),$$
+  因为 $f'(x(p))=p$ 使第二项为零. 所以 $g'(p)=x$ —— 对 $g$ 再做一次 Legendre 变换, 新的"斜率变量"恰好是 $x$. 代入定义:
+  $$ g^*(x)=xp-g(p)=xp-[px-f(x)]=f(x). $$
+  完美回到起点. $f^{**}=f$, 没丢信息, 没添东西. 这就是换变量可以做到"可逆"的根源.</p>
+
+  <p><strong>凸性为什么必要.</strong> 如果 $f$ 不凸 —— 比如中间有一段下凹, 那么某些斜率 $p$ 会对应多个切点, 切线包络不再还原出原曲线, 而是一个"凸包". $\sup$ 形式的 $f^*$ 此时仍有定义, 但 $f^{**}$ 只能给出 $f$ 的凸包, 丢失了凹的那段. 这不是数学瑕疵, 在物理上反而很重要: 相变理论里, 一阶相变正好对应自由能对某个密度变量的非凸性, 而实验量到的总是凸包 (系统自发通过相分离"填平"凹区). Legendre 变换不给你答案, 它诚实地告诉你: 凹的区间是不稳定的. —— 这个极限情况我们在讲气液共存时还会回头.</p>
+
+  <h2>三、套用到热力学: $U \to H,\ F,\ G$</h2>
+
+  <p>有了上一节的机器, 剩下的事就是机械操作. 从 $U(S,V)$ 出发.</p>
+
+  <p><strong>第一次变换: 把 $V$ 换成 $p$.</strong> 共轭变量是 $-p=(\partial U/\partial V)_S$ (注意那个负号来自 $\mathrm{d}U=T\mathrm{d}S-p\mathrm{d}V$). 按 Legendre 公式, 新函数
+  $$ H(S,p)=U-V\cdot(-p)=U+pV, $$
+  这就是焓. 它的全微分
+  $$ \mathrm{d}H=\mathrm{d}U+p\mathrm{d}V+V\mathrm{d}p=T\mathrm{d}S+V\mathrm{d}p, $$
+  确认自然变量确实是 $(S,p)$.</p>
+
+  <p><strong>第二次变换: 把 $S$ 换成 $T$.</strong> 共轭变量是 $T=(\partial U/\partial S)_V$. 按公式,
+  $$ F(T,V)=U-TS, $$
+  Helmholtz 自由能. 全微分 $\mathrm{d}F=-S\mathrm{d}T-p\mathrm{d}V$, 自然变量 $(T,V)$.</p>
+
+  <p><strong>第三次变换: 把两对都换.</strong> 在 $H$ 上再对 $S$ 做一次 Legendre 变换, 或等价地在 $F$ 上再对 $V$ 做一次, 都得到
+  $$ G(T,p)=U-TS+pV=H-TS=F+pV, $$
+  Gibbs 自由能. 全微分 $\mathrm{d}G=-S\mathrm{d}T+V\mathrm{d}p$.</p>
+
+  <p>现在回答开头那个问题: 凭什么是这四个? 因为 $(S,V)$ 有 $2$ 个自然变量, 每个变量都有一次"换或不换"的选择, 一共 $2^2=4$ 种组合 —— 不换 ($U$)、只换 $V$ ($H$)、只换 $S$ ($F$)、全换 ($G$). 没有第五种独立选择. 你看到的所有"势"都来自这张四元表, 没有例外. 教科书列出这四个, 不是记忆负担, 而是穷举.</p>
+
+  <p>更进一步, Legendre 变换还告诉你选哪个势: 看你的实验变量. 若系统泡在恒温水浴 ($T$ 固定) 且敞开 ($p$ 固定), 要判断反应能否自发, 用 $G$ —— 平衡时 $G$ 极小. 若恒温密闭 ($T,V$ 固定), 用 $F$ —— 平衡时 $F$ 极小. 选错势, 不是方法错, 而是在问错变量. 这也是化学家几乎总是用 $G$ 而工程师经常用 $F$ 的原因: 他们的实验边界不同.</p>
+
+  <h2>四、数字: 理想气体的三张面孔, 与水的 $\Delta G$</h2>
+
+  <p><strong>理想气体的 $U,F,G$.</strong> 对 $N$ 个单原子理想气体粒子, 熟知 $U=\tfrac{3}{2}Nk_BT$ 只依赖 $T$ (所以写成 $U(S,V)$ 反而别扭 —— 要通过 Sackur–Tetrode 公式把 $T$ 换成 $(S,V)$ 的函数). 直接写 Helmholtz 自由能, 从配分函数出发 (后续章节会推) 得
+  $$ F(T,V,N)=-Nk_BT\left[\ln\!\left(\frac{V}{N\lambda_T^3}\right)+1\right], $$
+  其中 $\lambda_T=h/\sqrt{2\pi m k_B T}$ 是热 de Broglie 波长. 代入 $S=-\partial F/\partial T$、$p=-\partial F/\partial V=Nk_BT/V$, 能自洽地回到理想气体状态方程.</p>
+
+  <p>做个量级估算. 取 $T=300\,\mathrm{K}$, 1 摩尔氦 ($m\approx 6.6\times 10^{-27}\,\mathrm{kg}$), 标准体积 $V\approx 24.6\,\mathrm{L}=2.46\times 10^{-2}\,\mathrm{m}^3$. 算 $\lambda_T$: $\lambda_T=6.63\times 10^{-34}/\sqrt{2\pi\cdot 6.6\times 10^{-27}\cdot 1.38\times 10^{-23}\cdot 300}\approx 5.0\times 10^{-11}\,\mathrm{m}$, 约 $0.5\,\mathrm{Å}$. 于是 $V/(N\lambda_T^3)\approx 2.46\times 10^{-2}/(6\times 10^{23}\cdot 1.25\times 10^{-31})\approx 3.3\times 10^{5}$, $\ln\approx 12.7$, $F\approx -N k_B T\cdot 13.7\approx -6\times 10^{23}\cdot 1.38\times 10^{-23}\cdot 300\cdot 13.7\approx -3.4\times 10^{4}\,\mathrm{J}=-34\,\mathrm{kJ/mol}$. 与标准热力学表上的理想单原子气体自由能在同一量级, 数量级对上了.</p>
+
+  <p><strong>水的 $\Delta G$.</strong> 反应 $\mathrm{H}_2(g)+\tfrac{1}{2}\mathrm{O}_2(g)\to\mathrm{H}_2\mathrm{O}(l)$ 在标准态 ($T=298.15\,\mathrm{K}$, $p=1\,\mathrm{bar}$) 下, 液态水的生成 Gibbs 自由能是 $\Delta_f G^\circ(\mathrm{H}_2\mathrm{O},l)=-237.13\,\mathrm{kJ/mol}$. 这是一个巨大的负数, 意味着反应自发向右走 — 在标准态、在水浴、在大气压下, 氢氧燃烧生成水是放出 Gibbs 自由能的过程, 理论上你能从每摩尔水提取最多 $237\,\mathrm{kJ}$ 的非膨胀功. 这个"$237\,\mathrm{kJ/mol}$"的上限, 正是氢燃料电池的理论效率根据.</p>
+
+  <p>对比一下焓变: $\Delta_f H^\circ(\mathrm{H}_2\mathrm{O},l)=-285.83\,\mathrm{kJ/mol}$. 两者之差 $\Delta H-\Delta G=-T\Delta S=-48.7\,\mathrm{kJ/mol}$, 所以 $\Delta S<0$, 约 $-163\,\mathrm{J/(mol\cdot K)}$. 物理图景: 两摩尔气体 (1.5 摩尔) 合并成一摩尔液体, 无序度显著下降, 熵减 $163\,\mathrm{J/K}$ 是气相消失 + 液态凝聚的直接代价. 判断自发性时, Gibbs 自由能把"能量释放"($\Delta H$) 与"熵代价"($-T\Delta S$) 加权合起来 — 这正是 Legendre 变换把 $S$ 换成 $T$ 的物理含义: 把一个无法直接测的量 (熵), 换成一个受温度调控的"有效能量".</p>
+
+  <p><strong>历史角落.</strong> Adrien-Marie Legendre 在 1786 年的一篇关于极小曲面的论文里第一次引入这种变换, 目的是把变分问题从一阶变量 (位置) 换到共轭变量 (动量). 之后 Hamilton 在 1834 年用同样的技术把 Lagrangian $L(q,\dot q)$ 变成 Hamiltonian $H(q,p)$ — 完全是同一个公式. 热力学的那一步来得晚. 1873 年 J. Willard Gibbs 在 Trans. Conn. Acad. 发表 <em>Graphical Methods in the Thermodynamics of Fluids</em>, 紧接着 1875–1878 年的巨著 <em>On the Equilibrium of Heterogeneous Substances</em> 里, 他把 Legendre 变换系统地搬进热力学, 引入了我们今天叫做"Gibbs 自由能"的那个 $G$, 并证明了它在恒 $T,p$ 下相平衡的中心地位. "自由能"这个词是 Helmholtz 1882 年才从 $F=U-TS$ 里定义出来的 —— 他强调 $F$ 是"能做功的那部分内能". 今天的化学家写 $\Delta G<0$ 判断反应自发, 本质上是在执行 Gibbs 1875 年那张表的直接推论; 而 Gibbs 之所以能那样干, 是因为 Legendre 1786 年那张切线包络图.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>四个热力学势不是四个独立发明, 而是一个函数 $U(S,V)$ 通过 Legendre 变换在 $2^2$ 个变量组合上的投影. 变换本身在几何上是"用切线包络代替函数图", 在代数上是 $f^*(p)=\sup_x[px-f(x)]$; 对凸函数它可逆, $f^{**}=f$. 这条性质保证换变量不丢信息, 也正是为什么热力学可以自由地在 $U,H,F,G$ 之间切换而不产生矛盾. 更广地, 同一个 Legendre 结构在分析力学里连接 Lagrangian 与 Hamiltonian, 在统计力学里连接熵与自由能, 在优化理论里连接原问题与对偶问题 — 它是一把能把"变量"翻过来的万能扳手. 下一节开始, 我们把它作用到开系统, 引出第三个自然变量对: 化学势与粒子数.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="01-second-law.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="03-chemical-potential.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

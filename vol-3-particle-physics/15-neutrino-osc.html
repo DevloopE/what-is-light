@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中微子振荡 — 它给中微子的小质量 · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="14-cp-violation.html">← 上一节</a>
+  <span class="chapter-title">第 15 节 / 30 · 第 3 部分 · 标准模型与具体粒子 · 第三卷·粒子物理</span>
+  <a href="16-feynman-diagram-mu.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>中微子振荡 — 它给中微子的小质量</h1>
+  <div class="sub">—— 从 Pontecorvo 到 SNO/Kamiokande 的三十年</div>
+
+  <div class="abstract">本节从 1968 年 Davis 在南达科他 Homestake 金矿里盯着一桶四氯乙烯数电子中微子, 发现数来数去只有 Bahcall 标准太阳模型预言的三分之一这件事出发, 沿一条几乎不用任何规范理论细节的干净路径, 证明中微子必须有质量. 我们把问题摆成一道量子力学习题: 如果味本征态 $|\nu_e\rangle, |\nu_\mu\rangle$ 和质量本征态 $|\nu_1\rangle, |\nu_2\rangle$ 不一致, 在 $|\nu_i\rangle$ 按 $e^{-iE_i t}$ 作相位演化时, 一个原本纯 $\nu_e$ 的态到下游就会混进 $\nu_\mu$ 成分. 整节的 deepdive 把这条两味振荡公式 $P(\nu_e\to\nu_\mu) = \sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$ 从头严格地推一遍, 不挥手, 并且点清楚"无质量极限 $\Rightarrow$ 无振荡"这件事为什么是铁的结论. 一旦公式到手, 代入 SNO (2001) 和 Super-K (1998) 的能标与基线, 读出 $\Delta m_{32}^2 \approx 2.5\times 10^{-3}\,\text{eV}^2$ 与 $\Delta m_{21}^2 \approx 7.5\times 10^{-5}\,\text{eV}^2$ 这两个今天写进 PDG 的小数; 再把它与 KATRIN (2022) 对电子中微子绝对质量的直接上限 $m_\nu < 0.8\,\text{eV}$ 对比. 这是标准模型第一次被观测公开证伪: 中微子不是无质量费米子, SM 必须扩展.</div>
+
+  <p>1968 年, Raymond Davis 在南达科他 Homestake 金矿一千四百米的井下放了一个两万加仑的容器, 里面装满 C$_2$Cl$_4$ 洗涤液. 他在等太阳中微子. 当一个 $^8\text{B}$ 衰变链生出的电子中微子 $\nu_e$ 撞到 $^{37}\text{Cl}$, 会触发反应 $\nu_e + {}^{37}\text{Cl}\to e^- + {}^{37}\text{Ar}$, 把一个氯原子变成放射性氩原子. Davis 每隔几个月把溶液里生成的那几十个氩原子拿出来数一遍 —— 数一批大约只有四十个. 他数了快三十年, 数到的率只有 John Bahcall 标准太阳模型预言的三分之一. 这不是统计涨落, 不是探测器效率, 也不是 Bahcall 算错: 从上世纪七十年代到九十年代, 实验与理论都反复自查过. 中微子"缺了", 这件事不肯走开.</p>
+
+  <p>怎么解释 "数到的 $\nu_e$ 比应到的少"? 有两种逻辑上的路子: 要么太阳核反应没那么旺, 要么 $\nu_e$ 在路上变成了探测器看不见的别的味. 前者和光度、氦丰度、日震学 (helioseismology) 测出来的太阳内部声速剖面全对不上; 后者意味着标准模型要改. Bruno Pontecorvo 1957 年就写了一篇短文提出, 中微子可能像 $K^0$–$\bar K^0$ 系统一样会"味振荡", 只要它有质量并且味本征态 $\neq$ 质量本征态. 这一节我们就把这件事从第一原理推一遍, 看它为什么强迫中微子有质量.</p>
+
+  <h2>一、问题的设置: 味本征态与质量本征态</h2>
+
+  <p>先把词码齐. 标准模型里的"中微子味"是 $\nu_e, \nu_\mu, \nu_\tau$, 按照它们在弱相互作用顶点上和哪个带电轻子成对出现来定义: $W^+\to e^+\nu_e$ 生的是 $\nu_e$, $\pi^+\to\mu^+\nu_\mu$ 生的是 $\nu_\mu$. 这些"味"是弱相互作用产生和探测的本征态 —— 我们能实验上直接制备和检验的态.</p>
+
+  <p>但一个粒子在真空里自由传播时, 自由传播 Hamiltonian 的本征态是<strong>质量本征态</strong> $|\nu_1\rangle, |\nu_2\rangle, |\nu_3\rangle$, 它们有定义明确的质量 $m_1, m_2, m_3$. 动量 $p$ 的 $|\nu_i\rangle$ 在时间 $t$ 上按 $e^{-iE_i t}$ 的简单相位演化, 其中 $E_i = \sqrt{p^2 + m_i^2}$.</p>
+
+  <p>关键假设 (也是唯一的假设): 这两组基不是同一组基. 它们之间由一个幺正矩阵 (PMNS 矩阵, Pontecorvo–Maki–Nakagawa–Sakata) 联系:</p>
+
+  <p>$$ |\nu_\alpha\rangle = \sum_i U_{\alpha i}^*\,|\nu_i\rangle,\qquad \alpha = e, \mu, \tau;\; i = 1,2,3. $$</p>
+
+  <p>这一步完全类比夸克部门的 CKM 矩阵 (上一节 14 讨论过). 区别只在名字和参数. 如果 $U$ 是单位矩阵, 那 $\nu_e = \nu_1$, $\nu_\mu = \nu_2$, $\nu_\tau = \nu_3$, 味就跟质量一一对应, 没什么戏可唱. 但一旦 $U$ 有任何非平凡混合, 事情就变得很有意思.</p>
+
+  <p>为什么要假设"味 $\neq$ 质量"? 这是在夸克那里已经看到过的逻辑: 质量矩阵 (Yukawa 耦合矩阵) 的本征方向和弱相互作用耦合的本征方向没有理由必须对齐. 在中微子这边, Pontecorvo 1957 年先只考虑两味 $\nu_e, \nu_\mu$, 后来 Maki–Nakagawa–Sakata 1962 加进三味. 现在的实验告诉我们 $U$ 的三个混合角一个比一个大 ($\theta_{12}\approx 33^\circ, \theta_{23}\approx 45^\circ, \theta_{13}\approx 8.6^\circ$), 远远比 CKM 的 $13^\circ, 2.4^\circ, 0.2^\circ$ 大. 这"轻子部门大混合 vs. 夸克部门小混合"的现象至今没有从第一原理的解释, 但它本身就是物理数据.</p>
+
+  <h2>二、deepdive: 两味振荡公式的严格推导</h2>
+
+  <p>我们把问题缩到两味 —— 一方面这是实验上的好近似 (太阳中微子主要是 12 振荡, 大气中微子主要是 23 振荡, 两通道近似解耦), 另一方面三味没本质不同, 只是代数臃肿一些. 设</p>
+
+  <p>$$ |\nu_e\rangle = \cos\theta\,|\nu_1\rangle + \sin\theta\,|\nu_2\rangle,\qquad |\nu_\mu\rangle = -\sin\theta\,|\nu_1\rangle + \cos\theta\,|\nu_2\rangle. \tag{1} $$</p>
+
+  <p>这里 $\theta$ 是混合角, 就是上面 $U$ 矩阵的唯一自由参数. 对应的反向关系为 $|\nu_1\rangle = \cos\theta\,|\nu_e\rangle - \sin\theta\,|\nu_\mu\rangle$, $|\nu_2\rangle = \sin\theta\,|\nu_e\rangle + \cos\theta\,|\nu_\mu\rangle$, 可以验证两基都正交归一.</p>
+
+  <p><strong>第一步: 时间演化.</strong> 我们在 $t = 0$ 的源处产生一个动量为 $p$ 的纯 $\nu_e$. 写出它在质量基下的形式:</p>
+
+  <p>$$ |\nu(0)\rangle = |\nu_e\rangle = \cos\theta\,|\nu_1\rangle + \sin\theta\,|\nu_2\rangle. $$</p>
+
+  <p>自由传播 $t$ 时间后, 每个质量本征态各自乘一个相位:</p>
+
+  <p>$$ |\nu(t)\rangle = \cos\theta\,e^{-iE_1 t}\,|\nu_1\rangle + \sin\theta\,e^{-iE_2 t}\,|\nu_2\rangle. $$</p>
+
+  <p>注意两个 $|\nu_i\rangle$ 吃了<em>不同</em>的相位, 因为 $E_1 \neq E_2$ (当 $m_1 \neq m_2$). 这就是振荡的全部来源.</p>
+
+  <p><strong>第二步: 投影到 $|\nu_\mu\rangle$.</strong> 下游探测器只能通过弱反应探测, 所以它只"看到"味本征态. 问: 在下游位置 $L$ (相当于时间 $t \approx L/c$, 中微子是极端相对论性的) 处, 这个态被投到 $\nu_\mu$ 上的概率幅为多少? 把 $|\nu_\mu\rangle = -\sin\theta\,|\nu_1\rangle + \cos\theta\,|\nu_2\rangle$ 投进去:</p>
+
+  <p>$$ \langle\nu_\mu|\nu(t)\rangle = -\sin\theta\cos\theta\,e^{-iE_1 t} + \sin\theta\cos\theta\,e^{-iE_2 t} = \sin\theta\cos\theta\,(e^{-iE_2 t} - e^{-iE_1 t}). $$</p>
+
+  <p>取模平方:</p>
+
+  <p>$$ |\langle\nu_\mu|\nu(t)\rangle|^2 = \sin^2\theta\cos^2\theta\,|e^{-iE_2 t} - e^{-iE_1 t}|^2. $$</p>
+
+  <p>用 $|e^{-iE_2 t} - e^{-iE_1 t}|^2 = 2 - 2\cos[(E_2 - E_1)t] = 4\sin^2[(E_2 - E_1)t/2]$, 并用 $\sin(2\theta) = 2\sin\theta\cos\theta$, 改写为</p>
+
+  <p>$$ P(\nu_e\to\nu_\mu; t) = \sin^2(2\theta)\,\sin^2\!\left[\frac{(E_2 - E_1)\,t}{2}\right]. $$</p>
+
+  <p><strong>第三步: 把 $E_2 - E_1$ 展成质量差.</strong> 中微子质量 ($m \lesssim \text{eV}$) 远小于实验能量 ($E \sim \text{MeV–GeV}$), 所以它们是极端相对论性的, 动量几乎相同. 对每个质量本征态</p>
+
+  <p>$$ E_i = \sqrt{p^2 + m_i^2} = p\sqrt{1 + m_i^2/p^2} \approx p + \frac{m_i^2}{2p}, $$</p>
+
+  <p>差出</p>
+
+  <p>$$ E_2 - E_1 \approx \frac{m_2^2 - m_1^2}{2p} \equiv \frac{\Delta m^2}{2E}, $$</p>
+
+  <p>其中最后一步用了 $p \approx E$ (相对论性极限). 这里需要小心: 严格讲, 做"比较两个不同质量的本征态在同一 $t$ 的相位差"本身有细腻的地方 —— 更干净的处理是用波包构造, 把两个本征态看成波包, 在同一空间位置 $L$ (不是同一 $t$) 比较相位. 波包处理给出和上面完全一样的结果, 所以这里采用最流行的"同动量"简化. 代入并把 $t \to L$ (自然单位 $c = 1$):</p>
+
+  <p>$$ P(\nu_e\to\nu_\mu; L, E) = \sin^2(2\theta)\,\sin^2\!\left[\frac{\Delta m^2\,L}{4E}\right]. \tag{2} $$</p>
+
+  <p>这就是<strong>两味中微子振荡公式</strong>. 做了什么假设? 只有三条: (i) 味 $\neq$ 质量 [方程 (1)], (ii) 质量本征态按 $e^{-iE_i t}$ 演化 (薛定谔方程), (iii) 相对论展开 $E_i \approx p + m_i^2/(2p)$. 没有任何地方用到规范对称、Yukawa 耦合或 SM 的细节 —— 它纯粹是量子力学的推论, 外加"混合"这一条假设.</p>
+
+  <p><strong>生存概率</strong>由幺正性直接给出:</p>
+
+  <p>$$ P(\nu_e\to\nu_e; L, E) = 1 - \sin^2(2\theta)\sin^2\!\left[\frac{\Delta m^2 L}{4E}\right]. $$</p>
+
+  <p>下游看到的"$\nu_e$ 率"按这条曲线振荡. Davis 在 Homestake 看到比 Bahcall 预言少, 是这个概率对整段太阳路径 (和对 $^8\text{B}$ 谱) 平均后的结果.</p>
+
+  <p><strong>无质量极限.</strong> 代 $m_1 = m_2 = 0$ 得 $\Delta m^2 = 0$, $P(\nu_e\to\nu_\mu) \equiv 0$. 观测到振荡 $\Leftrightarrow$ 至少有一个 $\Delta m^2 \neq 0$ $\Leftrightarrow$ 至少两个质量本征态不全为零. 这是标准模型被证伪的最清晰入口: SM 里中微子被假设为无质量, 但实验看到振荡, 故 SM 不完整. 这不是"拟合得不太好", 这是"与 $0$ 的定性分野". 把这句话重说一遍, 因为它是本节的政治要点: 在 SM 里, 轻子味是严格守恒的, $\nu_e$ 永远是 $\nu_e$; 在实验里, $\nu_e$ 会变 $\nu_\mu$. 二者不相容. SM 必须扩展, 至少要给中微子一个质量项.</p>
+
+  <h2>三、数字代入: 两个 $\Delta m^2$ 与振荡长度</h2>
+
+<figure class="diagram-placeholder">
+<div class="placeholder-box">
+  <span class="tag">TikZ 待渲染</span>
+  <h4>图 1 · 中微子振荡概率曲线与探测装置示意</h4>
+  <dl class="tikz-req">
+    <dt>主题</dt><dd>上图: 中微子振荡公式 $P(\nu_e\to\nu_\mu) = \sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$ 随 $L/E$ (km/GeV) 的曲线, 横轴从 $0$ 到 $5000$ km/GeV, 纵轴从 $0$ 到 $1$, 振荡包络高度为 $\sin^2(2\theta)$. 下图: 大型水切伦科夫探测器剖面示意 (SNO/Super-K 风格).</dd>
+    <dt>必含元素</dt><dd>上: 坐标轴标签 "$L/E$ (km/GeV)" 与 "$P(\nu_e\to\nu_\mu)$"; 曲线 $\sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$, 标出第一个振荡极大位置 (约 $L/E = \pi\cdot 2/\Delta m^2$); 虚线标包络高度 $\sin^2(2\theta)\approx 0.86$ (大气振荡) 与 $\approx 0.86$ (太阳振荡, $\theta_{12}\approx 33^\circ$). 下: 球形不锈钢容器内装重水/轻水, 光电倍增管阵列覆盖内壁, 底部标 "SNO / Super-K", 旁注探测反应 "$\nu_e + d\to p + p + e^-$ (CC)" 与 "$\nu_x + d\to p + n + \nu_x$ (NC)".</dd>
+    <dt>几何/数学精度</dt><dd>振荡曲线周期严格按 $\Delta m^2 L/(4E) = \pi$ 给出, 第一极大在 $L/E \approx 4\pi E/(\Delta m^2) = 2\pi/\Delta m^2$ (自然单位); 填入 $\Delta m_{32}^2 = 2.5\times 10^{-3}\,\text{eV}^2$ 给出 $L/E \approx 500$ km/GeV.</dd>
+    <dt>标签与公式</dt><dd>图上注 "$P = \sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$", "$\Delta m_{32}^2 \approx 2.5\times 10^{-3}\,\text{eV}^2$", "$\Delta m_{21}^2 \approx 7.5\times 10^{-5}\,\text{eV}^2$"; 脚注 "SNO (2001), Super-Kamiokande (1998)".</dd>
+    <dt>风格建议</dt><dd>白底, 曲线用深蓝实线, 包络用淡灰虚线, 探测器剖面用细黑线. 整体安静, 与全书风格一致.</dd>
+  </dl>
+</div>
+<figcaption>图 1  两味中微子振荡公式 $P = \sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$ 随 $L/E$ 的周期性曲线. 下方为 SNO/Super-K 式大型水切伦科夫探测器示意. 振荡周期由 $\Delta m^2$ 决定, 振幅由 $\sin^2(2\theta)$ 决定.</figcaption>
+</figure>
+
+  <p>公式 (2) 里三个物理参数: 混合角 $\theta$, 质量差平方 $\Delta m^2$, 以及实验变量 $L, E$. 方便起见, 把振荡相位写成</p>
+
+  <p>$$ \frac{\Delta m^2\,L}{4E} = 1.27\cdot\frac{\Delta m^2/\text{eV}^2}{E/\text{GeV}}\cdot\frac{L}{\text{km}}, $$</p>
+
+  <p>这里的 $1.27$ 来自把自然单位换算到 km, GeV, eV: $\hbar c = 197\,\text{MeV}\cdot\text{fm}$, 倒腾完得到 $1/(4\times 0.197)\approx 1.27$. 有了这个公式就能估算实验.</p>
+
+  <p><strong>大气中微子: Super-Kamiokande 1998.</strong> 宇宙线打中高层大气产生 $\pi^\pm$, $\pi^+\to\mu^+\nu_\mu$ 再 $\mu^+\to e^+\nu_e\bar\nu_\mu$, 一链下来每 $e$ 类产生配两个 $\mu$ 类, 预期 $\mu/e$ 比 $\approx 2$. Super-K (岐阜县, 五万吨纯水, 地下一千米) 1998 年看到从"顶"向下进入的 $\nu_\mu$ (基线 $L \sim 15$ km, 从大气直落) 比从"底"向上穿地球来的 $\nu_\mu$ (基线 $L \sim 1.3\times 10^4$ km) 多, 差异对应一个角度分布. 典型大气 $\nu_\mu$ 能量 $E \sim 1$ GeV, 短基线 $\Delta m^2 L/(4E) \ll 1$, 没振荡; 长基线 $\Delta m^2\cdot 10^4/(4\cdot 1)$ 如果要达到 $\sim 1$, 需要 $\Delta m^2 \sim 10^{-3}\,\text{eV}^2$. 完整拟合给出</p>
+
+  <p>$$ \Delta m_{32}^2 \approx 2.5\times 10^{-3}\,\text{eV}^2,\qquad \sin^2(2\theta_{23})\approx 1. $$</p>
+
+  <p>对应的"第一振荡极大"基线 (在 $E = 1\,\text{GeV}$) 为 $L\approx \pi\cdot 2E/\Delta m^2 \approx 500\,\text{km}\cdot(E/\text{GeV})$, 相当于在日本列岛这个尺度上做实验正合适. 这就是 T2K (东京到神冈) 和 NO$\nu$A (美国长基线实验) 选基线的逻辑.</p>
+
+  <p><strong>太阳中微子: SNO 2001.</strong> 太阳 $^8\text{B}$ 链放出 $\nu_e$, 典型能量 $E \sim 10$ MeV, 基线 $L = 1.5\times 10^8$ km $= 1.5\times 10^{11}$ m. 如果 $\Delta m^2 \sim 10^{-5}\,\text{eV}^2$, 相位 $\Delta m^2 L/(4E) \sim 10^{-5}\cdot 1.5\times 10^{11}/(4\cdot 10^{-3}\,\text{GeV})$ (算个数量级) 是 $\sim 10^8$ 这么大, 早就平均掉了 —— 太阳中微子到地球时, 相位已经乱得没法分辨, 概率被平均到 $\langle P\rangle = 1 - \frac{1}{2}\sin^2(2\theta)$. 实际上太阳内部物质效应 (MSW, Mikheyev–Smirnov–Wolfenstein) 还会再改一层, 但量级不错. SNO (Sudbury Neutrino Observatory, 加拿大安大略省镍矿 2 公里井下, 1000 吨重水 $\text{D}_2\text{O}$) 在 2001 年同时测了三种反应:</p>
+
+  <ul>
+    <li><strong>带电流 (CC)</strong>: $\nu_e + d\to p + p + e^-$, 只响应 $\nu_e$.</li>
+    <li><strong>中性流 (NC)</strong>: $\nu_x + d\to p + n + \nu_x$ (任何味). 通过 $n$ 被 $\text{D}$ 或盐捕获发出 $\gamma$ 探测.</li>
+    <li><strong>弹性散射 (ES)</strong>: $\nu_x + e^-\to \nu_x + e^-$, 对 $\nu_e$ 灵敏度大, 对 $\nu_\mu/\nu_\tau$ 约 $1/6$.</li>
+  </ul>
+
+  <p>结果如山倒: CC 率约是预期的 1/3, 但 NC 率和 SSM (标准太阳模型) 总通量预言一致 (在 $\pm 8\%$ 内). 这直接证明 "$\nu_e$ 消失" 是因为它转成了 $\nu_\mu + \nu_\tau$, 而不是因为太阳没产生这么多中微子. NC 不区分味, 它看到全部三种味之和, 三种之和是守恒的, 所以中微子总数对上了, 但味在路上重分配了. 这是中微子振荡 "味变化" 的第一个独立于模型细节的直接证据. 拟合这一套数据加上 KamLAND 长基线反应堆实验 (2003, $L \sim 180$ km, $\bar\nu_e$ 能量 $\sim$ MeV), 得到</p>
+
+  <p>$$ \Delta m_{21}^2 \approx 7.5\times 10^{-5}\,\text{eV}^2,\qquad \sin^2(2\theta_{12})\approx 0.85. $$</p>
+
+  <p>这两个 $\Delta m^2$ 就是今天 PDG 里的两条中微子质量数据. 注意, 它们是<strong>平方差</strong>, 不是绝对质量. 即使你知道 $\Delta m_{21}^2$ 和 $\Delta m_{32}^2$, 还是决定不了 $m_1, m_2, m_3$ 各自是多少 —— 你还缺一个总质量尺度. 那要别的实验来定.</p>
+
+  <p>对最轻那个 $m_1$ (正质量顺序) 或 $m_3$ (反质量顺序) 的下限, 振荡只能说 "它可以是零, 也可以不是". 上限呢? 2022 年德国 Karlsruhe 的 KATRIN 实验 (直接测氚 $\beta$ 衰变末端能谱的扭曲) 给出</p>
+
+  <p>$$ m_{\bar\nu_e} < 0.8\,\text{eV}\;(90\%\,\text{CL}), $$</p>
+
+  <p>把前面两个 $\Delta m^2$ 取平方根, $\sqrt{\Delta m_{32}^2}\approx 0.05\,\text{eV}$, 意味着最重的中微子质量至少在 $0.05$ eV 这个下限附近. 最新的宇宙学拟合 (Planck + BAO) 给出 $\sum m_\nu < 0.12\,\text{eV}$ 的严格上限, 说明三个中微子总和都是小数点后一位 eV 以下的东西. 比电子 ($m_e = 5.11\times 10^5\,\text{eV}$) 小六到七个数量级.</p>
+
+  <p><strong>振荡长度数字估算.</strong> 对大气参数 $\Delta m_{32}^2 = 2.5\times 10^{-3}\,\text{eV}^2$, 第一极大在 $L_\text{osc} \sim 2\pi\cdot 2E/\Delta m^2$:</p>
+
+  <p>$$ L_\text{osc}\approx \frac{4\pi E}{\Delta m^2}\approx \frac{4\pi\cdot 1\,\text{GeV}}{2.5\times 10^{-3}\,\text{eV}^2}\cdot(\hbar c)\approx 10^3\,\text{km}, $$</p>
+
+  <p>对太阳参数 $\Delta m_{21}^2 = 7.5\times 10^{-5}\,\text{eV}^2$, 能量 $\sim 1$ MeV (反应堆中微子), 振荡长度 $\sim 30$ km —— 恰好是 KamLAND (平均基线 180 km, 相位转过 6 个极大) 的尺度. 把这两个数量级合起来看, km 级的长基线加 MeV 能标 $\Leftrightarrow$ 太阳/反应堆参数; 数千 km 加 GeV $\Leftrightarrow$ 大气/加速器参数. 所以中微子振荡实验是一组"以 km 为刻度的量子钟".</p>
+
+  <h2>四、历史、Majorana 与为什么 SM 必须扩展</h2>
+
+  <p><strong>历史串线.</strong> 这条故事线的节点:</p>
+
+  <ul>
+    <li><strong>1930</strong>: Pauli 为抢救 $\beta$ 衰变的能谱连续性, 假设中微子存在, 并因此自认 "我做了理论物理家能做的最糟糕的事 —— 我预言了一个无法探测的粒子". 他错了两次: 中微子既能被探测 (Reines–Cowan 1956, Nobel 1995), 也有质量.</li>
+    <li><strong>1957</strong>: Bruno Pontecorvo 写短文提出中微子振荡. 他原本考虑 $\nu\leftrightarrow\bar\nu$ 振荡 (类比 $K^0$–$\bar K^0$), 当时只有一味中微子. Maki–Nakagawa–Sakata 1962 把它推广到两味 $\nu_e\leftrightarrow\nu_\mu$.</li>
+    <li><strong>1968</strong>: Davis 开始 Homestake 实验, 1970 年代早期发现 $\nu_e$ 只有预期 1/3. 理论圈长期倾向于怀疑 Bahcall 太阳模型, 不愿意相信中微子有质量.</li>
+    <li><strong>1998</strong>: Super-Kamiokande (岐阜县) 以压倒性统计显示大气 $\nu_\mu$ 消失, 且随基线 (天顶角) 呈 $L$ 依赖. 这是振荡的第一个"强"证据, 小柴昌俊团队的胜利 (他已在 1987 年以 SN1987A 中微子探测得 Nobel, 但那是另一个事件).</li>
+    <li><strong>2001–2002</strong>: SNO 通过 NC/CC 独立测量给出决定性证据 —— $\nu_e$ 确实转成了别的味而不是"不见了". 这消除了"太阳模型错"的最后退路.</li>
+    <li><strong>2015 Nobel 物理学奖</strong>: 给了 Takaaki Kajita (Super-K) 和 Arthur McDonald (SNO), 表彰"发现中微子振荡, 证明中微子有质量". 这是 Nobel 委员会很少的"直接把一条标准模型预言证伪"的授奖.</li>
+  </ul>
+
+  <p><strong>Dirac vs. Majorana 质量项.</strong> 中微子有质量, 怎么给? 有两条路. 一条是像电子那样, 写 Dirac 质量项 $m_D(\bar\nu_L \nu_R + \text{h.c.})$, 这需要引入右手中微子 $\nu_R$ (SM 里本来没有), 并且要求一个极小的 Yukawa 耦合 $y_\nu \sim 10^{-12}$. 另一条更有启发性 —— 因为中微子是中性的, 它可能是 Majorana 费米子 ($\nu = \bar\nu$), 允许写质量项 $\frac{1}{2}m_M\,\nu_L^T C\nu_L + \text{h.c.}$, 这破坏轻子数 $L$ 守恒. 把二者合起来, 2×2 质量矩阵的对角化就是 <em>seesaw</em> 机制: 如果右手中微子质量 $M_R$ 很大 ($\sim 10^{14}$ GeV), 轻质量本征值 $m_\nu \sim v^2/M_R$ 被自动压低, 给出 $\sim 0.05$ eV 这一自然尺度. Majorana 中微子的证据只能从无中微子双 $\beta$ 衰变 ($0\nu\beta\beta$) 来, 目前还没看到. 如果看到, 会同时证明 $L$ 不守恒. 这是中微子物理下一个十年的主战场之一.</p>
+
+  <p><strong>为什么标准模型必须扩展 (而不只是"修正").</strong> 经典 SM 的结构里中微子是左手的 Weyl 费米子 $\nu_L$, 右手没有对应物, 因此无法写 Dirac 质量. Majorana 质量需要破坏 $L$ 守恒, 也就是破坏 SM 的一条原本是"偶然的"连续对称. 哪一条都意味着 SM 的场内容或对称结构要修改. 这比 CP 破缺 (上一节 14 讨论, 发生在 SM 之内的 CKM 相位) 更深一层: CP 破缺是 SM 参数的事, 中微子质量是 SM 场的事. 这也是为什么中微子物理是 "beyond SM" 的第一个确凿窗口 —— 不是猜想, 是已知事实.</p>
+
+  <p><strong>一个总结性数字.</strong> 拿 $E = 2.5\,\text{MeV}$ 的反应堆 $\bar\nu_e$ (典型值, 来自 $^{235}\text{U}$ $\beta$ 衰变), 用 $\Delta m_{21}^2 = 7.5\times 10^{-5}\,\text{eV}^2$: 第一振荡极大 $L \approx 4\pi E/\Delta m^2 \approx 4\pi\cdot 2.5\,\text{MeV}/(7.5\times 10^{-5}\,\text{eV}^2)\cdot\hbar c$. 自然单位里 $1\,\text{eV}^{-1}\approx 2\times 10^{-7}$ m, 算一下得到 $L_\text{first}\approx 60$ km. 这正是江门地下 JUNO 探测器 (2024 起数据采集) 选定 53 km 基线的原因 —— 在第一个振荡谷附近, 对质量顺序 (正序 vs. 反序) 最敏感.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>中微子振荡是标准模型被直接实验证伪的第一例: SM 假定中微子无质量 $\Rightarrow$ 味严格守恒 $\Rightarrow$ $\nu_e$ 永远是 $\nu_e$; 实验看到 $\nu_e$ 以量子相干的方式变成 $\nu_\mu, \nu_\tau$. 把两味振荡公式 $P(\nu_e\to\nu_\mu) = \sin^2(2\theta)\sin^2(\Delta m^2 L/(4E))$ 从头推一遍, 会看到它只用了量子力学 + 相对论能展开这两条家常工具, 不依赖 SM 任何细节; 推导里能清楚地看到 $\Delta m^2 = 0 \Rightarrow P = 0$ 的刚性对应. Pontecorvo 1957 提出, Super-K 1998 与 SNO 2001 坐实, 2015 Nobel 给事情画句号. 测到的两个 $\Delta m^2$ 量级 ($7.5\times 10^{-5}$ 和 $2.5\times 10^{-3}$ eV²) 给出最重中微子 $\geq 0.05$ eV 的下限, 比电子轻六个数量级. 往前看, 这条路通向 seesaw 机制 (解释为何如此小)、无中微子双 $\beta$ 衰变 (检验 Majorana 性质)、以及轻子生成 (leptogenesis, 解释宇宙重子–反重子不对称的一个候选机制). 再往前, 中微子是物质中 "第一个告诉我们 SM 不完整" 的信使, 也是寻找 BSM 物理最独立、最无模型依赖的通道. 下一节我们回到 QED 的 Feynman 图演算.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="14-cp-violation.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="16-feynman-diagram-mu.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

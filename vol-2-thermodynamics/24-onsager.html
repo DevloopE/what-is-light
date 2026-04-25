@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onsager 倒易关系 — 线性响应的隐藏对称? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="23-fdt.html">← 上一节</a>
+  <span class="chapter-title">第 24 节 / 30 · 第 5 部分 · 非平衡热力学 · 第二卷·热力学与统计力学</span>
+  <a href="25-arrhenius.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Onsager 倒易关系 — 线性响应的隐藏对称?</h1>
+  <div class="sub">—— 时间反演下的等式</div>
+  <div class="abstract">本节从一个经验上早已知道但长期没人能解释的现象出发: 一根金属丝两端加温差会产生电压 (Seebeck), 一根金属丝里通电流会搬运热量 (Peltier); Kelvin 1854 年用热力学直觉猜到 $\Pi = T\cdot S$ (Peltier 系数 = 温度 × Seebeck 系数), 但他自己承认"这个猜测没有严格的根据". 八十年后 Onsager 把这个猜测提升为一条定理: 在非平衡稳态附近, 线性响应矩阵 $L_{ij}$ 总是对称的, $L_{ij} = L_{ji}$. 我们从涨落-响应论的语言出发, 设定若干"偏离平衡"的变量 $a_i$ 及其共轭"力" $X_i$, 用微观时间反演不变性得到平衡关联的对称性 $\langle\delta a_i(t)\delta a_j(0)\rangle = \langle\delta a_i(0)\delta a_j(t)\rangle$, 再借助上一节的 Kubo/回归假设把它翻译成 $L_{ij} = L_{ji}$. 然后用 Bi$_2$Te$_3$ 热电材料 (Seebeck 系数 $S\approx 200\,\mu\mathrm{V/K}$, Peltier 系数 $\Pi = TS \approx 0.06\,\mathrm{V}$ at 300 K) 作数字检验, 讨论磁场下对称性变为 $L_{ij}(\mathbf B) = L_{ji}(-\mathbf B)$ 的极限, 结尾回到 Onsager 1931 年那篇论文与他 1968 年的 Nobel 奖.</div>
+
+  <p>上一节的涨落耗散定理留下一个让人好奇的尾巴. 我们说"一个物理量的平衡涨落决定它的耗散响应", 这是对单一物理量 $A$ 的结论. 可实际的系统往往不是一个量, 而是一束量 —— 一段金属丝里既有温度梯度又有电压梯度, 既有热流又有电流. 这时候线性响应不再是单变量的 $J = LX$, 而是矩阵形式 $J_i = \sum_j L_{ij} X_j$. 问题来了: 这个 $L_{ij}$ 矩阵有什么结构? 它是不是任意的? 还是像 FDT 那样, 从微观层面就被绑死了某种关系?</p>
+
+  <p>这个问题 Kelvin 1854 年就遇到了. 他在研究温差电偶时, 把一根导线弯成 U 形, 一端热一端冷, 实验上发现两端电势差 $\Delta V = S\cdot\Delta T$, 这就是 Seebeck 效应 (1821 年发现), 比例系数 $S$ 叫 Seebeck 系数. 反过来, 如果在均温导线里通过电流 $I$, 两端之间会 "搬" 热量, 单位时间的热流 $q = \Pi I$, 比例系数 $\Pi$ 叫 Peltier 系数 (Peltier 1834 年发现). Kelvin 用一个准静态热机论证, 推出</p>
+
+  <p>$$\Pi = T\cdot S.$$</p>
+
+  <p>实验上这个关系成立得好. 但 Kelvin 本人在 1854 年的文章里明明白白写了一句话: 他的推导要求"在过程里可以忽略不可逆性", 而实际的热电过程有 Joule 热这样明显不可逆的东西 —— 所以他这条关系"在理论上没有令人满意的根据, 虽然实验结果与它吻合". 这句自我批评让 Kelvin 关系悬在热力学里长达 77 年, 成了一条 "经验上对, 原理上不明白"的怪异定律.</p>
+
+  <p>1931 年 Lars Onsager 在 Physical Review 上连发两篇论文 ("Reciprocal Relations in Irreversible Processes I, II"), 把 Kelvin 关系作为一个特例推了出来, 证明这不是热电过程独有的偶然, 而是一切线性非平衡过程共享的一条对称律 $L_{ij} = L_{ji}$. 他用的工具只有两条: 统计力学的涨落理论 (Einstein 那一套) 和微观时间反演不变性 (力学方程的对称性). 1968 年他为这项工作拿到 Nobel 化学奖. 本节就是把这条证明严格走一遍 —— 这是本卷 "cliché 概念 deepdive" 的典型一幕, 因为很多文献里 $L_{ij} = L_{ji}$ 被当作公理引用, 从不讲它凭什么成立.</p>
+
+  <h2>一、线性响应的矩阵结构与熵产生</h2>
+
+  <p>先把 "力" 和 "流" 的定义澄清. 假设一个孤立系统处在轻度非平衡的稳态, 用若干广延量 $a_1, a_2, \dots, a_n$ 描述它偏离平衡的程度 (例如 $a_1$ = 某区间多出来的内能, $a_2$ = 某区间多出来的电荷, 等等). 在平衡值处熵达到极大, 所以熵对 $\{a_i\}$ 的展开是</p>
+
+  <p>$$S(\{a_i\}) = S_{\max} - \tfrac{1}{2}\sum_{ij}\beta_{ij}\,a_i a_j + \cdots,$$</p>
+
+  <p>其中 $\beta_{ij}$ 是一个正定对称矩阵 (熵为极大要求). 定义 "热力学力" 为熵对各 $a_i$ 的梯度</p>
+
+  <p>$$X_i \equiv \frac{\partial S}{\partial a_i} = -\sum_j \beta_{ij}\,a_j.$$</p>
+
+  <p>这是 Onsager 的关键定义: $X_i$ 是 "把 $a_i$ 推回平衡" 的驱动力, 量纲是 [熵/$a_i$]. 在热电问题里, 若 $a_1$ 是内能, $a_2$ 是电荷, 那么 $X_1 = \Delta(1/T)$, $X_2 = -\Delta(\mu/T)$ (电化学势除以温度的梯度), 具体公式可以从 $dS = dU/T - \mu dN/T$ 直接得到. "流" 则是各 $a_i$ 的时间导数</p>
+
+  <p>$$J_i \equiv \dot a_i.$$</p>
+
+  <p>这样熵的产生率 $\sigma = \dot S = \sum_i X_i J_i$ 自动写成"力乘流"的标准形式. 在轻度非平衡假设下, 流是力的线性函数:</p>
+
+  <p>$$J_i = \sum_j L_{ij} X_j.\tag{1}$$</p>
+
+  <p>系数 $L_{ij}$ 称为 Onsager 系数, 也叫动力学系数. (1) 是本节的主角方程. 热力学第二定律 $\sigma \ge 0$ 要求 $\sum_{ij} L_{ij} X_i X_j \ge 0$ 对一切 $\{X_i\}$, 所以 $L$ 必须是对称半正定的二次型 —— 但这只说明 $L$ 的<em>对称部分</em>半正定, 不要求 $L$ 本身对称. 反对称部分不贡献二次型. 所以 "$L$ 对称" 这件事不能从第二定律直接推出, 它是一条独立的物理律, 需要额外的对称性来源.</p>
+
+  <p>就热电耦合而言, $L$ 是一个 $2\times 2$ 矩阵</p>
+
+  <p>$$\begin{pmatrix} J_U \\ J_Q \end{pmatrix} = \begin{pmatrix} L_{UU} & L_{UQ} \\ L_{QU} & L_{QQ}\end{pmatrix}\begin{pmatrix} X_U \\ X_Q\end{pmatrix}.$$</p>
+
+  <p>$L_{UU}$ 是纯热导率 (温度梯度驱热流), $L_{QQ}$ 是纯电导率 (电压驱电流), 非对角项 $L_{UQ}$, $L_{QU}$ 分别是 Peltier 和 Seebeck 的交叉项. Onsager 要证的就是 $L_{UQ} = L_{QU}$. 这一句等式, 套进 Kelvin 的具体公式就还原成 $\Pi = TS$. 但 Onsager 的原理是普遍的: 任何 $n$ 维线性响应矩阵, 在无磁场、无 Coriolis 力的情况下都是对称的.</p>
+
+  <h2>二、Deepdive: 从微观时间反演不变性到 $L_{ij}=L_{ji}$</h2>
+
+  <p>这一节是本篇的核心证明. 必须推得严格, 因为 Onsager 倒易关系被文献里反复引用但很少被老老实实推一遍.</p>
+
+  <p><em>第一步: 微观时间反演不变性意味着什么.</em> 孤立系统的微观 Hamilton 方程 $\dot q = \partial_p H$, $\dot p = -\partial_q H$ 对变换 $T: (q(t), p(t)) \to (q(-t), -p(-t))$ 是不变的 (假设 $H$ 是 $p$ 的偶函数, 无磁场). 这意味着任何 "合法" 的轨迹 $(q(t), p(t))$ 的时间反转 $(q(-t), -p(-t))$ 也是合法的. 进一步, 平衡态的相空间分布 $\rho_0 \propto e^{-\beta H}$ 在时间反转下不变 ($H$ 是 $p$ 偶函数).</p>
+
+  <p>现在把各观测量 $a_i(q,p)$ 分类: 在时间反转下 $a_i \to \varepsilon_i a_i$, 其中 $\varepsilon_i = +1$ (偶宇称, 如能量、坐标) 或 $\varepsilon_i = -1$ (奇宇称, 如动量、磁矩). 本节先只处理 $\varepsilon_i = +1$ 的情形 (热电问题里的内能密度和电荷密度都是时间反演偶的), 奇宇称的修正最后会以 $L_{ij}(\mathbf B) = L_{ji}(-\mathbf B)$ 的形式重新回来.</p>
+
+  <p><em>第二步: 关联函数的时间平移与反演对称.</em> 考虑平衡态下 $a_i$ 的涨落 $\delta a_i \equiv a_i - \langle a_i\rangle_0$. 两点关联</p>
+
+  <p>$$C_{ij}(t) \equiv \langle \delta a_i(t)\,\delta a_j(0)\rangle_0$$</p>
+
+  <p>在平衡下由时间平移不变给出 $C_{ij}(t) = \langle\delta a_i(0)\,\delta a_j(-t)\rangle_0$, 也就是 $C_{ij}(t) = C_{ji}(-t)$. 再加上时间反演不变 (用 $\rho_0$ 对 $T$ 变换的不变性):</p>
+
+  <p>$$\langle\delta a_i(t)\,\delta a_j(0)\rangle_0 = \varepsilon_i\varepsilon_j\,\langle\delta a_i(-t)\,\delta a_j(0)\rangle_0.$$</p>
+
+  <p>对 $\varepsilon_i = \varepsilon_j = +1$, 这给出 $C_{ij}(t) = C_{ij}(-t)$. 结合前一条 $C_{ij}(t) = C_{ji}(-t)$, 两者合起来得到关键的对称性</p>
+
+  <p>$$\langle \delta a_i(t)\delta a_j(0)\rangle_0 = \langle \delta a_i(0)\delta a_j(t)\rangle_0, \qquad \text{即 } C_{ij}(t) = C_{ji}(t).\tag{2}$$</p>
+
+  <p>这是微观可逆性在两点关联层面的陈述: "先测 $a_i$ 再过 $t$ 测 $a_j$" 与 "先测 $a_j$ 再过 $t$ 测 $a_i$" 给出同样的期望. 它是 Onsager 证明的真正出发点.</p>
+
+  <p><em>第三步: Onsager 回归假设.</em> 把 (2) 翻译到非平衡响应上需要一句附加假设 —— 宏观回归与微观涨落衰减服从同一规律. Onsager 1931 年的原话是: "An average fluctuation will decay according to the macroscopic equations of motion." 用数学语言: 对一个被某种初始条件制造出来的小偏离 $\bar a_j(0)$, 它的后续衰减 $\bar a_j(t)$ 平均来看满足宏观线性方程 $\dot a_i = \sum_k M_{ik} a_k$, 其中 $M = -L\beta$ (把 $X_j = -\sum_k\beta_{jk}a_k$ 代入 (1)). 同时, 平衡态里的涨落衰减满足</p>
+
+  <p>$$\langle\delta a_i(t)\,|\,\delta a_j(0) = a_j^0\rangle = \sum_k e^{Mt}{}_{ik}\,\frac{C_{kj}(0)}{\text{某归一}} \cdot a_j^0,$$</p>
+
+  <p>更干净的写法是直接</p>
+
+  <p>$$\frac{d}{dt}C_{ij}(t) = \sum_k M_{ik}\,C_{kj}(t) = -\sum_{km} L_{ik}\beta_{km}\,C_{mj}(t).$$</p>
+
+  <p>代入 $t = 0^+$ 附近看矩阵结构. 平衡涨落的等时协方差由 Einstein 涨落理论给出 $C_{kj}(0) = \langle\delta a_k\delta a_j\rangle_0 = (\beta^{-1})_{kj}$ (这是熵的二次展开的标准结果, 附录里任何一本统计力学教科书都有). 于是</p>
+
+  <p>$$\left.\frac{dC_{ij}}{dt}\right|_{t=0^+} = -\sum_{km} L_{ik}\beta_{km}(\beta^{-1})_{mj} = -L_{ij}.$$</p>
+
+  <p>把这个公式连同 (2) 写在一起: $dC_{ij}/dt|_{0^+} = dC_{ji}/dt|_{0^+}$ (因为 $C_{ij}(t) = C_{ji}(t)$ 对所有 $t$), 所以</p>
+
+  <p>$$L_{ij} = L_{ji}.\tag{3}$$</p>
+
+  <p>这就是 Onsager 倒易关系. 整条证明的逻辑骨架是:</p>
+  <p>微观时间反演不变 $\Rightarrow$ 平衡两点关联对称 $C_{ij}(t) = C_{ji}(t)$ $\Rightarrow$ 回归假设把关联衰减与宏观系数挂钩 $\Rightarrow$ 宏观系数矩阵 $L$ 对称.</p>
+
+  <p><em>一个显式例子: 多元 Ornstein-Uhlenbeck.</em> 为了让抽象推导落地, 取一个最小模型. 两个耦合的 Brownian 自由度 $a_1, a_2$, 满足</p>
+
+  <p>$$\dot a_i = -\sum_j M_{ij} a_j + \xi_i(t),\qquad \langle\xi_i(t)\xi_j(t')\rangle = 2 D_{ij}\delta(t-t'),$$</p>
+
+  <p>其中 $M$ 是稳定矩阵 ($\mathrm{Re}\,\lambda(M) > 0$), $D$ 对称半正定. 直接计算稳态协方差 $\Sigma_{ij} = \langle a_i a_j\rangle$ 由 Lyapunov 方程 $M\Sigma + \Sigma M^T = 2D$ 给出. 若要求系统对应一个有良好熵的平衡态 ($\Sigma^{-1} = \beta$), 进一步要求 $M\beta^{-1}$ 对称 (这就是 $L$ 对称的另一种写法, 因为 $L = M\beta^{-1}$). 所以在这个玩具模型里 $L_{12} = L_{21}$ 不是自动的 —— 只有当 $M, D$ 满足时间反演相容条件 ($M\beta^{-1}$ 对称) 时才成立. 这个条件就是微观可逆性在随机动力学层面的表现, 即"细致平衡"(detailed balance). 现实的热电材料就处在这个相容区域.</p>
+
+  <p>小结本段: Onsager 倒易关系不是第二定律的推论, 它依赖于一个比第二定律更深的信息 —— 微观方程在时间反演下不变. 第二定律只给出 $L$ 半正定, 时间反演给出 $L$ 对称.</p>
+
+  <h2>三、热-电耦合作为 $2\times 2$ 具体例子</h2>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 热-电耦合的 Onsager 对称</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>一段热电材料杆的热-电耦合示意, 展示 Seebeck (温差驱动电流) 与 Peltier (电压驱动热流) 两种过程的对称性 $L_{UQ} = L_{QU}$, 并用公式 $\Pi = TS$ 标出 Kelvin 关系.</dd>
+      <dt>必含元素</dt><dd>水平放置的橙色矩形杆代表热电材料 (例如 Bi$_2$Te$_3$), 左端标 $T_1$ 右端标 $T_2$ (取 $T_1 > T_2$), 杆两端各加一个电势 $V_1, V_2$ 的触点. 杆中画两对箭头: (a) 下方一对表示热流 $J_Q$ 方向从左到右, 标签 $J_Q = L_{UQ}X_E + L_{UU}X_T$; (b) 上方一对表示电流 $I$ 方向从左到右, 标签 $I = L_{QQ}X_E + L_{QU}X_T$. 在杆下方中央画一个双向箭头连接两个非对角项, 标 "$L_{UQ} = L_{QU}$". 右侧空白写 Kelvin 关系 $\Pi = T\cdot S$, 其中 $\Pi$ = Peltier 系数, $S$ = Seebeck 系数.</dd>
+      <dt>几何精度</dt><dd>杆长约 $6\,\mathrm{cm}$ 宽 $1\,\mathrm{cm}$, 箭头长度表征相对大小不必严格比例, 但两对箭头位置左右对称, 用以强调 $L_{UQ}$ 与 $L_{QU}$ 在同一段材料中指向同样的对称方向. 双向箭头居中, 公式 $L_{UQ} = L_{QU}$ 用粗体.</dd>
+      <dt>标签与公式</dt><dd>杆本身标 "Bi$_2$Te$_3$"; 左端 $T_1, V_1$, 右端 $T_2, V_2$; 热流 $J_Q$ 用红色箭头, 电流 $I$ 用蓝色箭头; 中间公式 $L_{UQ}=L_{QU}$, 右上角 $J_i = \sum_j L_{ij}X_j$, 右下角 $\Pi = TS$.</dd>
+      <dt>风格建议</dt><dd>白底, 杆填充橙色 (代表热/热电活跃), 热流红色、电流蓝色以形成冷暖对比, 箭头清楚, 对称箭头对齐. 所有字体使用衬线, 公式略大.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  一段 Bi$_2$Te$_3$ 热电杆里同时有温差和电压两种"力", 各自驱动热流与电流; Onsager 倒易关系 $L_{UQ} = L_{QU}$ 让这两个交叉系数在完全独立的两种实验 (Seebeck 与 Peltier) 里用同一个数连接起来, 正是 Kelvin 1854 年猜到却无法严格证明的 $\Pi = TS$.</figcaption>
+  </figure>
+
+  <p>把 $2\times 2$ 的矩阵表达式展开成"人话". 定义温度梯度驱动的力 $X_T = \Delta(1/T) \approx -\Delta T/T^2$, 电势驱动的力 $X_E = -\Delta(\mu/T)$ (在固定电荷载流子种类下 $\Delta\mu \approx e\Delta V$). 流分别是热流 $J_Q$ 和电流 $I$. 展开 (1):</p>
+
+  <p>$J_Q = L_{UU} X_T + L_{UQ} X_E,$ $\quad I = L_{QU} X_T + L_{QQ} X_E.$</p>
+
+  <p><em>Seebeck 系数.</em> 开路 ($I = 0$) 测温差诱导的电压. 由 $I = 0$ 解出 $X_E = -L_{QU}/L_{QQ}\cdot X_T$. 把 $X_E \approx -e\Delta V/T$, $X_T \approx -\Delta T/T^2$ 代入, 得到</p>
+
+  <p>$$S \equiv \left.\frac{\Delta V}{\Delta T}\right|_{I=0} = \frac{1}{eT}\cdot\frac{L_{QU}}{L_{QQ}}.$$</p>
+
+  <p><em>Peltier 系数.</em> 等温 ($X_T = 0$) 下单位电流携带的热. 由 $X_T = 0$, $J_Q/I = L_{UQ}/L_{QQ}$. 注意 Peltier 系数按定义是 $\Pi = J_Q/I$ 的热量/电荷比, 所以</p>
+
+  <p>$$\Pi = \frac{L_{UQ}}{L_{QQ}}\cdot\frac{1}{e} = \frac{L_{UQ}}{eL_{QQ}}.$$</p>
+
+  <p>Onsager 倒易 $L_{UQ} = L_{QU}$ 立刻给出 $\Pi/S = T$, 即</p>
+
+  <p>$$\Pi = T\cdot S.$$</p>
+
+  <p>这就是 Kelvin 1854 年写下的 "第二 Kelvin 关系"(the second Kelvin relation). 在 Kelvin 本人那里它是依赖于"忽略不可逆热"的可疑论证; 在 Onsager 这里它是一条严格的定理, 成立不要求不可逆效应消失, 只要求线性近似有效.</p>
+
+  <h2>四、数字、极限、历史</h2>
+
+  <p><em>数字 1: Bi$_2$Te$_3$ 的 Seebeck 与 Peltier.</em> 碲化铋是标准的室温热电材料 (制冷桃片、汽车座椅制冷、深空探测器的 RTG 都用它的变体). 在 $T = 300\,\mathrm{K}$, 典型的 p 型 Bi$_2$Te$_3$ 薄片 Seebeck 系数 $S \approx +200\,\mu\mathrm{V/K}$. 按 Kelvin-Onsager 关系, 它的 Peltier 系数应当是</p>
+
+  <p>$$\Pi = T\cdot S = 300\,\mathrm{K} \times 200\times 10^{-6}\,\mathrm{V/K} = 0.060\,\mathrm{V} = 60\,\mathrm{mV}.$$</p>
+
+  <p>物理意义: 通过每单位电荷的电流, 材料从冷端搬到热端的热量是 $60\,\mathrm{mV} \times 1\,\mathrm{C} = 0.060\,\mathrm{J}$. 若电流 $I = 1\,\mathrm{A}$, 单位时间搬热 $0.060\,\mathrm{W}$. 典型热电制冷片 (直径几厘米, 多元件串联) 电流几安, 温差十几度, 制冷功率一二十瓦 —— 和小型车用冰箱的量级一致. 实验测得的 Bi$_2$Te$_3$ Peltier 系数确实在 $60\pm 5\,\mathrm{mV}$ 这个范围, 与 Kelvin 关系偏差不超过几个百分点, 偏差主要来自非线性和温度依赖 (不是 Onsager 定理失败).</p>
+
+  <p><em>数字 2: 熵产生率的对称性要求.</em> 在同一段 Bi$_2$Te$_3$ 里, 若 $\Delta T = 10\,\mathrm{K}$, $\Delta V = S\Delta T = 2\,\mathrm{mV}$ (开路时). 若外部短路允许 $I = 1\,\mathrm{A}$ 电流流过, 熵产生率 $\sigma = \sum_i X_i J_i = X_T J_Q + X_E I$. 粗略估算 $X_T \approx \Delta T/T^2 \approx 10/9\times 10^4 \approx 10^{-4}\,\mathrm{K}^{-1}$, $X_E \approx e\Delta V/T \approx 1.6\times 10^{-19}\times 2\times 10^{-3}/300 \approx 10^{-24}\,\mathrm{J}$; 具体数字没那么重要, 关键是 $\sigma$ 作为 $(X_T, X_E)$ 的二次型 $\sum_{ij} L_{ij}X_i X_j$ 要非负. 如果 $L$ 不是对称的, 二次型的概念本身没有定义 (只有对称部分贡献), 我们可以把 $L$ 用它的对称化 $\tilde L = (L+L^T)/2$ 替换 —— 熵产生根本看不到反对称部分. 所以即便 Onsager 不成立, 熵产生也不会报警; 倒易关系给出的额外信息是: 反对称部分恰好为零, 不只是在熵上不可见, 物理上它真的不存在 (在无磁场下).</p>
+
+  <p><em>极限: 磁场中的倒易关系.</em> 前面一步的推导用到"$H$ 是 $p$ 的偶函数"这个事实. 放到外磁场 $\mathbf B$ 里, 带电粒子的 Hamilton 量 $H = (\mathbf p - e\mathbf A)^2/2m + V$ 不再是 $\mathbf p$ 的偶函数, 时间反演要同时翻转 $\mathbf B$ 才能让方程复原. 重做第二步推导, 把 $C_{ij}(t; \mathbf B)$ 和 $C_{ij}(-t; -\mathbf B)$ 等同起来, 得到修正</p>
+
+  <p>$$L_{ij}(\mathbf B) = L_{ji}(-\mathbf B).$$</p>
+
+  <p>这就是带磁场的 Onsager-Casimir 倒易关系. 它解释了 Hall 效应的一个微妙事实: 霍尔电阻 $\rho_{xy}(\mathbf B)$ 是 $\mathbf B$ 的奇函数 (反号磁场反号霍尔), 它对应的 $L_{xy}$ 也按 $\mathbf B$ 反号变化, 所以虽然 $L_{xy}(\mathbf B) \ne L_{yx}(\mathbf B)$ (看起来破坏了倒易), 但 $L_{xy}(\mathbf B) = L_{yx}(-\mathbf B)$ (正确版本) 依然成立. Casimir 1945 年把这条推广写清楚. Hall 效应并不违反 Onsager —— 它只是告诉我们在 $\mathbf B \ne 0$ 时把对称性陈述得更仔细. 顺带一提, 时间反演奇的量 (磁矩、速度) 在同样的推导里给出额外的 $\varepsilon_i\varepsilon_j$ 符号, 偶-奇交叉项会得到 $L_{ij}(\mathbf B) = -L_{ji}(-\mathbf B)$, 带一个负号. 这些细节是 Casimir 1945 年补齐的.</p>
+
+  <p><em>极限检验: 单变量退化.</em> 若系统只有一个偏离量 $a$, (3) 退化成 $L_{11} = L_{11}$, 是平凡的恒等式, 不提供新信息. 所以 Onsager 关系是<em>多变量</em>才有的内容 —— 它告诉我们不同"流"之间的交叉系数是锁死的. 这也是为什么单变量的 Einstein 关系 $D = kT/\gamma$ 不足以预示这个结构: 那里只有一个量, 没什么可"交叉"的.</p>
+
+  <p><em>历史: 1854 → 1931 → 1968.</em> Kelvin (W. Thomson) 1854 年在 Proc. Roy. Soc. Edinburgh 上发表 "On the Dynamical Theory of Heat, Part VI" 给出 $\Pi = TS$, 并亲自承认理论根据不牢. 接下来的 77 年里, 热电实验不断验证这条关系, 但没有人能把它推到任何其他耦合 (比如热-扩散) 上 —— 因为 Kelvin 那种准静态循环论证需要对每种耦合单独构造一次, 无法一般化. Onsager 1931 年以挪威裔美籍理论化学家的身份 (当时在 Brown University), 连发 Physical Review 的两篇论文 (37卷 405; 38卷 2265), 把问题一次性解决: 从涨落的时间关联对称推到宏观系数对称. 文章写得密, 引用极少 (他基本上只引了 Einstein 和 Boltzmann), 但结论完整. 这篇论文在发表后几乎无人理会 —— 主流化学家觉得太数学, 主流物理学家觉得太化学. 直到 1940 年代 Casimir、de Groot、Prigogine 等人才把它推广进教科书体系. 1968 年诺贝尔化学奖授予 Onsager, 颁奖词是 "for the discovery of the reciprocal relations bearing his name, which are fundamental for the thermodynamics of irreversible processes". 从 Kelvin 的猜测到 Onsager 的证明用了 77 年, 从 Onsager 的证明到 Nobel 的承认又用了 37 年. 这是统计力学史上两个典型的长潜伏期之一 (另一个是 Boltzmann 的 H 定理).</p>
+
+  <p><em>Onsager 本人的风格.</em> 他以讲课难听、板书混乱、脑子比嘴快出名, 学生常常听不懂他在证什么; 但他留下了好几条以名字命名的结果: Onsager 倒易 (1931), 二维 Ising 模型的严格解 (1944), 超导序参数的量子化 (1949, 被广义为 Landau-Ginzburg). 他 1931 年写下 (3) 的时候 28 岁. 有个著名的段子: 1930 年代早期他把倒易关系讲给 Pauli 听, Pauli 当场说 "这是对的, 但看不出有什么新意". Onsager 一生都没为这种评价上心 —— 事实最后说话.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Onsager 倒易关系 $L_{ij} = L_{ji}$ 是线性非平衡热力学的一条骨架定理. 它不是热力学第二定律的推论 (第二定律只要求 $L$ 半正定), 而是来自一条更深的物理输入 —— 微观方程的时间反演不变性. 证明的三步是: 时间反演 $\Rightarrow$ 平衡两点关联对称 (2); 回归假设 $\Rightarrow$ 关联衰减的时间导数等于 $-L_{ij}$; 合起来得 $L_{ij} = L_{ji}$ (3). 它在热-电耦合上化为 Kelvin 的经验关系 $\Pi = TS$, 在 Bi$_2$Te$_3$ 上给出 $\Pi \approx 60\,\mathrm{mV}$ (与实验吻合到几个百分点). 在磁场中对称性变为 $L_{ij}(\mathbf B) = L_{ji}(-\mathbf B)$, 把 Hall 效应纳入同一框架. 往前看, 下一节转到反应速率的 Arrhenius 定律, 我们会看到 "线性响应" 的假设如何在势垒跨越处被替换成指数律; 往后 Jarzynski 和 Crooks 会把这整套"线性平衡涨落 $\leftrightarrow$ 线性非平衡"的对偶推广到有限外驱的非线性情形. Onsager 的对称性是这条发展路线的第一个结构性定理, 也是所有后续非平衡统计力学的参照基线.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="23-fdt.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="25-arrhenius.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

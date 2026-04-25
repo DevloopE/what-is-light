@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>涨落耗散定理 — 涨落怎么决定耗散? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="22-h-theorem.html">← 上一节</a>
+  <span class="chapter-title">第 23 节 / 30 · 第 5 部分 · 非平衡热力学 · 第二卷·热力学与统计力学</span>
+  <a href="24-onsager.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>涨落耗散定理 — 涨落怎么决定耗散?</h1>
+  <div class="sub">—— Kubo 关系与线性响应</div>
+  <div class="abstract">本节从两个看上去无关的观察出发: Brown 微粒的扩散系数 $D$ 与水的粘度 $\eta$ 通过 Einstein 关系 $D = kT/(6\pi\eta a)$ 相连; 电阻 $R$ 端电压的热噪声功率谱 $\langle V^2\rangle/\Delta f = 4RkT$ 只由同一个电阻决定. 这两件事在表面上毫不相关, 但在结构上是同一句话 —— 平衡时已经有的涨落, 跟把系统推出平衡时的耗散, 是同一个响应函数的两个面. 我们用经典哈密顿扰动 $H \to H - F(t)A$ 做一阶展开, 严格推出 Kubo 公式 $\chi(\tau) = \beta\langle\dot A(\tau)A(0)\rangle$, 由此导出涨落耗散定理 $S_{AA}(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi_{AA}(\omega)$, 并用一条 $1\,\mathrm{k\Omega}$ 电阻在 $1\,\mathrm{MHz}$ 带宽下 $\sim 4\,\mu\mathrm{V}$ 的 Johnson 噪声和 $1\,\mu\mathrm{m}$ 花粉颗粒在水里 $D\sim 4\times 10^{-13}\,\mathrm{m^2/s}$ 的扩散, 确认这个关系的实际尺度.</div>
+
+  <p>上一节我们跟 Boltzmann 吵完了一场大架: H 定理说 H 随时间下降, Loschmidt 说时间反演下它该对称, 两边的共存靠的是"初始关联极薄, 积分出几乎总是单向"的统计现实. 那一节留下的问题是: 不可逆性体现在宏观输运系数 (扩散系数、粘度、电阻) 上, 这些耗散性的东西, 在完全平衡的系统里, 凭什么可以被"看见"?</p>
+
+  <p>Einstein 1905 年给了第一个令人惊讶的回答. 他研究花粉在水里的随机行走, 发现扩散系数 $D$ 和水对落体的粘滞摩擦系数 $6\pi\eta a$ 之间有</p>
+
+  <p>$$D = \frac{kT}{6\pi\eta a},$$</p>
+
+  <p>左边是"平衡时看到的涨落有多猛", 右边的分母是"把颗粒拽出平衡要多费劲". 这两件事乍看是两种不同的实验, 但比例固定, 单位完美对上. 二十三年后 Nyquist 在 Bell 实验室翻出一台灵敏放大器对着电阻器量噪声, 看到的东西是一模一样的结构: 电阻越耗散, 它自己端上的电压噪声越大. 又过二十多年, Callen-Welton 和 Kubo 把"涨落和耗散成比例"提升为统计力学的一条普遍定理. 本节要把这条定理从头做一遍, 尤其要把 Kubo 公式的经典推导严格写清楚 —— 它是"线性响应"这个词的真实定义, 太多文献里它被当成口号, 其实一页纸就能推完.</p>
+
+  <h2>一、两条独立观察, 同一种结构</h2>
+
+  <p>先把两边放在一起比较, 看看"涨落 $=$ 耗散"不是一种比喻.</p>
+
+  <p><em>Brown 运动.</em> 一个半径 $a\sim 1\,\mu\mathrm{m}$ 的颗粒悬浮在温度 $T=300\,\mathrm{K}$ 的水里 ($\eta \approx 10^{-3}\,\mathrm{Pa\cdot s}$), 受到的阻力系数 $\gamma = 6\pi\eta a \approx 1.9\times 10^{-8}\,\mathrm{kg/s}$. Langevin 的方程 $m\dot v = -\gamma v + \xi(t)$ 在 $t\gg m/\gamma$ 时给出 $\langle x^2(t)\rangle = 2Dt$, 其中</p>
+
+  <p>$$D = \frac{kT}{\gamma} = \frac{kT}{6\pi\eta a}.\tag{1}$$</p>
+
+  <p>代入 $kT \approx 4.1\times 10^{-21}\,\mathrm{J}$, $D \approx 2.2\times 10^{-13}\,\mathrm{m^2/s}$. 一秒钟下来, 颗粒随机漂 $\sqrt{2D\cdot 1\,\mathrm{s}} \approx 0.7\,\mu\mathrm{m}$ —— 显微镜下正好是看得见的尺度. 注意 (1) 的左边只与"颗粒自己的涨落"有关 (它在一秒内能走多远), 右边的 $\gamma$ 却只与"如果拽它, 它会多费劲"有关. 两个实验相互独立, 但关系固定.</p>
+
+  <p><em>Johnson-Nyquist 噪声.</em> 把一根电阻 $R$ 接在两端高阻抗电压表上 (无外加电源), 测得的电压不是零, 而是一个随机信号, 功率谱是白色的:</p>
+
+  <p>$$S_V(f) = 4RkT.\tag{2}$$</p>
+
+  <p>取 $R = 1\,\mathrm{k\Omega}$, $T = 300\,\mathrm{K}$, 带宽 $\Delta f = 1\,\mathrm{MHz}$. 均方电压 $\langle V^2\rangle = 4RkT\Delta f \approx 4\times 10^3 \times 4.1\times 10^{-21} \times 10^6 \approx 1.6\times 10^{-11}\,\mathrm{V^2}$, 取平方根得 RMS 电压 $\approx 4\,\mu\mathrm{V}$. 这是每一根电阻都自带的底噪 —— 它决定了运算放大器的 SNR 极限, 决定了天线前端能听到多弱的信号. 结构同样是: 左边的电压涨落只与"电阻自带的热噪声"有关, 右边的 $R$ 只与"通过电阻时要耗散多少功率"有关.</p>
+
+  <p>把两条关系并排看, 它们的骨架是一样的: "某个量的平衡涨落" $\propto$ $kT$ $\times$ "把系统稍微推一下时它的耗散系数". 结构如此整齐, 不可能是巧合. 接下来的任务是找到一条定理, 让这两条关系都成为它在不同物理量 (颗粒坐标 / 电压) 上的具体表现.</p>
+
+  <h2>二、Deepdive: Kubo 公式的经典推导</h2>
+
+  <p>这一段是本节的核心. 线性响应这个词被用滥了, 但如果真的去问"响应函数 $\chi$ 是从哪里冒出来的", 能给出一页纸完整推导的人其实不多. 我们这里从微观哈密顿扰动出发, 用经典扰动论做一阶展开, 严格得到 Kubo 公式. 整个推导只用到 Liouville 方程和 Poisson 括号, 不需要任何量子或半经典的黑箱.</p>
+
+  <p><em>设定.</em> 一个经典哈密顿系统, 未扰动哈密顿量 $H_0(q,p)$, 平衡态由正则分布 $\rho_0(q,p) = Z^{-1}e^{-\beta H_0}$ 描述, $\beta = 1/kT$. 我们感兴趣的物理量 $A(q,p)$ 在平衡时平均 $\langle A\rangle_0 = \int A\rho_0\,d\Gamma$. 从 $t=-\infty$ 开始, 系统被一个外场 $F(t)$ 耦合到 $A$ 上:</p>
+
+  <p>$$H(t) = H_0 - F(t)A(q,p).$$</p>
+
+  <p>任务是求 $\langle A(t)\rangle - \langle A\rangle_0$ 作为 $F$ 的泛函, 保留到一阶.</p>
+
+  <p><em>Liouville 方程的扰动展开.</em> 相空间密度 $\rho(q,p,t)$ 满足 $\partial_t\rho = \{H, \rho\}$, 其中 $\{\cdot,\cdot\}$ 是 Poisson 括号. 写 $\rho = \rho_0 + \delta\rho$, 用 $\{H_0,\rho_0\} = 0$ (平衡态的不变性), 保留到 $F$ 一阶:</p>
+
+  <p>$$\partial_t \delta\rho = \{H_0, \delta\rho\} - F(t)\{A, \rho_0\}.$$</p>
+
+  <p>这是 $\delta\rho$ 的一阶线性方程. 右边的源项 $-F(t)\{A,\rho_0\}$ 来自扰动项 $-FA$ 与平衡态的 Poisson 括号. 令 $\mathcal{L}_0 \equiv \{H_0,\cdot\}$, 形式解是</p>
+
+  <p>$$\delta\rho(t) = -\int_{-\infty}^{t} dt'\, F(t')\,e^{(t-t')\mathcal{L}_0}\{A,\rho_0\}.$$</p>
+
+  <p>注意 $e^{(t-t')\mathcal{L}_0}$ 只是"沿 $H_0$ 自由演化 $(t-t')$ 这么久"的相流算子.</p>
+
+  <p><em>计算 $\{A,\rho_0\}$.</em> 用 $\rho_0 \propto e^{-\beta H_0}$ 和链式法则:</p>
+
+  <p>$$\{A,\rho_0\} = \rho_0 \cdot \{A, -\beta H_0\} = -\beta\rho_0\{A, H_0\} = \beta\rho_0 \{H_0,A\} = \beta\rho_0 \dot A,$$</p>
+
+  <p>其中用到 $\{H_0, A\} = \dot A$ (Hamilton 方程下 $A$ 沿自由演化的时间导数). 所以</p>
+
+  <p>$$\delta\rho(t) = -\beta \int_{-\infty}^{t} dt'\, F(t')\, e^{(t-t')\mathcal{L}_0}\big[\rho_0 \dot A\big].$$</p>
+
+  <p><em>把源项推到观测上.</em> 要求 $\langle A(t)\rangle = \int A\,\rho\,d\Gamma = \langle A\rangle_0 + \int A\,\delta\rho\,d\Gamma$. 关键手法: $e^{\tau\mathcal{L}_0}$ 作用在 $\rho_0\dot A$ 上等价于在相空间做时间 $\tau$ 的 Hamilton 流, 而 $\rho_0$ 是流的不变测度. 积分时把"演化"从相密度一侧搬到观测量一侧, 也就是 Heisenberg 图像: $A(q,p)$ 在延迟 $\tau = t-t'$ 下变成 $A(\tau)$ (指沿 $H_0$ 自由演化 $\tau$ 后的 $A$). 具体地</p>
+
+  <p>$$\int A(q,p) \cdot e^{\tau\mathcal{L}_0}\big[\rho_0\dot A\big]\, d\Gamma = \int A(\tau)\cdot \rho_0\dot A(0)\, d\Gamma = \langle A(\tau)\dot A(0)\rangle_0.$$</p>
+
+  <p>(严格的话需要 $e^{\tau\mathcal{L}_0}$ 是测度保持的, 这对 Hamilton 流成立.) 于是</p>
+
+  <p>$$\langle A(t)\rangle - \langle A\rangle_0 = -\beta \int_{-\infty}^{t} dt'\, F(t')\, \langle A(t-t')\dot A(0)\rangle_0.$$</p>
+
+  <p>写成 $\delta\langle A\rangle_t = \int_{-\infty}^{\infty} dt'\,\chi(t-t')F(t')$ 的标准形式 (要求 $\chi(\tau)=0$ for $\tau < 0$, 因果性), 得到<strong>经典 Kubo 公式</strong></p>
+
+  <p>$$\boxed{\;\chi(\tau) = -\beta\,\langle A(\tau)\dot A(0)\rangle_0\, \theta(\tau) = \beta\,\langle \dot A(\tau) A(0)\rangle_0\,\theta(\tau)\;}\tag{3}$$</p>
+
+  <p>(最后一步用了在平衡态下 $\langle A(\tau)\dot A(0)\rangle = -\langle\dot A(\tau) A(0)\rangle$, 来自 $\partial_\tau \langle A(\tau)A(0)\rangle = \langle\dot A(\tau)A(0)\rangle$ 以及 $\langle A(\tau)A(0)\rangle = \langle A(0)A(-\tau)\rangle$ 的时间平移对称性.)</p>
+
+  <p>两行话概括 (3) 的意义: 线性响应函数 $\chi(\tau)$ 完全由未扰动平衡态下的两点时间关联决定, 不需要在非平衡条件下"测响应". 这就是为什么我们能从"电阻两端的电压波动"预言"如果给它一个外电压, 它要耗散多少功率" —— 两者其实共享同一条关联曲线.</p>
+
+  <p><em>从 $\chi$ 到涨落耗散定理.</em> 定义 $A$ 的平衡自关联 $C(\tau) \equiv \langle A(\tau)A(0)\rangle_0$, 它的 Fourier 变换 $S_{AA}(\omega) = \int_{-\infty}^\infty d\tau\, e^{i\omega\tau}C(\tau)$ 是 $A$ 的功率谱. 对 (3) 做 Fourier 变换并取虚部 (涉及 $\int_0^\infty e^{i\omega\tau}\partial_\tau C\,d\tau$ 的分部积分), 平衡关联的时间平移对称性给出 $\mathrm{Im}\,\chi(\omega) = (\beta\omega/2) S_{AA}(\omega)$, 也就是经典形式的<strong>涨落耗散定理</strong></p>
+
+  <p>$$\boxed{\;S_{AA}(\omega) = \frac{2kT}{\omega}\,\mathrm{Im}\,\chi_{AA}(\omega)\;}\tag{4}$$</p>
+
+  <p>定理的量子版本 (Callen-Welton 1951) 是 $S_{AA}(\omega) = 2\hbar(1 + \bar n_\omega)/\omega \cdot \mathrm{Im}\,\chi_{AA}(\omega)$, 其中 $\bar n_\omega = 1/(e^{\beta\hbar\omega}-1)$ 是 Planck 分布. 经典极限 $\hbar\omega \ll kT$ 下 $\bar n_\omega \approx kT/\hbar\omega$, 代入即得到 (4). 这是本节第一个极限检验: 我们从经典路径 (3) → (4) 推出来的东西, 作为量子结果的低频 / 高温极限被正确再现.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 响应的吸收峰与涨落谱峰一一对应</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>涨落耗散定理 $S_{AA}(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi_{AA}(\omega)$ 的可视化: 上图是系统的响应/吸收曲线 $\mathrm{Im}\,\chi(\omega)$ 在共振频率 $\omega_0$ 附近的 Lorentzian 峰; 下图是平衡涨落的功率谱 $S_{AA}(\omega)$ 在同一 $\omega_0$ 处的峰. 两图用竖直虚线 + 双向箭头 + 公式 (4) 连接, 说明涨落与耗散在同一个频率上同步出现.</dd>
+      <dt>必含元素</dt><dd>上图: 横轴 $\omega$, 纵轴 $\mathrm{Im}\,\chi(\omega)$, 红色 Lorentzian 峰, 峰位 $\omega_0$, 峰宽 $\gamma$; 下图: 同一横轴, 纵轴 $S_{AA}(\omega)$, 相同峰位 $\omega_0$ 的峰, 峰高按 $(2kT/\omega_0)\,\mathrm{Im}\,\chi(\omega_0)$ 确定. 中间加一条双向箭头与标签 $S(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi$. 右侧空白处写 Einstein 关系 $D = kT/(6\pi\eta a)$ 作为具体示例.</dd>
+      <dt>几何精度</dt><dd>两条 Lorentzian 峰位严格一致; 下图峰值高度与上图按 $2kT/\omega_0$ 的比例关联 (即高度比 = $2kT/\omega_0$ 乘一个无量纲常数); 峰宽 $\gamma$ 在两图中相等; 两图的横轴对齐, 用一条垂直虚线把峰位连起来.</dd>
+      <dt>标签与公式</dt><dd>上图内部: $\mathrm{Im}\,\chi(\omega)$ 标 $\omega_0$ 和 $\gamma$. 下图内部: $S_{AA}(\omega)$ 标同一 $\omega_0$. 两图之间: FDT 公式 $S(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi(\omega)$. 图右下加一个小框, 写 Einstein 关系作为 $\omega = 0$ 的 DC 极限: $D = kT/(6\pi\eta a)$.</dd>
+      <dt>风格建议</dt><dd>白底两图, 共振峰红色, 坐标轴与刻度黑色细线, 中间连接箭头深灰色; 公式用小号衬线字体排在图间空白处; 整体不要拥挤, 两峰一清二楚是重点.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  上下两图的峰位一致、宽度一致, 高度比精确地由 $2kT/\omega_0$ 给出 —— 这就是涨落耗散定理的可视形式: 一个系统"在哪里吸收能量" (上图) 就"在哪里涨落" (下图), 两者成正比.</figcaption>
+  </figure>
+
+  <h2>三、回到 Brown 和 Nyquist: (1) 和 (2) 是 (4) 的两个例子</h2>
+
+  <p>把抽象的 (4) 变回具体场景, 才能看清它真的说了两条经验定律.</p>
+
+  <p><em>Einstein 关系 = 速度响应的 $\omega\to 0$ 极限.</em> 令 $A = x$ (颗粒位置), $F =$ 外力. Hamilton 微扰 $H \to H - Fx$ 下的 Kubo 公式 (3) 给出 $\chi_{xx}(\tau) = \beta\langle \dot x(\tau)x(0)\rangle\theta(\tau) = \beta\langle v(\tau)x(0)\rangle\theta(\tau)$. 我们感兴趣的是稳态移动度 $\mu_{\mathrm{mob}} = \langle v\rangle/F$, 它由速度响应 $\tilde\chi_{vv}(\omega=0)$ 给出. 算下来</p>
+
+  <p>$$\mu_{\mathrm{mob}} = \beta\int_0^\infty d\tau\,\langle v(\tau)v(0)\rangle = \frac{1}{kT}\int_0^\infty \langle v(\tau)v(0)\rangle\,d\tau.$$</p>
+
+  <p>另一方面 $D = \int_0^\infty \langle v(\tau)v(0)\rangle\,d\tau$ 是速度自关联的 Green-Kubo 表达式 (令 $\langle x^2(t)\rangle = 2\int_0^t dt'\int_0^{t'}dt''\langle v(t')v(t'')\rangle \to 2Dt$ 得到). 合起来得</p>
+
+  <p>$$D = kT\,\mu_{\mathrm{mob}} = \frac{kT}{\gamma},$$</p>
+
+  <p>这就是 (1). 注意: 我们从来没有在外力下测过 $D$; 我们测的是"颗粒自己随机漂"与"拖曳颗粒要费多大劲", 两件事却被 Kubo 公式拴在一起. Einstein 1905 年的那篇论文给的推导用的是热力学配分式直觉, 在形式上相当于在 (3) 里取 $\omega = 0$, 但他没有一般的响应函数概念 —— 这是 Kubo 1957 的贡献.</p>
+
+  <p><em>Nyquist 公式 = 电流响应 $\chi_{II}$ 的实部.</em> 把电阻看成一维电荷的线性响应系统, $A = Q$ (流过的电荷), 外场 $F = V$ (电压). 线性响应给出 $\tilde\chi_{QQ}(\omega) = i/\omega \tilde\chi_{II}(\omega) / (-i) = \tilde\chi_{II}(\omega)/(-i\omega)$, 其中电流-电流响应在低频下 $\tilde\chi_{II}(\omega) \to 1/R$ (实部恒等于导纳), 对应 $\mathrm{Im}\,\tilde\chi_{QQ}(\omega) = 1/(R\omega)$. 代入 (4) 得 $S_{QQ}(\omega) = 2kT/(R\omega^2)$, 再把电荷谱转成电压谱 $S_V(\omega) = (1/R)^{-2}\cdot\omega^2 S_{QQ}$ 并除以 $(2\pi)$ 归一, 最终落在 $S_V(f) = 4RkT$, 就是 (2). Nyquist 1928 年发表那篇论文的时候, Callen-Welton 还没出生, Kubo 还是小孩 —— 他是用一条"细长传输线两端装黑体吸收体, 再用 Planck 辐射的腔内模密度 $2kT$ 每模"的论证, 独立地把同一个定理在"电阻"这个具体场景中导出来. 结构上完全等价.</p>
+
+  <p>换句话说, (1) 和 (2) 不是两条独立的实验定律, 而是 (4) 取不同物理量 (坐标 vs 电荷)、不同频率 ($\omega=0$ vs 白谱) 的两张剪影.</p>
+
+  <h2>四、应用、数字, 与 1951-1957 年的两次拔高</h2>
+
+  <p>把 (4) 当工具用, 在不同学科里它解释了大量看起来毫不相关的现象.</p>
+
+  <p><em>红外吸收谱.</em> 一个分子有偶极矩 $\vec\mu$, 吸收红外光的功率与 $\mathrm{Im}\,\chi_{\mu\mu}(\omega)$ 成正比. 按 (4), 这也等于 $\omega S_{\mu\mu}(\omega)/(2kT)$, 后者是平衡态分子偶极的自关联 Fourier 变换. 所以我们可以用分子动力学模拟出平衡态的 $\vec\mu(t)$, 求其谱, 再乘一个因子, 直接给出红外吸收谱 —— 实际计算化学里就是这么做的. 不需要把激光真的"加"到分子上.</p>
+
+  <p><em>共振损耗.</em> 一个阻尼简谐振子在外场下的吸收峰是一条 Lorentzian, 宽度 $\gamma$ 与阻尼系数成正比. 按 (4), 同一振子在平衡态下的位置涨落谱也是一条 Lorentzian, 宽度也是 $\gamma$. 这就是为什么原子钟的线宽、LIGO 悬挂镜的热噪声峰、微悬臂的布朗涨落, 全都遵循同一条公式: 谁耗散得少, 谁就涨落得少 (在相同频率上), 反之亦然. LIGO 的设计就是"只让镜子在感兴趣的 $\sim 100\,\mathrm{Hz}$ 波段保持极低损耗", 因为 FDT 保证这样一来, 在该波段的热涨落也就压到探测要求之下.</p>
+
+  <p><em>Johnson 噪声的再检查.</em> 用 (2) 算一条 $1\,\mathrm{k\Omega}$ 电阻在室温 $300\,\mathrm{K}$、$1\,\mathrm{MHz}$ 带宽下的 RMS 电压: $V_{\mathrm{RMS}} = \sqrt{4RkT\Delta f} \approx \sqrt{1.65\times 10^{-11}\,\mathrm{V^2}} \approx 4\,\mu\mathrm{V}$. 如果换成 $50\,\Omega$ 的同轴电缆终端电阻 (射频实验常见), 同样带宽下 $V_{\mathrm{RMS}} \approx 0.9\,\mu\mathrm{V}$; 把带宽扩大到 $1\,\mathrm{GHz}$, 会升到 $28\,\mu\mathrm{V}$. 这些是前端放大器必须盖过的底噪. 值得强调的是, (2) 式里没有"电阻材料"、"电阻做法"、"电流载流子是什么"的任何信息, 只剩 $R$ 和 $T$ —— 这就是 FDT 的威力: 它不关心微观, 只关心"如果你推一下, 它多费劲"这一个宏观数. Nyquist 把 (2) 叫做 "一条普遍的定理"的时候, 心里想的就是这种无关微观细节的简洁.</p>
+
+  <p><em>Brown 运动的数字检验.</em> 对 $a=1\,\mu\mathrm{m}$, $T=300\,\mathrm{K}$, 水中 $D\approx 2.2\times 10^{-13}\,\mathrm{m^2/s}$. 实验上 Perrin 1908 年测得的扩散系数 (对几种不同胶体颗粒综合) 与 Einstein 公式吻合到几个百分点以内, 这既是 Einstein 理论的一次胜利, 也是他顺便确认了 "原子存在" 并从中读出的 Avogadro 常数 $N_A \approx 6\times 10^{23}$ 与其他方法一致的方式 (这篇 1908 年论文让 Perrin 得到 1926 年的 Nobel). 换句话说, 测一个粒子随时间漂了多远, 就能反推出 $kT$ 以及水的粘度 —— 这是 (1) 作为"信息互通"的最早、最干净的示例.</p>
+
+  <p><em>历史: Einstein → Nyquist → Callen-Welton → Kubo.</em> 1905 年 Einstein 写下 (1) 的时候, 他只有热力学直觉和单个颗粒的 Langevin 方程; 他看到的是 $D\cdot\gamma = kT$, 但没意识到这是个一般定理. 1928 年 Nyquist 独立得到 (2), 结构相同但没人把它们联系起来. 1951 年 Callen 和 Welton 在一篇题为 "Irreversibility and Generalized Noise" 的论文里, 第一次写出量子版本的 FDT: $S_{AA}(\omega) = \hbar\coth(\beta\hbar\omega/2)\,\mathrm{Im}\,\chi_{AA}(\omega)$, 把 Einstein、Nyquist 和新的量子修正都放在同一句话里. 1957 年 Kubo 在 J. Phys. Soc. Japan 上发表 "Statistical-Mechanical Theory of Irreversible Processes", 给出 (3) 这类响应函数作为两点关联的统一推导, 并进一步证明对各种输运系数 (电导、热导、粘度) 都有 "平衡关联的时间积分 = 输运系数"的结构 (即 Green-Kubo 关系). 从 Einstein 到 Kubo 中间跨了 52 年; 换个角度讲, 人类从"观察到花粉乱跑"到"知道为什么乱跑与粘度按定理绑在一起", 花了半个世纪. 我们今天一页纸推完的东西, 当年是分布在四代人的工作上.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>涨落耗散定理把"平衡时看到的涨落"和"把系统推出平衡的耗散"在统计力学层面上等同起来. 从 Hamilton 扰动 + 经典 Liouville 方程的一阶展开, 我们得到 Kubo 公式 (3): 响应函数完全由平衡两点关联给出. Fourier 变换后就是 FDT (4): 功率谱 $S_{AA}(\omega)$ 与响应虚部 $\mathrm{Im}\,\chi_{AA}(\omega)$ 按 $2kT/\omega$ 绑在一起. Einstein 的 $D = kT/\gamma$ 和 Nyquist 的 $S_V = 4RkT$ 都是它在不同物理量、不同频率下的具体化. 往前看, 下一节的 Onsager 倒易关系是 FDT 的一个隐藏对称性 —— 它说线性响应矩阵是对称的, 这件事最终追溯到微观 Hamilton 方程的时间反演不变性; 再往后 Jarzynski 和 Crooks 会把"平衡时看到的涨落决定非平衡"的想法推到非线性、有限外驱的体制. 把这些放在一起, 不可逆性不再是纯粹的"宏观涌现" —— 它在平衡涨落里就已经藏好了全部信息, 只等我们学会怎么读.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="22-h-theorem.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="24-onsager.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

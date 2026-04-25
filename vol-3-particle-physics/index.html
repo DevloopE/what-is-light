@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第三卷 · 粒子物理 — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .part-header {
+    margin: 2.4em 0 0.6em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-size: 1.05em;
+  }
+  .part-header .part-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72em;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+  }
+  .part-header .part-blurb {
+    display: block;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<header class="chapter-header">
+  <span class="tag">第三卷</span>
+  <h1>粒子物理</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+量子场论、规范对称、Feynman 图、Higgs 机制、重整化 — 每一个粒子物理的入门生都听过. 但听过和"真的会推" 之间隔了一道墙. 这一卷的三十节, 试图把那堵墙凿穿: 每一节从一个能观察到的现象 (一束 e⁺e⁻ 撞出 μ⁺μ⁻、一个自由中子的衰变、一个 Higgs 在 LHC 出现的 5σ 信号...) 出发, 第一性原理推到一个具体公式或数字, **每一节都必须把一个被频繁引用却很少真讲清楚的 cliché 概念严格地推一遍**.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>QFT 的脚手架
+  <span class="part-blurb">从 Lagrangian 到路径积分 — 把"粒子" 重新定义为场</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-lagrangian.html"><span class="title">拉格朗日密度 $\mathcal L$ 凭什么能描述一个场?</span><span class="sub">—— 从作用量原理开始</span></a></li>
+  <li><a href="02-path-integral.html"><span class="title">路径积分 $\int\!\mathcal D\phi\, e^{iS/\hbar}$ 是从哪儿来的?</span><span class="sub">—— Feynman 1948 的"和所有路径"</span></a></li>
+  <li><a href="03-feynman-propagator.html"><span class="title">Feynman 传播子 — 自由场的全部内容</span><span class="sub">—— 一个 Green 函数的几张面孔</span></a></li>
+  <li><a href="04-second-quant.html"><span class="title">二次量子化 — 把 $|\psi\rangle$ 升级成场算符</span><span class="sub">—— 单粒子量子力学的局限</span></a></li>
+  <li><a href="05-min-coupling.html"><span class="title">最小耦合 — 规范对称怎么"自动"给出相互作用?</span><span class="sub">—— 从 $\partial\to D$ 的几何意义</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>对称性与守恒
+  <span class="part-blurb">Noether、规范、CPT — 把粒子物理变成群论的故事</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-noether.html"><span class="title">Noether 定理 — 连续对称就一定守恒?</span><span class="sub">—— 一个被引用千万次的定理的真正证明</span></a></li>
+  <li><a href="07-u1-qed.html"><span class="title">U(1) 规范对称怎么给出电磁学?</span><span class="sub">—— QED 的诞生</span></a></li>
+  <li><a href="08-electroweak.html"><span class="title">SU(2) × U(1) — 弱电统一是怎么"接上"的?</span><span class="sub">—— Glashow-Weinberg-Salam 的步骤</span></a></li>
+  <li><a href="09-su3-qcd.html"><span class="title">SU(3) 与 QCD — 颜色对称的群论结构</span><span class="sub">—— 三种"颜色"和八种胶子</span></a></li>
+  <li><a href="10-cpt.html"><span class="title">CPT 定理 — 为什么 C, P, T 单独可破缺, 三者必定守恒?</span><span class="sub">—— Lorentz 不变性的副产物</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>标准模型与具体粒子
+  <span class="part-blurb">三代粒子谱 + Higgs + QCD + 弱相互作用 — 把它们组装起来</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-three-generations.html"><span class="title">三代粒子谱 — 为什么是三代?</span><span class="sub">—— 中微子振荡告诉我们的一件事</span></a></li>
+  <li><a href="12-higgs.html"><span class="title">Higgs 机制 — 自发对称破缺到底破的是哪个对称?</span><span class="sub">—— 从 Mexican-hat 势开始</span></a></li>
+  <li><a href="13-asymptotic-freedom.html"><span class="title">渐近自由 vs 夸克禁闭 — QCD 的两面</span><span class="sub">—— 同一个耦合常数, 两种行为</span></a></li>
+  <li><a href="14-cp-violation.html"><span class="title">CP 破缺 — KAON 系统给我们看到了什么?</span><span class="sub">—— Kobayashi-Maskawa 的预言</span></a></li>
+  <li><a href="15-neutrino-osc.html"><span class="title">中微子振荡 — 它给中微子的小质量</span><span class="sub">—— 从 Pontecorvo 到 SNO/Kamiokande</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>计算工具与发散
+  <span class="part-blurb">Feynman 图、重整化、跑动耦合、反常 — QFT 真正干活的部分</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-feynman-diagram-mu.html"><span class="title">$e^+e^-\to \mu^+\mu^-$ 的 Feynman 图怎么读?</span><span class="sub">—— 一个具体例子的 leading-order 计算</span></a></li>
+  <li><a href="17-renormalization.html"><span class="title">重整化 — 发散是从哪里来, 怎么吸收掉的?</span><span class="sub">—— 一个被神秘化的过程的真相</span></a></li>
+  <li><a href="18-running-coupling.html"><span class="title">跑动耦合常数 — 为什么 $\alpha_s(M_Z) \ne \alpha_s(1\,\text{GeV})$?</span><span class="sub">—— RG 流与β函数</span></a></li>
+  <li><a href="19-anomaly.html"><span class="title">反常 (anomaly) — 经典对称怎么在量子层面破缺?</span><span class="sub">—— 三角图的奇迹</span></a></li>
+  <li><a href="20-wick-rotation.html"><span class="title">Wick 转动 — Minkowski 到 Euclidean 路径积分怎么过去?</span><span class="sub">—— 复平面里的一次旋转</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>实验与统计
+  <span class="part-blurb">加速器、探测器、截面、寿命、5σ — 怎么把理论变成数据</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-lhc-acceleration.html"><span class="title">加速器的物理 — LHC 怎么造出 13 TeV 的对撞?</span><span class="sub">—— 同步加速器与束流冷却</span></a></li>
+  <li><a href="22-detector.html"><span class="title">探测器 — ATLAS / CMS 怎么"看见"一个 Higgs?</span><span class="sub">—— 从层层探测器到事件重建</span></a></li>
+  <li><a href="23-cross-section.html"><span class="title">截面 $\sigma$ — 实验和理论的桥梁</span><span class="sub">—— 一个有面积单位的概率</span></a></li>
+  <li><a href="24-decay-rate.html"><span class="title">衰变率 $\Gamma$ 与寿命的关系</span><span class="sub">—— 自由中子能活多久?</span></a></li>
+  <li><a href="25-five-sigma.html"><span class="title">5σ 显著性 — 凭什么是 5 而不是 3?</span><span class="sub">—— look-elsewhere 与试验家数</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>BSM — 标准模型之外
+  <span class="part-blurb">暗物质、强 CP、baryogenesis、GUT、SUSY — 还没解决的事</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-dark-matter.html"><span class="title">暗物质粒子的候选 — WIMP, Axion, 还是更怪的东西?</span><span class="sub">—— 不同候选者的截面与遗迹丰度</span></a></li>
+  <li><a href="27-strong-cp.html"><span class="title">强 CP 问题 — 为什么 $\theta\approx 0$?</span><span class="sub">—— Peccei-Quinn 与轴子</span></a></li>
+  <li><a href="28-baryogenesis.html"><span class="title">原初 baryogenesis — 物质 vs 反物质的不对称</span><span class="sub">—— Sakharov 三条件</span></a></li>
+  <li><a href="29-gut.html"><span class="title">大统一 (GUT) — 把 SU(3)×SU(2)×U(1) 嵌入更大的群?</span><span class="sub">—— SU(5)、SO(10) 与质子衰变</span></a></li>
+  <li><a href="30-susy.html"><span class="title">超对称 (SUSY) — 为什么 30 年没找到?</span><span class="sub">—— 一个漂亮理论与一个 LHC 失望</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第三卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

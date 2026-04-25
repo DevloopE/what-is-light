@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>重整化群 — 怎么把"尺度不变"做成数学工具? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="13-universality.html">← 上一节</a>
+  <span class="chapter-title">第 14 节 / 30 · 第 3 部分 · 相变与临界现象 · 第二卷·热力学与统计力学</span>
+  <a href="15-ising.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>重整化群 — 怎么把"尺度不变"做成数学工具?</h1>
+  <div class="sub">—— Kadanoff-Wilson 的逐级粗粒化</div>
+  <div class="abstract">本节从临界点处关联长度发散、系统在一切尺度上"看起来一样"这个朴素观察出发, 先跟着 Kadanoff 1966 年的想法把 $b\times b$ 个自旋打包成一个块自旋, 得到一个形式相同但耦合改了的模型 $K' = R(K)$; 再把"重复打包"这个操作看成耦合空间上的动力学, 找到它的固定点并在那里线性化, 得到一个矩阵的本征值 $\lambda_i$. 关键的 deepdive 是: 从 $\xi(t) = b\,\xi(b^{y_t} t)$ 这一条单行方程, 严格地把临界指数 $\nu$ 解成 $\log b/\log\lambda_t$ —— 这是 Wilson 让"尺度不变"第一次变成了可计算量的那一步. 最后代入 2D Ising 的块自旋估算, 得到 $T_c \approx 2.27 J/k$, 与 Onsager 精确值 $2.269$ 几乎吻合; 并给出 $\nu = 1$ 的严格预测. 从 Kadanoff 1966 到 Wilson 1971 再到 1982 年 Nobel 颁奖, 这一条思路把"临界"从一种现象变成一个可以硬算的对象.</div>
+
+  <p>上一节我们发现, 二维 Ising 模型和液-气相变居然共享同一组临界指数 $\beta, \nu, \gamma, \delta$ —— 这件事叫普适性, 它的物理解释是: 临界点处唯一真正"相关"的量是关联长度, 而关联长度在那里发散, 于是系统的细节 (键长、方格还是三角格子、分子的种类) 都被抹掉了. 但当时我们给的解释停在了口头. 这一节要把它变成数学: 我们想要一个工具, 能把"尺度不变"本身当成一个方程来解. 一旦有了这个工具, 不但能解释普适性, 还能把 $\nu$ 这种临界指数一个数字一个数字地算出来.</p>
+
+  <p>工具的名字叫"重整化群" (Renormalization Group, RG). 名字里有"群"但不是数学意义上的群 (它只是一族变换, 没有逆元) —— 真正的重点是"重整化", 也就是把系统在不同尺度上反复压缩, 看它在耦合常数空间里怎么流动. 这个想法的萌芽属于 Leo Kadanoff 1966 年的一篇短论文; 把它变成能算数的工具是 Kenneth Wilson 1971-72 年的四篇文章; 1982 年的诺贝尔物理奖给了 Wilson 一个人. 我们从 Kadanoff 的图像开始, 一步一步把它正规化.</p>
+
+  <h2>一、Kadanoff 的块自旋: 让方格往后退一步看</h2>
+
+  <p>取二维方格上的 Ising 模型, 每格一个自旋 $S_i = \pm 1$, 哈密顿量</p>
+  <p>$$H = -J\sum_{\langle i,j\rangle} S_i S_j - h\sum_i S_i,$$</p>
+  <p>其中 $\langle i,j\rangle$ 是最近邻. 配分函数里出现的是无量纲耦合 $K = \beta J$ 和 $H = \beta h$. 我们已经知道 (从第 13 节或 Onsager 1944 精确解) 这个系统在 $K_c = \tfrac12 \log(1+\sqrt 2) \approx 0.4407$ 处有一个二阶相变.</p>
+
+  <p>Kadanoff 问的问题是: 如果我现在把方格分成 $b \times b = 9$ (选 $b = 3$ 举例) 的小方块, 在每个方块里用某种规则选出一个"代表自旋" $S'_I$, 只看这些代表自旋, 我看到的还是不是 Ising 模型?</p>
+
+  <p>规则他选的是多数决: 九个自旋里多数是哪个号, 代表自旋就是哪个号 (平局时随机). 形式上,</p>
+  <p>$$S'_I = \mathrm{sgn}\!\left(\sum_{i \in \text{block}\,I} S_i\right).$$</p>
+
+  <p>这一步是坐标粗粒化: 原来格点间距 $a$, 现在变成 $a' = ba$; 自旋数从 $N$ 变成 $N/b^2$. 但重点不在几何. 重点在于: 如果我们把微观配分函数</p>
+  <p>$$Z(K, H) = \sum_{\{S\}} e^{-H[S]/kT}$$</p>
+  <p>按块自旋重新组织 — 先对每个块内部自旋求和 (在块自旋 $S'_I$ 约束下), 再对块自旋求和 — 我们会发现, 求和完的内层结果恰好长得像一个新的 Ising 模型, 只是耦合常数变了. 用符号写:</p>
+  <p>$$Z(K, H) = \tilde Z(K', H'), \qquad K' = R_K(K, H),\ H' = R_H(K, H). \tag{1}$$</p>
+
+  <p>等式左边是原来模型的配分函数, 右边是格距变大 $b$ 倍、自旋数变少 $b^2$ 倍、但耦合换成 $(K', H')$ 的新 Ising 模型的配分函数. 那个映射 $R: (K, H) \mapsto (K', H')$ 就叫 RG 变换. 公式 $(1)$ 是 RG 的基本等式 — 它说的是: 配分函数作为一个数是守恒的, 改变的只是我描述同一个数时用的耦合常数.</p>
+
+  <p>真正实现这个映射需要两件事: (i) 认真做块内求和; (ii) 承认新模型严格来讲会多出很多新耦合 (次近邻、四自旋、以及所有 Kadanoff 没写在原哈密顿里的项), 你必须把它们都纳入才能让等式严格成立. Kadanoff 的原始方案是手动截断 —— 只保留最近邻和磁场, 强行把 $R$ 写成两维映射. 这是一个近似, 但它在 2D Ising 的情况下给出了惊人准确的数字. 我们下面就会看到.</p>
+
+  <h2>二、deepdive: 为什么 RG 固定点的本征值决定临界指数?</h2>
+
+  <p>这是本节最要紧的一块. RG 圈子里每一本书都会告诉你"临界指数等于固定点本征值的对数比", 但很少有人把这一步完整推一遍. 我们现在从 $(1)$ 出发, 只用一个基本假设 (关联长度在粗粒化下按几何收缩), 推出全部临界指数.</p>
+
+  <p><strong>第一步: RG 流和固定点.</strong> 把 RG 变换 $(1)$ 看成耦合空间 $\mathbf K = (K, H, \ldots)$ 上的离散动力系统:</p>
+  <p>$$\mathbf K^{(n+1)} = R(\mathbf K^{(n)}).$$</p>
+
+  <p>固定点 $\mathbf K^*$ 是满足 $R(\mathbf K^*) = \mathbf K^*$ 的点 — 它在 RG 变换下不动. 在这种点上有一件要命的几何事实: 既然 $R$ 把格距从 $a$ 变成 $ba$ 但模型看起来不变, 那么模型里唯一的特征长度 (关联长度 $\xi$) 必须满足 $\xi = \xi/b$. 两个正数相等, 要么 $\xi = 0$ 要么 $\xi = \infty$. 前者对应无序高温/有序低温的"平凡固定点", 后者 — 关联长度发散 — 正是临界点的特征. 这就给了固定点和临界点的第一个对应: 非平凡 RG 固定点 $\leftrightarrow$ 临界理论.</p>
+
+  <p><strong>第二步: 在固定点附近线性化.</strong> 把耦合写成 $\mathbf K = \mathbf K^* + \delta \mathbf K$, $\delta \mathbf K$ 小. 展开</p>
+  <p>$$R(\mathbf K^* + \delta \mathbf K) = \mathbf K^* + M\,\delta \mathbf K + \mathcal{O}(\delta \mathbf K^2),$$</p>
+  <p>其中 $M_{ij} = \partial R_i/\partial K_j|_{\mathbf K^*}$ 是 Jacobi 矩阵. 设 $M$ 有本征值 $\lambda_i$ 和本征向量 $\mathbf e_i$. 把 $\delta \mathbf K$ 按本征基展开 $\delta \mathbf K = \sum_i g_i \mathbf e_i$, 则每做一次 RG 变换,</p>
+  <p>$$g_i \to \lambda_i g_i.$$</p>
+
+  <p>按惯例记 $\lambda_i = b^{y_i}$, $y_i$ 叫标度指数. 于是:</p>
+  <ul>
+    <li>$y_i > 0$ ($\lambda_i > 1$): $g_i$ 被放大, RG 流远离固定点 —— 这个方向叫"相关" (relevant);</li>
+    <li>$y_i < 0$ ($\lambda_i < 1$): $g_i$ 被压缩, RG 流回到固定点 —— 这个方向叫"不相关" (irrelevant);</li>
+    <li>$y_i = 0$: "临界" (marginal), 需要看二阶.</li>
+  </ul>
+
+  <p>对 Ising 型临界点, 典型情况是两个相关方向: 温度方向 $y_t > 0$ 和磁场方向 $y_h > 0$. 要把系统钉在临界上, 实验者必须精细调两个参量 — 把它们调成零 — 这正好和相变学里"一级相变线在二维参数空间里是一条线, 二阶相变是这条线的终点"的观察吻合.</p>
+
+  <p><strong>第三步: 关联长度方程.</strong> 这是关键. 关联长度 $\xi$ 作为耦合的函数, 在 RG 变换下必须按 $b$ 收缩 — 因为 RG 是把格距放大 $b$ 倍, 物理长度不变, 用新格距衡量的"长度"就是原来的 $1/b$. 所以</p>
+  <p>$$\xi(\mathbf K) = b\,\xi(R(\mathbf K)).$$</p>
+
+  <p>在固定点附近, 只考虑温度方向 (记 $g_t \equiv t = (T - T_c)/T_c$ 为约化温度, 对应本征值 $\lambda_t = b^{y_t}$), 则 $R$ 就是 $t \to b^{y_t} t$. 代入上式:</p>
+  <p>$$\boxed{\,\xi(t) = b\,\xi(b^{y_t} t).\,} \tag{2}$$</p>
+
+  <p>这是一条函数方程, 它对任意 $b$ 都必须成立 —— 因为 RG 变换的步长 $b$ 是我们自选的. 这种"对任意 $b$ 恒成立"的要求强到能把 $\xi(t)$ 的函数形式唯一固定. 怎么解? 一个技巧: 选 $b$ 使得 $b^{y_t} |t| = 1$, 也就是 $b = |t|^{-1/y_t}$. 代回 $(2)$:</p>
+  <p>$$\xi(t) = |t|^{-1/y_t} \cdot \xi(\pm 1).$$</p>
+
+  <p>右边的 $\xi(\pm 1)$ 是 $t = \pm 1$ 时的关联长度 — 一个有限常数 (那时候 $t$ 已经很大, 远离临界, 没有发散). 于是</p>
+  <p>$$\xi(t) \sim |t|^{-\nu}, \qquad \nu = \frac{1}{y_t} = \frac{\log b}{\log \lambda_t}.$$</p>
+
+  <p>这就是我们要的结论: 临界指数 $\nu$ 不是实验拟合的参数, 它直接等于 RG 固定点在温度方向的本征值的对数比. 同样的推理 (加一个磁场方向和一个 Hausdorff 式的标度维数) 给出 Widom 标度形式下所有其它临界指数:</p>
+  <p>$$\eta = 2 - d + 2x_\sigma,\quad \nu = \frac{1}{y_t},\quad \beta = \nu x_\sigma,\quad \gamma = \nu(d - 2x_\sigma),\quad \delta = \frac{y_h}{d - y_h},$$</p>
+  <p>其中 $x_\sigma = d - y_h$ 是序参量算子的标度维数. 所有这些指数都可以由两个本征值 $(y_t, y_h)$ 和维数 $d$ 算出. 一个几何结构 (固定点附近的线性化) 把上一节列的那张经验指数表完整地解释了 — 不但解释了普适性 (不同系统若落在同一固定点, 指数就一样), 还给出每一条 Widom 标度关系的来源.</p>
+
+  <p>注意这个推理的形式: 我们只用了"关联长度按 $b$ 收缩"这一条几何事实, 加上"$b$ 是自选的"这一条任意性. 两条合起来就把 $\xi(t)$ 的形式锁成了幂律. 这和量纲分析的精神一模一样 — 但维度分析处理无量纲参量无能为力, RG 正是要处理无量纲参量. 这是它本质上的补足.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 块自旋与耦合空间的 RG 流</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>上图展示二维方格自旋的块化: $9\times 9$ 格点, 粗虚线划成 $3\times 3$ 个块, 每块下方一个块自旋 (多数决); 下图是 $(K, H)$ 耦合平面上的 RG 流, 标出临界固定点 (半稳定鞍点), 高温/低温两个稳定汇点, 流线方向对.</dd>
+      <dt>必含元素</dt><dd>上: $9\times 9$ 自旋格子, 每格写 "+" 或 "-" 符号; 三条横的和三条竖的粗虚线切成 $3\times 3$ 块; 每块下方箭头指到一个圆圈里的块自旋 $S'_I$, 块内多数为 "+" 则块自旋为 "+", 反之为 "-". 标注 "b = 3", 粗粒化规则 $S'_I = \mathrm{sgn}(\sum_{i\in I} S_i)$. 下: 二维 $(K, H)$ 平面, 横轴 $K$ 从 $0$ 到 $\infty$, 纵轴 $H$ 从 $-\infty$ 到 $+\infty$; 三个固定点 — 原点附近高温顺磁汇 $(0, 0)$, $K = \infty$ 处的两个低温铁磁汇 $(\infty, \pm \text{small})$, 中间临界固定点 $(K^*, 0)$; 红色箭头表示 RG 流方向, 两条相关方向 (温度方向水平、磁场方向竖直) 标为 $\lambda_t > 1, \lambda_h > 1$; 临界流形 (稳定流入的线) 画成蓝色虚线.</dd>
+      <dt>几何精度</dt><dd>上图: 块划分清晰对称; 下图: 流线方向正确 — 从临界固定点看, 温度方向 (水平) 和磁场方向 (竖直) 都是"不稳定"(箭头指向外), 临界流形 (不相关方向) 的箭头指向临界固定点.</dd>
+      <dt>标签与公式</dt><dd>上图: "$b = 3$"; "$S' = \mathrm{sgn}(\sum S)$". 下图: "$K' = R(K)$"; 流图右上方写"$\nu = \log b/\log\lambda_t$"; 固定点分别标 "high-T fp", "low-T fp ($\pm$)", "critical fp ($K^*, 0$)".</dd>
+      <dt>风格建议</dt><dd>白底; 上图自旋 "+" 用深红色, "-" 用深蓝色, 块边框淡蓝 (#b3d4e6); 下图 RG 流箭头红色, 临界流形蓝色虚线, 固定点黑色空心圆; 公式 MathJax 标准 serif.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  块自旋把格距拉大 $b$ 倍, 耦合常数因此沿 $R$ 流动; 临界固定点是流的鞍点, 它的本征值直接给出临界指数.</figcaption>
+  </figure>
+
+  <h2>三、2D Ising 的数值估算: 用多数决块自旋硬算 $T_c$</h2>
+
+  <p>有了框架, 我们落一个具体数字. 还是方格 Ising, $b = 3$, 多数决块化. 这里不展开代数细节 (原版计算由 Niemeijer-van Leeuwen 1973 给出, 他们对块内的 $2^9 = 512$ 种自旋组态一组一组求和, 把新的有效哈密顿量的两体耦合算出来); 我们只报告结果.</p>
+
+  <p>截断到最近邻耦合 (忽略次近邻等不相关项), 他们得到递推关系大致形如</p>
+  <p>$$K' \approx f(K),$$</p>
+  <p>$f$ 是一个显函数. 求不动点 $K^* = f(K^*)$, 数值解给 $K^* \approx 0.4412$, 于是临界温度</p>
+  <p>$$\frac{k T_c}{J} = \frac{1}{K^*} \approx 2.267.$$</p>
+
+  <p>Onsager 1944 的精确解给 $kT_c/J = 2/\log(1+\sqrt 2) \approx 2.269$. 一个粗糙到只保留近邻耦合的 RG 近似, 居然逼真到小数点后两位 — 这不是运气, 是因为 $\nu$ 方向的相关本征值几乎完全由近邻结构决定, 次近邻等修正落在不相关方向上.</p>
+
+  <p>再看 $\nu$ 本身. 把 $f$ 在 $K^*$ 处线性化, 取斜率 $\lambda_t = f'(K^*)$, 他们的数值给 $\lambda_t \approx 3.0$. 代入 $\nu = \log b/\log \lambda_t$:</p>
+  <p>$$\nu = \frac{\log 3}{\log 3.0} \approx 1.00.$$</p>
+
+  <p>Onsager 精确解 $\nu = 1$ (严格). 再次吻合. 另一个指数 $\beta = 1/8$ 也可以从 $y_h$ 的数值估计中还原出来, 但那需要细调磁场方向的递推, 我们不展开.</p>
+
+  <p>这两个数字 —— $T_c \approx 2.27 J/k$ 与 $\nu \approx 1$ —— 都是在只用了一台普通计算器、 一张方格纸的情况下算出来的. 它的威力不在于精度 (Onsager 早就把精度拿到了严格值), 而在于可以推广 —— 当你换到 Onsager 搞不定的三维 Ising, RG 仍然给出定量预测 ($\nu_{3D} \approx 0.630$, 与实验和蒙特卡洛模拟吻合到小数点后两位).</p>
+
+  <h2>四、$d > 4$ 的 Gaussian 固定点, Wilson 的动量空间, 与历史</h2>
+
+  <p>极限检验: 考虑一个纯数学的参量 —— 空间维数 $d$. 上临界维数 $d_c = 4$ (对 Ising 类) 是一个特别的值. $d > 4$ 时, 非平凡的 Ising 固定点 (Wilson-Fisher 固定点) 不再存在 — 它"并入" Gaussian 固定点 (也就是自由理论, 耦合为零). 在 Gaussian 固定点上, $\phi^4$ 项的本征值是 $y_{\phi^4} = 4 - d$, 当 $d > 4$ 时这是负的, 也就是说 $\phi^4$ 耦合不相关 — 加再多的 $\phi^4$ 项, 流都回到自由理论. 结论: $d > 4$ 时 Ising 的临界指数就是 mean-field 值 ($\nu = 1/2, \beta = 1/2, \gamma = 1, \delta = 3$). 这解释了为什么 van der Waals 和 Landau 在高维 (或者等效地, 长程耦合) 下严格正确 — 不是巧合, 是 RG 告诉你 $\phi^4$ 耦合在那里被压掉了.</p>
+
+  <p>进一步, Wilson-Fisher 1972 年提出 $\epsilon$-展开: 在 $d = 4 - \epsilon$ 维, 把所有指数按 $\epsilon$ 的幂展开. 得到 $\nu = \tfrac12 + \tfrac{\epsilon}{12} + \mathcal{O}(\epsilon^2)$. 代入 $\epsilon = 1$ (也就是 3D) 给 $\nu \approx 0.583$, 加二阶给 $\nu \approx 0.625$. 与 3D Ising 的严格数值 $\nu \approx 0.630$ 差不到 1%. 三维物理居然可以用"四维附近泰勒展开"来算 — 这在 Wilson 之前是不可想象的.</p>
+
+  <p>Kadanoff 1966 的那篇 <em>Physica</em> 短文题目叫 "Scaling laws for Ising models near $T_c$", 他只给了块自旋图像和标度假设, 没有把递推关系真正解出来 —— 他不知道 $R$ 具体长什么样, 是不是唯一. <strong>Wilson 1971 的两篇 <em>Physical Review B</em> 论文</strong>才把"重整化群"变成算法: 他换了一个视角 —— 不在实空间做块平均, 而在动量空间从外向内一层一层积掉高波数模式. 这叫 Wilsonian 积掉壳层. 技术上每一步是在 Brillouin 区里把 $b^{-1} < |k| < 1$ 的模式积掉, 留下 $|k| < b^{-1}$. 这种"动量壳积分"有一个巨大的好处: 在动量空间里, 作用量写成 $\int d^dk\,|\phi(k)|^2 (r + k^2) + \int (\phi^4)$ 的形式, 对高频模式积分的结果能表达为对 $(r, u, \ldots)$ 这一组耦合的修正. 没有块内求和时的那个组合爆炸, 计算变得可控.</p>
+
+  <p>更深的一点: Wilson 这一步把 RG 从"统计力学的计算技巧"提升到"什么是量子场论"这种层次上. 重整化在粒子物理里本来只是消除紫外发散的手续, 被人骂"丑陋的修补"; Wilson 让它变成一个物理学原理 —— 有效理论是从微观理论里通过积掉短距离自由度"生成"出来的, 不同尺度的理论通过 RG 流连起来. 他的 1974 年综述文章 "The renormalization group and the $\epsilon$-expansion" 把场论和统计力学焊成一家, 从此这两门变成一门. 诺贝尔奖委员会 1982 年的颁奖词直接说他"为临界现象提供了一套本来不存在的理论方法".</p>
+
+  <p>到这里我们可以把"普适性"给出一个最终解释. 不同的微观系统 (Ising 方格、液-气、二元合金) 启动点不一样, 但只要它们都处于二阶相变附近, 他们的 RG 轨道都会流向同一个临界固定点 (只要对称性一致). 到达那个固定点后, 线性化矩阵 $M$ 的本征值 $y_t, y_h$ 是固定点本身的属性, 与起点无关. 指数由 $y$ 给出, 所以指数普适. 不普适的是振幅 (流多远才到固定点), 以及非相关项的具体系数 (那些会落掉). 这个"全局图像"是 RG 送给 20 世纪物理最漂亮的一份礼物.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>RG 把"系统在所有尺度上看起来一样"这句口号变成了一个可以硬算的几何对象 —— 耦合空间里的动力系统, 它的固定点、本征值、相关/不相关方向都有确定的物理意义. 关联长度方程 $(2)$ 把 $\nu$ 一刀钉在 $\log b/\log\lambda_t$ 上, 普适性变成"同一个固定点的不同起点". 2D Ising 用最朴素的块自旋就逼近 Onsager 解到小数点后两位; 3D 用 $\epsilon$-展开逼近实验到 1% 以内. 下一节我们把视角换回原始的 2D Ising 本身, 看 Onsager 如何在 1944 年不用 RG 就硬核地把那组指数解出来 —— 那是一段与 RG 完全不同气质的历史, 但两种路径在 $\nu = 1$ 这个数字上精确握手.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="13-universality.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="15-ising.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

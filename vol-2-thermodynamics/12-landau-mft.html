@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二阶相变与对称破缺 — Landau 平均场究竟做了什么? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="11-vdw-maxwell.html">← 上一节</a>
+  <span class="chapter-title">第 12 节 / 30 · 第 3 部分 · 相变与临界现象 · 第二卷·热力学与统计力学</span>
+  <a href="13-universality.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>二阶相变与对称破缺 — Landau 平均场究竟做了什么?</h1>
+  <div class="sub">—— 序参量与有效势</div>
+  <div class="abstract">本节从一个日常观察出发: 铁在 1043 K 以下自发磁化, 但在 1043 K 以上就成了普通顺磁体, 磁化强度连续地、而非跳跃地归零. 这种连续变化的相变叫"二阶"或"连续"相变, 它跟上一节 van der Waals 的液-气跳变在性质上完全不同. 我们把 Landau 1937 年的想法推到底: 在 $T_c$ 附近, 自由能可以当作序参量 $\eta$ 的解析函数 Taylor 展开; 系数里有一项会变号, 这一变号就是对称破缺的数学机制. 我们严格论证为什么只展到 $\eta^4$ 够、为什么不能有 $\eta$ 的一次项, 从 $\partial F/\partial\eta=0$ 解出"墨西哥帽"的谷底位置, 导出临界指数 $\beta=1/2$, 最后对比铁磁实测值 $\beta\approx 0.36$, 看看平均场究竟在哪里失守.</div>
+
+  <p>上一节我们看 $\mathrm{CO}_2$ 的液-气相变, van der Waals 等温线在 $T<T_c$ 下有一段奇怪的"负斜率", 我们用 Maxwell 等面积法把它抹平, 得到两个共存相. 密度在这条平台上是跳跃的 — 液相一个密度, 气相另一个密度, 之间没有连续过渡. 这叫一阶相变.</p>
+
+  <p>但自然界中有一类相变不是这样. 一块铁在高温下没有自发磁化, 是顺磁体; 把它冷却到 Curie 温度 $T_c \approx 1043\,\mathrm{K}$ 以下, 它开始自发磁化, 出现一个净磁矩 $M$. 关键是: 当 $T$ 从 $T_c$ 上方缓慢降到 $T_c$ 下方, $M$ 不是从 0 突然跳到一个有限值 — 它是连续地从 0 长出来的, 先是很小, 然后按某个幂律缓慢增长. 但是 $M(T)$ 的导数 $\partial M/\partial T$ 在 $T_c$ 处不连续, 比热 $C_V$ 也在 $T_c$ 处出现奇异. 这就是二阶相变的指纹: 序参量本身连续, 但它的导数和某些热力学响应函数在 $T_c$ 处发散或跳跃.</p>
+
+  <p>问题是: 这种连续的、幂律的行为, 是从哪里来的? 它跟具体材料有多大关系? 1937 年 Landau 给出了一个极漂亮的答案 — 几乎跟具体哈密顿量无关, 只靠对称性和解析性, 就能得到一整套临界指数. 本节把这个推理从头捋一遍.</p>
+
+  <h2>一、序参量: 识别"什么东西在突变"</h2>
+
+  <p>要描述相变, 先要找对"主角". Landau 的第一步是引入<strong>序参量</strong> (order parameter) $\eta$: 一个在无序相 ($T>T_c$) 取零、在有序相 ($T<T_c$) 取非零的量. 它的选择不是任意的, 得看系统破了什么对称性.</p>
+
+  <ul>
+    <li>铁磁体: 高温时所有自旋方向随机, 净磁化 $M=0$; 低温时自旋趋于平行, $M\neq 0$. $\eta = M$ 是标量 (或矢量, Heisenberg 模型下).</li>
+    <li>液-气临界点: $\eta = \rho_\text{液}-\rho_\text{气}$, 到 $T_c$ 时两相密度相同, $\eta\to 0$.</li>
+    <li>超导: $\eta = \psi$, 复值宏观波函数, 破 $U(1)$ 相位对称.</li>
+    <li>二元合金有序-无序转变 (如 $\beta$-黄铜): $\eta$ 是两种原子占据各自子晶格的概率差.</li>
+  </ul>
+
+  <p>一般原则: 高温相有某个对称群 $G$, 低温相只剩 $G$ 的子群 $H\subset G$; $\eta$ 就是 $G/H$ 陪集上的坐标. 对铁磁: $G=\mathbb{Z}_2$ (自旋翻转), $H=\{1\}$, 所以 $\eta$ 落在 $\mathbb{Z}_2$ 上, 可正可负. 这一对称性结构是下面所有论证的骨架.</p>
+
+  <p>第二步是把"$T_c$ 附近 $\eta$ 小"当作前提. 这听起来像废话, 但它是整个 Landau 展开成立的唯一硬性假设 — 没有这条, 泰勒展开没意义.</p>
+
+  <h2>二、Landau 展开严格来一遍: 为什么偏偏是 $\eta^2 + \eta^4$?</h2>
+
+  <p>这里就是本节要 <em>严格 deepdive</em> 的核心 cliché: "自由能是 $\eta$ 的 Taylor 展开", 教科书一写就过, 我们得问清楚每一步凭什么.</p>
+
+  <p><strong>前提 1: $F(\eta, T)$ 在 $\eta=0$ 附近解析.</strong> 这不是平白假设, 而是 Landau 的物理猜想: 有限体积下配分函数 $Z$ 是有限维积分, 自由能 $-k_B T\log Z$ 是参数的解析函数; 即便在热力学极限下, 离开临界点远处 $F$ 应当仍然光滑. 奇异性只集中在 $T=T_c$ 这一点本身. 因此对任意 $T$, 只要 $\eta$ 足够小, 展开</p>
+
+  \begin{equation}
+    F(\eta, T) \;=\; F_0(T) + A_1(T)\eta + A_2(T)\eta^2 + A_3(T)\eta^3 + A_4(T)\eta^4 + \cdots \label{eq:expand}
+  \end{equation}
+
+  <p>原则上合法. 问题变成: 这些系数哪些为零、哪些不为零、以及它们怎么依赖 $T$.</p>
+
+  <p><strong>(a) 为什么只展到 $\eta^4$?</strong> 物理上, 在 $T_c$ 附近 $\eta$ 本身是小量 (马上会看到 $\eta\sim\sqrt{T_c-T}$). 对应地, $\eta^6$ 相对 $\eta^4$ 要小一个 $\eta^2$ 因子, 即小一个 $(T_c-T)$ 因子, 在临界奇异性中可以忽略. 真正要留到 $\eta^4$ 而不是 $\eta^2$ 的理由是稳定性 — 下面第 (c) 步会看到, 如果没有 $\eta^4$, 当 $A_2<0$ 时自由能会发散到 $-\infty$, 系统就没有定义良好的基态.</p>
+
+  <p>数学上讲: 以四阶截断为准, 误差是 $O(\eta^6)$; 由于 $\eta^2\sim (T_c-T)$, 误差相对主项是 $O(T_c-T)$, 在 $T\to T_c$ 时可控地消失. 这就是 Landau 展开的自洽域.</p>
+
+  <p><strong>(b) 为什么没有奇数项 $\eta$、$\eta^3$?</strong> 对称性禁止. 以铁磁为例, 系统在零外场下对自旋翻转 $\eta\to -\eta$ 不变, 即 $F(\eta)=F(-\eta)$. 这直接抹掉所有奇次项:</p>
+
+  $$ A_1 = A_3 = A_5 = \cdots = 0. $$
+
+  <p>如果有外场 $h$ 耦合到序参量 (磁场对磁化), 则出现一个 $-h\eta$ 项, 它是对称破缺的外部扰动, 不由对称性自动给出. 关键是: <em>对称性本身不需要做假设, 只要指定高温相的对称群, 一次项就被干掉了</em>. 这就是 Landau 推理的优雅之处 — 形式几乎由对称性唯一决定.</p>
+
+  <p>更一般地, 若序参量在群 $G$ 下不变的组合只有 $\eta^2,\eta^4,\ldots$, 展开就只能取偶次. 对复序参量 $\psi$ (如超导), 不变量是 $|\psi|^2, |\psi|^4, \ldots$, 形式相同.</p>
+
+  <p><strong>(c) 系数 $A_2(T)$ 必须变号.</strong> 现在 $F=F_0+A_2\eta^2+A_4\eta^4$ (我们改记 $A_2\to a, A_4\to b$). 令 $\partial F/\partial\eta=0$:</p>
+
+  $$ 2a\eta + 4b\eta^3 = 0 \;\;\Longrightarrow\;\; \eta\,(a+2b\eta^2)=0. $$
+
+  <p>解有两种情形:</p>
+
+  <ol>
+    <li>若 $a>0, b>0$: 只有 $\eta=0$ 是极小值, 对应无序相.</li>
+    <li>若 $a<0, b>0$: $\eta=0$ 变成极大值, 出现两个新的极小值 $\eta=\pm\sqrt{-a/(2b)}\ne 0$, 对应有序相.</li>
+  </ol>
+
+  <p>注意 $b>0$ 是必需的 — 否则 $\eta\to\infty$ 时 $F\to-\infty$, 系统没有稳定态. 这解释了为什么必须保留 $\eta^4$, 不能只用 $\eta^2$.</p>
+
+  <p>为让相变恰好发生在 $T=T_c$, 最简单的选法是 $a(T)$ 在 $T_c$ 处过零并且可解析地变号:</p>
+
+  \begin{equation}
+    a(T) = a_0\,(T-T_c), \qquad b>0, \qquad a_0>0 \label{eq:aT}
+  \end{equation}
+
+  <p>这是能得到连续相变的最简参数化. 任何更复杂的依赖 $a(T)$ 只要在 $T_c$ 附近有同样的单调过零, 都给出同样的临界指数 — 这已经是普适性的先兆.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Landau 自由能的三种形态</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>Landau 自由能 $F(\eta)$ 在 $T>T_c$, $T=T_c$, $T<T_c$ 三个温度下的形状, 展示对称破缺如何从单井变出双井</dd>
+      <dt>必含元素</dt><dd>同一坐标系中画三条 $F(\eta)$ vs $\eta$ 曲线 (共享横纵轴), 都关于 $\eta=0$ 左右对称. 曲线 A ($T>T_c$, $a>0$): 单井, $\eta=0$ 是唯一极小. 曲线 B ($T=T_c$, $a=0$): $F\propto\eta^4$, 底部平坦且四阶零点. 曲线 C ($T<T_c$, $a<0$): "墨西哥帽"双井, 左右两个对称极小点标记 $\pm\eta_0$, 中间 $\eta=0$ 为局部极大. 箭头标示系统降温时从 A $\to$ B $\to$ C 的演化顺序</dd>
+      <dt>几何精度</dt><dd>双井最低点 $\pm\eta_0 = \pm\sqrt{a_0(T_c-T)/(2b)}$ 对称分布; 中央 bump 相对谷底的高度 $\Delta F = a^2/(4b)$, 即 $\propto (T_c-T)^2$, 需在图示曲线 C 上可视化这一关系; 坐标原点为零能量参考</dd>
+      <dt>标签与公式</dt><dd>图上标 $F(\eta) = a_0(T-T_c)\eta^2 + b\eta^4$, $\eta_0 = \sqrt{a_0(T_c-T)/(2b)}$, $\beta = 1/2$; 三条曲线分别标注 $T>T_c$ / $T=T_c$ / $T<T_c$</dd>
+      <dt>风格建议</dt><dd>白底, 三条曲线用不同颜色 (建议 A 蓝色, B 灰色, C 红色), 坐标轴黑色细线, 极小点用小圆点标注</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  Landau 自由能 $F(\eta)$ 随温度穿过 $T_c$ 的形变: $T>T_c$ 单井 → $T=T_c$ 平底 → $T<T_c$ 双井. 对称破缺发生在双井一出现、系统必须"选一边"的那一刻.</figcaption>
+  </figure>
+
+  <h2>三、算临界指数 $\beta=1/2$: 平均场的核心预言</h2>
+
+  <p>把 $a(T)=a_0(T-T_c)$ 代回极小条件, 当 $T<T_c$:</p>
+
+  $$ \eta_0(T) = \sqrt{-\frac{a}{2b}} = \sqrt{\frac{a_0(T_c-T)}{2b}}. $$
+
+  <p>这立即给出一个非常干净的幂律:</p>
+
+  $$ \eta_0(T) \;\propto\; (T_c-T)^{1/2}, \qquad T\to T_c^{-}. $$
+
+  <p>即指数 $\beta=1/2$. 这是推导关键: 一旦承认 $a(T)$ 在 $T_c$ 处线性过零, 加上 $\eta^4$ 项给出稳定谷底, $\eta_0\sim\sqrt{T_c-T}$ 是数学上必然的.</p>
+
+  <p>类似地, 往 $F$ 里加一个外场项 $-h\eta$:</p>
+
+  $$ F = a\eta^2 + b\eta^4 - h\eta $$
+
+  <p>极小条件 $2a\eta+4b\eta^3 = h$. 正好在 $T=T_c$ (即 $a=0$) 时, $h=4b\eta^3$, 所以 $\eta\propto h^{1/3}$, 即 $\delta = 3$.</p>
+
+  <p>再算磁化率 $\chi=\partial\eta/\partial h|_{h=0}$. 对上式微分: $2a+12b\eta^2=1/\chi$. 在 $T>T_c$, $\eta_0=0$, 得 $\chi = 1/(2a_0(T-T_c))\propto (T-T_c)^{-1}$, 即 $\gamma=1$. 在 $T<T_c$, $\eta_0^2=-a/(2b)$, 代回得 $\chi = 1/(-4a) = 1/(4a_0(T_c-T))$, 同样 $\gamma=1$ (振幅差一个因子).</p>
+
+  <p>比热: 代 $\eta_0$ 回 $F$ 得 $T<T_c$ 时 $F_\min = F_0 - a^2/(4b) = F_0 - a_0^2(T_c-T)^2/(4b)$. 对 $T$ 两次微分, 得到 $C$ 在 $T<T_c$ 比在 $T>T_c$ 多一项 $a_0^2 T/(2b)$ 的有限跳跃 — 即 $\alpha=0$ (跳跃而非发散).</p>
+
+  <p>四个主要指数:</p>
+
+  $$ \boxed{\;\beta=\tfrac12,\quad \gamma=1,\quad \delta=3,\quad \alpha=0\text{ (jump)}\;} $$
+
+  <p>这四个数字只用了两个输入 — 对称性禁止奇数项、$a(T)$ 在 $T_c$ 处线性变号 — 跟具体什么材料、什么哈密顿量无关. 这是第一次"普适性"的苗头.</p>
+
+  <h2>四、数字代入、失守的维度、与 Landau 的时代</h2>
+
+  <p>平均场值 $\beta=0.5$ 听起来精确, 可以跟实验对比.</p>
+
+  <p><strong>铁磁铁 (Fe, bcc).</strong> Curie 温度 $T_c\approx 1043\,\mathrm{K}$. 精密测量给出 $\beta_\text{Fe} \approx 0.36$ — 显著小于 0.5. 相对误差 $(0.5-0.36)/0.36\approx 39\%$, 这不是实验噪声, 而是 MFT 在 3 维上系统性偏离真值. 镍 ($T_c\approx 627\,\mathrm{K}$) 给 $\beta\approx 0.38$, 气液临界点给 $\beta\approx 0.326$, 这些都与 MFT 0.5 有约三分之一到四分之一的差距, 但彼此之间只差百分之几.</p>
+
+  <p>三维 Ising 模型的数值结果 $\beta\approx 0.3265$ 跟液-气精度一致, 跟铁磁近似一致. 这又是普适性 — 但 Landau 的 0.5 错了约 35%.</p>
+
+  <p><strong>Landau 在哪里失手?</strong> 隐藏假设是: 系统整体被单一 $\eta$ 值描述, 忽略 $\eta$ 在空间中的涨落. 真实系统中, 在 $T_c$ 附近关联长度 $\xi\to\infty$, 局部 $\eta(\vec{r})$ 有巨大的长波涨落 — 正是这些涨落让自由能偏离解析展开的平滑形状.</p>
+
+  <p><strong>Ginzburg 判据.</strong> 涨落是否重要, 取决于维度. 简单估算: 在关联体积 $\xi^d$ 内, 涨落的能量 $\delta F_\text{fluct}\sim k_B T$; 经典平均场给的能量是 $|F_\min|\xi^d \sim (a^2/b)\xi^d$. 比较两者, 利用 MFT 下 $\xi\sim (T_c-T)^{-1/2}$, 可以推出涨落 <em>不</em> 支配的判据是 $d > 4$. 即</p>
+
+  $$ d_c = 4 $$
+
+  <p>是 "<strong>上临界维</strong>": 在 $d\ge 4$ 上 Landau MFT 渐近严格, 指数就是 0.5 等; 在 $d<4$ 下涨落主导, 真实指数要靠重整化群才能算对. 我们生活在 $d=3$, 恰在 $d_c=4$ 的下方, 所以 MFT 给出的指数系统性偏离实验值, 但误差也不是太大 — 这正是 $\epsilon=4-d=1$ 的展开在微扰论中给出结果的原因 (下一节会讲普适类和重整化群时展开这点).</p>
+
+  <p><strong>极限检验: $d\to\infty$.</strong> 在无限维格子上, 每个格点的配位数也趋无穷, 平均场近似里"邻居平均场"跟实际邻居分布完全重合, MFT 严格. 所以高维极限是 MFT 严格成立的理论保证 — 不是数学凑巧. 这也解释了为什么平均场对几乎所有化学、材料领域的定性问题都 "七八成对": 现实问题绝少严格处在 $T_c$, 离开临界点越远, 涨落越小, MFT 越准.</p>
+
+  <p><strong>历史线.</strong> Landau 1937 在 <em>Zh. Eksp. Teor. Fiz.</em> 发表两篇短文, 把二阶相变的理论一锤定音: 不需要具体模型, 只靠对称性和展开; 同一框架可以描述磁性、铁电、二元合金、超流. 1950 年他和 Ginzburg 把展开推广到空间非均匀情形, 加入梯度项 $|\nabla\eta|^2$, 得到 Ginzburg-Landau 方程, 后来成了超导 (1957 BCS 之前就定性解释了 Meissner 效应) 和超流的标准工具. 1959 年 Gor'kov 证明 GL 方程可以从 BCS 微观理论在 $T$ 近 $T_c$ 处严格导出. 1960 年代 Ginzburg 自己提出判据指出何时 MFT 失效; 1971 年 Wilson 的重整化群才最终解决了 $d<d_c$ 的临界指数问题, 并于 1982 年得诺奖. Landau 的这套展开, 横跨整个 20 世纪凝聚态物理.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Landau 平均场理论的核心论证是: <em>对称性 + 解析展开 + 一个系数在 $T_c$ 变号</em>, 三样东西就能把二阶相变的临界指数全套算出来. 它是第一次让"普适性"从形式主义中自己浮出水面 — 具体材料完全被抹掉, 只剩对称群和空间维度. 它也清晰地暴露了自己的失败边界: 空间涨落在 $d<4$ 时主导, 真实铁磁的 $\beta$ 是 0.36 而不是 0.5. 这个失败是有意义的 — 它直接指向下一步: 如果把涨落系统地加进来, 会得到什么? 这正是普适类、标度律、重整化群的起点. Landau 不是最后一个字, 但它说清了第一句话.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="11-vdw-maxwell.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="13-universality.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

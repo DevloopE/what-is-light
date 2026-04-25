@@ -1,0 +1,255 @@
+/* Shared stylesheet for the chapter "一抬头看到的宇宙" */
+
+:root {
+  --ink: #1b1b1b;
+  --rule: #c9c3b5;
+  --panel-bg: #f3efe6;
+  --accent: #8b2f1a;
+  --muted: #6b6559;
+  --link: #3b5a8e;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "Georgia", serif;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Hiragino Sans GB", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "Consolas", monospace;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #faf8f3; color: var(--ink); }
+body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+article, .toc {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 32px 96px 32px;
+}
+
+.chapter-nav {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: 0.88em;
+  border-bottom: 1px solid var(--rule);
+  background: #f3efe6;
+  flex-wrap: wrap;
+}
+.chapter-nav.bottom {
+  border-bottom: none;
+  border-top: 1px solid var(--rule);
+  margin-top: 0;
+}
+.chapter-nav a {
+  color: var(--link);
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 3px;
+  transition: background .15s;
+}
+.chapter-nav a:hover { background: rgba(59, 90, 142, 0.08); }
+.chapter-nav a.disabled { color: var(--muted); pointer-events: none; }
+.chapter-nav .chapter-title {
+  flex: 1;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9em;
+}
+
+h1, h2, h3, h4 { font-family: var(--sans); color: var(--ink); }
+h1 {
+  font-size: 1.85em;
+  line-height: 1.35;
+  margin: 0.15em 0 0.1em;
+  letter-spacing: 0.5px;
+}
+h1 + .sub {
+  font-size: 1.05em;
+  color: var(--muted);
+  margin-bottom: 1.8em;
+  font-style: italic;
+}
+h2 {
+  font-size: 1.22em;
+  margin: 2.2em 0 0.6em;
+  border-left: 4px solid var(--accent);
+  padding-left: 0.6em;
+}
+h3 {
+  font-size: 1.05em;
+  margin: 1.6em 0 0.4em;
+  color: var(--accent);
+}
+p, ol, ul { margin: 0.7em 0; text-align: justify; text-justify: inter-ideograph; }
+li { margin: 0.2em 0; }
+
+.abstract {
+  background: var(--panel-bg);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  margin: 1.2em 0 2em;
+  font-size: 0.97em;
+}
+.abstract::before { content: "摘要  "; font-weight: 600; color: var(--accent); }
+
+blockquote {
+  margin: 1em 0; padding: 0.2em 0 0.2em 1em;
+  border-left: 3px solid var(--muted);
+  color: var(--muted); font-style: italic;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1em auto;
+  font-family: var(--sans);
+  font-size: 0.95em;
+}
+th, td { border-bottom: 1px solid var(--rule); padding: 6px 14px; text-align: center; }
+th { background: var(--panel-bg); font-weight: 600; }
+
+hr { border: none; border-top: 1px solid var(--rule); margin: 2em 0; }
+
+.small-summary {
+  margin-top: 2.4em;
+  padding-top: 1em;
+  border-top: 1px dashed var(--rule);
+}
+.small-summary h4 { margin: 0 0 0.4em; font-size: 1em; }
+
+/* Diagram placeholder — will be replaced by a TikZ-rendered SVG later */
+figure.diagram-placeholder {
+  margin: 1.8em 0;
+}
+.placeholder-box {
+  background: repeating-linear-gradient(
+    45deg,
+    #f7f0dc,
+    #f7f0dc 14px,
+    #f0e8cf 14px,
+    #f0e8cf 28px
+  );
+  border: 2px dashed #b99a45;
+  border-radius: 6px;
+  padding: 22px 28px;
+  font-family: var(--sans);
+  font-size: 0.92em;
+  line-height: 1.55;
+  color: #2b2a24;
+}
+.placeholder-box .tag {
+  display: inline-block;
+  background: #b99a45;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 2px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+  margin-right: 8px;
+  font-weight: 600;
+}
+.placeholder-box h4 {
+  margin: 0 0 6px; font-size: 1em; color: #5a4a1a;
+  font-family: var(--sans);
+}
+.placeholder-box .tikz-req {
+  margin: 10px 0 0;
+  background: rgba(255,255,255,0.6);
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.placeholder-box .tikz-req dt {
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 5px;
+}
+.placeholder-box .tikz-req dd {
+  margin: 0 0 4px 16px;
+  color: #333;
+}
+figcaption {
+  font-size: 0.88em;
+  color: var(--muted);
+  margin-top: 0.5em;
+  font-family: var(--sans);
+  text-align: center;
+}
+
+/* TOC (index.html) */
+.toc .chapter-header {
+  text-align: left;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+.toc .chapter-header .tag {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.toc .chapter-header h1 {
+  font-size: 2em;
+  margin: 0.1em 0;
+}
+.toc .chapter-header .subtitle {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 1.05em;
+  margin-top: 0.3em;
+}
+.toc .intro {
+  font-size: 1em;
+  margin: 1.5em 0 2em;
+  color: #333;
+}
+.toc ol.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: tocitem;
+}
+.toc ol.toc-list li {
+  counter-increment: tocitem;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+}
+.toc ol.toc-list li:last-child { border-bottom: none; }
+.toc ol.toc-list li::before {
+  content: counter(tocitem, decimal-leading-zero);
+  font-family: var(--sans);
+  font-size: 0.85em;
+  color: var(--muted);
+  min-width: 30px;
+}
+.toc ol.toc-list a {
+  color: var(--ink);
+  text-decoration: none;
+  flex: 1;
+}
+.toc ol.toc-list a:hover { color: var(--accent); }
+.toc ol.toc-list .title {
+  font-size: 1.1em;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--sans);
+}
+.toc ol.toc-list .sub {
+  color: var(--muted);
+  font-size: 0.93em;
+  font-style: italic;
+}

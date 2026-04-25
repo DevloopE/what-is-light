@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wick 转动 — Minkowski 到 Euclidean 路径积分怎么过去? · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="19-anomaly.html">← 上一节</a>
+  <span class="chapter-title">第 20 节 / 30 · 第 4 部分 · 计算工具与发散 · 第三卷·粒子物理</span>
+  <a href="21-lhc-acceleration.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Wick 转动 — Minkowski 到 Euclidean 路径积分怎么过去?</h1>
+  <div class="sub">—— 复平面里的一次旋转</div>
+
+  <div class="abstract">路径积分 $Z = \int\mathcal D\phi\, e^{iS_M[\phi]/\hbar}$ 写下来很漂亮, 真要算却遇到一件麻烦事: 被积函数是一个纯相位, 不衰减, 数学上积分根本不绝对收敛; 数值上在格点或 Monte Carlo 里更是无从下手 — 相位在路径空间里疯狂摆动, 采样直接失效 ("sign problem"). Wick 1954 年给的招是一次几何观察: 把时间 $t$ 变成虚时间 $\tau = it$, 作用量 $S_M$ 就变成 $iS_E$, 被积函数变成 Boltzmann 因子 $e^{-S_E/\hbar}$, 收敛立刻就位. 本节把这次"转动"严格地推一遍 — 为什么在复 $t$ 平面上顺时针 $90^\circ$ 转动合法? Cauchy 定理能走通, 靠的是传播子 $i\epsilon$ 处方把极点推到哪个象限, 允许旋转路径越过. 推完, 我们会看见 QFT 在虚时间 ↔ 4D 统计力学这个深刻对应, 并落到格点 QCD 上一个具体数字: 格距 $a \approx 0.1\,\text{fm}$, 格大小 $32^3\times 64$, hadron 质量谱能算到几 $\%$ 精度.</div>
+
+  <p>上一节我们讲反常 (anomaly) — 一个经典对称在量子测度下怎么崩塌. 整个过程是在 Minkowski 时空里描述的: 作用量 $S_M$ 实数, 路径权重 $e^{iS_M/\hbar}$ 是纯相位. 反常的计算 (例如三角图里的那个 $\pi^0 \to 2\gamma$ 振幅) 在 Minkowski 里走得通, 是因为我们一直默默使用了传播子的 $i\epsilon$ 处方 — 没人认真讨论过 $i\epsilon$ 在做什么事. 到了这一节, $i\epsilon$ 从台下走到台前: 它本质上是在指示如何把实轴上的振荡积分转到虚轴上, 让积分变得真正收敛.</p>
+
+  <p>先把矛盾摆清楚. 自由标量场的 Minkowski 路径积分写出来是</p>
+
+  <p>$$ Z_M = \int\mathcal D\phi\,\exp\!\left[\frac{i}{\hbar}\int d^4x_M\left(\tfrac12(\partial_\mu\phi)(\partial^\mu\phi) - \tfrac12 m^2\phi^2\right)\right]. $$</p>
+
+  <p>$d^4x_M = dt\,d^3\mathbf x$, 度规取 $(+,-,-,-)$. 动能项 $\tfrac12(\partial_t\phi)^2 - \tfrac12(\nabla\phi)^2$ 的两项符号相反, 质量项符号是负的 — 指数里整体带一个 $i$, 所以权重是纯相位. 数学家看这个积分想要哭 —— 被积函数模长 $|e^{iS/\hbar}| = 1$, 没有任何衰减, 积分测度 $\mathcal D\phi$ 在无穷维上本身就不好定义, 再乘一个不衰减的相位, 纯粹是形式表达. 数值家看它更想哭 — Monte Carlo 方法靠重要性采样, 需要一个正定的概率权重; 给你一个摆动的复相位, 算法里每个 configuration 的贡献互相抵消, 噪声随样本数 $N$ 指数放大, 这就是 sign problem.</p>
+
+  <p>Wick 1954 年的提议很简单: 把时间轴转 $90^\circ$. 令 $t = -i\tau$, 看看会发生什么.</p>
+
+  <h2>一、把 $t$ 转成 $-i\tau$: 作用量从 $iS_M$ 到 $-S_E$</h2>
+
+  <p>我们来具体做这件事. 在 $t = -i\tau$ 的代换下, $dt = -i\,d\tau$; 时间导数 $\partial_t = i\partial_\tau$ (链式法则: $\partial_t = (\partial\tau/\partial t)\partial_\tau = (-1/i)\partial_\tau = i\partial_\tau$). 代入 Minkowski 作用量</p>
+
+  <p>$$ \int dt\,d^3\mathbf x\,\tfrac12\big[(\partial_t\phi)^2 - (\nabla\phi)^2 - m^2\phi^2\big]. $$</p>
+
+  <p>先看 $dt \to -i\,d\tau$. 再看 $(\partial_t\phi)^2 = (i\partial_\tau\phi)^2 = -(\partial_\tau\phi)^2$. 所以</p>
+
+  <p>$$ S_M \to \int (-i\,d\tau)\,d^3\mathbf x\,\tfrac12\big[-(\partial_\tau\phi)^2 - (\nabla\phi)^2 - m^2\phi^2\big] = i\!\int d\tau\,d^3\mathbf x\,\tfrac12\big[(\partial_\tau\phi)^2 + (\nabla\phi)^2 + m^2\phi^2\big]. $$</p>
+
+  <p>括号里三项现在都是正的. 我们定义 Euclidean 作用量</p>
+
+  <p>$$ S_E[\phi] \equiv \int d^4x_E\,\Big[\tfrac12(\partial_\tau\phi)^2 + \tfrac12(\nabla\phi)^2 + \tfrac12 m^2\phi^2\Big], \tag{1} $$</p>
+
+  <p>其中 $d^4x_E = d\tau\,d^3\mathbf x$, 这是在度规 $\delta_{\mu\nu} = (+,+,+,+)$ 下的积分 — 四维 Euclidean 空间. 上面的代换就是 $S_M \to iS_E$, 所以</p>
+
+  <p>$$ \frac{i}{\hbar}S_M \to \frac{i}{\hbar}\cdot iS_E = -\frac{S_E}{\hbar}, $$</p>
+
+  <p>相位 $e^{iS_M/\hbar}$ 就变成了 Boltzmann 权重 $e^{-S_E/\hbar}$. 这是一个正定、无摆动的衰减函数 — 只要 $S_E$ 在场构型上有合理的下界, 积分就收敛, Monte Carlo 可以采样, lattice 上可以数值求解.</p>
+
+  <p>形式上看, 这是一场美丽的变戏法 —— Minkowski 的振荡积分被转成了 Euclidean 的衰减积分, 一项一项符号都变好. 代价是我们悄悄承诺了一件非平凡的事: <b>在这次复 $t$ 平面的 $90^\circ$ 旋转中, 积分的值不变</b>. 这个承诺需要严格证明, 不能光靠代换字母就当真.</p>
+
+  <h2>二、严格 deepdive: 复 $t$ 平面的 Cauchy 论证</h2>
+
+  <p>这是本节的 cliché 概念 deepdive. 多数教材讲 Wick 转动时, 一句 "$t \to -i\tau$, 作用量变 Euclidean" 就过去了, 读者根本不知道为什么这次代换是合法的. 严格讲, Wick 旋转是一次<b>围道旋转</b> (contour rotation), 靠 Cauchy 定理保证旋转前后积分相等; 走通这个定理需要两个条件: (a) 旋转扫过的扇形区域内被积函数解析无极点; (b) 无穷远处被积函数足够衰减. 这两条都和 $i\epsilon$ 处方直接绑定, 所以我们要把它们仔细拆开.</p>
+
+  <p><b>起点: 自由传播子.</b> 考虑最基本的例子 — Feynman 传播子在动量空间写成</p>
+
+  <p>$$ \Delta_F(p) = \frac{i}{p^2 - m^2 + i\epsilon}, \qquad p^2 = (p^0)^2 - |\mathbf p|^2. $$</p>
+
+  <p>这里的 $i\epsilon$ ($\epsilon > 0$ 无穷小) 不是装饰, 它决定了传播子在 $p^0$ 平面上的极点位置. 把分母因式分解: $p^2 - m^2 + i\epsilon = (p^0 - E_p + i\epsilon')(p^0 + E_p - i\epsilon')$, 其中 $E_p = \sqrt{|\mathbf p|^2 + m^2}$, $\epsilon'$ 是同号的无穷小量. 两个极点分别在 $p^0 = E_p - i\epsilon'$ (第四象限) 和 $p^0 = -E_p + i\epsilon'$ (第二象限).</p>
+
+  <p><b>关键事实.</b> 极点在第二和第四象限, <b>第一和第三象限是空的</b>. 第一象限对应 $\text{Re}(p^0) > 0$, $\text{Im}(p^0) > 0$; 第三象限对应 $\text{Re}(p^0) < 0$, $\text{Im}(p^0) < 0$. 这两个象限构成 $p^0$ 轴顺时针 $90^\circ$ 旋转所扫过的区域 — 实轴 $p^0 \in \mathbb R$ 旋转到虚轴 $p^0 = ip_E^0$ (即 $p^0$ 从正实转到正虚). 这个旋转方向<b>顺时针</b>正好避开两个极点.</p>
+
+  <p><b>Cauchy 定理起效.</b> 对 $p^0$ 的围道积分</p>
+
+  <p>$$ \int_{-\infty}^{+\infty} dp^0\,\frac{i\,e^{-ip^0 t}}{(p^0)^2 - |\mathbf p|^2 - m^2 + i\epsilon} $$</p>
+
+  <p>考虑沿两条围道的差: 实轴 $C_1: p^0 \in \mathbb R$ 和虚轴 $C_2: p^0 = ip_E^0$, $p_E^0 \in \mathbb R$. 把两条围道用两段大圆弧在 $|p^0| = R \to \infty$ 处连起来, 得到一个封闭围道 $\Gamma = C_1 + \text{弧}_1 - C_2 + \text{弧}_2$, 它把<b>第一和第三象限</b>包在里面. 这两个象限内被积函数解析 (没有极点), 所以按 Cauchy</p>
+
+  <p>$$ \oint_\Gamma dp^0 = 0. $$</p>
+
+  <p>两段大圆弧的贡献在 $R\to\infty$ 时衰减到零 (被积函数 $\sim 1/R^2$, 乘以弧长 $\sim R$, 整体 $\sim 1/R \to 0$; 传播子这样衰减就够了, 一般情况下还需要考虑振荡因子 $e^{-ip^0t}$ 的衰减, 见下面). 于是 $\int_{C_1} = \int_{C_2}$ — 沿实轴的积分等于沿虚轴的积分, 两个围道等价. 这就是 Wick 旋转.</p>
+
+  <p>坐标空间里时间 $t$ 与动量空间里 $p^0$ 是对偶的. 坐标里的代换 $t = -i\tau$ 对应动量里的代换 $p^0 = ip_E^0$ (由 Fourier 对偶 $p^0 t \to p_E^0 \tau$ 保持实). 方向看起来相反 — $t$ 平面逆时针转 $90^\circ$ 的方向对应 $p^0$ 平面顺时针转 $90^\circ$ — 但两个方向在 Cauchy 论证里都自洽, 关键在于两者都避开了极点.</p>
+
+  <p><b>$i\epsilon$ 处方与旋转方向的自洽.</b> 我们现在看到, Feynman 处方 $+i\epsilon$ 不是随便选的符号. 它把极点放到第二、第四象限, 恰好让顺时针旋转 $p^0 \to ip_E^0$ 能穿过无极点区域. 如果你换一个处方 — 譬如 "retarded" 处方把两个极点都放到下半平面 ($p^0 = E_p - i\epsilon$ 和 $p^0 = -E_p - i\epsilon$), 第一象限仍无极点但第三象限有一个极点, 那 Wick 旋转会撞上它, Cauchy 定理不起效. 所以 Feynman 处方与 Wick 旋转是一对绑定的选择: 只有用 $+i\epsilon$ 处方, 才能合法转到 Euclidean; Euclidean 的正定 Boltzmann 权重反过来告诉你 Minkowski 的 $i\epsilon$ 必须这个方向.</p>
+
+  <p><b>位置空间的 $i\epsilon$ 镜像.</b> 坐标空间里, 作用量指数 $e^{iS_M/\hbar}$ 需要一个"隐含"的 $+i\epsilon$ 才使积分收敛. 具体地, 应该理解为 $\exp[i(S_M + i\epsilon\int\phi^2)/\hbar]$ — 一个无穷小的正虚部让模 $|e^{iS_M/\hbar}|$ 变成 $e^{-\epsilon\int\phi^2/\hbar}$, 在场变量的无穷远处衰减. 做 $t\to -i\tau$ 之后, $iS_M \to -S_E$, 这个 $+i\epsilon$ 自动消失 — Euclidean 作用量 $S_E$ 本身是正定的 ($\phi$ 的平方 + 导数平方 + 质量平方), 根本不需要额外的 $i\epsilon$ 帮忙收敛. 这是 Cauchy 论证的一个副产品: <b>Minkowski 的 $i\epsilon$ 处方在 Wick 旋转下"溶入"Euclidean 的正定性</b>.</p>
+
+  <p>需要强调的一点: 上面的证明在自由理论里是严格的 — 传播子是有理函数, 极点位置明确. 相互作用理论里, Cauchy 论证更微妙: 每一张 Feynman 图是若干传播子的乘积, 每个传播子都贡献一对极点, 作为一个整体它们仍在第二、第四象限 (loop 动量积分的 $i\epsilon$ 与外线动量的 $i\epsilon$ 需要同号), 所以 Wick 旋转仍合法. 但这个"同号"是一个 technical 条件, 涉及 Landau 面的位置 — Symanzik 1960 年代 Euclidean QFT 的公理化就在处理这些. 下面我们就讲这件事.</p>
+
+  <figure class="diagram-placeholder">
+    <div class="placeholder-box">
+      <span class="tag">图占位符</span>
+      <h4>图 1 · 复 $t$ 平面 Wick 旋转与 Minkowski/Euclidean 作用量对照</h4>
+      <p>上半部: 复 $t$ (或等价 $p^0$) 平面的旋转图示; 下半部: 两个路径积分公式的并列对比.</p>
+      <dl class="tikz-req">
+        <dt>上部主图 (复 $t$ 平面)</dt>
+        <dd>复平面方格背景, 横轴 $\text{Re}(t)$ 标 "Minkowski 实时间", 纵轴 $\text{Im}(t)$ 标 "Euclidean 虚时间 $\tau = it$". 沿实轴画粗黑线表示 Minkowski 围道, 沿正虚轴画粗黑线表示 Euclidean 围道. 中间用圆弧箭头画出顺时针 $90^\circ$ 旋转, 标签 "$t \to -i\tau$". </dd>
+        <dt>极点位置 (等价 $p^0$ 平面视角)</dt>
+        <dd>右下方小嵌图: $p^0$ 复平面, 第二象限画一个空心圆标 "$-E_p + i\epsilon$", 第四象限画一个空心圆标 "$+E_p - i\epsilon$". 第一和第三象限画阴影带, 标 "旋转扇区 (无极点)". 顺时针旋转箭头从正实轴转到正虚轴.</dd>
+        <dt>下部公式带 (左右并列)</dt>
+        <dd>左: "Minkowski: $Z = \displaystyle\int\mathcal D\phi\,e^{iS_M[\phi]/\hbar}$, 相位, 不收敛". 右: "Euclidean: $Z = \displaystyle\int\mathcal D\phi\,e^{-S_E[\phi]/\hbar}$, Boltzmann, 收敛". 中间用双向箭头 "Wick 旋转" 连接.</dd>
+        <dt>自由 KG 作用量对比</dt>
+        <dd>下方小字: "$S_M = \int d^4x_M[\tfrac12(\partial_\mu\phi)^2 - \tfrac12 m^2\phi^2]$ (有负号)" 与 "$S_E = \int d^4x_E[\tfrac12(\partial_\mu\phi)^2 + \tfrac12 m^2\phi^2]$ (全正号)" 并列.</dd>
+        <dt>几何要求</dt>
+        <dd>旋转方向严格顺时针 (从正实轴向正虚轴), 极点位置严格在第二/第四象限, 旋转扇区用阴影覆盖第一/第三象限. </dd>
+        <dt>风格</dt>
+        <dd>白底, 黑线粗 1.2pt, 方格浅灰, 文字 serif; 整体紧凑不拥挤.</dd>
+      </dl>
+    </div>
+    <figcaption>图 1  复 $t$ 平面上的 Wick 旋转: 顺时针 $90^\circ$ 扫过的扇形内无极点, Cauchy 定理保证积分值不变, 把 Minkowski 的振荡相位积分转成 Euclidean 的 Boltzmann 衰减积分.</figcaption>
+  </figure>
+
+  <h2>三、Euclidean QFT ↔ 4D 统计力学 ↔ 热场论</h2>
+
+  <p>Wick 旋转的真正深度不只在"把振荡换成衰减"这件技术上. 一旦你在 Euclidean 里算出 correlation 函数 $\langle\phi(x_E)\phi(y_E)\rangle_E$, Osterwalder–Schrader 1973 年的一组公理保证你可以通过解析延拓 $\tau \to it$ 把它恢复成 Minkowski 的 $\langle 0|T\phi(x)\phi(y)|0\rangle_M$. 也就是说, Euclidean QFT 和 Minkowski QFT 是同一个理论在两种坐标下的描述 — 只要你算出了 Euclidean 的东西, Minkowski 的东西就自动有了.</p>
+
+  <p>这个"同一理论"开辟了两个极有分量的对应.</p>
+
+  <p><b>对应 1: Euclidean QFT ↔ 4D 统计力学.</b> 看 Euclidean 路径积分 $Z = \int\mathcal D\phi\,e^{-S_E/\hbar}$, 把 $S_E$ 里的 $1/\hbar$ 重写成 $1/(k_BT_{\text{eff}})$, 这就是一个经典统计力学的配分函数 —— 场 $\phi(x_E)$ 扮演"自由度", $S_E$ 扮演"能量函数", $\hbar$ 扮演"温度". 具体地, 一个 4D Euclidean $\phi^4$ 理论 $\mathcal L_E = \tfrac12(\partial\phi)^2 + \tfrac12 m^2\phi^2 + \lambda\phi^4/4!$ 就等价于一个 4D 经典标量铁磁模型 $E = \sum_x[\tfrac12(\nabla\phi)^2 + \tfrac12 r\phi^2 + u\phi^4]$, 其中 $r$ 是"离临界点的距离", $u$ 是四次耦合. $m^2 \to 0$ 对应二阶相变的临界点 — 相关长度发散, 系统出现幂律关联. 这是 1970 年代 Wilson 的重整化群洞察的核心: QFT 的重整化和统计物理的临界现象是同一套数学, 都由 $\beta$ 函数的零点控制. Wilson 1982 年拿 Nobel 奖讲的就是这件事, 而 Wick 旋转是这个对应成立的技术基础.</p>
+
+  <p><b>对应 2: 虚时间周期性 ↔ 有限温度场论.</b> 这是 Wick 旋转带来的一个漂亮极限. 考虑 Euclidean 作用量, 如果我们把虚时间 $\tau$ 限制在一个周期 $\beta = \hbar/(k_BT)$ 里 —— 即 $\tau \in [0,\beta]$, 且场满足 Bose 场周期条件 $\phi(\tau+\beta,\mathbf x) = \phi(\tau,\mathbf x)$, Fermi 场反周期条件 $\psi(\tau+\beta,\mathbf x) = -\psi(\tau,\mathbf x)$ — 那么</p>
+
+  <p>$$ Z_\beta = \int\mathcal D\phi\,e^{-S_E[\phi]/\hbar}\Big|_{\phi(\tau+\beta)=\pm\phi(\tau)} \;=\; \text{Tr}\big(e^{-\beta H}\big). \tag{2} $$</p>
+
+  <p>这就是热场论的 Matsubara 公式. 左边是 Euclidean 路径积分在紧致虚时间 $S^1 \times \mathbb R^3$ 上, 右边是量子系统在温度 $T = \hbar/(k_B\beta)$ 下的配分函数. 这个等价 Feynman 1953 年在超流 He-4 的一篇论文里隐含讨论过, Matsubara 1955 年明确写成频率求和的形式. 物理推论: 虚时间方向的"长度" $\beta$ 就是逆温度. $\beta\to\infty$ (低温极限) 给你零温 QFT; $\beta$ 有限时, 虚时间方向紧致化, 四维时空变成 $S^1_\beta \times \mathbb R^3$, 场论自动进入有限温相. 这把 "QFT 与温度" 两件看似无关的事合成了一件 — 温度就是虚时间方向的周期.</p>
+
+  <p>代个数字. 在早期宇宙 $T\sim 100\,\text{GeV}$ 的电弱相变时期, $\beta = \hbar/(k_BT) \approx 200/T \approx 2\times 10^{-3}\,\text{GeV}^{-1} \approx 4\times 10^{-27}\,\text{s}$. 虚时间方向有效周期 $\sim 10^{-18}\,\text{m}$ — 比当时 universe horizon 的空间尺度小 29 个数量级. 也就是说, 有限温修正主要影响短尺度物理 (粒子碰撞), 对宇宙学大尺度结构不直接体现, 但控制了相变何时发生. 这是 Linde-Weinberg 在 1970 年代用来研究电弱对称破缺的热历史时的主要工具.</p>
+
+  <h2>四、lattice QCD: Wick 旋转的终极实战</h2>
+
+  <p>Wick 旋转从 Wick 1954 年的纸面戏法到今天, 最硬核的用法在 lattice QCD 上. 其中的逻辑很直: QCD 在低能是强耦合 ($\alpha_s \sim 1$), 微扰展开失效 — 不能像 QED 那样一阶一阶算 Feynman 图. 唯一可靠的非微扰方法就是直接在 Euclidean 空间把路径积分数值算出来: 把连续时空离散化到一个 $L^3 \times T$ 的超立方格上, 把作用量近似成格点动作 $S_E^{\text{lat}}$, 然后用 Monte Carlo 对所有 gauge field 构型 $\{U_\mu(x)\}$ 按 $e^{-S_E^{\text{lat}}/\hbar}$ 权重采样, 最后算各类算符的期望值.</p>
+
+  <p>这件事只在 Euclidean 空间做得了. 原因回到 Section 二: Monte Carlo 需要一个正定权重, Minkowski 的 $e^{iS_M}$ 是纯相位, sign problem 让采样失败. Wick 旋转把 $iS_M$ 换成 $-S_E$, 后者正定, Monte Carlo 立刻走得通. 这是 Wilson 1974 年提出格点规范理论时的核心洞察 — 他发明了"Wilson action"和"Wilson loop", 并证明了 quark confinement 在强耦合 lattice QCD 上是一个显而易见的 (strong-coupling expansion 的领导项) 后果.</p>
+
+  <p><b>数字代入 1: 格距.</b> 现代 lattice QCD 典型格距 $a \approx 0.05-0.1\,\text{fm}$, 即 $0.05-0.1\times 10^{-15}\,\text{m}$. 物理上需要 $a < 1/\Lambda_{\text{QCD}} \approx 1/(200\,\text{MeV}) \approx 1\,\text{fm}$ 才能 resolve 强作用的非微扰结构. 反过来 $a > 1/m_{\text{heaviest}}$, 才不会把最重的相关模式 (譬如 $b$ 夸克 $\sim 4\,\text{GeV}$, 对应 $\sim 0.05\,\text{fm}$) 错过. 所以 $a\approx 0.1\,\text{fm}$ 是一个典型工作点.</p>
+
+  <p><b>数字代入 2: 格大小.</b> 典型格大小 $32^3 \times 64$ — 空间 $32$ 格, 时间 $64$ 格 (时间方向拉长是为了分辨 hadron 在大时间下的衰减, 提取能量本征值). 物理尺度: $32\times 0.1\,\text{fm} = 3.2\,\text{fm}$, 时间方向 $6.4\,\text{fm}$. 需要 $L > 1/m_\pi \approx 1.4\,\text{fm}$ 才能容纳最轻的 pion, 所以 $3.2\,\text{fm}$ 绰绰有余. 自由度总数: $32^3\times 64 \times 4\text{ (SU(3) links per site)}\times 8\text{ (real params per link)} \approx 6.7\times 10^7$ — 每次 Monte Carlo 更新要动 $10^7$ 个连续变量. 高性能超算上一个 ensemble 要跑几百万 CPU 小时.</p>
+
+  <p><b>数字代入 3: 精度.</b> 十年努力, lattice QCD 现在可以把 hadron 质量谱算到几 $\%$ 精度. 例如质子质量: 实验 $938.272\,\text{MeV}$, lattice 在物理夸克质量点上给 $\sim 935(10)\,\text{MeV}$, 误差约 $1\%$. 更精细的例子 — 强作用耦合常数 $\alpha_s(m_Z)$, lattice 给 $0.1184(8)$, 与 global fit $0.1179(10)$ 完全吻合, 这是对 QCD 框架的非微扰检验. 一个更精彩的成就是 $g_\mu - 2$ (muon anomalous magnetic moment) 的 hadronic vacuum polarization 贡献, lattice 最近几年把它算到 $\sim 0.5\%$ — 直接影响 muon $g-2$ 异常是否真实的判断. 所有这些数字, 都是在 Euclidean 时空 $S^1_\beta \times L^3$ 上算的, 然后通过 spectroscopy (在大 $\tau$ 下提取 $e^{-E\tau}$ 的指数衰减) 恢复物理量.</p>
+
+  <p><b>极限检验: 连续极限 $a\to 0$ 与热力学极限 $L\to\infty$.</b> 格点结果不是最终答案, 还要做两个极限: $a\to 0$ 去掉离散化误差 (Symanzik improvement, $\mathcal O(a^2)$ 误差), $L\to\infty$ 去掉有限体积误差 (finite-volume effects $\sim e^{-m_\pi L}$). 两个极限都涉及重整化群 — 这把 Wilson 的 RG 思想(来自 Euclidean 统计力学) 再次推到前台. 整个格点 QCD 的方法论就是 Wilson 1970s 把 Euclidean QFT = 统计力学的思路做到了极致.</p>
+
+  <p><b>历史线索.</b> Wick 转动的命名与 Gian-Carlo Wick 1954 年一篇短文《Properties of Bethe-Salpeter Wave Functions》有关 — 他在那里为了给 Bethe-Salpeter 方程找一个适合数值解的形式, 明确提出"把时间分量转到虚轴"的技巧, 并证明了在自由传播子的极点分布下这次旋转合法. 不过这个想法前身可追溯到 Schwinger 1949 年处理 QED 真空极化时已隐含使用, 再往前到 Feynman 1948 路径积分论文里关于 $i\epsilon$ 处方的脚注. Wick 的贡献是把它从技巧提升为一个在四维时空上可以反复使用的工具. 下一个关键人物是 Kurt Symanzik — 他在 1960 年代提出 "Euclidean QFT" 作为一个独立的数学对象, 证明了 Euclidean correlation functions 的完备性 (Osterwalder-Schrader 1973 年给出公理化版本), 彻底把 Euclidean 视角从 "Minkowski 的计算技巧" 上升为 "QFT 的另一等价描述". 1970 年代 Wilson 把 Euclidean QFT 与统计力学的临界现象联系起来, 获 1982 年 Nobel. 同一个 Wilson 1974 年发明格点规范理论, 把 Wick 旋转推到非微扰 QCD 的实战战场. 八十年代 Creutz、Parisi 等人把 lattice QCD 做成了一套成熟的数值方法学, 今天它已经是粒子物理唯一能从第一性原理算强耦合现象的工具.</p>
+
+  <p>值得强调一点: Wick 旋转在有费米子的理论里有一个微妙的注脚. Fermion action 在 Euclidean 空间需要重新定义 $\gamma$ 矩阵 (Euclidean $\gamma_\mu^E$ 满足 $\{\gamma_\mu^E, \gamma_\nu^E\} = 2\delta_{\mu\nu}$), 而且 Euclidean Dirac action 不是厄米的 (因为时间反演在 Euclidean 里失去了 anti-unitary 结构). 这在自由 fermion 里不是问题, 在 lattice QCD 里用 pseudofermion trick 和 Hybrid Monte Carlo 也能绕过去. 但在手征 fermion (chirality) 问题上, Nielsen-Ninomiya 定理限制了你能同时保留多少对称 —— 这是 lattice QCD 几十年努力的方向之一 (domain wall fermions, overlap fermions, staggered fermions). Wick 旋转本身在费米子上仍然合法, 只是实施细节复杂.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Wick 旋转把 Minkowski 路径积分 $\int\mathcal D\phi\,e^{iS_M/\hbar}$ 转成 Euclidean 的 $\int\mathcal D\phi\,e^{-S_E/\hbar}$ — 看似一次字母代换 $t\to-i\tau$, 真正的根基是复 $t$ 平面上的 Cauchy 定理: 传播子极点在第二、第四象限 (由 Feynman $i\epsilon$ 处方指定), 顺时针 $90^\circ$ 旋转扫过的第一、第三象限无极点, 围道旋转保值. Euclidean 权重 $e^{-S_E/\hbar}$ 是正定的 Boltzmann 因子, 数学上可定义 (Wiener 型路径测度), 数值上可 Monte Carlo 采样. 这次旋转打开了三扇门: (1) Euclidean QFT = 4D 经典统计力学, Wilson 把 QFT 重整化与临界现象统一; (2) 紧致虚时间 $\tau\in[0,\beta]$ 给出有限温场论, 配分函数 $Z_\beta = \text{Tr}(e^{-\beta H})$ 自然写成 Euclidean 路径积分; (3) lattice QCD 在 $32^3\times 64$ 的格上数值解非微扰强耦合 QCD, 格距 $\sim 0.1\,\text{fm}$, hadron 质量谱到 $\sim 1\%$ 精度. 从 Wick 1954 到 Symanzik 1960s 到 Wilson 1974, 这一次旋转把 QFT 从一个"摆动相位的形式表达"变成一个"可被经典统计物理语言描述并被超算实战求解的理论". 下一节我们转到一个非常不同的计算工具 — LHC 如何把质子加速到 $7\,\text{TeV}$, 让 Wick 旋转里算出的截面真正去对撞出来.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="19-anomaly.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="21-lhc-acceleration.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

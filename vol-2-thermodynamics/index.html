@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二卷 · 热力学与统计力学 — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .part-header {
+    margin: 2.4em 0 0.6em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-size: 1.05em;
+  }
+  .part-header .part-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72em;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+  }
+  .part-header .part-blurb {
+    display: block;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<header class="chapter-header">
+  <span class="tag">第二卷</span>
+  <h1>热力学与统计力学</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+经典热力学的几个定律和统计力学的几把工具, 已经被讲烂了. 但每个人都讲, 不代表都讲清楚了. 这一卷的三十节, 一半在重做基础 (熵到底是什么、配分函数 $\log Z$ 究竟为什么是热力学的全部、Legendre 变换怎么把内能 / 焓 / 自由能串起来), 一半在用这些工具往前走 — 相变、量子统计、非平衡涨落、信息熵到黑洞熵. 写法和第一卷一致: 从一个具体问题出发, 第一性原理推到一个具体的数字; 但**每节都必须把一个被滥用的 cliché 概念严格地讲一遍**.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>经典热力学的根
+  <span class="part-blurb">从微观计数到 Carnot 上限 — 把"熵"和"自由能"重新定义清楚</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-second-law.html"><span class="title">第二定律到底是怎么"自然"出现的?</span><span class="sub">—— 从 Boltzmann 的 $S = k\ln\Omega$ 推起</span></a></li>
+  <li><a href="02-legendre.html"><span class="title">内能、焓、自由能, 凭什么是它们?</span><span class="sub">—— Legendre 变换的几何与对偶</span></a></li>
+  <li><a href="03-chemical-potential.html"><span class="title">化学势 $\mu$ 究竟刻画什么?</span><span class="sub">—— 粒子愿不愿意来的能量价</span></a></li>
+  <li><a href="04-third-law.html"><span class="title">第三定律 — 为什么 $T\to 0$ 时熵走向常数?</span><span class="sub">—— Nernst 假设与残余熵</span></a></li>
+  <li><a href="05-carnot.html"><span class="title">Carnot 效率 $1-T_c/T_h$ 凭什么是上限?</span><span class="sub">—— 可逆引擎与热力学的"不公平"</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>统计力学的核心机器
+  <span class="part-blurb">配分函数、系综、Boltzmann 因子 — 把"微观"翻译成"宏观"</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-partition-function.html"><span class="title">配分函数 $Z$ — 为什么 $\log Z$ 就是热力学的全部?</span><span class="sub">—— 一个生成函数撑起所有方程</span></a></li>
+  <li><a href="07-ensembles.html"><span class="title">微正则、正则、巨正则该怎么挑?</span><span class="sub">—— 三种系综的等价性证明</span></a></li>
+  <li><a href="08-boltzmann-factor.html"><span class="title">$e^{-\beta E}$ 凭什么是它?</span><span class="sub">—— 从最大熵原理推出 Boltzmann 分布</span></a></li>
+  <li><a href="09-ideal-gas.html"><span class="title">理想气体的所有性质, 都能从 $Z$ 完整推出吗?</span><span class="sub">—— 一个例子从头做到底</span></a></li>
+  <li><a href="10-fluctuations.html"><span class="title">涨落为什么按 $1/\sqrt N$ 缩小?</span><span class="sub">—— 中心极限定理与热力学极限</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>相变与临界现象
+  <span class="part-blurb">液-气、铁磁、超流 — 不同物质, 同样的临界指数</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-vdw-maxwell.html"><span class="title">van der Waals 气体的"凝结"凭什么是 Maxwell 等面积律?</span><span class="sub">—— 一阶相变与共存线</span></a></li>
+  <li><a href="12-landau-mft.html"><span class="title">二阶相变与对称破缺 — Landau 平均场究竟做了什么?</span><span class="sub">—— 序参量与有效势</span></a></li>
+  <li><a href="13-universality.html"><span class="title">临界指数为什么不依赖材料?</span><span class="sub">—— Universality 类的物理基础</span></a></li>
+  <li><a href="14-rg.html"><span class="title">重整化群 — 怎么把"尺度不变"做成数学工具?</span><span class="sub">—— Kadanoff-Wilson 的逐级粗粒化</span></a></li>
+  <li><a href="15-ising.html"><span class="title">Ising 模型: 一维精确, 二维 Onsager, 三维 RG</span><span class="sub">—— 三种维度三种命运</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>量子统计
+  <span class="part-blurb">玻色 vs 费米 — 同一框架, 两种命运</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-bose-fermi.html"><span class="title">玻色子和费米子的化学势, 为什么命运完全相反?</span><span class="sub">—— $\pm 1$ 在分布函数里的全部影响</span></a></li>
+  <li><a href="17-bec.html"><span class="title">Bose-Einstein 凝聚 — 化学势贴上零的那一刻</span><span class="sub">—— 宏观量子态的诞生</span></a></li>
+  <li><a href="18-degeneracy-pressure.html"><span class="title">费米气体的简并压怎么撑起白矮星?</span><span class="sub">—— Chandrasekhar 极限的推导</span></a></li>
+  <li><a href="19-blackbody-stat.html"><span class="title">黑体辐射在统计力学里的完整推导</span><span class="sub">—— 光子气体的 $Z$ 算法</span></a></li>
+  <li><a href="20-phonons.html"><span class="title">声子: 把固体振动变成玻色气体</span><span class="sub">—— Debye 与 Einstein 模型</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>非平衡热力学
+  <span class="part-blurb">从 Boltzmann 方程到涨落耗散 — 时间之箭怎么进物理</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-boltzmann-eq.html"><span class="title">Boltzmann 方程 — Newton 微观如何变成宏观流体?</span><span class="sub">—— 动理论的奠基</span></a></li>
+  <li><a href="22-h-theorem.html"><span class="title">H 定理与 Loschmidt 反对 — 时间反演和不可逆怎么共存?</span><span class="sub">—— Boltzmann 与他的批评者</span></a></li>
+  <li><a href="23-fdt.html"><span class="title">涨落耗散定理 — 涨落怎么决定耗散?</span><span class="sub">—— Kubo 关系与线性响应</span></a></li>
+  <li><a href="24-onsager.html"><span class="title">Onsager 倒易关系 — 线性响应的隐藏对称</span><span class="sub">—— 时间反演下的等式</span></a></li>
+  <li><a href="25-arrhenius.html"><span class="title">Arrhenius 定律为什么是指数形?</span><span class="sub">—— 反应速率从势垒得到</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>信息热力学与黑洞
+  <span class="part-blurb">从 Maxwell 妖到 Bekenstein 熵 — 信息也是物理量</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-maxwell-demon.html"><span class="title">Maxwell 妖与 Landauer 原理 — 删 1 比特要花 $k_BT\ln 2$ 焦耳?</span><span class="sub">—— 信息有热力学代价</span></a></li>
+  <li><a href="27-jarzynski.html"><span class="title">Jarzynski 等式 — 非平衡过程也能算自由能?</span><span class="sub">—— 一个奇怪的恒等式</span></a></li>
+  <li><a href="28-crooks.html"><span class="title">Crooks 涨落定理 — 第二定律的微观陈述</span><span class="sub">—— 时间反演下的概率比</span></a></li>
+  <li><a href="29-bh-entropy.html"><span class="title">Bekenstein-Hawking 熵为什么是面积而不是体积?</span><span class="sub">—— 视界面积 / 4 的物理</span></a></li>
+  <li><a href="30-holography.html"><span class="title">全息原理 — 体积里的信息真的存在边界面上吗?</span><span class="sub">—— 't Hooft、Susskind、AdS/CFT</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第二卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

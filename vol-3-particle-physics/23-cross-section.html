@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>截面 σ — 实验和理论的桥梁 · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="22-detector.html">← 上一节</a>
+  <span class="chapter-title">第 23 节 / 30 · 第 5 部分 · 实验与统计 · 第三卷·粒子物理</span>
+  <a href="24-decay-rate.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>截面 $\sigma$ — 实验和理论的桥梁?</h1>
+  <div class="sub">—— 一个有面积单位的概率</div>
+  <div class="abstract">本节要搞清楚一件看似简单其实要命的事: 实验家告诉你 "$pp\to H$ 的截面是 $50\,\mathrm{pb}$", 理论家告诉你 "QED $e^+e^-\to\mu^+\mu^-$ 在 $10\,\mathrm{GeV}$ 的截面是 $\sigma=4\pi\alpha^2/(3s)$", 这两个人说的 "截面" 是同一个东西吗? 答案是 — 确切地是同一个, 但中间的桥梁要走三步: 把 "有多少撞上" 写成 "靶子的有效面积"; 把量子力学的跃迁率 (Fermi 黄金法则) 转成单位时间单位体积的事件数; 再除以入射通量, 得到一个带 $\mathrm{cm}^2$ 量纲的数. 这三步要老老实实推一遍, 特别是从 $|\langle f|U(t)|i\rangle|^2$ 到 $w_{i\to f}=(2\pi/\hbar)|H'_{fi}|^2\delta(E_f-E_i)$ 再到 $\mathrm d\sigma$ 的每个 $2\pi$ 要交代清楚. 然后代入真实数字: Rutherford 1911 年 $\alpha$ 粒子撞金箔, LHC $13\,\mathrm{TeV}$ 质子-质子总截面 $\sim 100\,\mathrm{mb}$, Higgs 产生 $\sim 50\,\mathrm{pb}$, 中微子深度非弹性 $\sim \mathrm{fb}$ — 跨 $15$ 个量级的同一个量.</div>
+
+  <p>考虑一个具体问题. 你想测量两个质子以 $13\,\mathrm{TeV}$ 对撞产生一个 Higgs 玻色子的概率. 但 "概率" 这个词在这里立即遇到麻烦 — 质子撞质子, 你可以撞一次, 也可以撞一亿次; 你让它们擦过还是对穿, 事件数完全不同. 单位时间的事件数 $R$ 显然正比于入射粒子数, 也正比于靶粒子数, 也正比于某种 "倾向". 要把那个 "倾向" 从几何与 counting 里分出来, 需要一个不依赖于 beam 有多亮、靶有多厚的内禀量. 这个量必须长得像一个面积 — "每个靶子有多大"— 因为如果我告诉你每个靶子有 $\sigma$ 这么大的有效截面, 入射粒子每单位面积有 $\Phi$ 这么多, 靶子共 $N$ 个, 那么事件率 $R=\Phi N \sigma$ 就是纯粹的几何. 这就是截面的定义, 也是为什么截面带着 $\mathrm{cm}^2$ 量纲. 它是实验家直接测到的数 (数事件, 除以 flux 与靶数), 也是理论家直接算出来的数 (从 Lagrangian 到矩阵元再到公式). 它是两边唯一的桥, 这一节要把桥的每一块板子钉好.</p>
+
+  <h2>一、为什么要发明 "截面" 这个量</h2>
+
+  <p>先把定义写死. 一束粒子以密度 $n$ 粒子每立方厘米、速度 $v$ 飞向一片薄靶, 靶内每立方厘米 $N$ 个靶粒子, 靶的厚度 $d$. 入射通量 $\Phi=nv$, 单位 $\mathrm{粒子}/(\mathrm{cm}^2\cdot \mathrm{s})$. 事件率 (单位时间、单位靶面积上的事件数) 定义为</p>
+  $$R = \Phi \cdot N_\text{tot} \cdot \sigma, \qquad \sigma \equiv \frac{R}{\Phi \cdot N_\text{tot}}. \tag{1}$$
+  <p>这里 $N_\text{tot}=N\cdot d\cdot A$ 是探束覆盖面积 $A$ 内的总靶数. 公式两边代入量纲: $[R]=1/\mathrm{s}$, $[\Phi]=1/(\mathrm{cm}^2\mathrm s)$, $[N_\text{tot}]=1$, 所以 $[\sigma]=\mathrm{cm}^2$. 截面必须有面积量纲, 不是方便, 而是定义所迫. 单位上习惯用 barn: $1\,\mathrm{b}=10^{-24}\,\mathrm{cm}^2=10^{-28}\,\mathrm{m}^2$ — 这个奇怪的名字来自 1940 年代 Purdue 物理学家, 当时核物理学家把铀核看成"像谷仓 (barn) 那么大", 大到离谱以至于用作讽刺. 实际尺度: 原子核半径 $\sim 1\,\mathrm{fm}$, 几何截面 $\pi r^2\approx 3\,\mathrm{fm}^2=30\,\mathrm{mb}$; 原子大小 $\sim 1\,\mathrm{Å}=10^5\,\mathrm{fm}$, 对应 $\sim 10^{10}\,\mathrm{b}=10\,\mathrm{Gb}$ — 所以 X 光原子吸收谱上每个峰的截面是 $\mathrm{Mb}$ 量级. 走到弱相互作用另一端: 中微子在 $\mathrm{GeV}$ 能区跟核子反应的截面约 $10^{-38}\,\mathrm{cm}^2=10\,\mathrm{fb}$, 因此中微子要穿过一光年厚的铅才会有一半概率反应; 这也是为什么超新星中微子能量逃脱.</p>
+
+  <p>经典极限检查. 设想硬球模型: 一个半径 $r$ 的子弹撞一个半径 $R$ 的靶子, 一"击中"需要两球心距离 $\le r+R$. 那么有效半径就是 $r+R$, 截面 $\sigma=\pi(r+R)^2$. 子弹点状 ($r\to 0$) 时退化为 $\sigma=\pi R^2$, 和直观 "靶子的几何截面" 重合. 这个简单图像是 "截面" 这个词的词源: 真正一个垂直于束流方向的截面面积. 但经典硬球是锋利的 — 要么击中要么完全无事. 量子力学下, 粒子是波, 有长波尾巴, 不存在锋利的 "击中/未击中". 因此截面不会干净地等于 $\pi r^2$; 它由波函数跟 potential 的交叠决定, 会随能量变化, 甚至可能远大于靶子本身 (如低能共振时 $\sigma\gg \pi r^2$). 这就要进入量子跃迁的黄金法则, 即第二节的任务.</p>
+
+  <p>再补一句区别: (1) 定义的是**总截面** $\sigma_\text{tot}$ — 所有末态加起来的事件率. 大多数时候我们只关心某个方向、某个能量、某个末态类型, 定义**微分截面** $\mathrm d\sigma/\mathrm d\Omega$ (每单位立体角) 或 $\mathrm d\sigma/\mathrm dE$ (每单位能量区间), 积分回去给 $\sigma_\text{tot}=\int \mathrm d\sigma$. 实验上 $\mathrm d\sigma/\mathrm d\Omega$ 是直接测的: 把探测器放在 $(\theta,\phi)$ 方向、张角 $\Delta\Omega$, 计数除以 $\Phi N_\text{tot}\Delta\Omega$; 理论上它又是比总截面更敏感于 matrix element 形状的量, 往往被用作检验模型的第一线.</p>
+
+  <h2>二、deepdive: Fermi 黄金法则到 $\mathrm d\sigma$, 每个因子交代清楚</h2>
+
+  <p>这一节要硬推. 命题: 从量子力学一阶微扰给出的跃迁率 $w_{i\to f}$, 如何通过加上相空间因子、再除以入射通量, 得到截面 $\mathrm d\sigma$ 的公式, 以及每个 $2\pi$、$\delta$ 函数、$\hbar$ 的来源. 这一步是连接 Lagrangian 与实验事件数的唯一桥梁, 任何 Feynman 图的最终用途都是出 $\sigma$.</p>
+
+  <p><strong>第一步: 时间演化的一阶展开.</strong> 体系 Hamiltonian $H=H_0+H'$, $H'$ 是小扰动 (如 Coulomb 势, 或相互作用 Lagrangian). 初态 $|i\rangle$ 与末态 $|f\rangle$ 是 $H_0$ 的本征态, 能量 $E_i$, $E_f$. 作用 $H'$ 一段时间 $T$ 后, 体系处于某线性叠加, 跳到 $|f\rangle$ 的振幅是 $c_f(T)=\langle f|U(T)|i\rangle$. 一阶微扰 (Dirac picture):</p>
+  $$c_f^{(1)}(T)=-\frac{i}{\hbar}\int_0^T \mathrm d t\,\langle f|H'(t)|i\rangle \,e^{i(E_f-E_i)t/\hbar}.$$
+  <p>假设 $H'$ 时间无关 (或扰动开始/结束足够绝热), 积分出时间依赖:</p>
+  $$c_f^{(1)}(T)=-\frac{i}{\hbar}\,H'_{fi}\,\frac{e^{i\omega T}-1}{i\omega},\qquad \omega\equiv (E_f-E_i)/\hbar,\quad H'_{fi}\equiv\langle f|H'|i\rangle.$$
+  <p>跳到 $|f\rangle$ 的概率 $|c_f^{(1)}(T)|^2=|H'_{fi}|^2\cdot|(e^{i\omega T}-1)/(i\hbar\omega)|^2=|H'_{fi}|^2\cdot (4\sin^2(\omega T/2))/(\hbar^2\omega^2)$. 这个函数对 $\omega$ 画出来是一个以 $\omega=0$ 为尖峰的 sinc 平方. 峰宽 $\sim 1/T$, 峰高 $T^2/\hbar^2$. 关键事实:</p>
+  $$\lim_{T\to\infty}\frac{\sin^2(\omega T/2)}{\pi\omega^2 T/2}=\delta(\omega),\qquad \text{即}\quad \frac{4\sin^2(\omega T/2)}{\omega^2}\xrightarrow{T\to\infty} 2\pi T\,\delta(\omega).$$
+  <p>于是 $|c_f^{(1)}(T)|^2 \to (2\pi T/\hbar^2)|H'_{fi}|^2\,\delta(\omega)=(2\pi T/\hbar)|H'_{fi}|^2\,\delta(E_f-E_i)$ (用 $\delta(\omega)=\hbar\,\delta(E)$). 除以 $T$ 得单位时间的跃迁率:</p>
+  $$w_{i\to f}=\frac{\mathrm d|c_f|^2}{\mathrm d t}=\frac{2\pi}{\hbar}\,|H'_{fi}|^2\,\delta(E_f-E_i). \tag{2}$$
+  <p>这就是 Fermi 黄金法则. $2\pi$ 从 sinc 平方的归一化来, $\hbar$ 从时间演化因子 $e^{i\omega t}$ 里的 $E/\hbar$ 来, $\delta$ 函数从极限 $T\to\infty$ (单色入射、长时间观察) 来. 注意: 公式 (2) 严格地是 "到某个具体末态 $|f\rangle$" 的跃迁率, 但 $|f\rangle$ 通常是连续谱中某一点, 单点概率为零, 所以必须把 $|f\rangle$ 替换成一个 density of states $\rho(E_f)$ 上的带宽积分.</p>
+
+  <p><strong>第二步: 相空间密度 $\rho(E_f)$.</strong> 实验里我们不问 "恰好跳到能量 $E_f$" 这一个数学点, 而问 "跳到 $[E_f, E_f+\mathrm d E_f]$ 能量区间、$\Omega$ 方向的某立体角 $\mathrm d\Omega$ 里的任何一个末态". 这群末态有多少个? 在归一化体积 $V$ 里, 单粒子动量 $p$ 的允许态按 $\mathrm d^3p/(2\pi\hbar)^3\cdot V$ 个排布, 所以 $\mathrm d N=V\,p^2\mathrm d p\,\mathrm d\Omega/(2\pi\hbar)^3$. 用 $E=p^2/(2m)$ (非相对论, 下节补相对论版) 得 $p\mathrm d p=m\mathrm d E$, $p^2\mathrm d p=pm\mathrm d E$, 所以</p>
+  $$\rho(E_f)\equiv \frac{\mathrm d N}{\mathrm d E_f\,\mathrm d\Omega}=\frac{V\,p\,m}{(2\pi\hbar)^3}.$$
+  <p>把 (2) 式对这群 $\mathrm d N$ 个末态求和 (积掉 $\delta$), 得微分跃迁率:</p>
+  $$\frac{\mathrm d w_{i\to f}}{\mathrm d\Omega}=\frac{2\pi}{\hbar}\,|H'_{fi}|^2\,\rho(E_f).$$
+
+  <p><strong>第三步: 除以入射通量, 得 $\mathrm d\sigma$.</strong> 按 (1) 式, $R=\Phi N\sigma$. 单一靶子 ($N=1$), 单一入射粒子归一到体积 $V$ 里, 入射密度 $n=1/V$, 速度 $v_i$, 通量 $\Phi=v_i/V$. 事件率 $R=\mathrm d w/\mathrm d\Omega\cdot\mathrm d\Omega$. 于是</p>
+  $$\frac{\mathrm d\sigma}{\mathrm d\Omega}=\frac{\mathrm d w/\mathrm d\Omega}{\Phi}=\frac{V}{v_i}\cdot\frac{2\pi}{\hbar}\,|H'_{fi}|^2\,\rho(E_f)=\frac{V}{v_i}\cdot\frac{2\pi}{\hbar}\,|H'_{fi}|^2\,\frac{V p m}{(2\pi\hbar)^3}.$$
+  <p>注意 $|H'_{fi}|^2$ 里的矩阵元本身是 $\int\mathrm d^3r\,\psi_f^*\,H'\,\psi_i$, 如果 $\psi_{i,f}$ 按 $V$ 箱归一 ($\psi\sim V^{-1/2}e^{i\mathbf k\cdot\mathbf r}$), 则 $|H'_{fi}|^2\propto 1/V^2$, 两个 $V$ 因子恰好被分子 $V\cdot V$ 消掉, 箱子尺寸 $V$ 从最后结果里消失 — 这是必须的, 因为截面是物理量, 不能依赖于我们选的归一化体积. 把 $|H'_{fi}|^2 V^2$ 记作裸矩阵元 $|\widetilde H'_{fi}|^2$ (平面波未归一化的积分), 出射态用 $E_f=p^2/(2m)$, 出射速度 $v_f=p/m$:</p>
+  $$\boxed{\;\frac{\mathrm d\sigma}{\mathrm d\Omega}\;=\;\frac{m^2}{(2\pi)^2\hbar^4}\,\frac{v_f}{v_i}\,\Big|\!\int\! e^{-i\mathbf k_f\cdot\mathbf r}\,V(\mathbf r)\,e^{i\mathbf k_i\cdot\mathbf r}\,\mathrm d^3r\,\Big|^2.\;} \tag{3}$$
+  <p>这是 Born 近似的主结果 (Max Born 1926 年 <em>Zeit. für Physik</em> 首次系统地给出). 记 $\mathbf q\equiv \mathbf k_f-\mathbf k_i$ (动量转移), $\hbar q=2p\sin(\theta/2)$ ($\theta$ 是散射角), 若入射能量守恒 ($|\mathbf k_f|=|\mathbf k_i|=k$, 即弹性散射) 则 $v_f=v_i$, (3) 化简为</p>
+  $$\frac{\mathrm d\sigma}{\mathrm d\Omega}=\left|f(\theta)\right|^2,\qquad f(\theta)=-\frac{m}{2\pi\hbar^2}\int e^{-i\mathbf q\cdot\mathbf r}\,V(\mathbf r)\,\mathrm d^3r.$$
+  <p>散射振幅 $f(\theta)$ 就是势能的 Fourier 变换, 乘 $-m/(2\pi\hbar^2)$. 这个长公式里每一步 $2\pi$ 都有来处: 一个从 Fermi 黄金法则里的时间归一化来, 两个从相空间 $\mathrm d^3p/(2\pi\hbar)^3$ 来, 一个从除以 flux 后重新收敛.</p>
+
+  <p><strong>应用: Rutherford 散射.</strong> 取 $V(r)=Ze^2/(4\pi\epsilon_0 r)$ (Coulomb, Gauss-cgs 单位则 $V=Ze^2/r$), 求 $f(\theta)$ 要做 Fourier 积分 $\int e^{-i\mathbf q\cdot\mathbf r}/r\,\mathrm d^3r$. 正规的方法加一个屏蔽 $e^{-\mu r}/r$ 算完再令 $\mu\to 0$: $\int e^{-i\mathbf q\cdot\mathbf r}e^{-\mu r}/r\,\mathrm d^3r=4\pi/(q^2+\mu^2)\to 4\pi/q^2$. 所以 $f(\theta)=-mZe^2/(2\pi\hbar^2)\cdot 4\pi/q^2=-2mZe^2/(\hbar^2 q^2)$. 用 $\hbar q=2p\sin(\theta/2)$, $p^2/(2m)=E$, 得</p>
+  $$\frac{\mathrm d\sigma}{\mathrm d\Omega}=\frac{(Z\alpha\hbar c)^2}{16 E^2 \sin^4(\theta/2)}=\left(\frac{Z\alpha}{4E\sin^2(\theta/2)}\right)^2(\hbar c)^2. \tag{4}$$
+  <p>(4) 就是 Rutherford 公式, 现在从量子跃迁率严格推出, 而不是 Rutherford 1911 年从经典 Coulomb 轨道算出的. 两者结果完全一样, 是一个罕见的 "量子公式与经典公式数字相同" 的巧合 — 原因是 Coulomb 势的 $1/q^2$ 行为在任何微扰阶都保持同样的角分布, Born 近似 (一阶) 就已经给出精确答案. 要是换成短程势 (如 Yukawa), 量子散射会偏离经典.</p>
+
+  <h2>三、从 Rutherford 1911 到 LHC 2012</h2>
+
+  <p>现在来代数字, 看截面这一个量怎么跨越 $15$ 个量级地把几个不同实验串在一起.</p>
+
+  <p><strong>Rutherford 1911.</strong> Manchester 实验室, Geiger 与 Marsden 用 $^{214}$Po 的 $5.5\,\mathrm{MeV}$ $\alpha$ 粒子撞厚度 $0.4\,\mu\mathrm m$ 的金箔, 观察反弹. $Z_\mathrm{Au}=79$, 入射 $\alpha$ 能量 $E=5.5\,\mathrm{MeV}$, 取后向散射角 $\theta=180^\circ$ 即 $\sin(\theta/2)=1$. 代入 (4): $\mathrm d\sigma/\mathrm d\Omega=(79\cdot 1/137)^2/(4\cdot 5.5\,\mathrm{MeV})^2\cdot (\hbar c)^2=(0.577)^2/(22\,\mathrm{MeV})^2\cdot (197\,\mathrm{MeV}\cdot\mathrm{fm})^2=0.333/484\cdot 3.88\times 10^4\,\mathrm{MeV^2\cdot fm^2}/\mathrm{MeV^2}\approx 26.7\,\mathrm{fm}^2=26.7\times 10^{-30}\,\mathrm{m}^2=267\,\mathrm{mb}$. 这个数字比金原子核几何截面 $\pi R^2\approx \pi(7\,\mathrm{fm})^2\approx 150\,\mathrm{fm}^2$ 大几倍 (因为是按立体角算的微分截面), 关键是它**不为零**: Rutherford 的原始数据发现有大于 $90^\circ$ 散射的事件, 他的著名反应是 "这就像你把一枚炮弹射向纸巾, 结果被弹回来一样难以置信". 按 Thomson 布丁模型 (电荷均匀分布在原子里), 后向散射应几乎为零; (4) 式却给 $\sim 100\,\mathrm{mb}$ 量级非零值 — 因为 Coulomb 势在小 $r$ 处才出现, 只有当正电荷集中在一个小核里才能支撑那个陡峭的 $1/r$. 这是原子核概念的第一次实验证据. Born 1926 年在 Göttingen 的散射振幅公式 (3), 十五年后才在量子力学里把 Rutherford 的经典推导写严格.</p>
+
+  <p><strong>高能 vs 低能的极限.</strong> (4) 给出 $\mathrm d\sigma/\mathrm d\Omega\propto 1/E^2$. 这是 QED 类耦合的一般规律: 高能总截面按 $\sigma\sim \alpha^2/E^2$ 下降, 因为能量是唯一量纲, 耦合无量纲, 量纲分析给出 $\sigma\sim (耦合)^2/(能量)^2$. 低能端不同 — 在能量降到跟势的长度倒数 ($\mu^{-1}$) 可比时, Born 近似失效, 必须做部分波展开. Coulomb 势是长程, $\sigma_\text{tot}$ 在 (4) 里对 $\mathrm d\Omega$ 积分会发散于 $\theta\to 0$ (因为远小角度散射永远在发生, 经典上粒子走过原子核任何距离都被拉偏一点). 短程势 (如 Yukawa) 不会发散, 能定义良好总截面. 高能 QCD 对撞, 量纲分析给 $\sigma\sim \alpha_s^2/E^2$, 但真实的 $pp\to pp$ 总截面却随 $\sqrt s$ 缓慢增长 (log 增长, Froissart bound $\sigma\le \pi/m_\pi^2\cdot \ln^2 s$), 原因是质子内部的软胶子云在高能下不断 "打开", 有效尺寸 $\sim 1\,\mathrm{fm}$ 基本不变.</p>
+
+  <p><strong>LHC Higgs 产生.</strong> 在 LHC $\sqrt s=13\,\mathrm{TeV}$, 质子-质子非弹性总截面 $\sigma_\text{inel}\approx 80\,\mathrm{mb}$, 弹性部分 $\sim 25\,\mathrm{mb}$, 总计 $\sigma_\text{tot}\approx 105\,\mathrm{mb}$. 这个数基本就是 $\pi R_p^2$ 量级 ($R_p\approx 0.84\,\mathrm{fm}$, $\pi R_p^2\approx 22\,\mathrm{mb}$, 随能量缓慢增长 4-5 倍). 但 Higgs 产生 (主道 gluon-gluon fusion) 的截面是 $\sigma(gg\to H)\approx 50\,\mathrm{pb}=5\times 10^{-11}\,\mathrm{b}$, 即总截面的 $5\times 10^{-10}$. 这意味着 LHC 每 $2\times 10^9$ 次 $pp$ 对撞才产生一个 Higgs. 以瞬时亮度 $\mathcal L=2\times 10^{34}\,\mathrm{cm^{-2}s^{-1}}$ 计, 每秒产生约 $\mathcal L\cdot\sigma_H=2\times 10^{34}\cdot 5\times 10^{-35}=1$ 个 Higgs. 一年取数 $10^7\,\mathrm s$ 积分亮度 $\sim 100\,\mathrm{fb^{-1}}$, 得 $5\times 10^6$ 个 Higgs, 其中双光子道分支 $\sim 0.2\%$ 给 $10^4$ 个, 但信号淹没在 $10^{10}$ 量级的 QCD 本底里, 所以统计显著性来得慢. 中微子截面做对比: $\sigma(\nu_\mu N)\sim 0.7\times 10^{-38}\,\mathrm{cm^2}\cdot(E_\nu/\mathrm{GeV})=7\,\mathrm{ab}\cdot(E_\nu/\mathrm{GeV})$, 弱相互作用的特征 $G_F^2 E^2\sim (1.17\times 10^{-5}\,\mathrm{GeV^{-2}})^2\cdot\mathrm{GeV}^2\cdot (\hbar c)^2/(\mathrm{fm^2})\approx 10^{-38}\,\mathrm{cm^2}$, 与实测吻合.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 截面的几何意义与 Rutherford 散射</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>左半图展示截面的几何定义 ($\sigma=\mathrm{Rate}/(\Phi N)$, 入射 flux 打到 $N$ 个靶粒子, 每个靶有 "有效面积" $\sigma$); 右半图展示 Rutherford 散射几何, 入射 $\alpha$ 粒子在 Coulomb 势中的双曲线轨道, 以及微分截面 $\mathrm d\sigma/\mathrm d\Omega$ 的定义</dd>
+      <dt>必含元素</dt><dd>(a) 左图: 一束平行箭头从左侧入射表示 flux $\Phi$, 进入一个矩形 "靶区域"; 矩形里画 $\sim 10$ 个随机分布的黑色小圆盘表示 $N$ 个 target, 每个圆盘周围画一个更大的淡色圆表示 "有效面积 $\sigma$"; 入射箭头有些穿过无事, 有些被拨偏; 右下角标公式 $\sigma=R/(\Phi N)$; (b) 右图: 一个较大的十字/加号标靶核 (电荷 $+Ze$, 标金色 Au 符号), 一条入射轨迹 (底部水平入射) 进入 Coulomb 场后沿双曲线弯向上, 出射方向与入射夹角 $\theta$ 明确标出; 以靶核为中心画一个立体角锥 $\mathrm d\Omega=\sin\theta\,\mathrm d\theta\,\mathrm d\phi$; 在轨迹旁标 impact parameter $b$ 与 $\theta$; 在右侧底部写 Rutherford 公式 $\mathrm d\sigma/\mathrm d\Omega=(Z\alpha/(4E\sin^2(\theta/2)))^2(\hbar c)^2$</dd>
+      <dt>几何精度</dt><dd>左图 flux 方向一致水平, 靶粒子均匀不重叠; 右图双曲线轨道在远场渐近直线, 近场弯曲, 焦点位于核后方</dd>
+      <dt>标签与公式</dt><dd>$\Phi$, $N$, $\sigma$, $R=\Phi N\sigma$ (左图); $Ze$, $b$ (impact parameter), $\theta$, $\mathrm d\Omega$, $\mathrm d\sigma/\mathrm d\Omega\propto 1/\sin^4(\theta/2)$ (右图)</dd>
+      <dt>风格建议</dt><dd>白底; 几何线条黑色, 入射 flux 箭头深蓝, Coulomb 轨道砖红; 靶粒子实心黑, 有效截面淡灰阴影; 公式排版与正文统一</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  左: 截面的几何意义 — 事件率 $=$ 入射通量 $\Phi$ 乘靶数 $N$ 乘每靶 "有效面积" $\sigma$, 这定义了 $\sigma$. 右: Rutherford $\alpha$ 粒子在金核 Coulomb 场中偏转, 微分截面 $\mathrm d\sigma/\mathrm d\Omega\propto 1/\sin^4(\theta/2)$ 的 $1/E^2$ 下降来自势的 Fourier 变换 $\sim 1/q^2$ 经 Born 近似平方.</figcaption>
+  </figure>
+
+  <h2>四、历史、极限与连结</h2>
+
+  <p><strong>历史轨迹.</strong> 截面概念的历史有三个标志. 1911, Rutherford 在 <em>Phil. Mag.</em> 的文章里第一次明确用 "截面" 这个词 (cross-section, 最早仅是几何比喻, "把靶子当成一个面积"), 并用经典 Coulomb 散射推出 (4) 式, 解释 Geiger-Marsden 的后向散射数据. 同一篇论文里他推出原子核的存在. 1926, Born 在 Göttingen 用全新的量子力学 — Schrödinger 方程刚发表一年 — 写出散射波函数 $\psi\sim e^{ikz}+f(\theta)e^{ikr}/r$, 确立了 (3) 式的 Born 近似, 首次用 $|f(\theta)|^2$ 来解释跃迁概率. Born 在这篇文章里写下了量子力学的**概率解释** (把 $|\psi|^2$ 解释为概率密度), 正是散射问题迫使他这样做 — Schrödinger 自己当时还在争论 $\psi$ 是 "实在的波". 1954, Enrico Fermi 在 Chicago 的讲义里正式把跃迁率公式 (2) 命名为 Golden Rule No. 2 (他自己的术语, "Rule No. 1" 是另一个, 但后人只保留了一个 Fermi 黄金法则). Fermi 本人 1949 年在皮昂散射数据分析里用这条公式, 首次结合了量子力学与相空间. 从这三步之后, "截面" 不再是几何比喻, 而是连接量子矩阵元与实验事件数的严格量.</p>
+
+  <p><strong>极限与特殊情况.</strong> 让我们检查两个关键极限. (a) 点靶极限: $V(r)=g\,\delta^3(\mathbf r)$ (极短程接触相互作用), Fourier 是常数 $g$, (3) 给 $\mathrm d\sigma/\mathrm d\Omega=(mg/(2\pi\hbar^2))^2$, 角度无关. $\sigma_\text{tot}=4\pi(mg/(2\pi\hbar^2))^2$. 这是 s-wave 散射在 Born 近似的结果, 对应低能中子-核散射的一个经典例子. (b) 高能极限: Born 近似对硬球势 $V(r)=V_0$ for $r<R$, 0 else, 给 $f(\theta)=(2mV_0/\hbar^2)\cdot [\sin(qR)-qR\cos(qR)]/q^3$. 当 $qR\gg 1$ (即高能短波长), 振幅 $\propto \cos(qR)/q^2$, $\mathrm d\sigma/\mathrm d\Omega$ 按 $1/q^4$ 下降, 与 Rutherford 同行为. 低能 $qR\ll 1$ 时 $f\to -2mV_0R^3/(3\hbar^2)$ 常数, 截面有限且无角度依赖. 两个极限对照说明: 高能散射看到的是势的短距行为 (Fourier 高频分量), 低能散射看到的是整体势能的积分 — 这是所有散射实验的基本方法论. LHC 用高 $q^2$ 散射 "看" 夸克-胶子的点结构, DIS 用 $Q^2$ 扫描势的 Fourier 分辨率; 低能中微子实验看整体弱电流的平均. 同一个 Born 近似, 不同极限下, 解释不同数据.</p>
+
+  <p><strong>连到相对论.</strong> 本节用的是非相对论 Schrödinger + 一阶微扰, 但公式结构在 QFT 里一样: $|\mathcal M|^2$ 是 Feynman 图给出的矩阵元, 相空间因子换成 Lorentz 不变的 $\mathrm d^3p/((2\pi)^3 2E)$ (因 $1/\sqrt{2E}$ 归一化的场算符), flux 换成 Lorentz 不变 $F=4\sqrt{(p_1\cdot p_2)^2-m_1^2 m_2^2}$. 最终公式:</p>
+  $$\mathrm d\sigma=\frac{(2\pi)^4\,\delta^4(\Sigma p)}{F}\,|\mathcal M|^2\,\prod_{\text{finals}}\frac{\mathrm d^3p_i}{(2\pi)^3 2E_i}.$$
+  <p>每个因子都能与 (3) 式的非相对论形式逐项对应. 下一节讲衰变率 $\Gamma$, 结构几乎一样 — $\Gamma$ 的公式是 $\sigma$ 去掉 flux 因子、把初态 "one particle" 化. 一个带 $\mathrm{cm}^2$ 量纲, 一个带 $\mathrm s^{-1}$ 量纲, 但分享同一个矩阵元 $\mathcal M$ 与同一个相空间结构.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>截面是连接量子矩阵元与实验事件率的唯一桥. 定义由 (1) 给出 — 事件率除以入射通量再除以靶数, 自然带面积量纲. 量子推导三步走: Fermi 黄金法则 (2) 从时间演化 $|\langle f|U|i\rangle|^2$ 在长时极限下取 $\sin^2(\omega T/2)/\omega^2\to \pi T\delta(\omega)$ 得到跃迁率, 加上相空间 $\rho(E_f)$ 换成可观测量, 再除以 flux 给 Born 公式 (3), 应用到 Coulomb 势给 Rutherford (4). 代入具体数字: Rutherford 1911 $\alpha$-Au 后向 $\sim 270\,\mathrm{mb}$, LHC 2012 $pp$ 总截面 $\sim 100\,\mathrm{mb}$, Higgs 产生 $\sim 50\,\mathrm{pb}$ (总截面的 $5\times 10^{-10}$), 中微子深度非弹 $\sim \mathrm{fb}$ per GeV — 同一个量跨 $15$ 量级. 极限: 高能 $\sigma\sim \alpha^2/E^2$ (QED), $\sim \alpha_s^2/E^2$ (QCD 硬散射), 低能被势的整体结构主导. 历史: Rutherford 1911 几何解释, Born 1926 量子推导, Fermi 1949 黄金法则命名. 下一节讲衰变率 $\Gamma$, 与 $\sigma$ 分享同一套矩阵元与相空间机器, 只是换一个量纲出口; 之后讲亮度、蒙特卡洛与 $5\sigma$ 显著性, 把这个带 $\mathrm{cm}^2$ 量纲的概率最终变成那张粒子物理发现公告里的图.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="22-detector.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="24-decay-rate.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarzynski 等式 — 非平衡过程也能算自由能? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="26-maxwell-demon.html">← 上一节</a>
+  <span class="chapter-title">第 27 节 / 30 · 第 6 部分 · 信息热力学与黑洞 · 第二卷·热力学与统计力学</span>
+  <a href="28-crooks.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Jarzynski 等式 — 非平衡过程也能算自由能?</h1>
+  <div class="sub">—— 一个奇怪的恒等式</div>
+  <div class="abstract">本节从"测量 RNA 单分子的自由能变"这样一个具体实验出发, 推出 Jarzynski 1997 年的那个不等式变等式的恒等式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$. 先解释为什么它看起来违反直觉 — Clausius 明明告诉我们 $\langle W\rangle \ge \Delta F$, 即使拉得飞快, 把 $W$ 放进指数取平均, 却能精确地"挖回"平衡自由能. 然后从 Hamiltonian 的外参数时变, 严格地把 $e^{-\beta W}$ 写成相空间积分, 用 Liouville 定理与初始 Boltzmann 分布, 把它变形成 $e^{-\beta \Delta F}$. 最后用 Liphardt 2002 年 RNA hairpin 实验的真实数字印证: 一次拉伸涨落十几 $k_B T$, 千次平均却给出误差 $\lesssim 1 k_B T$ 的 $\Delta F \approx 60 k_B T$. Jarzynski 等式把"非平衡"和"平衡"之间的那道墙第一次打成了一个等号.</div>
+
+  <p>想象你用激光镊子夹住一条 RNA 发夹 (hairpin) 的两端, 快速地把它拉开. 拉开的力和位移可以实时记录下来, 它们乘起来积分就是你对 RNA 做的功 $W$. 如果你拉得无限慢 (准静态), $\langle W\rangle = \Delta F$, $\Delta F$ 是 RNA 两端分离前后的平衡自由能差. 但你没耐心等一万年, 你拉得很快 —— 每一次拉伸都不一样, $W$ 有涨落, 而且每次都 $\ge \Delta F$, 平均值还明显大于 $\Delta F$. 这是 Clausius 不等式 $\langle W\rangle \ge \Delta F$ 的直接观测.</p>
+
+  <p>于是问题来了: 既然非准静态的 $W$ 总是"比 $\Delta F$ 多", 那 $\Delta F$ 似乎就没办法从这些快速拉伸实验里读出. 要测 $\Delta F$ 就得慢慢拉, 而慢慢拉在单分子尺度上几乎不可能 —— 热涨落比信号大, 实验跑不了那么久. Jarzynski 1997 年的工作, 是在这堵墙上凿了一个洞: 他说不, 即便你拉得很快, $\Delta F$ 照样能精确地从 $W$ 的分布里抠出来, 只不过不是取 $\langle W\rangle$, 而是取 $\langle e^{-\beta W}\rangle$, 然后取对数. 等式长这样:</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = e^{-\beta \Delta F}. \tag{1} $$</p>
+
+  <p>注意这是 <em>等式</em> 不是不等式. 任意拉速、任意协议, 都成立. 这听起来像魔术: 一边是完全非平衡的涨落量, 另一边是纯热力学的平衡量. 下面我们把这条等式从头到尾严格地推一遍, 并看它为什么不是魔术.</p>
+
+  <h2>一、从 Clausius 到 Jarzynski: 不等式为什么能升级成等式</h2>
+
+  <p>传统平衡热力学告诉我们, 等温条件下把系统从状态 A 拉到状态 B, 做功的下限是自由能变:</p>
+
+  <p>$$ W \ge \Delta F = F_B - F_A, \tag{2} $$</p>
+
+  <p>等号在准静态极限达到. 超过 $\Delta F$ 的那部分功 $W - \Delta F = T \Delta S_{\rm irr} \ge 0$ 以耗散热的形式流入热浴, 这就是 Clausius 不等式的具体写法. 单个分子尺度的实验里, $W$ 是涨落量 —— 每次拉都不一样. 所以更精细的说法是</p>
+
+  <p>$$ \langle W\rangle \ge \Delta F, $$</p>
+
+  <p>平均值是对协议 $\lambda(t)$ 固定、初始从 $A$ 的平衡态采样的多次独立实验取. 这个不等式没有告诉我们 $\Delta F$ 的精确值, 只给出一个上界.</p>
+
+  <p>Jarzynski 等式 (1) 做的事, 是把指数函数"抢在平均外面取":</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = e^{-\beta\Delta F}. $$</p>
+
+  <p>用 Jensen 不等式 $\langle e^{-\beta W}\rangle \ge e^{-\beta \langle W\rangle}$ 立刻得到 Clausius: $e^{-\beta \Delta F} \ge e^{-\beta\langle W\rangle}$, 即 $\langle W\rangle \ge \Delta F$. 所以 Jarzynski 等式"包含"Clausius, 比它强得多. 它精确地告诉你 $\Delta F$ 是 $W$ 分布的指数矩. 换句话说: 把 $P(W)$ 乘上一个大权重 $e^{-\beta W}$, 再积分, 再取对数, 就能拿到 $\Delta F$.</p>
+
+  <p>这里藏着一个关键物理: 权重 $e^{-\beta W}$ 极端偏爱低 $W$ 事件. 如果 $\beta W$ 涨落是 10 量级, 那 $e^{-\beta W}$ 在罕见 (low-$W$) 的 tail 上能大上 $e^{10} \approx 2\times 10^4$ 倍. 主导平均的, 恰恰是那些"运气好、碰巧耗散少"的拉伸轨迹. Jarzynski 等式允许你从涨落很大的非平衡数据里, 通过指数加权, 把"几乎可逆"的那部分挑出来, 用它们来读 $\Delta F$.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Jarzynski 等式从功分布提取自由能</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>一次非平衡拉伸实验中功 $W$ 的分布 $P(W)$, 与 $\langle W\rangle$ 和 $\Delta F$ 在 $W$ 轴上的相对位置</dd>
+      <dt>必含元素</dt><dd>横轴 $W$ (单位 $k_B T$), 纵轴 $P(W)$; 画一个右斜的直方图 (lognormal-like), 平均值 $\langle W\rangle$ 用虚线竖线标在分布峰右侧; $\Delta F$ 在分布的左 tail 上 (因为 $\Delta F = -\frac{1}{\beta}\ln \langle e^{-\beta W}\rangle < \langle W\rangle$); 用渐变阴影覆盖 $W < \Delta F$ 的左 tail, 标注"rare low-$W$ events dominate $\langle e^{-\beta W}\rangle$"; 图顶放 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$, 右下放 $\langle W\rangle \ge \Delta F$ 注解</dd>
+      <dt>几何/数学精度</dt><dd>分布 $P(W)$ 取 lognormal 形状, 均值 $\langle W\rangle \approx 65 k_B T$, 标准差 $\sigma_W \approx 5 k_B T$, $\Delta F \approx 60 k_B T$ 放在峰左侧 $\sim 1 \sigma$; 左 tail 渐变色要醒目 (红/橙), 显示"稀有但高权重"</dd>
+      <dt>标签与公式</dt><dd>图内: $P(W)$, $\langle W\rangle$, $\Delta F$; 公式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$ 与 $\langle W\rangle - \Delta F = \langle W_{\rm diss}\rangle$; 图侧注"exponential weight amplifies rare low-$W$"</dd>
+      <dt>风格建议</dt><dd>白底, 直方图蓝色填充, rare tail 用橙-红渐变覆盖 (半透明), $\langle W\rangle$ 虚线黑色, $\Delta F$ 实线红色; 整体干净几何</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  功分布 $P(W)$ 是右斜的, $\langle W\rangle$ 在分布峰右侧; $\Delta F$ 藏在左 tail 里, 由 $e^{-\beta W}$ 指数权重挖出.</figcaption>
+  </figure>
+
+  <h2>二、Deepdive: Jarzynski 等式的严格推导</h2>
+
+  <p>现在正面攻它. 设一个经典 Hamiltonian 系统 $H(x; \lambda)$, $x = (q, p)$ 是相空间坐标, $\lambda$ 是一个外参数 (比如激光镊子的位置). 协议 $\lambda(t)$ 在 $t=0$ 时 $\lambda = \lambda_A$, 在 $t=\tau$ 时 $\lambda = \lambda_B$. $t<0$ 时系统与热浴 $\beta = 1/k_B T$ 接触, 处于 $H(x;\lambda_A)$ 的平衡态, 即相空间分布</p>
+
+  <p>$$ \rho_A(x) = \frac{1}{Z_A} e^{-\beta H(x;\lambda_A)}, \quad Z_A = \int dx\, e^{-\beta H(x;\lambda_A)}, \quad F_A = -\frac{1}{\beta}\ln Z_A. $$</p>
+
+  <p>$t=0$ 以后切断热浴 (或者保留热浴, 我们稍后再讨论), 让系统按 $H(x;\lambda(t))$ 做 Hamiltonian 演化. 记 $t=0$ 相点 $x_0$, 演化轨迹 $x_t$, 到 $t=\tau$ 的相点 $x_\tau$. 功的定义是 "外参数变化让系统能量升高的部分":</p>
+
+  <p>$$ W[x_\cdot] = \int_0^\tau dt\, \dot\lambda(t) \frac{\partial H}{\partial \lambda}(x_t; \lambda(t)). $$</p>
+
+  <p>注意热量 $Q$ 是"热浴在相点固定时让 $H$ 改变的部分"—— 在 Hamiltonian 演化下系统不接触热浴, $Q=0$, 于是 $\Delta E = W$. (有热浴的版本稍后.) 由能量守恒</p>
+
+  <p>$$ H(x_\tau; \lambda_B) - H(x_0; \lambda_A) = W[x_\cdot]. $$</p>
+
+  <p>现在把 $e^{-\beta W}$ 对初始分布 $\rho_A$ 取平均:</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = \int dx_0\, \rho_A(x_0)\, e^{-\beta W[x_\cdot(x_0)]}. $$</p>
+
+  <p>代入 $\rho_A(x_0) = e^{-\beta H(x_0;\lambda_A)}/Z_A$ 与能量守恒 $W = H(x_\tau;\lambda_B) - H(x_0;\lambda_A)$:</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = \frac{1}{Z_A}\int dx_0\, e^{-\beta H(x_0;\lambda_A)}\, e^{-\beta [H(x_\tau;\lambda_B) - H(x_0;\lambda_A)]} = \frac{1}{Z_A}\int dx_0\, e^{-\beta H(x_\tau;\lambda_B)}. $$</p>
+
+  <p>注意那两个 $H(x_0;\lambda_A)$ 完美抵消, 神奇的第一步完成. 下一步是变量替换 $x_0 \to x_\tau$. Hamiltonian 流是辛映射, 保相空间体积 (Liouville 定理): $dx_0 = dx_\tau$. 所以</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = \frac{1}{Z_A}\int dx_\tau\, e^{-\beta H(x_\tau;\lambda_B)} = \frac{Z_B}{Z_A} = e^{-\beta (F_B - F_A)} = e^{-\beta \Delta F}. \tag{3} $$</p>
+
+  <p>到此 Jarzynski 等式被严格证明. 把证明拆开看, 起了决定作用的三件事是: (a) 初始是平衡 Boltzmann 分布 $\propto e^{-\beta H(x_0;\lambda_A)}$; (b) 功的定义让能量守恒 $W = \Delta H$ 自动成立; (c) Hamiltonian 流的相空间体积守恒. 整个论证不需要任何"拉得慢"的假设, 协议 $\lambda(t)$ 可以猛烈地颠簸, 公式 (3) 照样成立. 这就是它是 equality 而非 inequality 的原因: 它不是在谈某种"趋近", 而是一个精确的积分恒等式.</p>
+
+  <p><strong>热浴版本.</strong> 如果演化中有热浴 (如 Langevin 或 Markov 跳跃过程), 推导要稍微修改, 核心工具变成<em>细致平衡</em>和<em>时间反演对称</em>: 对一条轨迹 $x_\cdot$ 及其时间反演轨迹 $\tilde x_\cdot$, 概率比</p>
+
+  <p>$$ \frac{P_F[x_\cdot]}{P_R[\tilde x_\cdot]} = e^{\beta Q[x_\cdot]} = e^{\beta (W - \Delta H)}, $$</p>
+
+  <p>这是 Crooks 的细致涨落定理, 下一节会专门讲. 有了它, 从初始 Boltzmann 分布出发算 $\langle e^{-\beta W}\rangle$ 时, 指数中的 $\beta W$ 项和路径概率 $P_F$ 的比率中的 $\beta W$ 项对消, 再对反向路径的末态在 $\lambda_B$-Boltzmann 分布归一, 就得到 $Z_B/Z_A = e^{-\beta \Delta F}$. 无论纯 Hamiltonian 还是带热浴, 原理是一样的: 初始平衡 + 时间反演结构 + 相空间守恒 (或它在有热浴时的对应 —— 细致平衡), 三者合力保证等式成立.</p>
+
+  <p><strong>为什么是 equality 不是 inequality?</strong> 因为 $e^{-\beta W}$ 的指数加权<em>完美地抵消</em>了初始分布 $e^{-\beta H(x_0;\lambda_A)}$, 只剩下由 $x_\tau$ 写出的 Boltzmann 因子. 加权不是"近似", 是精确相等. 如果你只看 $\langle W\rangle$, 就没有这种抵消, 只能得到不等式 $\ge \Delta F$. 指数把 $W$ 分布的所有矩 (不光均值) 都用上了, 因此能给出比均值更强的信息.</p>
+
+  <h2>三、数字估算: RNA hairpin 与 ideal gas 压缩</h2>
+
+  <p><strong>例 1: RNA hairpin 拉伸 (Liphardt et al. 2002).</strong> Liphardt, Dumont, Smith, Tinoco, Bustamante 在 <em>Science</em> 发表的那篇实验, 是 Jarzynski 等式第一个单分子验证. 他们用光镊拉一个 RNA P5abc hairpin, 这 RNA 在没有张力时是折叠的, 在足够大张力下打开. 折叠和打开之间的自由能差 $\Delta F$ 可以独立地用慢拉 (准静态可逆) 测到, 大约是 $60 k_B T$ (室温 $T = 300$ K, $k_B T \approx 0.6$ kcal/mol, 所以 $\Delta F \approx 36$ kcal/mol).</p>
+
+  <p>他们再用不同速度快拉. 拉速越快, $\langle W\rangle$ 比 $\Delta F$ 大得越多. 比如在一个典型的快拉下, $\langle W\rangle \approx 65 k_B T$, 单次涨落 $\sigma_W \approx 5$-$10\, k_B T$. 用 Jarzynski:</p>
+
+  <p>$$ \Delta F = -\frac{1}{\beta}\ln \langle e^{-\beta W}\rangle. $$</p>
+
+  <p>一千次拉伸的数据, 他们算出来 $\Delta F_{\rm Jarzynski} \approx 60\, k_B T$, 误差 $\lesssim 1\, k_B T$, 与准静态值完全吻合. 这不是宇宙学级别的难, 但是是真实的非平衡数据精确地吐出平衡自由能的第一个实验证据.</p>
+
+  <p>值得停一下思考: $\beta W$ 涨落是 10, $e^{-\beta W}$ 的方差是 $e^{100}$ 量级, 你需要的样本数为了让平均收敛, 原则上是指数多. 现实中 Liphardt 的 $\sigma_W \approx 5 k_B T$ 比 10 小, 所以"只"需要 $\sim 10^3$ 次拉伸. 如果 $\sigma_W$ 到 20 $k_B T$, Jarzynski 估算就会变得统计不可行 —— 需要 $\sim e^{200}$ 次拉伸. 这是 Jarzynski 等式的现实约束: 理论上任意非平衡都行, 实际上耗散不能太大. 所以实验派常说"Jarzynski 定律是 soft inequality" —— 数学是等式, 工程上是"涨落别太大".</p>
+
+  <p><strong>例 2: 理想气体的突然压缩.</strong> 取一容积 $V_0$ 的理想气体 ($N$ 个粒子), 用一个活塞瞬间把它压到 $V_1 = V_0/2$. 这是极端非平衡的: 准静态等温 $\Delta F = -N k_B T \ln(V_1/V_0) = N k_B T \ln 2$. 但我们做的是瞬间压缩, 每个分子位置不变 (很快, 来不及动), 只是把外势从 "$V_0$ 外全 $\infty$" 换成 "$V_1$ 外全 $\infty$". 功 = 新能量 - 旧能量. 旧能量是 $\frac{3}{2}N k_B T$, 新能量也是 $\frac{3}{2}N k_B T$ (粒子位置/动量没变), 所以<em>单次 $W$ = 0 的事件</em>发生当且仅当所有粒子初始都在 $V_1$ 内. 概率 $= (V_1/V_0)^N = 2^{-N}$. 如果任何一个粒子在 $V_1$ 外, 瞬间压缩"不可能完成", 功是 $+\infty$ (或实际上活塞撞上粒子, 做很大的功).</p>
+
+  <p>忽略上面那种无穷功, 只算成功事件:</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = 2^{-N} \cdot e^{-\beta \cdot 0} + (1 - 2^{-N})\cdot e^{-\beta \cdot \infty} = 2^{-N}. $$</p>
+
+  <p>取对数: $-\beta\Delta F = -N \ln 2$, 即 $\Delta F = N k_B T \ln 2$ —— 正是 isothermal 理想气体压缩的自由能差. Jarzynski 等式在极端非平衡里竟然还准. 对 $N \sim 10^{23}$, 这当然是个思想实验; 但它说明等式并不挑协议.</p>
+
+  <p><strong>极限检验: 准静态极限.</strong> 如果 $\lambda(t)$ 拉得无限慢, 系统始终处于瞬时的 $\lambda(t)$ 的平衡态, $W$ 不再有涨落, 每次都等于 $\Delta F$. 于是 $P(W) = \delta(W - \Delta F)$, $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$, 自动满足. Jarzynski 在这一极限回到传统热力学. 拉的不那么慢的时候, $P(W)$ 变宽, 但等式仍然精确. 把这两个极限放一起看: Jarzynski 不是"近似", 不是"在什么极限下成立", 而是一条比 Clausius 严格得多的恒等式.</p>
+
+  <h2>四、历史、应用与方法论</h2>
+
+  <p><strong>历史.</strong> Christopher Jarzynski 1997 年在 <em>Phys. Rev. Lett.</em> 上提出这条等式 (PRL 78:2690). 当时他在 Los Alamos 做博士后, 这篇文章一开始因为看起来"违反热力学第二定律"受到很大怀疑 —— 审稿人和物理学家争论了好一阵. 澄清之后大家才意识到: 它没违反第二定律, 它<em>包含</em>第二定律, 而且更强. Gavin Crooks 1999 年把它推广到细致涨落定理 (FT), 把 Jarzynski 等式从"初末态"尺度的陈述升级到"单条轨迹"尺度的陈述 —— 下一节会专讲. 2002 年 Jan Liphardt 等人在 RNA 单分子上做了首个实验验证; 此后冷原子、nano-机械、蛋白质折叠里都有过类似实验.</p>
+
+  <p>上游, Hummer 和 Szabo 2001 年在 PNAS 上的一篇工作, 把 Jarzynski 等式做成了一个实用的估计量: 从若干次快速拉伸的 $W_i$ 数据, 用指数加权</p>
+
+  <p>$$ \hat{\Delta F} = -\frac{1}{\beta}\ln \left(\frac{1}{M}\sum_{i=1}^M e^{-\beta W_i}\right), $$</p>
+
+  <p>作为平衡自由能差的无偏估计 (大样本下). 这个式子被 AMBER, GROMACS 等生物物理模拟软件采纳, 成了所谓 "steered molecular dynamics" 的核心. 模拟里你可以把蛋白质配体拉出结合口袋, 用 Jarzynski 反推结合自由能, 而不需要几百纳秒的平衡模拟.</p>
+
+  <p><strong>应用.</strong> 除了单分子实验和 MD 模拟, Jarzynski 等式还被用在: (i) 原子冷却实验里估计光阱自由能; (ii) 微米机械 (micro-cantilever) 做功-热转换实验; (iii) 量子版本 (Tasaki-Crooks 2000) 被用于量子热机的 work statistics 分析. 它也是 stochastic thermodynamics 这个领域的奠基式之一 —— 这个领域在 2005 年前后由 Seifert, Sasa, Crooks, Jarzynski 等人合力建立, 把熵和功推广到单条随机轨迹上.</p>
+
+  <p><strong>方法论.</strong> 我刚才那个证明为什么会那么短? 因为 Jarzynski 等式本质上是一个精巧的变量替换 + 相空间体积守恒的组合. 如果你把它写成路径积分</p>
+
+  <p>$$ \langle e^{-\beta W}\rangle = \int \mathcal{D}[x_\cdot]\, \rho_A(x_0)\, e^{-\beta W[x_\cdot]}, $$</p>
+
+  <p>关键看到的是: $\rho_A(x_0) e^{-\beta W}$ 这一乘积等于 $\frac{1}{Z_A} e^{-\beta H(x_\tau;\lambda_B)}$, 仅依赖终态 $x_\tau$. 对 $x_0$ 积分 (等价于对 $x_\tau$ 积分, 因为 Liouville) 给出 $Z_B/Z_A$. 这种"初态 Boltzmann × 功指数 = 终态 Boltzmann"的抵消模式, 是一类"涨落定理" (fluctuation theorems) 的共同骨架. Crooks, Gallavotti-Cohen, Evans-Searles 各种涨落关系都是这个模式的变种. 下一节 Crooks 等式会把它讲透.</p>
+
+  <p>回到物理图景. 第二定律说: 非平衡过程里, 大量微观轨迹中的"坏轨迹"占主导, 它们把能量耗散成热, 导致 $\langle W\rangle > \Delta F$. Jarzynski 说: 但总有一小撮"好轨迹", 它们恰好做了接近可逆的功, 耗散几乎为零; 这些稀有轨迹的概率不为零, 它们携带的信息足以精确地重建 $\Delta F$. 关键是: 你必须用指数权重 $e^{-\beta W}$ 专门去"看"它们, 线性平均看不到它们. 换句话说, Jarzynski 等式的物理内容就是一句: <em>稀有的"近可逆"事件, 在任意快的非平衡协议里都以精确可控的方式存在.</em></p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Jarzynski 等式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$ 是一条精确的恒等式, 对任意快慢的协议都成立. 推导的核心是: 初始 Boltzmann 分布 $e^{-\beta H(\cdot; \lambda_A)}$, 功指数 $e^{-\beta W}$, 与 Liouville 的相空间守恒, 三者联合让 "$e^{-\beta \Delta F}$" 从轨迹平均里整洁地落出来. 用 Jensen 不等式立刻退化成 Clausius $\langle W\rangle \ge \Delta F$, 因此它<em>强于</em>第二定律, 不是它的例外. Liphardt 等 2002 年在 RNA hairpin 上的实验是首次实证: 千次快拉, 涨落 5-10 $k_B T$, 给出的 $\Delta F \approx 60 k_B T$ 与慢拉可逆测量吻合到 $1 k_B T$. 这条等式开启了 stochastic thermodynamics 的时代, 把"非平衡"从一个没有公式的混乱概念变成有精确恒等式支配的领域. 下一节的 Crooks 涨落定理, 把它从"期望值"精细化到"整个分布".</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="26-maxwell-demon.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="28-crooks.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

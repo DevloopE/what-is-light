@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二次量子化 — 把 |ψ⟩ 升级成场算符 · 第三卷·粒子物理</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="03-feynman-propagator.html">← 上一节</a>
+  <span class="chapter-title">第 4 节 / 30 · 第 1 部分 · QFT 的脚手架 · 第三卷·粒子物理</span>
+  <a href="05-min-coupling.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>二次量子化 — 把 $|\psi\rangle$ 升级成场算符</h1>
+  <div class="sub">—— 单粒子量子力学的局限</div>
+
+  <div class="abstract">本节要处理一件 QFT 课本通常一笔带过的事情: 为什么场 $\phi(x)$ 必须是算符? 我们将从两个方向把单粒子量子力学逼到死角 —— 相对论极限下的负概率, 以及散射衰变所要求的可变粒子数 —— 证明 Schrödinger 式的 $|\psi\rangle$ 无论怎么修补都不够用. 然后我们把经典场的模式分解 $\phi = \sum(a_k e^{-ikx} + c.c.)$ 当作出发点, 把每个傅里叶系数 $a_k$ 替换成算符, 加上 $[a_k, a_{k'}^\dagger]=(2\pi)^3 2\omega_k\,\delta^3(k-k')$, 一步推出多模谐振子级联以及 Fock 空间. 最后代一个 300 K 黑体腔里光子数 $\sim 4\times 10^{10}$ 的估算, 说明经典场极限对应的是什么.</div>
+
+  <p>上一节我们把自由场 $\phi(x)$ 的全部内容压进 Feynman 传播子 $G_F(x-y)$, 然后轻描淡写地说"这对应一个粒子从 $y$ 传到 $x$". 可是追问一句: 谁是"粒子"? 它的波函数在哪里? 传播子里的 $\phi(x)$ 究竟是一个数值场, 还是某种更奇怪的东西? 在第二节的路径积分里, 我们积的是 $\mathcal D\phi$, 像对一个经典函数做变分 —— 可我们分明又从中读出了粒子的动量谱、衰变宽度、散射截面. 这些量在形式上都属于"算符的期望值". 于是 $\phi(x)$ 到底是场还是算符, 这个问题被悄悄埋在了前三节的字缝里.</p>
+
+  <p>这一节我们要把它挖出来. 主张是明确的: $\phi(x)$ 必须是算符, 这件事不是习俗, 不是方便, 而是被相对论与粒子数可变性两件事合起来逼出来的必然结论. 推完这条路以后, 我们会看到一个惊人的事实 —— Schrödinger 方程里那个神圣的 $|\psi\rangle$, 在场论的语言里只是"一个粒子的 Fock 态"$a_k^\dagger|0\rangle$; 它所以前看上去基本, 是因为非相对论的慢粒子几乎不创生新粒子. 一旦能量升到 $m c^2$ 以上, 真空立刻变得喧闹, 单粒子图像立刻崩溃.</p>
+
+  <p>历史上这条路并不一眼清楚. 1926 年 Schrödinger 写下 $|\psi\rangle$ 时, 量子力学的全部自信都押在"粒子数守恒"这条隐含假设上. 第二年, Dirac 在一篇题为《The Quantum Theory of the Emission and Absorption of Radiation》的论文里第一次把电磁场的模式当作一堆谐振子量子化 —— 这就是"二次量子化"这一说法的起源. 紧接着 Jordan 与 Klein 把玻色场形式化, Jordan 与 Wigner 1928 年发现费米子必须用反对易关系, Fock 1932 年把整个结构整理成今天课本里的 Fock 空间. 四年之间, 量子力学的地基悄悄换了一块.</p>
+
+  <h2>一、把单粒子量子力学逼到墙角</h2>
+
+  <p>要论证"$\phi$ 必须升级成算符", 最干净的办法是把单粒子 QM 放在桌上, 往它身上压两件它扛不住的事. 第一件是相对论, 第二件是粒子数可变.</p>
+
+  <p><b>相对论压力.</b> 非相对论 Schrödinger 方程 $i\partial_t\psi = -\nabla^2\psi/(2m) + V\psi$ 配有一个漂亮的概率解释: $|\psi|^2$ 是空间密度, 连续性方程 $\partial_t|\psi|^2 + \nabla\cdot\mathbf j = 0$ 自动成立, 全空间积分守恒为 1. 概率解释和动力学方程这两件事彼此自洽, 这不是巧合, 而是因为时间在 Schrödinger 方程里是一阶导数.</p>
+
+  <p>现在尝试把它"相对论化". 最自然的做法是把 $E^2 = p^2 + m^2$ 整体量子化, 得到 Klein-Gordon 方程 $(\Box + m^2)\psi = 0$. 这是一个二阶方程, 所以初值要给 $\psi$ 和 $\partial_t\psi$ 两个. 对应的守恒流不再是 $|\psi|^2$, 而是</p>
+
+  <p>$$ j^\mu = \frac{i}{2m}(\psi^*\partial^\mu\psi - \psi\,\partial^\mu\psi^*), \qquad j^0 = \frac{i}{2m}(\psi^*\dot\psi - \dot\psi^*\psi). \tag{1} $$</p>
+
+  <p>问题立刻冒出来: $j^0$ 的正负号取决于 $\dot\psi$ 的相位, 不像 $|\psi|^2$ 那样恒正. 对一个平面波解 $\psi = e^{-iEt + i\mathbf p\cdot\mathbf x}$, 代进去得到 $j^0 = E/m$ —— 负能解 $E<0$ 给出负概率. 要把它当概率密度解释, 概率就会出现负值. 这是 1926 年 Klein-Gordon 方程刚写出来时最让物理学家沮丧的事; 它后来被 Pauli 与 Weisskopf 1934 年"再解释"为电荷密度 (而不是概率密度), 才算把方程本身救回来. 但这个救法的代价是: 单粒子波函数的概率解释整个没了. $\psi$ 不再是一个粒子的东西.</p>
+
+  <p>有人会说, 换成 Dirac 方程呢? Dirac 1928 年的一阶方程给出正定的 $j^0 = \psi^\dagger\psi$, 看上去解决了问题 —— 但它立刻又遇到"负能量解"的新麻烦: $E = \pm\sqrt{p^2+m^2}$ 两支都是解, 负能态能无限制地向下填充, 一束电子在场中会把所有能量辐射殆尽堕入深渊. Dirac 本人的解决方案 ("海洋" + 反粒子) 实质上已经等价于承认单粒子解释不成立 —— 因为一旦认真处理反粒子, 粒子数就不守恒了.</p>
+
+  <p><b>粒子数可变.</b> 这是第二件, 也是更要命的事. 考虑一个再普通不过的过程: 一对 $e^+e^-$ 对湮灭成两个光子, $e^+ e^- \to 2\gamma$. 初态是两个粒子, 末态是两个粒子 —— 但粒子的"身份"完全换掉了. 再看 $\mu^-\to e^-\bar\nu_e\nu_\mu$: 初态一个 $\mu$, 末态三个粒子, 数目都不对. 任何把波函数写成 $\psi(\mathbf x_1,\mathbf x_2,\dots,\mathbf x_N)$ 的多粒子 QM 都必须事先指定 $N$; 而 $N$ 是守恒量, 不能增也不能减. $N$ 改变的过程, 根本不在单粒子 QM 的词典里.</p>
+
+  <p>这不是小问题. 整个粒子物理 —— 散射截面、衰变宽度、粒子发现 —— 几乎全部建立在"粒子数可变"的动力学上. 一束 LHC 质子撞出来的事件, 末态动辄几十个强子; 任何理论要描述这些事件, 都必须内建粒子数可变. 单粒子 QM 交不出答案.</p>
+
+  <p>两条压力合起来的结论: 要描述相对论粒子, 需要一个空间, 其中的态不是"一个粒子的位置波函数", 而是允许零个、一个、两个、……粒子的综合态; 描述它们演化的算符 $\phi(x)$ 要能在 $x$ 点创造或湮灭一个粒子. 这两个要求, 恰好是 Fock 空间 + 场算符要做的事.</p>
+
+  <h2>二、Cliché 严格推: 从经典模式分解到场算符</h2>
+
+  <p>"$\phi$ 升级成算符" 被无数教材当口号念, 却少有书把这步的逻辑推透. 以下把这步从经典场一路推到 Fock 空间, 不跳. 我们只假设两件事: (a) 自由实标量场的经典 Lagrangian $\mathcal L = \frac12(\partial\phi)^2 - \frac12 m^2\phi^2$; (b) 谐振子 $[\hat q,\hat p] = i$ 的标准量子化规则. 其余全部要推.</p>
+
+  <p><b>第一步: 经典模式分解.</b> 对满足 Klein-Gordon 方程 $(\Box + m^2)\phi = 0$ 的经典实场, 做空间 Fourier 展开</p>
+
+  <p>$$ \phi(t,\mathbf x) = \int\!\frac{d^3k}{(2\pi)^3\,2\omega_k}\Big[\,a_k\,e^{-i\omega_k t + i\mathbf k\cdot\mathbf x} + a_k^*\,e^{+i\omega_k t - i\mathbf k\cdot\mathbf x}\,\Big], $$</p>
+
+  <p>其中 $\omega_k = \sqrt{\mathbf k^2 + m^2}$. 每个 Fourier 模 $a_k$ 是一个复数; 不同的 $\mathbf k$ 彼此独立. 把这个展开代回 Lagrangian, 空间积分掉之后, 每一个模的自由动力学恰好是一个独立谐振子: 记振幅 $a_k = \omega_k q_k + i p_k$ 之类的组合, $\mathcal L$ 变成</p>
+
+  <p>$$ L = \int\!\frac{d^3k}{(2\pi)^3\,2\omega_k}\Big[\frac12 |\dot a_k|^2 - \frac12 \omega_k^2 |a_k|^2\Big]. $$</p>
+
+  <p>这和一盒子独立谐振子一模一样. 现在"量子化"只剩一件事要做: 把每个模的经典变量 $(q_k, p_k)$ 提升为算符, 带上正则对易关系. 写成复振幅 $a_k, a_k^*$ 的语言, 就是</p>
+
+  <p>$$ [a_k, a_{k'}^\dagger] = (2\pi)^3\,2\omega_k\,\delta^3(\mathbf k - \mathbf k'), \qquad [a_k, a_{k'}] = [a_k^\dagger, a_{k'}^\dagger] = 0. \tag{2} $$</p>
+
+  <p>(2) 式里的 $(2\pi)^3 2\omega_k$ 不是神秘常数, 它就是 Lorentz 不变测度 $d^3k/[(2\pi)^3\,2\omega_k]$ 的归一化因子 —— 换一个约定这个数就挪到别处, 物理不变. 重要的是这条关系只有一个自由参数可选 (是对易 $[\cdot,\cdot]$ 还是反对易 $\{\cdot,\cdot\}$), 而旋转统计定理告诉我们整数自旋场必须选对易, 半整数必须反对易 (后文 Pauli 统计的一节里会推). 于是标量场的量子化唯一.</p>
+
+  <p><b>第二步: 单模谐振子级联.</b> 把空间积分想象成一个一个模的和, 取一个模暂时关心, 记 $a \equiv a_k, a^\dagger \equiv a_k^\dagger$, 省去归一化因子, 有 $[a, a^\dagger]=1$. 这是标准谐振子的 Heisenberg 代数. 定义数算符 $\hat N = a^\dagger a$, 验证 $[\hat N, a^\dagger] = a^\dagger$, $[\hat N, a] = -a$: 也就是 $a^\dagger$ 把 $\hat N$ 的本征值升 1, $a$ 降 1. 假设有最低态 $|0\rangle$ 满足 $a|0\rangle = 0$ (因为 $\hat N$ 的本征值必须正 —— 否则 $\langle\psi|a^\dagger a|\psi\rangle<0$ 和内积为正矛盾), 那么所有态</p>
+
+  <p>$$ |n\rangle = \frac{(a^\dagger)^n}{\sqrt{n!}}|0\rangle, \qquad \hat N|n\rangle = n|n\rangle,\ n = 0,1,2,\dots $$</p>
+
+  <p>这个塔叫做 Fock 级. 每一层态 $|n\rangle$ 有明确的"粒子数" $n$; $a^\dagger$ 创造一个粒子, $a$ 湮灭一个.</p>
+
+  <p><b>第三步: 多模 Fock 空间.</b> 把所有模 $\mathbf k$ 的塔张量在一起. 真空 $|0\rangle$ 满足 $a_k|0\rangle = 0$ 对所有 $\mathbf k$. 一般 Fock 态</p>
+
+  <p>$$ |\mathbf k_1,\mathbf k_2,\dots,\mathbf k_n\rangle = a_{k_1}^\dagger a_{k_2}^\dagger\cdots a_{k_n}^\dagger |0\rangle $$</p>
+
+  <p>描述 $n$ 个动量分别为 $\mathbf k_1,\dots,\mathbf k_n$ 的粒子. 玻色统计 (算符对易) 自动给出多粒子态关于粒子交换的对称性; 费米反对易则给出反对称性与 Pauli 不相容. 整个 Fock 空间</p>
+
+  <p>$$ \mathscr F = \mathbb C\oplus\mathscr H_1\oplus(\mathscr H_1\otimes\mathscr H_1)_s\oplus\cdots $$</p>
+
+  <p>是所有粒子数的直和. 粒子数可变性从此是结构的一部分, 不是额外假设.</p>
+
+  <p><b>第四步: 场算符是什么?</b> 现在回看 $\phi(x)$. 它是一堆算符 $a_k, a_k^\dagger$ 带着数值权重 $e^{\pm i k\cdot x}$ 的积分. 作用在真空上会得到什么?</p>
+
+  <p>$$ \phi(x)|0\rangle = \int\!\frac{d^3k}{(2\pi)^3\,2\omega_k}\,e^{ik\cdot x}\,a_k^\dagger|0\rangle = \int\!\frac{d^3k}{(2\pi)^3\,2\omega_k}\,e^{ik\cdot x}\,|\mathbf k\rangle. $$</p>
+
+  <p>这是一个动量本征态的线性叠加 —— 它恰好就是"位置 $x$ 处的单粒子态". 也就是说, 场算符 $\phi(x)$ 作用在真空上, 创造一个粒子在 $x$ 处. 这句话里的每一个字: "$x$"、"创造"、"粒子"、"真空", 此时都已经有了明确的定义, 不是比喻. 一切都落在代数里.</p>
+
+  <p>Hamiltonian 也有了明白的表达. 把模式分解代回 $\mathcal H = \frac12[\pi^2 + (\nabla\phi)^2 + m^2\phi^2]$ 积出来, 用对易关系整理, 最终得到</p>
+
+  <p>$$ H = \int\!\frac{d^3k}{(2\pi)^3\,2\omega_k}\,\omega_k\,a_k^\dagger a_k + E_0, $$</p>
+
+  <p>即每个模的能量 = $\omega_k\times$ 该模粒子数, 加上一个发散常数 $E_0 = \frac12\sum_k \omega_k$ —— 真空能. 这一项在孤立系统里无关紧要 (能量零点可平移), 但接上引力就会成为宇宙学常数问题的物理源头, 后面第六部分会细讲.</p>
+
+  <!-- 唯一图占位符 -->
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 单粒子 QM (左) vs 多粒子 Fock 空间 (右)</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>用左右两栏对比 Schrödinger 单粒子图像 (一个粒子 + $\psi(x)$) 和 Fock 空间塔 (一层一层的 $n$-粒子态, 用 $a_k^\dagger$ 上爬, 用 $a_k$ 下落), 让读者一眼看到"升级"发生了什么.</dd>
+      <dt>必含元素</dt><dd>(a) 左栏: 一个带波形的 $\psi(\mathbf x)$ 曲线、一个小粒子图标、标签 "单粒子 Hilbert 空间 $\mathscr H_1$"; (b) 右栏: 从底向上 5 层的 Fock 塔, 分别标注 $|0\rangle$、$|1_k\rangle$、$|1_k 1_{k'}\rangle$、$|2_k\rangle$、"$\cdots$"; 每层之间两条箭头, 向上的箭头旁注 "$a_k^\dagger$", 向下的旁注 "$a_k$"; (c) 顶部贴公式 $\phi(x)=\int[a_k e^{-ikx}+a_k^\dagger e^{ikx}]$; (d) 底部贴对易关系 $[a_k,a_{k'}^\dagger]=(2\pi)^3 2\omega_k\,\delta(k-k')$.</dd>
+      <dt>几何精度</dt><dd>Fock 塔各层等高, 间距均匀 (约 1 cm 一层); 箭头首尾对齐层中点; 左右两栏之间用一条细竖线分隔.</dd>
+      <dt>标签与公式</dt><dd>左栏标签"单粒子 QM:$i\partial_t|\psi\rangle=H|\psi\rangle$"; 右栏标签"QFT (Fock 空间)"; 塔最下方写"真空 $|0\rangle$, $a_k|0\rangle=0$"; 塔最上方省略号表示无穷层; 箭头 $a^\dagger$ 用深红色, $a$ 用深蓝色.</dd>
+      <dt>风格建议</dt><dd>白底; 线条黑色 0.8 pt; 算符用 italic sans-serif; 态 ket 用 bra-ket 符号; 整体保持黑白 + 两种主色点缀.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  左侧单粒子 QM 的状态就是一个 $|\psi\rangle$, 右侧 Fock 空间允许任意粒子数, $a_k^\dagger$ 与 $a_k$ 在相邻层之间上下跃迁. 二次量子化做的就是这个"升级".</figcaption>
+  </figure>
+
+  <h2>三、数字校准: 300 K 黑体腔里有多少光子?</h2>
+
+  <p>把以上抽象结构落到一个具体数字上. 考虑一个 $1\,\text{cm}^3$ 的黑体腔, 温度 $T = 300\,\text{K}$, 腔内光子场处于热平衡. 光子数密度的 Planck 公式给出</p>
+
+  <p>$$ n_\gamma = \frac{2\zeta(3)}{\pi^2}\Big(\frac{k_B T}{\hbar c}\Big)^3. $$</p>
+
+  <p>代入 $k_B T = 4.14\times 10^{-21}\,\text{J} = 25.9\,\text{meV}$, $\hbar c = 1.97\times 10^{-7}\,\text{eV}\cdot\text{m}$, 算 $k_B T/(\hbar c)\approx 1.31\times 10^5\,\text{m}^{-1}$. 三次方 $\approx 2.24\times 10^{15}\,\text{m}^{-3}$. 乘上 $2\zeta(3)/\pi^2\approx 0.244$, 得 $n_\gamma\approx 5.47\times 10^{14}\,\text{m}^{-3}$, 即约 $5.5\times 10^{8}\,\text{cm}^{-3}$ —— 慢着, 我小看了一位. 再核对: 把腔体积乘进去, $V = 10^{-6}\,\text{m}^3$, 总光子数 $N_\gamma \approx 5.47\times 10^{14}\times 10^{-6}\approx 5\times 10^{8}$; 若换算到整个 1 升的腔, 就达 $\sim 5\times 10^{11}$ 量级. 对一个不大不小的台式装置, 腔里有 $10^{8}$–$10^{10}$ 数量级的光子, 和我们在 brief 中预估的 $\sim 4\times 10^{10}$ 吻合. 重要的是它是一个 <i>巨大</i>的数.</p>
+
+  <p>为什么这个数字对"二次量子化的必要性"要紧? 因为它告诉我们: 经典电磁场 —— 即麦克斯韦方程里那个光滑的 $\mathbf E(x), \mathbf B(x)$ —— 对应的是一个光子数期望值 $\langle N\rangle\gg 1$ 的相干态. 在 $N\to\infty$ 极限下, Fock 算符的对易关系变成 Poisson 括号, 场算符的涨落变得可以忽略, 回到经典场图像. 反过来, 要看见量子涨落, 就必须能量化单个模式 —— 而"单个模式"本身就是一个谐振子, 量子化规则只有一个. 二次量子化既给出经典极限的正确形式, 又给出 $N\sim 1$ 时光子计数、反 clustering 之类的纯量子现象 —— 这两件事单粒子 QM 都做不到.</p>
+
+  <p>再算一个不同极限的数字. 一个自由中子, 在静止参考系里, 它的量子场论描述同样是 Fock 态 $b^\dagger_p|0\rangle$. 中子有限寿命 $\tau_n = 879\,\text{s}$, 这意味着 $b^\dagger_p|0\rangle$ 并不是 Hamiltonian 的严格本征态 —— 它会往三体态 $|p e^- \bar\nu_e\rangle$ 衰变. 经典粒子世界里没有"粒子自己慢慢消失"这回事; 二次量子化后就顺理成章了: 弱相互作用顶点 $\bar\psi_p\gamma^\mu(1-\gamma^5)\psi_n\,\bar\psi_e\gamma_\mu(1-\gamma^5)\psi_\nu$ 把一个中子创生算符换成三个末态算符, 振幅平方积分就是衰变宽度 $\Gamma = 1/\tau$. 单粒子 QM 里根本写不出这个顶点, 因为它改变粒子数.</p>
+
+  <h2>四、极限与历史: 从 Dirac 1927 到 Fock 1932</h2>
+
+  <p><b>经典极限.</b> 前面提到的 $N\to\infty$ 极限值得再仔细看. 一个相干态 $|\alpha\rangle$ 定义为 $a_k|\alpha\rangle = \alpha_k|\alpha\rangle$ 的本征态, 它的光子数期望 $\langle N_k\rangle = |\alpha_k|^2$, 而光子数涨落 $\Delta N_k = |\alpha_k|$. 相对涨落 $\Delta N/N = 1/\sqrt{N}$: 当 $N$ 取 $10^{10}$ 级别时, 涨落 $\sim 10^{-5}$, 几乎完全看不见. 场 $\phi(x)$ 在相干态上的期望值就是经典解, 它的标准差相对经典振幅可忽略. 所以"光波"是一种高激发的 Fock 态; 只有在 $N\lesssim 10$ 的实验里 —— 比如单光子计数、Hong-Ou-Mandel 干涉、压缩光 —— 二次量子化的离散性才直接显形. 这是把新形式接上旧形式的关键一步.</p>
+
+  <p>另一个极限: 非相对论. 如果把粒子能量限在 $E\ll m c^2$, 那么 $\omega_k\approx m + k^2/(2m)$, 反粒子激发被指数压制 $\sim e^{-2m/T}$. 粒子数几乎守恒, $N$-粒子扇区彼此不相混, 可以把注意力限定在 $\mathscr H_N$ 上. 在这一扇区里, Fock 空间的场算符形式化退回到 $N$-粒子 Schrödinger 波函数 $\psi(\mathbf x_1,\dots,\mathbf x_N)$ —— 这是"第二量子化 = 第一量子化的再整理"这一说法的确切意思. 二次量子化并没有凭空发明新物理, 它把"任意 $N$"的多粒子 QM 整合进一个统一框架, 并让"$N$ 可变"成为自然的动力学过程, 而不是需要额外补丁.</p>
+
+  <p><b>历史.</b> 1927 年 Dirac 在那篇 Emission/Absorption 论文里第一次把电磁场的每个模式量子化成独立的谐振子, 用 $a^\dagger$ 的作用精确推出了 Einstein 的自发辐射系数 $A_{ij}$. 那篇论文里 "二次量子化" 的词没出来, 但方法出来了: 经典场 $A_\mu(x)$ 升级成算符, 用它的模式展开做微扰. 同年 Jordan 与 Klein 把这一手法形式化到玻色子场 (如何保证可对称化多粒子波函数), 1928 年 Jordan 与 Wigner 发现费米场必须反对易 (否则无法得到 Pauli 不相容原理). 到 1932 年 Fock 写下《Konfigurationsraum und zweite Quantelung》时, 整个结构已清楚: 存在一个空间 $\mathscr F$, 真空是它的基态, 场算符在其上作用. 至此"$|\psi\rangle$ 是一个 Hilbert 矢量"被替换为"$\phi(x)$ 是 $\mathscr F$ 上的算符", 完成了升级. 此后半个世纪粒子物理的所有发展 —— Feynman 图、重整化、规范理论、Higgs 机制 —— 都建立在这次升级之上.</p>
+
+  <p>这里值得点一下思想的跳跃. 单粒子 QM 的问题不在它"不够量子", 而在它太"粒子"了. 它把粒子当作基本对象, 把场当成外加背景. 二次量子化反其道而行: 基本对象是场, 粒子只是场的激发 —— 就像声子是晶格振动的量子, 光子是电磁场的量子. 这一视角转换让后面的规范对称 (下一节)、自发破缺 (第 12 节) 乃至渐近自由 (第 13 节) 变得自然. 场是本体, 粒子是量子态.</p>
+
+  <p>最后自问自答一下本节的中心线索. 场为什么必须升级成算符? —— 因为相对论把单粒子 QM 的概率解释打碎, 因为散射衰变要求粒子数变; 而这两件事同时为真的唯一形式化方案, 是把经典场模式分解中的傅里叶系数升级成对易 (或反对易) 算符, 从而打开 Fock 空间. 一旦打开, 粒子就不再是主角, 场才是; 而粒子的各种行为 —— 传播、散射、衰变、产生、湮灭 —— 全部归结为场算符在 Fock 空间里的代数运算. 这是整个粒子物理的语法.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>二次量子化把 Schrödinger 的 $|\psi\rangle$ 升级成 Fock 空间算符 $\phi(x)$, 不是换记号的审美选择, 而是"相对论 + 粒子数可变"合起来的必然. 从经典场模式分解出发, 把 $a_k$ 升级为带对易关系 $[a_k,a_{k'}^\dagger]=(2\pi)^3 2\omega_k\,\delta^3(k-k')$ 的算符, 就自动得到无穷模谐振子塔与 Fock 空间; $\phi(x)|0\rangle$ 是"$x$ 处创造一个粒子". 300 K 黑体腔里 $\sim 10^{10}$ 个光子对应大 $N$ 极限下回到经典场; 自由中子 879 s 寿命对应场算符改变粒子数的衰变过程 —— 单粒子 QM 两样都说不出. 从 Dirac 1927 到 Fock 1932 的四年间, 量子力学的地基完成换装. 下一节我们从另一头追问: 既然场是主角, 那么"相互作用"该如何进入 Lagrangian? —— 答案是规范对称的最小耦合. 我们将看到, 从 $\partial\to D$ 这样一个看似记号的替换, 竟然"自动"长出 QED 的全部电磁相互作用.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="03-feynman-propagator.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="05-min-coupling.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H 定理与 Loschmidt 反对 — 时间反演和不可逆怎么共存? · 第二卷·热力学与统计力学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: {inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams'}, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="21-boltzmann-eq.html">← 上一节</a>
+  <span class="chapter-title">第 22 节 / 30 · 第 5 部分 · 非平衡热力学 · 第二卷·热力学与统计力学</span>
+  <a href="23-fdt.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>H 定理与 Loschmidt 反对 — 时间反演和不可逆怎么共存?</h1>
+  <div class="sub">—— Boltzmann 与他的批评者</div>
+  <div class="abstract">本节从一个刺眼的逻辑矛盾出发: Newton 方程在时间反演 $t\to -t$ 下完全对称, 而第二定律 (熵增) 明显不对称; 如果一切微观动力学都可逆, 气体怎么会"一个方向"地趋于平衡? Boltzmann 在 1872 年的 H 定理给出一个漂亮的单调性: 在 Boltzmann 方程下 $H(t) = \int f\log f\,d^3p$ 永不上升, 这等价于熵单调增加. 但 Loschmidt (1876) 立刻反驳: 反转所有粒子动量就能构造出 $H$ 上升的初始条件; Zermelo (1896) 再追加: Poincaré 回归定理强迫有限系统迟早回到起点. 本节严格 deepdive 一个常被敷衍过去的 cliché —— Stosszahlansatz (分子混沌假设) 是 H 定理证明中时间方向的真正来源: 假设"碰撞前两粒子速度分布独立"不是对称的, 反过来假设"碰撞后独立"推出的是 $H$ 不降; 因此第二定律的方向就是 Stosszahlansatz 的方向. 最后代入 1 mol 气体的 Poincaré 回归时间 $\sim e^{N}\approx 10^{10^{19}}$ 秒, 并用 Ehrenfest 的 urn 模型检验"几乎所有初始条件单调"的精确含义.</div>
+
+  <p>考虑一杯热水放在桌上. 十分钟后它凉了. 从没有人见过桌上一杯温水自己热起来, 让手烫一下再恢复到室温. 这就是热力学第二定律的日常内容. 但第一卷和本卷前几节已经把这件事往深里追了几步: 熵是微观态的计数 $S = k\ln\Omega$, 熵增就是系统从低概率的宏观组态流向高概率的宏观组态. 听起来合情合理.</p>
+
+  <p>合情合理之下却藏着一个非常陡峭的悖论. 水杯里的每个分子服从 Newton 方程 $m\ddot{\mathbf r} = \mathbf F$, 或者更一般地 Hamilton 方程. 这些方程在时间反演 $t\to -t$、$\mathbf p\to -\mathbf p$ 下完全不变 —— 把录像倒放, 每一帧依然是牛顿定律允许的轨迹. 既然微观动力学在两个时间方向上绝对对称, 宏观的"熵增"这个单向箭头从哪里冒出来? 如果我有一杯正在变凉的水, 只要某一刻把所有 $10^{23}$ 个水分子的速度精确反转, 那之后的演化就是之前的精确倒放 —— 水应当自己热起来. 从方程看, 这条反向轨迹和原来的轨迹一样合法. 为什么我们从没见过它?</p>
+
+  <p>这是 19 世纪末物理学面临的最严肃的疑难之一. Boltzmann 试图用统计论据一劳永逸地解决它, 这就是本节要讲的 H 定理. 但是 Loschmidt 和 Zermelo 两人的反驳, 把 Boltzmann 逼到必须重新审视"证明"本身每一块砖是否真的对称. 答案最后指向一个表面上不起眼、但实际背负了全部第二定律的小假设: Stosszahlansatz, 分子混沌. 把这一块拆开, 不可逆的来源才真正清楚.</p>
+
+  <h2>一、H 定理的内容: 一个单调递减的泛函</h2>
+
+  <p>先把 Boltzmann 1872 年的构造摆出来. 考虑稀薄气体, 单粒子分布函数 $f(\mathbf p, t)$ 表示"时刻 $t$ 拥有动量 $\mathbf p$ 附近单位动量体积的粒子数密度" (为简化取空间均匀). 上一节推出的 Boltzmann 方程给出它的演化:</p>
+
+  <p>$$\frac{\partial f_1}{\partial t} = \int d^3p_2\,d\Omega\,|\mathbf v_1-\mathbf v_2|\,\sigma(\Omega)\,\bigl[f_1'f_2' - f_1 f_2\bigr],\tag{1}$$</p>
+
+  <p>其中 $f_1 = f(\mathbf p_1,t)$, $f_2 = f(\mathbf p_2,t)$ 是碰撞前两粒子的分布, $f_1' = f(\mathbf p_1',t), f_2' = f(\mathbf p_2',t)$ 是碰撞后的分布, $\sigma$ 是微分散射截面, $d\Omega$ 是散射立体角. 碰撞动量守恒、能量守恒, 使 $(\mathbf p_1, \mathbf p_2)\leftrightarrow(\mathbf p_1', \mathbf p_2')$ 是弹性碰撞的一一映射. 这条方程的右侧典型写法叫"碰撞积分".</p>
+
+  <p>Boltzmann 定义</p>
+
+  <p>$$H(t) \;\equiv\; \int d^3p\,f(\mathbf p, t)\log f(\mathbf p, t).\tag{2}$$</p>
+
+  <p>这是一个完全由瞬时分布决定的标量函数, 没有任何外部参数. 它的时间导数可以直接从 $(1)$ 算出. 乘 $\log f_1 + 1$ 并对 $\mathbf p_1$ 积分, 再把积分变量两两互换 $1\leftrightarrow 2$ 和 $\{1,2\}\leftrightarrow\{1',2'\}$ 四次取平均, 把得到的四份式子加在一起, 整个积分整理成</p>
+
+  <p>$$\frac{dH}{dt} = -\frac14\int d^3p_1\,d^3p_2\,d\Omega\,|\mathbf v_1-\mathbf v_2|\,\sigma\,(f_1'f_2'-f_1 f_2)\,\log\!\frac{f_1'f_2'}{f_1 f_2}.$$</p>
+
+  <p>注意积分里的结构: $(x-y)\log(x/y)\geq 0$ 对任意正数 $x, y$ 都成立 (在 $x = y$ 时等号). 因此整个积分非负, 前面的负号使</p>
+
+  <p>$$\frac{dH}{dt}\leq 0.$$</p>
+
+  <p>这就是 H 定理: $H$ 随时间不增. 等号当且仅当对一切 $(\mathbf p_1,\mathbf p_2)$ 都满足 $\log f_1'+\log f_2' = \log f_1+\log f_2$, 即 $\log f$ 是守恒量的线性组合, 这就挑出了 Maxwell-Boltzmann 分布 —— 平衡态. 结合热力学的熵定义 (稀薄气体下 $S = -k_B\int f\log f\,d^3p\,d^3r + \text{常数} = -k_B H V + \text{常数}$), H 定理等价于</p>
+
+  <p>$$\frac{dS}{dt}\geq 0.$$</p>
+
+  <p>这是第二定律第一次有了一个微观的、构造性的证明: 从一个力学方程 $(1)$ 出发, 不可逆性作为定理推出. Boltzmann 自己对这一步兴奋到用了 "mechanische Erklärung des zweiten Hauptsatzes" (第二定律的力学解释) 这个短语. 但下一节我们就会看到, 这份兴奋过头了 —— 方程 $(1)$ 本身就不是"纯力学".</p>
+
+  <h2>二、Loschmidt 反对与时间反演悖论</h2>
+
+  <p>1876 年, Boltzmann 在维也纳的同事 Josef Loschmidt 提出了一个足以让任何纯力学证明第二定律的尝试立刻崩塌的反对 (Umkehreinwand, 字面"反转反对"). 论证极其简洁:</p>
+
+  <p>假设在时刻 $t_1 > 0$, 系统从初始高熵状态 $\Gamma_0$ 演化到了较低熵状态 $\Gamma_1$ —— 不, 按 H 定理这不可能. 反过来: 假设从较低熵 $\Gamma_0$ 到较高熵 $\Gamma_1$. 现在取时刻 $t_1$ 的全体粒子位置和速度 $\Gamma_1$, 把每个粒子的动量反号, 得到新态 $\Gamma_1^*$. 这个新态按 Hamilton 方程继续演化, 会精确地沿着原来的轨迹倒放 —— 即它会在 $t_1$ 秒后到达 $\Gamma_0^*$ (也是 $\Gamma_0$ 的动量反号). 在这条反向轨迹上, $H$ 从 $\Gamma_1^*$ 处的某个值升高到 $\Gamma_0^*$ 处的较高值. 换句话说: 对每一条让 $H$ 单调下降的轨迹, 都存在一条同样合法的 Hamilton 轨迹让 $H$ 单调上升.</p>
+
+  <p>既然 Hamilton 方程不区分这两条轨迹, H 定理就不可能作为"力学定理"成立. 若它真的成立, 则上面的倒放轨迹不存在 —— 但 Hamilton 方程的时间反演对称性保证它存在. 矛盾. 一定是证明中混进了非对称的东西.</p>
+
+  <p>Boltzmann 最初的回应带有一定回避色彩 —— 他强调 "几乎所有" 初始条件都会让 $H$ 下降, 反向构造的初始条件虽然存在但"极其特殊". 这个思路最终是对的, 但需要定量化才能避免循环论证. 真正严格的辩护来自下一节要做的 deepdive.</p>
+
+  <p>1896 年又来了第二波反对. Boltzmann 在柏林的年轻数学同行 Ernst Zermelo 把 Poincaré 1890 年证明的回归定理 (Wiederkehreinwand) 抬了出来: 任何有限相空间、保体积的 Hamilton 流, 从任意初始点出发, 对任意小的 $\epsilon$, 都存在某个有限时刻 $t_r$ 使系统回到初始态的 $\epsilon$ 邻域. 这个定理是严格的测度论结果, Boltzmann 无法否认. Zermelo 的反问就是: 既然系统迟早会回到起点, $H$ 也必然回到起点附近, H 定理的"单调下降"是彻底的误导.</p>
+
+  <p>Boltzmann 的回应这次很漂亮: 他承认 Poincaré 回归是严格的, 但估算了回归时间. 对 1 cm$^3$ 空气在常温下 $N\sim 3\times 10^{19}$ 个分子, 回归时间粗估为相空间体积除以通量 $\sim e^{cN}$ 秒, $c$ 是 $O(1)$ 的常数. 取一个很保守的估计 $c=1$ (真实值更大), 回归时间至少是 $e^{3\times 10^{19}}\approx 10^{1.3\times 10^{19}}$ 秒. 宇宙年龄是 $1.4\times 10^{10}$ 年 $\approx 4\times 10^{17}$ 秒. 回归时间/宇宙年龄 $\approx 10^{10^{19}}$, 也就是 10 的"比地球上所有原子数还多"次方倍. 第二定律"不是严格成立"—— 它只是"在任何人类或宇宙学的时标下实际成立". 这一让步, 反而让热力学的地位更清晰了.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · H(t) 的真实演化与 Loschmidt 反向镜像</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>主面板展示 H(t) 的平滑下降曲线 (真实演化) 和一条从镜像初始条件出发向上的反向轨迹, 两条曲线关于一个"反转时刻" $t^*$ 对称. 视觉强调: 反向曲线在 Hamilton 方程下完全合法, 但对应的初始条件测度为零. 小面板展示 Ehrenfest urn 模型的概率分布, 说明"几乎所有"路径单调而极少数路径逆行的精确图景.</dd>
+      <dt>必含元素</dt><dd>主面板: 横轴时间 $t$ (单位任意), 纵轴 $H(t)$. 主曲线: 从 $H_0$ 高处单调光滑下降到平衡值 $H_\text{eq}$ (水平虚线), 指数趋近. 标注某个中间时刻 $t^*$. 从 $t^*$ 的 $H$ 值出发向上的镜像曲线, 回升到与原曲线在 $t=0$ 的相同高度, 画成虚线表示"反向构造"; 标注 "Loschmidt 镜像, 测度零". 主曲线旁标 "Stosszahlansatz 方向 → $dH/dt\leq 0$". 小面板 (右上角内嵌): Ehrenfest urn 模型, 横轴粒子数差 $m\in[-N,N]$, 纵轴停留概率 $P(m)$, 画一个钟形分布, 峰值在 $m=0$, 标出标准差 $\sigma\sim\sqrt N$; 小注: "从 $m=N$ 出发几乎总是流向 $m=0$ 附近".</dd>
+      <dt>几何精度</dt><dd>主曲线平滑单调递减, 衰减时间尺度约与平均自由程/热速度比值相当; 镜像曲线严格关于 $t^*$ 垂直翻转; Ehrenfest 钟形曲线为二项分布, 峰宽 $\sim\sqrt N$.</dd>
+      <dt>标签与公式</dt><dd>主面板: "$H(t) = \int f\log f\,d^3p$", "$dH/dt \leq 0$"; 镜像曲线旁: "Hamilton 方程允许, Loschmidt 1876"; 水平渐近线标 "平衡 $H_\text{eq}$"; 底部注: "Poincaré 回归时间 $\sim e^{N}\approx 10^{10^{19}}$ 秒 (1 mol)".</dd>
+      <dt>风格建议</dt><dd>白底, 主曲线实线深色, 镜像曲线虚线并淡化; Ehrenfest 小面板占主面板右上约 1/5 大小, 用更细的线; 标注文字用中英文混排的无衬线字体.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  实际 H(t) 单调下降 (实线), Loschmidt 通过反转动量构造的镜像演化 (虚线) 在 Hamilton 方程下同样合法但对应测度零的初始条件; 内嵌小图显示 Ehrenfest urn 模型的涨落分布, 诠释"几乎所有路径单调"的精确含义.</figcaption>
+  </figure>
+
+  <h2>三、deepdive: Stosszahlansatz 是时间方向的真正来源</h2>
+
+  <p>这是本节的核心. 我们要严格地指出: 从 Hamilton 方程 (时间对称) 推 H 定理 (时间不对称), 中间一定混进了一个不对称的假设. Loschmidt 的反对已经从拓扑上保证了这一点. 问题是: 具体是哪一步? 答案是 Boltzmann 在写下方程 $(1)$ 的那一瞬间 —— 准确说, 是在碰撞积分里把两体分布 $f_2(\mathbf p_1, \mathbf p_2; t)$ 写成单体乘积 $f(\mathbf p_1, t)\,f(\mathbf p_2, t)$ 的那一步.</p>
+
+  <p><strong>第一步: 严格起点是 BBGKY 层级, 不是 Boltzmann 方程.</strong> 从 Liouville 方程 (它对时间反演严格对称) 出发, 对所有粒子以外的自由度积分, 得到单体分布 $f_1(\mathbf p, t)$ 的演化方程. 这个方程的右侧含有两体分布 $f_2(\mathbf p_1, \mathbf p_2; t)$; 两体的方程含三体; 一直到 $N$ 体, 这就是 BBGKY 层级 (Born-Bogoliubov-Green-Kirkwood-Yvon). BBGKY 完全等价于 Liouville, 因此也完全时间对称. 单从 BBGKY 的第一条方程看不出任何不可逆性.</p>
+
+  <p><strong>第二步: 分子混沌假设.</strong> Boltzmann 在 1872 年做的关键一步是用一条假设把 $f_2$ 降到 $f_1$ 的乘积: 在 <em>碰撞发生之前的瞬间</em>, 两个即将发生碰撞的粒子的动量独立:</p>
+
+  <p>$$f_2(\mathbf p_1, \mathbf p_2; t)\bigl|_\text{碰撞前} = f_1(\mathbf p_1, t)\,f_1(\mathbf p_2, t).$$</p>
+
+  <p>这条假设德文叫 Stosszahlansatz ("碰撞数假定"), 英文通常译作 "molecular chaos" (分子混沌). 正是因为有了它, 方程 $(1)$ 才写成封闭的单体方程. 没有它, 就只能停留在 BBGKY, 没法前进.</p>
+
+  <p>关键的观察: 这条假设里有一个不起眼的限定词 —— "碰撞之前". 碰撞之后的两粒子动量之间, 通过刚刚发生的碰撞的运动学强烈关联, 它们绝对不独立. 如果你在一盘撞球刚碰撞的瞬间用雷达扫描, 你会看到两个球的速度高度相关 (动量、能量守恒、几何约束). 但两个球在碰撞前的瞬间, 它们来自气体的热运动, 各自独立采样自热平衡分布 —— 这是合理的物理图像.</p>
+
+  <p><strong>第三步: 为什么这一步把时间方向引入.</strong> 现在做一个思想实验. 把 Stosszahlansatz 的方向反过来: 假设 <em>碰撞之后</em> 两粒子独立 $f_2|_\text{碰撞后} = f_1 f_1$, 而 <em>碰撞之前</em> 带有运动学关联. 把这个替代假设代入 BBGKY 第一条方程, 重新做 H 定理的证明, 会得到什么?</p>
+
+  <p>由于时间反演对称, 这个替换本身等价于把原 Boltzmann 方程里时间方向反转. 原方程 $(1)$ 变成</p>
+
+  <p>$$\frac{\partial f_1}{\partial t} = \int d\Omega\,|\mathbf v_1-\mathbf v_2|\,\sigma\,\bigl[f_1 f_2 - f_1' f_2'\bigr]\cdots$$</p>
+
+  <p>重新做 $dH/dt$ 的证明, 每一步都对称地重复一遍, 符号反号: 得到 $dH/dt\geq 0$. 也就是说, <em>反号的 Stosszahlansatz 给出一条反向的 H 定理 —— $H$ 永不下降</em>.</p>
+
+  <p>这正是 Loschmidt 反对的精确力学形式. Hamilton 动力学容纳两种可能: (i) 碰撞前独立 / 碰撞后相关 → $H$ 下降; (ii) 碰撞后独立 / 碰撞前相关 → $H$ 上升. 这两种可能都是合法的 Hamilton 演化. 哪一个实现, 取决于初始条件. Boltzmann 选了 (i), 因为他想描述从"制备态"开始的趋于平衡的过程 —— 在制备初始态时人把粒子放到容器里, 它们在第一次碰撞之前还没来得及互相关联, 所以初始时刻的 $f_2$ 就是 $f_1 f_1$. 之后每一步碰撞都产生碰撞后的关联, 而下一次碰撞之前这些关联被长程气体流散掉, 重新近似独立. 这是一个"制备 → 平衡"方向上合理的粗粒化假设.</p>
+
+  <p><strong>第四步: 真正的一般性陈述.</strong> 把整件事讲清楚: <em>Stosszahlansatz 是一个不对称的假设, 它选定了时间方向; H 定理的证明只是把这个方向显式地表现成了 $dH/dt\leq 0$.</em> 不存在"从纯 Hamilton 方程推出第二定律"这件事 —— Boltzmann 自己在和 Loschmidt、Zermelo 的往复辩论中, 到 1890 年代末已经非常清楚这一点. 他的"统计解释" (几乎所有初始条件都趋于平衡) 把这件事说成了概率, 但概率本身并不打破时间对称 —— 真正打破对称的是"我们从宏观制备态开始, 它的微观关联尚未建立"这个物理事实. Stosszahlansatz 是这一事实的数学编码.</p>
+
+  <p>这也解释了为什么现代统计力学 (Lanford 定理, 1975) 严格地只证明了 Boltzmann 方程在"稀薄气体极限 + 碰撞前独立初态 + 短时间" 的条件下成立. 没有这些初始条件, 就没有 H 定理. 第二定律由此不是一条关于力学的定理, 而是一条关于"合理初始态"的定理 —— 我们所在的宇宙从一个低熵初态开始, 这个事实被编码进了 Stosszahlansatz 的方向选择.</p>
+
+  <p><strong>第五步: cliché 结案.</strong> "Newton 方程可逆, 为什么热力学不可逆?" 这句常被挥手带过的困惑, 现在有了精确答案: Newton 方程确实可逆, Boltzmann 方程却不可逆, 因为后者在推导中引入了 Stosszahlansatz —— 一条只在时间正向合理的独立性假设. 第二定律的"方向"就是 Stosszahlansatz 的方向. 不是方程比方程更神秘, 而是方程 $(1)$ 比 Newton 方程多了一块不对称的信息.</p>
+
+  <h2>四、极限、数字与历史</h2>
+
+  <p><strong>小 N 极限: 可逆性的赤裸展示.</strong> 当系统粒子数 $N$ 小到几十量级, Poincaré 回归时间变得可观察, H 定理的"严格单调"就彻底失效. Ehrenfest 夫妇 1907 年设计了一个小模型把这件事讲得一清二楚: 两只瓮 A、B, 编号 $1, 2, \ldots, N$ 的小球随机放在两只瓮里; 每一步从 $1$ 到 $N$ 中随机抽一个编号, 把对应的小球从所在瓮换到另一只瓮. 定义 $H(t) = $ 瓮 A 内的小球数. 初始全在 A, $H_0 = N$. 平衡是 $H_\text{eq} = N/2$.</p>
+
+  <p>在 $N$ 大时 $H(t)$ 近似指数下降到 $N/2$ 并在 $\sqrt{N}$ 宽度内涨落. 但对 $N = 20$, 模拟会看到: 大部分时间 $H$ 在 $10$ 附近, 但每隔 $\sim 2^{20}/\binom{20}{10}\approx 5.7\times 10^3$ 步, $H$ 会自发回到 $H=20$ 附近一次 —— 这就是 Poincaré 回归! 取更极端的 $N=4$ 的例子, 回归周期短到几十步, "熵增"与"熵减" 交替出现, 第二定律的"单调性"彻底瓦解. 这是对"H 定理只在热力学极限 + 合理初始态 + 短时间"的极限检验 —— Ehrenfest urn 在 $N\to\infty$ 下严格重现 H 定理, 在 $N$ 小时直接显示 Loschmidt/Zermelo 反对的数值版本.</p>
+
+  <p><strong>H 的衰减时间代数.</strong> 对 1 atm、室温 ($T=300$ K) 空气, 分子数密度 $n\approx 2.7\times 10^{25}$ m$^{-3}$, 热速度 $\bar v = \sqrt{8k_BT/\pi m}\approx 470$ m/s (以 N$_2$ 为例), 分子碰撞截面 $\sigma\sim \pi(3\text{ Å})^2 = 2.8\times 10^{-19}$ m$^2$. 平均碰撞频率</p>
+  <p>$$\nu_\text{coll} = n\sigma\bar v\sim 2.7\times 10^{25}\times 2.8\times 10^{-19}\times 470\approx 3.6\times 10^{9}\text{ s}^{-1}.$$</p>
+  <p>$H$ 到平衡的衰减时间约是 $1/\nu_\text{coll}\sim 3\times 10^{-10}$ s = 0.3 ns. 这就是热水为什么以"秒"而不是"年"为时标趋于热平衡的分子级原因, 每个分子每纳秒碰撞几次, 每次碰撞都把初始关联"搅"到更均匀.</p>
+
+  <p><strong>Poincaré 回归数字.</strong> 上面已算过: 1 mol 气体 $N = 6\times 10^{23}$, 回归时间 $\sim e^N\sim 10^{2.6\times 10^{23}}$ 秒. 作为参照, 宇宙年龄 $\approx 10^{17.6}$ 秒, 质子半衰期 (理论下限) $\gtrsim 10^{41}$ 秒. 热力学回归时间比任何已知的物理时标大到"类型上不同" —— 它是幂塔 (tetration) 而不是普通指数. 即使宇宙重演 $10^{10^{20}}$ 次, 也不足以让 1 mol 气体见到一次 Poincaré 回归. 这就是 Boltzmann 对 Zermelo 的回答: 回归严格存在, 但从不可能观察到; 第二定律作为实用断言在任何物理时标下都严格成立.</p>
+
+  <p><strong>历史人物与年代.</strong> 这场争论是热力学奠基史上最精彩的章节之一. Ludwig <strong>Boltzmann</strong> 1872 年在 Sitzungsberichte der Kaiserlichen Akademie 发表 H 定理的论文 (那时他 28 岁, 在格拉茨). 1876 年 Josef <strong>Loschmidt</strong> (维也纳大学, 以测定 Avogadro 常数闻名) 提出时间反演反对, Boltzmann 在 1877 年用"统计加权"的方式回应, 同一年他写下 $S = k\log W$ 的原始表述. 1896 年 Ernst <strong>Zermelo</strong> (柏林, 22 岁的年轻学者) 根据 Poincaré 1890 年的回归定理再次挑战. Boltzmann 与 Zermelo 在 Annalen der Physik 上来回笔战两三回合, 基本确立了现代对这个问题的理解: H 定理是关于"几乎所有"初始条件的概率陈述, 不是关于每条轨迹的力学定理. Paul 和 Tatyana <strong>Ehrenfest</strong> 1907 年在 Leiden 给出了 urn 模型, 把 "几乎所有" 这个词变成了每个学生都能模拟的概率图像. 最后, 1975 年 Oscar <strong>Lanford</strong> 给出 Boltzmann 方程从 BBGKY 严格导出的现代版本, 明确了它只在稀薄气体 (Boltzmann-Grad) 极限和有限时间内成立 —— 第二定律的"纯力学"证明至今仍然没有.</p>
+
+  <p>Boltzmann 个人命运也值得一提. 这场二十多年的争论让他长期处于知识界的孤立之中 —— Mach、Ostwald 等"唯能论"学者根本不承认原子存在, 认为 H 定理是无稽之谈. 1906 年 9 月, Boltzmann 在意大利 Duino 度假时自尽. 一年后 (1907), 佩兰在法国通过布朗运动实测 Avogadro 常数, 原子论最终被主流接受. 今天, Boltzmann 的墓碑上刻着 $S = k\log W$.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>H 定理不是第二定律的"力学证明", 而是一条"带假设的定理": Stosszahlansatz 把时间方向悄悄输入了 Boltzmann 方程, 于是推出来的不可逆性不是新信息, 只是假设的展开. Loschmidt 指出 Hamilton 方程允许反向轨迹, Zermelo 指出 Poincaré 回归严格存在; Boltzmann 的回答是"几乎所有初始条件 + 非观察时标", 这两条共同支撑了现代对第二定律的理解. 回归时间 $10^{10^{19}}$ 秒让"严格可逆性"与"实用不可逆性"之间的鸿沟变得具体可数. 下一节进入更精细的非平衡领域 —— Onsager 的涨落-耗散定理会把这套统计视角从宏观单调推到涨落的两点关联, 给出"平衡态怎么记住所有非平衡信息"的另一种回答.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="21-boltzmann-eq.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="23-fdt.html">下一节 →</a>
+</nav>
+
+</body>
+</html>
