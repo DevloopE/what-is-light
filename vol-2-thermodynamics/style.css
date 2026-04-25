@@ -410,6 +410,22 @@ mjx-container { max-width: 100%; }
  * volume index page (.toc) — archive-style layout
  * ----------------------------------------------------------------- */
 
+.toc .breadcrumb {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 1.4rem;
+  color: var(--muted);
+}
+.toc .breadcrumb a {
+  color: var(--muted);
+  border-bottom: none;
+  transition: color 0.15s ease;
+}
+.toc .breadcrumb a:hover {
+  color: var(--accent);
+}
+
 .toc .chapter-header {
   text-align: left;
   margin-bottom: 2rem;
