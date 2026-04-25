@@ -66,20 +66,7 @@
 
   <p>所以 "普通函数" 是 "分布" 的特殊情形. 分布是<em>更宽</em>的家庭. 这就解释了 "广义函数" 这个译名 — generalized function — 它推广了函数的概念.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · $\delta$ 函数作为高斯序列的极限</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>$\delta$ 函数作为窄高斯序列的极限 (序列收敛意义下)</dd>
-      <dt>必含元素</dt><dd>四条高斯曲线 $\sigma=1,0.5,0.1,0.01$, 越窄越高, 全部归一化为单位积分; 极限处用一根从 $x=0$ 处指向 $+\infty$ 的垂直箭头标 "$\delta(x)$"; 旁边画 $\delta'(x)$ 为带 "双瓣" 的极限 — 一个偶极子结构 (一正一负紧贴的两个尖峰)</dd>
-      <dt>几何精度</dt><dd>每条高斯曲线下的面积均为 $1$ (高度 $\propto 1/\sigma$, 半宽 $\propto\sigma$); 极限箭头位于 $x=0$</dd>
-      <dt>标签与公式</dt><dd>$\delta(x) = \lim_{\sigma\to 0}\dfrac{1}{\sigma\sqrt{2\pi}}e^{-x^2/2\sigma^2}$; $\langle\delta,\phi\rangle = \phi(0)$; 旁注 $\delta'$: $\langle\delta',\phi\rangle = -\phi'(0)$</dd>
-      <dt>风格建议</dt><dd>白底, 黑色坐标轴, 几条高斯曲线用同色不同灰阶, 极限箭头醒目, 偶极子结构画在一个独立子图里</dd>
-    </dl>
-  </div>
-  <figcaption>图 1 &nbsp; 把 $\delta$ 看成 "越窄越高、积分始终为一的高斯序列" 的形式极限. 严格地说, 极限对象不是函数而是分布 — 它只对配对 $\langle\delta,\phi\rangle$ 给出有限值 $\phi(0)$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/25.svg" alt="δ 函数作为高斯序列的极限" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1 &nbsp; 把 $\delta$ 看成 "越窄越高、积分始终为一的高斯序列" 的形式极限. 严格地说, 极限对象不是函数而是分布 — 它只对配对 $\langle\delta,\phi\rangle$ 给出有限值 $\phi(0)$.</figcaption></figure>
 
   <h2>三、分布的微分: 为什么 Heaviside 阶跃的导数是 $\delta$</h2>
 

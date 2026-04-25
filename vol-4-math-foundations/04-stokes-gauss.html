@@ -56,20 +56,7 @@
 
   <p>所以 Green 不是独立定理, 它是 Stokes 在 $\mathbb R^2$ 的特例. 这种"高维定理把低维定理包进去"的层级关系, 暗示着背后还有一个统一. 在第二十节我们会看到, 它们其实都是流形上的广义 Stokes 定理 $\int_M \mathrm d\omega = \int_{\partial M}\omega$ 的具体写法 —— 只是把 0-form, 1-form, 2-form, 3-form 各取一个分量, 就分别写成牛顿-莱布尼茨、Green、Stokes、Gauss.</p>
 
-<figure class="diagram-placeholder">
-<div class="placeholder-box">
-  <span class="tag">TikZ 待渲染</span>
-  <h4>图 1 · 散度定理与 Stokes 定理的几何</h4>
-  <dl class="tikz-req">
-    <dt>主题</dt><dd>体积-边界 与 曲面-边界 两组对偶图示, 上下并列</dd>
-    <dt>必含元素</dt><dd>上图: 一个三维体积 $V$ (近椭球或方块) 与其边界曲面 $\partial V$, 体积内若干向量场箭头由内指外, 边界上密集的法向通量箭头, 在右上侧标注 $\int_V \nabla\cdot\mathbf F\,\mathrm dV = \oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$. 下图: 一片碟形或鞍形二维曲面 $S$ 与其闭合边界曲线 $\partial S$, 曲面上若干代表 $\nabla\times\mathbf F$ 的法向小箭头, 边界曲线上箭头表示线积分方向, 旁边小图示意右手规则, 标注 $\int_S(\nabla\times\mathbf F)\cdot\mathrm d\mathbf A = \oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$.</dd>
-    <dt>几何精度</dt><dd>体积/边界关系正确, 法向方向取外法向; 曲面与边界的右手规则方向一致</dd>
-    <dt>标签与公式</dt><dd>两条主要定理 (1)(2) 各以小卡片置于对应图旁</dd>
-    <dt>风格建议</dt><dd>白底, 体积用半透明灰色填充, 边界用粗线; 向量箭头用统一的细线带头</dd>
-  </dl>
-</div>
-<figcaption>图 1  Gauss 散度定理与 Stokes 定理的对偶几何: "体积内的散度" = "边界上的通量"; "曲面上的旋度" = "边界上的环路". 把区域切碎、内部边界相消, 只剩下外边界的贡献.</figcaption>
-</figure>
+<figure class="diagram"><img src="build/04.svg" alt="散度定理与 Stokes 定理的几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Gauss 散度定理与 Stokes 定理的对偶几何: "体积内的散度" = "边界上的通量"; "曲面上的旋度" = "边界上的环路". 把区域切碎、内部边界相消, 只剩下外边界的贡献.</figcaption></figure>
 
   <h2>三、推 Coulomb: 一个具体应用</h2>
 

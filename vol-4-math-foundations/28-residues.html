@@ -45,20 +45,7 @@
   $$f(z_0) = \frac{1}{2\pi i}\oint_C \frac{f(z)}{z - z_0}\,\mathrm{d}z. \tag{3}$$
   这条公式有点惊人: 一个解析函数在区域内任一点 $z_0$ 的值, 完全由它在<strong>边界</strong>上的取值决定 — 区域内部"什么也没说"的部分, 实际上被边界全权代表. 这正是解析函数的"刚性"在最直白的表达. 卷三 03《Feynman 传播子》里, 知道传播子在能量轴上的奇点结构, 我们就能完整重构它在整个复平面上的形状; 卷一 13《相速群速》里, Kramers-Kronig 关系 — 介电函数实部由虚部的全谱决定, 反之亦然 — 也是 Cauchy 公式在物理因果性约束下的直接产物.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 复平面上的围道与留数</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>复平面上的闭合围道积分 + 留数 + Feynman $i\epsilon$ 处方</dd>
-      <dt>必含元素</dt><dd>复平面 (实轴 Re $z$ 横向 + 虚轴 Im $z$ 纵向); 三个极点用 $\times$ 标记 (一个在上半平面, 一个在下半平面, 一个在原点附近); 一条闭合的逆时针围道 (沿实轴一段 + 上半平面大半圆) 包围上半平面那一个极点; 围道箭头标方向 (逆时针为正); 公式 $\oint f\,\mathrm{d}z = 2\pi i\sum\mathrm{Res}(f, z_k)$ 标在围道旁; 右侧子图标 Feynman $i\epsilon$ 处方: 实轴上 $\pm E$ 两个极点, 一个被微移到上半平面 ($-E + i\epsilon$), 一个被微移到下半平面 ($+E - i\epsilon$)</dd>
-      <dt>几何/示意精度</dt><dd>围道方向逆时针 = 正方向; 极点位置与文中第三节例 1 一致 (主例的极点在 $z = i$); 上半平面大半圆封口足够大显示 $R \to \infty$ 极限</dd>
-      <dt>标签与公式</dt><dd>$\oint f\,\mathrm{d}z = 2\pi i\sum\mathrm{Res}$; $\mathrm{Res}(f, z_0) = a_{-1}$; $\frac{1}{z^2 + 1}$ 标在围道附近; 右侧 $i\epsilon$ 子图标 $\omega^2 - E^2 + i\epsilon$ 与极点位置 $\omega = \pm(E - i\epsilon')$</dd>
-      <dt>风格建议</dt><dd>白底, 极点用红色 $\times$, 围道箭头红色, 实轴一段被半圆补足用深棕色, 公式黑色; 整体偏教科书风</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左图: 复平面上的逆时针围道沿实轴 $[-R, R]$ 加一道上半圆封口, 围住单个极点 $z = i$, 留数定理给出 $2\pi i\cdot\mathrm{Res} = \pi$. 右图: Feynman $i\epsilon$ 处方把实轴上的两个极点 $\pm E$ 微移成"正频在下半平面、负频在上半平面", 决定围道封口的方向</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/28.svg" alt="复平面上的围道与留数" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左图: 复平面上的逆时针围道沿实轴 $[-R, R]$ 加一道上半圆封口, 围住单个极点 $z = i$, 留数定理给出 $2\pi i\cdot\mathrm{Res} = \pi$. 右图: Feynman $i\epsilon$ 处方把实轴上的两个极点 $\pm E$ 微移成"正频在下半平面、负频在上半平面", 决定围道封口的方向</figcaption></figure>
 
   <h2>三、Laurent 展开、留数与留数定理</h2>
   <p>解析函数在<strong>圆盘</strong>上有 Taylor 展开 $f(z) = \sum_{n=0}^\infty a_n(z - z_0)^n$ — 这是 Cauchy 公式的直接推论. 但物理上更常见的情形是: 函数有一个孤立奇点, 我们希望在<strong>环域</strong> $0 \lt  |z - z_0| \lt  R$ 上展开. 推广方法是 <strong>Laurent 展开</strong>: 在环域 $r \lt  |z - z_0| \lt  R$ 上, 解析函数可写成

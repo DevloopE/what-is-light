@@ -34,20 +34,7 @@
   <p>这件事的离奇之处在于: 我们从离散的、平的、对称但棱角分明的分布出发, 经过一次次"独立求和", 居然得到了同一种连续光滑的极限形状. 把任何<em>有限方差</em>的分布换上来 —— 二项的、几何的、Laplace 的 —— 都得到同一个极限. 这个普适性 (universality) 的根源, 就是 CLT.</p>
   <p>同样的画面在物理里更直接: 把一个布朗粒子放在水里, 它的位移是 $N$ 次水分子碰撞导致的"踢"的累加. 每一次踢的方向和强度可看作独立同分布的随机变量 (近似). 经过 $N$ 步, 总位移 $X(t) = \sum_{i=1}^N \xi_i$ 的分布在 $N$ 大时呈 Gauss 形, 方差正比于 $N$ (即正比于时间 $t$), 这正是 Einstein 1905 年的结果 $\langle x^2\rangle = 2Dt$. 这里 $D$ 是扩散系数. CLT 不是数学家的洁癖 —— 它是 Brown 运动呈高斯的<strong>原因</strong>.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 求和分布在 n 增加时趋于 Gauss</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>$n$ 次掷骰子总和的分布如何随 $n$ 增加而越来越像 Gauss 钟形</dd>
-      <dt>必含元素</dt><dd>四个并排或田字格排列的直方图: (a) $n=1$ 单次掷骰, 6 个等高的柱子, 平均 3.5; (b) $n=5$ 五次求和, 取值 5–30, 形状已对称且呈现钟形雏形; (c) $n=30$ 三十次求和, 取值约 30–180, 钟形已非常清楚, 中心 105; (d) $n=1000$ 一千次求和, 取值约 950–4050, 中心 3500, 标准差约 54, 形状几乎与 Gauss 重合; 每幅直方图旁边以红色虚线叠一条对应均值 $n\mu$、方差 $n\sigma^2$ 的 Gauss 拟合曲线; 第四幅图右下角加注 $S_n \to N(0,1)$</dd>
-      <dt>几何/示意精度</dt><dd>每幅直方图的柱子高度按精确二项 (或多项) 卷积的概率画, 不是手画; Gauss 拟合曲线高度按相应均值方差; 横纵坐标的相对尺度让钟形看得清楚</dd>
-      <dt>标签与公式</dt><dd>每幅图标 $n=1,\,5,\,30,\,1000$; 总图标题 "$\frac{S_n - n\mu}{\sigma\sqrt n} \to N(0,1)$"; 在 (a) 下注 $\mu=3.5,\ \sigma^2=35/12$</dd>
-      <dt>风格建议</dt><dd>白底, 直方图柱子用浅蓝色填充加深蓝边, Gauss 拟合曲线深红色虚线, 网格淡灰色, 整体偏教科书风, 字号清楚</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  $n$ 次掷骰子总和的概率分布: 从 $n=1$ 的均匀分布出发, $n$ 越大形状越靠近钟形 Gauss 曲线; CLT 说这一极限是普适的.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/27.svg" alt="求和分布在 n 增加时趋于 Gauss" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $n$ 次掷骰子总和的概率分布: 从 $n=1$ 的均匀分布出发, $n$ 越大形状越靠近钟形 Gauss 曲线; CLT 说这一极限是普适的.</figcaption></figure>
 
   <h2>二、CLT 的精确表述: 弱收敛与标准化</h2>
   <p>要把"越来越像 Gauss"写成数学语句, 需要两件事: (i) 一种比较两个分布"是否接近"的方式, (ii) 因为求和的均值和方差都会发散 ($\mathbb E[S_n] = n\mu \to \infty$), 必须先做<em>标准化</em>, 把均值挪到 0、方差缩到 1, 再谈极限.</p>

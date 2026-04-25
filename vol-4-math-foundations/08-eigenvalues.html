@@ -39,20 +39,7 @@
 
   <p>"$v\ne 0$"这个限制不是装饰: 零向量被任何 $\lambda$ "本征"都成立, 那就什么也没说. 强行排除它, 才让本征值变成一个有内容的数.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 本征向量: 矩阵作用下方向不变的特殊向量</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>在二维平面上, 一个非对称矩阵 $A$ 作用于若干向量, 大部分方向被扭转, 极少数方向只被拉伸 — 这些就是本征向量.</dd>
-      <dt>必含元素</dt><dd>(a) 一张坐标网格的二维平面 $\mathbb R^2$; (b) 三到四个普通向量 (灰色细箭头) 与它们经 $A$ 作用后的像 (灰色虚线箭头, 方向已改变); (c) 两个特殊向量 (红色加粗箭头) 沿 $A$ 的两个本征方向, 与它们经 $A$ 作用后的像 (同方向但长度拉伸为 $\lambda_1$ 倍, $\lambda_2$ 倍, 仍然加粗红色); (d) 一个角落里写着矩阵 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$.</dd>
-      <dt>几何精度</dt><dd>本征向量 $v_1=(1,0)$ 与 $v_2=(1,1)$ 经 $A$ 作用方向严格不变, 长度严格拉成 $\lambda_1=2,\lambda_2=3$ 倍; 普通向量的像方向必须明显与原向量不同.</dd>
-      <dt>标签与公式</dt><dd>红色本征向量旁标 $\lambda_1=2$ 与 $\lambda_2=3$; 主公式 $A v=\lambda v$ 居中放在图上方.</dd>
-      <dt>风格建议</dt><dd>白底, 浅灰网格, 普通向量灰色细线, 本征向量红色加粗, 像箭头用同色虚线, 标签用衬线字体.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  矩阵 $A$ 作用于各向量: 大多数方向被扭转, 红色本征方向只被拉伸 $\lambda$ 倍.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/08.svg" alt="本征向量: 矩阵作用下方向不变的特殊向量" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  矩阵 $A$ 作用于各向量: 大多数方向被扭转, 红色本征方向只被拉伸 $\lambda$ 倍.</figcaption></figure>
 
   <h2>二、特征多项式: 找本征值的代数武器</h2>
 

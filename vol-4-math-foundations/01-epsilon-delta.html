@@ -61,20 +61,7 @@
 
   <p>这一翻译的精妙在于: "$\Delta t \to 0$" 不是某种神秘的动力学过程, 而是<strong>一个量化承诺</strong> — 我承诺, 给定任意精度 $\varepsilon$, 存在一个时间窗 $\delta$, 在这个窗内差商和 $4$ 的偏差都比 $\varepsilon$ 小. 这就是有限的、可以一行一行验证的命题.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · ε-δ 的 "挑战者-防守者" 几何</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>函数 $f(x)$ 在 $a$ 附近的图像; 围绕 $L$ 的水平 $\varepsilon$-带; 围绕 $a$ 的竖直 $\delta$-区间; 函数曲线在 $\delta$-区间内被压在 $\varepsilon$-带里 — 即 "挑战者出 $\varepsilon$, 防守者用 $\delta$ 锁住"</dd>
-      <dt>必含元素</dt><dd>函数曲线 $y=f(x)$ (黑色); 横轴标 $a-\delta$, $a$, $a+\delta$ 与一条 $\delta$-区间; 纵轴标 $L-\varepsilon$, $L$, $L+\varepsilon$ 与一条 $\varepsilon$-带; 两条带的交集形成一个矩形, 函数曲线在 $\delta$-内严格落入此矩形</dd>
-      <dt>几何/示意精度</dt><dd>$\varepsilon$ 给定 $\to$ $\delta$ 选取 $\to$ 包含关系 (函数图被夹) 必须在视觉上明显; 矩形不能让曲线穿出</dd>
-      <dt>标签与公式</dt><dd>底部公式 $0\lt |x-a|\lt \delta \implies |f(x)-L|\lt \varepsilon$; 标注 "挑战者: 任给 $\varepsilon$" "防守者: 找到 $\delta$"</dd>
-      <dt>风格建议</dt><dd>白底; 函数曲线纯黑; $\varepsilon$-带浅黄填充, $\delta$-区间浅蓝填充, 交集矩形虚线框出</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  ε-δ 定义的几何含义 — 给定 $\varepsilon$ 带, 总能找到 $\delta$ 区间使函数图被锁在带内</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/01.svg" alt="ε-δ 的挑战者-防守者几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  ε-δ 定义的几何含义 — 给定 $\varepsilon$ 带, 总能找到 $\delta$ 区间使函数图被锁在带内</figcaption></figure>
 
   <h2>三、用定义干活: 三个具体演练</h2>
 

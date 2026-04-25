@@ -74,20 +74,7 @@
 
   <p>这件事的拓扑解释: $SU(2)$ 单连通 ($\pi_1(S^3)=0$), 而 $SO(3)$ 不单连通 ($\pi_1=\mathbb Z_2$). 一般来说, 如果 $G$ 是 Lie 群, $\tilde G$ 是它的<em>普遍覆盖</em> (universal cover, 单连通且覆盖 $G$), 那么 $\pi_1(G)$ 就是 $\tilde G\to G$ 的核. 这里 $\tilde G=SU(2)$, $G=SO(3)$, 核 $=\mathbb Z_2=\pi_1(SO(3))$. 一切自洽.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · $SU(2)$ 双重覆盖 $SO(3)$ 的几何</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>从拓扑上展示 $SU(2)\cong S^3$ 双重覆盖 $SO(3)\cong\mathbb R\mathbb P^3$ 的关系, 并把 360° vs 720° 的电子自旋负号对应到 $SU(2)$ 的两个不同元素 $\pm I$</dd>
-      <dt>必含元素</dt><dd>上方一个完整的球面 (代表 $S^3$, 即 $SU(2)$, 标注"单连通"), 球面上沿任意大圆画一条从北极出发的路径, 中点标 $-I$, 终点 (绕一圈回北极) 标 $+I$; 下方一个稍小的球 (代表 $SO(3)\cong\mathbb R\mathbb P^3$, 标注 "$\pi_1=\mathbb Z_2$"); 一支从上方到下方的箭头标"2-to-1, $U,-U\mapsto R$"; 上球右侧另列一个电子自旋图: 一支箭头与一个旋转角刻度, 标 "$\theta=2\pi$: $\ket{\psi}\to-\ket{\psi}$" 与 "$\theta=4\pi$: $\ket{\psi}\to+\ket{\psi}$"</dd>
-      <dt>几何/示意精度</dt><dd>双重覆盖关系正确: $SO(3)$ 一点对应 $SU(2)$ 上的两个对径点; 路径从 $\theta=0$ 沿 $S^3$ 走到 $\theta=2\pi$ 这条"弧"必须明显标出穿过 $-I$ 这一点, 而不是回到 $+I$</dd>
-      <dt>标签与公式</dt><dd>上球: $U(\theta)=\exp(-i\theta\,\hat{\mathbf n}\!\cdot\!\boldsymbol\sigma/2)$, $U(2\pi)=-I$, $U(4\pi)=+I$; 下球: $\pi_1(SO(3))=\mathbb Z_2$; 中间箭头: $SU(2)/\mathbb Z_2\cong SO(3)$</dd>
-      <dt>风格建议</dt><dd>白底, 上球与下球用不同色调 (上球冷蓝代表"复"流形, 下球暖灰代表"实"旋转), 画风仿 Penrose 的《通往实在之路》</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  $SU(2)$ 走一圈到 $-I$ — 与 $SO(3)$ 上的同一点对应, 但波函数已经多了一个负号; 再走一圈才回到真正的 $+I$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/12.svg" alt="SU(2) 双重覆盖 SO(3) 的几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $SU(2)$ 走一圈到 $-I$ — 与 $SO(3)$ 上的同一点对应, 但波函数已经多了一个负号; 再走一圈才回到真正的 $+I$.</figcaption></figure>
 
   <h2>四、具体计算: $\theta=2\pi$ 时为什么 $U=-I$</h2>
 

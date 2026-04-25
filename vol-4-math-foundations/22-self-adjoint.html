@@ -132,20 +132,7 @@
 
   <p>因为 $|e^{-i\lambda t}|=1$ 而 $\sigma(A)\subseteq\mathbb R$, $U(t)$ 是有界的, 而且 $U(t)^*U(t)=\int|e^{-i\lambda t}|^2\,\mathrm dE_\lambda=\int 1\,\mathrm dE_\lambda=I$ — <em>幺正</em>. 反过来 Stone 定理说: 任何强连续单参数幺正群 $U(t)=e^{-iAt}$ 的生成元 $A$ 必然自伴. 所以"自伴算符"和"幺正演化"是同一件事的两面, QM 中 $U(t)=e^{-i\hat Ht/\hbar}$ 保持总概率 $\norm{\psi(t)}^2=1$ 的全部根据就在这里.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 自伴算符的谱在实轴上, 离散与连续部分</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>把谱 $\sigma(A)\subseteq\mathbb R$ 按"离散点 + 连续区间"画在数轴上, 同时示意谱测度 $E_\lambda$ 是一个非递减的投影族</dd>
-      <dt>必含元素</dt><dd>(a) 一条水平实数轴 $\mathbb R$, 标 $0$ 与刻度; (b) 数轴上方画几个离散点, 对齐谐振子能级 $\hbar\omega/2,\,3\hbar\omega/2,\,5\hbar\omega/2,\,\ldots$, 画成等间距小圆点; (c) 数轴下方画一段半实线 $[0,\infty)$ 作为自由粒子谱 $E\ge 0$, 用粗带或阴影标出"连续区间"; (d) 在数轴边给一个台阶函数 $E_\lambda$ 示意图: 在每个离散本征值处跳跃, 在连续段平滑增长, 整体非递减从 $0$ 升到 $I$; (e) 上方挂一句公式 $A=\int_{\sigma(A)}\lambda\,\mathrm dE_\lambda$</dd>
-      <dt>几何/示意精度</dt><dd>谱严格落在实轴上 (不偏离); 离散点等距; 连续段从原点向右无界; $E_\lambda$ 的台阶高度与跳跃位置一致</dd>
-      <dt>标签与公式</dt><dd>$\mathbb R$, $\sigma(A)\subseteq\mathbb R$, $\hbar\omega(n+\tfrac12)$, $E\ge 0$, $E_\lambda$, $A=\int\lambda\,\mathrm dE_\lambda$</dd>
-      <dt>风格建议</dt><dd>白底; 离散点用实心黑圆, 连续段用渐变蓝带, $E_\lambda$ 台阶曲线用红色; 数轴细黑线; 公式置于图右上角</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  自伴算符的谱在实轴上, 可以由"离散点谱 (谐振子能级) + 连续谱 (自由粒子能量)"组成. 谱测度 $E_\lambda$ 是一个非递减的正交投影族, 谱定理 (5) 把算符写成对它的积分.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/22.svg" alt="自伴算符的谱在实轴上, 离散与连续部分" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  自伴算符的谱在实轴上, 可以由"离散点谱 (谐振子能级) + 连续谱 (自由粒子能量)"组成. 谱测度 $E_\lambda$ 是一个非递减的正交投影族, 谱定理 (5) 把算符写成对它的积分.</figcaption></figure>
 
   <h2>五、物理回响, 历史与开放问题</h2>
 

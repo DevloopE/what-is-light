@@ -62,20 +62,7 @@
 
   <p>(还有一个细节: 解 $\psi$ 的唯一性要求方程的齐次解 $L\psi_0=0$ 在所选边界条件下平凡, 否则 $G$ 不是唯一的, 不同 $G$ 相差一个齐次解. 边界条件不同, $G$ 不同 — 这一点等下我们专门讨论.)</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Green 函数: 点源响应与一般源的卷积构造</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>Green 函数概念图 — 一个点源的响应 (Green 函数本身) 通过线性叠加给出任意源的解</dd>
-      <dt>必含元素</dt><dd>左半: 一个标着 $\delta(x-x')$ 的尖峰符号 (一根加粗向上箭头), 下方标 $LG=\delta$; 中部: 一团从该点向外辐散的"散布"图样 (用浅色等高线或扇形射线表示) 代表 $G(x,x')$; 右半: 一条任意形状的源分布 $f(x')$ (画成连续起伏的曲线), 经过一个写着 $\int G(x,x')f(x')\mathrm dx'$ 的大箭头映到右下方的响应 $\psi(x)$ (另一条曲线); 中间用一个写着"线性叠加"的双向箭头连接左部 (单点源) 与右部 (任意源)</dd>
-      <dt>几何/示意精度</dt><dd>概念性图示, 不需精确到坐标; 但点源应清晰对齐于响应区中心, 散布图样应明显衰减以暗示典型 Green 函数的远距衰减性</dd>
-      <dt>标签与公式</dt><dd>$LG=\delta$, $\psi=G*f$, $\delta(x-x')$, $G(x,x')$, $f(x')$, $\psi(x)$</dd>
-      <dt>风格建议</dt><dd>白底, 点源用粗黑箭头, $G$ 的散布用浅蓝渐变, 任意源 $f$ 与解 $\psi$ 用深色平滑曲线, 卷积箭头用暖色 (棕红) 突出</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Green 函数 $G(x,x')$ 是单位点源在 $x'$ 处激起的响应; 任意源 $f$ 通过卷积 $\psi(x)=\int G(x,x')f(x')\mathrm dx'$ 给出非齐次方程 $L\psi=f$ 的解.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/29.svg" alt="Green 函数: 点源响应与一般源的卷积构造" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Green 函数 $G(x,x')$ 是单位点源在 $x'$ 处激起的响应; 任意源 $f$ 通过卷积 $\psi(x)=\int G(x,x')f(x')\mathrm dx'$ 给出非齐次方程 $L\psi=f$ 的解.</figcaption></figure>
 
   <h2>二、第一个范例: 三维 Laplace 与 Coulomb 势</h2>
 

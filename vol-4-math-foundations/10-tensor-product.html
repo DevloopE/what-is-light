@@ -105,20 +105,7 @@
 
   <p>由 $\alpha\delta = 0$ 得 $\alpha=0$ 或 $\delta=0$; 但 $\alpha=0$ 与 $\alpha\gamma = 1/\sqrt 2 \neq 0$ 矛盾, $\delta=0$ 与 $\beta\delta = 1/\sqrt 2 \neq 0$ 也矛盾. 所以无解 — $|\Phi^+\rangle$ 不可分, 是缠绕态.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 两 qubit 复合空间: 可分态对角线 vs Bell 态对角线</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>两个 qubit 的张量积空间 $\mathbb C^2\otimes\mathbb C^2 = \mathbb C^4$ 的 4 个基态以 2×2 网格示意, 并叠加可分态与缠绕态的代表向量</dd>
-      <dt>必含元素</dt><dd>(1) 一个 2×2 网格, 行标 A 的基 $|0\rangle_A, |1\rangle_A$, 列标 B 的基 $|0\rangle_B, |1\rangle_B$; 4 个格子分别标注 $|00\rangle, |01\rangle, |10\rangle, |11\rangle$. (2) 一个可分态例 $\frac{1}{2}(|0\rangle+|1\rangle)\otimes(|0\rangle+|1\rangle) = \frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)$, 用浅色覆盖四格 (因子化的均匀分布). (3) Bell 态 $|\Phi^+\rangle = \frac{1}{\sqrt 2}(|00\rangle+|11\rangle)$, 用深色加粗仅覆盖主对角 $|00\rangle, |11\rangle$, 两格之间用一条粗对角线连起来表示 "相干叠加但仅对角"</dd>
-      <dt>几何/示意精度</dt><dd>4 维空间用 2D 网格示意, 不要求几何投影; 每格大小相等; 对角线只是示意 "01 反相关" 的相干; 旁边用箭头标 "无法因子化"</dd>
-      <dt>标签与公式</dt><dd>顶部公式 $\dim(V\otimes W) = \dim V \cdot \dim W$; 左下角写可分态例; 右下角写 $|\Phi^+\rangle = \frac{1}{\sqrt 2}(|00\rangle+|11\rangle)$ 并标 "Schmidt rank = 2 ⇒ entangled"</dd>
-      <dt>风格建议</dt><dd>白底, 黑色细线网格, 可分态用浅蓝填充, Bell 态用深红色对角线; 简洁, 无装饰</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  两个 qubit 的 4 维张量积空间, 对比可分态 (4 格均匀) 与 Bell 态 (仅对角两格相干).</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/10.svg" alt="两 qubit 复合空间: 可分态 vs Bell 态" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  两个 qubit 的 4 维张量积空间, 对比可分态 (4 格均匀) 与 Bell 态 (仅对角两格相干).</figcaption></figure>
 
   <p>从代数上更深一层看, 缠绕的判据与<strong>系数矩阵的秩</strong>有关. 写 $|\Psi\rangle = \sum_{ij} c_{ij} |i\rangle_A|j\rangle_B$ 时, 系数构成矩阵 $C = (c_{ij})$. 可分意味着 $c_{ij} = a_i b_j$, 这等价于 $C$ 是秩 1 矩阵. Bell 态 $|\Phi^+\rangle$ 的系数矩阵</p>
 

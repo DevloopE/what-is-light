@@ -98,20 +98,7 @@
 
   <p>这正是 (2). 所谓 "谱分解", 就是把算符按它自己的本征基重新写一遍. 它不是新内容, 是一种坐标选择 — 但是<strong>选得最好的</strong>那种坐标.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 矩阵的对角化 — 旋转到本征基</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一个一般的 $2\times 2$ 矩阵 $A$ (例如代表 "斜的拉伸") 通过相似变换 $P^{-1}AP=D$ 被旋转到本征基; 在本征基里它只剩对角的两个伸缩 $\lambda_1, \lambda_2$; 几何上是 "把视角换到本征轴上看, 矩阵的作用就只是沿轴拉伸"; 旁边写出 $A=\sum\lambda_n |n\rangle\langle n|$ 表示同一个算符的另一种写法</dd>
-      <dt>必含元素</dt><dd>左侧: 标准基 $e_1, e_2$ (黑色实箭头) 与单位圆经 $A$ 作用后变形成的椭圆 (深红); 椭圆的长轴/短轴方向用虚线标出, 即本征向量 $|1\rangle, |2\rangle$ 的方向; 中间: 一个标 $P^{-1}$ 的箭头与一个标 $P$ 的箭头, 表示 "先旋到本征基"; 右侧: 在本征基下椭圆变为水平/竖直的对称椭圆, 矩阵作用就是 $\mathrm{diag}(\lambda_1,\lambda_2)$ 的纯拉伸; 右下: $A=PDP^{-1}$ 与 $A=\sum_n \lambda_n |n\rangle\langle n|$ 两行公式</dd>
-      <dt>几何/示意精度</dt><dd>椭圆变形必须正确反映两个本征值的相对大小 $\lambda_1\gt \lambda_2\gt 0$ (例: $\lambda_1=2, \lambda_2=0.5$); 本征向量方向必须正交 (因为示意厄米情形); 两个箭头方向一致 (左 $\to$ 右是 $P^{-1}$, 右 $\to$ 左是 $P$)</dd>
-      <dt>标签与公式</dt><dd>左图标 "标准基", 右图标 "本征基"; $|1\rangle, |2\rangle$ 在两图都标; 中间箭头标 $P^{-1}$, $P$; 底部公式 $A=PDP^{-1}=\sum_n \lambda_n|n\rangle\langle n|$</dd>
-      <dt>风格建议</dt><dd>白底; 标准基黑色, 本征向量深红; 椭圆浅黄填充; 公式排在图下方居中</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  对角化的几何 — 相似变换 $P^{-1}AP=D$ 等于把视角换到本征基, 让算符只剩对角伸缩</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/09.svg" alt="矩阵的对角化 — 旋转到本征基" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  对角化的几何 — 相似变换 $P^{-1}AP=D$ 等于把视角换到本征基, 让算符只剩对角伸缩</figcaption></figure>
 
   <h2>四、算符函数演算: 怎么把 $\exp$ 套到一个矩阵上</h2>
 

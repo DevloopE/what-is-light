@@ -32,20 +32,7 @@
   $$\int K\,dA = \pi/2. \tag{1}$$</p>
   <p>为了在一般流形上把这个游戏玩起来, 我们需要一个数学对象, 它告诉我们"无穷小地把一个向量沿哪个方向搬一步是什么样子". 这就是仿射联络.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 球面上的平行运输与规范类比</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>$S^2$ 上的平行运输不闭合, 与 EM 规范联络沿闭合 loop 的相位累积</dd>
-      <dt>必含元素</dt><dd>左侧: 一个 3D 球面, 标出赤道、北极、两条相距 90° 的经线; 一条闭合三角形路径 (赤道一段 + 经线一段 + 另一经线一段); 起点处一支红色向量, 终点处同一支向量已转 90°; 沿路径的中间状态用淡红色虚线箭头标出. 右侧: 一个二维 EM 类比 — 一个圆形 loop, 中央一段竖直磁场柱 (Aharonov-Bohm 螺线管), 沿 loop 标 $A_\mu \, dx^\mu$ 的累积箭头, 在 loop 终点处累积出相位 $\phi = e\Phi/\hbar$</dd>
-      <dt>几何精度</dt><dd>球面三角形为标准 $\pi/2$-$\pi/2$-$\pi/2$ 三角形, 内角和等于 $3\pi/2$, 角缺等于平行运输的旋转角 $\pi/2$</dd>
-      <dt>标签与公式</dt><dd>$\nabla_X Y$ (球面附近), $\Gamma^k_{ij}$ (经纬切向量交点), $D_\mu = \partial_\mu + igA_\mu$ (右侧 loop 上), $F_{\mu\nu}$ (磁通柱中央), 起终点角度差 $\Delta\theta = \pi/2$</dd>
-      <dt>风格建议</dt><dd>白底, 球面 3D 浅灰渐变, 经纬细黑实线, 路径加粗深棕实线, 向量箭头红色, EM 类比 loop 蓝色, 磁通柱橙色阴影; 整体偏教科书风</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左侧球面闭合三角形上, 一支红色向量沿三段大圆"平行运输", 回到起点已转 90 度; 右侧把同一思想搬到规范丛上, AB 螺线管之外路径绕一圈给波函数留下相位 $\phi = e\Phi/\hbar$</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/19.svg" alt="球面上的平行运输与规范类比" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左侧球面闭合三角形上, 一支红色向量沿三段大圆"平行运输", 回到起点已转 90 度; 右侧把同一思想搬到规范丛上, AB 螺线管之外路径绕一圈给波函数留下相位 $\phi = e\Phi/\hbar$</figcaption></figure>
 
   <h2>二、仿射联络与 Christoffel 符号</h2>
   <p>在流形 $M$ 上, 设 $X, Y$ 是光滑向量场. 一个<strong>仿射联络</strong>是一个映射

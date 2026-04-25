@@ -1,0 +1,49 @@
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usetikzlibrary{arrows.meta,calc}
+
+\begin{document}
+\begin{tikzpicture}[>=Latex,
+  rung/.style={draw, fill=gray!10, minimum width=4.6cm, minimum height=0.7cm, font=\small, rounded corners=2pt},
+  vrung/.style={draw, fill=blue!10, minimum width=4.0cm, minimum height=0.7cm, font=\small, rounded corners=2pt}]
+
+  % LEFT: R^3 ladder
+  \begin{scope}[xshift=0cm]
+    \node[font=\bfseries] at (0, 4.5) {$\mathbb R^3$ ladder};
+
+    \node[rung] (z) at (0, 3.5)  {$\Omega^0$ : functions $f$};
+    \node[rung] (o) at (0, 2.0)  {$\Omega^1$ : 1-forms $\sim$ vector field};
+    \node[rung] (t) at (0, 0.5)  {$\Omega^2$ : 2-forms $\sim$ vector field};
+    \node[rung] (h) at (0, -1.0) {$\Omega^3$ : 3-forms $\sim$ function};
+
+    \draw[->, very thick] (z) -- node[right=2pt, font=\small]{$\mathrm d\;\;=\;\;\mathrm{grad}$} (o);
+    \draw[->, very thick] (o) -- node[right=2pt, font=\small]{$\mathrm d\;\;=\;\;\mathrm{curl}$} (t);
+    \draw[->, very thick] (t) -- node[right=2pt, font=\small]{$\mathrm d\;\;=\;\;\mathrm{div}$} (h);
+
+    % d^2 = 0 marker
+    \node[font=\bfseries, red!80!black, anchor=east] at (-2.55, 1.25) {$\mathrm d^2 = 0$};
+    \node[font=\scriptsize, red!80!black, anchor=east, align=right] at (-2.55, 0.85)
+      {curl $\circ$ grad $= 0$\\[-2pt]div $\circ$ curl $= 0$};
+  \end{scope}
+
+  % Vertical separator
+  \draw[thick, gray] (4.5, 4.5) -- (4.5, -2.0);
+
+  % RIGHT: 4D Maxwell
+  \begin{scope}[xshift=8cm]
+    \node[font=\bfseries] at (0, 4.5) {4D Maxwell};
+
+    \node[vrung] (a) at (0, 3.5)  {$A$\quad (1-form)};
+    \node[vrung] (f) at (0, 2.0)  {$F = \mathrm d A$\quad (2-form)};
+    \node[vrung] (b) at (0, 0.5)  {$\mathrm d F = 0$\quad (Bianchi)};
+    \node[vrung] (j) at (0, -1.0) {$\mathrm d \star F = J$\quad (sources)};
+
+    \draw[->, very thick] (a) -- (f);
+    \draw[->, very thick] (f) -- (b);
+    \draw[->, very thick] (b) -- (j);
+
+    \node[font=\scriptsize, anchor=north, align=center] at (0, -1.7)
+      {Maxwell $=$ two lines};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

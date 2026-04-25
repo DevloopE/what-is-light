@@ -68,20 +68,7 @@
 
   <p>光滑性要求保证: 不论你站在哪张图里看 $M$, 你看到的微积分对象都是相同的 — 因为换图的规则本身光滑. 一个函数 $f: M \to \mathbb R$ 称为光滑, 当且仅当 $f \circ \phi_\alpha^{-1}: \phi_\alpha(U_\alpha) \to \mathbb R$ 对每一张图都光滑. 这定义独立于图册的选择.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · $S^2$ 的两-chart 立体投影图册</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>球面 $S^2$ 用两个立体投影 chart 覆盖, 直观展示"局部欧氏 + 重叠相容"</dd>
-      <dt>必含元素</dt><dd>(a) 一个 3D 球; (b) 北极 $N$ 上方一点向赤道平面投影线 (北极投影 $\phi_N$): 球去掉北极映到下方一张 $\mathbb R^2$; (c) 南极 $S$ 下方一点向赤道平面投影线 (南极投影 $\phi_S$): 球去掉南极映到另一张 $\mathbb R^2$; (d) 重叠区 = $S^2 \setminus \{N, S\}$ (除两极外整个球), 在两张 $\mathbb R^2$ 上各对应一个去掉原点的开集; (e) 一条带箭头的曲线表示 transition function $\phi_S \circ \phi_N^{-1}: \mathbb R^2 \setminus \{0\} \to \mathbb R^2 \setminus \{0\}$, $u \mapsto u/|u|^2$</dd>
-      <dt>几何精度</dt><dd>两 chart 共同覆盖 $S^2$; transition function 在 $\mathbb R^2 \setminus \{0\}$ 光滑</dd>
-      <dt>标签与公式</dt><dd>$\phi_N: S^2\setminus\{N\} \to \mathbb R^2$; $\phi_S: S^2\setminus\{S\} \to \mathbb R^2$; $\phi_S \circ \phi_N^{-1}(u) = u/|u|^2$</dd>
-      <dt>风格建议</dt><dd>白底, 球用淡灰描边 + 经纬线, 投影线用细虚线, 两张 $\mathbb R^2$ 用方框示意, transition function 用带箭头弧线连接</dd>
-    </dl>
-  </div>
-  <figcaption>图 1   $S^2$ 用两个立体投影 chart 覆盖. 这是"流形"概念最经典的具体例子.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/16.svg" alt="S^2 的两-chart 立体投影图册" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1   $S^2$ 用两个立体投影 chart 覆盖. 这是"流形"概念最经典的具体例子.</figcaption></figure>
 
   <h2>三、具体例子: $S^2$ 的两-chart 立体投影</h2>
 

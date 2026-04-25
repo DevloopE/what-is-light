@@ -1,0 +1,63 @@
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usetikzlibrary{arrows.meta,calc}
+
+\begin{document}
+\begin{tikzpicture}[>=Latex, scale=1.0]
+
+  % LEFT — separable
+  \begin{scope}[xshift=0cm]
+    \node[font=\bfseries, anchor=south, align=center] at (1.5, 3.3)
+      {Separable:\\ $\tfrac{1}{2}(|0\rangle\!+\!|1\rangle)\otimes(|0\rangle\!+\!|1\rangle)$};
+
+    \fill[blue!22] (0,0) rectangle (3,3);
+
+    \draw[thick] (0,0) rectangle (3,3);
+    \draw[thick] (1.5,0) -- (1.5,3);
+    \draw[thick] (0,1.5) -- (3,1.5);
+
+    \node at (0.75, 0.75) {$|00\rangle$};
+    \node at (2.25, 0.75) {$|01\rangle$};
+    \node at (0.75, 2.25) {$|10\rangle$};
+    \node at (2.25, 2.25) {$|11\rangle$};
+
+    \node[anchor=east, font=\small] at (-0.05, 2.25) {$|1\rangle_A$};
+    \node[anchor=east, font=\small] at (-0.05, 0.75) {$|0\rangle_A$};
+    \node[anchor=south, font=\small] at (0.75, -0.5) {$|0\rangle_B$};
+    \node[anchor=south, font=\small] at (2.25, -0.5) {$|1\rangle_B$};
+
+    \node[font=\small, anchor=north] at (1.5, -0.95) {Schmidt rank $=1$};
+  \end{scope}
+
+  % RIGHT — Bell
+  \begin{scope}[xshift=6cm]
+    \node[font=\bfseries, anchor=south, align=center] at (1.5, 3.3)
+      {Bell state:\\ $|\Phi^+\rangle=\tfrac{1}{\sqrt2}(|00\rangle+|11\rangle)$};
+
+    \fill[red!28] (0,0) rectangle (1.5,1.5);
+    \fill[red!28] (1.5,1.5) rectangle (3,3);
+
+    \draw[thick] (0,0) rectangle (3,3);
+    \draw[thick] (1.5,0) -- (1.5,3);
+    \draw[thick] (0,1.5) -- (3,1.5);
+
+    \draw[ultra thick, red!70!black] (0.75, 0.75) -- (2.25, 2.25);
+
+    \node[font=\bfseries] at (0.75, 0.75) {$|00\rangle$};
+    \node[gray!60] at (2.25, 0.75) {$|01\rangle$};
+    \node[gray!60] at (0.75, 2.25) {$|10\rangle$};
+    \node[font=\bfseries] at (2.25, 2.25) {$|11\rangle$};
+
+    \node[anchor=east, font=\small] at (-0.05, 2.25) {$|1\rangle_A$};
+    \node[anchor=east, font=\small] at (-0.05, 0.75) {$|0\rangle_A$};
+    \node[anchor=south, font=\small] at (0.75, -0.5) {$|0\rangle_B$};
+    \node[anchor=south, font=\small] at (2.25, -0.5) {$|1\rangle_B$};
+
+    \node[font=\small, anchor=north] at (1.5, -0.95) {Schmidt rank $=2 \Rightarrow$ entangled};
+  \end{scope}
+
+  % top equation
+  \node[font=\small, anchor=south] at (4.5, 4.4)
+    {$\dim(V\otimes W)=\dim V\cdot\dim W=2\cdot 2=4$};
+\end{tikzpicture}
+\end{document}

@@ -29,7 +29,9 @@ DevCollection/                       (GitHub repo, 部署在 GitHub Pages)
 
 ---
 
-## 1 · 三种最常见的任务
+## 1 · 两种最常见的任务
+
+> **流水线哲学**: 每篇文章的 TikZ 图与正文在**同一个 agent 任务里一次性完成**. 最终 HTML 不应包含任何 `<figure class="diagram-placeholder">` — 文章交付时图就是真实的 `<img src="build/NN.svg">`. 不再分 "先写正文留占位符 → 后渲染图替换" 两阶段; 两步合并到一个 agent 里, 减少协调成本与中间状态.
 
 ### Task A — 新增一卷 (Volume N)
 
@@ -41,20 +43,23 @@ DevCollection/                       (GitHub repo, 部署在 GitHub Pages)
 6. Pick **all article topics + cliché concept + diagram brief** in one go (Vol-1 used 40, Vols 2/3 used 30 — 5 articles per part is a clean unit).
 7. Dispatch agents (see Task B).
 
-### Task B — 写文章 (single agent dispatch)
+### Task B — 写文章 + 渲染图 (single agent dispatch, end-to-end)
 
-Each agent gets a **topic brief**. Keep prompts thin (~600-1000 chars) by referencing the SPEC.md. Template:
+Each agent does the **full** pipeline for one article: write the prose, write the `.tex`, compile with tectonic, convert to SVG, embed real `<img>` tag. No placeholder ever ships. Template:
 
 ```
-Read C:\...\vol-N-{slug}\SPEC.md, then write ONE article per spec.
+Read C:\...\vol-N-{slug}\SPEC.md, then deliver ONE article + its rendered diagram per spec.
 
 === 文件 ===
-输出: C:\...\vol-N-{slug}\NN-slug.html
+输出 HTML: C:\...\vol-N-{slug}\NN-slug.html
+输出 TeX : C:\...\vol-N-{slug}\build\NN.tex
+输出 PDF : C:\...\vol-N-{slug}\build\NN.pdf  (tectonic 产生)
+输出 SVG : C:\...\vol-N-{slug}\build\NN.svg  (pdf_to_svg.py 产生)
 
 === 位置 ===
 N=N/TOTAL, PART=第 X 部分 · 名称
-PREV=PP-prev.html (or "disabled" for 首篇 — use <a class="disabled" href="#">)
-NEXT=MM-next.html (or "disabled" for 末篇)
+PREV=PP-prev.html (或 "disabled" 首篇 → <a class="disabled" href="#">)
+NEXT=MM-next.html (或 "disabled" 末篇)
 BOOK_NAME = 第 N 卷 · 名称
 
 === 标题 ===
@@ -75,36 +80,25 @@ SUBTITLE: —— 本节用的物理
 - 主题: ...
 - 必含元素: (逐条)
 - 几何精度: ...
-- 标签与公式: ...
+- 标签与公式: ... (英文 + LaTeX 数学, 禁中文以免 xeCJK)
 - 风格建议: ...
 
-写 3000-4000 字, 4+ 节, ≥2 编号公式, ≥2 数字估算, ≥1 极限, ≥1 历史, 恰 1 占位符. 报 < 30 字.
-```
-
-**Dispatch in parallel.** 30 in one message has been tested and works. 40 also works. 60 in one message is risky; split if possible.
-
-### Task C — 渲染 TikZ 图 (single agent dispatch)
-
-Each article comes with a `<figure class="diagram-placeholder">` block listing TikZ requirements. To turn it into a real diagram:
-
-```
-Render TikZ diagram for article NN-slug.
-
-1. Read C:\...\vol-N-{slug}\NN-slug.html; extract <figure class="diagram-placeholder"> tikz-req fields, H4 title, figcaption.
-2. Write C:\...\vol-N-{slug}\build\NN.tex:
+=== 步骤 ===
+1) 写 NN-slug.html (3000-4000 字, 4+ 节, ≥2 编号公式, ≥2 数字估算, ≥1 极限, ≥1 历史). 在最自然的位置直接放真实的 <figure class="diagram"><img src="build/NN.svg" alt="..." style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>...</figcaption></figure> — 不要写占位符.
+2) 写 build/NN.tex:
    \documentclass[tikz,border=8pt]{standalone}
    \usepackage{amsmath,amssymb}
    \usetikzlibrary{arrows.meta,calc,decorations.pathreplacing,patterns,shapes.geometric,positioning,shadings,plotmarks,decorations.markings,decorations.pathmorphing}
-   English+math labels only (NO Chinese — avoids xeCJK).
-3. Compile: "C:/Users/Devlo/bin/tectonic.exe" -X compile "...build/NN.tex" --outdir "...build". Retry on errors (read tectonic log, fix syntax).
-4. Convert PDF→SVG: python "C:/Users/Devlo/Desktop/book/pdf_to_svg.py" "...build/NN.pdf" "...build/NN.svg"
-5. Edit article: replace ENTIRE <figure class="diagram-placeholder">...</figure> verbatim with:
-<figure class="diagram"><img src="build/NN.svg" alt="[H4 TITLE]" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>[ORIG FIGCAPTION]</figcaption></figure>
+   英文 + LaTeX 数学标签, 禁中文.
+3) 编译: "C:/Users/Devlo/bin/tectonic.exe" -X compile "C:/Users/Devlo/Desktop/book/light-book/vol-N-{slug}/build/NN.tex" --outdir "C:/Users/Devlo/Desktop/book/light-book/vol-N-{slug}/build"
+   失败 → 读 stderr, 修语法 (常见: \slashed→\not, 算术超 16383pt, library 漏声明), 重试.
+4) PDF → SVG: python "C:/Users/Devlo/Desktop/book/pdf_to_svg.py" "C:/Users/Devlo/Desktop/book/light-book/vol-N-{slug}/build/NN.pdf" "C:/Users/Devlo/Desktop/book/light-book/vol-N-{slug}/build/NN.svg"
+5) 验收: 确认 HTML 里 <img src="build/NN.svg"> 已 OK, build/NN.svg 文件存在.
 
-Report < 30 words.
+报 < 30 字.
 ```
 
-Dispatch all article rendering agents in parallel. Each takes 1-3 min (first compile per machine pulls the TeX bundle).
+**并发**: 30 个 agent 并行已验证 OK, 40 也行, 60 不稳; 必要时分批. 每 agent 1–4 min (含 tectonic 首次拉包).
 
 ---
 
@@ -160,19 +154,9 @@ PDF→SVG 脚本: `pdf_to_svg.py` (在 `C:/Users/Devlo/Desktop/book/`). 简单, 
   <p>...</p>
   <p>$$ \text{编号公式 (1)} $$</p>
 
-  <!-- 图占位符放最自然的位置 -->
-  <figure class="diagram-placeholder">
-    <div class="placeholder-box">
-      <span class="tag">TikZ 待渲染</span>
-      <h4>图 1 · ...</h4>
-      <dl class="tikz-req">
-        <dt>主题</dt><dd>...</dd>
-        <dt>必含元素</dt><dd>...</dd>
-        <dt>几何精度</dt><dd>...</dd>
-        <dt>标签与公式</dt><dd>...</dd>
-        <dt>风格建议</dt><dd>...</dd>
-      </dl>
-    </div>
+  <!-- 图直接是已渲染的 SVG, 没有占位符阶段 -->
+  <figure class="diagram">
+    <img src="build/NN.svg" alt="..." style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;">
     <figcaption>图 1  ...</figcaption>
   </figure>
 
@@ -286,16 +270,13 @@ URL: `https://devloope.github.io/DevCollection/`. Pages CDN 缓存约 1-2 分钟
 
 ```
 T+0      mkdir vol-N + 写 SPEC.md + index.html
-T+0:01   parallel dispatch N agents (每篇文章一个)
-T+0:05   agents 陆续返回 (1-3 min/篇)
-T+0:10   git add + commit + push (文章版)
-T+0:11   parallel dispatch N agents (每幅图一个)
-T+0:15   agents 陆续返回 (TeX 编译 + SVG)
-T+0:25   git add + commit + push (图版)
-T+0:27   GitHub Pages 重建完成, 访问 vol-N TOC 链接验收
+T+0:01   parallel dispatch N agents (每篇文章一个, 文+图一气呵成)
+T+0:05   agents 陆续返回 (1-4 min/篇, 含 tectonic 编译)
+T+0:15   git add + commit + push
+T+0:17   GitHub Pages 重建完成, 访问 vol-N TOC 链接验收
 ```
 
-如果某篇/某图编译失败, 单独修, 单 agent 重跑.
+如果某篇文章/图编译失败, 单独修, 单 agent 重跑同一份 brief.
 
 ---
 

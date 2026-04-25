@@ -74,20 +74,7 @@
 
   <p>测地线让我们知道"什么是直", 但还不能直接告诉我们"流形是不是平". 关键的判据是: 把一个向量沿一个闭回路<strong>平行运输 (parallel transport)</strong> 回到原点, 它若回到自身, 流形是平的; 若多转了一个角度, 流形就有曲率, 多转的角度正好与回路面积成正比, 比例系数就是 Riemann 曲率张量.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 球面上的测地线 (大圆) 与正曲率三角形</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>球面 $S^2$ 上的测地线 = 大圆, 三段大圆围成的三角形内角和大于 $180^\circ$, 正曲率 $K=1/R^2$ 的几何含义</dd>
-      <dt>必含元素</dt><dd>一颗三维球 (半径 $R$, 微透视); 一条横向大圆 (赤道) 与一条纵向大圆 (子午线) 标为"测地线"; 由两段子午线 + 一段赤道围成的"球面三角形"用阴影或半透明色填充, 三个顶点 (其中一个是北极, 另两个在赤道上分别夹一个直角); 一个箭头沿这个三角形回路平行运输, 从同一点出发又回到同一点但相对原方向转了一个角度 (用淡色虚线画出该角度差)</dd>
-      <dt>几何精度</dt><dd>大圆位于球心所在平面, 三角形顶角和因正曲率而严格大于 $180^\circ$ (北极顶角随赤道弧长变化, 如 $90^\circ+90^\circ+90^\circ=270^\circ$); 平行运输沿三角形回路的角偏差等于三角形面积乘以 Gauss 曲率</dd>
-      <dt>标签与公式</dt><dd>球面附 $\mathrm{d}s^2 = R^2(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2)$; 球内或球边附 Gauss 曲率 $K = 1/R^2$ (常数); 三角形旁附"内角和 $\gt  180^\circ$"; 平行运输回路旁附"$\Delta\Phi = K\cdot$面积"</dd>
-      <dt>风格建议</dt><dd>白底, 球用浅灰描边 + 淡渐变模拟 3D, 大圆用深色实线, 三角形阴影一种暖色, 平行运输箭头一种冷色, 标签与公式用浅灰矩形托底</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  球面上的大圆 (测地线) 与三段大圆围成的三角形 — 内角和大于 $180^\circ$ 是正曲率的可见后果.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/18.svg" alt="球面上的测地线与正曲率三角形" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  球面上的大圆 (测地线) 与三段大圆围成的三角形 — 内角和大于 $180^\circ$ 是正曲率的可见后果.</figcaption></figure>
 
   <p>具体定义如下. 在向量场之间, 我们有一个由联络 $\Gamma$ 给出的"协变导数" $\nabla_a$ — 它告诉你在曲线上"如何把一个向量送到下一点而不让它'扭'". <strong>Riemann 张量</strong> $R^a{}_{bcd}$ 由两个协变导数的不交换性定义:</p>
 

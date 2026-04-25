@@ -56,20 +56,7 @@
 
   <p>反向写一遍: 把 (2) 跟 (3) 等同起来, 我们就得到了 Gauss 散度定理 $\int_V\nabla\cdot\mathbf F\,\mathrm dV=\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$ 的<em>微分形式</em> — 整个 Gauss 定理只是说 (2) 中的极限, 在体积有限时也成立, 把"每点源密度"加起来等于"边界总通量".</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三种典型向量场: 散度、旋度、平流</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>用三栏并列展示三种典型向量场, 直观区分散度与旋度作为"几何标记"的不同含义</dd>
-      <dt>必含元素</dt><dd>左栏: 一个有正散度无旋度的场, 用从原点向外辐射的箭头 (类似点电荷电场), 在原点周围画一个小立方体表示流出体积 $V$; 中栏: 一个无散度有旋度的场, 用同心圆切向的环形箭头 (类似导线周围的磁场), 在中心画一个小回路 $\partial S$; 右栏: 一个无散度无旋度的平行流, 所有箭头同向同长. 每栏下方写出对应的极限式定义</dd>
-      <dt>几何/示意精度</dt><dd>左栏箭头长度应随 $1/r^2$ (或类似) 递减但仍向外; 中栏所有箭头切向, 长度可恒定或随 $1/r$ 衰减; 右栏箭头长度严格相同方向严格平行</dd>
-      <dt>标签与公式</dt><dd>左下: $\nabla\cdot\mathbf F=\lim_{V\to 0}\dfrac{1}{|V|}\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$; 中下: $\nabla\times\mathbf F=\lim_{A\to 0}\dfrac{1}{A}\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l\,\hat{\mathbf n}$; 右下: $\nabla\cdot\mathbf F=0,\ \nabla\times\mathbf F=0$</dd>
-      <dt>风格建议</dt><dd>白底, 三栏等宽, 三色分别用暖红 (源)、深蓝 (旋)、灰绿 (平流), 画图风格仿 Feynman Lectures 第二卷</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  散度看通量, 旋度看环量, 平行流两者皆零 — 这是把 $\nabla\cdot$ 与 $\nabla\times$ 几何化的最干净方式.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/03.svg" alt="三种典型向量场: 散度、旋度、平流" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  散度看通量, 旋度看环量, 平行流两者皆零 — 这是把 $\nabla\cdot$ 与 $\nabla\times$ 几何化的最干净方式.</figcaption></figure>
 
   <h2>三、旋度: 单位面积上的环流</h2>
 

@@ -56,20 +56,7 @@
 
   <p>如果 $f$ 是某个标量场 (有定义良好的函数 $f(\mathbf{x})$), 那么 $\mathrm{d}f$ 就被称作<strong>恰当形式</strong> (exact form), 它沿任何闭合路径的积分为零. 这意味着 $f$ 从 A 到 B 的变化只看两个端点, 跟走的路径无关. 所以我们才可以说"内能是状态函数". 而功 $\delta W=-p\,\mathrm{d}V$、热 $\delta Q$ 不是状态函数 — 它们是不恰当的 "皮拉夫" 形式 (Pfaffian form), 不能写成某个 $W$ 或 $Q$ 的全微分. 卷二里 Clausius 找出 $\delta Q/T=\mathrm{d}S$ — 一个不恰当形式乘以积分因子 $1/T$ 后变成恰当形式 — 这是熵作为状态函数的诞生.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · $(T,V)$ 平面上的两条路径与全微分的路径无关性</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>多元函数 $U(T,V)$ 沿不同路径从 A 到 B 积分得相同结果, 因 $\mathrm{d}U$ 是恰当形式</dd>
-      <dt>必含元素</dt><dd>$(T,V)$ 直角坐标平面; 起点 $A=(T_0,V_0)$, 终点 $B=(T_1,V_1)$; 路径 1 — 先沿等容线 $V=V_0$ 到 $(T_1,V_0)$ 再沿等温线 $T=T_1$ 到 $B$; 路径 2 — 先沿等温线 $T=T_0$ 到 $(T_0,V_1)$ 再沿等容线 $V=V_1$ 到 $B$; 偏导箭头 — 在 A 点画水平箭头标 $(\partial U/\partial V)_T$, 竖直箭头标 $(\partial U/\partial T)_V$</dd>
-      <dt>几何/示意精度</dt><dd>两条路径形成矩形, 强调"路径选择"; 等容线水平、等温线竖直, 与 $(T,V)$ 坐标轴平行</dd>
-      <dt>标签与公式</dt><dd>左下角标全微分公式 $\mathrm{d}U=(\partial U/\partial T)_V\mathrm{d}T+(\partial U/\partial V)_T\mathrm{d}V$; 右下角标 Schwarz 关系 $\partial_T\partial_V U=\partial_V\partial_T U$</dd>
-      <dt>风格建议</dt><dd>白底, 路径 1 用深红色实线, 路径 2 用深蓝色虚线, A、B 用空心圆, 偏导箭头细灰色</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  $(T,V)$ 平面上从 A 到 B 两条不同的"折线"路径. 因 $\mathrm{d}U$ 恰当, 两条路径上的 $\int\mathrm{d}U$ 相等</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/02.svg" alt="(T,V) 平面上的两条路径与全微分的路径无关性" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $(T,V)$ 平面上从 A 到 B 两条不同的"折线"路径. 因 $\mathrm{d}U$ 恰当, 两条路径上的 $\int\mathrm{d}U$ 相等</figcaption></figure>
 
   <h2>二·五、Schwarz 定理: 二阶偏导对易</h2>
 

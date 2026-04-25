@@ -67,20 +67,7 @@
 
   <h2>三、具体计算: 高斯函数的 Fourier 变换</h2>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 时域与频域: 高斯函数及其 Fourier 变换</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>同一个高斯, 在时域 (位置域) 与频域 (波数/动量域) 中的形状对照, 凸显 "宽度互逆" 与 Plancherel 范数守恒</dd>
-      <dt>必含元素</dt><dd>上图: 时域 $f(x)=e^{-x^2/(2\sigma^2)}$, 在 $x$ 轴上画出, 标出宽度 $\sigma$ (以半高全宽或一个 $\sigma$ 标记), 峰值在 $x=0$; 中间: 一个垂直双向箭头, 标 "Fourier $\mathcal F$"; 下图: 频域 $\hat f(k) = \sigma\sqrt{2\pi}\,e^{-\sigma^2 k^2/2}$, 在 $k$ 轴上画出, 标出宽度 $1/\sigma$, 峰值更高; 旁注 (右侧或下方文字框): "Plancherel: $\int|f|^2\,dx = \int|\hat f|^2\,dk/(2\pi)$" 与 "极限 $\sigma\to 0$: $f\to\delta(x)$, $\hat f\to 1$ (常数)"</dd>
-      <dt>几何/示意精度</dt><dd>两幅高斯严格对称、峰值在原点、宽度互逆 (上图越窄, 下图越宽); $\sigma$ 与 $1/\sigma$ 必须可视地呈现倒数关系 (例如: 上图 $\sigma=1$ 单位, 下图宽度即 1 单位; 或上图 $\sigma=2$, 下图宽度 $0.5$); 高度差异表明 $\hat f$ 在峰值处为 $\sigma\sqrt{2\pi}$, 与 $\sigma$ 成正比</dd>
-      <dt>标签与公式</dt><dd>上: $f(x) = e^{-x^2/(2\sigma^2)}$, 横轴 $x$, 标 $\sigma$; 下: $\hat f(k)=\sigma\sqrt{2\pi}\,e^{-\sigma^2 k^2/2}$, 横轴 $k$, 标 $1/\sigma$; 中间: $\mathcal F$; 公式: $\hat f(k) = \int f(x)e^{-ikx}dx$ 与 Plancherel 等式</dd>
-      <dt>风格建议</dt><dd>白底, 两幅图上下排列 (上为时域, 下为频域), 高斯曲线深蓝粗线, 宽度标记浅红虚线段 + 双向小箭头, 中间 Fourier 算符箭头黑色加粗, 旁注用浅灰文本框框起, 数学公式衬线体, 整体克制朴素</dd>
-    </dl>
-  </div>
-  <figcaption>图 1 &nbsp; 高斯函数在时域与频域中的对偶: 时域越窄 ($\sigma$ 小), 频域越宽 ($1/\sigma$ 大). Plancherel 让两边的"能量"相等. 极限 $\sigma\to 0$ 给出 $\delta$ 与常数 $1$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/24.svg" alt="时域与频域: 高斯函数及其 Fourier 变换" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1 &nbsp; 高斯函数在时域与频域中的对偶: 时域越窄 ($\sigma$ 小), 频域越宽 ($1/\sigma$ 大). Plancherel 让两边的"能量"相等. 极限 $\sigma\to 0$ 给出 $\delta$ 与常数 $1$.</figcaption></figure>
 
   <p>把抽象定义代到一个具体的、可计算到底的例子里. 取</p>
 

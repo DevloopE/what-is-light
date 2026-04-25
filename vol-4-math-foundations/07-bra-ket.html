@@ -109,20 +109,7 @@
 
   <p>当 $\ket\phi$ 是单位向量, $\ket\phi\bra\phi$ 就是到一维子空间 $\mathbb C\ket\phi$ 上的<strong>正交投影算符</strong>. 这小小一行三个符号同时调动了"向量"、"对偶向量"、"算符"三件事, 而且语法严整 — 可以连接, 可以求和, 可以放进迹里. 这种"线性代数标记法"就是 Dirac 给我们的礼物.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · ket、bra 与 Riesz 配对</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>ket $\ket\psi$ 是向量; bra $\bra\phi$ 是对偶泛函 (评价器); $\braket{\phi}{\psi}$ 是 Riesz 配对得到的数; $\ket\phi\bra\phi$ 是投影算符</dd>
-      <dt>必含元素</dt><dd>(a) 一个箭头标 $\ket\psi$ 表示空间中的向量; (b) 旁边一行/盒子标 $\bra\phi$ 表示一个 functional, 一个箭头从它指向 "$\to\mathbb C$"; (c) 中央用 $\braket{\phi}{\psi}\in\mathbb C$ 表示二者配对后得到的复数; (d) 下方画一条单位向量 $\ket\phi$ 与一个箭头 $\ket\psi$, 用虚线投影到 $\ket\phi$ 方向, 投影长度标 $\braket{\phi}{\psi}$, 整个操作框上写 $\ket\phi\bra\phi$</dd>
-      <dt>几何精度</dt><dd>对偶配对清晰, 两端区分明显: ket 用 → 表示, bra 用 [ ] 框表示; 投影示意图中夹角和投影长度可清楚读出</dd>
-      <dt>标签与公式</dt><dd>$\ket\psi$, $\bra\phi$, $\braket{\phi}{\psi}\in\mathbb C$, $\ket\phi\bra\phi$, $\hookrightarrow\mathbb C$</dd>
-      <dt>风格建议</dt><dd>白底; 黑色为主, 配对关系用一条蓝色细线连接, 投影部分用浅灰填色</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  ket 是向量, bra 是泛函, "括号" $\braket{\phi}{\psi}$ 是 Riesz 配对落地为数; 把顺序颠倒, $\ket\phi\bra\phi$ 就化身为投影算符.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/07.svg" alt="ket、bra 与 Riesz 配对" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  ket 是向量, bra 是泛函, "括号" $\braket{\phi}{\psi}$ 是 Riesz 配对落地为数; 把顺序颠倒, $\ket\phi\bra\phi$ 就化身为投影算符.</figcaption></figure>
 
   <h2>四、具体计算: 谐振子能态的正交完备</h2>
 

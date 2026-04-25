@@ -72,20 +72,7 @@
 
   <p>这就是<strong>Euler-Lagrange 方程</strong> (EL 方程). 它把"在无穷维空间求极值"这个原本难以下手的问题, 化为一条标准的二阶常微分方程. 注意它的结构: 偏导 $\partial L/\partial y'$ 再被 $\mathrm d/\mathrm dx$ 求一次, 总阶数是 2 ——所以 EL 通常是关于 $y(x)$ 的二阶 ODE, 边界条件 $y(a)=y_A, y(b)=y_B$ 恰好给出唯一解. Euler 1744 年的《Methodus inveniendi lineas curvas...》第一次写下它的几何版本; Lagrange 1755 年才用上面这种简洁的"加扰动取微商"程序, 给它一个干净的解析推导 —— 那年他 19 岁.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 变分原理: 从扰动族中挑出 EL 极值曲线</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>变分原理 —— 多条邻近路径中只有一条让 $J[y]$ 取极值</dd>
-      <dt>必含元素</dt><dd>起点 $A=(a,y_A)$ 与终点 $B=(b,y_B)$; 多条满足端点条件的邻近曲线 $y_*(x)+\epsilon\eta(x)$ (浅灰); 极值曲线 $y_*(x)$ (黑色加粗); 公式标注 $\delta J=0$ 与 EL 方程</dd>
-      <dt>几何精度</dt><dd>所有邻近曲线在 $A,B$ 端点严格重合 (体现 $\eta(a)=\eta(b)=0$), 中段相互错开; 极值曲线居于这些扰动的"中心"</dd>
-      <dt>标签与公式</dt><dd>左下方注 $J[y]=\int_a^b L\,\mathrm dx$, 中央书 $\delta J=0$, 右下方注 EL 方程 $\partial_y L-\tfrac{\mathrm d}{\mathrm dx}\partial_{y'}L=0$</dd>
-      <dt>风格建议</dt><dd>白底; 极值曲线黑粗实线 (1.2pt); 邻近曲线浅灰 (0.4pt) 三到五条; 端点小黑圆点; 公式正衬线</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  在所有满足端点条件的曲线中, 只有让第一变分 $\delta J$ 为零的那一条 (黑色加粗) 是泛函的稳定点 —— 它由 Euler-Lagrange 方程刻画.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/05.svg" alt="变分原理: 从扰动族中挑出 EL 极值曲线" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  在所有满足端点条件的曲线中, 只有让第一变分 $\delta J$ 为零的那一条 (黑色加粗) 是泛函的稳定点 —— 它由 Euler-Lagrange 方程刻画.</figcaption></figure>
 
   <h2>三、最速降线: cycloid 的现身</h2>
 

@@ -98,20 +98,7 @@
 
   <p>把 $\mathrm{d}^2=0$ 看成一个生产力公式: 凡是能写成 $\mathrm d\alpha$ 的 form (叫<strong>恰当 form</strong>), 它的 $\mathrm d$ 自动为零 (叫<strong>闭 form</strong>). 反过来, "闭的是不是都恰当"是个非平凡的问题 — 它的答案就是 de Rham 上同调, 留到第四节讲.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 微分形式阶梯与 4D Maxwell 紧凑形式</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>$\mathbb R^3$ 中外微分阶梯与 grad/curl/div 的对应; 旁边并列 4D 时空电磁场紧凑式</dd>
-      <dt>必含元素</dt><dd>左半部分纵向阶梯: 顶端 $\Omega^0=$ 函数 $f$, 向下箭头标 $\mathrm{d}$, 落到 $\Omega^1$ "1-form $\sim$ 矢量场" (注 $\mathrm df \leftrightarrow \mathrm{grad}$); 再向下 $\mathrm{d}$ 到 $\Omega^2$ "2-form $\overset{\star}{\sim}$ 矢量场" (注 $\leftrightarrow\mathrm{curl}$); 再向下 $\mathrm{d}$ 到 $\Omega^3$ "3-form $\sim$ 函数" (注 $\leftrightarrow\mathrm{div}$); 标 $\mathrm{d}^2=0$ 横跨左侧, 注 "$\mathrm{curl}\circ\mathrm{grad}=0$, $\mathrm{div}\circ\mathrm{curl}=0$". 右半: 4D 时空里 $A$ 是 1-form, $F=\mathrm dA$ 是 2-form, $\mathrm dF=0$ (Bianchi), $\mathrm d\star F=J$ (源)</dd>
-      <dt>几何精度</dt><dd>阶梯结构纵向清晰对齐; 阶之间垂直箭头等距; 左右两部分用一条竖线分隔</dd>
-      <dt>标签与公式</dt><dd>$\mathrm{d}^2=0$; $F=\mathrm dA$; $\mathrm dF=0$; $\mathrm d\star F=J$; 阶梯每层标注 $\Omega^k$ 与对应几何对象</dd>
-      <dt>风格建议</dt><dd>白底, 黑字, 阶梯纵向, 唯一强调色用于 $\mathrm{d}^2=0$ 这条核心横线</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  外微分阶梯与 4D Maxwell — 同一个 $\mathrm{d}$ 在不同阶上化身为 grad、curl、div, 进 4 维时空就变成 Maxwell 的两行紧凑式.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/20.svg" alt="微分形式阶梯与 4D Maxwell 紧凑形式" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  外微分阶梯与 4D Maxwell — 同一个 $\mathrm{d}$ 在不同阶上化身为 grad、curl、div, 进 4 维时空就变成 Maxwell 的两行紧凑式.</figcaption></figure>
 
   <h2>三、动手算: $\mathbb R^3$ 中 $\mathrm{d}$ 阶梯就是 grad-curl-div</h2>
 

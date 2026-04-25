@@ -77,20 +77,7 @@
 
   <p>方括号里是离散版本的作用量 $S_n = \sum\bigl(\tfrac12 m\dot x^2 - V\bigr)\Delta t \to \int_0^T L\,dt = S[x]$, 整个外部前因子是 Feynman 把"测度 $\mathcal D x$"形式化的结果. 这就是<strong>第三卷 02《路径积分》</strong>开篇直接使用的公式. 注意: 上式作为<em>振荡</em>积分在无限维极限下并不绝对收敛, 它只在"乘积公式 + 有限维高斯逐次积分"的算法意义下定义. 这是 Feynman "$\mathcal D x$" 永远稍微暧昧的根源.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Trotter 切片: 从离散步骤到路径求和</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>把时间区间 $[0,T]$ 切成 $N$ 等份, 每个分点插入位置完备基, 得到从 $x_0$ 到 $x_f$ 的折线路径; $N\to\infty$ 极限给出 Feynman 路径积分; 旁注 Trotter 乘积公式与 Wick 转动</dd>
-      <dt>必含元素</dt><dd>(a) 横轴时间 $t$ 从 $0$ 到 $T$, 纵轴位置 $x$; 起点 $(x_0,0)$ 加圆点标 "$x_0$", 终点 $(x_f,T)$ 加圆点标 "$x_f$"; 时间轴等分为 $N$ 段, 各分点 $t_k$ 用竖虚线; 每条竖虚线上画 3-5 个小空心圆代表"插入完备基 $\int|x_k\rangle\langle x_k|\,dx_k$"; (b) 在分点之间画 4-6 条不同折线 (蓝色细线), 全连 $x_0$ 与 $x_f$, 表示 Trotter 切片下的"折线路径"; (c) 右侧附 Trotter 公式 $e^{-i\hat H t/\hbar}=\lim_{n\to\infty}(e^{-i\hat V\Delta t/\hbar}e^{-i\hat T\Delta t/\hbar})^n$ 与 $K=\int\mathcal D x\,e^{iS/\hbar}$; (d) 下方一条小箭头标 "Wick: $t\to-i\tau$", 指向另一行 $\mu_W$ Wiener 测度示意 (一条粗糙锯齿曲线)</dd>
-      <dt>几何精度</dt><dd>时间切片严格均匀 $\Delta t = T/N$; 折线在每个分点经过任意 $x_k$ 值, 演示"对中间点积分"; 折线密度向 $N\to\infty$ 极限暗示</dd>
-      <dt>标签与公式</dt><dd>$\Delta t = T/N$; 公式 (2) Trotter; $K = \int\mathcal D x\,\exp(iS/\hbar)$; Wick: $t\to-i\tau$, $e^{iS/\hbar}\to e^{-S_E/\hbar}$</dd>
-      <dt>风格建议</dt><dd>白底, 时间轴用浅灰虚线分隔, 折线用蓝色, 起终点用红色实心圆, Wiener 锯齿曲线用棕色细线</dd>
-    </dl>
-  </div>
-  <figcaption>图 1   Trotter 切片把连续演化分解为 $N$ 步; 每个分点插入完备基, 极限 $N\to\infty$ 给出对所有路径求和. 通过 Wick 转动, 振荡相位 $e^{iS/\hbar}$ 变成 Wiener 测度的 Boltzmann 因子 $e^{-S_E/\hbar}$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/30.svg" alt="Trotter 切片: 从离散步骤到路径求和" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1   Trotter 切片把连续演化分解为 $N$ 步; 每个分点插入完备基, 极限 $N\to\infty$ 给出对所有路径求和. 通过 Wick 转动, 振荡相位 $e^{iS/\hbar}$ 变成 Wiener 测度的 Boltzmann 因子 $e^{-S_E/\hbar}$.</figcaption></figure>
 
   <h2>三、自由粒子: 一个完整的路径积分计算</h2>
 

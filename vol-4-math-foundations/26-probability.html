@@ -48,20 +48,7 @@
 
   <p>三元组 $(\Omega, \mathcal F, P)$ 称为<strong>概率空间</strong>. 这就是 Kolmogorov 1933 年公理化的全部.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 概率空间结构 + 离散 / 连续两个例子</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>把 $(\Omega, \mathcal F, P)$ 三元组与骰子、高斯两个具体例子并置, 说明"概率 = 面积"</dd>
-      <dt>必含元素</dt><dd>左侧: 一个椭圆代表 $\Omega$, 内部画三个互相重叠的子集 $A, B, C$ (代表事件), 在 $A$ 上加阴影并标 $P(A) = $ 面积比例; 中部: 离散直方图, 横轴 $1\!-\!6$, 每根柱高 $1/6$, 总面积 $=1$; 右侧: 连续高斯曲线 $f(x) = e^{-x^2/2\sigma^2}/\sqrt{2\pi}\sigma$, 在 $[a, b]$ 区间下方加阴影标 $P(a \le X \le b) = \int_a^b f$</dd>
-      <dt>几何/示意精度</dt><dd>"概率 = 面积"的视觉对应清楚; 离散柱形总和 $=1$, 高斯曲线下总面积 $=1$ 一目了然</dd>
-      <dt>标签与公式</dt><dd>$\Omega$ 椭圆边上注 $P(\Omega) = 1$; 直方图下注 $E[X] = 3.5$; 高斯曲线下注 $E[X] = \int x\,f(x)\,\mathrm dx$; 总标 $E[X] = \int_\Omega X\,\mathrm dP$</dd>
-      <dt>风格建议</dt><dd>白底, 主色一深一浅两种灰, 公式黑色; 不用花哨色块</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  样本空间、事件、$\sigma$-代数, 以及离散与连续两类典型概率分布. 概率始终对应"面积比例", 期望对应"$X$ 关于 $P$ 的积分".</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/26.svg" alt="概率空间结构与两个例子" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  样本空间、事件、$\sigma$-代数, 以及离散与连续两类典型概率分布. 概率始终对应"面积比例", 期望对应"$X$ 关于 $P$ 的积分".</figcaption></figure>
 
   <h2>二、随机变量与期望 = Lebesgue 积分</h2>
 
