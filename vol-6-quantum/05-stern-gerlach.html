@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么银原子被磁场分成两束? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="04-de-broglie.html">← 上一节</a>
+  <span class="chapter-title">第 5 节 / 30 · 第 1 部分 · 量子的起源 · 第六卷·量子是什么?</span>
+  <a href="06-wavefunction.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么银原子被磁场分成两束?</h1>
+  <div class="sub">—— Stern-Gerlach 与离散自旋</div>
+
+  <div class="abstract">
+  1922 年, Otto Stern 和 Walther Gerlach 在汉堡的一间地下室里, 让一束银原子穿过形状古怪的非均匀磁铁, 然后落在一块玻璃屏上. 经典物理预测他们会看到一条连续展宽的银带 (因为磁矩朝向是连续分布的), 但实验结果让他们盯着玻璃看了好半天 — 屏幕上只有两条清晰的细线. 没有中间地带, 没有渐变, 只有 "上" 与 "下". 这是人类第一次直接看到一个内禀物理量取离散值, 也是 "自旋" (spin) 这个概念在三年后被强行塞进物理学的导火索. 这一节, 我们从经典磁矩在非均匀场中的力开始, 推到 $\mu_z$ 必须取 $\pm \mu_B$ 才能解释那两条线, 再算出在典型实验参数下, 两束之间的间距大约是 $0.2~\mathrm{mm}$ — 刚刚好, 用便宜雪茄熏一熏, 肉眼就能看见.</div>
+
+  <p>第 4 节我们让 de Broglie 把 "波长" 强加给电子, 并看到了电子衍射的实验. 那是空间维度上的量子化 — 干涉条纹. 这一节我们换一个维度: 角动量. 经典力学里, 一个旋转的电荷产生磁矩, 磁矩在外场里能取任何朝向, 旋转得多快就有多大磁矩, 角度可以是连续的任何值. 但 Stern-Gerlach 实验告诉我们, 银原子的角动量 (准确说, 它最外层那个 5s 电子的内禀角动量) 沿任意一个我们选定的方向投影只能取两个值 — 而且这两个值刚好相差一个普朗克常数除以二. 这个 "二" 不是从 Bohr-Sommerfeld 量子化条件导出来的整数 $n$, 也不是轨道角动量的 $2\ell+1$ 重 ($\ell = 0$ 给出单重态, 不是双重态). 这是一个全新的、纯量子的、没有经典对应的内禀属性. Stern 和 Gerlach 当时并不知道这一点; 他们以为自己在验证 Sommerfeld 的空间量子化. 自然给的答案比他们要的更激进.</p>
+
+  <h2>一、经典图景: 磁矩在非均匀场中受到的力</h2>
+
+  <p>先把经典的力学打底. 一个磁矩 $\boldsymbol{\mu}$ 放在磁场 $\mathbf{B}$ 里, 它的势能是</p>
+
+  <p>$$ U = -\boldsymbol{\mu}\cdot \mathbf{B}. \tag{1} $$</p>
+
+  <p>如果场是均匀的 ($\nabla \mathbf{B} = 0$), 这只产生一个力矩 $\boldsymbol{\tau} = \boldsymbol{\mu}\times \mathbf{B}$, 让磁矩绕场进动 (Larmor 进动), 但不产生平动力. 力来自势能的梯度, 所以场必须是非均匀的:</p>
+
+  <p>$$ \mathbf{F} = -\nabla U = \nabla(\boldsymbol{\mu}\cdot \mathbf{B}). $$</p>
+
+  <p>Stern-Gerlach 装置的关键工程巧思就是怎么造出一个高度非均匀的磁场. 他们用了一个 "刀刃形" 的磁极: 一极是尖楔, 另一极是凹槽. 在中线附近, 沿 $z$ 轴 (从尖极指向凹极) 方向场迅速变化, $\partial B_z / \partial z$ 很大, 而 $x, y$ 方向的梯度近似为零. 银原子束的速度沿 $y$ 方向, 飞行长度 $L \approx 0.1~\mathrm{m}$. 在中线附近 $\mathbf{B}$ 几乎只有 $z$ 分量, 而磁矩绕 $\mathbf{B}$ 的 Larmor 进动很快, $\mu_x, \mu_y$ 在飞行时间尺度上平均为零. 所以只有 $\mu_z$ 与场耦合, 力简化为</p>
+
+  <p>$$ F_z = \mu_z\, \frac{\partial B_z}{\partial z}. \tag{2} $$</p>
+
+  <p>注意符号: 我们取 $z$ 轴正方向是场强增加的方向, 那么 $\mu_z \gt  0$ 的原子向 $+z$ 偏 ("被吸进强场区"), $\mu_z \lt  0$ 的向 $-z$ 偏. 这是一台在 $\mu_z$ 这个分量上的 "分类器".</p>
+
+  <p>现在做经典预测. 银原子从烤箱出来, 它的磁矩朝向是热运动充分搅乱的, 在球面上各向同性分布. 那么 $\mu_z = |\boldsymbol{\mu}| \cos\theta$ 应当在 $-|\boldsymbol{\mu}|$ 到 $+|\boldsymbol{\mu}|$ 之间连续取值, 概率密度在 $-|\boldsymbol{\mu}|$ 和 $+|\boldsymbol{\mu}|$ 端点处发散 (沙漏分布), 中间最稀疏. 所以经典预测: 屏幕上是一条中间稀、两端浓的连续银带, 跨度对应整个 $|\boldsymbol{\mu}|$ 的范围.</p>
+
+  <p>实验呢? 屏幕上是两条清晰、几乎对称、中间一片空白的细线. 经典图景失败了.</p>
+
+  <h2>二、量子答案: $\mu_z = \pm \mu_B$ 与自旋 1/2</h2>
+
+  <p>把实验结果倒推回去: 屏幕上有两条线, 说明 $\mu_z$ 只取两个值. 而且两条线对称分布于中线, 说明这两个值大小相等、符号相反. 测一下两条线的间距, 倒回 (2) 式, 我们能反推出 $|\mu_z|$ 的数值. 答案是</p>
+
+  <p>$$ |\mu_z| = \mu_B \equiv \frac{e\hbar}{2m_e} \approx 9.274\times 10^{-24}~\mathrm{J/T}, $$</p>
+
+  <p>恰好是一个 Bohr 磁子. 银原子的电子组态是 $[\mathrm{Kr}]\,4d^{10}\,5s^1$, 内层闭壳层贡献的轨道与自旋角动量都为零, 净磁矩完全来自最外层那一个 5s 电子. 5s 电子的轨道角动量量子数 $\ell = 0$, 所以也没有轨道贡献. 留下来的只有这个电子的内禀角动量. 这个内禀角动量沿 $z$ 投影只能取两个值, 我们记作 $S_z = \pm \hbar/2$, 它对应的磁矩是</p>
+
+  <p>$$ \mu_z = -g_s\, \frac{\mu_B}{\hbar}\, S_z = \mp g_s\, \frac{\mu_B}{2}. $$</p>
+
+  <p>实验测得 $g_s \approx 2$ (这是 Dirac 方程的一个胜利, 也是后来 QED 把它精修到 $2.00231930...$ 的起点), 于是 $|\mu_z| = \mu_B$, 与上面对得上.</p>
+
+  <p>这个 "$\pm \hbar/2$" 是一个非常奇特的事实. 在 Bohr-Sommerfeld 体系里, 角动量量子数 $m$ 只能取整数, 投影 $L_z = m\hbar$, $m = -\ell, \dots, +\ell$, 一共 $2\ell+1$ 个值, 永远是奇数个. Stern-Gerlach 看到的是偶数个 (两个), 这在轨道角动量的语言里根本不合法. 自然在告诉我们: 除了轨道角动量, 还有一种角动量, 它的 "总角动量量子数" 是 $1/2$, 投影量子数是 $\pm 1/2$, 一共 $2\cdot \tfrac{1}{2}+1 = 2$ 个值. 这就是自旋. 它没有经典对应 — 你没法把电子想象成一个真在自转的小球, 因为如果把电子半径估为 $r_e = e^2/(4\pi\varepsilon_0 m_e c^2) \approx 2.8\times 10^{-15}~\mathrm{m}$, 让球面线速度等于 $L/(m_e r) = (\hbar/2)/(m_e r_e)$, 你会得到远超光速的速度. 自旋是一个纯粹的量子标签, 和粒子在 Lorentz 群下表现为旋量这一深层事实绑在一起 (这一点会在第二十几节回来).</p>
+
+  <p>更要命的是, 如果你把刚分出来的 $S_z = +\hbar/2$ 那束 (称为 "自旋向上" 态 $\ket{\uparrow_z}$) 再送进一台沿 $x$ 方向的 SG 装置, 你会再次得到两束, 各占一半, 没有任何比例倾向. 也就是说, $\ket{\uparrow_z}$ 在 $S_x$ 测量下是 $\ket{\uparrow_x}$ 与 $\ket{\downarrow_x}$ 的等权叠加. 这是 Hilbert 空间在 $\mathbb{C}^2$ 里的具体显现, 矩阵就是 Pauli 矩阵, 我们在第八节谈不确定性原理时再细看. 现在记住一句话: <em>Stern-Gerlach 是把抽象的 "$2$ 维 Hilbert 空间" 实实在在物质化、可见化的实验.</em></p>
+
+  <h2>三、把数字代进去: 两束之间到底差多远</h2>
+
+  <p>纸上的论证已经够了, 现在让我们把 1922 年的实验参数代进去, 验证一下 "$0.2~\mathrm{mm}$ 可分辨" 这件事是不是真的成立. 银原子分子量 $A = 108$, 单原子质量</p>
+
+  <p>$$ m = \frac{A\cdot u}{N_A} \approx \frac{0.108}{6.022\times 10^{23}}~\mathrm{kg} \approx 1.79\times 10^{-25}~\mathrm{kg}. $$</p>
+
+  <p>烤箱温度 $T = 1000~\mathrm{K}$ (银的熔点 $1235~\mathrm{K}$, 蒸气压在 $\sim 1000~\mathrm{K}$ 已经足以喷出原子束). 热运动方均根速度</p>
+
+  <p>$$ v = \sqrt{\frac{3k_B T}{m}} = \sqrt{\frac{3\cdot 1.38\times 10^{-23}\cdot 1000}{1.79\times 10^{-25}}}~\mathrm{m/s} \approx 660~\mathrm{m/s}. $$</p>
+
+  <p>飞越磁铁的时间 $t_1 = L/v = 0.1/660 \approx 1.5\times 10^{-4}~\mathrm{s}$. 在这段时间里, $\mu_z = \pm \mu_B$ 的原子受到加速度</p>
+
+  <p>$$ a = \frac{F_z}{m} = \frac{\mu_B}{m}\cdot \frac{\partial B_z}{\partial z} = \frac{9.274\times 10^{-24}}{1.79\times 10^{-25}}\cdot 10~\mathrm{m/s^2} \approx 518~\mathrm{m/s^2}. $$</p>
+
+  <p>取 $\partial B_z / \partial z = 10~\mathrm{T/m}$ (Stern-Gerlach 原始装置约略此量级). 飞出磁铁时, 横向位移与速度分别为</p>
+
+  <p>$$ \Delta z_1 = \tfrac{1}{2} a t_1^2 \approx \tfrac{1}{2}\cdot 518\cdot (1.5\times 10^{-4})^2~\mathrm{m} \approx 5.8\times 10^{-6}~\mathrm{m}, $$</p>
+
+  <p>$$ v_z = a t_1 \approx 518\cdot 1.5\times 10^{-4}~\mathrm{m/s} \approx 0.078~\mathrm{m/s}. $$</p>
+
+  <p>磁铁后再有一段自由飞行 $L_2$ (原始装置 $L_2 \sim L$), 屏上的总偏转</p>
+
+  <p>$$ d = \Delta z_1 + v_z\cdot \frac{L_2}{v} \approx 5.8\times 10^{-6} + 0.078\cdot \frac{0.1}{660}~\mathrm{m} \approx 1.7\times 10^{-5}~\mathrm{m}. $$</p>
+
+  <p>这是一束相对于中线的偏移. 把整个公式压缩成一个估算式 (合并 $\Delta z_1$ 和 $v_z L_2/v$, 取 $L_2 = L$ 量级), 得到课本里常见的形式</p>
+
+  <p>$$ d \approx \frac{\mu_B L^2}{4 m v^2}\, \frac{\partial B_z}{\partial z}, $$</p>
+
+  <p>当然系数随几何细节会变. 重要的不是 $1/4$ 还是 $1/2$, 而是数量级. 取上面的数字, $d$ 在几十微米到几百微米之间, 两束之间的间距 $2d$ 大致 $0.2~\mathrm{mm}$. 这就是经过 Stern 那把雪茄熏过之后, 玻璃屏上肉眼可见的那两条银线的距离. 这个距离比起经典预测的 "连续抹开几个毫米的均匀带" 是质的不同 — 不是细节差异, 而是结构差异.</p>
+
+  <p>顺便说一句, 这里值得停一下: $\mu_B \cdot \partial B/\partial z$ 是单原子量级的力, $\sim 10^{-22}~\mathrm{N}$; 银原子的重力 $mg \sim 1.8\times 10^{-24}~\mathrm{N}$ 差两个量级. 也就是说在飞行 $0.1~\mathrm{m}$ 的过程中, 重力的影响是磁力的百分之一左右, 已经接近可观测但被两束之间的间距盖住. 1922 年那张照片里其实两束并不是完美水平, 略向下倾, 这是后人重新做实验时才确认的细节.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Stern-Gerlach 装置示意 — 左侧烤箱 (Ofen) 喷出银原子, 经过两个准直缝后进入一对 "刀刃形" 磁极 (上极尖楔, 下极凹槽, 之间标 $\partial B_z/\partial z$ 箭头), 飞行长度 $L$; 右侧玻璃屏上显出两条短线, 标 $S_z=+\hbar/2$ 和 $S_z=-\hbar/2$, 间距 $\sim 0.2~\mathrm{mm}$; 旁边附小图: 能级 $U = -\mu_z B$, 两条水平线对应 $\pm\mu_B B$]</div>
+  </figure>
+
+  <h2>四、雪茄、电报与 Goudsmit-Uhlenbeck 的迟到三年</h2>
+
+  <p>实验本身的故事比公式好看得多. 1921 年, Stern 在法兰克福的某个晚上写了一份 "Versuch eines experimentellen Tests der Richtungsquantelung" (空间量子化的实验检验), 想验证 Sommerfeld 假定的 "原子在外磁场中只能取一些离散方位角". Sommerfeld 当时的预言是 $L_z = m\hbar$, 对 $\ell = 1$ 应该有三条 ($m = -1, 0, +1$). Stern 选了银原子, 认为它最外层是单电子结构, 应该测到三条 (中间 $m=0$ 不偏, 两侧 $m=\pm 1$ 偏). Gerlach 是实验高手, 把磁极雕成尖楔与凹槽以放大梯度. 设备拼了一年多 — 真空、磁铁、原子束、玻璃屏, 全部要靠手工调. 1922 年 2 月, 他们终于看到屏幕上的图案. 起初他们看不见任何东西; 银沉积层薄到只有几个原子层厚, 反射几乎没有改变. 这时候出了那个有名的雪茄故事:</p>
+
+  <p>Stern 当时拿着 Gerlach 寄来的玻璃片仔细看, 嘴里叼着一根便宜雪茄 (据说是因为好雪茄抽不起 — Stern 当时还是 Privatdozent, 工资低). 他越看越凑近, 雪茄烟一阵阵喷在玻璃上, 然后他突然发现银带从灰白变成了清晰的黑色 — 雪茄烟里富含的硫与银发生了反应, 生成黑色的硫化银 $\mathrm{Ag_2S}$, 把薄薄的银层 "显影" 了出来. 这是阴差阳错的化学暗房. 后来他们把这个工序正式化, 用硫化氢气体熏玻璃片. 但 "Stern 抽便宜雪茄拯救了量子力学" 这个段子, 是物理学传统里少有的真实又荒诞的轶事.</p>
+
+  <p>Stern 立刻给 Gerlach 发电报报喜. 然后是另一个有名的细节: 他们看到的是两条而不是三条. Sommerfeld 的预言在数量上对了 (是离散的), 在数字上错了 (不是三条而是两条). 当时谁都不知道为什么. 在那个年代, 你看到一个完美干净的结果, 比如 "正好两条", 反而最让人头大 — 因为没有现成的理论能解释 "$2 = 2\ell+1$ 给出 $\ell = 1/2$" 这件事.</p>
+
+  <p>谜底要等到 1925 年. 那一年, 莱顿的两位荷兰研究生 Samuel Goudsmit 和 George Uhlenbeck 在分析碱金属光谱的精细结构 (Sodium D 双线: 两条间距 $0.6~\mathrm{nm}$ 的黄线) 时, 提出电子带有一个内禀角动量, 量子数 $s = 1/2$, 投影 $\pm \hbar/2$. 他们把这个量叫 spin. 当时 Pauli 听到这个想法很不高兴 — 经典上一个 "自转的小球" 表面线速度会超光速, 而且自旋怎么会有 $g$ 因子等于 2 这种奇怪的事? 但他们的导师 Ehrenfest 已经把论文寄出去了, 第二天 Goudsmit 和 Uhlenbeck 想撤回, 已经来不及. 几个月后, Thomas 用一个相对论性运动学的修正 (Thomas precession) 化解了 $g = 2$ 表面上的因子 2 矛盾, Pauli 也承认了. 1926-1927 年, Pauli 把自旋写成 $2\times 2$ 矩阵的代数结构 (Pauli 矩阵), 1928 年 Dirac 用相对论性波动方程一举导出自旋 1/2 与 $g = 2$, Stern-Gerlach 看到的那两条线终于被纳入了一个完整的理论. 但请注意时间顺序: <strong>实验先于理论三年</strong>. 1922 年 Stern-Gerlach 拍下那张玻璃片时, 没人知道屏幕上为什么是两条. 物理就是这么走过来的.</p>
+
+  <p>Stern 因为 "Stern-Gerlach 实验和质子磁矩的测量" 拿了 1943 年的诺贝尔奖 (实际颁奖在 1944, 因战时延迟). 当时 Gerlach 没拿, 一种说法是因为 Gerlach 战时与纳粹的关联让评委犹豫. 历史最终给了实验最大的承认.</p>
+
+  <h2>五、SG 装置作为一台 "测算符" 的机器</h2>
+
+  <p>这一节最后, 把 Stern-Gerlach 抽象成它后来在量子力学讲义里扮演的角色: 一台 "测 $S_z$" 的机器. 输入是一个量子态 $\ket{\psi} = \alpha\ket{\uparrow_z} + \beta\ket{\downarrow_z}$ (任意 $|\alpha|^2 + |\beta|^2 = 1$), 输出是两个空间分离的束: 上面那束塌缩到 $\ket{\uparrow_z}$, 出现概率 $|\alpha|^2$; 下面那束塌缩到 $\ket{\downarrow_z}$, 概率 $|\beta|^2$. 你可以选择把其中一束挡掉 (做投影测量, 得到本征态), 也可以让两束在空间上重新汇合 (做相干分束器, 留下相位信息 — Bohm 在他的教材里详细分析过 "可逆 SG"). 沿不同方向 ($x, y$, 或任意 $\hat{n}$) 连续放多台 SG, 你就能验证算符代数 $[S_x, S_y] = i\hbar S_z$ 的所有结论 — 这是 Feynman 在他的讲义第三卷开篇做的事情.</p>
+
+  <p>在第八节谈不确定性原理时, 我们会用一个连续两台 SG (先 $z$ 后 $x$) 的实验, 直接演示 $S_z$ 与 $S_x$ 不可同时拥有确定值. 在第十几节谈纠缠、Bell 不等式时, 我们会再次回到 SG: 把两个 SG 放在远离的两端, 各自沿不同方向测一对纠缠的电子, Bell 不等式的左边和右边就是用这台机器读出的关联函数. 一台 1922 年的便宜雪茄实验, 它的几何骨架几乎一字不改地穿越百年, 出现在每一篇 Bell 实验、每一台量子隐形传态实验、每一次 spin-1/2 量子比特操控的论文里. 这是物理学的复利.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Stern-Gerlach 是量子力学第一次直接、可见地把 "离散" 这件事钉在墙上: 银原子的内禀角动量沿任意方向投影只取两个值 $\pm \hbar/2$, 屏幕上就是两条线, 间距 $\sim 0.2~\mathrm{mm}$. 1922 年没人知道屏幕上为什么不是三条; 三年后 Goudsmit 和 Uhlenbeck 把它命名为 "自旋", 又过三年 Pauli 把它代数化, 再过两年 Dirac 把它从相对论方程里推出来. 在更大的图景里, SG 既是 "如何观测一个量子两能级体系" 的范本 (后世所有量子比特实验的祖宗), 也是 Hilbert 空间这个抽象数学对象第一次真正地、不可否认地出现在了实验室桌面上. 下一节我们让一束粒子既不分裂、也不被测量, 单纯在空间里 "传播", 看看那时该用什么变量描述它 — 我们要写下波函数.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="04-de-broglie.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="06-wavefunction.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -11,6 +11,8 @@ A collection of first-principles physics books. Each volume circles a single con
 | 第三卷 | [粒子物理](vol-3-particle-physics/) | QFT 脚手架 → 对称与守恒 → 标准模型 → 计算与发散 → 实验与统计 → BSM | 30 |
 | 第四卷 | [物理学的数学基础](vol-4-math-foundations/) | 微积分与向量分析 → 线性代数 → 群论 → 流形 → 函数空间 → 概率/复分析/路径积分 | 30 |
 | 第五卷 | [引力是什么?](vol-5-gravity/) | 等效原理 → 弯曲时空 → Einstein 场方程 → 黑洞 → 宇宙学 → 检验与前沿 | 30 |
+| 第六卷 | [量子是什么?](vol-6-quantum/) | 量子起源 → 量子力学语言 → 解谱 → 测量与诠释 → 多体与场 → 量子信息与前沿 | 30 |
+| 第七卷 | [物质是什么?](vol-7-matter/) | 晶体与对称 → 电子在固体 → 强关联与磁性 → 超导与超流 → 拓扑相 → 软物质与涌现 | 30 |
 
 ## 阅读
 

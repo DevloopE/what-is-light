@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一个 qubit 比一个 bit 强在哪? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="25-tunneling.html">← 上一节</a>
+  <span class="chapter-title">第 26 节 / 30 · 第 6 部分 · 量子信息与前沿 · 第六卷·量子是什么?</span>
+  <a href="27-quantum-algorithms.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>一个 qubit 比一个 bit 强在哪?</h1>
+  <div class="sub">—— 叠加, 纠缠, 量子门</div>
+
+  <div class="abstract">经典 bit 取值 $\{0,1\}$, $n$ 个 bit 描述 $n$ 个独立的二选一 — 状态空间是个有 $2^n$ 个点的有限集合, 但任一时刻系统只占其中一点. qubit 是二维复 Hilbert 空间里的单位向量 $\alpha\ket{0}+\beta\ket{1}$, $\abs{\alpha}^2+\abs{\beta}^2=1$, 对应 Bloch 球面上的一个点 — 连续多了无穷倍. 真正的差距在于多 qubit: $n$ 个 qubit 的联合状态住在 $2^n$ 维复向量空间里, 不是 $n$ 个独立 Bloch 球的笛卡尔积. $n=300$ 时维数 $2^{300}\approx 10^{90}$, 已经多于可观测宇宙的原子数 $\sim 10^{80}$, 经典计算机就算每个原子存一个复数都装不下. 单 qubit 上的基本门 H、X、Z、T 是对 Bloch 球的旋转; 双 qubit 门 CNOT 把两个 qubit 的张量积空间纠缠起来. 一个标准结果: $\{H, T, \mathrm{CNOT}\}$ 构成普适门集 — 任何 $n$ qubit 幺正变换都可以用它们 $\varepsilon$-逼近. 1981 年 Feynman 提议"用量子机器模拟量子物理", 1985 年 Deutsch 形式化了量子图灵机, 1994 年 Shor 把整数分解砸进多项式时间, 这一卷的最后五节就在算这个钱.</div>
+
+  <p>到这一节为止, 量子力学已经被讲成了一个"自然提供的"东西 — 双缝条纹、Stern-Gerlach 上下两束、氢原子能级、Bell 关联. 量子信息这一支换了一个口气: 把量子力学当工具, 把 Hilbert 空间当数据结构, 看能拿它做什么经典做不了的事. 最小的单元是 qubit, 一个二能级量子系统. 它在物理上是任何东西都行 — 一个自旋 1/2、一个原子的两个能级、一个超导环里的两个电流方向、一个光子的两种偏振 — 数学上一律是 $\mathbb{C}^2$ 里的单位向量. 这一节先把 qubit 是什么、与 bit 的差异在哪、单/双 qubit 门怎么作用算清楚, 后面几节再走 Deutsch、Grover、Shor、纠错码、Feynman 模拟这条线.</p>
+
+  <h2>一、从 bit 到 qubit: Bloch 球与 $2^n$ 维空间</h2>
+
+  <p>经典 bit 是一个二值变量 $b\in\{0,1\}$. $n$ 个 bit 给出 $\{0,1\}^n$, 总共 $2^n$ 个状态, 但系统在任一瞬间只占据其中一个 — 描述当前状态用 $n$ 个比特就够了, 信息量是 $n$. qubit 把这两个值升级成正交基矢 $\ket{0},\ket{1}\in\mathbb{C}^2$, 然后允许任意复线性组合</p>
+
+  <p>$$ \ket{\psi} = \alpha\ket{0} + \beta\ket{1}, \qquad \abs{\alpha}^2 + \abs{\beta}^2 = 1, \quad \alpha,\beta\in\mathbb{C}. $$</p>
+
+  <p>由于全局相位无可观测意义 ($\ket{\psi}$ 与 $e^{i\varphi}\ket{\psi}$ 在量子力学里是同一个态), 真正的自由度是 $2$ 个实参数 — 用极角参数化</p>
+
+  <p>$$ \ket{\psi} = \cos(\theta/2)\ket{0} + e^{i\phi}\sin(\theta/2)\ket{1}, \quad \theta\in[0,\pi],\ \phi\in[0,2\pi). $$</p>
+
+  <p>这正是单位球面 $S^2$ 上一点 $(\sin\theta\cos\phi, \sin\theta\sin\phi, \cos\theta)$ 的球极坐标. 这个球叫 <strong>Bloch 球</strong>: 北极 $\ket{0}$, 南极 $\ket{1}$, 赤道上 $\phi=0$ 处 $\ket{+}=(\ket{0}+\ket{1})/\sqrt{2}$, $\phi=\pi$ 处 $\ket{-}=(\ket{0}-\ket{1})/\sqrt{2}$, $\phi=\pi/2$ 处 $\ket{+i}=(\ket{0}+i\ket{1})/\sqrt{2}$, $\phi=3\pi/2$ 处 $\ket{-i}$. 球面上每一点对应一个纯态. 一个 bit 只有北南两点, 一个 qubit 有整个球面. 这是量子之所以"多东西"的几何表达.</p>
+
+  <p>关键的差距出在多个 qubit 上. 经典 $n$ bit 状态空间是 $\{0,1\}^n$, 直积结构, 描述用 $n$ 个 0/1 数字. $n$ 个 qubit 的联合状态住在张量积 Hilbert 空间</p>
+
+  <p>$$ \mathcal{H}_n = \underbrace{\mathbb{C}^2 \otimes \mathbb{C}^2 \otimes \cdots \otimes \mathbb{C}^2}_{n\ \text{个}} = \mathbb{C}^{2^n}, $$</p>
+
+  <p>它是一个 $2^n$ 维复向量空间. 一般态写成</p>
+
+  <p>$$ \ket{\Psi} = \sum_{x\in\{0,1\}^n} c_x \ket{x}, \qquad \sum_x \abs{c_x}^2 = 1, $$</p>
+
+  <p>需要 $2^n$ 个复振幅 $c_x$ 才能描述. $n=10$ 时 $2^{10}=1024$, $n=50$ 时 $\approx 10^{15}$ — 单台超算双精度复数勉强能装下; $n=300$ 时 $2^{300}\approx 2\times 10^{90}$, 比可观测宇宙原子总数 $\sim 10^{80}$ 还多十个数量级. 经典模拟一个 300 qubit 任意纯态根本不可能 — 不是没钱买内存, 是物理上没那么多原子. 量子计算的"指数空间"就藏在这个张量积维数里. 但要小心: 这 $2^{n}$ 维不是 $n$ 个 Bloch 球的笛卡尔积 (那只有 $S^2 \times \cdots \times S^2$, 维数 $2n$ 实) — 张量积空间里大部分态都不能写成单 qubit 态的乘积, 这部分"额外的方向"叫纠缠.</p>
+
+  <h2>二、单 qubit 门: Pauli, Hadamard, 相位</h2>
+
+  <p>幺正算符 $U: \mathcal{H}_n \to \mathcal{H}_n$ 是量子力学允许的所有可逆操作, 在量子电路里就叫"门". 单 qubit 门是 $2\times 2$ 幺正矩阵, $U^\dagger U = I$, 几何上就是 Bloch 球面上的一个旋转. 几个最常用的:</p>
+
+  <p>$$ X = \begin{pmatrix}0&1\\1&0\end{pmatrix},\quad Y = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad Z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}, $$</p>
+
+  <p>这三个就是 Pauli 矩阵, 分别对应绕 Bloch 球 $x,y,z$ 轴转 $\pi$. $X$ 把 $\ket{0}\leftrightarrow\ket{1}$, 所以也叫量子非门 NOT; $Z$ 把 $\ket{+}\leftrightarrow\ket{-}$, 是 $\ket{1}$ 上加 $\pi$ 相位. 旋转更一般地写成 $R_n(\alpha) = \exp(-i\alpha\, \vec{n}\cdot\vec{\sigma}/2)$, 绕轴 $\vec{n}$ 转 $\alpha$.</p>
+
+  <p>真正"开启叠加"的是 <strong>Hadamard 门</strong>:</p>
+
+  <p>$$ H = \frac{1}{\sqrt{2}}\begin{pmatrix}1&1\\1&-1\end{pmatrix}, \qquad H\ket{0} = \tfrac{1}{\sqrt{2}}(\ket{0}+\ket{1}) = \ket{+}, \quad H\ket{1} = \ket{-}. \tag{1} $$</p>
+
+  <p>$H$ 把计算基的两个尖端 (Bloch 球北南极) 摔到赤道上, 是"经典输入 → 等概率叠加"的标准操作 — 几乎所有量子算法第一步都是给 $n$ 个初始 $\ket{0}$ 各作用一次 $H$, 把状态打成均匀叠加 $H^{\otimes n}\ket{0}^n = 2^{-n/2}\sum_{x\in\{0,1\}^n}\ket{x}$. 几何上 $H = (X+Z)/\sqrt{2}$ 平方为 $I$, 是绕轴 $(1,0,1)/\sqrt{2}$ 转 $\pi$.</p>
+
+  <p>另一个不可少的门是 <strong>$T$ 门</strong> (也叫 $\pi/8$ 门, 因其特征值是 $e^{\pm i\pi/8}$):</p>
+
+  <p>$$ T = \begin{pmatrix}1&0\\0&e^{i\pi/4}\end{pmatrix}, $$</p>
+
+  <p>它在 $\ket{1}$ 分量上加 $\pi/4$ 相位, 是绕 $z$ 轴转 $\pi/4$ 的"小旋转". $T^2 = S$ ($\pi/2$ 相位门), $T^4 = Z$, $T^8 = I$. $T$ 门的特殊地位在于它和 Hadamard 相乘能旋出 Bloch 球面上的稠密轨道 — 所以 $\{H, T\}$ 是单 qubit 上的"普适集" (universal set), 任何单 qubit 幺正变换都可以被 $H, T$ 串接以任意精度逼近, 逼近代价由 Solovay-Kitaev 定理给出多项式 $O(\log^c(1/\varepsilon))$ 长度.</p>
+
+  <h2>三、双 qubit 门 CNOT 与 Bell 态: 制造纠缠</h2>
+
+  <p>单 qubit 门只能在每个 Bloch 球内部转, 永远不能让两个原本独立的 qubit 变得纠缠 — 张量积态 $\ket{\psi}\otimes\ket{\phi}$ 在两个独立的单 qubit 幺正下还是张量积态. 要做纠缠, 必须有作用在两 qubit 张量积空间上的双 qubit 门. 标准选择是 <strong>CNOT</strong> (controlled-NOT):</p>
+
+  <p>$$ \mathrm{CNOT} = \begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0\end{pmatrix}, $$</p>
+
+  <p>基矢顺序 $\ket{00},\ket{01},\ket{10},\ket{11}$. 它的语义是: 当控制 qubit (第一位) 为 $\ket{1}$ 时, 把目标 qubit (第二位) 翻转. 在计算基上, CNOT 是经典的可逆 XOR 门 $(a,b)\mapsto(a, a\oplus b)$ — 没什么奇怪. 奇怪的是它作用在叠加态上时.</p>
+
+  <p>把两个 qubit 都从 $\ket{0}$ 出发, 先给第一个作用 $H$ (用 $H\otimes I$), 再做一个 CNOT:</p>
+
+  <p>$$ \ket{00} \xrightarrow{H\otimes I} \tfrac{1}{\sqrt{2}}(\ket{00}+\ket{10}) \xrightarrow{\mathrm{CNOT}} \tfrac{1}{\sqrt{2}}(\ket{00}+\ket{11}) =: \ket{\Phi^+}. \tag{2} $$</p>
+
+  <p>$\ket{\Phi^+}$ 是四个 <strong>Bell 态</strong>之一 (其余三个是 $\ket{\Phi^-}=(\ket{00}-\ket{11})/\sqrt{2}$, $\ket{\Psi^\pm}=(\ket{01}\pm\ket{10})/\sqrt{2}$), 两 qubit 完美纠缠 — 没有任何单 qubit 态 $\ket{\psi}_A\otimes\ket{\phi}_B$ 能等于它. 第 16 节里 Bell 不等式上的关联 $\abs{S}=2\sqrt{2}$ 就是用 $\ket{\Psi^-}$ 算出来的, CHSH 测量给出 Tsirelson 界 $2\sqrt{2}\approx 2.828$. 也就是说, $H+\mathrm{CNOT}$ 这俩门串起来已经够把"经典 + 局域实在论"挑翻; 这是量子信息的一切奇怪的来源.</p>
+
+  <p>把 $\{H, T, \mathrm{CNOT}\}$ 合起来, 1995 年 Barenco 等人证明这是一组 <strong>普适门集</strong>: 任何 $n$ qubit 上的幺正算符 $U\in U(2^n)$ 都可以用有限多个 $H, T, \mathrm{CNOT}$ 的串联 $\varepsilon$-逼近; 所需门数随 $n$ 一般是指数 (但每个具体算法只需要多项式多个). 这条等价说量子电路模型和量子图灵机 (Deutsch 1985) 一样强. 注意 CNOT 之外还有几个常用双 qubit 门, 如 CZ (受控 $Z$, 在 $\ket{11}$ 上加 $\pi$ 相位)、SWAP (交换两 qubit)、iSWAP — 都可以用 CNOT 加单 qubit 门合成.</p>
+
+  <p>这里有一条值得记住的禁律: <strong>不可克隆定理</strong> (Wootters-Zurek 1982). 不存在幺正算符 $U$ 使得对任意 $\ket{\psi}$ 都有 $U(\ket{\psi}\otimes\ket{0}) = \ket{\psi}\otimes\ket{\psi}$ — 证明只需注意到 $U$ 的线性会与"对所有态都复制"矛盾. 这与经典 bit 任意复制截然不同, 是量子加密 (BB84) 安全性的根. qubit 不能被随便备份, 这件事既是量子信息的麻烦 (没法做经典意义上的纠错副本), 也是它的资源 (秘密无法被偷拷贝).</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左半 Bloch 球 — 单位球面, 北极标 $\ket{0}$, 南极 $\ket{1}$, 赤道四点标 $\ket{+}, \ket{-}, \ket{+i}, \ket{-i}$; 球内画 $x, y, z$ 三条坐标轴, 任意纯态 $\ket{\psi}=\cos(\theta/2)\ket{0}+e^{i\phi}\sin(\theta/2)\ket{1}$ 用一根箭头画到球面上, 标 $\theta, \phi$. 右半三个旋转箭头分别表示 $X$ (绕 $x$ 轴 $\pi$, 把 $\ket{0}\to\ket{1}$), $Z$ (绕 $z$ 轴 $\pi$, 把 $\ket{+}\to\ket{-}$), $H$ (绕 $(x+z)/\sqrt{2}$ 轴 $\pi$, 把北极 $\ket{0}$ 摔到赤道 $\ket{+}$); 右下补一个量子电路片段 — 两根横线代表两个 qubit, 上线先一个 $H$ 框、再向下连到下线上的 $\oplus$ 节点 (CNOT), 输出标 $\ket{\Phi^+}=(\ket{00}+\ket{11})/\sqrt{2}$]</div>
+  </figure>
+
+  <h2>四、物理实现与历史: 从 Feynman 1981 到 IBM 1121 qubit</h2>
+
+  <p>qubit 不挑硬件. 任何稳定的二能级量子系统都可以做候选, 但要真正能算, 它得满足 1996 年 DiVincenzo 提出的五条标准: (i) 状态可良定义初始化; (ii) 退相干时间 $T_2$ 远长于门操作时间; (iii) 实现普适门集; (iv) 高保真度测量; (v) 系统可扩展. 现在主流路线包括:</p>
+
+  <p><strong>超导 transmon</strong> — IBM、Google、阿里、本源走的路. 在毫开尔文低温下, 一个由 Josephson 结组成的非线性 LC 振荡器, 把它的最低两个能级当作 $\ket{0}, \ket{1}$. 退相干时间 $T_2 \sim 100\,\mu\mathrm{s}$, 单门时间 $\sim 20\,\mathrm{ns}$, 双 qubit 门时间 $\sim 100\,\mathrm{ns}$. Google 2019 年 Sycamore 53 qubit, IBM 2022 年 Osprey 433 qubit, 2023 年 Condor 1121 qubit — 数量在长, 保真度跟错误率才是关键 (单 qubit 错误率 $\sim 10^{-3}$, 双 qubit $\sim 10^{-2}$, 离 fault-tolerant 阈值 $\sim 10^{-4}$ 还有一段).</p>
+
+  <p><strong>离子阱</strong> — IonQ、Honeywell (Quantinuum)、奥地利 Innsbruck. 在线性 Paul 阱里悬浮的单个原子离子 (Ca$^+$、Yb$^+$ 等), 用激光把超精细基态的两个能级当 qubit. 优势是 $T_2$ 极长 — 可以做到秒级、甚至小时级 — 而且离子之间通过共振模式天然耦合, 不像超导只有最近邻. 缺点是门操作慢 ($\mu$s 级) 和扩展性麻烦. 2023 年 IonQ Forte 32 qubit, Quantinuum H2 56 qubit.</p>
+
+  <p><strong>中性原子</strong> — QuEra (Lukin 组)、Pasqal、Atom Computing. 用光镊把碱金属原子 (Rb、Cs、Yb) 在真空里排成阵列, Rydberg 态间相互作用做双 qubit 门. 2023 年 Atom Computing 突破 1180 个中性原子 qubit, Lukin 组演示 48 个逻辑 qubit 的纠错. <strong>拓扑 qubit</strong> 走 Majorana 准粒子路线, Microsoft 2023-2024 推进, 优势是物理层面对局部噪声有指数压制, 但器件还在 demo 阶段.</p>
+
+  <p>历史上, qubit 这个想法的源头是 Richard Feynman 1981 年在 MIT 做的一个演讲 "Simulating Physics with Computers": 他指出经典计算机模拟一个 $n$ 粒子量子系统所需资源随 $n$ 指数爆炸 — 因为状态空间维数就是指数 — 所以"为什么不用一台量子机器去模拟量子物理?" 1985 年牛津的 David Deutsch 把这个想法形式化, 提出"量子图灵机"和量子电路模型, 同时给出第一个量子算法 (Deutsch 算法) 演示 $f$ 是否平衡比经典快一倍 (1 次 vs 2 次询问). 1992 年 Bernstein-Vazirani、1993 年 Simon 把指数加速首次写明. 真正引爆领域的是 1994 年 Peter Shor 的整数分解多项式算法 — 把 RSA 加密的安全基础直接威胁到. 1995 年 Shor 又给出量子纠错码; 1996 年 Grover 算法把无序搜索从 $O(N)$ 压到 $O(\sqrt{N})$. 2019 年 Google 在 Sycamore 53 qubit 上跑了一个随机电路采样任务, 报告 200 秒完成, 而经典超算估计需要 $10\,000$ 年 (后来 IBM 经典模拟改进到 2.5 天, 这个数字仍在更新, 但量子优势这个概念从此进入正常物理讨论). 2022 年 Aspect-Clauser-Zeilinger 拿 Nobel — 量子非定域性这个 Bell 框架在物理上被坐实, 是这一切的基础前提.</p>
+
+  <p>到这一节为止你应该看见: qubit 不是"更精细的 bit", 它和 bit 在原理上是不同的对象 — bit 是一个离散符号, qubit 是一个 $\mathbb{C}^2$ 中的几何对象. 真正使量子计算与经典分道扬镳的, 不是 Bloch 球面比 $\{0,1\}$ 大 (这只是连续 vs 离散), 而是 $n$ qubit 张量积空间维数 $2^n$ 远大于 $n$ 个 Bloch 球的笛卡尔积 — 是纠缠这个张量积的"额外方向". 下一节我们就拿这两个货 (叠加 + 纠缠) 去做 Deutsch、Grover、Shor, 看它能换回什么具体的算力.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>qubit 是 $\mathbb{C}^2$ 里的单位向量 $\ket{\psi}=\alpha\ket{0}+\beta\ket{1}$, 几何上是 Bloch 球面上一点 — 已经比 bit 的 $\{0,1\}$ 多一个连续的二维球面. 但真正的差距出在 $n$ qubit: 张量积 Hilbert 空间维数 $2^n$, $n=300$ 时 $\sim 10^{90}$ 已超可观测宇宙原子数, 经典模拟在原理上不可能. 单 qubit 门是 Bloch 球上的旋转 (Pauli $X, Y, Z$, Hadamard $H$ 公式 (1), 相位 $T$); 双 qubit 门 CNOT 在 $H\otimes I$ 之后把直积 $\ket{00}$ 变成 Bell 态 $\ket{\Phi^+}=(\ket{00}+\ket{11})/\sqrt{2}$ 公式 (2), 这是纠缠的标准制造工艺. $\{H, T, \mathrm{CNOT}\}$ 是普适门集, 任何 $U\in U(2^n)$ 都可以用它们 $\varepsilon$-逼近. 物理实现上超导 transmon (IBM 2023 Condor 1121 qubit, Google Sycamore 70 qubit)、离子阱 ($T_2 \sim$ s)、中性原子、拓扑各有路线, 错误率距离 fault-tolerant 阈值 $\sim 10^{-4}$ 还差一两个数量级. 历史脉络: Feynman 1981 提议"用量子机器模拟量子物理", Deutsch 1985 写下量子图灵机, Shor 1994 把整数分解砸进多项式时间, Google 2019 报"量子优势". 不可克隆定理 (Wootters-Zurek 1982) 是这个体系的硬约束, 既是麻烦也是资源. 下一节走 Deutsch-Jozsa、Grover、Shor — 看叠加和纠缠是怎样兑换成具体的算法加速的.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="25-tunneling.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="27-quantum-algorithms.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

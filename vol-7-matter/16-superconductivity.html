@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么超导体把磁场推出去? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="15-quantum-phase-transition.html">← 上一节</a>
+  <span class="chapter-title">第 16 节 / 30 · 第 4 部分 · 超导与超流 · 第七卷·物质是什么?</span>
+  <a href="17-cooper-pairs.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么超导体把磁场推出去?</h1>
+  <div class="sub">—— Meissner 效应与零电阻</div>
+
+  <div class="abstract">
+    1911 年 Onnes 在莱顿把汞冷到 4.2 K, 电阻"啪"地掉到测不出来; 1933 年 Meissner-Ochsenfeld 在柏林把锡球冷过临界温度时, 发现外加磁场被整块儿地推了出去 — 这不是"零电阻 + 静态导体"能解释的, 因为零电阻只会冻住已有的磁通, 不会主动排空. 这一节我们沿着这两个实验的逻辑顺序, 把超导态最骨架的两条性质钉死: 完美抗磁 (B = 0 内部) 与零电阻是同一件事的两个侧面, 都来自一个宏观相干的电流场. London 兄弟 1935 年用一对现象学方程把这件事写下来 — $\nabla \times \mathbf{J}_s = -\frac{n_s e^2}{m} \mathbf{B}$, 解出 $\nabla^2 \mathbf{B} = \mathbf{B}/\lambda_L^2$, 磁场在边界几十纳米厚的薄层内指数衰减. 把数字代上: 汞 $\lambda_L \approx 40\,\mathrm{nm}$, NbTi $T_c = 10\,\mathrm{K}$ 在 LHC 大型强子对撞机里撑起 8.3 T 主磁场, $J_c \sim 10^9 - 10^{10}\,\mathrm{A/m^2}$. 微观机制 (Cooper 对、BCS) 留到下一节, 这一节先把宏观现象学讲透.
+  </div>
+
+  <p>把一个铜环冷到 4 K, 它的电阻很小但不为零; 把汞环冷到 4.15 K, 电阻在某个温度下方陡地塌到零, 而且是真的零 — 在环里启动的持续电流可以维持几年不衰减. 这件事本身已经够吓人, 不过更吓人的是 1933 年那次实验. Walther Meissner 和 Robert Ochsenfeld 在柏林的物理技术帝国研究所 (PTR) 把一根锡棒先放进一个均匀磁场, 再降温穿过 $T_c$. 按"零电阻 = 完美导体"的直觉, 磁通线应该被冻在金属里出不来; 实际看到的却是磁场被整段儿挤了出去, 棒子周围的磁力线像绕开一块"反磁性的石头". 这就是<strong>Meissner 效应</strong>. 它告诉我们超导态是一种新的热力学相, 而不仅仅是"电阻很小的金属态" — 状态由温度和磁场共同决定, 跟历史路径无关.</p>
+
+  <h2>一、Onnes 1911: 零电阻是怎么被发现的</h2>
+
+  <p>故事得从液氦说起. 1908 年 Heike Kamerlingh Onnes 在荷兰莱顿大学第一次把氦液化, 把人类能达到的最低温度推到 4 K 左右 — 在他之前, 整个低温物理只能到 14 K (氢液化). 有了液氦, Onnes 开始系统地测金属在低温下的电阻. 当时主流理论 (Drude, Lord Kelvin) 有几种猜想: 电阻可能在低温饱和到一个常数, 也可能反而上升 (因为电子被冻住). Onnes 选汞做样品, 因为汞容易反复蒸馏提纯, 杂质能压到极低. 1911 年 4 月 8 日, 他的实验记录本上出现一行: 在 4.19 K 附近, "Hg practically zero" — 这就是世界上第一次记录的超导转变.</p>
+
+  <p>这个零有多零? 他做了一个汞环, 启动一个电流, 然后切断电源, 用磁针监测环里的剩余磁矩. 几小时后磁针没有任何漂移. 后来的精密测量给出: 超导环里的电流寿命下限大于 $10^5$ 年, 也就是说电阻率小于 $10^{-25}\,\Omega\cdot\mathrm{m}$ — 跟正常铜的 $1.7 \times 10^{-8}\,\Omega\cdot\mathrm{m}$ 比, 至少低 17 个数量级. 这不是"小", 这是真零. Onnes 因此拿到 1913 年诺贝尔物理学奖, 颁奖词专门提到液氦本身的发现, 当时大家其实还没完全意识到超导是个独立的相变.</p>
+
+  <p>之后二十年, 一个个金属被加进超导名单: Pb (1913, $T_c = 7.2\,\mathrm{K}$), Sn ($T_c = 3.7\,\mathrm{K}$), Nb (1930 年代, $T_c = 9.25\,\mathrm{K}$, 元素超导体里最高). 但是只看零电阻这一条, 大家给不出微观解释 — 任何一种自由电子模型都没法把电阻准确地降到零, 总会留下一个有限的散射时间. 真正的提示来自磁性测量, 而不是电学测量.</p>
+
+  <h2>二、Meissner 1933: 完美抗磁不是零电阻的简单推论</h2>
+
+  <p>这里有一个细节非常容易被忽略, 值得停下来想清楚. 假设你只有一个"零电阻"的样品 (理想完美导体), 把它放进 Maxwell 方程组里, 看会发生什么. 取 Faraday 定律 $\nabla \times \mathbf{E} = -\partial \mathbf{B}/\partial t$, 又因为电阻为零, 内部 $\mathbf{E} = 0$ (否则电流无穷大), 因此 $\partial \mathbf{B}/\partial t = 0$. 这只能告诉你<em>磁场不变</em>, 不能告诉你<em>磁场为零</em>. 也就是说, 如果先冷再加场, 完美导体内部 $\mathbf{B} = 0$ (因为冷之前内部本来就 $\mathbf{B} = 0$, 之后磁场进不去); 但如果先加场再冷, 完美导体应该把磁通冻在体内, $\mathbf{B} = \mathbf{B}_0 \neq 0$ 永远保持. 历史路径决定终态.</p>
+
+  <p>Meissner-Ochsenfeld 1933 年做的事情就是仔细对比这两条路径. 结果惊人: 不管你是先冷再加场, 还是先加场再冷, 只要最后温度 $T \lt  T_c$ 且磁场 $B \lt  B_c$, 超导体内部一律 $\mathbf{B} = 0$. 这不是路径无关的"零电阻", 这是一个真正的热力学态 — 状态量, 不是历史. 用语言说: 超导体是<strong>完美抗磁体</strong> (perfect diamagnet), 磁化率 $\chi = -1$, 不是 "$\partial \mathbf{B}/\partial t = 0$" 那么弱的条件.</p>
+
+  <p>为什么内部 $\mathbf{B} = 0$? 因为超导体表面会自发地起一股<em>屏蔽电流</em> (supercurrent) $\mathbf{J}_s$, 这股电流产生一个反向磁场, 跟外加磁场在体内精确地抵消. 屏蔽电流是无耗散的, 所以理论上可以一直撑下去. 这股电流不是被外磁场"感应"出来的 (感应只能在磁通变化时存在), 而是稳态下就持续在那里 — 这就需要超导态本身有一种"宏观相干"的电子结构, 让超导电子集体响应外磁场. London 兄弟把这件事写成两个方程, 先从现象学层面提供答案; 微观层面要等 24 年后 BCS 给出.</p>
+
+  <h2>三、London 方程: 把屏蔽电流和磁场关联</h2>
+
+  <p>1935 年伦敦的 Fritz 与 Heinz London 兄弟从牛津写出他们后来著名的两条方程. 思路其实很朴素: 把超导电子当成一种无粘性的电荷流体, 密度 $n_s$, 受 Newton 方程 $m \dot{\mathbf{v}} = -e\mathbf{E}$ 驱动, 没有摩擦项. 电流密度 $\mathbf{J}_s = -n_s e \mathbf{v}$, 带入得到</p>
+
+  <p>$$ \frac{\partial \mathbf{J}_s}{\partial t} = \frac{n_s e^2}{m} \mathbf{E}. \tag{1} $$</p>
+
+  <p>这是<strong>第一 London 方程</strong>, 它编码了"零电阻": $\mathbf{E} \neq 0$ 只能让电流无限加速, 因此稳态下 $\mathbf{E} = 0$. 但是它不够 — 这条方程还不能给出 Meissner 效应. London 兄弟在这里做了关键的"现象学加项": 他们假定超导态满足一条更强的条件,</p>
+
+  <p>$$ \nabla \times \mathbf{J}_s = -\frac{n_s e^2}{m} \mathbf{B}. \tag{2} $$</p>
+
+  <p>这是<strong>第二 London 方程</strong>, 跟 $(1)$ 不一样, 它直接关联电流的旋度与磁场本身, 而不是磁场的时间导数. 把 $(2)$ 与 Maxwell 方程 $\nabla \times \mathbf{B} = \mu_0 \mathbf{J}_s$ 联立 (稳态), 取一次旋度</p>
+
+  <p>$$ \nabla^2 \mathbf{B} = \frac{\mathbf{B}}{\lambda_L^2}, \qquad \lambda_L = \sqrt{\frac{m}{\mu_0 n_s e^2}}. \tag{3} $$</p>
+
+  <p>解一维问题, 取超导体占据 $x \gt  0$ 半空间, 边界 $x = 0$ 处 $\mathbf{B}(0) = B_0 \hat{\mathbf{z}}$, 远处 $\mathbf{B} \to 0$, 解得</p>
+
+  <p>$$ B(x) = B_0\, e^{-x/\lambda_L}. \tag{4} $$</p>
+
+  <p>磁场在边界一层薄薄的厚度 $\lambda_L$ 内呈指数衰减, 进入体内被压到零. 这就是 Meissner 效应的现象学描述. $\lambda_L$ 叫做 <strong>London 渗透深度</strong>, 它是这一节最重要的长度尺度.</p>
+
+  <p>把数字代上. 取自由电子质量 $m \approx 9.11\times 10^{-31}\,\mathrm{kg}$, 电荷 $e = 1.6\times 10^{-19}\,\mathrm{C}$, 真空磁导率 $\mu_0 = 4\pi\times 10^{-7}\,\mathrm{H/m}$. 假设超导电子密度跟金属总电子密度同量级 $n_s \sim 10^{28}\,\mathrm{m^{-3}}$, 算出 $\lambda_L \sim 40\,\mathrm{nm}$. 跟实验对一对: 汞 $\lambda_L \approx 40\,\mathrm{nm}$ (4 K), 铅 $\lambda_L \approx 37\,\mathrm{nm}$, 高 $T_c$ 的 YBCO ($T_c = 92\,\mathrm{K}$) $\lambda_L \approx 140\,\mathrm{nm}$ — 数量级完美吻合, 说明这套现象学是抓住了实质的. 把眼光放大十万倍: 一根毫米粗的超导线, 表面 40 nm 是磁场被压回去的"皮肤", 剩下的 99.99% 体内一律 $\mathbf{B} = 0$, 这就是宏观完美抗磁的几何起源.</p>
+
+  <p>$(2)$ 式从哪儿来? London 兄弟当时的提法是: 既然超导态是一个量子相干态, 它应该最小化"动能", 也就是经典极限里把 $\mathbf{p} - e\mathbf{A}$ 最小化掉, 取 $m\mathbf{v} = -e\mathbf{A}$ (规范选 Coulomb 规范). 取一次 curl 得到 $\nabla \times \mathbf{J}_s = -(n_s e^2/m) \nabla\times \mathbf{A} = -(n_s e^2/m) \mathbf{B}$, 就是 $(2)$. 这条推导今天看起来近乎一句俏皮话, 但它对得上 — 1957 年 BCS 微观理论从底层推出来的稳态响应函数, 在长波极限下正好就是 $(2)$. 物理学史上这种"对得上"的现象学不少 (Drude 模型, Curie-Weiss 定律), 但 London 这一笔特别准.</p>
+
+  <h2>四、临界场、临界电流、二类超导与工程</h2>
+
+  <p>超导态有三个临界量, 任何一个被超过, 超导都会塌掉: 临界温度 $T_c$, 临界磁场 $B_c$, 临界电流密度 $J_c$. 它们不是独立的, 在 $T - B - J$ 三维相图里围出一块"超导工作区". 临界温度 $T_c$ 是最熟悉的: 汞 4.15 K, 铅 7.2 K, 铌 9.25 K (元素里最高), NbTi 合金 10 K, Nb$_3$Sn 18 K, MgB$_2$ 39 K, 高温超导 YBCO 92 K, BSCCO 110 K, HgBa$_2$Ca$_2$Cu$_3$O$_8$ 大约 134 K (常压下铜氧化物里最高). 临界磁场 $B_c$ 反映打散超导态需要的能量: 一类超导体 (单晶 Pb, Hg, Sn) $B_c$ 很低, 几十 mT, 超过就完全转回正常态.</p>
+
+  <p>二类超导体的故事更工业化. Abrikosov 1957 年从 Ginzburg-Landau 方程预言, 当 $\lambda_L / \xi \gt  1/\sqrt{2}$ (这里 $\xi$ 是相干长度) 时, 超导态进入磁场不会一次性塌掉, 而是先在 $B_{c1}$ 让磁通以离散涡旋管 (vortex) 的形式钻入体内, 每根涡旋携带一个磁通量子 $\Phi_0 = h/(2e) = 2.07\times 10^{-15}\,\mathrm{Wb}$, 涡旋之间是超导, 涡旋核心是正常. 涡旋格子里超导仍在工作, 直到 $B_{c2}$ 涡旋密度撑爆才塌. 这就是<strong>二类超导</strong>. NbTi, Nb$_3$Sn, YBCO 都是二类的.</p>
+
+  <p>把这件事落到一个具体设备. CERN 大型强子对撞机 (LHC) 27 km 周长的主二极磁体, 用的是 NbTi 超导线圈, 工作温度 1.9 K (超流氦冷却), 主磁场 8.3 T, 这就要求 NbTi 在 1.9 K 下 $B_{c2} \gt  10\,\mathrm{T}$, 同时 $J_c \sim 3\times 10^9\,\mathrm{A/m^2}$ — 否则线圈撑不住要"猝灭" (quench), 超导态突然塌回正常态, 放出几兆焦的存储能量. LHC 运行十几年里发生过几次猝灭事件, 最严重的 2008 年那次烧毁了一段超导线, 修了一年. 工业上 NbTi 用得最多 (因为延展性好, 容易拉成多股线, 经济性最好); MRI 医用扫描仪一般用 NbTi 线圈在 4.2 K 跑 1.5 - 3 T; 科研用的高场磁体 (NMR, 强磁场实验室的 20 - 40 T) 用 Nb$_3$Sn 或者高温超导带状线 (REBCO).</p>
+
+  <p>临界电流密度 $J_c$ 是工程上最敏感的量. 体超导体里 $J_c$ 通常被涡旋的运动 (flux flow) 限制 — 涡旋一旦在 Lorentz 力作用下运动起来就会耗散, 等效于电阻不为零. 所以工业上要在材料里掺杂"钉扎中心" (pinning center), 把涡旋钉死. 工业 NbTi 的 $J_c \sim 3\times 10^9\,\mathrm{A/m^2}$ (4.2 K, 5 T), Nb$_3$Sn $\sim 10^{10}\,\mathrm{A/m^2}$ (4.2 K, 12 T), 高温 REBCO 带在 77 K 下也能达 $10^{10}\,\mathrm{A/m^2}$. 量级感: 一根 1 mm² 截面的 NbTi 线能撑 3 千安, 这就是 LHC 超导磁体能用相对细的电缆产生 8.3 T 强场的原因 — 超导让导线截面积小到 mm² 量级而电流密度仍达 GA/m² 量级.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Meissner 效应示意. 主图为一个超导球 (圆形阴影区) 处在均匀外磁场 $\mathbf{B}_0$ 中 (用一组水平箭头从左指向右表示外场), 磁力线在远处水平, 接近超导球时被弯曲绕过球外, 球内部完全没有磁力线 (B = 0), 球表面用一圈封闭的小箭头标出表面屏蔽电流 $\mathbf{J}_s$ 的方向 (绕轴形成环). 旁边小插图给出 $B(x) = B_0 e^{-x/\lambda_L}$ 的衰减曲线: 横轴 $x$ 自超导体表面向内, 纵轴 $B/B_0$ 从 1 指数下降到 0, 标出特征长度 $\lambda_L$ (Hg 约 40 nm, YBCO 约 140 nm)]</div>
+  </figure>
+
+  <h2>五、超导是宏观量子相位的相干</h2>
+
+  <p>把这一节的逻辑骨架重新梳一遍: Onnes 1911 给出零电阻这个事实; Meissner-Ochsenfeld 1933 给出完美抗磁这个状态量; London 1935 用 $(2)$ 式 $\nabla\times\mathbf{J}_s = -(n_s e^2/m)\mathbf{B}$ 把两件事写成一对耦合关系, 解出 $(3)$ 式 $\nabla^2 \mathbf{B} = \mathbf{B}/\lambda_L^2$, 给出磁场被排出的几何 — 边界一层 $\lambda_L \sim 40\,\mathrm{nm}$ 的薄层. 这一切都没用任何微观信息, 只是说"超导电子是一个无粘性的、量子相干的流体". 至于这个流体是怎么形成的、$n_s$ 又是什么, 留给下一节: Cooper 1956 发现两个电子在 Fermi 海上方任意弱的吸引相互作用都会束缚成对, BCS 1957 把整个超导态写成相干 Cooper 对的凝聚.</p>
+
+  <p>但是即使没有微观, 这一节的现象学已经能解释一些深刻的事. 第一, 磁通量子化 $\Phi_0 = h/(2e)$ — 二类超导体涡旋管里的磁通是离散的, 因子 2 表明载流子是<em>电子对</em>, 不是单电子, 这是 BCS 之前就被实验证实的 (Deaver-Fairbank 与 Doll-Näbauer 1961). 第二, Josephson 1962 预言并由 Anderson-Rowell 1963 验证的隧道结电流相位关系 $I = I_c \sin\varphi$, 直接来自超导宏观波函数的相位 $\varphi$ — 整个超导样品有<em>一个</em>波函数, 一个相位, 像一个宏观量子粒子. 第三, SQUID 磁强计 (超导量子干涉器件) 测磁场分辨率达 $10^{-15}\,\mathrm{T}$, 能感应到一颗心脏的磁信号, 也是这套相位相干物理的直接应用.</p>
+
+  <p>从 1911 到 1957 这 46 年, 超导是凝聚态物理的"未解之谜"号牌; 1957 年 BCS 之后, 它变成了"宏观量子现象"最干净的例子. 今天我们知道, 超导跟超流 He-4、玻色凝聚体、激光、量子 Hall 共同构成"宏观量子相干态"这一大类 — 凡是一个体系有大数目粒子凝聚到同一个量子态、整体共享一个宏观波函数的, 都属于这一类. 第 4 部分接下来六节我们一篇篇展开: 17 节讲 Cooper 对的形成机制, 18 节讲 BCS 能隙方程 $\Delta = 1.76 k_B T_c$, 19 节讲 Ginzburg-Landau 序参量, 20 节讲二类超导与涡旋格子, 21 节讲超流氦, 22 节回到高温超导这个仍未关上的悬案.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>超导态有两条骨架性质: 零电阻 (Onnes 1911, 汞 $T_c = 4.15\,\mathrm{K}$) 与完美抗磁 (Meissner-Ochsenfeld 1933). 后者不是前者的简单推论 — 零电阻只冻住磁通, 完美抗磁主动排空磁通, 是一个真正的热力学相. London 兄弟 1935 把这件事写成两条方程, 关键是第二式 $(2)$ $\nabla\times\mathbf{J}_s = -(n_s e^2/m) \mathbf{B}$, 推出磁场满足 $(3)$ $\nabla^2 \mathbf{B} = \mathbf{B}/\lambda_L^2$, 在边界以 $\lambda_L = \sqrt{m/(\mu_0 n_s e^2)}$ 为厚度指数衰减 (汞 40 nm, YBCO 140 nm). 工业上二类超导 (NbTi $T_c = 10\,\mathrm{K}$, $J_c \sim 3\times 10^9\,\mathrm{A/m^2}$) 撑起 LHC 8.3 T 主磁场和 MRI 1.5 - 3 T 扫描场. 这一切只是现象学; 微观机制 (Cooper 对、BCS 能隙、相位相干) 留给下一节. 这一节给的是: 超导是一个宏观量子流体, 它的电流场和磁场被一组对称的方程钉死, 长度尺度是几十纳米, 时间尺度是无穷.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="15-quantum-phase-transition.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="17-cooper-pairs.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

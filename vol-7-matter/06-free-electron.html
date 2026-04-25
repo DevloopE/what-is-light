@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么金属电阻率随温度线性升? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="05-debye.html">← 上一节</a>
+  <span class="chapter-title">第 6 节 / 30 · 第 2 部分 · 电子在固体里 · 第七卷·物质是什么?</span>
+  <a href="07-bloch.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么金属电阻率随温度线性升?</h1>
+  <div class="sub">—— Sommerfeld 自由电子气</div>
+
+  <div class="abstract">手边一段铜线, 量它在室温下的电阻率, 标准值 $\rho = 1.7\times 10^{-8}\ \Omega\cdot\text{m}$; 把它泡进液氦里, 同一段铜的电阻率会跌到 $10^{-10}\ \Omega\cdot\text{m}$ 量级 — 两个数量级. 中间一大段温度区间, $\rho$ 几乎严格随 $T$ 线性上升. 1900 年 Drude 提出经典图像 — 电子是一团在原子核背景上来回乱撞的"气体", 漂移速度由碰撞时间 $\tau$ 决定, 给出 $\sigma = ne^2\tau/m$. 这个公式在量级上对了, 给出室温铜的 $\sigma \approx 6\times 10^7\ \text{S/m}$, 但代价是它附带的两个预言全部错: 经典电子气贡献 $\tfrac32 N k_B$ 的热容, 比实测高 $100$ 倍; 经典电子气有顺磁化率 $\propto 1/T$, 比实测高 $100$ 倍. 1927-1928 年 Sommerfeld 把刚出炉的 Fermi-Dirac 统计换进 Drude 的图像 — 电子不是 Maxwell-Boltzmann 气体, 是一团在 $T=0$ 时填满一个半径 $k_F$ 的 Fermi 球的简并费米子气. 一切立刻对上: $C_v$ 在低温走 $\propto T$ 而不是常数, 磁化率几乎与温度无关 (Pauli 顺磁), 而 $\sigma$ 公式不变. 这一节我们把铜的 $\varepsilon_F = 7.0$ eV、$T_F = 8.1\times 10^4$ K、$v_F = 1.57\times 10^6$ m/s 一一代清楚, 看明白为什么"参与散射的只是 Fermi 面上 $kT$ 一层薄壳", 又为什么 $\rho \propto T$ 是高温声子散射的必然.</div>
+
+  <p>金属导电这件事看着平常, 想清楚却需要绕过两次大坑. 第一次是 1900 年的 Drude — 他把金属里的电子当作经典理想气体, 用平均自由程与碰撞时间这两个朴素概念, 推出了对的电导率公式 $\sigma = n e^2 \tau / m$. 这套图像简单到一个人晚上就能写完, 但它带来一个尴尬: 同一团电子若真是经典气体, 它的比热应该跟单原子分子气体一样是 $\tfrac32 N k_B$, 室温下贡献跟离子格子的 $3 N k_B$ 同量级. 可是实验上, 电子比热部分小到几乎测不出来. 第二次是 1928 年的 Sommerfeld — 他把电子换成 Fermi-Dirac 统计的简并气, $\sigma$ 公式一字不改, 但比热从常数变成线性的 $\propto T$, 磁化率从 Curie $\propto 1/T$ 变成几乎不动. 整套金属电子论的精度立刻提了两个量级. 这一节就是从一颗铜原子开始把这两次修正讲清楚.</p>
+
+  <h2>一、Drude 的电子气: 公式对了, 数字错了</h2>
+
+  <p>Drude 1900 年的设定极其朴素. 把金属想像成一个"离子格子 + 自由电子海"的混合: 每个铜原子贡献一个 $4s$ 电子作为载流子, 电子之间不相互作用, 它们在背景离子上做布朗运动, 相邻两次散射之间走自由路径 $\ell$, 平均时间 $\tau$. 电场 $E$ 加上去, 电子在 $\tau$ 内被加速, 一次碰撞清零, 平均漂移速度 $v_d = -eE\tau/m$. 电流密度 $j = -n e v_d = (n e^2 \tau/m) E$, 所以</p>
+
+  <p>$$ \sigma = \frac{n e^2 \tau}{m}, \qquad \rho = \frac{m}{n e^2 \tau}. \tag{1} $$</p>
+
+  <p>把铜的数字代进去检验: 铜的载流子密度 $n = 8.45\times 10^{28}\ \text{m}^{-3}$, 这从原子量与密度直接算出 — 铜密度 $8.96\ \text{g/cm}^3$, 摩尔质量 $63.5\ \text{g/mol}$, 每原子一个 $4s$ 电子, $n = 8.96/63.5 \times 6.02\times 10^{23} \times 10^6 \approx 8.5\times 10^{28}\ \text{m}^{-3}$. 室温电阻率 $\rho = 1.7\times 10^{-8}\ \Omega\cdot\text{m}$ 反推 $\tau$:</p>
+
+  <p>$$ \tau = \frac{m}{n e^2 \rho} = \frac{9.11\times 10^{-31}}{8.45\times 10^{28} \cdot (1.6\times 10^{-19})^2 \cdot 1.7\times 10^{-8}} \approx 2.5\times 10^{-14}\ \text{s}. $$</p>
+
+  <p>大约 $25$ 飞秒. 这个数对吗? Drude 当年配上经典平均速度 $\bar v \sim \sqrt{3k_B T/m} \approx 1.2\times 10^5\ \text{m/s}$ (室温), 算出平均自由程 $\ell = \bar v \tau \approx 3\ \text{nm}$ — 大约 $10$ 个晶格常数, 跟杂质间距同量级, 看上去合理. 公式 (1) 的形式没问题, $\sigma$ 量级也对, Drude 因此名留物理史.</p>
+
+  <p>但同一套图像的隐含承诺出了大问题. 经典理想气体里每个自由度贡献 $\tfrac12 k_B$ 的热容, 一团 $N$ 个电子应该多出 $\tfrac32 N k_B$ 的电子比热. 加在每摩尔金属上, 这是 $\tfrac32 R \approx 12.5\ \text{J/(mol\cdot K)}$, 跟离子格子的 Dulong-Petit $3R \approx 25\ \text{J/(mol\cdot K)}$ 同量级. 实验呢? 室温铜的总比热确实接近 $25\ \text{J/(mol\cdot K)}$, 但减掉离子部分以后, 留给电子的不到 $0.1\ \text{J/(mol\cdot K)}$ — 比 Drude 预言小了至少 $100$ 倍. 同样的问题出现在磁化率里: 经典气体的顺磁化率走 Curie 律 $\chi \propto 1/T$, 而铜的磁化率与温度几乎无关, 量级也低 $100$ 倍. 公式 $\sigma$ 对, 比热与磁化率全错 — Drude 模型里有一件大事不见了.</p>
+
+  <h2>二、Sommerfeld 的修正: Fermi-Dirac 把电子海冻起来</h2>
+
+  <p>1925 年 Pauli 写下不相容原理, 1926 年 Fermi 与 Dirac 各自把它套到统计力学里. 1927 年到 1928 年, Sommerfeld 在慕尼黑的讲义里把这套统计直接换进 Drude 的电子海 — 电子不是 Maxwell-Boltzmann 气, 是 Fermi-Dirac 气. 关键的差别只有一句: 同一动量本征态最多放两个 (自旋向上向下各一) 电子. 在 $T = 0$ 的基态上, $N$ 个电子按能量从低到高填, $k$ 空间里形成一个半径 $k_F$ 的实心球. 由 vol-6 第 22 节我们已经写过</p>
+
+  <p>$$ k_F = (3\pi^2 n)^{1/3}, \qquad \varepsilon_F = \frac{\hbar^2 k_F^2}{2 m} = \frac{\hbar^2}{2m}(3\pi^2 n)^{2/3}. \tag{2} $$</p>
+
+  <p>把铜的 $n = 8.45\times 10^{28}\ \text{m}^{-3}$ 代入:</p>
+
+  <p>$$ k_F = (3\pi^2 \cdot 8.45\times 10^{28})^{1/3} \approx 1.36\times 10^{10}\ \text{m}^{-1}, $$</p>
+
+  <p>$$ \varepsilon_F = \frac{(1.05\times 10^{-34})^2 \cdot (1.36\times 10^{10})^2}{2 \cdot 9.11\times 10^{-31}}\ \text{J} \approx 1.13\times 10^{-18}\ \text{J} \approx 7.0\ \text{eV}. $$</p>
+
+  <p>对应 Fermi 温度 $T_F = \varepsilon_F / k_B \approx 8.1\times 10^4\ \text{K}$, 大约 $81000\ \text{K}$. 这一项数字一出现, 整盘棋立刻翻面. 室温下 $T/T_F \approx 300/81000 \approx 3.7\times 10^{-3}$ — 不到千分之四. 也就是说, 室温下铜的电子气离它的"零温基态"还远, 几乎完全简并. 不是"室温很冷", 是 Fermi 温度太高.</p>
+
+  <p>Fermi 速度也顺手算一下: $v_F = \hbar k_F / m = 1.05\times 10^{-34} \cdot 1.36\times 10^{10} / 9.11\times 10^{-31} \approx 1.57\times 10^6\ \text{m/s}$. 比 Drude 当年用的"经典平均速度" $\bar v \approx 1.2\times 10^5\ \text{m/s}$ 大了 $13$ 倍. 重要的是: 在 Sommerfeld 的图像里, 散射时电子的速度不是热平均的 $\bar v$, 而是 Fermi 面上的 $v_F$ — 因为只有 Fermi 面附近的电子才有空态可去. 配合 (1) 反推的 $\tau \approx 2.5\times 10^{-14}\ \text{s}$, 平均自由程</p>
+
+  <p>$$ \ell = v_F \tau \approx 1.57\times 10^6 \cdot 2.5\times 10^{-14}\ \text{m} \approx 39\ \text{nm}. $$</p>
+
+  <p>大约 $100$ 个晶格常数. 这个数比 Drude 当年算的 $3$ nm 大一个量级, 比单纯靠杂质间距推的预期高得多 — 电子像穿过一个几乎空的迷宫, 而不是像 Drude 想像的那样每碰几个原子就被打乱一次.</p>
+
+  <h2>三、为什么参与散射的只是 Fermi 面上一层薄壳</h2>
+
+  <p>简并把电子气的物理彻底改写. 在 $T = 0$ 的图像里, $\varepsilon \lt  \varepsilon_F$ 的态全被占满, $\varepsilon \gt  \varepsilon_F$ 的态全空, Fermi 分布是阶跃函数. 给一点温度, 阶跃函数在 $\varepsilon_F$ 附近被涂开成宽度 $\sim k_B T$ 的"软边". 至关重要的事: 一个深埋在 Fermi 海里的电子, 比如 $\varepsilon = \varepsilon_F - 1\ \text{eV}$ 的那位, 想散射换个状态, 它需要找到一个空的末态. 但能量守恒下能跳到的末态都被别人占着 — 整个 Fermi 海里只有 Fermi 面周围 $k_B T$ 一薄层的电子有"容易碰到的空位"可换. 其它电子根本动不了, 不是不想动, 是无处可去.</p>
+
+  <p>这个观察立即解释了 Drude 的两次失败. 比热: 升温 $T$ 时, 真正"被加热"的电子只占总数的 $T/T_F$ 一份比例, 每个被加热者多带 $k_B T$ 量级的能, 总额外能 $\sim N k_B T \cdot (T/T_F) = N k_B T^2/T_F$, 求导得</p>
+
+  <p>$$ C_v^\text{(el)} = \frac{\pi^2}{3} k_B^2\, N(\varepsilon_F)\, T \;\propto\; T. \tag{3} $$</p>
+
+  <p>这里 $N(\varepsilon_F) = \tfrac{3n}{2\varepsilon_F}$ 是单位体积单位能量的态密度. 比 Drude 的常数小一个 $T/T_F \sim 10^{-3}$ 因子, 室温下电子比热只有 $\tfrac{\pi^2}{2}\cdot (T/T_F) \cdot \tfrac32 R \approx 0.06\ R$ — 跟实测的 $\lesssim 0.1\ \text{J/(mol\cdot K)}$ 对得上. 磁化率也是同理 — 只有 Fermi 面上 $k_B T$ 那层电子能在外磁场里翻自旋, $\chi$ 缩水 $T/T_F$ 倍, 由 Curie $\propto 1/T$ 退化成几乎不动的 Pauli 顺磁 $\chi \propto N(\varepsilon_F)$. 同样小 $100$ 倍, 跟实测对上.</p>
+
+  <p>但 (1) 这个 $\sigma$ 公式神奇地原封不动. 道理也在 Fermi 面: 电导是个动力学问题, 关心的是 Fermi 面上的电子在电场下漂移多远. 推导漂移速度时, 电流密度的积分</p>
+
+  <p>$$ j_x = -e \int v_x\, [f(\mathbf k) - f_0(\mathbf k)]\, \frac{d^3k}{4\pi^3} $$</p>
+
+  <p>里, 偏离平衡分布 $f - f_0$ 仍然只在 Fermi 面附近有支撑, 但在那里 $v_x = v_F$ 个个都大. 仔细做完积分会得到完全一样的 $\sigma = n e^2 \tau/m$ — 全体 $n$ 个电子都"作贡献"了, 不只是 Fermi 面那薄壳. 这听起来奇怪, 但其实是个会计技巧: Fermi 面的薄壳承担了"加速"与"被散射"两件事, 而求和给出的电流, 数学上恰好等于"全体 $n$ 个电子各自漂移"的形式. Drude 公式因此存活, 系数甚至完全一样 — 这是 Sommerfeld 的精妙处, 公式同形, 物理重写.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左半 Fermi-Dirac 分布 $f(\varepsilon)$ 在三个温度下叠画 — $T=0$ 是阶跃在 $\varepsilon_F$ 的方波, $T \sim 0.05\, T_F$ 在 $\varepsilon_F$ 附近被涂开成宽度 $\sim k_B T$ 的软边但中心仍贴 1/2, $T \to \infty$ 时退化为 Maxwell-Boltzmann 指数衰减; 横轴 $\varepsilon$, 纵轴 $f$, 在 $\varepsilon_F$ 处画竖直虚线, 在 $f=1/2$ 处画水平虚线, 标注 "$k_B T$ 宽窗口" 区域. 右半态密度 $N(\varepsilon) = \tfrac{1}{2\pi^2}(2m/\hbar^2)^{3/2}\sqrt{\varepsilon}$ — 一条 $\sqrt{\varepsilon}$ 上升的曲线; 在 $\varepsilon_F$ 处画竖虚线, 阴影标"已占满"的部分, $\varepsilon_F$ 之上一薄层 $k_B T$ 用斜线表"参与散射的薄壳"; 标 $\varepsilon_F = 7.0\ \text{eV}$, $T_F = 8.1\times 10^4\ \text{K}$, $v_F = 1.57\times 10^6\ \text{m/s}$.]</div>
+  </figure>
+
+  <h2>四、$\rho \propto T$ 从哪里来 — 声子散射的高温极限</h2>
+
+  <p>电导公式 (1) 把全部温度依赖塞进 $\tau(T)$ 里. 我们要问: 是什么让 $\tau$ 在室温下跟 $1/T$ 成反比? 答案在上一节 Debye 模型里铺好了 — 离子格子在有限温度下振动, 振动量子化以后是声子, 室温的铜处在 $T \sim \Theta_D = 343\ \text{K}$ 之上, 声子分布按 Bose-Einstein 走, 每个声子模式的占据数 $n_q \approx k_B T/(\hbar \omega_q) \propto T$. 电子被一个声子散射的概率正比于声子数, 故碰撞率 $1/\tau \propto T$, 即 $\tau \propto 1/T$. 把这个代回 (1):</p>
+
+  <p>$$ \rho(T) = \frac{m}{n e^2 \tau(T)} \propto T \qquad (T \gtrsim \Theta_D). $$</p>
+
+  <p>这就是铜在室温段几乎严格线性的根源 — 不是电子的热涨落, 是声子热库的线性增长. 严格的 Bloch-Grüneisen 公式给出 $\rho(T) = A\, (T/\Theta_D)^5 \int_0^{\Theta_D/T} x^5/[(\text{e}^x-1)(1-\text{e}^{-x})]\, dx$, 在 $T \gg \Theta_D$ 极限退化为 $\rho \propto T$, 在 $T \ll \Theta_D$ 极限给出 $\rho \propto T^5$. 这条 $T^5$ 在低温段经常被实测到 — 真正干净的铜, 在液氢、液氦温度下电阻率会迅速塌到 $10^{-10}\ \Omega\cdot\text{m}$ 量级, 残余的部分由杂质散射 (与温度无关) 兜底. Matthiessen 规则: $\rho_\text{tot}(T) = \rho_\text{imp} + \rho_\text{ph}(T)$, 杂质项常数, 声子项由 Bloch-Grüneisen 给出, 实验曲线就是把这两段拼起来.</p>
+
+  <p>这套图像里有个值得多说一句的细节. 真正限制 $\tau$ 的不是任意角度的散射, 而是"动量松弛" — 把电子从 Fermi 面一边踢到对面所需的散射. 高温声子动量大, 一脚就把电子踢到对面, 每次声子吸收都能算一次有效碰撞; 但低温下热声子动量太小, 一次小角度散射改变不了电子的总动量方向, 需要很多次小散射叠加才相当于一次大转向 — 这就是 Bloch-Grüneisen 那个 $T^5$ 而非 $T^3$ 的来源 (额外一对 $T^2$ 因子来自小角度散射的几何修正). Sommerfeld 与他在 1928 年慕尼黑的博士生 Bloch 的师承关系也在这里露出: Sommerfeld 把 Fermi 统计塞进去, 立刻让 $\sigma$ 公式定量化; Bloch 1928 年把周期势考虑进去, 给出准动量与能带, 同年又把声子散射推到更精细的层次, 解释了 $T^5$ 行为. 两件事差几个月. 现代金属电子论的两根支柱 (Sommerfeld 的简并与 Bloch 的能带) 几乎是同一年从同一个屋子里出来的.</p>
+
+  <p>把全部数字串起来: 室温铜, $\rho = 1.7\times 10^{-8}\ \Omega\cdot\text{m}$, 反推 $\tau = 2.5\times 10^{-14}\ \text{s}$. Fermi 速度 $v_F = 1.57\times 10^6\ \text{m/s}$, 平均自由程 $\ell = v_F \tau = 39\ \text{nm}$. 把 $T$ 降到 $77\ \text{K}$ (液氮), $T \lt  \Theta_D$ 还在 $T^5$ 区上端, 由 Bloch-Grüneisen 估计 $\rho_\text{ph}(77) \approx \rho_\text{ph}(300)\cdot(77/300)\approx 4\times 10^{-9}\ \Omega\cdot\text{m}$ (这里 $T \sim \Theta_D/4$, 仍接近线性), 实测约 $2\times 10^{-9}\ \Omega\cdot\text{m}$. 再降到 $4.2\ \text{K}$ (液氦), $T \ll \Theta_D$, $\rho_\text{ph} \propto T^5$ 已经塌下去, 杂质项 $\rho_\text{imp}$ 接管, 商品级铜 $\rho_\text{imp} \sim 10^{-10}\ \Omega\cdot\text{m}$, 高纯铜 (RRR $\sim 10^4$) 可低到 $10^{-12}\ \Omega\cdot\text{m}$. 这条曲线从 $300\ \text{K}$ 到 $4\ \text{K}$ 横跨四个量级, 中间近乎线性的那一段恰恰是 Sommerfeld 公式 (1) 配上 Bloch-Grüneisen 高温极限的产物.</p>
+
+  <p>历史的另一条线索是顺手补的. Drude 1900 年的工作发表在 <em>Annalen der Physik</em>; 同年 Planck 在同一份杂志上发表了黑体辐射, 同年 Hilbert 在 Paris 提了 23 个数学问题, 量子时代的开局年. Drude 三年后自杀, 没看到自己模型的修正. Sommerfeld 1927 年在慕尼黑组织了一个庞大的学派 (Heisenberg、Pauli、Bethe、Bloch、Landé 都从那里出来), 1928 年发表 "Zur Elektronentheorie der Metalle auf Grund der Fermischen Statistik" — 一举把金属电子论搬上 Fermi-Dirac 统计的脚架. 1928 年同年, 22 岁的 Bloch 在 Sommerfeld 的论文 (并非师承, Bloch 实际上跟 Heisenberg 在莱比锡读博) 启发下, 着手处理周期势中的电子, 一年后给出 Bloch 定理. 两次进步从 1900 Drude 的"经典电子气", 经过 Sommerfeld 的"自由 Fermi 气", 到 1929 年 Bloch 的"周期势中的 Fermi 气", 完整构成了"金属里的电子是什么"这个问题的现代答案. 下一节就接着讲 Bloch.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>从一段铜线开始, 室温电阻率 $1.7\times 10^{-8}\ \Omega\cdot\text{m}$ 反推出每个电子的碰撞时间约 $25$ 飞秒. Drude 把电子当经典气体, 给出对的 $\sigma = ne^2\tau/m$ 与错的 $C_v = \tfrac32 N k_B$. Sommerfeld 1928 年把 Fermi-Dirac 统计塞进同一个图像 — 电子是高度简并的费米气, 铜的 Fermi 能 $\varepsilon_F = 7.0\ \text{eV}$, Fermi 温度 $T_F = 8.1\times 10^4\ \text{K}$, 室温 $T/T_F$ 不到千分之四. 真正能参与散射的只是 Fermi 面附近 $k_B T$ 宽的薄壳, 这个 $T/T_F$ 的"小因子"把电子比热与磁化率都压低 $100$ 倍, 同时让 $\sigma$ 公式神奇地保持原形. 至于电阻率随温度线性, 那来自高温声子热库占据数 $\propto T$, 导致 $1/\tau \propto T$, $\rho \propto T$ — Bloch-Grüneisen 在低温会切到 $T^5$, 加上杂质常数项就完全描述了从液氦到室温的整条 $\rho(T)$ 曲线. 这一节把金属电子论的两次跳跃讲完, 下一节就把"自由"换成"在周期势里的 Bloch 波".</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="05-debye.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="07-bloch.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

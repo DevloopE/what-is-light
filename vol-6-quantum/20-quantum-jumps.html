@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>量子跳变能被实时看见吗? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="19-interpretations.html">← 上一节</a>
+  <span class="chapter-title">第 20 节 / 30 · 第 4 部分 · 测量与诠释 · 第六卷·量子是什么?</span>
+  <a href="21-identical-particles.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>量子跳变能被实时看见吗?</h1>
+  <div class="sub">—— 弱测量与单原子荧光</div>
+
+  <div class="abstract">Bohr 1913 年画氢原子时, "电子从高轨道跳到低轨道, 发出一个光子" 只是一句符号化的话 — 当时没人见过任何单一原子, 更别提看见它跳. 1926 年 Schrödinger 写完他的方程后甚至公开和 Bohr 吵架, 留下名句: "如果跳变还存在, 我宁愿这辈子没碰过量子论". 然而 1986 年, Dehmelt 与 Wineland 把单个 ¹⁹⁸Hg⁺ / ¹⁷²Yb⁺ 离子困在 Paul 阱里, 用一束抽吸激光打它, 数码相机直接录到了 Bohr 那张图描绘的过程: 离子持续发荧光 (亮态), 偶尔突然熄灭几秒 (跳进长寿命亚稳态), 然后突然恢复发光. 平均跳跃间隔 $\tau\sim 0.1\,\mathrm{s}$, 肉眼可见. 这一节把三能级 $\Lambda$-系统 Hamiltonian, Fermi 黄金规则跃迁速率 $W_{ij}=(2\pi/\hbar)|\bra{i}V\ket{j}|^2\,\delta(E_i-E_j)$, 与 Aharonov-Albert-Vaidman 1988 弱测量框架串成一条线 — 单粒子 quantum jumps 既是离散的, 又能被弱探针 "拍到" 渐变的前奏 (Yale 2019, Minev-Devoret).</div>
+
+  <p>Bohr 1913 那张轨道图, 是一种被迫的妥协. 当时 Rutherford 的核式原子刚刚提出来, 经典电动力学预言 — 加速运动的电子辐射电磁波, 半径迅速塌进核里, 全宇宙原子应该在 $10^{-11}\,\mathrm{s}$ 内毁掉. 而事实是原子稳得很. Bohr 说: 那就假设电子只能停在离散一组允许轨道 $r_n$ 上, 这些轨道里它不辐射; 只在两个轨道之间 "瞬间跳变" 时, 才发出或吸收一个光子, 频率由 $\hbar\omega = E_m - E_n$ 给出. 这套规则把氢原子谱 (Balmer 线、Lyman 线) 准到三位有效数字, 但 "跳变" 本身没有过程描述 — 是一句强行写下的语法.</p>
+
+  <p>十三年后, Schrödinger 的波动力学似乎让跳变消失了. 在他眼里, 电子只是一个连续演化的波函数 $\psi(x,t)$, $|\psi|^2$ 平滑地从一个 stationary state 流到另一个, 中间过程像两个驻波模式干涉, 节拍频率正是 Bohr 的 $\omega_{mn}$. Schrödinger 1926 年到哥本哈根, 在和 Bohr 反复争论后病倒在床上, 留下那句被反复引用的话: "如果这种该死的量子跳变 (verdammte Quantenspringerei) 仍要继续, 那我宁愿没参与过量子论的工作". Bohr 站在病床边, 据说没让他休息.</p>
+
+  <p>双方都对了一半. 60 年后, 一对实验组把单个离子捕到 Paul 阱里, 用相机连续录像 — 跳变, 不仅存在, 而且看得见. 这一节把这套实验拆开: 三能级 $\Lambda$-系统的物理设置, 跳跃速率怎么算, 单次跳跃为什么是 "突然" 的而又能被弱测量预报.</p>
+
+  <h2>一、三能级 $\Lambda$-系统: 一短一长两条岔路</h2>
+
+  <p>Dehmelt 设计的电子跑道叫 <strong>$\Lambda$-系统</strong>, 因为能级图画出来像一个倒扣的 $\Lambda$. 三个能级:</p>
+  <ul>
+    <li><strong>基态</strong> $\ket{g}$: ¹⁹⁸Hg⁺ 是 $5d^{10}6s\;{}^2S_{1/2}$ 基态, 长期稳定.</li>
+    <li><strong>短寿命激发态</strong> $\ket{e}$: $5d^{10}6p\;{}^2P_{1/2}$, 寿命 $\tau_e\approx 2\,\mathrm{ns}$. 跃迁波长 $\lambda_{eg}=194\,\mathrm{nm}$ (紫外).</li>
+    <li><strong>长寿命亚稳态</strong> $\ket{m}$: $5d^9 6s^2\;{}^2D_{5/2}$, 寿命 $\tau_m\approx 0.1\,\mathrm{s}$. 这是一条电四极 (E2) 跃迁, 选择定则上被压制了 $\sim 10^{8}$ 倍.</li>
+  </ul>
+
+  <p>实验做法: 用一束 194 nm 紫外激光强抽 $\ket{g}\to\ket{e}$, 让离子在 $\ket{g}$ 与 $\ket{e}$ 之间快速来回 — 由于 $\tau_e=2\,\mathrm{ns}$, 离子每秒发射 $\sim 10^{8}$ 个 194 nm 光子, 通过显微物镜聚到光电倍增管或 EMCCD 上, 看起来是一个稳定的亮点. 这是 <strong>"亮态"</strong> (bright phase). 然后在另一条频率上加一束弱激光, 偶尔把离子推到亚稳态 $\ket{m}$. 一旦它进了 $\ket{m}$, 它就脱离了 $\ket{g}\leftrightarrow\ket{e}$ 抽吸圈, 不再发 194 nm 光 — 整整 $0.1\,\mathrm{s}$ 内, 视野里那个亮点完全熄灭. 这是 <strong>"暗态"</strong> (dark phase). 它自发跳回 $\ket{g}$ 后, 圈又关上, 亮点突然重新出现.</p>
+
+  <p>把这套写成 Hamiltonian. 在转动坐标系下 (rotating frame), 略去快振荡项,</p>
+  <p>$$ \hat H = \hbar\Delta_e \ket{e}\bra{e} + \hbar\Delta_m \ket{m}\bra{m} + \hbar\frac{\Omega_e}{2}\bigl(\ket{e}\bra{g}+\ket{g}\bra{e}\bigr) + \hbar\frac{\Omega_m}{2}\bigl(\ket{m}\bra{g}+\ket{g}\bra{m}\bigr). \tag{1} $$</p>
+  <p>其中 $\Omega_e,\Omega_m$ 是两束抽吸激光的 Rabi 频率, $\Delta_e,\Delta_m$ 是失谐. 加上自发辐射: $\ket{e}\to\ket{g}$ 速率 $\Gamma_e=1/\tau_e\approx 5\times 10^{8}\,\mathrm{s}^{-1}$, $\ket{m}\to\ket{g}$ 速率 $\Gamma_m=1/\tau_m\approx 10\,\mathrm{s}^{-1}$. 这两个速率差了 $5\times 10^{7}$ 倍 — 这就是为什么暗态可以拖到秒级, 而亮态发光看上去 "连续".</p>
+
+  <h2>二、Fermi 黄金规则与跳跃速率</h2>
+
+  <p>从 (1) 推出来 "跳变" 这件事的速率. 把 $\ket{g}\to\ket{m}$ 这条慢通道近似为微扰 $V=\hbar(\Omega_m/2)(\ket{m}\bra{g}+\mathrm{h.c.})$, 终态 $\ket{m}$ 加上其他诸如自发辐射真空模式, 用 Dirac 1927 推出的<strong>Fermi 黄金规则</strong> (名字是 Fermi 1950 起的, 但公式是 Dirac 的):</p>
+  <p>$$ W_{ij} = \frac{2\pi}{\hbar}\bigl|\bra{i}V\ket{j}\bigr|^2 \,\rho(E_i)\delta(E_i - E_j). \tag{2} $$</p>
+  <p>对单一离散末态, $\rho(E_i)\delta(E_i-E_j)$ 由能量守恒和激光线宽决定, 实践上简化为 $W \sim \Omega_m^2/\Gamma$, 其中 $\Gamma$ 是参与的退相干率. 平均亮态持续时间 $\tau_\mathrm{bright} = 1/W_{g\to m}$; 平均暗态持续时间 $\tau_\mathrm{dark} = 1/W_{m\to g}\approx \tau_m \approx 0.1\,\mathrm{s}$.</p>
+
+  <p>代具体数. Hg⁺ 的 $5d^9 6s^2\;{}^2D_{5/2}$ 寿命 $\tau_m \approx 0.1\,\mathrm{s}$ (Itano 等 1987 测出 $86\pm 3\,\mathrm{ms}$); $5d^{10}6p$ 的 $\tau_e\approx 2.3\,\mathrm{ns}$. 暗态跳跃间隔 $\tau_\mathrm{dark}\sim 0.1\,\mathrm{s}$, 亮态长度可调到几秒. 用一台普通 EMCCD (帧率 30 fps, 33 ms/帧), 每个亮态 / 暗态都跨几十甚至几百帧, 肉眼看视频就能数: 亮 — 黑 — 亮 — 黑 — ... 时序图横轴 $t$ (秒), 纵轴每秒光子数 $\sim 10^{4}\!-\!10^{5}$ (限于探测效率), 是一段方波随机调制.</p>
+
+  <p>Bergquist, Hulet, Itano, Wineland 1986 在 NIST (Boulder) 用 ¹⁹⁸Hg⁺ 直接拍到; 几乎同时 Sauter, Neuhauser, Toschek, Dehmelt 在 Heidelberg 用 ¹⁷²Yb⁺ 也看到. Dehmelt 与 Wolfgang Paul 一起拿了 1989 年诺贝尔物理奖. 这是<strong>第一次</strong>把 Bohr "跳变" 的语言落到实数据 — 你能拿录像带逐帧暂停, 指着那一帧说: "就在这里, 它跳进暗态了".</p>
+
+  <h2>三、跳变是 "瞬间" 的吗? 量子轨迹与塌缩公设</h2>
+
+  <p>看到的曲线是方波, 但 "方波边" 真的有零宽度吗? 这件事比表面复杂.</p>
+
+  <p>从塌缩公设 (vol 6 第 8 节, Born 规则) 看, 测量瞬间态向量 $\ket{\psi}=c_g\ket{g}+c_m\ket{m}$ 塌缩到 $\ket{g}$ 或 $\ket{m}$, 概率 $|c_g|^2$ 与 $|c_m|^2$. 单次荧光光子的<strong>检测</strong>本身就构成一次对 "离子是否在 $\ket{g}$" 的弱测量 — 如果它是 $\ket{g}$, 它会发 194 nm 光子; 如果它是 $\ket{m}$, 不会. 每个光子检测都把波函数往 $\ket{g}$ 一侧推, 推到一定阈值才 "判定" 它在 $\ket{m}$ 那一边. 这套语言叫<strong>量子轨迹</strong> (quantum trajectory, Carmichael 1993, Dalibard-Castin-Mølmer 1992): 把开放量子系统的演化写成一个随机微分方程, 每检测到一个光子就跳一小步, 否则连续地按非厄米 Hamiltonian 演化. 平均 (对所有可能的轨迹做系综平均) 回到主方程 — 但单次实验, 你看到的就是单条轨迹.</p>
+
+  <p>从这个角度, "跳变" 既是离散事件 (光子 click 是一个个的), 又是连续过程 (条件波函数在两次 click 之间平滑演化). 这调和了 Bohr 与 Schrödinger 的争论 — 各对一半.</p>
+
+  <p>更精彩的是 2019 年 Yale 的 Minev-Devoret 实验. 他们用一个三能级的<strong>超导人工原子</strong> (transmon, $\ket{G}$, $\ket{B}$ 亮态, $\ket{D}$ 暗态) 跑相同的 $\Lambda$-系统, 但加了一个对 $\ket{G}\to\ket{B}$ 跃迁的连续<strong>弱测量</strong>读出 (色散读出, dispersive readout). 这条弱探针不直接打 $\ket{G}\to\ket{D}$ 跳变, 但能把<strong>条件荧光率</strong>实时记录下来. 他们发现: 在每一次跳进 $\ket{D}$ 的几微秒之前, 亮态荧光率开始<strong>渐变下降</strong> — 像潮汐退去, 露出沙滩. 用机器学习训练一个预测器, 跳变发生前 $\sim 4\,\mu\mathrm{s}$ 就能给出 $\sim 90\%$ 准确率的预报, 甚至能用反馈脉冲<strong>把跳跃中途拦截回来</strong>. 跳变在最细的时间尺度上, 不是真 "瞬间" 的; 它是一条 "连续过程, 但快到经典记录工具(原 Hg⁺ 实验里的 EMCCD)抓不到" 的渐变.</p>
+
+  <h2>四、弱测量: 从塌缩到 "窥探"</h2>
+
+  <p>什么是 "弱测量"? Aharonov, Albert, Vaidman (AAV) 1988 给出的形式定义: 把仪器的指针态写成一个 Gauss 波包 $\Phi(q)\propto e^{-q^2/2\sigma^2}$, 系统-仪器耦合 Hamiltonian $H_\mathrm{int}=g(t)\hat A\hat P_q$ ($\hat P_q$ 是指针动量, $\hat A$ 是被测可观察量). 强测量极限 $\sigma\to 0$: 仪器一抖到底, 指针位置精确读出 $\hat A$ 本征值, 系统塌缩. 弱测量极限 $\sigma\gg|a_\mathrm{max}-a_\mathrm{min}|$: 指针只稍稍漂移, 没读出本征值, 系统几乎没塌缩 — 你只是 "窥探" 了一眼.</p>
+
+  <p>多次重复这种弱测量并求平均, 得到的不是普通期望值, 而是<strong>弱值</strong> (weak value):</p>
+  <p>$$ A_w = \frac{\bra{\phi_f}\hat A\ket{\psi_i}}{\braket{\phi_f}{\psi_i}}, \tag{3} $$</p>
+  <p>其中 $\ket{\psi_i}$ 是初态, $\ket{\phi_f}$ 是后选 (post-selected) 的末态. 弱值可以是复数, 可以超出 $\hat A$ 的本征值范围 (例: 自旋弱值 $A_w=100\hbar$). 它不违反量子力学, 也不是真的本征值, 而是 "在 pre/post-selection 下系统对 $\hat A$ 的有效响应". 实验上看得到 — 2008 Hosten-Kwiat 用弱值放大测光子自旋 Hall 效应, 把 $10^{-10}\,\mathrm{m}$ 的位移弱值放大到 $10^{-6}\,\mathrm{m}$ 可探测. Yale 跳变实验里, 那条预报曲线本质上就是一种条件平均 — 不是单次跳跃的真实轨迹, 而是 pre/post selected 上的相干平均.</p>
+
+  <p>弱测量改写了 "测量必然塌缩" 的早期表述. 标准公设 (Lüders 投影) 是<strong>极限</strong>情况; 一般地, 测量是一个有强度参数的连续族, 由<strong>正算符值测度</strong> (POVM) 描写, 强弱可调:</p>
+  <p>$$ \hat E_k = \hat M_k^\dagger \hat M_k, \quad \sum_k \hat E_k = I, \quad p(k) = \bra{\psi}\hat E_k\ket{\psi}. $$</p>
+  <p>每次测量后波函数变成 $\ket{\psi_k'} \propto \hat M_k\ket{\psi}$, 不再是简单投影, 留下部分相干. 这套<strong>广义测量</strong>框架是 von Neumann 投影公设的真正母版, vol 6 后续讲量子信息时会反复用到.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 单 ¹⁹⁸Hg⁺ 离子荧光时序 — 主图横轴 $t/\mathrm{s}$ (0 到 5 秒), 纵轴每秒 194 nm 光子数 $R/\mathrm{s}^{-1}$ (0 到约 $10^5$); 信号呈方波随机调制, 大段亮态 ($R\sim 10^5$) 持续若干秒, 中间几次突变到暗态 ($R\sim 0$) 持续约 0.1 秒, 然后再突变回亮态; 标注 $\tau_\mathrm{bright}$, $\tau_\mathrm{dark}\approx 0.1\,\mathrm{s}$. 右上角小图: $\Lambda$-能级图 — 底部基态 $\ket{g}=5d^{10}6s\,{}^2S_{1/2}$, 左上短寿命激发态 $\ket{e}={}^2P_{1/2}$ ($\tau_e\approx 2\,\mathrm{ns}$, 用粗箭头表示 $\ket{g}\leftrightarrow\ket{e}$ 强抽吸 + 荧光), 右上长寿命亚稳态 $\ket{m}={}^2D_{5/2}$ ($\tau_m\approx 0.1\,\mathrm{s}$, 用细箭头表示 $\ket{g}\to\ket{m}$ 弱抽吸 + $\ket{m}\to\ket{g}$ 自发跃迁). 标 194 nm 与 282 nm 跃迁波长]</div>
+  </figure>
+
+  <h2>五、为什么这些实验改变了量子力学的味道</h2>
+
+  <p>第一, 单粒子操作把统计语言重新赋形. 标准 Born 规则讲 "$|c_n|^2$ 是<strong>概率</strong>", 这是大量重复测量的极限. 但 Hg⁺ 实验是单一离子 — 录像里那些方波, 每一段 bright / dark 的长度都是<strong>样本路径</strong>而非系综平均. 量子轨迹理论 (Carmichael, Wiseman-Milburn) 从此被迫成为标配: 单次实验可计算, 且与实测序列吻合. 这是从 Copenhagen "你只能问概率" 到 "你可以追单条轨迹" 的悄悄转变.</p>
+
+  <p>第二, 弱测量让 Aharonov 学派 (Tel Aviv) 的两态向量形式 (Two-State-Vector Formalism, TSVF) 有了实验立足点. 那里时间是双向的: 系统由初末态共同描写, 中间任何弱测量给出弱值. 这套语言挑战了 "测量是单向不可逆" 的早期信念, 并为 retrocausality 这类边缘讨论 (vol 6 第 27 节会回到) 留下口子. 它没动 Schrödinger 方程一根毫毛, 也没改 Born 规则, 但把 "塌缩到底是物理事件还是认知更新" 这个老问题摆到了实验台上.</p>
+
+  <p>第三, Yale 2019 的 "跳变可拦截" 让 Schrödinger 那句赌气话得到迟到的支持 — 跳变在最深处不是离散原子事件, 而是一段非常快的连续过程, 可以在它发生中途用反馈脉冲<strong>把它推回原态</strong>. Bohr 的离散和 Schrödinger 的连续, 在两个时间尺度 (慢的 $\tau_\mathrm{dark}\sim 0.1\,\mathrm{s}$ vs 快的 $\sim 1\,\mu\mathrm{s}$ 微观演化) 上各自正确. 这是量子诠释争论里少有的、两边都拿到了奖品的结局.</p>
+
+  <p>第四, 这些技术现在是<strong>量子计算的工具底座</strong>. 离子阱量子比特 (Innsbruck Blatt 组、IonQ、Honeywell/Quantinuum) 直接用 $\ket{g},\ket{m}$ 做 qubit 的两个态, 用荧光计数实时读出 (亮 = 0, 暗 = 1, 单 shot 保真度 $\gt  99.9\%$); 超导 qubit 的色散读出本质上是 Yale 实验那套连续弱测量, 是当今所有 transmon 处理器读出层的核心. 没有 1986 年那个相机里的小亮点, 就没有今天 Google Willow / IBM Condor 上数百个 qubit 的实时反馈纠错.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节回答了一个看似 nostalgic 的问题: Bohr 1913 年口中那种 "电子从一条轨道跳到另一条" 的<strong>quantum jump</strong>, 1986 年被 Dehmelt-Wineland 在 Paul 阱里的单 ¹⁹⁸Hg⁺ / ¹⁷²Yb⁺ 离子上拍成视频. 三能级 $\Lambda$-系统由 (1) 给出, 抽吸光子驱动 $\ket{g}\leftrightarrow\ket{e}$ ($\tau_e\approx 2\,\mathrm{ns}$, 每秒 $\sim 10^8$ 个 194 nm 光子, "亮态"), 偶尔泵到 $\ket{m}$ 后离子陷入 $\tau_m\approx 0.1\,\mathrm{s}$ 的 "暗态". Fermi 黄金规则 (2) 给出跳跃速率, 平均暗态间隔 $\sim 0.1\,\mathrm{s}$ 用普通相机肉眼可见, Dehmelt 1989 拿诺奖. Schrödinger 当年反对的 "verdammte Quantenspringerei" 既存在 (Bohr 对) 又不真的瞬间 (Schrödinger 对) — Yale 2019 (Minev-Devoret) 用超导 qubit 加连续弱测量发现, 跳变前 $\sim 4\,\mu\mathrm{s}$ 已有相干前奏, 可用反馈脉冲拦截. 弱测量 (AAV 1988) 给出的弱值 (3) 与广义测量 / POVM 框架, 把早期 "测量必然塌缩" 改成连续可调的强度参数. 这一整套技术现在是离子阱与超导量子计算的读出基础, 直接喂养了 vol 6 后半 (第 26-29 节) 的量子信息与纠错. 下一节我们换到一个更代数性的话题: 全同粒子的对称化要求, 玻色 / 费米统计与 spin-statistics 定理.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="19-interpretations.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="21-identical-particles.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原子里的电子为什么不掉下来? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="02-photoelectric.html">← 上一节</a>
+  <span class="chapter-title">第 3 节 / 30 · 第 1 部分 · 量子的起源 · 第六卷·量子是什么?</span>
+  <a href="04-de-broglie.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>原子里的电子为什么不掉下来?</h1>
+  <div class="sub">—— Bohr 模型与离散能级</div>
+
+  <div class="abstract">按经典电磁理论, 绕原子核做圆周运动的电子是一个加速电荷, 应该不停地辐射电磁波, 在 $10^{-11}$ 秒之内把动能交出去, 沿螺旋线撞进核里. 这条预言彻底错了 — 你身边的所有原子都活得好好的. 1913 年, Bohr 用一条赤裸裸的非经典假设把这事按住: 角动量只能取 $\hbar$ 的整数倍, 电子在这些"被允许的轨道"上不辐射, 只在轨道之间跳的时候发出一个频率严格的光子. 这条假设直接给出 Bohr 半径 $a_0 = 0.529$ Å、基态能 $-13.6$ eV、Lyman α 线 $\lambda = 121.6$ nm — 全部和实验一一对上. 这是量子化第一次进了原子, 也是量子论第一次"能算具体数字"的胜利.</div>
+
+  <p>把光电效应这条路再往下走一步, 自然要问的就是: 光既然以分立的能量包跟物质交换, 那物质这边的"接口"是什么样? 答案是: 物质里的电子, 它的能量本身就是分立的. 这一节把氢原子从经典灾难一路推到 Rydberg 公式的理论解释, 路径全是 Bohr 在 1913 年那篇三联论文里的原始路径 — 一条带着明显裂痕、却能算出小数点后三位的路径.</p>
+
+  <h2>一、经典电磁告诉你: 原子活不过 $10^{-11}$ 秒</h2>
+
+  <p>1911 年 Rutherford 做完 α 粒子的大角散射, 把 Thomson 那个"葡萄干布丁"模型敲掉, 留下的图像是: 几乎所有质量集中在一个 $10^{-15}$ m 量级的核里, 电子在 $10^{-10}$ m 的尺度上"绕"着核. 这画面好看, 但麻烦也立刻来了 — 一个绕核做圆周运动的电子是一个加速运动的电荷, 而 Maxwell 方程组明确告诉你, 加速电荷必然辐射电磁波.</p>
+
+  <p>把数字代进去看一眼. 一个圆轨道电子, 加速度大小是 $a = v^2/r$. Larmor 公式给出的辐射功率是</p>
+
+  <p>$$ P = \frac{e^2 a^2}{6\pi\varepsilon_0 c^3}. $$</p>
+
+  <p>电子的总能量 (动能加 Coulomb 势能) 是 $E = -ke^2/(2r)$, 其中 $k = 1/(4\pi\varepsilon_0)$. 把 $P = -dE/dt$ 解出来, $r(t)$ 满足 $r^2\,dr = -(\text{常数})\,dt$, 从 $r = 0.5$ Å 落到核需要的时间数量级是</p>
+
+  <p>$$ \tau \sim \frac{r_0^3}{4\,(e^2/6\pi\varepsilon_0 m_e^2 c^3)} \sim 10^{-11}\ \text{秒}. $$</p>
+
+  <p>十皮秒. 这就是经典物理给原子的寿命预算. 同时辐射频率会随轨道变小一直爬高 — 谱应该是连续地从红到紫"扫过去". 但 1880 年代以来光谱学家已经知道得很清楚: 氢的发射光谱不是连续条带, 而是一根一根锐利的离散谱线. Lyman 在紫外、Balmer 在可见、Paschen 在红外, 每一系都按一个干净的整数公式排列.</p>
+
+  <p>1888 年瑞典光谱学家 Rydberg 把已有数据归纳成一条经验公式</p>
+
+  <p>$$ \tilde{\nu} = \frac{1}{\lambda} = R\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right), \qquad n_2 \gt  n_1, \tag{1} $$</p>
+
+  <p>这里的 $R \approx 1.097 \times 10^7$ m$^{-1}$ 后来被称作 Rydberg 常量. 公式漂亮、能拟合, 但完全没人知道那两个整数 $n_1, n_2$ 是什么. 经典物理在这里两面挨打: 一边给不出稳定的原子, 一边给不出离散的谱线.</p>
+
+  <h2>二、Bohr 1913: 两条不讲道理的假设</h2>
+
+  <p>Bohr 当时 28 岁, 在 Manchester 跟 Rutherford 待了几个月. 他做的事情, 用今天的话说, 是把 Planck-Einstein 的能量量子化思想"硬塞进"原子模型里, 然后看会发生什么. 1913 年三篇连发的论文里, 他列出两条赤裸裸的假设:</p>
+
+  <p><strong>假设 (i) 定态.</strong> 电子在某些"允许"的圆轨道上稳定运行, 不辐射任何电磁波. 这些轨道由角动量量子化条件挑出来:</p>
+
+  <p>$$ L = m_e v r = n\hbar, \qquad n = 1, 2, 3, \dots \tag{2} $$</p>
+
+  <p>$\hbar = h/(2\pi) \approx 1.055 \times 10^{-34}$ J·s. 整数 $n$ 后来被叫作主量子数.</p>
+
+  <p><strong>假设 (ii) 跃迁.</strong> 当电子从能量 $E_n$ 的轨道跳到能量 $E_m$ 的轨道 ($n \gt  m$) 时, 释放一个光子, 光子能量恰好等于两轨道能量差:</p>
+
+  <p>$$ h\nu = E_n - E_m. $$</p>
+
+  <p>第一条赤裸裸地否定 Maxwell 在原子尺度的全部预言, 第二条则是对 Einstein 光量子的延伸. 两条都没有任何"为什么". Bohr 自己很清楚这一点, 所以他的态度是: 先看它能不能算出 Rydberg 公式 — 如果能, 那就说明经典物理在这个尺度上要让位, 至于让位给什么, 留给后人.</p>
+
+  <h2>三、推导: 从 $L=n\hbar$ 到 $-13.6$ eV</h2>
+
+  <p>把 (2) 和经典力学并起来, 答案就掉出来了. 圆轨道上 Coulomb 力提供向心加速度:</p>
+
+  <p>$$ \frac{ke^2}{r^2} = \frac{m_e v^2}{r} \quad\Longrightarrow\quad m_e v^2 = \frac{ke^2}{r}. $$</p>
+
+  <p>从 (2) 解出 $v = n\hbar/(m_e r)$, 代回:</p>
+
+  <p>$$ m_e \cdot \frac{n^2\hbar^2}{m_e^2 r^2} = \frac{ke^2}{r} \quad\Longrightarrow\quad r_n = \frac{n^2 \hbar^2}{m_e k e^2}. $$</p>
+
+  <p>$n=1$ 给出 <strong>Bohr 半径</strong></p>
+
+  <p>$$ a_0 = \frac{\hbar^2}{m_e k e^2} = 5.29 \times 10^{-11}\ \text{m} = 0.529\ \text{Å}. $$</p>
+
+  <p>这是一个纯由基本常数堆出来的长度, 不带任何唯象拟合参数 — 而它跟实验测到的氢原子大小数量级一致. 这是 Bohr 模型给出的第一个"算出来对"的数字.</p>
+
+  <p>能量呢? 总能量 $E = \tfrac{1}{2}m_e v^2 - ke^2/r$. 因为 $m_e v^2 = ke^2/r$, 动能恰好是势能绝对值的一半, 所以</p>
+
+  <p>$$ E_n = -\frac{ke^2}{2 r_n} = -\frac{m_e k^2 e^4}{2\hbar^2}\cdot\frac{1}{n^2}. \tag{3} $$</p>
+
+  <p>定义</p>
+
+  <p>$$ \mathrm{Ry} \equiv \frac{m_e k^2 e^4}{2\hbar^2} = 13.6\ \text{eV}, $$</p>
+
+  <p>那么 $E_n = -\mathrm{Ry}/n^2$. 基态 $n=1$ 是 $-13.6$ eV — 这正是把氢原子电离所需的能量, 实验值 13.598 eV. 第二条小数对上.</p>
+
+  <p>把 (3) 代进 Bohr 的跃迁条件:</p>
+
+  <p>$$ h\nu = \mathrm{Ry}\left(\frac{1}{m^2} - \frac{1}{n^2}\right) \quad\Longrightarrow\quad \frac{1}{\lambda} = \frac{\mathrm{Ry}}{hc}\left(\frac{1}{m^2} - \frac{1}{n^2}\right). $$</p>
+
+  <p>对比 Rydberg 公式 (1): $R = \mathrm{Ry}/(hc)$. 把 13.6 eV 除以 $hc$, 得到 $1.097 \times 10^7$ m$^{-1}$ — 跟光谱学家测了几十年的 Rydberg 常量重合到三位有效数字. 这是 Bohr 1913 论文最关键的一句话: 一条用一百多条谱线拟合出来的经验常数, 现在可以从 $m_e, e, \hbar, c$ 里推出来.</p>
+
+  <h2>四、谱线的具体数字: Lyman α 与 Balmer α</h2>
+
+  <p>把不同的 $(m, n)$ 代进去, 就拿到具体谱线. 取 Lyman 系 ($m=1$, 落到基态):</p>
+
+  <p>$$ E_2 - E_1 = -\mathrm{Ry}\left(\frac{1}{4} - 1\right) = \frac{3}{4}\mathrm{Ry} = 10.2\ \text{eV}. $$</p>
+
+  <p>对应波长 $\lambda = hc/(10.2\ \text{eV}) = 121.6$ nm — 远紫外, 这就是 <strong>Lyman α</strong> 线. 现代天文里它是观测早期宇宙再电离最重要的探针之一.</p>
+
+  <p>再看 Balmer 系 ($m=2$, 落到第一激发态):</p>
+
+  <p>$$ E_3 - E_2 = \mathrm{Ry}\left(\frac{1}{4} - \frac{1}{9}\right) = \frac{5}{36}\mathrm{Ry} = 1.89\ \text{eV}. $$</p>
+
+  <p>波长 $\lambda = 656.3$ nm — 红光. 这就是 <strong>Balmer α</strong>, 也叫 H α, 是太阳色球层和大量发射星云的标志谱线. 任何一张正经的天文望远镜成像里那种深红色, 主要就是这条线. Paschen 系 ($m=3$) 更长波, 落在近红外. 三套整数, 三个波段, 全部从一条 $L = n\hbar$ 算出来.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左侧 Bohr 原子轨道图 — 中心一个核, 外围三条同心圆轨道标 $n=1, 2, 3$, 半径分别 $a_0, 4a_0, 9a_0$; 右侧能级图 — 横线从下到上代表 $E_n = -13.6/n^2$ eV 的能级 ($-13.6, -3.4, -1.51, -0.85, \dots, 0$), 向下箭头标 Lyman α/β/γ (终点 $n=1$) 和 Balmer α/β (终点 $n=2$), 旁注对应波长 121.6 nm / 656.3 nm 等]</div>
+  </figure>
+
+  <h2>五、Bohr 模型解决了什么、又留下什么</h2>
+
+  <p>1913 年这套模型解决的事情清单很短但是关键: 给出原子稳定的尺寸 ($a_0$), 给出基态电离能 ($-13.6$ eV), 把 Rydberg 公式从经验提升为理论, 第一次让"量子化"这件事在原子尺度有了一个能算的具体例子. Bohr 因此拿到 1922 年 Nobel 奖.</p>
+
+  <p>但裂痕一开始就在. 第一, 角动量量子化 $L = n\hbar$ 是凭空塞进去的, Bohr 自己也讲不出"为什么". 第二, 模型只能算氢和类氢离子 (He$^+$, Li$^{2+}$ 等单电子体系), 一旦有两个电子就垮 — He 原子的能级用 Bohr 模型完全算不准. 第三, 它把电子说成在确定轨道上做经典圆周运动, 这跟后来 Heisenberg 的不确定性原理直接冲突: 电子根本没有"轨道"这个东西. 第四, 1916 年 Sommerfeld 引入椭圆轨道和相对论修正, 算出精细结构 (谱线的微小分裂), 量级是 $\alpha^2 \mathrm{Ry} \sim 10^{-4}$ eV — 数字对上了, 但椭圆轨道这套图像本身也只是延期了一会的死刑.</p>
+
+  <p>真正干净的解释要等到 1925-1926. de Broglie 把电子说成波 (下一节), Schrödinger 给电子写下波动方程, 那时候才明白 $L = n\hbar$ 实际上是"驻波在闭合轨道上的整数周期条件"的一种伪经典翻译; 才明白电子不在某条圆上, 而是一团概率云, 基态是个球对称的 1s 轨道, 半径平均值才恰好等于 $a_0$. Bohr 模型作为一个能算的中间站, 在历史上停留了大约十二年.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Bohr 1913 的两条假设 — 角动量 $L = n\hbar$ 量子化、跃迁满足 $h\nu = E_n - E_m$ — 第一次让原子尺度的"量子化"有了一个能算具体数字的范例. 它干净地解释了氢光谱, 给出了 $a_0 = 0.529$ Å 与 $-13.6$ eV 这两个量子力学日后绕不开的基准量, 也把 Rydberg 公式从一条数据拟合升格为一条理论推论. 但这套图像本身是个混血儿: 一半是经典圆轨道, 一半是赤裸裸的量子假设, 只能处理单电子问题, 对多电子原子和分子无能为力. 它的真正意义是一个路标 — 告诉人们经典电磁在原子尺度必须让位, 也告诉人们让位之后的新理论必须在适当极限下回到 Bohr 已经算对的那几个数字. 这就是 1925 年 Heisenberg 矩阵力学和 1926 年 Schrödinger 波动力学共同要做的事.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="02-photoelectric.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="04-de-broglie.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

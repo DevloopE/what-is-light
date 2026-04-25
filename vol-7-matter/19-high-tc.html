@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高温超导 30 年还没解决什么? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="18-superfluid-helium.html">← 上一节</a>
+  <span class="chapter-title">第 19 节 / 30 · 第 4 部分 · 超导与超流 · 第七卷·物质是什么?</span>
+  <a href="20-josephson.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>高温超导 30 年还没解决什么?</h1>
+  <div class="sub">—— 铜氧化物与陪伴的奇怪金属</div>
+
+  <div class="abstract">1986 年 4 月, 苏黎世 IBM 研究所的 J. Georg Bednorz 与 K. Alex Müller 在一个 La-Ba-Cu-O 陶瓷样品里看到了 30 K 附近的电阻塌陷 — 比当时所有已知超导体的临界温度都高 5 K, 比 BCS 理论"声子机制下不可能超过 30 K"的 McMillan 上限恰好压在边上. 他们 1986 年 9 月把这件事发表在 <em>Zeitschrift für Physik</em>, 当时被叫作"那本谁都不看的德文小杂志". 一年内 Wu Maw-Kuen 与 CW Chu 团队把成分换成 YBa$_2$Cu$_3$O$_7$, 临界温度跳到 92 K — 第一次跨过液氮的 77 K. 1993 年汞系 HgBa$_2$Ca$_2$Cu$_3$O$_8$ 推到 134 K, 加 30 GPa 压力下到 164 K, 至今仍是常压超导的世界纪录. 整整 30 年过去了, 上千个研究组、数十万篇论文反复刷过这片相图, 而我们对铜氧化物超导机制的理解还卡在: 配对从哪里来? 配对函数 $\Delta(\mathbf k) \propto \cos k_x a - \cos k_y a$ 的 $d_{x^2-y^2}$ 对称已经反复测准, 节点位置、相位反转、Andreev 干涉全都对得上 d 波 — 但 BCS 那套"声子粘合电子"的机制完全套不上, 替代方案 (反铁磁自旋涨落、共振价键 RVB、自旋液体) 没有一个能像 BCS 在普通金属里那样定量预言 $T_c$. 更扎眼的是 pseudogap 与 "奇怪金属" 这两片相区: 在欠掺杂一侧, 超导转变以上还残留一个能隙状的 spectral 低谷, 持续到几百 K 才闭合; 在最佳掺杂附近, 正常态电阻率走 $\rho \propto T$ 一直从 $T_c$ 拉到熔点, 散射率正好压在 Planckian 极限 $\hbar/\tau = k_B T$ 上. 这一节我们把铜氧化物的相图、d 波配对、奇怪金属与 H$_3$S 的氢化物高压超导一一摆开, 看看 30 年来攻克到哪一步.</div>
+
+  <p>普通金属的超导是个解决了的问题. Bardeen-Cooper-Schrieffer 1957 年那篇文章把"两个电子靠交换声子吸引、形成 Cooper 对、Bose 凝聚"的机制写得干净, 配上 Eliashberg 的强耦合修正, 哪怕铅这种 $T_c = 7.2$ K 的强耦合超导体, 数值预言也能压在 5% 误差内. 1968 年 McMillan 把这套公式拟合一通, 给出经验上限: 在合理的声子谱与电子-声子耦合常数下, 声子机制最多撑到 30 K 左右. 这个上限不是定理, 但 30 年的经验数据反复确认它 — 直到 1986 年.</p>
+
+  <h2>一、Bednorz 与 Müller 1986: 30 K 的陶瓷</h2>
+
+  <p>Bednorz 与 Müller 在 IBM 的目标本来不是"打破声子上限". Müller 的兴趣在 SrTiO$_3$ 这类钙钛矿氧化物里的强极化耦合 — 他认为离子的强极化能在某些过渡金属氧化物里造出比金属里的声子更强的"准声子"作用, 也许能把 $T_c$ 推上去. 他们 1983 年开始扫氧化物, 反复试镍、铜、钴的化合物. 1986 年 1 月, La$_{2-x}$Ba$_x$CuO$_4$ ($x \approx 0.15$) 这个样品在 35 K 附近开始出现电阻下降, 30 K 完全归零, 4.2 K 的迈斯纳信号也对上 — 是真超导, 不是杂相. 他们 9 月发文, 标题谨慎: "Possible high $T_c$ superconductivity in the Ba-La-Cu-O system." 1987 年 3 月, APS March Meeting 在纽约, 一个临时加开的 session 持续到凌晨, 后来叫作"物理学的伍德斯托克". 同年 Wu Maw-Kuen 与 CW Chu 团队 (Houston/Alabama) 把 La 换成 Y, 凑出 YBa$_2$Cu$_3$O$_{7-\delta}$, $T_c$ 跳到 92 K — 第一次跨过液氮 77 K. 1987 年 10 月 Bednorz-Müller 拿诺贝尔奖, 距首篇论文 13 个月, 是 20 世纪发现-诺奖间隔第二短的, 仅次于 von Klitzing.</p>
+
+  <p>1988 年 Bi 系 Bi$_2$Sr$_2$Ca$_2$Cu$_3$O$_{10}$ 推到 110 K, 同年 Tl 系到 125 K. 1993 年 Hg 系 HgBa$_2$Ca$_2$Cu$_3$O$_8$ 在 Schilling 等人手里到 134 K, 加 30 GPa 压力后顶到 164 K. 这条曲线在 1995 年左右停下 — 至今 31 年没人在常压下做出 $T_c$ 高于 134 K 的铜氧化物. 不是没人试: 上千个组合换过, 化学相图反复扫过, 134 K 这个数字稳得像物理常数. 这是第一个未解之谜: 是什么把铜氧化物的 $T_c$ 卡在这个数量级.</p>
+
+  <h2>二、母体是 Mott 反铁磁绝缘体, 不是金属</h2>
+
+  <p>所有铜氧化物的核心结构是一片 CuO$_2$ 平面: Cu 排成正方格子, 每个 Cu$^{2+}$ ($3d^9$) 顶角各一个 O$^{2-}$, 上下方向再有顶氧把面连成层. 整个化合物的电学性质几乎全由这一片面决定 — 把它看成二维电子系统是合理的近似. 不掺杂的母体, 比如 La$_2$CuO$_4$, 每个 Cu$^{2+}$ 在 $3d_{x^2-y^2}$ 轨道上有一个空位 (其它四个 d 轨道全满), 整个 CuO$_2$ 面恰好半填充. 按 Bloch 能带论这应该是金属 — 半填充的能带就是金属的标志. 实测呢? La$_2$CuO$_4$ 是绝缘体, 带隙 1.5-2 eV, 而且是反铁磁绝缘体, Néel 温度 $T_N \approx 325$ K, 相邻 Cu 自旋反向排列.</p>
+
+  <p>这个矛盾是 Mott 1949 年指出的图像在铜氧化物里最干净的版本. 当电子在同一个轨道上的库仑排斥 $U$ 比能带宽 $W$ 大很多时, 让两个电子坐进同一个轨道要付 $U$ 的代价, 体系宁可一个轨道一个电子地"锁住", 形成局域化的 Mott 绝缘态. 锁住之后, 自旋方向还有自由度 — 通过虚跳 (短暂跳到邻位再跳回, 中间状态付 $U$, 二级微扰能量 $-2t^2/U$) 给出反铁磁交换 $J = 4t^2/U$. 把铜氧化物的参数 $t \approx 0.4$ eV, $U \approx 8$ eV 代入, $J \approx 0.13$ eV $\approx 1500$ K — 这是 CuO$_2$ 面里 Cu 自旋的反铁磁耦合常数, 同实验测的中子散射、Raman 散射给出的 $J \approx 130$ meV 完全吻合.</p>
+
+  <p>把 La 部分替换成 Sr 或在 YBCO 里加氧 (相当于在 CuO$_2$ 面里抽走一些电子, 等效掺空穴), 母体的反铁磁就被搅乱了. 横轴掺空穴浓度 $x$ (每个 Cu 的空穴数), 纵轴温度, 整张相图可以画在一张纸上. $x = 0$ 是反铁磁绝缘体, Néel 温度 325 K. $x$ 加到 0.02 左右反铁磁就崩了, 体系滑进一个低温自旋玻璃区. $x = 0.05$ 附近开始出超导, $T_c$ 随 $x$ 升, $x \approx 0.16$ 处达到峰 $T_c^\text{max}$ (YBCO 是 92 K, La-Sr 系是 38 K, Hg-1223 是 134 K), 然后随 $x$ 增加缓降, 到 $x \approx 0.27$ 超导 dome 收口. dome 上方两片相区: 欠掺杂一侧 ($x \lt  0.16$) 在 $T_c$ 之上是 pseudogap 区 (Warren 1989 年从 NMR Knight shift 看到的), 最佳掺杂附近 ($x \approx 0.16$) $T_c$ 之上是奇怪金属相 ($\rho \propto T$); 过掺杂一侧 ($x \gt  0.20$) 才回到看得懂的 Fermi 液体. 这张相图是 1990 年代逐步标清楚的, 到现在已经成铜氧化物物理的"圣经地图".</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 铜氧化物相图. 横轴 hole doping $x$, 0 到 0.30; 纵轴温度 $T$, 0 到 400 K. 母体 $x=0$: 反铁磁绝缘体, Néel 温度 325 K, 用一个尖三角向下到 $x \approx 0.02$. 中间 $x=0.05$ 到 $x=0.27$ 一个圆顶超导 dome, 峰在 $x \approx 0.16$, $T_c^\text{max}$ 标 92 K (YBCO). dome 之上 — 欠掺杂侧 $x \lt  0.16$ 一片 pseudogap 区 (画一条从 $x=0.05$ 高 300 K 处斜降到 $x=0.19$ 接 dome 顶的虚线, 表示 $T^*$); 最佳掺杂附近一个三角形奇怪金属相 (标 $\rho \propto T$, 从 $T_c$ 一直拉到 $\sim 1000$ K); 过掺杂侧 $x \gt  0.20$ 标 Fermi 液体 (标 $\rho \propto T^2$). 在 dome 顶画一个小的 d 波节点示意 $\Delta(\mathbf k) \propto \cos k_x a - \cos k_y a$ — 一个旋转 45° 的方块, 四个角在 $(\pm \pi, 0), (0, \pm\pi)$, 节点在对角. 标关键温度: $T_c^\text{YBCO} = 92$ K, $T_c^\text{Hg-1223} = 134$ K. 标 Bednorz-Müller 1986 在 La-Ba-Cu-O 看到的 $x = 0.15, T_c = 30$ K 对应的点.]</div>
+  </figure>
+
+  <h2>三、d 波配对: 形状, 节点, 相位</h2>
+
+  <p>普通超导体的 BCS 能隙 $\Delta(\mathbf k) = \Delta_0$ 是各向同性的常数 — Cooper 对在所有方向上都凝聚, 整个 Fermi 面上没有节点. 铜氧化物在 1990 年代初的 ARPES、相敏 SQUID 干涉与中子散射实验里, 反复呈现一个完全不一样的图像:</p>
+
+  <p>$$ \Delta(\mathbf k) = \Delta_0 \left[\cos(k_x a) - \cos(k_y a)\right]. \tag{1} $$</p>
+
+  <p>这是 $d_{x^2-y^2}$ 对称: 沿 $(\pi, 0)$ 与 $(0, \pi)$ 方向能隙最大 (符号相反, 一正一负), 沿对角 $(\pi, \pi)$ 方向 $\Delta = 0$, 即 Fermi 面在四个对角点上有节点. 节点的存在直接被一系列实验逼出来: 比热在 $T \to 0$ 不是 $e^{-\Delta/k_B T}$ 衰减而是 $T^2$ 幂律 (因为节点附近还有低能准粒子激发); 穿透深度 $\lambda(T)$ 不是常数 $+$ 指数小项, 而是从零温起就线性 $\Delta \lambda \propto T$ 上升; 热导率 $\kappa/T$ 在零温不归零. 1993-1994 年 Wollman、Tsuei 与 Kirtley 用约瑟夫森 SQUID 在 YBCO 单晶上做相敏实验, 在三结环里看到了 $\pi$ 相位反转 — 这是 $d_{x^2-y^2}$ 的判决性证据, $s$ 波或各向异性 $s$ 波都给不出来.</p>
+
+  <p>d 波节点的存在严重限制了配对机制. 声子吸引在动量空间是平坦的, 给出的能隙是各向同性 $s$ 波; 想让 $\Delta(\mathbf k)$ 在动量空间换号、有节点, 需要一个在动量空间结构丰富的吸引相互作用. 反铁磁自旋涨落天然给出这种结构 — 中子散射在 La-Sr-Cu-O 与 YBCO 里看到的自旋涨落峰在 $\mathbf Q = (\pi, \pi)$ 附近, 通过自旋通道传递的有效相互作用 $V(\mathbf q)$ 在 $\mathbf q = (\pi, \pi)$ 处最大, 这恰好把 $(\pi, 0)$ 与 $(0, \pi)$ 两点之间的电子配在一起 — 而这两点的 $\Delta$ 恰好符号相反 (公式 (1) 在这两点取 $+2\Delta_0$ 与 $-2\Delta_0$). 自旋涨落机制能给出 $d_{x^2-y^2}$, 这是它最大的优势. 但定量预言 $T_c$ 这件事, 它做不到 — 自旋涨落本身的强度依赖于一些不可避免地"非微扰"的参数, 大多数计算都需要把若干尺度手工对齐, 不是 BCS 那种"输入声子谱、输出 $T_c$"的真预言.</p>
+
+  <p>1987 年 Anderson 提出 RVB (resonating valence bond): 母体的反铁磁绝缘态可以重新理解为大量"价键单态"的相干叠加, 每个价键是相邻两个 Cu 上自旋形成的单态. 掺空穴让某些价键空出来, 这些空价键自由游动, 类似 Cooper 对. RVB 在概念上很美, 把 Mott 绝缘体直接连到超导态, 但严格的数学版本 (slave-boson, gauge theory) 至今没有一个能在 d 波 dome 上给出可信定量值. 30 年来, 微观理论的状况大致是: 自旋涨落机制给出对的对称性 (d 波) 与对的相图轮廓 (dome 在 $x = 0.16$), RVB 给出对的母体物理 (Mott + 反铁磁), 但没有任何一个能像 BCS 那样把 $T_c$ 算到 5% 精度内. 这是第二个未解之谜.</p>
+
+  <h2>四、奇怪金属与 Planckian 散射</h2>
+
+  <p>第三个谜在 dome 之上的正常态. 在最佳掺杂附近, 把 $T_c$ 用磁场压掉以后, 正常态电阻率从 $T_c$ 一路升到 1000 K 都严格线性</p>
+
+  <p>$$ \rho(T) = \rho_0 + A\, T, \qquad A \approx 1\ \mu\Omega\cdot\text{cm/K}. $$</p>
+
+  <p>没有 $T^2$ Fermi 液体段, 没有声子段的 Bloch-Grüneisen $T^5$ 转变, 没有任何饱和迹象. 这跟普通金属完全不同 — 铜在 1000 K 的 $\rho$ 已经接近饱和 ($\ell$ 缩到原子间距), 而 LSCO、YBCO 在最佳掺杂的 $\rho(T)$ 拉直了能拉到 1500 K. 把 $\rho \propto T$ 翻译成单粒子散射时间 $\tau$, 通过 $\sigma = ne^2 \tau/m^*$ 反推, 得到</p>
+
+  <p>$$ \frac{\hbar}{\tau} \approx k_B T. \tag{2} $$</p>
+
+  <p>这就是 Planckian 散射极限. 这条线在很多奇怪金属 (铜氧化物、铁基、重费米子、扭曲石墨烯) 里反复出现, 系数都接近 1 (不是 0.1 也不是 10). 听起来玄妙, 但其实有它的物理直觉: 量子力学对单粒子相干寿命有一个普适下限 — 一个能量为 $E$ 的态在没有任何耗散源的情况下至少能存活 $\hbar/E$ 时间, 这就是测不准. 把 $E$ 换成体系的热能 $k_B T$, 就得到 $\tau \gtrsim \hbar/(k_B T)$. 有耗散源的常规金属里 $\tau$ 比这下限大很多, 例如室温铜的 $\tau \approx 25$ fs, $\hbar/(k_B T) \approx 25$ fs — 等等, 数值上其实差不多, 但温度依赖完全不同 (铜在液氦下 $\tau$ 可以涨四个量级). 奇怪金属的特殊在: $\tau$ 全程贴在这个极限上, 仿佛体系把所有能耗散的通道都用尽了, 散射率达到了量子力学允许的最大值. </p>
+
+  <p>这个极限的来源不清楚. 它出现在不止一种材料里, 跨过完全不同的母体物理 (铜氧化物 Mott、铁砷自旋密度波、重费米子 Kondo, 扭曲石墨烯 moiré). 一个候选解释是体系处在量子临界点附近, 临界涨落支配输运, 量子相干时间被强迫到 $\hbar/(k_B T)$; 另一个候选解释是某种"无准粒子"的强关联液体, 输运由 holography 或 SYK 类模型描述, 自然给出 Planckian 散射. 至今没有定论. 这是第三个未解之谜, 也许是最深的一个 — 它关于"在强关联体系里输运为什么这么普遍".</p>
+
+  <h2>五、近年的氢化物: $T_c$ 接近室温, 但要 200 GPa 高压</h2>
+
+  <p>2014-2015 年俄罗斯 Mainz 的 Eremets 实验组在硫氢化物 H$_3$S 里, 在 155 GPa 高压下看到 203 K 的超导转变. 2018-2019 年 LaH$_{10}$ 在 170 GPa 推到 250 K, 2020 年 CSH$_x$ ("室温超导") 报到 287 K, 但这条数据后来在 2022 年被 <em>Nature</em> 撤稿, 数据问题至今争议未平. 比较没争议的是 H$_3$S 与 LaH$_{10}$: 这两类材料在高压下形成富氢的笼形结构, 氢的振动频率因为质量小而极高 ($\hbar\omega \sim 0.2$ eV), 配上很强的电子-声子耦合常数 ($\lambda \sim 2$), McMillan 公式</p>
+
+  <p>$$ T_c \sim \frac{\hbar\omega}{k_B} \exp\left[-\frac{1+\lambda}{\lambda - \mu^*(1+0.6\lambda)}\right] $$</p>
+
+  <p>给出 200 K 量级 — 这是 Ashcroft 1968 年与 2004 年两次撰文预言的"金属氢与富氢化合物可以做高 $T_c$ 声子超导体"的真实兑现. 注意一件事: 氢化物高压超导是 BCS 机制 (声子配对, $s$ 波), 跟铜氧化物完全不一样. 它把 BCS 上限往上推, 不是绕过 BCS. 麻烦在于 200 GPa 高压不是工程尺度 — 你需要金刚石对压砧, 样品体积只有 $10^{-4}$ mm$^3$, 任何应用都谈不上. 寻找"常压氢化物超导"是当前热点之一, 至今没有成功.</p>
+
+  <p>把铜氧化物与氢化物对比一下整体格局就清楚了. BCS-Eliashberg 在普通金属与氢化物里都解决得很彻底, 拓上 200 K 不需要新物理, 只需要更高频的声子模式. 但常压下, $T_c$ 顶在 30 K 是 BCS 的极限. 铜氧化物绕过这个极限, 拿到 134 K (常压), 但代价是机制不清楚 — d 波对称、奇怪金属、pseudogap 这三件事还没有一个能放进同一个微观图像里. 30 年的工业应用走得倒是挺远: YBCO 与 Bi-2223 已经做成可弯曲的 high-temperature 超导带, 用在液氮冷却的电网与磁体里, 中国与欧洲的几条 35-110 kV 超导电力示范工程 2010 年代陆续投产; 强场磁体方面, MRI 与 NMR 仪器的核心绕组从 NbTi (4 K) 慢慢换成 REBCO (20-40 K) 涂层导体, ITER 聚变堆的中心螺线管也用了相关技术. Cu 这个元素在地壳里 ($\sim 6.8 \times 10^{13}$ kg 总量), 是工业最熟悉的金属之一, 不是稀缺元素 — 所以应用端的瓶颈不在材料, 在于"为什么 $T_c$ 上不去到室温"这个理论问题.</p>
+
+  <p>三十年没解决的核心列表大概是: (一) 为什么常压铜氧化物 $T_c$ 卡在 134 K 不动? (二) d 波配对的微观机制能否在不引入"半经验参数"的前提下定量预言 $T_c$? (三) pseudogap 是什么? 是配对不相干的预成对态 (preformed pair), 还是与超导竞争的另一个序 (charge density wave 或 nematic)? (四) 奇怪金属的 Planckian 散射, 普适性来自哪里? 这四个问题相互纠缠 — 看起来不像四个独立的小问题, 更像一个完整图像的不同侧面, 而那个图像至今没人写出来. 1986 年 Bednorz-Müller 的论文标题是 "Possible high $T_c$ superconductivity" — "可能"两字到现在还没去掉, 不是因为 $T_c$ 不实, 而是因为我们还不真的懂 "high $T_c$" 之 "high" 来自哪里.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>1986 年 Bednorz 与 Müller 在 La-Ba-Cu-O 看到 30 K 的电阻塌陷, 13 个月后拿到诺贝尔奖, 1987 年 Wu-Chu 团队用 YBa$_2$Cu$_3$O$_7$ 跨过液氮, 1993 年汞系顶到 134 K — 至今常压最高. 物理图像核心是一片 CuO$_2$ 平面: 母体是半填充的 Mott 反铁磁绝缘体 (反铁磁交换 $J \approx 130$ meV), 掺空穴 $x$ 加到 0.05 起出现超导 dome, 在 $x \approx 0.16$ 顶峰 $T_c^\text{max}$. 配对是 $d_{x^2-y^2}$ 对称, 公式 $\Delta(\mathbf k) = \Delta_0 [\cos k_x a - \cos k_y a]$, 节点在对角方向, 由相敏 SQUID 实验判决性确立. dome 之上的两片相区是 30 年的难题: 欠掺杂的 pseudogap 与最佳掺杂的 "奇怪金属" $\rho \propto T$, 散射率压在 Planckian 极限 $\hbar/\tau = k_B T$ 上. 自旋涨落机制给对了 d 波对称, RVB 给对了母体物理, 但都不能像 BCS 那样定量预言 $T_c$. 另一条路是 H$_3$S 与 LaH$_{10}$ 这类高压氢化物 (150-200 GPa 下 $T_c$ 200-250 K), 它们仍是 BCS 声子机制, 把 BCS 上限推上去, 但需要金刚石对压砧的极端环境. 铜氧化物和氢化物之间, 还差一种"常压、机制清楚、室温" 的超导体 — 这是 30 年来未解的总问题, 也是下一节约瑟夫森效应背后整片"宏观相干"叙事的开场白.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="18-superfluid-helium.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="20-josephson.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

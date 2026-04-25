@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拓扑超导能做什么? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="24-majorana.html">← 上一节</a>
+  <span class="chapter-title">第 25 节 / 30 · 第 5 部分 · 拓扑相 · 第七卷·物质是什么?</span>
+  <a href="26-liquid-crystals.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>拓扑超导能做什么?</h1>
+  <div class="sub">—— 非阿贝尔 anyon 与拓扑量子计算</div>
+
+  <div class="abstract">上一节我们把 Majorana 零模从 Kitaev 链的端点抠出来, 它是个自伴算符 $\gamma = \gamma^\dagger$, 一颗电子被劈成两半, 半颗在链头、半颗在链尾, 中间隔了块超导能隙. 这颗"半电子"光是孤立看没什么用, 真正要紧的事情是这: 把一对 Majorana 看成一个复合的费米模式 $f = (\gamma_1 + i\gamma_2)/2$, $2N$ 个 Majorana 给出一个 $2^N$ 维的简并基态空间, 而不是单粒子能级常见的 "占据/不占据" 两种. 这种简并不是哪条对称性硬塞出来的, 而是几何上的 — 把 Majorana 在二维平面上当成 vortex 核里的"准粒子", 让两个 vortex 在时间-空间里互相绕一圈, 体系的波函数不会回到原来的, 而是被一个 $2^N$ 维的 unitary 矩阵作用了一下. 这种交换不可对易: 先绕 $1\,2$ 再绕 $2\,3$, 结果跟先绕 $2\,3$ 再绕 $1\,2$ 不一样. 这就是非阿贝尔 anyon — 既不是 boson 也不是 fermion, 也不是 2D 一般情形里"交换一次乘 $e^{i\theta}$"的阿贝尔 anyon. Kitaev 2003 在一篇 quant-ph 预印本里把这条物理推到底: 用 Majorana 的 braiding 直接当量子门, 体系几何形状不变 (只是世界线的拓扑类不同), 物理细节不影响演化, 错误率指数压低 — 拓扑量子计算. 这一节从 Ising 融合规则 $\sigma\times\sigma = 1+\psi$ 走到 braiding 算符 $U_{ij} = \exp(\pi\gamma_i\gamma_j/4)$, 顺手算清楚为什么这件事的容错阈值能到 $\sim 10\%$ 这么离谱的高 (普通超导 transmon 阈值约 $1\%$, 实际错误率约 $0.1\%$), 把 Microsoft 二十年押注在 InSb/Al 半导体-超导混合纳米线上的 2023 measurement-based 拓扑量子比特实验、Sr$_2$RuO$_4$、5/2 分数量子 Hall 的 Moore-Read 态、Fe(Te,Se) STM 上看到的零偏置峰 (Wang 2018) 这串候选平台串一遍, 顺一段从 Kitaev 2003、Nayak-Simon-Stern-Freedman-Das Sarma 2008 综述到至今仍 "在准备阶段" 的实验史.</div>
+
+  <p>上一节我们把一颗电子劈成两半, 这一节问: 劈成两半的电子能做什么? 答案没那么直接. 单个 Majorana 没法存信息, 也没法搬信息 — 它是它自己的反粒子, 一个孤立的 $\gamma$ 状态空间只是一维的, 装不下任何"$0$ 与 $1$"的对比. 信息全藏在两两组对、藏在多个 Majorana 共享的简并基态空间里. 这件事到 Kitaev 2003 才被推到尽头: 他注意到, 在二维平面里, 把这些 Majorana 当成"准粒子"在世界线上互相绕, 整个体系的演化是一个非阿贝尔 unitary, 而且只依赖世界线的拓扑形态, 不依赖准粒子的具体路径. 这正好是任何"硬错误率"量子比特梦寐以求的性质: 干扰只要不把世界线的拓扑剪开, 就改变不了演化结果.</p>
+
+  <h2>一、$2N$ 个 Majorana 与 $2^N$ 维基态简并</h2>
+
+  <p>先把记账写清楚. 设拓扑超导体上有 $2N$ 个 Majorana 零模 $\gamma_1, \gamma_2, \dots, \gamma_{2N}$, 每一个都满足:</p>
+
+  <p>$$ \gamma_i = \gamma_i^\dagger, \qquad \{\gamma_i, \gamma_j\} = 2\delta_{ij}. $$</p>
+
+  <p>它们按对组合成普通的 (复) fermion 算符:</p>
+
+  <p>$$ f_a = \tfrac{1}{2}(\gamma_{2a-1} + i\gamma_{2a}), \qquad f_a^\dagger = \tfrac{1}{2}(\gamma_{2a-1} - i\gamma_{2a}), \qquad a = 1,\dots,N. $$</p>
+
+  <p>每个 $f_a$ 给一个二维 Hilbert 空间 $\{|0\rangle_a, |1\rangle_a = f_a^\dagger|0\rangle_a\}$, $N$ 对组合起来 $\dim \mathcal H = 2^N$. 两件事要紧.</p>
+
+  <p>第一, 这 $2^N$ 个态在 $H = 0$ 时严格简并 — Majorana 是零模, 任何只用这些 $\gamma_i$ 写的 Hermitian 算符 $H = \sum_{ij} h_{ij} i\gamma_i\gamma_j$ 在拓扑相内部都被对称性 (粒子-空穴) 与拓扑保护逼到零, 直到两个 Majorana 在空间上靠得足够近、彼此的指数小尾巴相乘, 才会撕开一个 $\sim e^{-L/\xi}$ 量级的耦合 (这里 $\xi$ 是超导相干长度, $L$ 是它们的距离). 把两个 Majorana 隔开 $L \gg \xi$, 简并精确到指数压低. 这就是"拓扑保护"的字面含义.</p>
+
+  <p>第二, 这套二态空间不是单个 fermion 二态空间的 $N$ 次直积, 而是一个非局域的整体. $|0\rangle_a$ 和 $|1\rangle_a$ 之间靠 $f_a^\dagger$ 翻转, 而 $f_a^\dagger$ 写成 $\gamma_{2a-1}$ 与 $\gamma_{2a}$ 的线性组合 — 它的物理动作是同时碰两个 Majorana, 且这两个 Majorana 在空间上是分开的. 任何只在一个位置作用的局域算符都没法把 $|0\rangle_a$ 翻成 $|1\rangle_a$, 也没法在不同的简并基态之间塞矩阵元. 这是拓扑量子比特"对局域噪声免疫"的根源: 局域微扰只能在 $2^N$ 维空间外做高阶虚跳跃, 实际矩阵元被 $e^{-L/\xi}$ 压成天文小数.</p>
+
+  <p>把 $f_1^\dagger f_1, f_2^\dagger f_2, \dots, f_N^\dagger f_N$ 联合占据数当成一组 "logical qubits", 每对 Majorana 给一个量子比特. $N$ 对就是 $N$ 个比特. 但这件事还有个细节: 总费米数 $P = \prod_a (1 - 2 f_a^\dagger f_a)$ 是守恒的 ($\mathbb Z_2$ 守恒), 所以严格来说 $2^N$ 简并被分成两个对称的 $2^{N-1}$ 子空间 (偶宇称、奇宇称), 一个 logical qubit 实际上需要四个 Majorana 而不是两个. 算法上习惯把这件事叫"一个 Majorana 拓扑比特 = 4 个 Majorana 零模".</p>
+
+  <h2>二、Braiding 与非阿贝尔统计</h2>
+
+  <p>在二维平面上, 让两个粒子相互交换一次 (或者说, 在世界线图上让它们的轨迹打个 braid), 体系态矢量从 $|\psi\rangle$ 变成 $U |\psi\rangle$. 三维里这个交换只能给 $U = \pm 1$ (boson 或 fermion), 因为 3D 里的交换轨迹拓扑上都同伦. 二维里粒子的世界线是 $(2+1)\,$D 中的曲线, 这些曲线的拓扑分类不再是 $\mathbb Z_2$, 而是 braid 群 $B_n$, 它远比 $S_n$ 丰富. 阿贝尔 anyon 的情形: 每次交换乘一个相位 $e^{i\theta}$, $\theta$ 称统计角. 非阿贝尔 anyon: 体系基态空间是多维的, 交换是这个多维空间上的 unitary 矩阵, 不同的交换次序给不同的矩阵, $U_{12} U_{23} \neq U_{23} U_{12}$.</p>
+
+  <p>Majorana 零模 (在 Ising anyon 类中称为 $\sigma$) 的 braiding 算符是这一族的一个干净写法. 把第 $i$ 个 Majorana 与第 $j$ 个 Majorana 在二维平面上互相绕半圈, 等效的 unitary 是:</p>
+
+  <p>$$ U_{ij} \;=\; \exp\!\left(\frac{\pi}{4}\gamma_i \gamma_j\right) \;=\; \frac{1}{\sqrt 2}\big(1 + \gamma_i \gamma_j\big). \tag{1} $$</p>
+
+  <p>这个公式可以一行验证. $(\gamma_i\gamma_j)^2 = \gamma_i\gamma_j\gamma_i\gamma_j = -\gamma_i^2 \gamma_j^2 = -1$ (因为 $\gamma_i, \gamma_j$ 反对易、且 $\gamma_i^2 = 1$), 所以 $\gamma_i\gamma_j$ 像虚单位 $i$ 一样平方为 $-1$, 指数函数自然展开成 $\cos(\pi/4) + \sin(\pi/4)\gamma_i\gamma_j = (1+\gamma_i\gamma_j)/\sqrt 2$. 这里出现的 $\pi/4$ 不是随便取的: braiding 一次 (绕半圈) 给的相位是 $\pi/4$, 绕一圈是 $\pi/2$, 这正是 Ising anyon 的特征统计角.</p>
+
+  <p>$U_{ij}$ 不可对易. 取 $\gamma_1, \gamma_2, \gamma_3, \gamma_4$ 四个 Majorana, 算两条次序:</p>
+
+  <p>$$ U_{12} U_{23} \;\propto\; (1+\gamma_1\gamma_2)(1+\gamma_2\gamma_3) = 1 + \gamma_2\gamma_3 + \gamma_1\gamma_2 + \gamma_1\gamma_2\gamma_2\gamma_3 = 1 + \gamma_2\gamma_3 + \gamma_1\gamma_2 + \gamma_1\gamma_3, $$</p>
+
+  <p>$$ U_{23} U_{12} \;\propto\; (1+\gamma_2\gamma_3)(1+\gamma_1\gamma_2) = 1 + \gamma_1\gamma_2 + \gamma_2\gamma_3 - \gamma_1\gamma_3. $$</p>
+
+  <p>两者差一个 $\gamma_1\gamma_3$ 的符号. 在 $2^N$ 维基态空间里这是非平凡的对易子, 也就是说 $U_{12}, U_{23}$ 各自像两个不可对易的 Pauli 矩阵, 联合在一起生成的不只是相位, 而是整个 Clifford 群 (单 qubit Pauli, $S$ 门, Hadamard 门 — 二维量子比特上的"半组")</p>
+
+  <p>这是拓扑量子计算的物理原料: 四个 Majorana 给一个 logical qubit, braiding 给 Clifford 群, Clifford 群单独不能算 universal (Solovay-Kitaev 意义下), 但加一个 magic state 蒸馏或者一种非拓扑的 $T$ 门 (即 $\pi/8$ 门), 就能把它推到 universal 量子计算的全部门集. 这是一条精明的工程路线: 大部分 (高错率敏感的) 操作交给拓扑保护的 braiding 处理, 错率指数小; 少量 (容易出错的) magic state 注入用普通量子操作处理, 错率高但可以蒸馏到任意小. 把容错阈值整体往上抬.</p>
+
+  <h2>三、Ising anyon 融合规则与拓扑场论的代数</h2>
+
+  <p>把 Majorana 零模写成抽象的 anyon 模型, 它属于一个叫"Ising anyon"的范畴. 这个模型有三种粒子:</p>
+
+  <p>$$ 1 \quad (\text{真空}), \qquad \sigma \quad (\text{Majorana 准粒子}), \qquad \psi \quad (\text{普通 fermion}). $$</p>
+
+  <p>它们的"融合规则"告诉你, 两个粒子靠在一起会变成什么 — 在拓扑场论里这是张量积分解.</p>
+
+  <p>$$ \sigma \times \sigma \;=\; 1 \;+\; \psi, \qquad \sigma \times \psi \;=\; \sigma, \qquad \psi \times \psi \;=\; 1. \tag{2} $$</p>
+
+  <p>第一条是关键. 两个 $\sigma$ 准粒子靠在一起, 不会变成单一的产物, 而是有两种可能 — 真空通道 ($1$) 与 fermion 通道 ($\psi$). 这正对应一对 Majorana $\gamma_1, \gamma_2$ 组合的 fermion 模式 $f = (\gamma_1+i\gamma_2)/2$ 处于"$|0\rangle$ 空"或"$|1\rangle$ 占据"两种状态. "融合通道"就是 fermion 占据数, 两个 $\sigma$ 给一个 qubit. 把 $2N$ 个 $\sigma$ 融合, 通道分支数是 Fibonacci 系列 $F_N$ — 严格说是 $2^{N-1}$, 这正是上一节算的 $N$ 个 logical qubits 在固定总宇称下的维数.</p>
+
+  <p>融合规则与 braiding 一起决定了整个范畴的 unitary. 它们还要满足一组叫 hexagon (六角) 与 pentagon (五角) 的相容方程, 解出来的 $R, F$ 矩阵正好就是上一节的 $U_{ij}$ 与基组之间的换基矩阵. Kitaev 2003 把这一整套数学语言归结到一个简明的代数结构 — modular tensor category — 并证明了它跟 $(2+1)\,$D 拓扑场论 (Chern-Simons 理论) 一一对应. Ising anyon 对应 Chern-Simons 理论 $\mathrm{SU}(2)_2$, 也对应 5/2 分数量子 Hall 的 Moore-Read Pfaffian 态.</p>
+
+  <p>这件事的"普适性"是它的物理重量. 凡是"Ising anyon 类"的拓扑相 — 不管它的微观实现是 chiral $p$-wave 超导、半导体-超导界面、Moore-Read FQH 还是别的什么 — 在低能下的 anyon 代数完全相同, 拓扑量子计算的算法层面是同一套. 拓扑相把微观参数都积掉了, 只留下融合与 braiding 这一组离散数据.</p>
+
+  <h2>四、世界线 braid 与拓扑保护的几何</h2>
+
+  <p>把这件事画到一张时间-空间图上最直观. 横向 $xy$ 是二维体系所在的物理平面, 纵向 $z$ 是时间. 让 $2N$ 个 Majorana 准粒子从底部出发, 沿 $z$ 轴往上走, 中途被实验者人为操控 — 用门电压、磁通管、机械操作 — 让它们在 $xy$ 平面里互相位置交换. 整体看, $2N$ 条世界线在 $(2+1)\,$D 中织成一束辫子 (braid). 不同的辫子拓扑类对应不同的 unitary 操作; 把同一辫子在 $xy$ 上做一个连续形变 (准粒子稍微抖一下、走个 detour), 拓扑类不变, unitary 不变. 这是拓扑保护的几何说法.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 拓扑量子计算的 braid 图. $z$ 轴向上是时间, $xy$ 平面是物理空间. 在底部一行画四到六个标号的 Majorana 零模 $\gamma_1, \gamma_2, \gamma_3, \dots$; 它们的世界线沿 $z$ 向上延伸, 中间相互交织 — 类似 DNA 双螺旋, 但可能多股. 标几个具体交换: $\gamma_1 \leftrightarrow \gamma_2$ 让两条线打一个交叉, 标 $U_{12}$; 紧接着 $\gamma_2 \leftrightarrow \gamma_3$ 又打一个交叉, 标 $U_{23}$. 在右侧用箭头标"非阿贝尔: 先 $U_{12}$ 再 $U_{23}$ 与先 $U_{23}$ 再 $U_{12}$ 给不同结果". 顶部一行注 "测量 fermion 占据数 $f_a^\dagger f_a$ → 读出 logical qubit". 整张图把"几何形变 (世界线小抖动) 不影响 unitary, 只有交叉次序 (拓扑类) 决定结果"这件事画成 DNA 双螺旋样的辫子.]</div>
+  </figure>
+
+  <p>这件事跟普通量子计算的容错阈值差异在哪. 在标准的 (非拓扑) 量子比特里, 比如超导 transmon, 一个量子门是用一段精心调好的微波脉冲或一段时间演化来实现的, 演化算符 $U(t) = e^{-iHt/\hbar}$ 对 $H$ 的细节非常敏感, 一点参数漂移就让 $U$ 偏离目标. 错误率主要来自单门错率 $\sim 10^{-3}$, surface code 容错阈值 $\sim 1\%$, 实验上做 surface code 需要把单物理比特错率降到大约 $0.1\%$ 才有意义. 拓扑量子计算里, 一个量子门是 braid 操作, 演化算符 $U_{ij}$ 只依赖辫子的拓扑类 — 抖动、漂移只要不让两条世界线"剪开重接", 就改不了 $U_{ij}$. 容错阈值理论上能到 $\sim 10\%$, 高出两个数量级. 这是 Microsoft 押宝 Majorana 路径的根本原因.</p>
+
+  <p>把数字摆一摆. 当前最好的超导 transmon 单比特门错率约 $0.1\%$, 双比特门错率 $\sim 0.5\%$, 已经稳定低于 surface code 1% 阈值, 这就是 Google 与 IBM 这五年的进展曲线. Microsoft 押的拓扑路径设想的物理错率是 $\sim 10^{-6}$ (几乎完全靠拓扑保护抑制), 阈值 $\sim 10\%$, 意味着不需要 surface code 的巨大物理冗余. 但代价是它依赖一个目前实验上仍未被广泛承认的物理事实: Majorana 零模真的存在并能被相干 braid.</p>
+
+  <h2>五、平台候选与从 Kitaev 2003 到 2023 的实验史</h2>
+
+  <p>拓扑超导这条路的实验候选相当杂.</p>
+
+  <p><strong>Sr$_2$RuO$_4$.</strong> 1990 年代被提议为 chiral $p$-wave 超导 ($p_x + ip_y$, 二维"自旋三重态"配对). 这是拓扑超导最干净的理论候选, vortex 核心携带 Majorana 零模. 但 2017 年之后的核磁共振 Knight shift 实验给出的结果不支持纯三重态配对, 这条候选目前不确定.</p>
+
+  <p><strong>5/2 分数量子 Hall (Moore-Read).</strong> 1991 年 Moore 与 Read 提出 5/2 填充因子下的 Pfaffian 态等价于二维 chiral $p$-wave 超导, 准粒子是 Ising anyon. 直到今天, 5/2 Pfaffian vs. anti-Pfaffian vs. PH-Pfaffian 三种候选谁真正实现都没定论, 但这是最早被确认 (实验上观测到 5/2 平台) 的非阿贝尔候选体系.</p>
+
+  <p><strong>InSb/Al 半导体-超导纳米线 (Microsoft 路径).</strong> 2010 年 Lutchyn-Sau-Das Sarma 与 Oreg-Refael-von Oppen 同时指出: 一根有强自旋-轨道耦合的半导体纳米线 (InSb 或 InAs), 上面贴一层超导铝, 加一个磁场让 Zeeman 能超过临界值 — 这套体系等效于一根 Kitaev 链, 端点应该携带 Majorana. 2012 年 Mourik-Zhang-Kouwenhoven 在 Delft 用 STM 在这种纳米线端点观测到零偏置电导峰 (ZBCP), 给了第一个实验信号. 但 ZBCP 不是充分证据 — 普通的 disorder bound state 也会给类似的峰, 这条线索折腾了十年, 中间还有 2018 Nature 一篇"4-Majorana 量子化电导平台"论文在 2021 年被撤稿. 直到 2023 年 Microsoft 在 Nature 发表用 measurement-based protocol 在 InSb/Al 中初步证实 Majorana 行为, 但社区仍在继续审视.</p>
+
+  <p><strong>Fe(Te,Se).</strong> 2018 年 Wang 等人在中科院物理所用 STM 在 Fe(Te,Se) 单晶 vortex 核心观测到清晰的零偏置峰, 且峰的位置不随 vortex 间距漂移. Fe(Te,Se) 的电子结构本身是个拓扑表面态超导, 自然嵌入了拓扑配对, 不需要外加 Zeeman 场. 这条线索被认为是当前最干净的 Majorana 候选之一.</p>
+
+  <p><strong>动力学 surface code 路径.</strong> 不依赖物理 Majorana, 直接在普通量子比特平台上用 surface code 的 stabilizer 测量动力学合成出"虚拟 Majorana" — 也叫 measurement-based topological qubit. Google 与 IBM 在 2024-2025 年陆续报告了用动力学 anyon braiding 模拟 Ising 融合规则的实验. 这条路把拓扑量子计算的物理保护"借"给软件, 是另一条可能比物理 Majorana 更早跑出来的赛道.</p>
+
+  <p>这一切的理论基础在 Kitaev 2003 的预印本《Fault-tolerant quantum computation by anyons》里一次写完: 他不仅给出了上一节的 toric code, 还把一般的非阿贝尔 anyon 拓扑量子计算的形式化做完, 把 braid 群表示、容错阈值、surface code 构造连成一条体系. 五年后 Nayak、Simon、Stern、Freedman、Das Sarma 在 Rev. Mod. Phys. 80 (2008) 1083 写了那篇影响极大的综述, 把这条路的物理候选、数学结构、实验路径一次性铺开. 此后近二十年的故事, 是 Microsoft 在 Station Q 的实验组押注 InSb/Al 路线、社区在 5/2 FQH 与 Fe(Te,Se) 上反复试探、surface code 路径异军突起 — 至今没有谁正式宣布"拓扑量子计算实现", 但这一条所有候选都在朝同一个目标前进.</p>
+
+  <p>把这件事跟超导 transmon 路径并排比较: transmon 在 2024 已经做到几百比特规模、单门错率 $0.1\%$ 级, 工程成熟但需要 surface code 巨大冗余. 拓扑路径理论错率 $10^{-6}$、阈值 $10\%$, 但物理 Majorana 至今没被毫无争议地确认. 这条赛道下一个 5-10 年可能的转折点: 一个被广泛接受的 Majorana 拓扑量子比特演示, 或者一个动力学 surface code 路径下的 Ising 融合实验, 哪个先到都行.</p>
+
+  <h2>六、小结</h2>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>拓扑超导的端点或 vortex 核心携带 Majorana 零模 $\gamma$, $2N$ 个 Majorana 给出 $2^N$ 维基态简并空间, 简并精度由 $e^{-L/\xi}$ 拓扑保护. Majorana 是非阿贝尔 Ising anyon $\sigma$, 融合规则 $\sigma\times\sigma = 1+\psi$ (2), braiding 算符 $U_{ij} = \exp(\pi\gamma_i\gamma_j/4)$ (1) 不可对易, 在 $2^N$ 维空间里生成 Clifford 群. 拓扑量子计算的逻辑门由准粒子世界线的 braid 拓扑类决定, 几何抖动不影响 unitary, 容错阈值理论上 $\sim 10\%$, 远高于超导 transmon 路径的 surface code $\sim 1\%$ 阈值 (实际错率 $\sim 0.1\%$). 平台候选包括 Sr$_2$RuO$_4$ (chiral $p$-wave, 不确定)、5/2 FQH (Moore-Read)、InSb/Al 纳米线 (Microsoft 2023 measurement-based)、Fe(Te,Se) (Wang 2018 STM ZBP)、与动力学 surface code. 历史从 Kitaev 2003 把 anyon 拓扑量子计算形式化、Nayak-Simon-Stern-Freedman-Das Sarma 2008 综述把候选梳理清楚, 一直到 Microsoft 二十年押注的 2023 工程演示, 至今仍在"准备"实验阶段. 下一节我们离开"硬"凝聚态的能带与配对, 走到一种连晶格都没有但仍有长程序的怪东西 — 液晶.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="24-majorana.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="26-liquid-crystals.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

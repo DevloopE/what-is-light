@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第六卷 · 量子是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第六卷</span>
+  <h1>量子是什么?</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+经典物理在 1900 年崩塌时, 留下了一段悬而未决的对话: 黑体不像辐射定律说的那样发蓝光, 光电效应说光是颗粒, 双缝又说光是波. 二十多年里, Planck、Einstein、Bohr、de Broglie、Heisenberg、Schrödinger、Dirac、Born、Pauli 把它一点点磨成了一门新理论 — 不再问"粒子在哪里", 而问"我若测量, 会看到什么". 本卷追问"量子到底是什么", 从黑体辐射出发, 一路到 Bell 不等式、退相干、量子算法、测量问题. 落到具体数字: hν = 13.6 eV (氢基态), Aspect 1982 实验 |⟨A⟩| = 2.697 ± 0.015 (违背贝尔不等式 2.00), 退相干时间 ~10⁻²³ s, Shor 算法多项式时间分解 RSA-2048.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>量子的起源
+  <span class="part-blurb">黑体、光电、原子结构、物质波、Stern-Gerlach</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-blackbody.html"><span class="title">黑体辐射为什么撞墙?</span><span class="sub">—— Planck 与量子的诞生</span></a></li>
+  <li><a href="02-photoelectric.html"><span class="title">光电效应 — 光真的是颗粒吗?</span><span class="sub">—— Einstein 1905 与 $E=h\nu$</span></a></li>
+  <li><a href="03-bohr-atom.html"><span class="title">原子里的电子为什么不掉下来?</span><span class="sub">—— Bohr 模型与离散能级</span></a></li>
+  <li><a href="04-de-broglie.html"><span class="title">物质波是什么?</span><span class="sub">—— de Broglie $\lambda = h/p$</span></a></li>
+  <li><a href="05-stern-gerlach.html"><span class="title">为什么银原子被磁场分成两束?</span><span class="sub">—— Stern-Gerlach 与离散自旋</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>量子力学的语言
+  <span class="part-blurb">波函数、算符、测量公设、不确定性、时间演化</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-wavefunction.html"><span class="title">波函数 $\psi$ 究竟编码了什么?</span><span class="sub">—— Schrödinger 方程与概率幅</span></a></li>
+  <li><a href="07-operators.html"><span class="title">算符与可观察量怎么对应?</span><span class="sub">—— 厄米算符的本征值就是测量值</span></a></li>
+  <li><a href="08-measurement.html"><span class="title">测量公设 — Born 规则凭什么?</span><span class="sub">—— $|c_n|^2$ 是概率, 不是流量</span></a></li>
+  <li><a href="09-uncertainty.html"><span class="title">不确定性原理是测量极限还是更深的什么?</span><span class="sub">—— $\Delta x\,\Delta p \ge \hbar/2$ 的几何根</span></a></li>
+  <li><a href="10-time-evolution.html"><span class="title">为什么时间演化必须是幺正的?</span><span class="sub">—— $U(t)=e^{-iHt/\hbar}$ 与概率守恒</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>解谱
+  <span class="part-blurb">势阱、谐振子、角动量、氢原子、自旋</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-square-well.html"><span class="title">一维势阱里的能级为什么是离散的?</span><span class="sub">—— 边界条件与驻波</span></a></li>
+  <li><a href="12-harmonic-oscillator.html"><span class="title">谐振子能级为什么间距相等?</span><span class="sub">—— 升降算符与 $\hbar\omega(n+\tfrac12)$</span></a></li>
+  <li><a href="13-angular-momentum.html"><span class="title">角动量为什么有半整数?</span><span class="sub">—— $\hat L^2$, $\hat L_z$ 与 SU(2) 阶梯</span></a></li>
+  <li><a href="14-hydrogen.html"><span class="title">氢原子基态 $-13.6$ eV 是怎么算出来的?</span><span class="sub">—— Coulomb 势与 $1/n^2$ 谱</span></a></li>
+  <li><a href="15-spin.html"><span class="title">自旋是什么?</span><span class="sub">—— Pauli 矩阵与 Dirac 方程的暗示</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>测量与诠释
+  <span class="part-blurb">EPR、Bell、退相干、多世界、量子跳变</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-epr-bell.html"><span class="title">Bell 不等式凭什么排除"经典隐变量"?</span><span class="sub">—— EPR 1935 与 Aspect 1982</span></a></li>
+  <li><a href="17-superposition.html"><span class="title">Schrödinger 的猫到底处于什么状态?</span><span class="sub">—— 量子叠加的边界</span></a></li>
+  <li><a href="18-decoherence.html"><span class="title">为什么宏观世界看上去是经典的?</span><span class="sub">—— 退相干与环境引起的选择</span></a></li>
+  <li><a href="19-interpretations.html"><span class="title">多世界 vs Copenhagen — 这真的是两种物理吗?</span><span class="sub">—— 测量问题的几种回答</span></a></li>
+  <li><a href="20-quantum-jumps.html"><span class="title">量子跳变能被实时看见吗?</span><span class="sub">—— 弱测量与单原子荧光</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>多体与场
+  <span class="part-blurb">全同粒子、Fermi 海、二次量子化、散射、隧穿</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-identical-particles.html"><span class="title">为什么世界由玻色子和费米子组成?</span><span class="sub">—— 交换对称与自旋统计</span></a></li>
+  <li><a href="22-fermi-sea.html"><span class="title">Pauli 不相容凭什么撑起白矮星?</span><span class="sub">—— Fermi 海与简并压</span></a></li>
+  <li><a href="23-second-quantization.html"><span class="title">为什么场比粒子更基本?</span><span class="sub">—— 二次量子化与产生湮灭</span></a></li>
+  <li><a href="24-scattering.html"><span class="title">散射截面是怎么算出来的?</span><span class="sub">—— Born 近似与 S-矩阵</span></a></li>
+  <li><a href="25-tunneling.html"><span class="title">为什么粒子能穿过势垒?</span><span class="sub">—— 量子隧穿与 $\alpha$ 衰变</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>量子信息与前沿
+  <span class="part-blurb">qubit、Shor、纠错、量子模拟、测量问题的开放</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-qubits.html"><span class="title">一个 qubit 比一个 bit 强在哪?</span><span class="sub">—— 叠加, 纠缠, 量子门</span></a></li>
+  <li><a href="27-quantum-algorithms.html"><span class="title">Shor 算法为什么能多项式时间分解大整数?</span><span class="sub">—— 量子 Fourier 变换的力量</span></a></li>
+  <li><a href="28-quantum-error-correction.html"><span class="title">退相干这么快, 量子计算机还可能吗?</span><span class="sub">—— 量子纠错与阈值定理</span></a></li>
+  <li><a href="29-quantum-simulation.html"><span class="title">量子模拟能解决什么经典做不到的事?</span><span class="sub">—— Feynman 1981 与量子优越性</span></a></li>
+  <li><a href="30-measurement-problem.html"><span class="title">测量问题真的解决了吗?</span><span class="sub">—— 量子力学的边界与未来</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第六卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

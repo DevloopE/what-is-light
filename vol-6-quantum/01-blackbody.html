@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黑体辐射为什么撞墙? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a class="disabled" href="#">← 上一节</a>
+  <span class="chapter-title">第 1 节 / 30 · 第 1 部分 · 量子的起源 · 第六卷·量子是什么?</span>
+  <a href="02-photoelectric.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>黑体辐射为什么撞墙?</h1>
+  <div class="sub">—— Planck 与量子的诞生</div>
+
+  <div class="abstract">
+    1900 年, 经典物理被一只发烫的炉子顶到了墙上. 把热平衡腔里的电磁场看作很多独立振子, 每个振子按能量均分律分到 $k_B T$, 短波那一头的振子无穷多, 总能量发散 — 这是 Rayleigh-Jeans 定律的"紫外灾难". Planck 1900 年 12 月 14 日把这道墙凿了一个洞: 假设振子能量只能是 $E_n = nh\nu$ 这样的离散台阶, $h$ 是个新常数, 谱密度立刻收敛, 与实验完美贴合. 我们沿这条路走一遍 — 经典推导哪里发散, Planck 的"绝望之举"如何把发散变成 $1/(e^{h\nu/k_B T}-1)$, 怎么从这个谱积出 Stefan-Boltzmann 常数, 以及为什么太阳看起来是黄绿色.
+  </div>
+
+  <p>把铁棒丢进炉里, 颜色随温度从暗红、橘红、黄白一路爬到刺眼的蓝白. 每个温度有一条特征发光谱, 跟金属是铁是铜并没多大关系 — 它取决于温度本身. 19 世纪后期的实验家把这件事抠到很精细: 在恒温空腔上钻个小孔, 让里面的辐射跑出来, 用棱镜分谱, 用 bolometer 测能量, 得到 $u(\nu, T)$ 这条曲线. Kirchhoff 1859 给出"黑体"的形式定义 — 把所有入射辐射都吸收的物体, 它的发射谱只跟温度有关; Wien 1893 注意到峰值波长随温度反比移动, 这条规律叫 Wien 位移定律. 等到 Rayleigh 1900 用经典电动力学加统计力学认真去推 $u(\nu, T)$ 的形式, 整个理论一头撞到了短波墙上.</p>
+
+  <h2>一、空腔里的电磁场, 数模式</h2>
+
+  <p>设一个边长 $L$ 的方腔, 里面有热平衡电磁场. 一对相对的金属壁要求电场切向分量为零, 解出来的本征模是驻波, 波矢满足 $k_x = n_x \pi / L$, 同样 $k_y, k_z$. 模数 $(n_x, n_y, n_z)$ 跑遍正整数, 每组对应一个频率 $\nu = c|\mathbf{k}|/(2\pi)$. 数到 $\nu$ 以下有多少个模 — 在 $k$ 空间相当于第一象限内半径 $|\mathbf{k}| = 2\pi\nu/c$ 的八分之一球壳, 算上电磁波两个偏振, 单位体积单位频率的模数密度是</p>
+
+  <p>$$ g(\nu) = \frac{8\pi\nu^2}{c^3}. \tag{1} $$</p>
+
+  <p>这一步是干净的几何, 没有任何争议. 经典统计力学接下来把每个模看成一个一维谐振子 — 振幅是动力学变量, 哈密顿量是 $\tfrac12 p^2 + \tfrac12 \omega^2 q^2$ 的形式, 两个二次自由度, 按能量均分律每个自由度分到 $\tfrac12 k_B T$, 一个模的平均能量就是 $k_B T$. 把它乘进 $(1)$:</p>
+
+  <p>$$ u_{\text{RJ}}(\nu, T) = g(\nu)\, k_B T = \frac{8\pi\nu^2}{c^3}\, k_B T. \tag{2} $$</p>
+
+  <p>这就是 Rayleigh-Jeans 定律. 长波端 ($h\nu \ll k_B T$) 它跟实验对得上, 短波端就完全失控: $u \propto \nu^2$, 对所有频率积分给出无穷大总能量. 把炉子里全部辐射往眼睛上倒, 应该有无限的紫外线和 X 射线轰你 — 这显然不对. Ehrenfest 后来给这个失败起了个名字: 紫外灾难.</p>
+
+  <h2>二、Planck 的"绝望之举"</h2>
+
+  <p>1900 年秋天, 柏林的 Rubens 和 Kurlbaum 把实验推到了远红外, 发现 Wien 早些年提的修正公式 $u \propto \nu^3 e^{-\beta\nu/T}$ 在低频端也不行. Planck 当时是热力学派的人, 他先靠对熵的形式做了一个内插, 凑出一条横跨两端的曲线, 再回过头去找它背后的微观图像. 这一找, 就把他逼到了量子假设: 每个频率 $\nu$ 的振子能量不连续, 只能取</p>
+
+  <p>$$ E_n = n h\nu, \quad n = 0, 1, 2, \ldots $$</p>
+
+  <p>$h$ 是当时还没名字的一个常数. 用 Boltzmann 分布 $P_n \propto e^{-E_n / k_B T}$ 算这个离散谱的平均能量:</p>
+
+  <p>$$ \langle E \rangle = \frac{\sum_{n=0}^{\infty} n h\nu\, e^{-n h\nu/k_B T}}{\sum_{n=0}^{\infty} e^{-n h\nu/k_B T}} = \frac{h\nu}{e^{h\nu/k_B T}-1}. $$</p>
+
+  <p>分母是几何级数 $\sum x^n = 1/(1-x)$, 分子是 $x \,d/dx$ 作用在分母上. 把它代回模数密度 $(1)$:</p>
+
+  <p>$$ u(\nu, T) = \frac{8\pi h\nu^3}{c^3}\, \frac{1}{e^{h\nu/k_B T}-1}. \tag{3} $$</p>
+
+  <p>这就是 Planck 黑体辐射定律. 高频端 ($h\nu \gg k_B T$) 指数压制把 $\nu^3$ 的发散摁住, 公式回到 Wien 形式; 低频端把指数展开 $e^{x}-1 \approx x$, 直接还原 Rayleigh-Jeans $(2)$. 中间那道弯就是实验里看见的那条钟形曲线. Planck 1900 年 12 月 14 日在柏林物理学会报告这个结果, 他后来把这一步称作 "an act of desperation" — 他自己当时并不真信能量量子化是物理实在, 只是没有别的办法把数据拟合上.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 黑体谱密度 $u(\nu, T)$ 对 $\nu$ 三条对照曲线 — Rayleigh-Jeans 在短波端单调发散 ($\nu^2$), Wien 在低频端偏低、远紫外正确, Planck 公式从低频到高频与实验吻合; 上叠两组温度 $T = 2000\,\mathrm{K}$ 和 $T = 5000\,\mathrm{K}$ 的实验数据点 (空心圆与实心圆), 标注峰值频率随温度右移; 横轴 $\nu/\mathrm{THz}$, 纵轴 $u$ (任意单位)]</div>
+  </figure>
+
+  <h2>三、把数字代进去</h2>
+
+  <p>常数 $h$ 当时是 Planck 从拟合实验里反推的, 现在的 CODATA 值</p>
+
+  <p>$$ h = 6.62607015 \times 10^{-34}\,\mathrm{J\!\cdot\!s} $$</p>
+
+  <p>(2019 年起, $h$ 是定义值, 不再有不确定度). 配上 $k_B = 1.380649 \times 10^{-23}\,\mathrm{J/K}$ 和 $c = 2.998 \times 10^{8}\,\mathrm{m/s}$, $(3)$ 就可以直接算了.</p>
+
+  <p>第一个直接的检验: <strong>Wien 位移</strong>. 把 $u(\nu, T)$ 换成 $u(\lambda, T)$ ($\nu = c/\lambda$), 对 $\lambda$ 求导找峰值, 化简得超越方程 $5(1 - e^{-x}) = x$, 数值解 $x = h c / (\lambda_{\max} k_B T) \approx 4.965$. 于是</p>
+
+  <p>$$ \lambda_{\max}\, T = \frac{h c}{4.965\, k_B} \approx 2.898 \times 10^{-3}\,\mathrm{m\!\cdot\!K}. $$</p>
+
+  <p>太阳光球 $T \approx 5778\,\mathrm{K}$, 代入</p>
+
+  <p>$$ \lambda_{\max} = \frac{2.898 \times 10^{-3}}{5778}\,\mathrm{m} \approx 5.02 \times 10^{-7}\,\mathrm{m} = 502\,\mathrm{nm}. $$</p>
+
+  <p>正是黄绿光带. 人眼视细胞最敏感的波长 (明视觉峰值 555 nm) 跟它对得上 — 不是巧合, 是地表生物在太阳光下进化出的最优响应. 把同一公式应用到宇宙微波背景 $T = 2.725\,\mathrm{K}$, 给 $\lambda_{\max} \approx 1.06\,\mathrm{mm}$, 微波波段, 这正是 1965 年 Penzias 和 Wilson 在贝尔实验室天线上测到的辐射.</p>
+
+  <p>第二个检验: <strong>Stefan-Boltzmann 定律</strong>. 总辐射功率密度是 $(3)$ 对 $\nu$ 从 $0$ 到 $\infty$ 的积分. 换元 $x = h\nu/(k_B T)$:</p>
+
+  <p>$$ \int_0^{\infty} u(\nu, T)\, d\nu = \frac{8\pi (k_B T)^4}{(h c)^3}\, \int_0^{\infty} \frac{x^3}{e^x - 1}\, dx. $$</p>
+
+  <p>那个积分是数学常识 $\Gamma(4)\zeta(4) = 6 \cdot \pi^4/90 = \pi^4/15$. 把腔内能量密度换成黑体表面单位面积辐出功率 (因子 $c/4$), 得到</p>
+
+  <p>$$ j^* = \sigma T^4, \quad \sigma = \frac{2\pi^5 k_B^4}{15 c^2 h^3} \approx 5.670 \times 10^{-8}\,\mathrm{W\!\cdot\!m^{-2}\!\cdot\!K^{-4}}. $$</p>
+
+  <p>代入太阳的 $T = 5778\,\mathrm{K}$: $j^* = 5.67 \times 10^{-8} \times 5778^4 \approx 6.32 \times 10^{7}\,\mathrm{W/m^2}$. 乘上太阳表面积 $4\pi R_\odot^2 \approx 6.09 \times 10^{18}\,\mathrm{m^2}$, 得太阳总辐射功率 $L_\odot \approx 3.85 \times 10^{26}\,\mathrm{W}$. 教科书上的太阳光度 $3.828 \times 10^{26}\,\mathrm{W}$ — 在两位有效数字内对得上. 一条来自 1900 年柏林炉子的公式, 直接预测了太阳的亮度, 这是 Planck 公式最实在的胜利.</p>
+
+  <h2>四、能量量子的两层意思</h2>
+
+  <p>Planck 把 $E_n = n h\nu$ 写下来时, 他的物理图像还是炉壁里的"振子" — 他想象有一群带电的微观谐振子, 它们的能量是离散的, 而辐射场本身仍是连续的, 只是在跟壁交换能量时一份份地交. 在他自己看来, 这是关于<em>物质</em>的假设, 不是关于光的. 真正把"光本身按一份份的能量传播"写明白的是 Einstein, 1905 年用同一个 $h\nu$ 解释光电效应 (那是下一节的内容).</p>
+
+  <p>但即便只把 $(3)$ 当作一个曲线拟合, 它已经撕开了经典物理的一道裂缝: 能量均分律失效. 重看推导, 经典理论的关键失误不在 $(1)$ — 那是 Maxwell 方程在腔里的本征模数, 没问题; 失误在把"每个模分到 $k_B T$"这一步. 量子化让高频模 ($h\nu \gg k_B T$) 几乎不被激发 — 因为升一级要付出 $h\nu$, 而热扰动只能给 $k_B T$, Boltzmann 因子 $e^{-h\nu/k_B T}$ 把它压成指数小. 数学上, 这就是 $(3)$ 跟 $(2)$ 的差别. 物理上, 它说: 自然界对任意小的能量包不开放门, 必须凑够 $h\nu$ 才能交易.</p>
+
+  <p>这个图像在十年里逐步扩散到别的现象: 固体比热在低温下 $C_V \to 0$ 而非常数 $3 N k_B$ — Einstein 1907 用同样的量子振子假设解释; 原子光谱的离散线 — Bohr 1913 把电子轨道也量子化; 物质波 — de Broglie 1924 把 $E = h\nu$ 推广到 $\lambda = h/p$; 矩阵力学和波动力学 — Heisenberg 1925, Schrödinger 1926 把整套规则整合成一门理论. 所有这些都从同一颗种子里长出来: 1900 年 12 月一个被实验数据逼到墙角的经典物理学家, 在熵公式上凑出一条曲线, 然后认账接受了 $h$ 的存在.</p>
+
+  <p>值得一提的是, Planck 自己花了十几年才真正接受这个假设的物理意义. 他在 1931 年的回忆里写, 当时唯一的目的就是"不计代价"找到一个跟实验吻合的公式. 物理上的"绝望之举"在事后看是量子力学的开端 — 而 $h$ 这个常数, 已经从一个拟合参数变成了 SI 单位制的基石: 自 2019 年 5 月起, 千克的定义就是通过固定 $h$ 来给出的.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>黑体辐射是经典物理与量子物理的分水岭. Rayleigh-Jeans 公式 $(2)$ 在短波发散是必然的 — 只要"每个模 $k_B T$"成立, 模数 $\propto \nu^2$ 就保证总能量发散. Planck 的修补 $(3)$ 让 $\langle E \rangle$ 在高频被指数压住, 谱形从此跟实验贴合, 顺便给出 Wien 位移 (太阳 $\lambda_{\max} = 502\,\mathrm{nm}$) 和 Stefan-Boltzmann 常数 ($5.67 \times 10^{-8}\,\mathrm{W/m^2K^4}$, 直接算出太阳光度). 在更大图景里, 它是量子假设第一次出现, 但物理意义还没完全展开 — 那要等下一节, Einstein 把"光本身就是 $h\nu$ 的颗粒"这件事在光电效应里钉牢; 再下一节, Bohr 把它搬进原子里, 让 $-13.6\,\mathrm{eV}$ 这条基态线浮出水面. $h$ 是这一切的入场券.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a class="disabled" href="#">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="02-photoelectric.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

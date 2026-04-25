@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>物质波是什么? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="03-bohr-atom.html">← 上一节</a>
+  <span class="chapter-title">第 4 节 / 30 · 第 1 部分 · 量子的起源 · 第六卷·量子是什么?</span>
+  <a href="05-stern-gerlach.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>物质波是什么?</h1>
+  <div class="sub">—— de Broglie $\lambda = h/p$</div>
+
+  <div class="abstract">前三节我们看着光从波被劈成"光子", 又看着 Bohr 把电子按角动量 $L=n\hbar$ 钉在离散轨道上 — 量子化的处方堆了一层又一层, 但还没有一条统一的线. 1924 年 de Broglie 在博士论文里反过来问: 既然光这种"波"被发现可以表现成粒子, 那电子这种"粒子"是不是也该有一条对应的波? 他写下一条比公式还简单的关系 $\lambda = h/p$, $\nu = E/h$, 把所有有质量的粒子都纳入波动框架. 我们会代入数字: $K=100$ eV 的电子波长 $\lambda\approx 1.22$ Å, 与 X 射线衍射尺度同量级; 一个 0.057 kg、20 m/s 的网球波长 $\sim 5.8\times 10^{-34}$ m, 远小于任何可探测尺度 — 这就是为什么我们日常看不到自己的"物质波". 然后我们重读 Bohr 的轨道条件: $n\hbar = pr$ 等价于 $n\lambda = 2\pi r$, 圆周长正好是整数个波长 — 一个驻波的边界条件. 最后我们对 Davisson-Germer 1927: $K=54$ eV 电子打 Ni 晶面 ($d=2.15$ Å), 第一峰在 $\theta=50^\circ$, 实验给出 $\lambda\approx 1.65$ Å, de Broglie 公式预言 $1.67$ Å, 完全一致 — 物质波从一篇论文变成了一组实验数字.</div>
+
+  <p>这一节的开场是一张照片. 1927 年 Bell 实验室的真空管里, 一束被 54 V 加速的电子撞在一块抛光过的镍晶体表面, 探测器在偏离入射方向 $50^\circ$ 的那个角度收到一个强度峰. Davisson 和 Germer 起初以为是电子被表面"散射"出来的某种偶然结构 — 直到他们意识到: 这张图样, 跟同一年代 X 射线打同一块晶体得到的衍射图样几乎可以叠在一起. 唯一可能的解释是: <strong>电子也有波长</strong>, 而且这条波长正好等于 de Broglie 三年前从纸上猜出来的那个数字. 这一节我们就重走这条路 — 从一条简单的公式 $\lambda = h/p$ 出发, 到 Bohr 轨道的驻波解释, 到 Davisson-Germer 的实测数字, 看看"物质波"这个词背后的物理是什么.</p>
+
+  <p>策略是: 先把 $\lambda = h/p$ 写下来并理解它的物理类比 — 光子的 $E=h\nu$ 把波动量 $h\nu/c$ 翻译成动量 $h/\lambda$, de Broglie 把这个换算反过来用; 然后代具体数字检验它是不是合理的尺度; 然后用它重新解释 Bohr 的角动量量子化, 看一个挥手的处方怎么变成一个驻波边界条件; 最后把它对到 Davisson-Germer 的实验上, 看它怎么从一个假设变成一个被测量出来的长度.</p>
+
+  <h2>一、$\lambda = h/p$: 把光的双重身份反着用一次</h2>
+
+  <p>1924 年, 巴黎. de Broglie 32 岁, 物理博士论文还没答辩. 他的哥哥 Maurice 是 X 射线领域的实验家, 家里饭桌上的话题就围绕着光怎么有时是波 (Bragg 衍射峰) 有时是粒子 (Compton 散射). 弟弟 Louis 把这个家庭对话拧到反面: 既然光这个我们一向当成波的东西已经被 Einstein-Compton 证明了"也是粒子", 那电子这个我们一向当成粒子的东西, 是不是也"是波"?</p>
+
+  <p>他的论证不需要新假设, 只需要一个对称化操作. 对一个频率为 $\nu$、波长为 $\lambda$ 的光波, Einstein 1905 给出每个光子的能量 $E=h\nu$; Compton 1923 进一步把光子的动量定在 $p=h\nu/c=h/\lambda$. 注意到 $\lambda = h/p$ 这条关系完全没有用到"光子是没有质量的", 它只用到光子是一份波动量子. de Broglie 的飞跃是: 把这条关系倒着读, 当作<strong>所有</strong>粒子普适的换算公式</p>
+
+  <p>$$
+  \lambda = \frac{h}{p}, \qquad \nu = \frac{E}{h}. \tag{1}
+  $$</p>
+
+  <p>$h=6.626\times 10^{-34}$ J·s 是 Planck 常数, $p=mv$ (非相对论) 或 $\gamma m v$ (相对论). 一个粒子, 不管它有没有静质量, 只要它有动量 $p$, 就有一条波长 $\lambda=h/p$ 与它相伴. de Broglie 把这种波叫"相波" (onde de phase), 后人就直接叫<em>物质波</em> (matter wave).</p>
+
+  <p>这一步如果换个口气说出来其实非常激进. 公式 (1) 不是为了拟合什么数据 — Davisson-Germer 实验还要等三年才出来 — 它纯粹是一个对称性论证: 如果光的"粒子"不破坏它的"波长", 那对称地, 电子的"粒子"也不应该掩盖它的"波长". de Broglie 的导师 Langevin 也吃不准这位学生在搞什么, 把论文寄给 Einstein 看. Einstein 的回复是著名的: "他撕开了大幕的一角." 1924 年 11 月论文通过, 1929 年 de Broglie 拿了 Nobel 奖 — 那时 Davisson-Germer 已经把他写在纸上的波长测出来了.</p>
+
+  <p>顺便: 公式 (1) 与狭义相对论很自然地接得上. 对一个能量 $E=\hbar\omega$、动量 $\vec p = \hbar\vec k$ 的平面波 $\psi\sim \exp[i(\vec k\cdot\vec x - \omega t)]$, $(\omega/c, \vec k)$ 与 $(E/c, \vec p)$ 构成同一个四矢量, 一边按 $\hbar$ 缩放. 物质波的色散关系 $\omega(\vec k)$ 就是粒子的能动量关系 $E(\vec p)$ 用 $\hbar$ 换算过来 — 我们到第六、七节会沿着这条线推出 Schrödinger 方程.</p>
+
+  <h2>二、代数字: 电子和网球的两个尺度</h2>
+
+  <p>公式美归美, 关键是它给的数字落在哪. 我们做两次代入, 看物质波在两端的表现.</p>
+
+  <p><strong>电子, $K=100$ eV.</strong> 这是阴极射线管或扫描电镜里一个再普通不过的电子能量. 非相对论极限 ($K\ll m_e c^2 = 0.511$ MeV) 下 $p=\sqrt{2m_e K}$. 代入</p>
+
+  <p>$$
+  \lambda = \frac{h}{\sqrt{2m_e K}} = \frac{6.626\times 10^{-34}}{\sqrt{2\cdot 9.109\times 10^{-31}\cdot 100\cdot 1.602\times 10^{-19}}}\,\mathrm{m} \approx 1.22\times 10^{-10}\,\mathrm{m} = 1.22\,\text{Å}.
+  $$</p>
+
+  <p>1.22 Å 是 X 射线 (Cu Kα 是 1.54 Å) 同一个量级. 晶体里原子之间的间距也是几 Å — 这意味着 100 eV 的电子<strong>恰好</strong>有合适的波长能在晶格上发生衍射, 跟 X 射线一样. 这不是巧合 — 它正是后来电子衍射、电子显微镜得以工作的基础.</p>
+
+  <p>小变种: $K=1$ keV 时 $\lambda$ 缩到 0.39 Å; $K=100$ keV 时要用相对论公式 $p c=\sqrt{K^2+2K m_e c^2}$, 给出 $\lambda\approx 0.037$ Å — 这就是透射电镜 (TEM, 通常 $100$–$300$ keV) 比光学显微镜分辨率高五个数量级的原因.</p>
+
+  <p><strong>网球, $m=0.057$ kg, $v=20$ m/s.</strong> 一个标准网球以普通发球速度飞过去. $p=mv=1.14$ kg·m/s, 代公式</p>
+
+  <p>$$
+  \lambda = \frac{h}{p} = \frac{6.626\times 10^{-34}}{1.14}\,\mathrm{m}\approx 5.8\times 10^{-34}\,\mathrm{m}.
+  $$</p>
+
+  <p>这个数远小于原子核 ($\sim 10^{-15}$ m), 远小于 Planck 长度的几十亿亿亿分之一 — 任何物理仪器都没办法 "看见" 这条波长, 任何缝、任何光栅都不可能小到这个尺度. 这就是<strong>经典极限</strong>的一个极清晰版本: $h$ 不是零, 但 $h/p$ 在宏观物体上小到与零毫无差别. 你打网球时不需要考虑波动衍射, 不是因为量子力学错了, 而是因为它给出的波长比任何边界条件都小. 量子效应不是在 "宏观尺度被关掉了", 而是被 $h$ 这一个数压到不可见.</p>
+
+  <p>中间地带也很有趣. 室温下一个氦原子 ($m\approx 4 m_p$, 热速度 $\sim 1000$ m/s) 给出 $\lambda\sim 1$ Å — 跟 X 射线还是一个量级, 所以氦原子束在晶面上也会衍射 (Estermann-Stern 1930 年就做过). C$_{60}$ 富勒烯 ($m=720 m_p$, $v\sim 200$ m/s) 给出 $\lambda\sim 3\times 10^{-12}$ m, 1999 年 Zeilinger 组用 100 nm 间距的光栅做出了它的双缝干涉. 物质波不是只针对电子的小聪明, 它一路向上, 直到尺度让我们造不出足够小的缝为止.</p>
+
+  <h2>三、Bohr 轨道里的驻波: 一个挥手处方的几何根</h2>
+
+  <p>把 $\lambda=h/p$ 这条公式装回去, 上一节那个看上去像凭空冒出的角动量量子化条件就豁然开朗了. Bohr 1913 年要求电子绕核做圆周运动时角动量取离散值</p>
+
+  <p>$$
+  L = m_e v r = n\hbar, \qquad n=1, 2, 3, \dots,
+  $$</p>
+
+  <p>等价于 $p r = n\hbar$, 即 $p\cdot 2\pi r = 2\pi\cdot n\hbar = n h$, 即 $2\pi r = n\cdot (h/p) = n\lambda$. 把它写干净:</p>
+
+  <p>$$
+  n\lambda = 2\pi r, \qquad n=1,2,3,\dots \tag{2}
+  $$</p>
+
+  <p>圆周长正好是整数个 de Broglie 波长. 物理图像清晰极了 — 一束物质波绕圆周转, 它一圈下来必须自己接得上自己, 否则相位会错位, 一圈又一圈相消, 平均下来什么都没剩下. 唯一允许的轨道, 就是<strong>能容纳整数个驻波</strong>的那些. 这是固定边界的小提琴弦能给出离散频率的同一个数学; Bohr 那条神秘的角动量量子化, 不过是这条驻波条件的另一种写法.</p>
+
+  <figure class="diagram-stub"><div class="stub-box">[此处应有一张图: 上半 Davisson-Germer 实验示意 — 真空管里电子枪发射 54 V 加速电子, 入射角 $\theta_i=0$ (正照向 Ni 单晶), 探测器在偏离正反射方向 $50^\circ$ 处接收, 标注晶面间距 $d=2.15$ Å、Bragg 几何; 下半两张衍射图并列对比 — 左边 X 射线 ($\lambda\sim 1.5$ Å) 在 Ni 上的劳厄/德拜环, 右边电子 ($\lambda\sim 1.67$ Å) 同一晶体上的电子衍射图, 同心环结构基本一致, 说明"电子也有波长"]</div></figure>
+
+  <p>这也回答了上一节那个被有意搁置的问题: <em>为什么基态电子不掉到核里?</em> 因为可允许的驻波最低有一个非零的圈, 短于这一圈就装不下完整的一波 ($n=1$). 把 $n=1$ 的驻波条件 $\lambda = 2\pi r$ 与 Coulomb 力做向心力的平衡 $m_e v^2 / r = e^2/(4\pi\varepsilon_0 r^2)$ 联立, 立刻可以解出 $r_1 = a_0 = \hbar^2 4\pi\varepsilon_0/(m_e e^2)\approx 0.529$ Å 与 $E_1 = -13.6$ eV. 同样的两个公式, 上一节我们把它读成"角动量量子化", 这一节我们把它读成"驻波边界条件" — 物理是同一个, 但第二种读法告诉我们这个量子化是真的有几何来源的, 不是凭空规定.</p>
+
+  <p>这种 "波要回到自己" 的读法在数学上也更稳定. 我们到第十一节会看到, 一维势阱里 $E_n\propto n^2$ 的离散谱来自完全相同的图像 — 阱里的物质波要在两端为零, 阱宽必须是 $\lambda/2$ 的整数倍. Bohr 的圆周, 势阱的两壁, 谐振子的抛物线, 氢原子的球对称势 — 它们所有的离散能级都是同一个故事的不同形状: 物质波被边界关在一个有限区域里, 只允许特定波长存活.</p>
+
+  <h2>四、Davisson-Germer 1927: 一个意外让物质波被测出来</h2>
+
+  <p>de Broglie 1924 论文出来时, 没人立刻去验证 — 1.22 Å 这个量级的波长, 直接做衍射要求一面光栅刻得比晶格还密, 当时的工艺做不到. 真正的验证来自一个意外.</p>
+
+  <p>Clinton Davisson 是 Bell 实验室的电子工程师, 他研究的是电子打金属表面的二次发射 — 一个完全经典的工程问题, 跟物质波八字没半撇. 1925 年的某天, 实验室的真空管漏气, 装样品的镍块在高温下被氧化得发亮; 为了救回样品, Davisson 把它在氢气里烧了好几个小时, 让它退火. 退火让原本多晶的镍重新长成几块大单晶. 实验恢复后他重新打电子, 突然发现散射图样里冒出几个清晰的峰 — 之前的多晶样品给出的是一个平滑的角度分布, 现在变成了一个一个尖峰.</p>
+
+  <p>Davisson 那时还不知道 de Broglie 的论文. 他在 1926 年牛津的一次会议上提到这个意外结果, 一位听众告诉他: 这跟一年前法国的一篇博士论文里的预言对得上. Davisson 回来跟他的同事 Lester Germer 重做实验, 这次就是冲着 de Broglie 公式去的.</p>
+
+  <p>实验装置: 一个 54 V 加速的电子束正打 Ni 单晶 (111) 面, 一个能转动的法拉第杯收集散射电子. 在散射角 $\phi=50^\circ$ 处他们看到了第一个强度极大. 用 Bragg 几何 $n\lambda = 2d\sin\theta$ — 这里 $d=2.15$ Å 是 Ni (111) 晶面间距, 入射方向几何下 $\theta=(180^\circ-\phi)/2 = 65^\circ$, 但 Davisson-Germer 实际用的是表面光栅条件 (二维光栅) $\lambda = D\sin\phi$, 其中 $D=2.15$ Å 为表面原子间距. 不管哪种几何, 代进去解出</p>
+
+  <p>$$
+  \lambda_{\rm exp} = 2.15\,\text{Å}\times\sin 50^\circ \approx 1.65\,\text{Å}.
+  $$</p>
+
+  <p>而 de Broglie 公式给的是</p>
+
+  <p>$$
+  \lambda_{\rm dB} = \frac{h}{\sqrt{2m_e\cdot 54\,\mathrm{eV}}}\approx 1.67\,\text{Å},
+  $$</p>
+
+  <p>两者差不到 1.5%. 一个写在 1924 年纸上的预言, 在 1927 年的真空管里被读出来 — 误差比当时的电子加速电压稳定度还小. Davisson 把这个数字、这条曲线寄给了瑞典.</p>
+
+  <p>同一年, 苏格兰的 George Paget Thomson 用完全不同的方法独立做了同样的事: 他让电子穿过一片薄到足够透光的金属箔 (赛璐珞片背衬上沉积一层铝), 在后方屏幕上看到了同心圆环的衍射图样 — 跟 Debye-Scherrer 用 X 射线打多晶得到的圆环长得一模一样. 他算出来的电子波长跟 de Broglie 公式也对得上. 1937 年, Davisson 和 G.P. Thomson 共享 Nobel 物理奖.</p>
+
+  <p>这里有一个物理史里少见的反讽: G.P. Thomson 的父亲 J.J. Thomson 1897 年因为<strong>发现电子是粒子</strong>拿了 1906 年的 Nobel 奖 — 用他著名的阴极射线管测出 $e/m$, 把电子从一团模糊的"阴极射线"钉成了一个具体的带电小球. 四十年后, 他的儿子用电子的<strong>波动性</strong>拿了 Nobel 奖. 父子两代的奖牌摆在一起, 正好是物质波-粒子二象性这件事的一个家族缩影.</p>
+
+  <p>Davisson-Germer 之后, 中子衍射 (Mitchell-Powers 1936)、原子衍射、分子干涉一路推开; 今天的中子源、电子显微镜、原子干涉仪, 全都站在 $\lambda = h/p$ 这条公式上. 它从 1924 年起就是从来没被动摇过的等式 — 量子力学这一卷里的几乎每个公式, 你都可以最终追到它的两个简单的兄弟 (1) 和 (2) 上.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>这一节我们把 de Broglie 1924 的物质波猜想 $\lambda = h/p$、$\nu=E/h$ 写到桌面上, 用对称性论证而不是数据拟合得到它; 代了两个数字 — 100 eV 电子 $\lambda\approx 1.22$ Å 与晶格同量级, 网球 $\lambda\sim 5.8\times 10^{-34}$ m 永远观测不到 — 看见量子尺度怎么由 $h/p$ 设定; 把它装回 Bohr 模型, 角动量量子化 $n\hbar=pr$ 立刻翻译成驻波条件 $n\lambda=2\pi r$, 离散能级有了几何根, 不再是凭空的处方; 最后对了 Davisson-Germer 1927: $K=54$ eV、Ni (111) $d=2.15$ Å、第一峰 $\theta=50^\circ$ 给出实验 $\lambda\approx 1.65$ Å, 公式预言 1.67 Å, 误差 $\sim 1\%$ — 一个写在博士论文里的对称性猜想被一个意外漏气的真空管验证了. 物质波之后, "粒子是什么" 与 "波是什么" 这两个问句不再分开提 — 任何东西都既是又不是, 而 $\lambda = h/p$ 是这两面之间的精确换算. 下一节我们调到银原子, 看 Stern-Gerlach 怎么把"自旋"这第三种量子离散性从磁场里抠出来.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="03-bohr-atom.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="05-stern-gerlach.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

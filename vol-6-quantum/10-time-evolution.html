@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么时间演化必须是幺正的? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="09-uncertainty.html">← 上一节</a>
+  <span class="chapter-title">第 10 节 / 30 · 第 2 部分 · 量子力学的语言 · 第六卷·量子是什么?</span>
+  <a href="11-square-well.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么时间演化必须是幺正的?</h1>
+  <div class="sub">—— $U(t)=e^{-iHt/\hbar}$ 与概率守恒</div>
+
+  <div class="abstract">
+    量子力学告诉我们: 一个系统的状态是 Hilbert 空间里的一根方向 $\ket{\psi}$, 测量某个性质的总概率必须是 $1$. 时间走过一段, 状态从 $\ket{\psi(0)}$ 跑到 $\ket{\psi(t)}$, 但这条总概率账单不能动 — $\braket{\psi(t)}{\psi(t)} = 1$ 必须永远成立. 这一条几乎是 trivial 的物理约束, 在数学上把所有可能的演化压成了一个非常窄的类: 幺正算符. 沿着 $\braket{\psi}{\psi} = \mathrm{const}$ 走一遍, 我们会推出 (a) 演化算符 $U(t)$ 必满足 $U^\dagger U = \mathbb{1}$, (b) 它的生成元 $H$ 必是厄米的, (c) Schrödinger 方程 $i\hbar \partial_t \ket{\psi} = H\ket{\psi}$ 不是公设, 是这两条的差分. 把 $H$ 谱分解, 时间演化就是每个能量本征态各自旋一个相位 $e^{-iE_n t/\hbar}$ — 模长不变, 相对相位演化, 这就是干涉、Rabi 振荡、玻尔频率的总根. 我们从一个最朴素的要求 (概率守恒) 走到 Stone 1932 年的定理, 最后用谐振子叠加 $\ket{0}+\ket{1}$ 算出经典极限的振荡 $\langle x\rangle(t) = a_0 \cos(\omega t)$, 用氢原子算出 Lyman $\alpha$ 线的频率 $\nu \approx 2.47\times10^{15}\,\mathrm{Hz}$.
+  </div>
+
+  <p>第三、第四节里我们已经把一个量子态写成 Hilbert 空间里的归一化矢量 $\ket{\psi}$, 测量给出概率 $|\braket{a}{\psi}|^2$. 这套语言只描述了"现在"这一帧 — 一个静态的状态. 物理学还需要回答: 给定 $\ket{\psi(0)}$, $\ket{\psi(t)}$ 是什么? 这个问题在经典力学里有 Hamilton 方程 $\dot q = \partial H/\partial p$, $\dot p = -\partial H/\partial q$ 在相空间里把点推着走; 在量子力学里, "把矢量推着走"的是一个算符 $U(t)$, 称作时间演化算符. 这一节做的事就一件: 把 $U(t)$ 必须满足的形式从概率守恒里逼出来, 然后写下 Schrödinger 方程 $i\hbar\partial_t\ket{\psi} = H\ket{\psi}$ 作为这条要求的微分版本. 结果会让一个看似神秘的 $i\hbar$ 显得几乎是不得不写下的.</p>
+
+  <h2>一、概率守恒把演化逼成线性幺正</h2>
+
+  <p>设系统在 $t=0$ 处于状态 $\ket{\psi(0)}$, 经过时间 $t$ 后到达 $\ket{\psi(t)}$. 写</p>
+
+  <p>$$ \ket{\psi(t)} = U(t)\ket{\psi(0)}, $$</p>
+
+  <p>把所有"演化"都打包进算符 $U(t)$. $t=0$ 时 $U(0) = \mathbb{1}$ 是显然的. 现在加约束.</p>
+
+  <p>第一条: <strong>线性</strong>. 量子力学的态空间是 Hilbert 空间, 叠加原理要求若 $\ket{\psi(0)} = \alpha\ket{a} + \beta\ket{b}$, 演化后该等于 $\alpha U\ket{a} + \beta U\ket{b}$ — 否则物理就乱了 (单光子双缝若不线性叠加, 干涉条纹无从谈起). 这一条把 $U$ 限在线性算符里.</p>
+
+  <p>第二条: <strong>概率守恒</strong>. 测量"总能找到这个粒子"的概率是 $\braket{\psi}{\psi}$. 它必须等于 $1$, 不只在 $t=0$, 在所有 $t$. 写出来:</p>
+
+  <p>$$ \braket{\psi(t)}{\psi(t)} = \bra{\psi(0)} U^\dagger(t) U(t) \ket{\psi(0)} = 1 = \braket{\psi(0)}{\psi(0)}. $$</p>
+
+  <p>对一切 $\ket{\psi(0)}$ 都成立, 推出 $U^\dagger(t) U(t) = \mathbb{1}$ — 加上一些可逆性的细节, 还有 $U(t) U^\dagger(t) = \mathbb{1}$. 这就是<strong>幺正性</strong>的定义:</p>
+
+  <p>$$ U^\dagger U = U U^\dagger = \mathbb{1}. \tag{1} $$</p>
+
+  <p>幺正算符在 Hilbert 空间里相当于刚体转动: 它保留所有内积 $\bra{\phi}U^\dagger U\ket{\psi} = \braket{\phi}{\psi}$ — 不只是 $\braket{\psi}{\psi}$, 任何两个态之间的"夹角"都不变. 这一点不是技术细节, 是它的物理含义: 量子演化是 Hilbert 空间里的一次旋转, 不拉伸不压缩任何方向.</p>
+
+  <p>第三条: <strong>群结构</strong>. 先演化 $t_1$ 再演化 $t_2$, 应等于直接演化 $t_1 + t_2$:</p>
+
+  <p>$$ U(t_2) U(t_1) = U(t_1 + t_2). $$</p>
+
+  <p>这把 $\{U(t)\}$ 撑成一个单参数群. 加上连续性 ($t \to 0$ 时 $U(t) \to \mathbb{1}$), 数学家叫它"强连续单参数幺正群".</p>
+
+  <h2>二、生成元 $H$ 必是厄米</h2>
+
+  <p>对群参数 $t$ 求导, 把 $U(t+\delta t) = U(\delta t) U(t)$ 展开到一阶 $U(\delta t) = \mathbb{1} + A\,\delta t + O(\delta t^2)$, 得</p>
+
+  <p>$$ \frac{dU(t)}{dt} = A\, U(t). $$</p>
+
+  <p>$A$ 是某个跟时间无关的算符, 被称作群的<em>生成元</em>. 把幺正条件 $(1)$ 对 $t$ 求导:</p>
+
+  <p>$$ 0 = \frac{d}{dt}(U^\dagger U) = \dot U^\dagger U + U^\dagger \dot U = (A^\dagger + A) U^\dagger U = A^\dagger + A. $$</p>
+
+  <p>所以 $A^\dagger = -A$ — $A$ 是反厄米的. 把它写成 $A = -iH/\hbar$, 让 $H$ 是<strong>厄米</strong>的: $H^\dagger = H$. 因子 $-i/\hbar$ 是约定 — $\hbar$ 凑量纲让 $H$ 有"能量"单位, 负号让能量本征态相位顺时针转 (跟 $E = h\nu$ 兼容). 演化方程变成</p>
+
+  <p>$$ i\hbar \frac{d}{dt} U(t) = H\, U(t). $$</p>
+
+  <p>作用到初态 $\ket{\psi(0)}$ 上, 得到</p>
+
+  <p>$$ i\hbar\, \partial_t \ket{\psi(t)} = H\, \ket{\psi(t)}. \tag{2} $$</p>
+
+  <p>这就是 Schrödinger 方程, 1926 年由薛定谔写下. 在我们这条路上它不是公设, 而是"概率守恒 + 群结构"的必然结果. 当 $H$ 不显含时间, $(2)$ 直接积出</p>
+
+  <p>$$ U(t) = e^{-iHt/\hbar}. \tag{3} $$</p>
+
+  <p>这里 $e^{-iHt/\hbar}$ 是算符指数 — 用幂级数定义, 或更稳妥地用 $H$ 的谱分解定义. $H$ 厄米就保证它的谱是实的、本征矢量正交; 谱定理 (第 4 卷里证过) 说 $H = \sum_n E_n \ket{n}\bra{n}$, 因而</p>
+
+  <p>$$ U(t) = \sum_n e^{-iE_n t/\hbar} \ket{n}\bra{n}. $$</p>
+
+  <p>这一步把"演化"具体化了: 在能量本征基里, 演化只是给每个本征态 $\ket{n}$ 配一个旋转相位 $e^{-iE_n t/\hbar}$. 模 $1$, 不影响 $|\braket{n}{n}|^2 = 1$ — 概率守恒一目了然.</p>
+
+  <p>这一系列推论的严格数学版本是 1932 年 Marshall Stone 的定理: <em>Hilbert 空间上的强连续单参数幺正群 $\{U(t)\}$ 与自伴算符 $H$ 一一对应, 关系正是 $U(t) = e^{-iHt/\hbar}$</em>. Stone 定理把"演化的物理要求"翻译成"自伴算符的存在", 是量子力学的数学根之一. 1931 年 Wigner 在他那本对称群论著作里证了一个伴随的定理: 若一个对称变换保留所有 $|\braket{\phi}{\psi}|^2$, 它必定是幺正算符或反幺正算符. 时间演化是连续地从 $\mathbb{1}$ 长出来的, 反幺正分支被排除 — 留下幺正这一支.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 单 qubit 在 Bloch 球上的时间演化 — 一个三维球面, 球面上一个初始状态点 $\ket{\psi(0)} = \cos(\theta_0/2)\ket{0} + e^{i\varphi_0}\sin(\theta_0/2)\ket{1}$, 在哈密顿量 $H = \tfrac{\hbar\omega}{2}\sigma_z$ 作用下绕 $z$ 轴匀速旋转, 角速度标 $\omega$, 转过的角度标 $\omega t$, 轨迹是球面上一条纬圆 (虚线箭头方向), 旁边写 $\ket{\psi(t)} = e^{-iHt/\hbar}\ket{\psi(0)}$ 与 $\braket{\psi}{\psi} = 1$; 球面南北极标 $\ket{0}, \ket{1}$, 赤道圆周标四个等距点 $\ket{+}, \ket{i}, \ket{-}, \ket{-i}$]</div>
+  </figure>
+
+  <h2>三、能量本征态与玻尔频率</h2>
+
+  <p>把任意态在能量本征基里展开, $\ket{\psi(0)} = \sum_n c_n \ket{n}$, 演化结果是</p>
+
+  <p>$$ \ket{\psi(t)} = \sum_n c_n\, e^{-iE_n t/\hbar} \ket{n}. $$</p>
+
+  <p>这条公式是量子力学日常计算的发动机. 它告诉我们三件事.</p>
+
+  <p>第一, <strong>纯本征态是稳态</strong>: 若 $\ket{\psi(0)} = \ket{n}$, 则 $\ket{\psi(t)} = e^{-iE_n t/\hbar}\ket{n}$. 全局相位不影响任何观测量 $\bra{\psi}A\ket{\psi}$ — 任何 $A$ 的期望值都跟 $t$ 无关. 这就是为什么氢原子在 $-13.6\,\mathrm{eV}$ 的基态能稳定地呆着, 而不会"自己跑掉". 注意稳态的"稳"指的是密度 $|\psi|^2$ 不变, 不是说什么也没发生 — 相位仍在以频率 $E_n/h$ 飞旋, 只是单态情况下相位看不见.</p>
+
+  <p>第二, <strong>叠加态会演化</strong>: 取最简单的情形, $\ket{\psi(0)} = \frac{1}{\sqrt 2}(\ket{m} + \ket{n})$, $E_m \ne E_n$. 则</p>
+
+  <p>$$ \ket{\psi(t)} = \frac{1}{\sqrt 2}\bigl(e^{-iE_m t/\hbar}\ket{m} + e^{-iE_n t/\hbar}\ket{n}\bigr). $$</p>
+
+  <p>把全局相位 $e^{-iE_m t/\hbar}$ 提出来:</p>
+
+  <p>$$ \ket{\psi(t)} = \frac{e^{-iE_m t/\hbar}}{\sqrt 2}\bigl(\ket{m} + e^{-i(E_n-E_m)t/\hbar}\ket{n}\bigr). $$</p>
+
+  <p>相对相位以频率</p>
+
+  <p>$$ \omega_{nm} = \frac{E_n - E_m}{\hbar}, \qquad \nu_{nm} = \frac{E_n - E_m}{h} \tag{4} $$</p>
+
+  <p>转动. 这就是玻尔在 1913 年他的氢原子模型里写下的玻尔频率条件: 跃迁辐射的频率等于能级差除以 Planck 常数. 在我们这个推导里它不是"假设原子辐射对应的电磁波",  它就是叠加态里相对相位的转速 — 而正是这个转速调制偶极矩 $\bra{\psi}\hat x\ket{\psi}$, 使原子像天线一样辐射出对应频率.</p>
+
+  <p>具体一例: 氢原子 $\ket{n=2}$ 与 $\ket{n=1}$ 的叠加. $E_n = -13.6\,\mathrm{eV}/n^2$, 能级差</p>
+
+  <p>$$ \Delta E = 13.6\,\mathrm{eV} \times \left(1 - \frac{1}{4}\right) = 10.2\,\mathrm{eV}. $$</p>
+
+  <p>相应的玻尔频率</p>
+
+  <p>$$ \nu_{21} = \frac{\Delta E}{h} = \frac{10.2 \times 1.602\times 10^{-19}\,\mathrm{J}}{6.626\times 10^{-34}\,\mathrm{J\!\cdot\!s}} \approx 2.47\times 10^{15}\,\mathrm{Hz}, $$</p>
+
+  <p>对应波长 $\lambda = c/\nu \approx 121.6\,\mathrm{nm}$ — 这就是观测了一个多世纪的 Lyman $\alpha$ 线, 太阳色球、星际介质、宇宙再电离时期的强吸收/发射特征. 一行 $(4)$ 把它从纯抽象的"幺正演化"里挤了出来.</p>
+
+  <p>第三, <strong>经典极限</strong>. 取一维谐振子 $H = \hbar\omega(a^\dagger a + \tfrac12)$, 能级 $E_n = \hbar\omega(n + \tfrac12)$. 在叠加态 $\ket{\psi(0)} = \tfrac{1}{\sqrt 2}(\ket{0} + \ket{1})$ 上算位置期望. 用 $\hat x = \sqrt{\hbar/(2m\omega)}(a + a^\dagger) \equiv a_0 (a + a^\dagger)/\sqrt 2$, 矩阵元 $\bra{0}\hat x\ket{1} = a_0/\sqrt 2$ (实数), 写</p>
+
+  <p>$$ \langle\hat x\rangle(t) = \bra{\psi(t)}\hat x\ket{\psi(t)} = \tfrac12\bigl[\,e^{i\omega t}\bra{1} + \bra{0}\,\bigr]\hat x\bigl[\,\ket{0} + e^{-i\omega t}\ket{1}\,\bigr]. $$</p>
+
+  <p>(我把 $E_0 = \hbar\omega/2, E_1 = 3\hbar\omega/2$ 的差 $E_1 - E_0 = \hbar\omega$ 用上, 相对相位是 $e^{-i\omega t}$.) 展开非对角项, 对角项消失,</p>
+
+  <p>$$ \langle\hat x\rangle(t) = a_0 \cos(\omega t). $$</p>
+
+  <p>振幅 $a_0 = \sqrt{\hbar/(2m\omega)}$, 频率 $\omega$ 正是经典谐振子的固有频率. 一个一笔写出的纯量子叠加, 在期望值层面恢复了经典振动 — Ehrenfest 定理在这里以最干净的形式出现. 把 $\ket{0}+\ket{1}$ 推广到相干态 $\ket{\alpha} = e^{-|\alpha|^2/2}\sum \alpha^n/\sqrt{n!}\,\ket{n}$, 期望值变成 $\langle x\rangle(t) = \sqrt{2}\,|\alpha|\,a_0 \cos(\omega t - \arg\alpha)$, 振幅可以任意大, 完全是一个经典摆.</p>
+
+  <h2>四、Rabi 振荡与玻尔频率的实验显形</h2>
+
+  <p>把上面的逻辑放到一个二能级原子加单色驱动场上, 就得到 Rabi 振荡 — 量子幺正演化最直接的实验显形. 设原子有两条能级 $\ket{g}, \ket{e}$, 间距 $\hbar\omega_0$. 让它沐浴在频率 $\omega$ 的电磁场里, 在合适的近似 (旋波近似) 下, 哈密顿量化简为</p>
+
+  <p>$$ H = \frac{\hbar\Delta}{2}\sigma_z + \frac{\hbar\Omega_R}{2}\sigma_x, \qquad \Delta = \omega - \omega_0, $$</p>
+
+  <p>$\sigma_z, \sigma_x$ 是 Pauli 矩阵, $\Omega_R$ 是 Rabi 频率, 正比于驱动场振幅与跃迁偶极矩. 这是一个 $2\times 2$ 厄米算符, 它的演化就是 Bloch 球上绕轴 $(\Omega_R, 0, \Delta)$ 的转动. 当驱动恰好共振 $\Delta = 0$, $H = \hbar\Omega_R \sigma_x/2$, $U(t) = e^{-i\Omega_R t \sigma_x/2}$, 初态 $\ket{g}$ 演化到</p>
+
+  <p>$$ \ket{\psi(t)} = \cos(\Omega_R t/2)\ket{g} - i\sin(\Omega_R t/2)\ket{e}. $$</p>
+
+  <p>测量在 $\ket{e}$ 上的概率</p>
+
+  <p>$$ P_e(t) = \sin^2(\Omega_R t/2) = \frac{1 - \cos(\Omega_R t)}{2}, $$</p>
+
+  <p>以频率 $\Omega_R$ 周期性振荡 (从 $0$ 到 $1$ 再回到 $0$). 周期 $T_R = 2\pi/\Omega_R$. 1937 年 Isidor Rabi 在分子束里直接测到了这种振荡, 后来这成为核磁共振和原子钟里"$\pi/2$ 脉冲"、"$\pi$ 脉冲"的标准操作: 一个 $\pi$ 脉冲 ($\Omega_R t = \pi$) 把 $\ket{g}$ 翻成 $\ket{e}$, 一个 $\pi/2$ 脉冲把它送到 $\frac{1}{\sqrt 2}(\ket{g} - i\ket{e})$. 所有这些"翻转"都是幺正演化 $(3)$ 的具体实现, $\hbar\Omega_R/2$ 是这一段子哈密顿量的一个矩阵元. 在 NV 色心、超导比特、囚禁离子的现代实验里, $\Omega_R$ 通常在 MHz–GHz 范围, 周期 $\sim$ ns–$\mu$s, 可以在示波器上直接看清正弦振荡.</p>
+
+  <p>把 Rabi 振荡和上一节的 Lyman $\alpha$ 放在一起看: 玻尔频率 $\omega_0 = (E_e - E_g)/\hbar$ 是相对相位的"快"频率 (氢原子 Lyman $\alpha$, $\sim 10^{15}$ Hz), Rabi 频率 $\Omega_R$ 是叠加权重在驱动下的"慢"频率 ($\sim$ MHz). 两者都是某个厄米算符的本征频率, 都从 $(3)$ 里同一个 $e^{-iHt/\hbar}$ 跑出来. 物理上一快一慢, 数学上一根血脉.</p>
+
+  <h2>五、几个常被绊到的地方</h2>
+
+  <p>从上面这条线下来, 有些容易混淆的细节这里说清.</p>
+
+  <p><strong>(a) 测量不是幺正</strong>. 我们整节都在讲幺正演化, 但它只描述"两次测量之间"系统怎么变. 一次测量本身按 Born 规则把 $\ket{\psi}$ 投影到某个本征态, 这一步不是 $U(t)$ 能办到的 — 它是非线性、不可逆的"塌缩". 量子力学的现代解释 (退相干、多世界、关系性等) 正是围绕这一步的物理含义打架. 这一节的故事到第一次测量发生为止.</p>
+
+  <p><strong>(b) $H$ 含时</strong>. 当外场是显含时间的, $H = H(t)$, 演化算符不再是简单的 $e^{-iHt/\hbar}$, 而是 Dyson 时序乘积 $U(t) = \mathcal{T}\exp\bigl(-\tfrac{i}{\hbar}\int_0^t H(t')\,dt'\bigr)$. 推导路径不变, 只是 $(3)$ 的形式要让位. 上面的 Rabi 例子里, 取了"旋转坐标系"使 $H$ 在该参考系下变成时不变, 才有简洁的 $\sin^2(\Omega_R t/2)$.</p>
+
+  <p><strong>(c) 为什么是 $i\hbar$ 而不是 $\hbar$</strong>. 反厄米生成元写成 $-iH/\hbar$, $i$ 不可省 — 否则 $U(t) = e^{-Ht/\hbar}$ 会按指数衰减/放大, 不是幺正 (除非 $H = 0$). $i$ 把"实指数衰减"翻成"复指数旋转", 这正是概率守恒所需的. 经典力学里没有这个 $i$, 因为经典演化不是幺正旋转 — 它是相空间里的 Liouville 流, 守恒的是测度而不是模长.</p>
+
+  <p><strong>(d) 海森堡图像</strong>. 同一段演化也可以让算符跑、态不变. 定义 $A_H(t) = U^\dagger(t) A U(t)$, 求导得到 Heisenberg 方程</p>
+
+  <p>$$ \frac{dA_H}{dt} = \frac{i}{\hbar}[H, A_H]. $$</p>
+
+  <p>这是 1925 年 Heisenberg 的矩阵力学路径, 跟 Schrödinger 1926 的波动力学路径 $(2)$ 在数学上等价 (Dirac 1927 证毕). 选哪一个, 是看哪种描述更顺手 — 在场论里通常用 Heisenberg 图像, 因为它跟经典 Hamilton 形式 $\dot A = \{A, H\}$ 形上对应得更显眼 ($i[\,\cdot,\cdot\,]/\hbar$ 替换 Poisson 括号).</p>
+
+  <p>把 Schrödinger 1926, Heisenberg 1925, Dirac 1927, Stone 1932, Wigner 1931 这一串名字拉一条线, 你会发现量子力学头十年最重要的工作, 大半都在反复回答同一个问题: 状态怎么演化, 为什么这种演化是合法的, 数学上它是什么. 答案最终凝在 $(1)$ 和 $(2)$ 这两条等价的形式上, 作为后续几乎所有量子计算 (能级跃迁、散射截面、Berry 相位、量子门) 的不动点.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>时间演化的物理底约束就一条 — 概率不能漏不能涨. 这条约束 + 叠加原理 + 群结构, 就把演化算符 $U(t)$ 框死成幺正算符 $(1)$, 把它的生成元 $H$ 框死成厄米算符, 并自动挤出了 Schrödinger 方程 $(2)$ 与指数形式 $U(t) = e^{-iHt/\hbar}$ $(3)$. Stone 1932 把这条对应严格化, Wigner 1931 用对称性证明了同一件事的另一面. 在能量本征基里, 演化是每个 $\ket{n}$ 各自旋一个相位 $e^{-iE_n t/\hbar}$ — 模长不变 (概率守恒可见), 相对相位以玻尔频率 $\nu_{nm} = (E_n - E_m)/h$ 转动 (Lyman $\alpha$ 算到 $2.47\times 10^{15}$ Hz). 谐振子 $\ket{0}+\ket{1}$ 的位置期望 $\langle x\rangle(t) = a_0\cos(\omega t)$ 直接给出经典振动; 二能级原子在共振驱动下的 Rabi 振荡 $P_e(t) = \sin^2(\Omega_R t/2)$ 是这一切在实验里的最干净显形. 在更大的图景里, $(3)$ 是量子门 (量子计算)、传播子 (路径积分)、$S$ 矩阵 (散射理论) 的共同祖先 — 后面几节谈到方势井、谐振子、氢原子时, 我们要做的事都是把 $H$ 写出来, 求谱, 然后让 $e^{-iHt/\hbar}$ 自己干活.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="09-uncertainty.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="11-square-well.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

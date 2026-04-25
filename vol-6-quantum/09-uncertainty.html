@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>不确定性原理是测量极限还是更深的什么? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="08-measurement.html">← 上一节</a>
+  <span class="chapter-title">第 9 节 / 30 · 第 2 部分 · 量子力学的语言 · 第六卷·量子是什么?</span>
+  <a href="10-time-evolution.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>不确定性原理是测量极限还是更深的什么?</h1>
+  <div class="sub">—— $\Delta x\,\Delta p \ge \hbar/2$ 的几何根</div>
+
+  <div class="abstract">
+    把同一个粒子的位置 $x$ 和动量 $p$ 同时测得任意精确, 这件事在量子力学里不可能. 通行的科普说法把责任甩给"测量扰动" — 测位置要散射光子, 光子带走动量, 所以测得越准位置, 越不知动量. 这听上去顺, 但回到 vol 4 第 23 节的 Robertson 不等式 $\Delta A\,\Delta B \ge \tfrac12 |\langle [A,B]\rangle|$, 就会发现根本不需要任何"测量"出现 — 不等式只用了 Hilbert 空间的 Cauchy-Schwarz, 它说的是<em>态本身</em>的几何性质. 我们沿这条路走一遍: 写下 $[\hat x, \hat p] = i\hbar$, 用 Cauchy-Schwarz 推出 $\Delta x\,\Delta p \ge \hbar/2$, 让高斯波包饱和等号, 把电子按到 $1\,\mathrm{\AA}$ 内估出 $\sim 1\,\mathrm{eV}$ 的零点动能 (它是原子有最低能级的物理理由), 把不稳定态寿命 $\tau = 10^{-8}\,\mathrm{s}$ 换成自然线宽 $\Delta E \approx 3.3 \times 10^{-8}\,\mathrm{eV}$, 最后把 Heisenberg 1927 那个"显微镜思想实验"和 Robertson 1929 的严格化对照一遍.
+  </div>
+
+  <p>1927 年春, 哥本哈根 Bohr 研究所. Heisenberg 25 岁, 刚把矩阵力学带进现代物理学不到两年. 他在给 Pauli 的信里写, 自己想了几个礼拜要找一个画面 — 不是数学, 是图像 — 来说明 $[\hat x, \hat p] = i\hbar$ 这个看起来纯代数的关系到底"长什么样". 他想到一个思想实验: 用一架显微镜去看一个电子. 要看清位置必须用波长足够短的光, 比如 $\gamma$ 射线; 但波长一短, 单光子动量 $p_\gamma = h/\lambda$ 就大, 它跟电子散射时把电子的动量"踢"掉一份, 而散射进物镜的方向有一个张角不确定度, 这份踢掉多少就不确定. 结果: 越想看清 $x$, 越不知道 $p$. 他把这写成 $\Delta x\,\Delta p \sim h$, 投到 1927 年 3 月的 Zeitschrift für Physik. Bohr 几乎立刻找过来说推导有问题 — 散射后的动量可以再用经典守恒倒推, 那张角并不真把信息抹掉. 但 Bohr 同时承认, 不等式本身是对的; 错的只是"测量扰动"那套说辞背后的因果方向. 他坚持要 Heisenberg 改稿, 把它放到一个更大的概念框架里 — 互补原理: 位置和动量是<em>同一个客体的两种互不相容的描述方式</em>, 不是两个独立属性等着被同时测.</p>
+
+  <p>这场争吵在 1927 年的版本里没有完全解决. 真正把不等式从"思想实验"提升成数学定理的是 Earle Kennard 1927 年下半年和 Howard Robertson 1929 年的工作 — 他们都用 Cauchy-Schwarz, 几行代数就把 $\hbar/2$ 这个常数因子也敲定. 我们今天讲不确定性原理, 走的是 Robertson 路线: 它不需要任何关于"测量"的话, 只用波函数的内积. 物理上的意义因此换了底色 — 不是"看不清", 而是"客观上没法同时清晰", 甚至更强: <em>不存在一个量子态在 $x$ 和 $p$ 上都任意尖锐</em>.</p>
+
+  <h2>一、Robertson 不等式: Cauchy-Schwarz 一行半</h2>
+
+  <p>设 $\hat A, \hat B$ 是 Hilbert 空间上的两个自伴算符 (vol 4 第 14 节), 系统处在归一化态 $|\psi\rangle$. 标准差按谱定理给的概率分布算:</p>
+
+  <p>$$ (\Delta A)^2 = \langle (\hat A - \langle \hat A\rangle)^2\rangle = \langle \hat A^2\rangle - \langle \hat A\rangle^2, $$</p>
+
+  <p>$\Delta B$ 同理. 把零点平移过的算符记作 $\hat a = \hat A - \langle \hat A\rangle$, $\hat b = \hat B - \langle \hat B\rangle$ — 它们仍是自伴的, 而且 $[\hat a, \hat b] = [\hat A, \hat B]$. 现在看两个矢量 $\hat a |\psi\rangle$ 和 $\hat b |\psi\rangle$, 对它们用 Cauchy-Schwarz 不等式 $|\langle u | v\rangle|^2 \le \|u\|^2\,\|v\|^2$:</p>
+
+  <p>$$ |\langle \psi |\hat a \hat b| \psi\rangle|^2 \le \langle \psi |\hat a^2| \psi\rangle\, \langle \psi |\hat b^2| \psi\rangle = (\Delta A)^2 (\Delta B)^2. $$</p>
+
+  <p>左边的算符乘积 $\hat a \hat b$ 既不自伴, 也不反自伴, 但可以拆: $\hat a \hat b = \tfrac12 \{\hat a, \hat b\} + \tfrac12 [\hat a, \hat b]$, 反对易子部分给实期望值 (那是自伴的), 对易子部分给纯虚期望值 (它是反自伴的, $[\hat a, \hat b]^\dagger = -[\hat a, \hat b]$). 模平方就是实部平方加虚部平方, 各自非负, 所以</p>
+
+  <p>$$ |\langle \hat a \hat b\rangle|^2 = \tfrac14 |\langle \{\hat a, \hat b\}\rangle|^2 + \tfrac14 |\langle [\hat a, \hat b]\rangle|^2 \ge \tfrac14 |\langle [\hat A, \hat B]\rangle|^2. $$</p>
+
+  <p>把这一行扔回 Cauchy-Schwarz, 开方:</p>
+
+  <p>$$ \Delta A\, \Delta B \;\ge\; \tfrac12\,\bigl|\langle [\hat A, \hat B]\rangle\bigr|. \tag{1} $$</p>
+
+  <p>这是 Robertson 1929 不等式. 注意推导里没有任何"测量"字眼 — 只用了 (i) 内积空间, (ii) Cauchy-Schwarz, (iii) 自伴算符的对易子是反厄米的. 它适用于任意两个观测量, 任意态. 想知道两个东西能多锐, 看它们的对易子的期望值就够了.</p>
+
+  <h2>二、$[\hat x, \hat p] = i\hbar$ 与 $\Delta x\,\Delta p \ge \hbar/2$</h2>
+
+  <p>把 $\hat A = \hat x$, $\hat B = \hat p$ 代进 $(1)$, 关键是 $[\hat x, \hat p]$ 等于多少. 在位置表象, $\hat x$ 是乘 $x$, $\hat p = -i\hbar\,d/dx$ — 这是 vol 4 第 17 节谱定理给的同一对 Fourier 共轭算符. 算 $[\hat x, \hat p]\psi(x)$:</p>
+
+  <p>$$ \hat x \hat p \psi = x\,\bigl(-i\hbar \tfrac{d\psi}{dx}\bigr), \quad \hat p \hat x \psi = -i\hbar\, \tfrac{d}{dx}(x\psi) = -i\hbar\,\psi - i\hbar\, x\, \tfrac{d\psi}{dx}, $$</p>
+
+  <p>相减:</p>
+
+  <p>$$ [\hat x, \hat p]\,\psi = i\hbar\,\psi \quad\Rightarrow\quad [\hat x, \hat p] = i\hbar. $$</p>
+
+  <p>这就是正则对易关系 (canonical commutation relation, CCR), Born 1925 在与 Heisenberg 合作整理矩阵力学时第一次写下来. 它是常数 — 不是算符 — 这件事很关键: 期望值 $\langle [\hat x, \hat p]\rangle = i\hbar$ 跟态无关. 把它代回 $(1)$:</p>
+
+  <p>$$ \Delta x\, \Delta p \;\ge\; \tfrac12\,|i\hbar| \;=\; \frac{\hbar}{2}. \tag{2} $$</p>
+
+  <p>$(2)$ 是位置-动量不确定性原理的精确形式. 它对<em>任何</em>归一化波函数都成立 — 不管你怎么准备这个粒子, 不论它在哪个势阱里, 也不需要谁去测它. 数值上 $\hbar/2 = 5.27 \times 10^{-35}\,\mathrm{J\cdot s}$, 在原子尺度上这是个不可忽略的量; 在宏观尺度上它小到根本看不到 (一个 $1\,\mathrm{g}$ 的小球速度精度做到 $1\,\mu\mathrm{m/s}$, 位置不确定性下限是 $\hbar/(2\Delta p) \sim 10^{-25}\,\mathrm{m}$ — 比原子核还小八个量级).</p>
+
+  <h2>三、高斯波包: 等号在哪里饱和</h2>
+
+  <p>$(2)$ 是不等式. 哪些态恰好饱和成 $=$ ? 回到 Cauchy-Schwarz 的条件: $|\langle u|v\rangle| = \|u\|\,\|v\|$ 当且仅当 $|u\rangle = c\,|v\rangle$ 平行. 同时反对易子那一块要消掉, 即 $\langle \{\hat a, \hat b\}\rangle = 0$. 这两个条件合起来给出一个一阶微分方程: $(\hat p + i\alpha\,\hat x)\,\psi = 0$, $\alpha$ 实数. 解出来是高斯型,</p>
+
+  <p>$$ \psi(x) = (2\pi\sigma^2)^{-1/4}\, \exp\!\Bigl(-\frac{x^2}{4\sigma^2}\Bigr). \tag{3} $$</p>
+
+  <p>取实数高斯, 中心在 $x = 0$, 平均动量 $\langle \hat p\rangle = 0$. 直接积分</p>
+
+  <p>$$ \langle \hat x^2\rangle = \int x^2\, |\psi|^2\, dx = \sigma^2 \;\Rightarrow\; \Delta x = \sigma. $$</p>
+
+  <p>动量表象通过 Fourier 变换 $\tilde\psi(p) = (2\pi\hbar)^{-1/2}\!\int e^{-ipx/\hbar}\,\psi(x)\,dx$. 高斯的 Fourier 还是高斯, 标准结果</p>
+
+  <p>$$ \tilde\psi(p) = \Bigl(\frac{2\sigma^2}{\pi\hbar^2}\Bigr)^{1/4}\, \exp\!\Bigl(-\frac{\sigma^2 p^2}{\hbar^2}\Bigr), $$</p>
+
+  <p>它在 $p$ 上的宽度</p>
+
+  <p>$$ \Delta p = \frac{\hbar}{2\sigma}. $$</p>
+
+  <p>乘起来 $\Delta x\,\Delta p = \sigma \cdot \hbar/(2\sigma) = \hbar/2$ — 等号成立. 高斯波包在所有波函数里是"最经济"的: 同样的 $\Delta x$ 给最小的 $\Delta p$. 物理上这件事重要在两点: (i) 它告诉我们 $(2)$ 没有更紧的下界, $\hbar/2$ 真的取得到; (ii) 任何非高斯态 (方箱波函数, 双峰, 甚至高斯×多项式) 都<em>严格大于</em> $\hbar/2$. 量子谐振子的相干态 (vol 6 后面会讲) 就是中心可以平移的高斯, 因此每一个相干态都恰好饱和不确定性下限 — 这也是为什么激光最接近"经典"光场的原因: 它在 $x, p$ 上的不确定性都是最小的.</p>
+
+  <p>从 $(3)$ 还能看出 $x$ 与 $p$ 的角色对称性 — 它们是一对 Fourier 共轭变量, 一边窄, 另一边一定宽, 比例由 $\hbar$ 控制. 这是 vol 4 第 9 节信号处理里"时-频不确定性"的物理化身: 那里说窄脉冲必有宽频谱, 这里说尖位置必有宽动量. 同一条 Plancherel-Parseval 几何, 加一个 $\hbar$.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 高斯波包在 $x$ 与 $p$ 表象下宽度互逆 — 上图 $|\psi(x)|^2$ 一条标准高斯, 中心 $0$, 标注半宽 $\sigma$ 与峰值 $1/\sqrt{2\pi\sigma^2}$; 下图 $|\tilde\psi(p)|^2$ 一条标准高斯, 中心 $0$, 标注半宽 $\hbar/(2\sigma)$; 中间一根双向粗箭头, 写"Fourier 变换", 旁边贴公式 $\Delta x\cdot \Delta p = \hbar/2$ (饱和等号); 右下角小字"窄一边, 另一边必宽, 乘积固定"]</div>
+  </figure>
+
+  <h2>四、把数字代进去: 原子能级的下限</h2>
+
+  <p>不确定性原理不是抽象格言, 它直接给出原子大小和能级量级的估计. 这是 Bohr 模型之前最快的"无量纲分析"路线 — 不写 Schrödinger 方程, 也能算出 $-13.6\,\mathrm{eV}$.</p>
+
+  <p>把电子局限在原子尺度 $\Delta x \sim a \approx 1\,\mathrm{\AA} = 10^{-10}\,\mathrm{m}$. $(2)$ 给</p>
+
+  <p>$$ \Delta p \;\ge\; \frac{\hbar}{2 a} = \frac{1.055 \times 10^{-34}}{2 \times 10^{-10}}\,\mathrm{kg\!\cdot\!m/s} \approx 5.27 \times 10^{-25}\,\mathrm{kg\!\cdot\!m/s}. $$</p>
+
+  <p>$\langle p\rangle = 0$ (原子定态束缚), 所以 $\langle p^2\rangle \approx (\Delta p)^2$. 平均动能</p>
+
+  <p>$$ \langle T\rangle \;\sim\; \frac{(\Delta p)^2}{2 m_e} \;\sim\; \frac{(5.3 \times 10^{-25})^2}{2 \times 9.11 \times 10^{-31}}\,\mathrm{J} \;\approx\; 1.5 \times 10^{-19}\,\mathrm{J} \;\approx\; 1\,\mathrm{eV}. $$</p>
+
+  <p>这是<em>电子被关进 $1\,\mathrm{\AA}$ 必须付的零点动能</em>. 它跟原子里电子静电势能 $\sim e^2/(4\pi\epsilon_0 a) \approx 14.4\,\mathrm{eV}$ 在同一量级 (实际 $E_0 = -13.6\,\mathrm{eV}$ 是动能 $+13.6$ 与势能 $-27.2$ 之和), 数量级是对的. 这就解释了一件事: <strong>原子为什么不塌</strong>. 经典上, 一个带负电的电子绕带正电的核转, 应该辐射能量, 螺旋落下去到 $r \to 0$ 释放无穷能量. 量子上不行 — 把 $\Delta x$ 压到 $0$, $\Delta p$ 立刻爆掉, 动能 $\propto 1/(\Delta x)^2$ 比库仑势能 $\propto 1/\Delta x$ 涨得快, 总能量在某个最优 $a_0 \sim \hbar^2/(m_e e^2 / 4\pi\epsilon_0) \approx 0.529\,\mathrm{\AA}$ 处取最小. 这就是 Bohr 半径, 但它在这里完全是 $(2)$ 加变分原理推出来的, 不需要旧量子论的轨道假设.</p>
+
+  <p>$(2)$ 还有一个时间-能量孪生兄弟. 形式上 $\Delta E\,\Delta t \ge \hbar/2$, 但这个 $\Delta t$ 不是测量耗时也不是算符 (时间在 QM 里是参数), 严格意义是: 任意可观测量 $\hat O$ 期望值发生 $\Delta O$ 量级变化所需的最短时间. 实用形式则在原子物理学中俯拾皆是. 一个不稳定激发态寿命 $\tau$, 它的能量本征值就有一个内禀展宽 $\Delta E \sim \hbar/(2\tau)$, 称为<em>自然线宽</em>. 数字代进去 — 典型电偶极允许跃迁 $\tau \approx 10^{-8}\,\mathrm{s}$ (氢 $2p \to 1s$ Lyman-$\alpha$ 是这个量级):</p>
+
+  <p>$$ \Delta E \;\sim\; \frac{\hbar}{2\tau} \;=\; \frac{1.055 \times 10^{-34}}{2 \times 10^{-8}}\,\mathrm{J} \;\approx\; 5.3 \times 10^{-27}\,\mathrm{J} \;\approx\; 3.3 \times 10^{-8}\,\mathrm{eV}. $$</p>
+
+  <p>换成频率 $\Delta\nu = \Delta E/h \approx 8\,\mathrm{MHz}$. 这是<em>原则上无法消除的</em>谱线展宽, 跟 Doppler 展宽 (热运动) 和压力展宽 (碰撞) 不一样, 它是态本身的属性. 实验上把原子囚禁到超冷状态、消除掉 Doppler 与碰撞之后, 仍然剩下的就是这个底; Lamb 和 Retherford 1947 测氢 $2s_{1/2}$-$2p_{1/2}$ 分裂时, 仪器分辨率到了 $10^7\,\mathrm{Hz}$, 看到的就是这个量级的自然线宽 (那次测出 Lamb 位移, 反过来推动了 QED). 反过来: 一条窄到极致的稳定能级 (比如基态), 寿命可以远超宇宙年龄 — $\Delta E$ 接近零, $\tau$ 可以任意大.</p>
+
+  <h2>五、所以它是测量极限还是几何?</h2>
+
+  <p>回到题目. Heisenberg 1927 那架 $\gamma$ 显微镜的图像不是错的, 但它把原理的因果方向弄反了. 它说: 因为我去测了, 所以扰动了, 所以测不准. 这暗含一个潜台词 — 假如不去测, $x$ 与 $p$ 在背后还是同时存在精确值的. Bohr 当年坚决反对的就是这个潜台词. Robertson 1929 的推导直接证明: 即使根本不提"测量"两个字, $(2)$ 也成立 — 它是态向量在 Hilbert 空间里的几何性质, 由 $[\hat x, \hat p] = i\hbar$ 这一条代数事实加 Cauchy-Schwarz 推出. 所以更准确的图像应该反过来说: <em>因为不存在一个量子态在 $x, p$ 上都尖锐, 所以无论怎么设计实验都测不出比 $\hbar/2$ 更紧的乘积下限</em>. 测量极限是结果, 不是原因.</p>
+
+  <p>这句话有一个直接物理推论: 量子涨落是<em>客观的</em>, 不是因为我们不够细致看不清. 真空里电磁场也有零点涨落 ($\Delta E\,\Delta B \ge $ 某个常数), 它对原子能级的可观测影响就是上面提到的 Lamb 位移 — 实验上在 1947 年被精度 $\sim 10\,\mathrm{MHz}$ 测出来, 数值跟 QED 预言对到小数点后五位. 真空既然<em>测得出</em>涨落, 它就不是"我们的无知", 而是态本身的事实. 这是不确定性原理从思想实验提升成几何定理之后, 物理图景上的第二次升级.</p>
+
+  <p>需要警告一点细节. 现代量子测量理论 (Ozawa 2003, Branciard 2013, Erhart 2012 中子实验) 区分了三种"不确定性": (a) Robertson 那种态的内禀宽度 — 我们这一节讲的, (b) 单次测量的精度 $\epsilon_A$, (c) 一次测量对另一个量造成的扰动 $\eta_B$. 原版 Heisenberg 说的其实是 $\epsilon_A\,\eta_B \ge \hbar/2$, 它形式相似但内容不同; 而且 Ozawa 证明这个版本可以被违反, 修正后的不等式包含态的内禀宽度作为额外项. 真正坚不可摧的是 (a) — Robertson 1929 那条, 它来自 Hilbert 空间几何, 任何时候不会破. 这一节我们站在 (a) 上.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>不确定性原理不是测量论的命题, 而是 Hilbert 空间几何的命题. 出发点是 $[\hat x, \hat p] = i\hbar$ 这条代数事实; Cauchy-Schwarz 一行半就推出 Robertson $(1)$, 代入位置-动量给 $(2)$ $\Delta x\,\Delta p \ge \hbar/2$. 高斯波包 $(3)$ 饱和等号, 是所有量子态里"在 $x, p$ 上最锐"的那一类 — 任何别的态都更糟. 物理上的兑现: 把电子按到 $1\,\mathrm{\AA}$ 的零点动能 $\sim 1\,\mathrm{eV}$, 解释了为什么原子有最低能级 (动能 $\propto 1/(\Delta x)^2$ 比库仑势 $\propto 1/\Delta x$ 涨得快); 把寿命 $10^{-8}\,\mathrm{s}$ 的激发态换成自然线宽 $3.3 \times 10^{-8}\,\mathrm{eV}$ 即 $\sim 8\,\mathrm{MHz}$, 这是 Lamb 位移测量看到的那个底. 历史: Heisenberg 1927 用显微镜思想实验给出 $\Delta x\,\Delta p \sim h$, Bohr 立刻指出"测量扰动"叙事的因果有问题, Kennard 1927、Robertson 1929 用 Cauchy-Schwarz 严格化, 把它从思想实验提升到几何定理. 在更大图景里, $(2)$ 是 vol 4 第 9 节 Fourier 时-频不确定性的量子化身 — 把 Plancherel 等距加一个 $\hbar$, 就长成了量子物理的最低限制. 下一节我们写 Schrödinger 方程, 看波函数怎么在时间里走.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="08-measurement.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="10-time-evolution.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

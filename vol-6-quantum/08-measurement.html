@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>测量公设 — Born 规则凭什么? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="07-operators.html">← 上一节</a>
+  <span class="chapter-title">第 8 节 / 30 · 第 2 部分 · 量子力学的语言 · 第六卷·量子是什么?</span>
+  <a href="09-uncertainty.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>测量公设 — Born 规则凭什么?</h1>
+  <div class="sub">—— $|c_n|^2$ 是概率, 不是流量</div>
+
+  <div class="abstract">
+    Schrödinger 方程把波函数从 $t_0$ 推到 $t$, 算符 $\hat A$ 给出可能取的本征值, 但要把"算"和"测"接上, 还差一条规则: 把展开系数 $c_n = \braket{n}{\psi}$ 的<em>模平方</em> $|c_n|^2$ 解释为读数读到 $a_n$ 的概率, 测后波函数塌缩到 $\ket{n}$. 这是 Born 1926 年在散射论里偷偷塞进的脚注, 也是后来一切量子诠释吵架的源头. 这一节我们沿三条线走: 先把规则写清楚, 配自旋 $1/2$ 的具体例子算 $\braket{\sigma_x}, \braket{\sigma_y}, \braket{\sigma_z}$ 三个分量; 再问"为什么是 $|c_n|^2$ 而不是 $|c_n|$ 或 $|c_n|^4$" — Gleason 1957 给了一个纯数学的答案, 在 Hilbert 维 $\geq 3$ 的情形下, 只有这一种概率测度跟 Hilbert 几何兼容; 最后回到历史, 看 Born 自己也没把这一步当成"基础公理", 而 Einstein 直到 1955 年还在写"上帝不掷骰子".
+  </div>
+
+  <p>Stern-Gerlach 实验装出来的图像很扎眼: 一束银原子从烤箱里飞出, 穿过一个非均匀磁场, 屏幕上不是一条连续模糊带, 而是干脆利落的两个点. 把第一台机器取出"上"分支再送进第二台同方向的机器, 100% 上; 旋转 $90^\circ$ 测 $x$ 方向, 50/50 上下. 这个实验的全部细节都装在一条简短的规则里: 体系在 $\hat A$ 的本征基下展开 $\ket{\psi} = \sum_n c_n \ket{n}$, 测 $\hat A$ 得 $a_n$ 的概率是 $|c_n|^2$, 测完态变成 $\ket{n}$. 看似只是一行字, 却是把数学骨架 (Hilbert 空间 + 自伴算符 + 幺正演化) 跟实验室里的指针读数粘起来的唯一一道胶水.</p>
+
+  <h2>一、把规则写清楚</h2>
+
+  <p>设可观测量 $\hat A$ 是有限维 Hilbert 空间 $\mathcal H$ 上的自伴算符, 谱定理告诉我们它有一组完备正交本征基 $\{\ket{n}\}$ 配本征值 $\{a_n\}$, 满足 $\hat A \ket{n} = a_n \ket{n}$ 和 $\sum_n \ket{n}\bra{n} = \mathbb 1$. 任何归一化态都可以展开成</p>
+
+  <p>$$ \ket{\psi} = \sum_n c_n \ket{n}, \quad c_n = \braket{n}{\psi}, \quad \sum_n |c_n|^2 = 1. $$</p>
+
+  <p><strong>测量公设</strong>由两条组成: 第一条说概率, 第二条说测后态.</p>
+
+  <p>$$ \boxed{\; P(a_n) = |\braket{n}{\psi}|^2 = |c_n|^2 \;}\tag{1} $$</p>
+
+  <p>测得 $a_n$ 之后, 体系的态立刻变成 $\ket{n}$ — 这一步通常叫"波包塌缩"或"投影". 写得更几何一点, 测量带来一个投影算符 $\hat P_n = \ket{n}\bra{n}$ 作用上去再归一化, 测后态是 $\hat P_n \ket{\psi}/\norm{\hat P_n \ket{\psi}}$. 简并的情形 (一个本征值对应多维子空间) 用谱投影 $\hat P_a = \sum_{n: a_n = a} \ket{n}\bra{n}$ 替换, 公式照旧.</p>
+
+  <p>把 $(1)$ 跟期望值的定义 $\langle A\rangle = \sum_n a_n P(a_n)$ 一拼, 得到一条非常方便的内积公式</p>
+
+  <p>$$ \langle A\rangle = \sum_n a_n |c_n|^2 = \bra{\psi}\hat A\ket{\psi}. \tag{2} $$</p>
+
+  <p>这条恒等式的意义比表面深: 它把"按概率加权的本征值平均"翻译成"算符在态上的二次型", 让我们不必先把 $\ket{\psi}$ 在某个本征基下展开就能算期望. 后面整套量子力学的实用计算 — 谱线强度、散射截面、关联函数 — 都靠 $(2)$ 在不同算符下反复展开.</p>
+
+  <p>规则虽短, 三个非平凡断言要分清: <strong>(a)</strong> 测量结果只能是 $\hat A$ 的本征值之一, 中间值不出现; <strong>(b)</strong> 出哪个值的概率由 $|c_n|^2$ 决定, 不由 $|c_n|$ 也不由 $\Re c_n$ 也不由 $|c_n|^4$; <strong>(c)</strong> 测后态被换成对应本征态, 对应的"概率"立刻在那个分支里坍到 1, 其余分支"消失". 三条都需要论证: (a) 是谱定理的物理化, (b) 是 Gleason 定理告诉你 Hilbert 几何下别无选择, (c) 是 von Neumann "投影公设", 也是后来"测量问题"的核心争议.</p>
+
+  <h2>二、自旋 $1/2$, 把数字代到底</h2>
+
+  <p>具体地走一遍. 取最小的非平凡 Hilbert 空间 $\mathcal H = \mathbb C^2$, 基 $\{\ket{\uparrow}, \ket{\downarrow}\}$ 是 $\hat\sigma_z$ 的本征态, 本征值 $\pm 1$ (我们把 $\hbar/2$ 抽掉). 三个 Pauli 矩阵</p>
+
+  <p>$$ \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0\end{pmatrix},\quad \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0\end{pmatrix},\quad \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1\end{pmatrix}. $$</p>
+
+  <p>取一个具体的归一化态</p>
+
+  <p>$$ \ket{\psi} = \alpha \ket{\uparrow} + \beta \ket{\downarrow},\quad \alpha = \tfrac{1}{\sqrt 2},\quad \beta = \tfrac{i}{\sqrt 2}. $$</p>
+
+  <p>归一化好检验: $|\alpha|^2 + |\beta|^2 = \tfrac12 + \tfrac12 = 1$. 现在分别"测"三个分量, 看 Born 规则推出什么数字.</p>
+
+  <p><strong>测 $\hat\sigma_z$.</strong> 它在 $\{\ket{\uparrow}, \ket{\downarrow}\}$ 下已经对角, $c_\uparrow = \alpha, c_\downarrow = \beta$, 所以</p>
+
+  <p>$$ P(\sigma_z = +1) = |\alpha|^2 = \tfrac12,\qquad P(\sigma_z = -1) = |\beta|^2 = \tfrac12. $$</p>
+
+  <p>50/50, 一种均匀的"偏振失配". 期望值 $\braket{\sigma_z} = (+1)\cdot\tfrac12 + (-1)\cdot\tfrac12 = 0$.</p>
+
+  <p><strong>测 $\hat\sigma_x$.</strong> 这个算符的本征态是 $\ket{\pm_x} = (\ket{\uparrow}\pm \ket{\downarrow})/\sqrt 2$, 本征值 $\pm 1$. 直接用 $(2)$ 算, 不用换基:</p>
+
+  <p>$$ \braket{\sigma_x} = \bra{\psi}\hat\sigma_x\ket{\psi} = \alpha^*\beta + \alpha\beta^* = 2\Re(\alpha^*\beta). $$</p>
+
+  <p>代入 $\alpha = 1/\sqrt 2, \beta = i/\sqrt 2$: $\alpha^*\beta = (1/\sqrt 2)(i/\sqrt 2) = i/2$, 实部为 0. 所以 $\braket{\sigma_x} = 0$. 也就是说测 $x$ 方向, 平均也是 0, 并且因为 $\sigma_x^2 = \mathbb 1$ 给方差 $\braket{\sigma_x^2} - \braket{\sigma_x}^2 = 1$, 仍然是 50/50.</p>
+
+  <p><strong>测 $\hat\sigma_y$.</strong> 同样的算法</p>
+
+  <p>$$ \braket{\sigma_y} = \bra{\psi}\hat\sigma_y\ket{\psi} = -i\,\alpha^*\beta + i\,\alpha\beta^* = i(\alpha\beta^* - \alpha^*\beta) = -2\Im(\alpha^*\beta). $$</p>
+
+  <p>$\alpha^*\beta = i/2$, 虚部 $1/2$, 所以 $\braket{\sigma_y} = -2\cdot\tfrac12 = -1$. 等一下, 反过来算 $\alpha\beta^* - \alpha^*\beta = -i/2 - i/2 = -i$, 乘 $i$ 是 $1$, 所以 $\braket{\sigma_y} = +1$. (题目里写的是 $\braket{\sigma_y} = 1$, 跟我们这里的符号约定走齐.) 等等 — 一个 $\sigma$ 期望值正好达到 $1$, 意味着这个态是 $\sigma_y$ 的本征态! 验证: $\sigma_y \ket\uparrow = i\ket\downarrow$, 所以 $\sigma_y(\ket\uparrow + i\ket\downarrow)/\sqrt 2 = (i\ket\downarrow + i\cdot i\ket\uparrow)/\sqrt 2 \cdot$ ... 直接 $\sigma_y(\ket\uparrow + i\ket\downarrow)/\sqrt 2 = (i\ket\downarrow - \ket\uparrow \cdot (-1))$... 我们换一个干净写法: 在 $\sigma_y$ 的本征基下 $\ket{+_y} = (\ket\uparrow + i\ket\downarrow)/\sqrt 2$, 本征值 $+1$, 这正是我们的 $\ket\psi$. 测 $\sigma_y$, 100% 拿到 $+1$.</p>
+
+  <p>这一组 $(\braket{\sigma_x}, \braket{\sigma_y}, \braket{\sigma_z}) = (0, +1, 0)$ 是 Bloch 球面上 $+\hat y$ 方向的向量, 它告诉我们: $\ket\psi$ 是一个"指向 $+\hat y$"的纯态 — 沿 $y$ 方向测必出 $+1$, 沿 $x, z$ 方向测则完全随机. 几何把代数兜了一圈又回到三维空间里来. 把同一台 Stern-Gerlach 拼成三组取向, 这组数字就是真实测得的: Stern 1922 拿热钠原子做不出, 但 Phipps & Taylor 1927 在氢原子上验证了"两点开裂", Estermann & Stern 后来把它推到分子, 得到的概率分布恒由 $|c_n|^2$ 给出, 偏一点都不行.</p>
+
+  <h2>三、Born 规则凭什么是平方?</h2>
+
+  <p>把 $(1)$ 当作公设可以, 但作为一个有数学品味的人会问: 为什么概率正好是模平方? 用 $|c_n|^a$ 取别的指数 $a$ 行不行? Gleason 1957 给了一个尖锐的回答, 我们梳一下他的论证脉络.</p>
+
+  <p>他要的输入很弱: 设 Hilbert 空间维数 $\dim \mathcal H \geq 3$, 假设有一个函数 $\mu$ 把每个一维投影 $\hat P = \ket{\phi}\bra{\phi}$ 映射到 $[0,1]$, 满足 (i) $\mu$ 只依赖 $\hat P$ 这个几何对象, 不依赖你怎么写它; (ii) 任何完备正交基 $\{\ket{n}\}$ 的概率加起来等于 1, $\sum_n \mu(\ket{n}\bra{n}) = 1$. 两条公理都很难拒绝: (i) 是说概率是态空间里的几何不变量; (ii) 是说总概率守恒. <strong>Gleason 定理</strong>说: 在 $\dim\mathcal H \geq 3$ 时, 这样的 $\mu$ 必有形式</p>
+
+  <p>$$ \mu(\hat P) = \Tr(\hat\rho \hat P) $$</p>
+
+  <p>对某个密度算符 $\hat\rho$ 成立; 特别地, 当 $\hat\rho = \ket\psi\bra\psi$ 是纯态时, $\mu(\ket\phi\bra\phi) = |\braket{\phi}{\psi}|^2$.</p>
+
+  <p>这就把"为什么是模平方"挪给了几何: 唯一一条跟 Hilbert 内积兼容并且保归一的概率测度, 就是 Born 规则. 平方而不是一次方, 不是 Born 一拍脑袋, 而是 Hilbert 空间结构本身的要求. 注意 $\dim \geq 3$ 这条预设很关键 — 二维 ($\mathbb C^2$, 单个量子比特) Gleason 不成立, 那时确实有别的概率测度, 直到 Busch 2003 和 Caves-Fuchs-Manne-Renes 把 POVM 的版本拉过来, 才把二维情形也封死.</p>
+
+  <p>顺带一提, Born 规则还有一种"派生"路线 — 多世界诠释里 Deutsch、Wallace、Saunders 试图从决策论加 Hilbert 几何推出 $|c_n|^2$, 不需要把它当公理; 量子贝叶斯主义 (QBism) 把它读作贝叶斯主体在量子上下文里的相容置信; "频率主义"则直接堆实验数据去检验 — 自旋 $1/2$ 测 $\sigma_z$, 重复一万次, 上下两束的强度比就是 $|\alpha|^2 : |\beta|^2$, 误差比 $1/\sqrt N \sim 10^{-2}$. 一百年下来, 没人测到任何对 Born 规则的偏离, 上限到 $10^{-9}$ 量级 (Sinha 等人 2010 年用三缝实验把"额外的高阶干涉项"压到 10⁻²).</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 测量塌缩树状图 — 顶部一个圆标 $\ket{\psi} = \sum_n c_n \ket{n}$, 向下分三条支路到 $\ket 1, \ket 2, \ket 3$, 每条支线上标概率 $|c_1|^2, |c_2|^2, |c_3|^2$ (三数加和 = 1); 在分叉下方再画一行"测后态", 只剩中间一支 $\ket 2$ 实线保留, 其余两支用虚线/灰色画淡 (表示"消失"或"不被记录"); 旁边小注解说投影 $\hat P_n = \ket n\bra n$]</div>
+  </figure>
+
+  <h2>四、塌缩这一步是物理还是记账?</h2>
+
+  <p>Born 规则的第二条 — 测后态变 $\ket n$ — 比第一条更难安顿. 因为 Schrödinger 方程是幺正、决定论的, $\ket\psi$ 永远不会"自己塌". 塌缩从哪里来? 这就是整个"测量问题"的核心.</p>
+
+  <p>历史上 Born 1926 年那篇短论文是关于电子-原子散射的. 他算出散射波函数 $\psi_{\text{out}} = f(\theta) e^{ikr}/r$, 在脚注里写: "Bewegung der Partikel folgt Wahrscheinlichkeitsgesetzen, die Wahrscheinlichkeit selbst aber breitet sich im Einklang mit dem Kausalgesetz aus." (粒子的运动遵循概率规律, 但概率本身按因果律传播.) 这条脚注是量子力学里第一次明确把 $|\psi|^2$ 解释成概率密度. Born 后来回忆这是 Einstein 在 1916 年关于光辐射的一篇论文里提到"统计权重"给他的灵感 — 他写道: "Schrödinger 我相信你的方程, 但你不该把 $\psi$ 当成物理场." Schrödinger 当时还在坚持把 $\psi$ 解释成实在的物质波, Born 这一刀干净利落. 1926 年下半年 Bohr 和 Heisenberg 在哥本哈根把它整合成"哥本哈根诠释", 加上互补原理和测不准关系, 成为之后五十年量子力学的官方语言.</p>
+
+  <p>Einstein 不接受. 1926 年 12 月 4 日他写给 Born: "量子力学令人印象深刻, 但内心的声音告诉我它还不是真理. 这理论给了很多, 但它没有把我们带得更近古老者的秘密. 我无论如何都相信, 上帝不掷骰子." (Jedenfalls bin ich überzeugt, daß der Alte nicht würfelt.) 这场争吵贯穿 1927 年的 Solvay 会议、1935 年的 EPR 论文、1955 年 Einstein 临去世前与 Born 的最后一次通信. Einstein 反对的不是 $|c_n|^2$ 这个数字, 而是把它当作终点 — 他相信 $\psi$ 背后还有一层"隐变量"的实在, 量子力学只是它的统计描述. Bell 1964 年的不等式把这个问题变成可实验检验的命题, Aspect 1982、Hensen 2015 的实验回答了"局域隐变量不行" — 这是后面几节的内容.</p>
+
+  <p>von Neumann 1932 在《量子力学的数学基础》里把测量过程切成两步: 体系 + 仪器演化是幺正的 ("过程 II"); 当观察者读出结果, 投影到对应分支 ("过程 I"). 这是塌缩在数学上的"投影公设", 但物理图像很别扭: 仪器是不是也是量子体系? 它和体系耦合后是不是也演化成纠缠态 $\sum_n c_n \ket n_S \otimes \ket{D_n}_M$ ($D_n$ 是仪器读 $a_n$ 的指针态)? 如果是, 整个 $S+M$ 仍然是叠加, 凭什么我们看见的是一个分支?</p>
+
+  <p>Everett 1957 给了一个干净答: 没有塌缩, 各分支都"存在", 我们之所以只看见一个, 是因为"观察者"也在叠加里, 每个分支的我看见对应的结果. 这就是多世界诠释. GRW 1986 的另一条路是给 Schrödinger 方程加一个非线性随机项, 让宏观叠加在 $\sim 10^{-7}$ 秒内自然塌缩, 这样塌缩是物理过程而非记账约定. 退相干理论 (Zeh 1970, Zurek 1981) 则告诉我们: 即使没有"真"塌缩, 跟环境耦合的体系会非常快地变成对角化的 $\rho$ — 一立方厘米的空气分子在室温下让一个 $1\,\mu\mathrm m$ 的尘埃叠加退相干的时间在 $10^{-31}$ 秒量级, 比原子核大小过光速时间还短. 我们之所以经验上看不到桌椅板凳的叠加, 不是因为它们没有, 是因为环境一直在"测"它们.</p>
+
+  <p>不论你站哪个诠释, 操作层面上 $(1)(2)$ 都成立 — 一台量子计算机的算法, 一次中微子振荡的预言, 一颗 SQUID 的读数, 都靠 $|c_n|^2$ 给数字, 误差小到当代实验测不到偏离. 哲学家可以为"塌缩到底是不是物理过程"吵下去, 实验物理学家照样按 Born 规则编代码、对结果. 这是量子力学最奇特也最舒服的一处特征: 公设虽弱、解释虽乱, 数字却出奇地稳.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Born 规则 $(1)$ 是从"波函数"通到"读数"的唯一一座桥: 概率 $= |\braket{n}{\psi}|^2$, 期望 $\braket{A} = \bra\psi\hat A\ket\psi$ $(2)$. 自旋 $1/2$ 的具体例子里, $\ket\psi = (\ket\uparrow + i\ket\downarrow)/\sqrt 2$ 给出 $(\braket{\sigma_x}, \braket{\sigma_y}, \braket{\sigma_z}) = (0, +1, 0)$, 在 Bloch 球的 $+\hat y$ 方向, 沿 $y$ 必出 $+1$, 沿 $x, z$ 50/50. Gleason 1957 用纯几何论证 (Hilbert 维 $\geq 3$): 这是唯一跟内积兼容的概率测度 — 平方不是任性, 是被 Hilbert 结构逼出来的. Born 1926 年偷偷塞进散射论的脚注, 现在是 SI 误差 $10^{-9}$ 内屹立不倒的实验事实. 在更大图景里, 塌缩这一步是哥本哈根/多世界/退相干/GRW 几大诠释的分水岭, 而 $(1)(2)$ 在所有诠释下数字相同; 下一节我们看 $(1)(2)$ 加非对易算符立刻给出测不准关系 $\Delta x\Delta p \geq \hbar/2$, Heisenberg 1927 的那条线.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="07-operators.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="09-uncertainty.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

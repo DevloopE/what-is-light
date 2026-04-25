@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Josephson 结为什么能精确测电压? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="19-high-tc.html">← 上一节</a>
+  <span class="chapter-title">第 20 节 / 30 · 第 4 部分 · 超导与超流 · 第七卷·物质是什么?</span>
+  <a href="21-quantum-hall.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Josephson 结为什么能精确测电压?</h1>
+  <div class="sub">—— $I = I_c\sin\phi$ 与电压标准</div>
+
+  <div class="abstract">
+    取两块超导体, 中间夹一层只有一两纳米厚的薄绝缘体, 整套结构沉到液氦温度. Cooper 对在每一块超导体内部都凝聚到同一个宏观波函数 $\psi = \sqrt{n}\,e^{i\varphi}$ 里, 于是夹在中间的薄绝缘层两侧, 多了一个可以谈论的物理量 — 相位差 $\phi = \varphi_L - \varphi_R$. 1962 年, 剑桥的二十二岁博士生 Brian Josephson 在还没毕业的论文里推: 即使两块超导体之间没有任何电压, Cooper 对仍然可以隧穿过去, 形成直流 $I = I_c\sin\phi$; 而一旦加上电压 $V$, 相位差就以 $d\phi/dt = 2eV/\hbar$ 旋转, 于是结里出现频率 $\nu = 2eV/h$ 的振荡电流. Josephson 常数 $K_J = 2e/h \approx 4.836\times 10^{14}\,\mathrm{Hz/V}$ 这两个数因此被锁在一起 — 测频率就是测电压. 这一节从两边波函数出发, 推 (1)(2) 两条 Josephson 方程, 看 Shapiro 台阶如何把伏特国际标准从笨重的标准电池搬到一只微波驱动的超导芯片上, 再走到 SQUID — 灵敏度 $\sim 5\times 10^{-18}\,\mathrm{T}$, 测脑磁图、测地磁、找量子比特.
+  </div>
+
+  <p>
+    上一节我们看到, 高温超导让超导临界温度爬过液氮 77 K, 但在写这一节的时候, 计量学家最关心的并不是温度. 1990 年 1 月 1 日起, 国际伏特单位换了定义: 不再依赖某种笨重的标准电池, 而是把伏特锁在 $K_J = 2e/h$ 这个常数上 — 给一块 Josephson 结阵列照射 70 GHz 微波, 在精心选定的台阶上, 阵列两端会出现一个由微波频率精确决定的电压. 这套装置在世界各地的国家计量院里复制, 互相之间的伏特相对偏差小于 $10^{-10}$. 一片厚度只有 $\sim 1$ nm 的薄绝缘层, 把宏观电压跟基本常数 $e$ 与 $h$ 直接对接起来. 这一节的任务, 是从两块超导体共有的相位差出发, 推清楚为什么会这样.
+  </p>
+
+  <h2>一、两块超导体, 一层薄绝缘体 — 相位差能存在</h2>
+
+  <p>
+    本卷第 17 节里我们写出了 BCS 基态的关键性质: 整块超导体里, 所有 Cooper 对凝聚到同一个动量 (相对动量为零) 的对态上, 整体可以用一个宏观波函数描写,
+  </p>
+
+  <p>
+    $$ \psi(\mathbf{r}) \;=\; \sqrt{n_s(\mathbf{r})}\;e^{i\varphi(\mathbf{r})}, $$
+  </p>
+
+  <p>
+    其中 $n_s$ 是 Cooper 对密度, $\varphi$ 是相位. 一块孤立超导体的相位是不可观测的整体相位 — 它跟选取的规范有关. 但只要把两块超导体放到一起, 两个相位的差 $\phi = \varphi_L - \varphi_R$ 立刻变成可观测量, 因为它直接进到隧穿振幅里去.
+  </p>
+
+  <p>
+    把两块超导体之间放一层薄绝缘体 (厚度 $d \sim 1\,\mathrm{nm}$, 比如 Nb-Al/AlOx-Nb 结里的氧化铝层). 这个厚度比 BCS 相干长度 $\xi$ 小, 但又厚到正常电子隧穿很弱, 而 Cooper 对仍然可以以一对的形式整体隧穿. 如果用 Feynman 在《Lectures III》里的双能级近似 (这是教 Josephson 物理最干净的方式), 把左右两块超导体当作两个 "宏观格点", 每个格点上的 Cooper 对凝聚态对应一个复振幅 $\psi_{L,R}$, 隧穿振幅记作 $K$ (实数, 由薄层透明度决定), 加上左右两端的化学势 $\mu_L,\mu_R$, Schrödinger 方程退化成两条耦合方程
+  </p>
+
+  <p>
+    $$ i\hbar\,\dot\psi_L = \mu_L\psi_L + K\psi_R, \qquad i\hbar\,\dot\psi_R = \mu_R\psi_R + K\psi_L. $$
+  </p>
+
+  <p>
+    把 $\psi_{L,R} = \sqrt{n_{L,R}}\,e^{i\varphi_{L,R}}$ 代进去, 实部虚部分开, 得到
+  </p>
+
+  <p>
+    $$ \dot n_L = \tfrac{2K}{\hbar}\sqrt{n_L n_R}\,\sin\phi, \qquad \dot\phi = \frac{\mu_R-\mu_L}{\hbar} - \frac{K}{\hbar}\!\left(\sqrt{\tfrac{n_R}{n_L}}-\sqrt{\tfrac{n_L}{n_R}}\right)\!\cos\phi. $$
+  </p>
+
+  <p>
+    $\dot n_L$ 就是从 R 流向 L 的 Cooper 对流, 乘上 $-2e$ (一对带 $-2e$ 电荷, 而通常约定电流方向跟正电荷一致, 即 $-\dot n_L \cdot 2e$) 即超流电流. 在两侧 Cooper 对密度近似相等的对称结里, $\sqrt{n_L n_R} \to n_s$, 且 $\cos\phi$ 项里的根号差为零. 用 $\mu_R-\mu_L = 2eV$ (一对的电荷是 $2e$, 越过电势差 $V$ 时化学势差是 $2eV$), 把电流写成关于相位差的函数, 就得到 Josephson 第一与第二方程
+  </p>
+
+  <p>
+    $$ I \;=\; I_c\,\sin\phi, \tag{1} $$
+  </p>
+
+  <p>
+    $$ \frac{d\phi}{dt} \;=\; \frac{2eV}{\hbar}. \tag{2} $$
+  </p>
+
+  <p>
+    其中 $I_c = 2e\,K\,n_s/\hbar$ 称为临界电流, 由结的几何与温度决定. (1) 式说: 即便 $V=0$, 只要相位差不为零, 就有一个确定的直流超流电流穿过结, 大小不超过 $I_c$, 方向由 $\phi$ 决定. (2) 式说: 一旦结两端有电压, 相位差就以恒定速率旋转, 频率
+  </p>
+
+  <p>
+    $$ \nu \;=\; \frac{1}{2\pi}\frac{d\phi}{dt} \;=\; \frac{2eV}{h}. \tag{3} $$
+  </p>
+
+  <p>
+    把 $V$ 与 $\nu$ 直接锁在基本常数 $2e/h$ 上 — 这是整篇文章的关键句.
+  </p>
+
+  <h2>二、Josephson 1962 — 一个博士生的反直觉预言</h2>
+
+  <p>
+    1962 年, Brian Josephson 在剑桥跟 Brian Pippard 做凝聚态. 当时学界的共识是: 两块超导体被绝缘体隔开, 应该跟两块普通金属被绝缘体隔开差不多 — 单电子隧穿被超导能隙压制, 偏压低于 $2\Delta/e$ 时几乎没电流. Ivar Giaever 1960 年的实验也是这么看的, 因此他后来跟江崎玲于奈一起拿了 1973 年的诺贝尔奖.
+  </p>
+
+  <p>
+    Josephson 的论文《Possible new effects in superconductive tunnelling》(Phys. Lett. 1962) 不到两页, 直接指出: 还应当有 Cooper 对的 "对隧穿", 给出 (1)(2) 两条方程, 并预言两个反直觉的现象 — (a) 零电压超流: 在 $V=0$ 处, 结上有一段从 $-I_c$ 到 $+I_c$ 的垂直电流支, 不需要任何驱动电压; (b) 交流 Josephson 效应: 加一个常电压, 结里就出现高频振荡电流, 频率精确为 $2eV/h$. 当时 Bardeen — BCS 的 B — 在 Phys. Rev. Lett. 上撰文反驳, 认为 Cooper 对隧穿的振幅应是单电子隧穿的二阶小量, 实际为零. Josephson 在伦敦一次会议上当面跟他辩论, 最后是实验说话.
+  </p>
+
+  <p>
+    1963 年初, Bell Labs 的 Philip Anderson 和 John Rowell 用 Sn-SnO-Sn 结测到 (a): 一个零电压、可以承载几十微安的支流, 形状跟磁场扫描下呈 Fraunhofer 衍射图样 (因为相位差里多了 $\int A\cdot dl$ 项), 跟理论符合到几个百分点. 接着 1963 年 Sidney Shapiro 在 IBM 把结浸到微波场里, 发现 I-V 曲线在恒定电压 $V_n = nh\nu_{\rm mw}/(2e)$ 处出现一系列水平台阶 — 即 (3) 式的反过来用法: 当外加微波频率 $\nu_{\rm mw}$ 等于结的内禀振荡频率, 相位差被锁定, 结呈一段恒电压. 这些 "Shapiro 台阶" 是后来电压标准的实验地基. Josephson 1973 年与 Esaki, Giaever 共享诺贝尔奖, 时年 33 岁.
+  </p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左半为 Josephson 结结构示意 — 上下两层灰色实心矩形代表超导体 (各标 $\psi_L = \sqrt{n_L}\,e^{i\varphi_L}$ 与 $\psi_R = \sqrt{n_R}\,e^{i\varphi_R}$), 中间夹一层厚度约 $1\,\mathrm{nm}$ 的薄绝缘体 (浅色窄条, 标 "$\sim 1\,\mathrm{nm}$"), 两侧引出电流引线, 标记 $\phi = \varphi_L - \varphi_R$. 右半为 I-V 曲线: 横轴 $V$, 纵轴 $I$; $V=0$ 处一条垂直支从 $-I_c$ 到 $+I_c$, 随后 $|V|\gt 2\Delta/e$ 进入正常电流; 在加了微波时, 同一坐标系上画出叠加的 Shapiro 台阶 — 一系列在 $V_n = n h\nu/2e$ 处的水平等距台阶, 标 $n=1,2,3$.]</div>
+  </figure>
+
+  <h2>三、伏特国际标准 — 用频率定义电压</h2>
+
+  <p>
+    把 (3) 式倒过来: 电压可以用频率来定义. 频率是计量学里测得最准的量 — 通过铯钟可以做到 $10^{-15}$ 量级的相对精度. 而 (3) 给出的关系是数学等式 — 相位被微波场锁定时, $V$ 严格等于 $n h\nu/(2e)$, 不依赖材料、温度、结的几何 (除了 "锁住" 这件事本身).
+  </p>
+
+  <p>
+    Josephson 常数
+  </p>
+
+  <p>
+    $$ K_J \;=\; \frac{2e}{h} \;=\; 483\,597.848\,4\,\mathrm{GHz/V} \;\approx\; 4.836\times 10^{14}\,\mathrm{Hz/V}. \tag{4} $$
+  </p>
+
+  <p>
+    代具体数字. 用 $\nu_{\rm mw} = 10\,\mathrm{GHz}$ (一种常用的 X 波段微波), 单个结上的第 $n=1$ Shapiro 台阶电压为
+  </p>
+
+  <p>
+    $$ V_1 \;=\; \frac{h\nu_{\rm mw}}{2e} \;=\; \frac{10\,\mathrm{GHz}}{4.836\times 10^{14}\,\mathrm{Hz/V}} \;\approx\; 20.7\,\mu\mathrm{V}. $$
+  </p>
+
+  <p>
+    这是 "一只结一步台阶" 给出的电压. 单个 20.7 μV 在工程上没什么用, 因此现代电压标准芯片把成千上万个 Josephson 结串联起来 — 美国 NIST 的 10 V 标准芯片有约 $20\,000$ 个结. 当微波同时锁定每个结到第 $n$ 阶台阶时, 总电压是 $N\cdot n\cdot 20.7\,\mu\mathrm{V}$, 通过选择 $N$ 与 $n$, 可以精准做出从 mV 到 10 V 的电压标准. 复现性优于 $10^{-10}$ — 即在两个独立国家计量院之间做比对, 1 V 的偏差小于 0.1 nV.
+  </p>
+
+  <p>
+    1990 年 1 月 1 日, 国际单位制 (SI) 把伏特按 (4) 锁定一个约定值 $K_{J\text{-}90}$ 来定义; 2019 年 SI 重新基础化, 直接把 $h$ 与 $e$ 钉成精确值, $K_J = 2e/h$ 也就自动精确, 没有任何不确定性. 一片夹在两块铌之间的几纳米氧化铝, 跟铯钟一起, 撑起整个 SI 电学的精度.
+  </p>
+
+  <h2>四、SQUID — 用 Josephson 结测磁场</h2>
+
+  <p>
+    再回到 (1)(2). 把两个 Josephson 结并联在一个超导环里 — 这就是 SQUID (Superconducting Quantum Interference Device, 超导量子干涉仪). 两个结对应两条隧穿路径, 总电流是两路电流的相干叠加. 关键事实: 围绕环走一圈, 相位的累积要满足磁通量子化条件
+  </p>
+
+  <p>
+    $$ \phi_1 - \phi_2 \;=\; 2\pi\,\frac{\Phi}{\Phi_0}, \qquad \Phi_0 \;=\; \frac{h}{2e} \;\approx\; 2.067\times 10^{-15}\,\mathrm{Wb}. $$
+  </p>
+
+  <p>
+    其中 $\Phi$ 是穿过环的磁通, $\Phi_0$ 是磁通量子. SQUID 的临界电流随穿过环的磁通呈周期性变化
+  </p>
+
+  <p>
+    $$ I_c^{\rm tot}(\Phi) \;=\; 2I_c\!\left|\cos\!\frac{\pi\Phi}{\Phi_0}\right|, $$
+  </p>
+
+  <p>
+    把磁通的微小变化翻译成临界电流的可测变化. 1964 年 Robert Jaklevic, John Lambe, James Mercereau 与 Arnold Silver 在 Ford 实验室造出第一台 SQUID, 直接测到了磁通量子化的干涉条纹. 这是凝聚态里第一个实用的 "宏观量子干涉仪".
+  </p>
+
+  <p>
+    一只现代低温超导 SQUID 的磁场分辨率可以做到 $\sim 5\times 10^{-18}\,\mathrm{T/\sqrt{Hz}}$, 即每秒钟测一次能分辨阿特斯拉量级的磁场变化, 比地磁场 ($\sim 5\times 10^{-5}\,\mathrm{T}$) 弱十多个数量级. 这种灵敏度的应用相当具体:
+  </p>
+
+  <p>
+    (a) <em>脑磁图</em> (MEG, magnetoencephalography). 大脑神经元的同步放电产生的磁场约 $10^{-13}\,\mathrm{T}$, SQUID 阵列在屏蔽室里可以无侵入地测到; 一台典型的 MEG 仪有 200-300 个 SQUID 通道, 用于癫痫病灶定位和脑科学研究.
+  </p>
+
+  <p>
+    (b) <em>地质 NMR 与古地磁学</em>. 用 SQUID 直接读核磁信号, 在低场下取代传统的高场 NMR, 用于探测地下水与矿藏; 古地磁学家用 SQUID 测沉积岩里残留的地球磁场, 重建数亿年前的板块运动.
+  </p>
+
+  <p>
+    (c) <em>量子比特读出</em>. 现代超导量子计算 (transmon, fluxonium) 的量子比特本身就是一个或几个非线性 Josephson 元件, 而读出腔与磁通偏置都借助 SQUID — 整个超导量子计算工业的物理基石就是 (1)(2) 两条方程.
+  </p>
+
+  <h2>五、几个推论与边界</h2>
+
+  <p>
+    (i) <em>能量与等效电感</em>. 由 (1)(2), Josephson 结存储能量
+  </p>
+
+  <p>
+    $$ E_J(\phi) \;=\; -\frac{\hbar I_c}{2e}\cos\phi \;=\; -E_J^0\cos\phi, $$
+  </p>
+
+  <p>
+    在小相位下展开 $E_J\approx \tfrac12 E_J^0\phi^2$, 像一个非线性电感 $L_J = \hbar/(2eI_c\cos\phi)$. 这个非线性是 transmon 量子比特能产生不等间距能级 (从而把第 0 与第 1 能级孤立出来) 的根源.
+  </p>
+
+  <p>
+    (ii) <em>Josephson 振荡的 "冷光"</em>. 给结加 $V = 1\,\mu\mathrm{V}$, (3) 给出 $\nu \approx 484\,\mathrm{MHz}$; 加 $V = 1\,\mathrm{mV}$, $\nu \approx 484\,\mathrm{GHz}$, 已经进入毫米波. 单个结就是一个由直流电压驱动的微波振荡器, 这种振荡器在天文毫米波接收机里被用作本振.
+  </p>
+
+  <p>
+    (iii) <em>磁通量子化与 Aharonov-Bohm</em>. $\Phi_0 = h/(2e)$ 这个 "2" 直接证明配对的电荷是 $2e$ — 这是 Cooper 配对的实验直接证据之一. 1961 年 Doll-Näbauer 与 Deaver-Fairbank 各自独立测到 $\Phi_0$, 比 Josephson 的论文还早一年.
+  </p>
+
+  <p>
+    (iv) <em>Andreev 反射与拓扑结</em>. 把绝缘层换成正常金属 (S-N-S 结), Cooper 对在界面经 Andreev 反射, (1) 式仍然成立, 只是临界电流随长度按指数衰减. 把绝缘层换成拓扑超导/半导体, 结里可能寄宿 Majorana 零模, $4\pi$ 周期的反常 Josephson 效应是这一代凝聚态实验的前线之一.
+  </p>
+
+  <p>
+    (v) <em>边界与失效</em>. (3) 是一个 "干净结" 上的渐近律. 实际芯片要做到 $10^{-10}$ 的复现性, 还需要把热噪声、漏电、芯片间偏差控制下来 — 工作温度通常在 4 K (液氦) 到几 mK (稀释制冷机) 之间. 但物理上, (1)(2)(3) 不需要任何唯象常数, 它是 BCS 凝聚态宏观波函数加上量子力学的纯结果.
+  </p>
+
+  <div class="small-summary">
+    <h4>小结</h4>
+    <p>
+      Josephson 1962 年作为剑桥的博士生指出: 两块超导体之间夹一层 $\sim 1\,\mathrm{nm}$ 厚的绝缘体, Cooper 对仍然可以整体隧穿, 给出 $I = I_c\sin\phi$ (零电压超流) 和 $d\phi/dt = 2eV/\hbar$ (有电压则相位旋转, 出现频率 $2eV/h$ 的振荡). Anderson-Rowell 1963 在 Sn-SnO-Sn 结上测到零电压支流; Shapiro 1963 在微波下测到台阶, 把电压锁到 $V_n = nh\nu/2e$. Josephson 常数 $K_J = 2e/h \approx 4.836\times 10^{14}\,\mathrm{Hz/V}$ — 用 10 GHz 微波在每个结上得到 20.7 μV 一阶台阶, 把成千上万个结串联起来, 1990 年起伏特国际标准就锁在这一片片几纳米厚的氧化铝上, 复现性优于 $10^{-10}$. 把两个结并到一个超导环里, 临界电流就随环里磁通呈周期 $\Phi_0 = h/2e$ 的干涉; 这就是 SQUID, Jaklevic 等 1964 年首次造出, 现代灵敏度做到 $\sim 5\times 10^{-18}\,\mathrm{T/\sqrt{Hz}}$, 撑起了脑磁图、地质 NMR、超导量子比特读出. 在更大的图景里, Josephson 结是凝聚态把 BCS 的宏观相位翻译到工程量纲的那道桥梁: 把基本常数 $e, h$ 直接接到伏特和特斯拉, 把单粒子量子力学拓展到 "宏观可观测相位" 的世界 — 而下一节我们要看的量子 Hall 电阻 $h/e^2$, 是另一种把基本常数搬到电学单位上的方式, 同样精确, 同样反直觉, 同样属于这片新世界.
+    </p>
+    <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="19-high-tc.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="21-quantum-hall.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第七卷 · 物质是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第七卷</span>
+  <h1>物质是什么?</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+你手上的这块铜导电, 那块石英不导电; 一块磁铁北极朝北, 同样的铁加热到 770°C 后什么也不指; 液氦冷到 2.17 K 突然爬出杯壁; 二维电子气在强磁场里 Hall 电阻锁在 $h/e^2$ 的整数分数 — 精度十亿分之一. 凝聚态物理就是问"为什么". 本卷从一颗晶体出发, 走到 Bloch 能带、BCS 超导、量子 Hall、拓扑相、临界涌现, 最后到 Anderson 那句 "more is different". 落到具体数字: Cu 电阻率 1.7×10⁻⁸ Ω·m, BCS 能隙 1.76 $k_B T_c$, $\sigma_{xy} = n e^2/h$ 精度 10⁻⁹.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>晶体与对称性
+  <span class="part-blurb">Bravais 格子、Bragg、Brillouin 区、声子、Debye</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-crystals.html"><span class="title">为什么固体大多排成晶格?</span><span class="sub">—— Bravais 格子与平移对称</span></a></li>
+  <li><a href="02-bragg.html"><span class="title">X 射线衍射为什么能看到原子排布?</span><span class="sub">—— Bragg 定律 $2d\sin\theta = n\lambda$</span></a></li>
+  <li><a href="03-reciprocal.html"><span class="title">倒易格子是什么?</span><span class="sub">—— Brillouin 区与动量空间的几何</span></a></li>
+  <li><a href="04-phonons.html"><span class="title">晶格振动为什么也"量子化"?</span><span class="sub">—— 声子作为简正模的量子</span></a></li>
+  <li><a href="05-debye.html"><span class="title">为什么固体比热在低温走 $T^3$?</span><span class="sub">—— Debye 模型与德拜温度</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>电子在固体里
+  <span class="part-blurb">Sommerfeld、Bloch、能带、半导体、PN 结</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-free-electron.html"><span class="title">为什么金属电阻率随温度线性升?</span><span class="sub">—— Sommerfeld 自由电子气</span></a></li>
+  <li><a href="07-bloch.html"><span class="title">电子在周期势里为什么仍能"自由"运动?</span><span class="sub">—— Bloch 定理与准动量</span></a></li>
+  <li><a href="08-bands.html"><span class="title">金属、半导体、绝缘体只差一个能隙吗?</span><span class="sub">—— 能带结构与 Fermi 面</span></a></li>
+  <li><a href="09-semiconductors.html"><span class="title">掺杂为什么能控制导电性?</span><span class="sub">—— n 型、p 型与杂质能级</span></a></li>
+  <li><a href="10-pn-junction.html"><span class="title">PN 结为什么只能单向导通?</span><span class="sub">—— 二极管与晶体管的物理根</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>强关联与磁性
+  <span class="part-blurb">铁磁、Mott、Hubbard、自旋玻璃、量子相变</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-ferromagnetism.html"><span class="title">铁为什么会变成磁铁?</span><span class="sub">—— Heisenberg 交换与 Curie 转变</span></a></li>
+  <li><a href="12-mott.html"><span class="title">为什么有些"应该导电"的材料反而不导电?</span><span class="sub">—— Mott 绝缘体与电子互斥</span></a></li>
+  <li><a href="13-hubbard.html"><span class="title">Hubbard 模型为什么是凝聚态的"核心方程"?</span><span class="sub">—— 跳跃 $t$ 与库仑 $U$</span></a></li>
+  <li><a href="14-spin-glass.html"><span class="title">无序磁体为什么"冻"成自旋玻璃?</span><span class="sub">—— Frustration 与多重亚稳态</span></a></li>
+  <li><a href="15-quantum-phase-transition.html"><span class="title">零温下的相变长什么样?</span><span class="sub">—— 量子临界点与标度</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>超导与超流
+  <span class="part-blurb">Meissner、BCS、Cooper、超流氦、Josephson</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-superconductivity.html"><span class="title">为什么超导体把磁场推出去?</span><span class="sub">—— Meissner 效应与零电阻</span></a></li>
+  <li><a href="17-cooper-pairs.html"><span class="title">Cooper 对怎么形成的?</span><span class="sub">—— 声子介导的吸引与 BCS 基态</span></a></li>
+  <li><a href="18-superfluid-helium.html"><span class="title">液氦为什么会爬上杯壁?</span><span class="sub">—— Bose-Einstein 凝聚与超流</span></a></li>
+  <li><a href="19-high-tc.html"><span class="title">高温超导 30 年还没解决什么?</span><span class="sub">—— 铜氧化物与陪伴的奇怪金属</span></a></li>
+  <li><a href="20-josephson.html"><span class="title">Josephson 结为什么能精确测电压?</span><span class="sub">—— $I = I_c\sin\phi$ 与电压标准</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>拓扑相
+  <span class="part-blurb">量子 Hall、分数 Hall、拓扑绝缘体、Majorana、anyon</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-quantum-hall.html"><span class="title">为什么量子 Hall 电阻精确到 $h/e^2$?</span><span class="sub">—— 整数 Hall 与 von Klitzing 1980</span></a></li>
+  <li><a href="22-fractional-hall.html"><span class="title">分数量子 Hall 怎么会出现 $e/3$ 准粒子?</span><span class="sub">—— Laughlin 波函数与 anyon</span></a></li>
+  <li><a href="23-topological-insulator.html"><span class="title">拓扑绝缘体的"边缘态"为什么不会被无序破坏?</span><span class="sub">—— $\mathbb Z_2$ 不变量</span></a></li>
+  <li><a href="24-majorana.html"><span class="title">凝聚态里能找到 Majorana 费米子吗?</span><span class="sub">—— 半导体纳米线与零偏置峰</span></a></li>
+  <li><a href="25-topological-superconductor.html"><span class="title">拓扑超导能做什么?</span><span class="sub">—— 非阿贝尔 anyon 与拓扑量子计算</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>软物质与涌现
+  <span class="part-blurb">液晶、高分子、自组装、临界、复杂性</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-liquid-crystals.html"><span class="title">液晶为什么既是液体又像晶体?</span><span class="sub">—— 序参量与 nematic 相</span></a></li>
+  <li><a href="27-polymers.html"><span class="title">高分子为什么"卷成一团"?</span><span class="sub">—— 自由连接链与高斯统计</span></a></li>
+  <li><a href="28-self-assembly.html"><span class="title">细胞膜为什么自动形成?</span><span class="sub">—— 自组装与最低能量原理</span></a></li>
+  <li><a href="29-universality.html"><span class="title">为什么不同体系在临界点指数相同?</span><span class="sub">—— 普适类与 RG 的物质版本</span></a></li>
+  <li><a href="30-more-is-different.html"><span class="title">"More is different" — 涌现究竟是什么?</span><span class="sub">—— Anderson 1972 与凝聚态的哲学</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第七卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

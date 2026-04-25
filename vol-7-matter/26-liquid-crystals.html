@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>液晶为什么既是液体又像晶体? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="25-topological-superconductor.html">← 上一节</a>
+  <span class="chapter-title">第 26 节 / 30 · 第 6 部分 · 软物质与涌现 · 第七卷·物质是什么?</span>
+  <a href="27-polymers.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>液晶为什么既是液体又像晶体?</h1>
+  <div class="sub">—— 序参量与 nematic 相</div>
+
+  <div class="abstract">
+    1888 年, 奥地利植物生理学家 Friedrich Reinitzer 在试管里加热一块从胡萝卜里提出来的胆甾醇苯甲酸酯 (cholesteryl benzoate), 想测它的熔点. 他看到一件怪事 — 145.5°C 时固体熔成一坨混浊乳白色的液体, 用显微镜看居然有偏振色彩; 继续加热到 178.5°C, 这坨乳液才突然变透明, 像普通液体. 中间这 33 度的温区里, 物质流得跟水一样, 却像晶体一样有光学各向异性. Reinitzer 寄了样品给德国晶体学家 Otto Lehmann, 后者第二年 (1889) 在论文里给它起了名字: <em>flüssige Krystalle</em>, 液态晶体. 这一节把"液晶"讲清楚: 为什么棒状分子在熔化之后还保留一种比液体高的对称性, Onsager 1949 怎么用纯几何排斥力推出 nematic 相, 序参量 $S$ 与张量 $Q_{ij}$ 怎么量化"取向有序无空间序"的中间态, Frank 1958 的弹性能怎么决定 LCD 像素的开关, 以及 de Gennes 1971 年代怎么把这件事抬升成"软物质" (soft matter) 这个新学科的母方.
+  </div>
+
+  <p>从前面几节走过来, 我们把"物质有序"已经讲过好几个版本: 晶体的平移对称破缺 (第 1-3 节)、铁磁的旋转对称破缺 (第 11 节)、超导的 $U(1)$ 规范对称破缺 (第 18-25 节). 这些有序态都是"全有或全无" — 要么对称破缺, 要么没破. 液晶是一个反例, 它告诉我们对称破缺可以"分阶段". 一块由长棒状分子组成的物质, 加热时不必一步从晶体跳到完全无序的液体, 它可以先打破平移对称 (位置变随机) 但保留旋转对称的一部分 (取向还集体指向某一方向), 再继续加热打破旋转对称. 中间这一相, 既流动又各向异性, 就是 nematic 液晶. 它在你眼前晃 — 手机屏、电视屏、笔记本屏, 几十亿块都靠它. 但它的物理底子, 是凝聚态对称分类里一块独立的版图, 也是软物质这个分支的起点.</p>
+
+  <h2>一、Reinitzer 的胡萝卜与中间相</h2>
+
+  <p>Reinitzer 1888 年那个实验值得复述细节, 因为它含的物理太多. 胆甾醇苯甲酸酯的分子是一个胆甾醇骨架接上一个苯甲酸酯基, 形状像一根中段微弯的硬棒, 长度约 30 Å, 直径约 5 Å, 长径比 6:1. 这个比例是关键 — 棒越长, 取向有序越容易. 他把样品放在加热载玻片上, 145.5°C 看到固体熔化, 但"液体"是混浊的乳白色, 用偏振光显微镜还看到丝带状的彩色纹理 (这种纹理后来被叫 <em>schlieren texture</em>, 是 nematic 相的指纹). 再加热, 178.5°C 时这坨乳液"再熔化"一次, 变成普通透明液体 — 现代术语称这第二个温度为 <em>清亮点</em> (clearing point) $T_{\rm NI}$, 标志 nematic-isotropic 相变.</p>
+
+  <p>Reinitzer 把这块"奇怪的液体"寄给 Lehmann, 因为 Lehmann 当时刚发明了带加热台的偏振显微镜. Lehmann 用偏振光看, 确认这相在两个偏振片正交时仍有光透过 — 这是各向异性的标志, 普通液体在正交偏振片之间应该全黑. 他在 1889 年论文里下结论: 这是一种新的物质态, 既流又各向异性, 命名 "flüssige Krystalle". 这个名字得罪了一大批化学家, 他们不承认液体能"像晶体". 争论拖了三十年, 直到 1922 年 Friedel 把液晶分成 nematic、smectic、cholesteric 三类, 名字才稳下来.</p>
+
+  <p>这三类的区别在于"有序了什么". 普通液体 (isotropic), 分子位置和取向都随机, 各向同性. 晶体 (crystal), 位置和取向都规则, 完全长程序. 液晶介于中间. <strong>Nematic 相</strong> (希腊语 νῆμα, 线), 取向有序: 所有棒平均指向某个方向 $\hat n$ ("director", 主轴), 但位置随机, 流得跟液体一样. <strong>Smectic A 相</strong> (希腊语 σμῆγμα, 肥皂), 取向 + 一维位置有序: 棒指向 $\hat n$, 而且在垂直 $\hat n$ 的方向上分层, 层内随机, 层间有 $\sim 30$ Å 的周期. <strong>Cholesteric 相</strong>, 也叫扭曲 nematic: 取向局部沿 $\hat n$, 但 $\hat n$ 本身沿一根轴慢慢扭, 周期叫 <em>pitch</em> $p$, 典型 0.3 - 1 μm. 这个 pitch 跟可见光波长一个量级, 所以 cholesteric 液晶会做布拉格反射 (Bragg reflection) 出彩色光 — 这就是变色龙皮肤、甲虫翅鞘里五颜六色的微观机制, 也是温变指示纸 (体温计、热水袋上那种) 的工作原理.</p>
+
+  <h2>二、序参量 $S$ 与张量 $Q_{ij}$</h2>
+
+  <p>液晶的有序怎么量化? 在铁磁体里, 序参量是磁化矢量 $\vec M$, 它有大小有方向. 在 nematic 液晶里不能用矢量 — 因为 nematic 有一个特殊对称: $\hat n \to -\hat n$ 是同一个态. 棒状分子两头在 nematic 相里没有区别 ("头朝上"与"头朝下"在统计上对等), 序参量必须对反演不变. 所以不能用矢量, 只能用更高阶的张量.</p>
+
+  <p>最简单的标量度量是<strong>取向序参量</strong> $S$. 设每个分子的长轴方向跟全局主轴 $\hat n$ 夹角为 $\theta$, 定义</p>
+
+  <p>$$ S = \tfrac{1}{2}\big\langle 3\cos^2\theta - 1\big\rangle. \tag{1} $$</p>
+
+  <p>角括号是对所有分子的统计平均. (1) 这条定义有几个意味. 取向完全无序 (各向同性液体), $\langle\cos^2\theta\rangle = 1/3$, 代入给 $S = 0$. 取向完美对齐 (晶体), $\theta = 0$, $\cos^2\theta = 1$, $S = 1$. nematic 相的 $S$ 介于零和一之间, 室温下典型值 $S \approx 0.5 - 0.7$. 例子: 5CB (4-cyano-4'-pentylbiphenyl, LCD 业界最常用的液晶之一) 在室温 (30°C) 处 nematic 相, 测得 $S \approx 0.6$. 升温到清亮点 $T_{\rm NI} \approx 35.3°C$ 时, $S$ 不连续跳到零 — 这是 Landau 理论里典型的<em>弱一阶</em>相变 (Maier-Saupe 1958 用平均场算出来 $S$ 在 $T_{\rm NI}$ 处跳变约 0.43). $S$ 是一阶 Legendre 多项式 $P_2(\cos\theta)$ 的统计平均, 对 $\theta \to \pi - \theta$ 反演不变, 与 nematic 的 $\hat n \to -\hat n$ 对称兼容.</p>
+
+  <p>(1) 是个标量, 只描写"有多有序", 没说"沿哪个方向". 完整序参量是一个二阶无迹张量 $Q_{ij}$:</p>
+
+  <p>$$ Q_{ij} = S\Big(n_i n_j - \tfrac{1}{3}\delta_{ij}\Big). $$</p>
+
+  <p>对单轴 nematic, $Q_{ij}$ 有一个非零本征值 $\tfrac{2}{3}S$ (沿 $\hat n$) 与两个简并本征值 $-\tfrac{1}{3}S$ (垂直 $\hat n$). 它对 $\hat n \to -\hat n$ 不变 ($n_i n_j$ 是双线性). 对各向同性液体, $Q_{ij} = 0$. 这个张量是写 Landau 自由能的正确变量, 因为它是体系所有对称都允许的最低阶不变量. de Gennes 1969 把 $Q_{ij}$ 引进文献, 后来 nematic 的 Landau-de Gennes 理论以它为骨架.</p>
+
+  <h2>三、Onsager 1949 — 排斥力就够</h2>
+
+  <p>nematic 相为什么会出现? 一个直觉: 棒状分子之间有吸引力, 平行排列时吸引力最大, 所以低温下倾向平行. 这个图景部分对, 但有一个关键的反例 — 实验上发现, 即使把分子之间所有吸引力关掉 (例如硬棒胶体悬浮液, 烟草花叶病毒在水里), 只要密度足够高, 系统照样自发形成 nematic 相. 1949 年 Lars Onsager 在 New York Academy 那篇著名论文里证明: 纯几何排斥, 就足以驱动 nematic 转变.</p>
+
+  <p>Onsager 的逻辑是个 entropy vs entropy 的较量. 考虑长 $L$、直径 $D$、长径比 $L/D \gg 1$ 的硬棒, 体积分数 $\phi$. 当 $\phi$ 大时, 棒之间会"撞", 撞的概率跟它们相对取向有关 — 两根平行的棒, 它们排斥彼此进入的"排除体积"约为 $L D^2$; 两根夹角 $\gamma$ 的棒, 排除体积约为 $2 L^2 D |\sin\gamma|$. 长棒比短棒厉害的地方: $L^2 D \gg L D^2$, 所以非平行的两根棒比平行的两根棒"占地"大得多. 系统在高密度下要装下所有棒, 平行排列腾出空间最多, 转化成自由体积熵的增益 $\Delta S_{\rm pos} \gt  0$. 代价是取向自由度被冻结, 取向熵损失 $\Delta S_{\rm or} \lt  0$. Onsager 算出来, 在 $\phi^* \sim D/L$ 处两种熵的差异翻号, 系统从各向同性跳到 nematic.</p>
+
+  <p>对 $L/D = 100$ (典型烟草花叶病毒), Onsager 预测的临界体积分数 $\phi^* \approx 4 D/L \approx 4\%$. 实验上 Bawden-Pirie 1937 在 TMV 悬浮液里测到 nematic 形成的体积分数恰好在几个百分点 — 这是一个纯熵驱动的有序相, 没有任何吸引力, 没有任何能量参与, 跟你"低温找最低能量"的直觉完全相反. Onsager 这套思路后来被 hard rod、hard sphere、hard polygon 系统反复验证, 是 entropic ordering 的奠基例子. 它告诉我们 nematic 相不是"分子吸引"的结果, 而是"几何不让步"的结果.</p>
+
+  <h2>四、Frank 弹性能与 LCD</h2>
+
+  <p>nematic 相的低能激发是什么? 不是粒子振动 (那是声子), 而是<em>主轴 $\hat n(\vec r)$ 的空间畸变</em>. 让 $\hat n$ 在不同位置稍稍指向不同方向, 类似于把一片 spin 海稍稍倾斜 — 但因为 $\hat n$ 没有大小自由度 (只是单位矢量), 也没有反向自由度 ($\hat n = -\hat n$), 它的畸变方式特殊. F. C. Frank 1958 在 Discussions of the Faraday Society 上写下三种基本畸变模式的弹性能:</p>
+
+  <p>$$ F = \tfrac{1}{2}\int d^3r\,\Big[K_1(\nabla\cdot\hat n)^2 + K_2(\hat n\cdot\nabla\times\hat n)^2 + K_3(\hat n\times(\nabla\times\hat n))^2\Big]. \tag{2} $$</p>
+
+  <p>(2) 是这一节的第二条核心公式. 三项分别对应: $K_1$ <em>splay</em> (展开, 像扇子打开); $K_2$ <em>twist</em> (扭转, 像麻花); $K_3$ <em>bend</em> (弯曲, 像香蕉). 三个弹性常数 $K_1, K_2, K_3$ 都有量纲 [能量/长度], 典型值 $\sim 10^{-11}$ N (即 10 pN), 也就是说要把 1 cm³ 液晶里的 $\hat n$ 转 90° 大概只需要 $\sim 10^{-11}$ J 的能量, 比铁磁里转磁化方向小 6 个量级. 这就是"软物质"的"软" — 弹性极小, 弱外场就能驱动.</p>
+
+  <p>液晶显示 (LCD) 的工作原理直接基于 (2). 一块 5CB nematic 液晶被夹在两块带 ITO 透明电极的玻璃之间, 两玻璃内表面经过摩擦处理 (rubbed polyimide), 让边界处的 $\hat n$ 沿摩擦方向. 上下玻璃摩擦方向互相垂直 90°, 于是液晶内部 $\hat n$ 自动形成一个连续 90° 扭转 — 这是 <em>twisted nematic</em> (TN) 配置. 入射偏振光通过这个扭转层时, 偏振方向被"导引"也跟着扭 90° (Mauguin 1911 极限, $K_2$ 项给出的解), 出来后被另一片偏振片透过, 像素看起来亮. 给电极加电压 $V$, 电场通过介电各向异性 $\Delta\epsilon$ 给液晶一个 torque, 让 $\hat n$ 沿场方向 (垂直于玻璃) 重新排, 扭转结构被破坏, 偏振光不再被导引, 出射偏振方向与第二偏振片正交, 像素变暗. 临界电压 (Fréedericksz 1933 转变) 由 $K$ 与 $\Delta\epsilon$ 决定: $V_c = \pi\sqrt{K_1/(\epsilon_0\Delta\epsilon)}$, 5CB 给出 $V_c \approx 1$ V — 这是为什么手机屏只用几伏就能开关像素.</p>
+
+  <p>1968 年, RCA 实验室的 George H. Heilmeier 团队搭出了第一台基于液晶的显示器 (用的是 dynamic scattering mode, 后来被 TN 取代). Heilmeier 当年看到液晶在电场下从透明变浑浊, 立刻意识到这可以做成"画素"开关. 他和团队 1968 年发表 "A New Electro-Optic Effect in Certain Classes of Nematic Liquid Crystals", 这是 LCD 商业化的起点. 70 年代日本人 (尤其 Sharp) 接手, 把 TN 配置工程化, 1973 年第一块液晶计算器面市. 到 21 世纪 10 年代, 液晶显示器在全球已经是个万亿美元规模的产业 — 你手里几乎所有屏幕背后都是 (2) 的弹性能 + Fréedericksz 转变 + 偏振光导引这三件事在协同工作. 这是凝聚态物理史上少有的"理论-实验-产业"在同一代人内完成的链条.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 三个并排的小盒子, 都装满棒状分子. (1) 最左 isotropic — 棒杂乱朝各方向, 上方写 "$T \gt  T_{\rm NI}$, $S = 0$"; (2) 中间 nematic — 所有棒平均指向一根虚线 director $\hat n$, 但位置仍随机, 上方写 "$T_{\rm NI} \gt  T \gt  T_{\rm SmA}$, $S \approx 0.6$"; (3) 最右 smectic A — 棒沿 $\hat n$ 排, 而且在垂直 $\hat n$ 方向上分层, 层间距标 $d \sim 30$ Å, 上方写 "$T \lt  T_{\rm SmA}$, 取向 + 层序". 下方注: "Reinitzer 1888 cholesteryl benzoate, 145.5°C 与 178.5°C 之间的中间相 = nematic + cholesteric".]</div>
+  </figure>
+
+  <h2>五、de Gennes 与软物质这个母方</h2>
+
+  <p>1971 年, Pierre-Gilles de Gennes 在法国奥赛 (Orsay) 把"液晶物理"系统化, 出版 The Physics of Liquid Crystals (1974 年第一版). 他做的事情不只是整理 nematic 与 smectic 的实验现象, 而是把它们映射到磁学与超流的语言: nematic-isotropic 转变 ↔ Heisenberg 铁磁的对称破缺 (但在张量序参量层面); smectic A-nematic 转变 ↔ 超导转变 (一维 mass density wave + gauge field), 这个映射叫 de Gennes-McMillan 映射, 揭示 smectic 跟 type-II 超导有同样的相图 (Halperin-Lubensky-Ma 1974). de Gennes 用这种"跨学科平行"把液晶嵌进凝聚态的核心理论框架, 之后又把同样手法用到聚合物 (de Gennes 1979 Scaling Concepts in Polymer Physics) 与表面活性剂.</p>
+
+  <p>这一系列工作让他在 1991 年拿到 Nobel 物理学奖, 颁奖词写: "for discovering that methods developed for studying order phenomena in simple systems can be generalized to more complex forms of matter, in particular to liquid crystals and polymers." 颁奖典礼上他造了个新词 — <em>la matière molle</em>, 英文 <em>soft matter</em>, 中文软物质. 这个词从此成了一门独立学科的名字, 包括液晶、聚合物、胶体、生物膜、表面活性剂、颗粒物质. 软物质的统一特征: (i) 弹性常数小 (Frank 常数 10 pN, 比硬晶体 10⁵ N/m 小 6 个量级); (ii) 自组装 (像 nematic 这种自发对齐); (iii) 对外场敏感 (1 V 就能开关 LCD); (iv) 涉及尺度跨越多个量级 (分子 nm, pitch μm, 应用 cm). de Gennes 的洞见是: 这些看似杂乱的物质共享同一种物理 — 长程关联但弱相互作用, 必须用对称破缺与重整化群一起处理.</p>
+
+  <p>把数字落实一遍. 5CB 在 30°C 处 nematic, $S \approx 0.6$, 清亮点 $T_{\rm NI} = 35.3°C$. Frank 弹性常数 $K_1 \approx 6 \times 10^{-12}$ N (splay), $K_2 \approx 4 \times 10^{-12}$ N (twist), $K_3 \approx 8 \times 10^{-12}$ N (bend), 都在 pN 量级. Cholesteric pitch $p$ 范围 0.3 - 1 μm, 落在可见光波段 (400 - 700 nm), 给出布拉格反射波长 $\lambda = n p$ ($n$ 是平均折射率约 1.5), 解释甲虫与变色龙的彩色. LCD 像素电压 $V_c \approx 1$ V, 响应时间 $\tau \approx \gamma_1 d^2/(K\pi^2) \approx 10$ ms ($\gamma_1$ 是旋转黏度, $d$ 是 cell 厚度), 这是为什么早期 LCD 屏看快速运动会模糊 (现代屏靠工艺优化把 $\tau$ 压到 1 ms). Onsager hard rod 临界 $\phi^* \approx 4 D/L$, TMV ($L/D \approx 100$) 给出 $\phi^* \approx 4\%$, 与实验吻合.</p>
+
+  <h2>六、液晶留下的语言</h2>
+
+  <p>把这一节摆在第七卷的位置看: 前面 25 节我们走过的都是"硬"凝聚态 — 晶格、能带、超导、拓扑. 从 nematic 开始, 我们进入"软"那一边. 软物质不是说物理变软了, 而是说能量尺度变小, 系统对外场异常敏感, 自组装与拓扑缺陷成为主角. 液晶给我们准备了几样工具: (a) 张量序参量 $Q_{ij}$ (而非矢量), 用来描写带反演对称的有序; (b) 排斥力驱动的相变 (Onsager 1949), 教我们 entropy 也能"驱"出有序; (c) Frank 弹性能 (2), 教我们怎么写连续介质的弹性能并把它跟可观测量 (Fréedericksz 电压) 联系起来; (d) 跨学科映射 (de Gennes 1971-), 把 nematic 跟铁磁、把 smectic 跟超导对应起来.</p>
+
+  <p>下一节我们走得更远, 进入软物质的另一支主流: 聚合物 (polymers). 一根橡皮筋为什么能拉到原长几倍还回得来? 一锅 PVA 溶液为什么有黏弹性? 为什么聚合物链的回旋半径是 $R \sim N^{3/5}$ 而不是 $N^{1/2}$? 这些题目跟液晶共享同一个 de Gennes 风格 — 用对称、标度、重整化群打通"复杂物质"的统一语言.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Reinitzer 1888 在 cholesteryl benzoate 里看到 145.5°C 与 178.5°C 之间一个流动但光学各向异性的中间相, Lehmann 1889 命名 "flüssige Krystalle". 这是液晶 — 一种位置随机但取向有序的物质态. 三大类: nematic (取向序), smectic (取向 + 层序), cholesteric (扭曲 nematic, pitch 0.3 - 1 μm 给出布拉格反射, 变色龙皮肤的机制). 序参量是标量 $S = \tfrac{1}{2}\langle 3\cos^2\theta - 1\rangle$ (1 式) 或张量 $Q_{ij} = S(n_i n_j - \tfrac{1}{3}\delta_{ij})$, 对 $\hat n \to -\hat n$ 不变. 5CB 在 30°C 测得 $S \approx 0.6$. Onsager 1949 证明纯几何排斥就够 — 长径比 $L/D \gg 1$ 的硬棒在体积分数 $\phi^* \sim D/L$ 处自发 nematic 化, 是 entropic ordering 的奠基例. Frank 1958 写下连续介质弹性能 (2 式) $F = \tfrac{1}{2}\int[K_1(\nabla\cdot\hat n)^2 + K_2(\hat n\cdot\nabla\times\hat n)^2 + K_3(\hat n\times\nabla\times\hat n)^2]$, 三项 splay/twist/bend, 弹性常数 $\sim 10$ pN, 比硬晶体小 6 个量级 — "软"由此而来. Heilmeier 1968 据此搭出第一台 LCD, twisted nematic 配置 + Fréedericksz 转变 ($V_c \approx 1$ V) 把 5CB 做成开关像素, 70 年代 Sharp 工程化, 现已是万亿美元产业. de Gennes 1971-1974 把 nematic-iso 与铁磁、smectic-nematic 与超导建立映射, 1991 年获 Nobel, 顺手造词 "soft matter". 下一节我们沿这条线走进聚合物 — 高分子链的标度律与橡胶弹性.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="25-topological-superconductor.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="27-polymers.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>量子模拟能解决什么经典做不到的事? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="28-quantum-error-correction.html">← 上一节</a>
+  <span class="chapter-title">第 29 节 / 30 · 第 6 部分 · 量子信息与前沿 · 第六卷·量子是什么?</span>
+  <a href="30-measurement-problem.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>量子模拟能解决什么经典做不到的事?</h1>
+  <div class="sub">—— Feynman 1981 与量子优越性</div>
+
+  <div class="abstract">把一只 $n$ 粒子的量子系统放到经典计算机上模拟, 它的态向量需要 $2^n$ 个复振幅, 内存爆炸是双指数级的: $n=50$ 已经要 $2^{50}\times 16\,\mathrm{B}\approx 16\,\mathrm{PB}$ 内存; $n=300$ 比可观测宇宙的原子总数还多. 这就是 Feynman 1981 在 MIT Endicott House 演讲里那句著名抗议的源头 — "Nature isn't classical, dammit, and if you want to simulate her you'd better make it quantum mechanical". 他提出: 用一个可控的量子系统去模拟另一个不可控的量子系统, 资源是多项式而非指数. Lloyd 1996 把这个想法做成定理, 证明任何局域 Hamiltonian 都能被通用量子计算机以多项式步数模拟. 2019 年 Google Sycamore 53 qubit 在一个特制随机线路任务上跑了 200 秒, 当时估算经典超算需要 10000 年 (后来 IBM 用张量网络反驳到 2.5 天); 2020 年中科大 Jiuzhang 用 76 个光子做 Gaussian boson sampling. 本节讲清楚 "经典做不到" 究竟指什么, 写下 Trotter 分解与 Suzuki-Trotter 公式, 把量子化学与凝聚态的目标 (FeMoco 固氮酶、Hubbard 模型、晶格 QCD) 列一遍, 然后回答 "量子优越性" 这个口号背后的物理与算法骨架.</div>
+
+  <p>给定一个 $n$ 个 qubit 的量子系统, 它的纯态写在 $2^n$ 维 Hilbert 空间里, 即 $\ket{\psi}=\sum_{x\in\{0,1\}^n} c_x \ket{x}$, 振幅 $c_x\in\mathbb{C}$ 共有 $2^n$ 个. 经典模拟意味着你必须在内存里同时存这 $2^n$ 个复数, 然后乘上 $2^n\times 2^n$ 的幺正矩阵更新它们. $n=30$ 时态向量 $\sim 16\,\mathrm{GB}$, 桌面机吃力但能撑; $n=40$ 跳到 $16\,\mathrm{TB}$, 要小机房; $n=50$ 是 $16\,\mathrm{PB}$, 全球前几台超算才存得下; 到 $n=60$ 已经 $16\,\mathrm{EB}$, 超过当今所有数据中心总和. 这条 $2^n$ 曲线就是经典模拟的硬墙.</p>
+
+  <p>Feynman 1981 的洞见是: 自然系统本身就是 $2^n$ 维的 Hilbert 空间在演化, 它没有 "存内存" 的烦恼, 因为<em>它就是物理</em>. 那么如果我做一台直接由 $n$ 个 qubit 构成的可控量子机器, 让它的 Hamiltonian 模仿目标系统的 Hamiltonian, 演化代价是多项式 (与 $n$ 和 $t$ 都呈多项式) 而不是指数. 这一脉思路从 1980s 边缘的 "玩具想法" 走到 2020s 的工业级硬件, 中间经过 Lloyd 1996 的通用性证明、Shor 1994 因子分解算法、Aaronson 2010 boson sampling 复杂度分析三块支柱.</p>
+
+  <h2>一、$2^n$ 这堵墙: 经典模拟到底卡在哪</h2>
+
+  <p>先把数字算清楚. 一个 $n$-qubit 态向量 $\ket{\psi}=\sum_x c_x\ket{x}$ 有 $2^n$ 个复振幅, 每个用双精度 16 字节存. 总内存</p>
+  <p>$$ M(n) = 2^n \times 16\,\mathrm{B}. \tag{1} $$</p>
+
+  <p>代入 $n=30, 40, 50, 60$ 分别得 $16\,\mathrm{GB}, 16\,\mathrm{TB}, 16\,\mathrm{PB}, 16\,\mathrm{EB}$. 2024 年世界第一超算 Frontier (Oak Ridge) 总内存约 $9.4\,\mathrm{PB}$, 即使所有 RAM 全用来存一个态向量, 也只能撑到 $n=49$. 全球数据中心总存储量约 $\sim 1\,\mathrm{ZB}=10^3\,\mathrm{EB}$, 极限大概 $n\le 65$. 再往上 — 比如要模拟 $n=300$ 的体系 (一颗中等大小分子的电子轨道) — $2^{300}\approx 10^{90}$ 已经超过可观测宇宙的总粒子数 ($\sim 10^{80}$), 不是 "更大的硬盘" 能解的, 是物理上的不可能.</p>
+
+  <p>当然有聪明的经典近似: 量子蒙特卡罗在玻色或某些铁磁系统里能在多项式时间给出正确期望值; 张量网络 (DMRG, MERA, PEPS) 用低纠缠假设把态向量压成 $\mathrm{poly}(n)$ 张量积; 平均场与微扰展开能处理弱耦合区. 但每条路径都有具体失效区: 张量网络处理高维与高纠缠系统就崩; 量子蒙特卡罗在 fermion 系统遇到 "符号问题" — 振幅相消导致 sample 方差指数增长, $n$ 增加几个就爆掉. Hubbard 模型、QCD 中等密度区、强关联电子材料 (高 $T_c$ 超导铜氧化物、扭曲双层石墨烯) 都属于经典近似无法可控收敛的区域. 这才是 "经典做不到" 的具体含义: 不是任何量子系统经典都不能算, 而是<em>纠缠强、fermion 多、相互作用结构难分离</em>的那一类落进了硬墙.</p>
+
+  <h2>二、Trotter 分解: 从 Hamiltonian 到量子线路</h2>
+
+  <p>量子模拟器要做的事是: 给定目标系统的 Hamiltonian $\hat H$, 在 qubit 硬件上实现演化算符 $U(t)=e^{-i\hat H t/\hbar}$. 对真实物理系统, $\hat H$ 通常是局域项之和 $\hat H=\sum_{j=1}^{L} \hat H_j$, 每一项 $\hat H_j$ 只作用在 $\mathcal{O}(1)$ 个粒子上 (近邻相互作用、化学键、自旋耦合等). 但<strong>不同 $\hat H_j$ 一般不对易</strong>, 因此 $e^{-i\hat H t}\ne \prod_j e^{-i\hat H_j t}$.</p>
+
+  <p>解决: 把 $t$ 切成 $n$ 小段 $\mathrm{d}t=t/n$, 每一小段近似</p>
+  <p>$$ e^{-i\hat H\,\mathrm{d}t} = e^{-i\sum_j \hat H_j\,\mathrm{d}t} \approx \prod_j e^{-i\hat H_j\,\mathrm{d}t} + \mathcal{O}(\mathrm{d}t^2). \tag{2} $$</p>
+  <p>累乘 $n$ 步, 总演化为</p>
+  <p>$$ U(t) \approx \Bigl(\prod_j e^{-i\hat H_j\,t/n}\Bigr)^n + \mathcal{O}(t^2/n). \tag{3} $$</p>
+  <p>这就是一阶 Trotter 分解 (Trotter 1959, Lie 1875). 误差在 $\mathrm{d}t\to 0$ 极限下消失, 工程上要权衡 $n$ 大 (步数多, 总线路深) 与 $\mathrm{d}t$ 小 (单步误差小).</p>
+
+  <p>每一项 $e^{-i\hat H_j\,\mathrm{d}t}$ 因为只作用在少数 qubit 上, 是一个标准量子门 (单/双 qubit 旋转); 整条线路深度 $\mathcal{O}(L\cdot n)=\mathcal{O}(L\cdot t/\mathrm{d}t)$, 关于系统大小 $L$ 与时间 $t$ 都是多项式. 这正是 Lloyd 1996 通用量子模拟器定理的内核: 任何局域 $\hat H$ 都能被多项式深度的量子线路演化任意时长.</p>
+
+  <p>Suzuki 1976 进一步给出高阶 Trotter 公式. 二阶</p>
+  <p>$$ S_2(\mathrm{d}t)=\prod_j e^{-i\hat H_j\,\mathrm{d}t/2} \,\prod_j e^{-i\hat H_j\,\mathrm{d}t/2}\Big|_{\text{反序}} = e^{-i\hat H\,\mathrm{d}t} + \mathcal{O}(\mathrm{d}t^3), \tag{4} $$</p>
+  <p>误差降到 $\mathrm{d}t^3$. 第 $2k$ 阶 Suzuki-Trotter 误差为 $\mathrm{d}t^{2k+1}$, 步数也只是常数倍增长. 现代量子化学算法 (qubitization, LCU, Taylor series) 把误差进一步压到 $\mathcal{O}(\log(1/\epsilon))$ 量级, 但 Trotter 仍是教科书第一招与硬件实测的常用工具.</p>
+
+  <h2>三、目标: 化学、凝聚态、QCD 的 "经典硬骨头"</h2>
+
+  <p>把 (2)(3)(4) 当作工具, 量子模拟瞄准的具体目标分四类.</p>
+
+  <p><strong>量子化学</strong>. 多电子分子的电子结构问题: 给定 $N$ 个原子核与 $M$ 个电子, 求基态能量与反应路径. 经典 CCSD(T) 在 $\sim 10$ 个原子小分子上达到化学精度 ($\sim 1\,\mathrm{kcal/mol}$), 但对强关联体系 (FeMoco 固氮酶活性中心 $\mathrm{Fe_7MoS_9C}$, 含约 60 个轨道) 收敛极差, 误差 $\sim 100\,\mathrm{kcal/mol}$. FeMoco 是固氮酶把 $\mathrm{N_2}$ 转化为 $\mathrm{NH_3}$ 的核心 — 工业 Haber-Bosch 法消耗全球 $\sim 1\%$ 能量, 若能算清 FeMoco 机理就有望设计低耗催化剂. Reiher 等 2017 估算用 100 万 qubit 容错量子计算机 4 天能算到化学精度. 类似目标包括高 $T_c$ 铜氧化物超导机理、酶反应过渡态、光合作用色素中心.</p>
+
+  <p><strong>凝聚态</strong>. Hubbard 模型 — 晶格上每格点最多两电子, on-site 排斥 $U$ 与近邻跃迁 $t$ — 是高 $T_c$ 超导的最简标准模型, 二维 Hubbard 在中等 $U/t$ 与 doping 区域至今没有可信经典解. fermion 符号问题让蒙特卡罗在 $T\lt T^*\sim t/10$ 失效. 量子模拟 (冷原子光晶格, Bloch 实验组 2017 起) 直接在实验室造一个可控的二维 Hubbard, 测密度关联与自旋关联函数, 已确认反铁磁短程序与条纹相. Lukin 组 2021 用 256 个 Rydberg 中性原子模拟反铁磁 Ising 与量子相变, 直接看到 $Z_2$ 序参量随调控参数的标度.</p>
+
+  <p><strong>晶格 QCD 与高能</strong>. QCD 在低能强耦合区不能用微扰, 经典只能用 Euclidean Monte Carlo (Wilson 1974 提出). 但有限重子密度时 fermion 行列式变复数, 又陷符号问题 — 中子星内部物质方程态、quark-gluon 相变临界点至今缺可靠数据. 实时演化更糟: Minkowski 度规下 path integral 不再是概率, 蒙特卡罗失效. 量子模拟原则上能直接演化 $\mathrm{SU}(3)$ 规范场, 早期实验 (Innsbruck, Maryland) 已经在 $\mathrm{SU}(2)$ 一维模型上跑了若干 qubit. 2020s 末瞄准低维 QED 与 schwinger 模型在 50-100 qubit 上的可观察量.</p>
+
+  <p><strong>多体动力学</strong>. 量子热化、信息扰动 (OTOC, 量子混沌)、time crystal、many-body localization — 这些都是<em>动力学</em>问题, 经典张量网络在演化数十个时间步后纠缠饱和, 计算量爆炸. Google 2023 用 Sycamore 测了 70 qubit 的随机线路前 24 个 cycle 的 OTOC, 与经典张量网络对比测试 "经典模拟器多快崩".</p>
+
+  <h2>四、量子优越性: Sycamore, Jiuzhang, 与 "经典 10000 年"</h2>
+
+  <p>"量子优越性" (quantum supremacy, Preskill 2012) 指: 找到一个具体计算任务, 量子机器能做、所有已知经典算法 (在合理硬件上) 都做不到. 它不要求任务有用, 只要不可经典模拟.</p>
+
+  <p>2019 年 10 月 Google AI Quantum 团队 (Arute 等) 在 <em>Nature</em> 发表 Sycamore 处理器结果. Sycamore 是 53 个超导 transmon qubit 排成 7×7 网格 (减一个坏 qubit) 的硬件, 单门保真度 $99.85\%$, 双门 $99.4\%$. 任务: 跑一个深度 20 的随机量子线路, 输出 $2^{53}\approx 9\times 10^{15}$ 个比特串中采样若干, 验证它们的概率分布与理论预言匹配 (linear cross-entropy). Sycamore 200 秒采到 $10^6$ 个样本; Google 估算 IBM Summit 超算 (当时 #1, 200 PFLOPS) 直接做需要 $\sim 10^4$ 年. 这就是首次声称的量子优越性.</p>
+
+  <p>反驳很快来. IBM 团队用张量网络 + 二级硬盘缓存的算法, 论证 Summit 实际只要 $\sim 2.5$ 天 — 减小四个量级. 2022 年中国科学院张潘组用更巧的张量网络在 GPU 上重做, 把估计降到几小时. Sycamore 任务在算法面前不像最初那么坚固; 但 53 qubit/20 深度仍位于 "经典需要数小时到数天 vs 量子几分钟" 这个边界, 算 "弱优越性". Google 2023 把同样架构推到 70 qubit/24 depth, 估算经典需 47 年, 进一步拉开距离.</p>
+
+  <p>2020 年 12 月中科大潘建伟组发表 Jiuzhang (九章), 用 76 个光子做 Gaussian boson sampling — 让光子穿过 100 模干涉网络后输出光子数分布. Aaronson 2010 证明 boson sampling 在合理复杂性假设下经典不可多项式模拟. Jiuzhang 200 秒得到样本数若用 Sunway TaihuLight 经典模拟, 估算 $\sim 6\times 10^8$ 年. 2021 年升级版 Jiuzhang 2.0 用 113 光子, 又拉一个量级. 与 Sycamore 不同, boson sampling 路线对算法改进的鲁棒性更强, 因为复杂性根植于 permanent 函数的 #P-hardness.</p>
+
+  <p>这些 "优越性" 任务有一个共同弱点: 它们没有直接实用价值. 跑一个随机线路或 boson sampling 不解决 FeMoco. 真正的下一步是 "量子有用性 (quantum utility)" — 做一个不是随机的、对人类有用的计算, 同时仍超过经典. 2023 年 IBM 在 127 qubit Eagle 处理器上跑 Trotter 化的 2D Ising 动力学, 与张量网络对比, 在中等深度区域给出与经典推算接近吻合的能量值 (而经典张量网络在该深度已无法可控收敛). 这是从 "优越性" 向 "有用性" 迈进的早期信号.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 量子模拟双世界示意 — 左边一个真实多体系统 (例如二维 Hubbard 模型晶格, 黑点为格点, 实线为近邻跃迁 $t$, 圈代表 on-site 排斥 $U$), 标 Hamiltonian $\hat H_{\text{real}}=\sum_{\langle ij\rangle\sigma}-t\,c^\dagger_{i\sigma}c_{j\sigma}+U\sum_i n_{i\uparrow}n_{i\downarrow}$; 右边一个量子计算机 qubit 网格 (蓝色圆点排成 7×7 阵列, 双线表示双 qubit 门), 标 $\hat H_{\text{qubit}}=\sum_j h_j\hat\sigma_j+\sum_{jk}J_{jk}\hat\sigma_j\hat\sigma_k$; 中间一双向蓝色箭头标 "Jordan-Wigner / Bravyi-Kitaev 编码", 上方注 "Trotter 分解 $e^{-i\hat H t}\approx (\prod_j e^{-i\hat H_j\,\mathrm{d}t})^{t/\mathrm{d}t}$"; 右下角时间轴显示 200 s; 左下角注 "经典模拟内存 $2^n\times 16\,\mathrm{B}$ — $n=50$ 已 16 PB"]</div>
+  </figure>
+
+  <h2>五、历史与展望: 从 1981 到容错量子计算</h2>
+
+  <p>1981 年 5 月 6-8 日, MIT 与 IBM 在 Endicott House (Dedham, MA) 联合举办 "Physics of Computation" 会议, Feynman 做大会演讲. 他面对一屋子计算机科学家, 抛出那句被反复引用的话: "Nature isn't classical, dammit, and if you want to simulate her you'd better make it quantum mechanical, and by golly it's a wonderful problem because it doesn't look so easy." 这次演讲整理后以 "Simulating physics with computers" 题目发在 1982 年 <em>Int. J. Theor. Phys.</em>, 是量子计算这个学科的诞生文献之一. Feynman 在文中具体提议用一个 "universal quantum simulator" 替代经典图灵机, 并且<em>没</em>给出任何算法 — 他只论证了原理上可行.</p>
+
+  <p>Deutsch 1985 把这个想法形式化, 定义 "quantum Turing machine" 与 "universal quantum gate set". Bernstein-Vazirani 1993 证明量子可在 $\mathrm{poly}(n)$ 时间解一些经典需 $\Omega(2^n)$ 的问题. Shor 1994 给出 $n$ 位整数因子分解的 $\mathcal{O}((\log n)^3)$ 算法 — 直接威胁 RSA 公钥加密, 把量子计算推上风口. Lloyd 1996 证明通用量子模拟器存在: 任何局域 Hamiltonian 都能被通用量子门集以多项式资源模拟, 这正式封死了 Feynman 1981 的猜想. Aaronson-Arkhipov 2010 提出 boson sampling, 证明它在标准复杂性假设下经典不可多项式模拟, 给非通用量子设备 (光学网络) 也开了一条 "优越性" 路径.</p>
+
+  <p>2010s 是 NISQ (Noisy Intermediate-Scale Quantum, Preskill 2018) 时代: 50-1000 qubit, 错误率 $\sim 10^{-3}$, 没有容错纠错. Sycamore 2019、Jiuzhang 2020、IBM 2022 Osprey 433 qubit、IBM 2023 Condor 1121 qubit 都属此列. NISQ 设备只能跑短深度线路, 大多数有用应用 (Shor 因子分解, 长时间动力学) 还跑不动.</p>
+
+  <p>真正改变格局是<strong>容错量子计算 (FTQC)</strong>: 用纠错码把物理 qubit 错误率压到逻辑 qubit $10^{-15}$ 以下. 表面码估算: 每个逻辑 qubit 需要 $\sim 1000$ 物理 qubit. 因此 FeMoco 算法需要的 $\sim 10^6$ 逻辑 qubit 对应 $\sim 10^9$ 物理 qubit, 远超当今硬件. 2024-2025 已看到突破: Google 2024 用 surface code distance-7 把逻辑错误率压低到物理之下 (突破阈值); Microsoft + Quantinuum 2024 用拓扑保护得到 $10^{-3}$ 逻辑错误率; QuEra 2023 用中性原子 256 atoms 演示 48 逻辑 qubit. 工业 roadmap (IBM) 把 100 个高保真逻辑 qubit 设在 2029 年.</p>
+
+  <p>那么 "量子模拟能解决什么经典做不到的事?" 现阶段的答案: <em>非通用 sampling 任务 (Sycamore, Jiuzhang) 已超经典几个量级, 但无实用价值; 可信的化学/凝聚态优越性还要等容错量子计算</em>. 中期 (10-20 年) 的预期是: 化学反应基态能量与中等尺度 Hubbard 动力学先达到 "无经典对手" 的状态; QCD 与 Shor 算法需更长时间. 这也说明 Feynman 1981 提出的方向是对的, 但实现节奏比当时所有人想得都慢 — 量子机器要稳定到能跑实用算法, 比理论上证明它能跑要难得多.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>$n$ 个 qubit 的态向量需要 $2^n$ 个复振幅, $n=50$ 内存达 $16\,\mathrm{PB}$, $n=300$ 超出可观测宇宙. Feynman 1981 在 MIT Endicott House 提出 "用量子模拟量子" 跳过这堵指数墙: 让一个可控量子系统的 Hamiltonian 模仿目标的 $\hat H$, 演化代价多项式. Trotter 分解 $e^{-i\hat H t}\approx (\prod_j e^{-i\hat H_j\,\mathrm{d}t})^{t/\mathrm{d}t}$ 把局域 Hamiltonian 拆成可执行量子门, Suzuki 1976 高阶公式把误差降到 $\mathrm{d}t^{2k+1}$, Lloyd 1996 证明通用量子模拟器对任意局域 $\hat H$ 都行得通. 目标涵盖量子化学 (FeMoco 固氮酶, 高 $T_c$ 超导)、凝聚态 (Hubbard fermion 符号问题)、晶格 QCD (有限密度、实时动力学)、多体动力学 (热化、OTOC). 量子优越性首例是 Google 2019 Sycamore 53 qubit 跑随机线路 200 秒 (经典初估 10000 年, 后被 IBM 反驳到 2.5 天), 中科大 2020 Jiuzhang 76 光子做 Gaussian boson sampling, Lukin 组 2021 用 256 中性原子模拟反铁磁. 这些是 "优越性" 而非 "有用性": 真正能解 FeMoco、Hubbard、Shor 因子分解需要容错量子计算 (FTQC), 估算 $\sim 10^6$ 逻辑 qubit / $\sim 10^9$ 物理 qubit, 2024-2025 表面码刚突破阈值, 工业 roadmap 把 100 个逻辑 qubit 设在 2029. 这是一条从 1981 一句口号到 2030s 工业级硬件的长跑. 下一节我们闭环回测量问题 — 量子力学最古老的悖论, 也是 vol 6 的最后一节.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="28-quantum-error-correction.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="30-measurement-problem.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

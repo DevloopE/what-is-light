@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>电子在周期势里为什么仍能"自由"运动? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="06-free-electron.html">← 上一节</a>
+  <span class="chapter-title">第 7 节 / 30 · 第 2 部分 · 电子在固体里 · 第七卷·物质是什么?</span>
+  <a href="08-bands.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>电子在周期势里为什么仍能"自由"运动?</h1>
+  <div class="sub">—— Bloch 定理与准动量</div>
+
+  <div class="abstract">上一节 Sommerfeld 把电子当成完全自由的费米气, 关在金属体积 $V$ 这个空盒子里, 算出了金属电阻随温度线性升、电子比热线性下、Pauli 顺磁等一连串数字. 这套图像有一个极其可疑的破绽: 金属里明明插着一个一个的离子实, 离子实周围带正电, 中间的电子穿过它们时应该被强烈散射. 按经典 Drude 估计的"自由程"只有几个原子间距, 但实测纯铜在低温下电子能跑过几千个晶格周期才碰一次散射体. 为什么? 答案是 Felix Bloch 1928 年博士论文里的一句关键定理: 在严格周期的势 $V(\mathbf r + \mathbf R) = V(\mathbf r)$ 中, Schrödinger 方程的本征态必有形式 $\psi_{\mathbf k}(\mathbf r) = e^{i \mathbf k \cdot \mathbf r}\, u_{\mathbf k}(\mathbf r)$, 其中 $u_{\mathbf k}$ 与晶格同周期. 也就是说, 电子在周期势里的"基本运动模式"不是被一个一个离子来回弹, 而是一种带着原子尺度调制的平面波 — 它扫过任意多个原胞都不"知道"势能在变, 除非这条平面波被破坏 (杂质、声子、表面). $\mathbf k$ 不再是真的动量, 而是只在第一 Brillouin 区 (BZ) 内取值的"准动量" $\hbar \mathbf k$. 一维严格可解的 Kronig-Penney 模型给出第一条具体的能谱; 弱周期势近自由电子近似把第一能隙写成 $2|V_{\mathbf G}|$, $V_{\mathbf G}$ 是势的 Fourier 系数 — 由此 Si 的间接带隙 $1.12$ eV、Cu 的 $sp$ 价带宽 $\sim 10$ eV 都直接落到了同一张图里. Bloch 自己后来回忆: "我以为电子在金属里不可能有合理路径, 然后突然就 click 了一下" — 那一下后来变成了整整一卷凝聚态.</div>
+
+  <p>这一节讨论一件最反直觉的事情: 一个排得整齐的原子阵列, 对一个外来电子来说, 几乎不构成"障碍". 把它压缩到一句话就是 Bloch 定理. 我们先把"周期势 + Schrödinger"是什么样的数学对象写下来, 再用一行平移群论证明 Bloch 形式必然出现, 然后用 Kronig-Penney 模型把第一条具体的能带谱算给你看, 最后回到 Cu 与 Si — 看一眼真正的金属与半导体里, 这套准动量图像给出什么数量级.</p>
+
+  <h2>一、周期势的数学: 平移对称把哈密顿量分块</h2>
+
+  <p>把晶体里的离子先冻住不动 (Born-Oppenheimer 近似), 一颗外来电子感受到的总势能就是各个离子势的和:</p>
+
+  <p>$$ V(\mathbf r) = \sum_{\mathbf R} v(\mathbf r - \mathbf R), $$</p>
+
+  <p>这里 $\mathbf R = n_1 \mathbf a_1 + n_2 \mathbf a_2 + n_3 \mathbf a_3$ 跑遍 Bravais 格点. 关键事实只有一条: 这个 $V$ 在任何 Bravais 平移 $\mathbf R$ 下不变,</p>
+
+  <p>$$ V(\mathbf r + \mathbf R) = V(\mathbf r). $$</p>
+
+  <p>定义平移算符 $\hat T_{\mathbf R}$, 让它把波函数挪一个格矢: $\hat T_{\mathbf R}\, \psi(\mathbf r) = \psi(\mathbf r + \mathbf R)$. 单粒子哈密顿量 $\hat H = -\hbar^2 \nabla^2/(2m) + V(\mathbf r)$ 在这个平移下不变, $[\hat H, \hat T_{\mathbf R}] = 0$ — 动能对一切平移都不变, 势能因为周期性也不变. 这立刻意味着 $\hat H$ 与所有 $\hat T_{\mathbf R}$ 可以同时对角化: 我们可以找一组共同的本征函数. 因为不同的 $\hat T_{\mathbf R}$ 之间也对易 ($\hat T_{\mathbf R} \hat T_{\mathbf R'} = \hat T_{\mathbf R + \mathbf R'}$), 全部平移群是 Abel 的, 它的不可约表示全是一维, 都是单纯的相因子. 也就是说, $\hat H$ 的本征态 $\psi$ 必满足</p>
+
+  <p>$$ \hat T_{\mathbf R}\, \psi(\mathbf r) = c(\mathbf R)\, \psi(\mathbf r), \qquad c(\mathbf R + \mathbf R') = c(\mathbf R)\, c(\mathbf R'). $$</p>
+
+  <p>第二条是群表示的乘法律. 加上波函数归一 (相因子模 $1$), 解只能是 $c(\mathbf R) = e^{i \mathbf k \cdot \mathbf R}$, 其中 $\mathbf k$ 是某个三维实矢量. 把 $c(\mathbf R) = e^{i \mathbf k \cdot \mathbf R}$ 写回去, 就得到第一条 Bloch 定理:</p>
+
+  <p>$$ \psi_{\mathbf k}(\mathbf r + \mathbf R) = e^{i \mathbf k \cdot \mathbf R}\, \psi_{\mathbf k}(\mathbf r). \tag{1} $$</p>
+
+  <p>"波函数挪一个原胞, 只多一个相位." 这是 Bloch 定理的"周期边界"形式. 等价地, 设 $u_{\mathbf k}(\mathbf r) \equiv e^{-i \mathbf k \cdot \mathbf r}\, \psi_{\mathbf k}(\mathbf r)$. 把 $\mathbf r \to \mathbf r + \mathbf R$ 代入, 直接验证 $u_{\mathbf k}(\mathbf r + \mathbf R) = u_{\mathbf k}(\mathbf r)$. 也就是说本征态可以写成</p>
+
+  <p>$$ \psi_{\mathbf k}(\mathbf r) = e^{i \mathbf k \cdot \mathbf r}\, u_{\mathbf k}(\mathbf r), \qquad u_{\mathbf k}(\mathbf r + \mathbf R) = u_{\mathbf k}(\mathbf r). \tag{2} $$</p>
+
+  <p>"一个普通平面波 $e^{i \mathbf k \cdot \mathbf r}$ 乘上一个晶格周期的调制函数 $u_{\mathbf k}$." 这就是 Bloch 波. 公式 (1) 与 (2) 是一回事的两种写法, 一个强调相位关系, 一个强调因式分解. 它们的物理含义都同一句话 — 周期势没有破坏波函数的"远距离延展性", 它只是把一个无调制的平面波改成了一个带调制的平面波.</p>
+
+  <p>有一件事必须立刻说清楚: $\mathbf k$ <strong>不是真的动量</strong>. 平面波 $e^{i \mathbf k \cdot \mathbf r}$ 是 $\hat{\mathbf p} = -i \hbar \nabla$ 的本征态, 但 Bloch 波 $e^{i \mathbf k \cdot \mathbf r}\, u_{\mathbf k}$ 不是 — 因为 $u_{\mathbf k}$ 在原胞内还在变, 把 $-i\hbar \nabla$ 作用上去会带出一个 $-i\hbar \nabla u_{\mathbf k}$ 项. $\mathbf k$ 标的是平移群的不可约表示, 物理上叫 <strong>准动量</strong> (crystal momentum) $\hbar \mathbf k$. 它有一切真动量该有的"守恒律性质" (在和声子、外场相互作用时模 $\hbar \mathbf G$ 守恒, $\mathbf G$ 是倒易格矢), 但它不是 $\hat{\mathbf p}$ 的期望. 这一点是凝聚态物理里"几乎所有困难都来自这里"的一个细节.</p>
+
+  <p>第二件事也立刻说清楚: $\mathbf k$ 只在第一 Brillouin 区里取值才"独立". 因为对任意倒易格矢 $\mathbf G$ ($\mathbf G \cdot \mathbf R \in 2\pi \mathbb Z$), 把 $\mathbf k \to \mathbf k + \mathbf G$ 代入 $(1)$, 相位 $e^{i (\mathbf k + \mathbf G) \cdot \mathbf R} = e^{i \mathbf k \cdot \mathbf R}$ 完全一样. 也就是说 $\mathbf k$ 与 $\mathbf k + \mathbf G$ 标的是同一个不可约表示, 必须把 $\mathbf k$ 限定在 BZ 内 (第一 Brillouin 区, 倒易格点空间里离原点最近的 Wigner-Seitz 原胞). 一维链子 $a$ 上, BZ 是 $(-\pi/a, \pi/a]$. 这一点把电子的"$\mathbf k$ 空间"从无穷大压成了一个有限区, 后面所有"能带"的图都画在这一小块上.</p>
+
+  <h2>二、为什么平面波在周期势里"几乎不知道"势的存在</h2>
+
+  <p>(1)-(2) 已经把数学讲完了, 但物理直觉还没出来 — 为什么排得整齐的离子阵列对电子"看上去几乎透明"? 直觉答案是干涉. 一个孤立离子能强烈散射电子; 但如果你把同样的离子按晶格周期排成一片, 不同离子散射出去的子波之间发生相干叠加, 在大多数方向上彼此抵消, 只在符合 Bragg 条件 $\mathbf k' - \mathbf k = \mathbf G$ 的几个特殊方向上相长 — 而那些方向, 正是能隙打开的位置.</p>
+
+  <p>更定量的说法: 弱周期势近自由电子 (NFE) 近似. 把 $V(\mathbf r)$ 按倒易格矢展开 $V(\mathbf r) = \sum_{\mathbf G} V_{\mathbf G}\, e^{i \mathbf G \cdot \mathbf r}$, 把 Bloch 波也按 $u_{\mathbf k} = \sum_{\mathbf G} c_{\mathbf k - \mathbf G}\, e^{-i \mathbf G \cdot \mathbf r}$ 展开 (这里 $\mathbf G$ 跑遍所有倒易格点). Schrödinger 方程在动量空间变成一个无穷维矩阵方程</p>
+
+  <p>$$ \left[\frac{\hbar^2 |\mathbf k - \mathbf G|^2}{2m} - E\right] c_{\mathbf k - \mathbf G} + \sum_{\mathbf G' \ne \mathbf G} V_{\mathbf G - \mathbf G'}\, c_{\mathbf k - \mathbf G'} = 0. $$</p>
+
+  <p>关键观察: 系数 $V_{\mathbf G - \mathbf G'}$ 把不同的 $c_{\mathbf k - \mathbf G}$ 耦合起来. 当 $V_{\mathbf G}$ 很小时, 大部分耦合都微不足道, 唯一会显著贡献的是两个动能 $\hbar^2 |\mathbf k|^2/(2m)$ 与 $\hbar^2 |\mathbf k - \mathbf G|^2/(2m)$ 简并 (或近简并) 的位置 — 那里两个本来与势无关的状态被一个小扰动联系起来, 量子力学里的标准两能级劈裂出现, 简并解除. 简并条件 $|\mathbf k|^2 = |\mathbf k - \mathbf G|^2$ 整理出来正是 Bragg 条件 $2 \mathbf k \cdot \mathbf G = |\mathbf G|^2$, 即 BZ 边界. 解二阶久期方程, 在 BZ 边界处出现一个能隙</p>
+
+  <p>$$ \Delta E = 2\,|V_{\mathbf G}|. $$</p>
+
+  <p>"第一能隙等于势的 Fourier 系数的两倍." 这是 NFE 给出的一条定量规则, 解释了能带与能隙是怎么从纯粹的自由电子图像里"长出来"的: BZ 内部电子像自由粒子一样弥散, 只在 BZ 边界 (Bragg 条件) 上被打开一个口子.</p>
+
+  <p>另一个极端是紧束缚 (TB): 把 $V(\mathbf r)$ 看成一片很深的孤立井, 电子大部分时间陷在某一个井里, 只通过指数小的隧穿幅度 $-t$ 跳到最近邻井. 用每个原子上的局域轨道 $\phi(\mathbf r - \mathbf R)$ 当基, Bloch 波就是 $\psi_{\mathbf k} \propto \sum_{\mathbf R} e^{i \mathbf k \cdot \mathbf R}\, \phi(\mathbf r - \mathbf R)$. 一维链子的能带</p>
+
+  <p>$$ E(k) = \varepsilon_0 - 2 t \cos(k a) $$</p>
+
+  <p>是凝聚态里最常见的曲线, 在 BZ 中央 $k = 0$ 极小、在 BZ 边界 $k = \pm \pi/a$ 极大, 带宽 $4 t$. 这条曲线跟前面 NFE 在 BZ 边界附近的劈裂图凑起来, 就是"两侧极限都给出能带 + 能隙"的结构. 中间区间 (中等强度的周期势) 没有解析公式, 但定性图像不变.</p>
+
+  <h2>三、Kronig-Penney: 一维严格可解的能带</h2>
+
+  <p>1931 年 Ralph Kronig 和 William Penney 给了一个一维玩具模型, 它是凝聚态物理课本上第一条严格能带谱的来源. 把势取成周期 $a$ 的 $\delta$-势串</p>
+
+  <p>$$ V(x) = \frac{\hbar^2 \alpha}{m a} \sum_{n} \delta(x - n a), $$</p>
+
+  <p>其中无量纲参数 $\alpha$ 表征每个 $\delta$-井的强度. 一个原胞 $[0, a]$ 内, 势为零, 通解是平面波 $\psi(x) = A e^{i q x} + B e^{-i q x}$, $q = \sqrt{2 m E}/\hbar$. Bloch 定理 (1) 给出原胞间的边界条件: $\psi(a^+) = e^{i k a}\, \psi(0^+)$, $\psi'(a^+) = e^{i k a}\, [\psi'(0^+) - 2 (\alpha/a)\, \psi(0)]$ ($\delta$-势造成的导数跳变). 把这两条边界条件凑成一个 $2\times 2$ 久期方程, 行列式为零给出</p>
+
+  <p>$$ \cos(k a) = \cos(q a) + \alpha\, \frac{\sin(q a)}{q a}. \tag{3} $$</p>
+
+  <p>(3) 是这一节的核心数字: 左边是 $[-1, 1]$ 区间内的余弦, 右边是关于 $q a$ 的一个特殊函数 (随 $q$ 振荡, 包络衰减). 只有那些让右边落在 $[-1, 1]$ 之内的 $q$ 才允许 — 这些 $q$ 区间对应"允许带" (Bloch 波存在); 右边超过 $[-1, 1]$ 的 $q$ 区间不允许 — 这些是"禁带" (能隙). 把横轴 $q a$ 画成连续, 你会得到一连串交替的允许区与禁区. 在 $\alpha \to 0$ 极限, 右边变回 $\cos(q a)$, 任何 $q$ 都允许, 退回自由电子; 在 $\alpha \to \infty$ 极限, 允许区退化成一连串孤立的窄带, 退回紧束缚. (3) 把这两端连了起来.</p>
+
+  <p>定量代一组数. 取 $\alpha = 3 \pi/2$ (中等强度), 第一允许带覆盖 $q a \in (0, \pi)$ 的一小段, 数值上能量约 $E \in (0,\, 0.6\,E_1)$, $E_1 = \hbar^2 \pi^2/(2 m a^2)$ 是同长度井的最低束缚能; 第一禁带从 $q a = \pi$ 开始, 宽度 $\sim 0.4\, E_1$. 把 $a = 0.3$ nm (典型晶格间距) 代进去, $E_1 \approx \hbar^2 \pi^2 / (2 m_e a^2) \approx 4$ eV. 也就是说, 在这种"小盒子里的玩具势"里, 第一能隙的量级就是几 eV — 跟真实材料 (Si 1.12 eV, GaAs 1.42 eV, 金刚石 5.5 eV) 同量级. Kronig-Penney 不是定量预测任何材料, 但它把"周期 + 平移对称 → 允许带 + 禁带"这件事压成了一行公式, 可以拿来手算.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 三栏纵向叠图, 横轴都是 $x$, 范围覆盖几个晶格周期 $a$. 顶栏画普通平面波 $e^{i k x}$ 的实部 — 一条波长 $2\pi/k$ 的光滑余弦; 中栏画周期调制函数 $u_k(x)$ — 一条周期为 $a$ 的小幅快变曲线, 在每个原胞内有一个尖峰 (代表电子被离子吸引、在原子位置波幅增大), 原胞之间平滑过渡; 底栏画两者乘积 $\psi_k(x) = e^{i k x} u_k(x)$ 的实部 — 大尺度上仍像平面波那样起伏, 小尺度上叠加了原子位置的"涟漪". 在底图右侧标 BZ 区间 $(-\pi/a, \pi/a]$ 与 $k$ 在区内的位置. 三幅图共用 $x$ 轴, 在最下方画一排原子位置标记 ($\bullet$ 与 $a$), 强调"周期调制 $\Leftrightarrow$ 离子位置".]</div>
+  </figure>
+
+  <h2>四、代数字: Cu 的 $sp$ 价带 $\sim 10$ eV, Si 间接带隙 $1.12$ eV</h2>
+
+  <p>把 Bloch 波从一维玩具搬到三维真材料, 数学复杂度蹿升, 但定性图景没变 — 每一条 Bloch 波 $\psi_{n \mathbf k}$ 由两个标号区分: 主带号 $n$ 和 BZ 内的 $\mathbf k$. 能量 $E_n(\mathbf k)$ 在 $\mathbf k$ 空间是连续函数, 把整个 BZ 扫一遍就构成一条"能带". 不同的 $n$ 给不同的带, 带与带之间可能有能隙也可能没有 — 有就叫绝缘体或半导体, 没有就叫金属. 这是下一节的事, 这里先看两个具体材料的数字.</p>
+
+  <p><strong>铜 (Cu)</strong>. Cu 的电子组态是 $[\mathrm{Ar}]\, 3d^{10}\, 4s^1$. 在固体里, 满壳 $3d$ 形成五条窄的 $d$ 带, 半填的 $4s$ 与 $4p$ 杂化成一条很宽的 $sp$ 带横穿整个 BZ. 实验测的 $sp$ 价带宽度大约 $\sim 9$-$10$ eV, $d$ 带宽度 $\sim 3$-$4$ eV, $d$ 带顶在 Fermi 能 $E_F$ 之下约 $2$ eV. 半填的 $sp$ 带把 Fermi 能放在带中段, 这就是 Cu 是金属的原因: $E_F$ 处态密度非零, 加任何小电场就有低能激发. 关键的"$\mathbf k$ 空间走多远不散射"由这条 $sp$ 带的"洁净度"决定 — 在低温纯单晶 Cu 里, 这条 Bloch 波的相干长度可达微米量级, 即几千到几万个晶格周期 $a = 3.6$ Å. 这正是上一节 Sommerfeld 自由电子模型为什么"出乎意料地工作"的原因: 半填的 $sp$ Bloch 带在 $E_F$ 附近近似于自由抛物线, 把电子带 mass 用 $0.5\, m_e$ (Cu) 取代真实质量, 大部分预测就对了. 准动量替代真动量这件事对一个金属的低能性质几乎没差别.</p>
+
+  <p><strong>硅 (Si)</strong>. Si 是金刚石结构, 每原胞两个原子, 每原子贡献四个价电子 ($3s^2 3p^2$). 杂化形成两条满的价带 (价带顶在 BZ 中心 $\Gamma$ 点) 和两条空的导带 (导带底在沿 $\Gamma$-X 方向的 $0.85\, X$ 附近, 不在 $\Gamma$). 价带顶与导带底不在 $\mathbf k$ 空间的同一个点, 所以叫 <strong>间接带隙</strong>; 间接带隙的大小在 $T = 0$ K 时实测 $E_g = 1.17$ eV, 在 $T = 300$ K 时为 $1.12$ eV (Varshni 公式给出温度修正). 把 NFE 倒推一下, $E_g \approx 2 |V_{\mathbf G}|$ 说明 Si 中相关方向的赝势第一 Fourier 系数大约 $0.5$-$0.6$ eV — 比电子动能 (Fermi 能 $\sim 12$ eV) 小一个量级, 所以 NFE 在 Si 里是个不错的起点. 这条 $1.12$ eV 的间接带隙是几乎所有半导体器件 (二极管、晶体管、太阳能电池) 的物理根, 也决定了 Si 太阳能电池的理论效率上限 (Shockley-Queisser 极限 $\sim 33\%$, 当 $E_g \approx 1.34$ eV 时最优).</p>
+
+  <p>同一张图能放下 Cu 与 Si — 两者都是 Bloch 定理的结果, 区别只在 Fermi 能落在带的什么位置. Cu 落在 $sp$ 带中段, $E_F$ 处有态密度, 所以是金属; Si 落在两条带之间的 $1.12$ eV 大间隙里, $E_F$ 处零态密度, 所以是半导体. 一切都在 (1)-(2) 这条简单定理之内 — Bloch 没有写下任何关于"金属"或"半导体"的东西, 他只是证明了周期势的本征态都长成 $e^{i \mathbf k \cdot \mathbf r}\, u_{\mathbf k}$. 一个数学结论让两类截然不同的物理一齐有了出处.</p>
+
+  <h2>五、历史: Bloch 1928, 一句"突然就 click" 之后</h2>
+
+  <p>这条定理的诞生时间是 1928 年. 当时 Felix Bloch 是 Werner Heisenberg 的博士生, 在 Leipzig 做"金属导电性的量子理论". 他的博士论文标题翻译成中文叫《关于晶体中电子量子力学的运动》(<em>Über die Quantenmechanik der Elektronen in Kristallgittern</em>). 几年后 Bloch 在自传里写过一段广为引用的话, 大意是: "我开始研究这个问题时, 完全相信我们对电子在金属里如何运动一无所知, 我以为电子在金属里不可能有任何合理路径. 然后突然之间, 一切都 click 了 — 周期势没有意义, 平面波形式的解必然存在." 那一年 Bloch 23 岁.</p>
+
+  <p>Bloch 定理写下来之后, 凝聚态物理在三年内被改写了一次. 1929 年 Rudolf Peierls 把 Bloch 形式应用到能带边缘, 推断出"近 Fermi 面处的电子有效质量可以是负的"— 后来叫 <strong>空穴</strong>. 1931 年 Alan Wilson 用 Bloch 定理 + Fermi-Dirac 分布说明了"为什么有的固体导电、有的不导电": 全部填满的带不能导电 (整带的 $\mathbf k$ 求和为零, 没有净电流), 半填的带可以导电. 这一句把元素周期表里"金属/绝缘体"二分的来源彻底说清了 — 不是因为元素自己"想"导电或不"想", 而是它的 Fermi 能落在带中还是带间. 1931 年 Kronig-Penney 给出第一条解析能带; 1933 年 Wigner 与 Seitz 把 Bloch 形式具体应用到 Na 与 Cu 上, 算出了实际带结构.</p>
+
+  <p>Bloch 自己后来去 Stanford, 转做核磁共振, 1952 年与 Edward Purcell 共享 Nobel 物理学奖 — 不是因为这条定理. 但所有后来从 Bloch 定理生出的工作 — Shockley 与 Bardeen 的晶体管 (1947, Nobel 1956)、von Klitzing 的整数量子 Hall (1980, Nobel 1985)、Laughlin-Stormer-Tsui 的分数量子 Hall (1982, Nobel 1998)、Haldane-Kane-Mele 的拓扑绝缘体 (2005-2007, Haldane Nobel 2016) — 全部都站在 1928 年那一句"周期势 + 平移对称 = 准动量 + Bloch 波"上面.</p>
+
+  <p>这一节最值得记的画面是 Felix Bloch 自己留下的: 一条普通的平面波 $e^{i \mathbf k \cdot \mathbf r}$, 乘上一个跟着原子位置一起波动的小调制 $u_{\mathbf k}(\mathbf r)$, 就足以扛起整个晶体里的电子运动. 离子实不是障碍, 它们只是给 $u_{\mathbf k}$ 添了点纹理. 平面波依然以原本的方向、原本的速度穿过晶体, 它对走过几个原胞、几千个原胞、几百万个原胞都漠不关心. 这就是为什么 Cu 能导电, 也是为什么 Si 不能 — 同一条定理, 同一种 Bloch 波, 落在能带的不同位置.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>周期势 $V(\mathbf r + \mathbf R) = V(\mathbf r)$ 把哈密顿量按平移群分块, 群论强迫每条本征态写成 $\psi_{\mathbf k}(\mathbf r) = e^{i \mathbf k \cdot \mathbf r}\, u_{\mathbf k}(\mathbf r)$, $u_{\mathbf k}$ 与晶格同周期, $\mathbf k$ 是只在 BZ 内取值的"准动量". 弱周期势近自由电子在 BZ 边界打开能隙 $2|V_{\mathbf G}|$, 强周期势紧束缚给出 $-2t\cos(ka)$ 的窄带; Kronig-Penney 一维 $\delta$-势串严格可解, 把允许带与禁带写成一行 $\cos(ka) = \cos(qa) + \alpha \sin(qa)/(qa)$. 代回真材料: Cu 的 $sp$ 价带宽 $\sim 10$ eV, Fermi 能落在带中段 — 金属; Si 间接带隙 $1.12$ eV, Fermi 能落在带间 — 半导体. 同一条 1928 年 Bloch 定理同时给了电导率、二极管、晶体管的根. 下一节我们把这张图画完: 把不同填充情况下的 Cu、Si、绝缘体的能带与 Fermi 面摆到一起, 看金属、半导体、绝缘体到底差什么.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="06-free-electron.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="08-bands.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

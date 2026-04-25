@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么不同体系在临界点指数相同? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="28-self-assembly.html">← 上一节</a>
+  <span class="chapter-title">第 29 节 / 30 · 第 6 部分 · 软物质与涌现 · 第七卷·物质是什么?</span>
+  <a href="30-more-is-different.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么不同体系在临界点指数相同?</h1>
+  <div class="sub">—— 普适类与 RG 的物质版本</div>
+
+  <div class="abstract">
+    把一瓶 CO$_2$ 慢慢加压加热到 $T_c = 31.0\,^\circ\mathrm{C}$, $p_c = 73.8\,\mathrm{atm}$ 那个点, 液面消失, 整瓶气体翻起一层乳白色的"临界乳光"; 把一块铁加热到 $T_c = 1043\,\mathrm{K}$ 那个点, 它失去自发磁化, 磁化率发散. 这两个体系一个由分子间 van der Waals 相互作用决定, 一个由 3d 电子的交换相互作用决定, 微观哈密顿量没有半点关系 — 但它们在临界点附近呈现的<em>幂律指数</em>居然完全一样, 序参量 $M\propto |t|^\beta$ 的 $\beta=0.326$, 磁化率 $\chi\propto |t|^{-\gamma}$ 的 $\gamma=1.237$, 关联长度 $\xi\propto |t|^{-\nu}$ 的 $\nu=0.630$. 1971 年 Kenneth Wilson 用重整化群 (RG) 给出了这件事的解释: 临界点是 RG 流的一个不动点, 不同微观哈密顿量在长波长极限下流向同一个有效场论 ($\phi^4$ 理论), 因此具有同一组指数. 决定指数的不是微观细节, 而是空间维数 $d$ 和序参量的对称性 (在 3D Ising 类里, $d=3$, $\mathbb{Z}_2$ 对称). 这一节我们沿着实验、标度律、RG 不动点这条逻辑链, 把"普适性"这件物理学里最不可思议的事钉死.
+  </div>
+
+  <p>1869 年 Thomas Andrews 在贝尔法斯特的实验室里把 CO$_2$ 一点点压缩, 在某个温度以上他发现一件奇怪的事: 不论加多大的压力, 液体和气体之间那条明显的分界面消失了, 整个体系变成一种"既不是液也不是气"的东西, 透过容器壁能看到密度涨落形成的乳白色翻动 — 后来被称为<strong>临界乳光</strong> (critical opalescence). 他给出 CO$_2$ 的临界温度 $T_c = 31\,^\circ\mathrm{C}$, 临界压强 $p_c = 73\,\mathrm{atm}$, 这两个数字一直沿用到今天. 几十年后磁性测量发现铁在 1043 K 处也有类似的"东西消失"现象 — 加热到这个温度, 铁里自发的指北方向消失, 但磁化率却在临界温度处剧烈发散. 这两件事在描述上很像, 在物理上却隔着银河: 一个是分子靠 $1/r^6$ van der Waals 互相吸引, 一个是 Fe 原子里 3d 电子按交换相互作用 $J\sum \mathbf{S}_i\cdot\mathbf{S}_j$ 互相对齐. 但是当后人把临界点附近的物理量画在双对数纸上, 两个体系的斜率居然几乎重合.</p>
+
+  <h2>一、临界指数的定义与标度律</h2>
+
+  <p>把"临界点附近物理量按幂律行为"这句话写成方程. 引入<strong>约化温度</strong> $t = (T - T_c)/T_c$, 它是衡量"距离临界点多远"的无量纲量. 在液-气体系里, 序参量是密度差 $\rho_l - \rho_g$ (沿共存曲线下降); 在铁磁体系里, 序参量是自发磁化 $M$ (零外场下的磁矩). 实验和理论都告诉我们, 临界点附近这些量按幂律走:</p>
+
+  <p>$$ M \propto |t|^{\beta}, \qquad \chi \propto |t|^{-\gamma}, \qquad \xi \propto |t|^{-\nu}, \qquad C \propto |t|^{-\alpha}. \tag{1} $$</p>
+
+  <p>这里 $\beta$ 控制序参量从零长出来的速度 (在低温侧 $t\lt 0$), $\gamma$ 控制响应函数 (磁化率或可压缩率) 在临界点的发散速度, $\nu$ 控制关联长度的发散, $\alpha$ 控制比热的发散 (或弱发散对数, 取决于体系). 这四个指数加上 $\delta$ (沿临界等温线 $M\propto h^{1/\delta}$) 与 $\eta$ (临界点的关联函数 $G(r)\propto 1/r^{d-2+\eta}$) 一共六个, 用来刻画临界行为的"形状".</p>
+
+  <p>关键的事实是: 这六个指数<em>不独立</em>. Rushbrooke 1963、Widom 1965、Fisher 1964 等人通过热力学不等式与"标度假设" (scaling hypothesis) 推出一组关系式, 把六个指数压成两个独立量:</p>
+
+  <p>$$ \alpha + 2\beta + \gamma = 2, \qquad \gamma = \nu(2-\eta), \qquad \nu d = 2 - \alpha. \tag{2} $$</p>
+
+  <p>第一个叫 Rushbrooke 等式, 来自比热-磁化率-序参量三者的关系; 第二个叫 Fisher 等式, 把响应函数与关联函数挂上钩; 第三个叫 Josephson 等式 (或超标度), 含维数 $d$, 把关联体积与比热挂上钩. 这三条标度关系把指数空间从六维压到二维 — 也就是说, 你只要量准两个指数 (典型选 $\nu$ 和 $\eta$), 其余四个能算出来. 这件事的意义不止节省实验功夫, 它在告诉我们: 临界点附近的物理是<em>由两个相关算符的标度维数</em>决定的, 体系内部有更深的对称结构. 标度假设的内容是: 自由能密度的奇异部分按 $f_s(t, h) = b^{-d} f_s(b^{y_t} t, b^{y_h} h)$ 标度, 其中 $b$ 是任意标度因子, $y_t$ 与 $y_h$ 是温度与外场的标度维数; 所有指数都由这两个 $y$ 推导出来. 这就是 RG 给出的物理图像.</p>
+
+  <h2>二、Onsager 1944 与 2D Ising 的精确解</h2>
+
+  <p>1925 年 Ernst Ising 在他的博士论文里求解一维 Ising 模型, 哈密顿量 $H = -J\sum_i s_i s_{i+1}$ ($s_i = \pm 1$), 用转移矩阵法算出 1D 没有有限温度的相变 — 他从中错误地推断高维也没有相变, 这条结论困扰了铁磁理论好些年. 1936 年 Peierls 给出一个简洁的论证, 说明 2D 以上必有相变 (Peierls 论证: 翻转一块磁化区域的能量代价 $\propto L$, 熵增益 $\propto L \log L$, 低温下能量主导, 自发磁化稳定). 真正的转折在 1944 年.</p>
+
+  <p>Lars Onsager 在耶鲁大学发表了一篇技术上极难的文章, 用复杂的代数 (转移矩阵的对角化, 涉及 Clifford 代数与自由 fermion) 给出 2D 方格 Ising 模型在零外场下的精确自由能:</p>
+
+  <p>$$ -\beta f = \log(2\cosh 2K) + \frac{1}{2\pi}\int_0^\pi \log\left[\tfrac{1}{2}(1 + \sqrt{1 - \kappa^2 \sin^2\theta})\right] d\theta, \tag{3} $$</p>
+
+  <p>其中 $K = J/(k_B T)$, $\kappa = 2\sinh(2K)/\cosh^2(2K)$. 这个表达式在 $\kappa = 1$ 处 (临界点 $\sinh(2K_c) = 1$, 即 $T_c = 2J/[k_B \log(1+\sqrt{2})] \approx 2.269\,J/k_B$) 出现 logarithm 奇异性. 后来 Yang 1952 算出自发磁化 $M = (1 - \sinh^{-4}(2K))^{1/8}$, 给出 $\beta = 1/8$. 把 $(3)$ 在临界点附近展开, 得到 2D Ising 临界指数:</p>
+
+  <p>$$ \alpha_{2D} = 0,\ \beta_{2D} = \tfrac{1}{8} = 0.125,\ \gamma_{2D} = \tfrac{7}{4} = 1.75,\ \nu_{2D} = 1,\ \eta_{2D} = \tfrac{1}{4}. \tag{4} $$</p>
+
+  <p>($\alpha = 0$ 这里指对数发散, 不是常数.) Onsager 这套指数跟当时流行的 Landau 平均场理论 ($\beta_{MF} = 1/2$, $\gamma_{MF} = 1$, $\nu_{MF} = 1/2$) 完全不一样, 一下子给"平均场 + 涨落修正"这套传统办法判了死刑 — 在低维体系里涨落不是修正, 而是重塑了整套幂律. Onsager 的解直到今天仍然是统计力学里最美的精确结果之一, 它给出了一个明确的、可以被任何 Monte Carlo 模拟反复验证的"金标准".</p>
+
+  <h2>三、Wilson 1971: 重整化群与不动点</h2>
+
+  <p>真正把"普适性"这件事讲透的是 Kenneth Wilson 1971-1972 年在 Cornell 写的两篇文章 (Phys. Rev. B 4, 3174 与 3184). Wilson 来自高能场论的传统, 他把场论里"重整化"这件事 (Stueckelberg-Petermann 1953, Gell-Mann-Low 1954) 搬到统计力学的实空间, 给出一个直观的、可计算的程序. 思路是这样的: 给一个临界系统, 你不要试图去解它的全部自由度, 而是反复做"粗粒化 + 标度":</p>
+
+  <ol>
+    <li>把空间分成边长 $b$ 的方块 (例如 $b = 2$), 把每个方块里的自由度积分掉, 留下一个"块自由度" (block spin, Kadanoff 1966 引入). 块自由度之间有了新的有效相互作用.</li>
+    <li>把空间坐标按 $b$ 缩小一倍, 让块格子重新成为单位格子. 现在你有了一个新的"等效哈密顿量" $H'$, 跟原来 $H$ 长得不一样, 但描述的是更长波长的物理.</li>
+    <li>反复迭代. 每一步耦合常数被映射到新值: $K' = R(K)$.</li>
+  </ol>
+
+  <p>这个映射 $R$ 在耦合常数空间里诱导一个流, 叫<strong>RG 流</strong>. Wilson 的核心观察是: 临界点对应于 RG 流的一个<em>不动点</em> $K^*$, 满足 $R(K^*) = K^*$ — 在临界点处, 系统在所有尺度上看起来一样 (尺度不变性). 在这个不动点附近线性化 $R$, 它的本征值给出关联长度的标度维数 $y_t$, 进而给出 $\nu = 1/y_t$, 其余指数依次而出. 关键事实: 流向同一个不动点的所有微观哈密顿量在长波长下行为相同 — 这就是<strong>普适性的几何起源</strong>. 不动点附近的吸引盆叫做一个<strong>普适类</strong> (universality class), 由空间维数 $d$ 与序参量对称性决定, 不依赖微观细节 (比如 Ising 是不是方格还是三角格, 邻居范围是否扩展, 耦合是否各向异性 — 只要保留 $\mathbb{Z}_2$ 对称, 都流向同一个 Wilson-Fisher 不动点).</p>
+
+  <p>Wilson 与 Fisher 1972 用<strong>$\epsilon$ 展开</strong>把这套图像变成一个真正能算指数的工具. 思路是: 在 $d = 4$ 维, $\phi^4$ 理论的 RG 流是高斯不动点, 临界指数取平均场值; 当 $d = 4 - \epsilon$ 时, 高斯不动点不稳定, 出现一个新的 Wilson-Fisher 不动点 $u^* = O(\epsilon)$, 临界指数得到 $\epsilon$ 的修正. 取 $\epsilon = 1$ (回到 $d = 3$), 把展开做到 4-loop 阶, 再用 Borel 重求和处理发散级数, 给出 3D Ising 类:</p>
+
+  <p>$$ \beta_{3D\,\mathrm{Ising}} = 0.326,\quad \gamma = 1.237,\quad \nu = 0.630,\quad \eta = 0.036,\quad \alpha = 0.110,\quad \delta = 4.789. \tag{5} $$</p>
+
+  <p>这套数字与高精度 Monte Carlo (Ferrenberg-Landau 1991, Pelissetto-Vicari 2002 综述给出 $\nu = 0.6300(8)$) 与 conformal bootstrap (Kos-Poland-Simmons-Duffin 2014 把 3D Ising 的 $\nu$ 算到 $0.62999(5)$) 全都吻合到第三位有效数字. Wilson 1982 年因 RG 单独获得诺贝尔物理学奖, 颁奖词写的是: "为他在临界现象的相变理论上的贡献" — 这是统计力学领域少数的诺贝尔奖之一, 跟 Onsager 1968 那次 (虽然 Onsager 拿的是化学奖, 主要因不可逆过程的倒易关系, 但他的 2D Ising 解被写在颁奖词里) 遥相呼应.</p>
+
+  <h2>四、实验验证: CO$_2$、铁、氙、³He-⁴He 混合</h2>
+
+  <p>把 $(5)$ 式的预言对到实验上. 我们要测的是临界点附近的 $M(t)$, $\chi(t)$, $\xi(t)$, $C(t)$, 然后从双对数图斜率读出指数. 取液-气临界, 序参量是 $\rho_l - \rho_g$, "磁化率"对应等温压缩率 $\kappa_T = \rho^{-1}(\partial \rho/\partial p)_T$, "比热"对应定容比热 $C_V$. CO$_2$ 在 31.0 °C, 73.8 atm 的临界点附近, Lipa-Edwards-Buckingham 1970 与后来更精的卫星实验 (Lambda Point 实验, Lipa 1996 与 2003 在低重力环境下测 ⁴He 临界) 给出:</p>
+
+  <p>$$ \beta_{\mathrm{CO}_2} = 0.34 \pm 0.02,\quad \gamma_{\mathrm{CO}_2} = 1.24 \pm 0.04. \tag{6} $$</p>
+
+  <p>对照 $(5)$, $\beta = 0.326$ 与 $\gamma = 1.237$, 实验和理论吻合到误差范围内. 把 Xe (氙) 临界 ($T_c = 16.6\,^\circ\mathrm{C}$) 和 SF$_6$ ($T_c = 45.6\,^\circ\mathrm{C}$) 加上, 再把 Fe ($T_c = 1043\,\mathrm{K}$)、Ni ($T_c = 627\,\mathrm{K}$)、³He-⁴He 混合的"超流-正常"临界 ($T_\lambda = 0.87\,\mathrm{K}$ 在某混合比) 一起画在双对数纸上, 全部数据点几乎落在<strong>同一条直线</strong>上, 斜率精确等于 $0.326 \pm 0.005$ (β) — 这件事的可视化在 Heller 1967 与 Stanley 1971 的综述里早已成经典. 这就是普适性的实验内容: 不同的微观体系, 不同的相互作用, 不同的临界温度, 不同的序参量物理意义, 全都给同一个数字.</p>
+
+  <p>不止如此, 普适性的边界也被实验严格刻画过. 把 ⁴He 单独的超流临界 (lambda 点 $T_\lambda = 2.17\,\mathrm{K}$) 拿出来, 它的指数 $\beta = 0.347$, $\nu = 0.671$, 跟 3D Ising 类<em>明显不一样</em> — 因为 ⁴He 序参量是一个复数 (U(1) 对称), 不是实数 ($\mathbb{Z}_2$), 它属于 3D XY 类. 同样, 海森堡铁磁体 (序参量是三维矢量, O(3) 对称, 比如 EuO 或 Ni 的某些精确测量) 给出 $\beta \approx 0.367$, $\nu \approx 0.711$, 属于 3D Heisenberg 类. 普适类的边界由 $(d, n)$ 决定 — 这里 $n$ 是序参量分量数 — Wilson-Fisher 给出三类的指数都精确预言, 全部被实验确认. 普适类把所有可能的临界点收编进若干"家族", 每一族由几个对称性数字标号, 几乎像元素周期表.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 普适类对比 — 横轴 $\log_{10}|t|$ (约化温度的绝对值取对数), 纵轴 $\log_{10}(M/M_0)$ (约化序参量); 主图为多种体系的实验数据点叠加: Fe (固体圆点, $T_c = 1043\,\mathrm{K}$, 自发磁化), Ni (空心圆, $T_c = 627\,\mathrm{K}$), CO$_2$ (方块, $T_c = 304.13\,\mathrm{K}$, 密度差 $\rho_l - \rho_g$), Xe (三角, $T_c = 289.74\,\mathrm{K}$), 全部落在斜率 $\beta = 0.326$ 的同一条直线上, 数据范围 $|t| \in 10^{-4}$ 到 $10^{-1}$. 旁边小框标出 3D Ising 普适类 ($d=3, n=1, \mathbb{Z}_2$) 的指数表 $\beta = 0.326$, $\gamma = 1.237$, $\nu = 0.630$. 右下角小图给出 RG 流的二维耦合空间相图: Wilson-Fisher 不动点 (一个点, 标 $u^*$), 不稳定方向 (沿温度) 与稳定方向 (沿其他算符), 几条流线从不同初始点流向同一不动点, 直观显示"普适性"的几何]</div>
+  </figure>
+
+  <h2>五、普适性的图景: 物质的"周期表"</h2>
+
+  <p>把这一节的逻辑骨架重新捋一遍: 实验上 (Andrews 1869 看 CO$_2$, Curie 看铁) 不同体系的临界点指数惊人相同; 理论上 (Onsager 1944 算出 2D Ising 精确解, Widom 1965 给出标度假设, Wilson 1971-72 给出 RG 与 $\epsilon$ 展开) 解释这件事的根源是: 临界点是 RG 流的不动点, 长波长有效场论坍缩到同一个 $\phi^4$ 理论, 决定指数的只有空间维数 $d$ 与序参量对称性 $n$. 这件事改变了凝聚态物理的世界观. 在 Wilson 之前, 物理学家假设要解释一个相变就必须了解微观细节; 在 Wilson 之后, 大家明白微观细节大部分会在粗粒化里"洗掉", 长程行为只剩几个对称性数字 — 物质在临界点附近活在一个比微观世界更小的"参数空间"里.</p>
+
+  <p>普适性不止活在液-气和铁磁这两个例子里. 它解释了: ⁴He 超流转变 ($T_\lambda = 2.17\,\mathrm{K}$, 3D XY 类, $\nu = 0.671$); ³He 超流的 A 相与 B 相 (BW 类, 稍复杂); 高温超导的赝能隙转变 (XY 类的某种修饰); 量子相变里的 Bose-Hubbard 模型 (3D XY 在某条临界线上, 跟超流类同); 弦理论里的二维共形场论 (Ising、tri-critical Ising 等模型在 c < 1 极小模型里全是离散的精确普适类, Belavin-Polyakov-Zamolodchikov 1984); 早期宇宙的相变 (Higgs 场凝聚的 SU(2) 类). 一根看起来跟铁的居里相变完全无关的弦, 跟 CO$_2$ 的乳光散射, 在某个数学意义下都属于"同一族临界现象" — 这件事直到今天仍在被新的实验和数值方法 (conformal bootstrap, tensor network 重整化) 推到更高精度.</p>
+
+  <p>这一节给的最后一个图像是这样: 物质在临界点附近变成一种<em>无尺度</em>的形态, 关联长度发散, 各种长度尺度的涨落一齐出现, 空间自相似 (一团乳光放大十倍跟原来的十倍小区域统计上不可分). 微观哈密顿量被遗忘, 只留下几个对称性数字写出 RG 不动点的 fingerprint. 这是统计力学送给物理学最深的一课, 也是"涌现"这个词最干净的例子 — 长程的简洁规律不来自微观的简洁, 而来自<em>大量微观自由度被洗掉之后剩下的不变量</em>. 下一节我们走到这一卷的最后一站, 把这件事放到 Anderson 1972 那篇 "More is Different" 的视角里, 看凝聚态物理整体怎么被这套思想塑形.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>液-气临界 (CO$_2$ $T_c = 31\,^\circ\mathrm{C}$) 与铁磁临界 (Fe $T_c = 1043\,\mathrm{K}$) 微观毫无关联, 但临界指数 ($\beta=0.326$, $\gamma=1.237$, $\nu=0.630$) 在精度内完全一致, 都属于 3D Ising 普适类. Onsager 1944 用转移矩阵给出 2D Ising 精确解 ($\beta = 1/8$, $\gamma = 7/4$); Wilson 1971-72 用重整化群把临界点解释为 RG 流的不动点, 不同微观哈密顿量流向同一个 Wilson-Fisher 不动点, 因此具有同一组指数 — 普适类由空间维数 $d$ 与序参量对称性决定 ($\mathbb{Z}_2$, $\mathrm{U}(1)$, $\mathrm{O}(3)$, ...). $\epsilon$ 展开 (Wilson-Fisher 1972, 4-loop) 与高精度 Monte Carlo / conformal bootstrap 都把 3D Ising 指数算到第三位有效数字, 与液-气、铁磁、磁化率、关联长度的实验数据精确吻合. 标度律 $(2)$ 把六个指数压成两个独立量, 来自标度不变性的几何. 这一节给的图像: 临界点是物质遗忘自己微观历史的地方, 只剩下对称性写出来的 RG 指纹. 下一节走到本卷最后一站, 把这件事放进 Anderson 的 "More is Different" 视角.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="28-self-assembly.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="30-more-is-different.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

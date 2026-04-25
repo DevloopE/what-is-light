@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>测量问题真的解决了吗? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="29-quantum-simulation.html">← 上一节</a>
+  <span class="chapter-title">第 30 节 / 30 · 第 6 部分 · 量子信息与前沿 · 第六卷·量子是什么?</span>
+  <a class="disabled" href="#">下一节 →</a>
+</nav>
+
+<article>
+  <h1>测量问题真的解决了吗?</h1>
+  <div class="sub">—— 量子力学的边界与未来</div>
+
+  <div class="abstract">2025 年的量子力学有一个奇怪的双面: 它是人类制造过最精确的物理理论 — 电子反常磁矩 $g/2$ 的 QED 预言与实验在 12 位有效数字 ($\sim 10^{-12}$) 上吻合, 没有第二个理论达到这个尺度; 但这套理论的<strong>测量公设</strong>从未在 Schrödinger 方程内被推导出来. 第 19 节我们看了诠释们如何绕这道接缝写故事; 第 18 节看了退相干如何把宏观叠加压成经典混合; 它们解释了 "干涉为什么消失", 但没解释 "为什么是这一支" — 多世界把这个剩余问题转嫁给概率公理, GRW/CSL 把它转嫁给一个新的随机非线性项, Penrose 把它转嫁给引力. 同时, 一边量子理论与广义相对论 (vol 2) 还没有公认的统一; 另一边 2018 年 Frauchiger-Renner 思想实验显示某些 "标准" 诠释组合自相矛盾. 本节是第六卷的末篇, 把测量问题、量子引力边界、以及当前正在跑的几条实验前沿 (mesoscopic 叠加、Diósi-Penrose 上限、optomechanics) 摆开, 写下两条具体公式 (Diósi-Penrose 收缩率, GRW 平均收缩间隔), 然后给整卷一个收束 — 量子是什么? 它既是世界已知最深的层, 也是仍未关闭的边界, 而第七卷 "物质是什么" 接续, 看 QM 加多体如何造出我们眼前的世界.</div>
+
+  <p>翻完前 29 节, 你已经看过量子力学全部主要骨架: 黑体辐射 (vol 6 第 1 节) 把量子化逼出来, 光电效应 (第 2 节) 让光成为颗粒, Bohr 1913 与 de Broglie 1924 给出原子能级, Schrödinger 1926 写下 (1), Born 1926 加进概率诠释, Heisenberg 1927 给出 $\Delta x\,\Delta p\ge\hbar/2$, Bell 1964 + Aspect 1982 钉死了局域隐变量, decoherence (第 18 节) 解释了经典浮现, Shor 1994 与 Bennett 1984 把 QM 变成可用工具. 一切都自洽, 一切都和实验对得上 — 但有一道接缝从 1925 年钉到 2025 年没有正式合上. 那道缝叫做<strong>测量问题</strong>: Schrödinger 方程是连续、决定论、可逆的幺正演化, 而 Born 规则是不连续、概率、不可逆的塌缩. 它们并置在公设里, 没人告诉你 "测量瞬间" 在 $\hat H$ 里对应哪一项. 一百年, 这个尴尬撑得越来越大. 本节最后回到这道缝, 看 2025 年它的状态, 看实验前沿在哪里把它拉伸到能被测的地方, 然后用一段全卷收束结束.</p>
+
+  <h2>一、12 位的精确, 但 Schrödinger 方程里没有 "测量" 这个词</h2>
+
+  <p>先把量子力学的成功摆出来. 把电子放进一个均匀磁场, 它绕磁场进动, 角速率为 $\omega = (g/2)\,(eB/m_e c)$, 其中 $g$ 是 Landé 因子. 经典 Dirac 方程预言 $g=2$ 整数; QED 加上一圈电子-光子虚环修正给 Schwinger 1948 的著名结果 $g/2 = 1 + \alpha/(2\pi)$, 即反常磁矩 $a_e = (g-2)/2 \approx 0.00116$. 三十多圈接连算到今天, 加上 $\alpha^5$ 阶的全部 Feynman 图 (Aoyama, Kinoshita 等 2012-2020 算了 12672 张图):</p>
+  <p>$$ a_e^{\text{theory}} = 0.001\,159\,652\,181\,643(764), $$</p>
+  <p>实验值 (Hanneke, Fogwell, Gabrielse 2008 的单电子 Penning 阱测量, 2022 Fan 等改进):</p>
+  <p>$$ a_e^{\text{exp}} = 0.001\,159\,652\,180\,73(28). $$</p>
+  <p>两者吻合到 $\sim 10^{-12}$ 量级, 12 位有效数字. 这是人类制造过最精确的理论与实验对照, 比 GR 各种弱场检验 (vol 2 第 26-28 节) 还要精细几个数量级. 量子力学在 "怎么算预言" 上无懈可击.</p>
+
+  <p>但是, 同一份理论书上还写着公设 (iv): "测量瞬间, 系统从 $\ket{\psi}=\sum_n c_n\ket{n}$ 跳到某个 $\ket{n}$, 概率 $|c_n|^2$." 这一句不在 Schrödinger 方程里. Schrödinger 方程是</p>
+  <p>$$ i\hbar\,\partial_t \ket{\psi} = \hat H \ket{\psi}, \tag{1} $$</p>
+  <p>$\hat H$ 是连续幺正生成元, 演化保持 $\norm{\ket\psi}=1$ 与全部相位关系. 在 (1) 里没有 "跳"、没有 "随机选择". "测量" 这两个字也不在 $\hat H$ 里 — Schrödinger 方程没区分仪器与系统, 没区分宏观与微观. 仪器自己也由原子构成, 把它放进 $\hat H_{\text{tot}}$ 也按 (1) 演化, 不会自发塌缩.</p>
+
+  <p>第 18 节的退相干给了一个部分解释: 仪器与环境耦合极快, 约化密度矩阵 $\rho_S = \Tr_E\rho$ 的离对角项以速率 $\Gamma_{\text{dec}}$ 衰减, 1 cm³ 室温空气里 $\Gamma_{\text{dec}}\sim 10^{23}\,\mathrm{s}^{-1}$, 干涉在 $\sim 10^{-23}$ s 内消失. 这<em>解释</em>了 "为什么我们看不到宏观叠加", 但<em>没解释</em> "为什么是这一支" — 退相干把纯叠加 $\sum_n c_n\ket{n}$ 变成统计混合 $\sum_n |c_n|^2 \ket{n}\bra{n}$, 但这个混合还是说 "结果在所有 $n$ 上有概率", 没告诉你在某次特定实验里仪表盘<em>实际</em>显示哪个数. 这剩下的一步 — 多世界叫它 "我落在哪个分支", Copenhagen 叫它 "塌缩", GRW 叫它 "自发局域化" — 就是测量问题的硬核.</p>
+
+  <h2>二、未关闭的两端: 量子-经典边界与量子-引力边界</h2>
+
+  <p>到 2025 年, 量子力学有两端 "没合上". 一端是<strong>量子-经典边界</strong>: 多大的物体还能保持叠加? 双缝实验已被原子 (Mlynek 1991), C₆₀ 富勒烯 (Zeilinger 1999), 810-原子分子 (Arndt 2013), 2024 年 25 kDa 寡核苷酸做出来. 但物质波长 $\lambda=h/p$ 跟着质量倒数缩, 给 1 mg 的物体 $\lambda\sim 10^{-30}$ m, 远小于 Planck 长度 $10^{-35}$ m, 实际上根本看不到干涉. 现实更狠的限制是 GRW/CSL/Diósi-Penrose 这类<em>修改方程</em>的塌缩模型 — 它们预言宏观叠加自发坍缩, 把 "经典浮现" 写进物理而不是写进诠释.</p>
+
+  <p>另一端是<strong>量子-引力边界</strong>. GR 把时空当作动力学场, 光滑、决定论, 局域 Lorentz 协变 (vol 2 第 14-15 节); QM 把场当作算符, 概率, 幺正非局域. 把它们直接拼起来 — 写下度规算符 $\hat g_{\mu\nu}$ 让它满足 Einstein 方程 + 算符代数 — 立刻发散且不可重整化. 整个 20 世纪后半到现在, 弦论、loop quantum gravity、AdS/CFT 都在试着合体, 都还没有公认的胜出方案. Penrose (1996, 2014) 提出一个反向想法: 也许量子-引力边界正是测量问题的物理根 — 引力诱导的<em>客观</em>塌缩, 而不是反过来引力被量子化.</p>
+
+  <p>Penrose 的思路: 一个质量 $m$ 在两个分开 $\Delta x$ 的位置叠加, 两支波函数对应的时空度规略有不同 (因为质量分布不同), 这两段时空到底是哪一个? 几何上互相不兼容, 一定要选一个 — 这个 "选" 就是塌缩, 由引力推动, 与具体观察者无关. Penrose 与 Diósi 1989 写下收缩率公式</p>
+  <p>$$ \Gamma \sim \frac{G m^2}{\hbar R}, \tag{2} $$</p>
+  <p>其中 $R$ 是物体半径 (典型尺度), $G$ 是 Newton 常数, $\hbar$ 是 Planck 常数. 代具体数字: 一个 $m = 10^{-13}$ kg、$R = 10^{-7}$ m 的尘粒, $\Gamma\sim 6.67\times 10^{-11}\cdot (10^{-13})^2 / (10^{-34}\cdot 10^{-7})\sim 10^{2}\,\mathrm{s}^{-1}$, 即 10 ms 量级塌缩. 同样这块尘粒, 标准 QM 加上典型环境耦合的退相干时间也在 ms 量级, 两者目前难以区分; 但若把环境隔到极致 (深低温、超高真空、悬浮在驻波光阱), 退相干时间可推到秒级, 而 Diósi-Penrose 引力塌缩时间不变 — 那就是一个能打开的实验窗口.</p>
+
+  <p>另一类塌缩模型: GRW (Ghirardi-Rimini-Weber 1986) 与 CSL. 第 19 节已介绍其结构, 这里只看典型数字. GRW 假设单粒子自发空间局域化的<em>平均间隔</em></p>
+  <p>$$ \tau = 1/\lambda \approx 10^{15}\ \mathrm{s} \tag{3} $$</p>
+  <p>(即 $\lambda\sim 10^{-16}\,\mathrm{s}^{-1}$, 一个粒子大约 $10^9$ 年塌缩一次), 局域化宽度 $r_C\sim 10^{-7}$ m. 单个粒子察觉不到, 但 Avogadro 数级别的体系 ($N\sim 10^{23}$) 总塌缩率 $N\lambda\sim 10^7\,\mathrm{s}^{-1}$, 自动塌缩快到看不见. CSL 是连续版本, 由 Pearle 1989 + Ghirardi-Pearle-Rimini 1990 写出, 结构类似但用 Itô 随机微分方程.</p>
+
+  <h2>三、Frauchiger-Renner 2018 与思想实验的反推</h2>
+
+  <p>2018 年 Daniela Frauchiger 与 Renato Renner (ETH Zürich) 发了一个思想实验, 把测量问题的尴尬钉得更紧. 它的结构: 两个朋友 (Alice 与 Bob) 在两个隔离的实验室里各自测一个量子系统, 得到结果; 实验室外两个超级观察者 (Wigner 与 Wigner-friend, 都被假设可对整个实验室做幺正测量) 各自<em>对实验室整体</em>做量子测量. 论文证明: 如果你假设 (a) QM 普遍适用 (任何尺度), (b) Wigner 可以对朋友的实验室做幺正操作 (也就是朋友的实验室在 Wigner 看来是一个量子态), (c) 不同观察者通过经典逻辑共享结论 (Alice 知道 Bob 知道...), (d) 测量结果是单值的 — 这四条加起来导出矛盾. 概率为 $1/12$ 的事件不能同时为 0 和非 0.</p>
+
+  <p>怎么解读? Frauchiger-Renner 不证明 QM 错了, 而是证明这四条不能同时成立 — 任何自洽的诠释必须放弃其中一条. Copenhagen 通常放弃 (a) (经典/量子分界, Wigner 测不了朋友); 多世界放弃 (d) (结果不是单值, 朋友在多个分支里见到不同结果); QBism 放弃 (c) (不同 agent 没有客观共享的事实). 所有这些代价之前讲故事都让人觉得 "不重要", FR 把它们逼到字面上不能回避. 学界 2018 年至今讨论很多, 一些 "naive Copenhagen" 流派被这个实验直接证伪 — 所以诠释学不是空话, 思想实验真能淘汰版本.</p>
+
+  <p>这把测量问题往前推了一步: 它不再只是 "公设并置不优雅", 而是 "在你假设下面 4 条物理直觉同时成立时, QM 不自洽". 这意味着深度上必须修补一处 — 要么 QM 对某些尺度失效 (GRW/Penrose), 要么放弃单观察者绝对事实 (QBism/Rovelli), 要么放弃单值结果 (多世界). 没有 "什么都不放弃也能跑下去" 的选项.</p>
+
+  <h2>四、实验前沿: 把测量问题拉到桌面上</h2>
+
+  <p>诠释听上去像哲学, 但 GRW、CSL、Diósi-Penrose 修改方程, 因此能被实验测. 2010s-2020s 已开了三条实验线:</p>
+
+  <p><strong>(i) X 射线辐射极限</strong>. CSL 类模型让带电粒子的位置随机波动, 等效于一个微小但持续的加速, 而带电加速会发出韧致辐射. 把这个预言加在<em>所有</em>原子核与电子上, 累计起来在 keV 量级 X 射线波段给出一个普适的发射上限. Bilardello 等 2016 用 LNGS (Gran Sasso 地下实验室) 锗探测器的低背景 X 射线数据, 给 CSL 速率打了上限, 已排除 Adler 提议的增强参数 $\lambda\sim 10^{-8}\,\mathrm{s}^{-1}$. 2020 年 Donadi, Piscicchia, Curceanu 等用同样数据集对 Diósi-Penrose 模型给出上限 $\Gamma_{\text{DP}}\lesssim 10^{-13}\,\mathrm{s}^{-1}$ (粒子级别), 部分排除 Penrose 原始参数选择. 这是测量问题<em>已经</em>被实验切掉一块的领域.</p>
+
+  <p><strong>(ii) Mesoscopic 叠加</strong>. 把一个小镜子或纳米球挂在微弱光阱里, 冷却到声子基态 (Aspelmeyer 组 2020 用 LIGO 类似的低损耗镜把 $\sim 10\,\mathrm{kg}$ LIGO 测试质量冷却到 0.4 phonon 占据数 — 接近基态), 然后用单光子或干涉测量看叠加是否如标准 QM 预言那样保持. 目标: 把 mesoscopic ($10^{-13}$ kg, $10^{15}$ 原子) 量级物体放进可控叠加, 测试 (2)(3) 的预言. 2022 年 Fadel + Aspelmeyer 提议用 Stern-Gerlach 分裂 levitated nanosphere, 灵敏度足以触及 GRW 强参数空间.</p>
+
+  <p><strong>(iii) Optomechanics with quantum gravity</strong>. Bose, Mazumdar, Marletto, Vedral 2017 提出 BMV 实验: 把两个 mesoscopic 质量 ($10^{-14}$ kg) 各自放进 spatial superposition $\Delta x \sim 100\,\mu\mathrm{m}$, 让它们自由演化几秒, 测量末态相干性. 若引力是经典场, 不能传递纠缠; 若引力被量子化, 两质量末态会出现 entanglement. 2024 年欧盟 + 英国实验组开始建设原型 (Helsinki, London 几组协作), 预期 5-10 年内首批数据. 这是一个<em>可执行</em>的量子引力测试, 极少见.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 三层尺度图. 横轴 = 物体质量/尺度对数, 三段标 "量子" (~原子, $10^{-27}$ kg, 原子级)、"经典" (~宏观, $10^{-3}$ kg)、"引力" (~天体, $10^{30}$ kg/宇宙学尺度). 中间 "经典" 段下方写 "已解释 — 退相干 + 多体统计 (vol 6 第 18 节)". 两端各一个红色虚线方框: 左端 "量子-经典边界 — 测量问题, 是否需要 GRW/Penrose 修正? mesoscopic 叠加实验 ~$10^{-13}$ kg 正在测"; 右端 "量子-引力边界 — Schrödinger + Einstein 不兼容, BMV 2017 提议 + 2024 起建实验". 底部一行字: "QM + GR 是 2025 年理论物理两大未解边界". 标注 (2) Diósi-Penrose 速率与 (3) GRW 间隔在两端方框旁]</div>
+  </figure>
+
+  <h2>五、量子-引力的另一种焦灼: 宇宙学常数 $10^{120}$</h2>
+
+  <p>测量问题不是 QM 唯一的不安. 第 五 卷第 23 节谈过, 真空能量在量子场论里被预言为 Planck 尺度的 $\sim M_P^4$, 实验测到的宇宙学常数 $\Lambda$ 给出真空能量密度 $\rho_\Lambda\sim (\mathrm{meV})^4$, 两者相差</p>
+  <p>$$ \frac{\rho_{\text{theory}}}{\rho_{\text{exp}}} \sim 10^{120}, $$</p>
+  <p>这是物理学历史上理论与实验最大的偏差, 没有之一. 注意它跟 g-2 的 $10^{-12}$ 形成最尖锐对比: 同一个量子理论, 在 QED 局域计算时给出 12 位精确, 在真空能量这个最简单的全局问题上给出 120 量级偏差. 这告诉你: QM 在 "局域算 Feynman 图" 时无懈可击, 但在 "把整个宇宙当作量子系统" 时根本不知道自己在算什么. 真空能问题、引力量子化、测量问题 — 这些可能是同一根线在不同地方探出的头.</p>
+
+  <p>'t Hooft 等人提议 holographic 路线 (AdS/CFT, vol 2 末篇与 vol 3 第 30 节里曾触及): 引力是一个低能涌现现象, 真空能问题在更底层会自动消解; 但 AdS/CFT 严格只在反 de Sitter 背景成立, 我们的宇宙是 de Sitter (正 $\Lambda$), 还没有公认的 dS 全息对偶. Susskind, Maldacena 2013 的 ER=EPR 把纠缠与几何贯穿, 给量子-引力一个图像化解法, 但仍属于推测.</p>
+
+  <h2>六、回到 1925 — Bohr-Einstein 没结束的辩论</h2>
+
+  <p>把镜头拉远. 1927 年 Solvay 第五次会议, Einstein 写出第一批 EPR 类思想实验质疑 Copenhagen, Bohr 一一反驳, 双方都觉得自己赢了. 1935 EPR 论文, Bohr 的回应里第一次出现 "量子整体不可分" 的想法雏形. 1964 Bell 把这场半哲学辩论变成一个数学不等式, 第一次让 "EPR 还是 Copenhagen" 成为<em>能被测的问题</em>. 1972 Clauser, 1982 Aspect, 2015 Hensen / Giustina / Shalm 的 "loophole-free" Bell 测试 — 局域隐变量被实验逼到墙角, 完整否定. Einstein 输了那一局.</p>
+
+  <p>但 Einstein 真正的不安 — "上帝不掷骰子" — 没解决. Bell 让局域隐变量出局, 没有让 "客观决定论的世界" 出局; 多世界正是 Einstein 风格的全幺正决定论 (代价是宇宙永远分叉). GRW 是另一种 Einstein 风格 (有客观塌缩事件, 不依赖观察者). Penrose 用引力诱导塌缩做同样的事. 这些路线全部 active, 没有共识.</p>
+
+  <p>到 2025 年的情形: Schrödinger + Born + decoherence 给出量子力学的可执行核心; 这套核心实验匹配 12 位; Bell + Aspect 否定了局域隐变量; Frauchiger-Renner 否定了 "naive Copenhagen + 单值结果 + 跨观察者一致 + 普适 QM" 同时成立; X 射线极限淘汰了 GRW/CSL 的部分参数空间; mesoscopic 叠加与 BMV 类实验在 5-15 年时间尺度上有望切到 Diósi-Penrose 与量子引力的核心. 每年都有进展, 但没有一个 "这下解决了" 的时刻. 测量问题<em>没有被解决</em>, 它被切成了几块, 每一块在被实验逼着.</p>
+
+  <div class="small-summary">
+  <h4>小结 + 全卷收束</h4>
+  <p>测量问题: Schrödinger 方程 (1) 是连续幺正演化, Born 规则是离散概率塌缩, 两者并置在公设里没有从更深一层推导. 退相干 (vol 6 第 18 节) 解释了干涉的消失, 但没解释 "为什么是这一支". 主流诠释 (Copenhagen, 多世界, Bohm, QBism) 在所有现有实验给完全相同预言, 因此不是不同物理. 真正不同的是修改方程的塌缩模型: GRW 平均间隔 $\tau\approx 10^{15}$ s (3); Diósi-Penrose 引力诱导收缩率 $\Gamma\sim G m^2/(\hbar R)$ (2). 这些<em>能</em>被测: Gran Sasso X 射线已对 CSL/DP 给出上限 $\sim 10^{-13}\,\mathrm{s}^{-1}$ (粒子级), 部分排除原始参数; mesoscopic 悬浮纳米球叠加 + BMV 2017 量子引力实验在 5-15 年尺度可触及核心. Frauchiger-Renner 2018 思想实验把 "QM 普适 + 单值结果 + 跨观察者一致 + 经典逻辑" 这四条逼到不能同时成立, 任何诠释必须明确放弃其一. 同时 QM 与 GR 还没合体: 局域 QED 算 g-2 精确到 $10^{-12}$, 全局真空能算 $\Lambda$ 跟实验差 $10^{120}$, 两个数字反差告诉你 QM 在某些尺度根本不知道自己在算什么. 量子-经典边界与量子-引力边界, 是 2025 年留给下一代物理学家的两堵墙.</p>
+  <p>全卷收束 — 量子是什么? 它是 Planck 1900 把一个常数 $h$ 放进黑体辐射定律时, 一个不情愿的修补; 是 Einstein 1905 用同一个 $h$ 把光重新切成颗粒时, 一个发现; 是 Bohr 1913 让原子能级离散化时, 一道方程; 是 Heisenberg 1925 / Schrödinger 1926 把它写成线性算符与波函数代数时, 一门理论; 是 Bell 1964 / Aspect 1982 在实验里钉死局域隐变量时, 一个事实; 是 Shor 1994 / Bennett-Brassard 1984 把它变成可加密、可计算的工具时, 一项技术; 是 2018 Frauchiger-Renner 与 2024 BMV 实验在 100 年后<em>仍</em>逼问 "它到底意味着什么" 时, 一个未关闭的问题. QM 是人类已有最精确的理论, 也是 19 世纪以来唯一让我们承认 "世界在最深处不再像日常以为的那样" 的理论. 它没解释 "测量瞬间", 没解释为什么我们看到这一支而不是那一支, 没解释为什么真空能量差 120 个量级, 没解释怎么与引力合体. 这不是失败, 是边界 — 任何深刻的理论都会在自己的边缘暴露它没能回答的问题, 把球传给下一阶段. 第七卷 "物质是什么?" 接续, 不再问 "QM 在最深处是什么", 而是反过来问 "QM + 多体 + 化学键 + 集体行为 如何造出我们眼前的固体、液体、生命". 那一卷的工具大半在这一卷已铺好 — 波函数、对易关系、Pauli 不相容、谐振子、自旋、纠缠. 等你回头, 量子既不再神秘 (你已能算), 也仍然神秘 (没人完全懂); 这两面都是它真实的样子.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="29-quantum-simulation.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a class="disabled" href="#">下一节 →</a>
+</nav>
+
+</body>
+</html>

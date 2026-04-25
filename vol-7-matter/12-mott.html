@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么有些"应该导电"的材料反而不导电? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="11-ferromagnetism.html">← 上一节</a>
+  <span class="chapter-title">第 12 节 / 30 · 第 3 部分 · 强关联与磁性 · 第七卷·物质是什么?</span>
+  <a href="13-hubbard.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么有些"应该导电"的材料反而不导电?</h1>
+  <div class="sub">—— Mott 绝缘体与电子互斥</div>
+
+  <div class="abstract">把一块氧化镍 NiO 拿到手里看一眼: 镍的 $3d$ 壳层填了八个电子, 每个原子在晶格里贡献几个 $d$ 电子, 数过半填; 按上一卷讲的能带理论, 半填的 $d$ 带应该是金属 — 上半空, 下半满, Fermi 面就在带正中, 没有任何能隙阻止电子流动. 实际拿欧姆表去量, 室温下 NiO 的电阻率高到 $10^{13}\ \Omega\cdot$cm, 比石英还硬一万倍, 是个标准的绝缘体, 而且 523 K 以下还反铁磁. 同一类的 La$_2$CuO$_4$、V$_2$O$_3$、MnO 全是这副怪样. 把这件事讲清楚的是 Nevill Mott 1949 年的一篇短文: 单粒子能带理论错在它把电子互斥扔了, 当晶格里同一个原子上塞两个电子的库仑代价 $U$ 比电子在原子之间跳动的动能 $t$ 大得多, 电子干脆"分家", 一格一个, 双占据被压制, 整个电子海冻住, 看起来就是绝缘体 — Mott 绝缘体. 关键参数是无量纲比 $U/t$, 在某个临界值附近发生金属-绝缘体转变. 这一节用最朴素的语言把 Hubbard Hamiltonian (1) 写下来, 在 $U \gg t$ 极限里给出有效的 Heisenberg 反铁磁交换 (2), $J = 4t^2/U$, 然后把 NiO 的 $U \approx 8\ $eV、$t \approx 0.5\ $eV、$T_N = 523\ $K 数字代清楚, 顺便顺一遍 1937 de Boer-Verwey 实验、1949 Mott、1963 Hubbard、1968 V$_2$O$_3$ 的压致 Mott 转变、1986 高 $T_c$ 重燃 Mott 物理这段历史.</div>
+
+  <p>上一节我们说: 铁会变成磁铁, 是因为电子之间的交换相互作用把局域自旋同向锁住. 这一节问题往下推一格 — 既然电子互斥这么强, 它会不会把电子的运动也一并锁住? 答案是会, 而且锁得彻底. 这条线索从一块 1937 年实验台上的氧化镍开始, 走到 2020 年代仍然没完全算清楚的高温超导铜氧化物母体. Mott 绝缘体不是一种"特殊材料", 它是凝聚态物理里最早把单粒子能带图像逼到失效的一类例子, 一旦失效, 后面跟着的是高温超导、奇异金属、自旋液体一整片地图.</p>
+
+  <h2>一、能带理论先翻一次车: NiO 的怪事</h2>
+
+  <p>先把单粒子能带理论的预测摆清楚. 能带理论是这么运作的: 把电子放进周期势 $V(\mathbf r + \mathbf R) = V(\mathbf r)$, Bloch 定理给出本征态 $\psi_{n\mathbf k}(\mathbf r) = e^{i\mathbf k\cdot\mathbf r} u_{n\mathbf k}(\mathbf r)$, 单粒子能量按 $\mathbf k$ 形成连续的"带" $\varepsilon_n(\mathbf k)$. 只要数过原子核与价电子, 把每条带按 Pauli 原理一个一个塞 (每条带可装 $2N$ 个电子, $N$ 是晶胞数, 因子 $2$ 来自自旋), 就能判定金属还是绝缘体: 如果最高被占据的带恰好半空半满, Fermi 面落在带的中部, 是金属; 如果填到某条带满、下一条带空, 中间隔一个能隙, 是绝缘体或半导体.</p>
+
+  <p>NiO 把这套规则击穿. 镍是 $3d^8 4s^2$, 在 NiO 这个岩盐结构里, 镍的 $4s$ 电子被氧抢走, 留下 $3d^8$. 镍的 $d$ 带可装十个电子 ($l=2$, 五条 $d$ 轨道乘自旋 $2$), 现在每个 Ni 上只有八个 — 离填满还差两个, 离半填只多三个. 不管你怎么数, 总有一条 $d$ 带是部分填的, 单粒子能带理论的判定干净利落: 金属. 实验呢? 室温下 NiO 是绝缘体, 电阻率 $\sim 10^{13}\ \Omega\cdot$cm. Néel 温度 $T_N = 523$ K 以下还是反铁磁的 — 相邻镍位置上的自旋方向相反. 这两件事单独看都奇怪, 合起来更奇怪: 一个"应该导电"的金属, 不仅不导电, 还冻出了一种磁有序.</p>
+
+  <p>同一类怪事在 1930 年代被实验工作者一遍遍撞见. 1937 年, 荷兰的 J. H. de Boer 与 E. J. W. Verwey 在 Faraday 学会的会议上把这件事写到讨论稿里: 以 NiO、CoO、MnO 为代表的过渡金属氧化物, 按当时刚成型的能带理论本该是金属, 实际几乎全是绝缘体. 同一会场的英国物理学家 Nevill Mott 当时在听; 他在评论里就说, 这件事必然涉及电子-电子相互作用, 单纯的单粒子能带理论扔掉了关键的物理. 但完整的图像 Mott 自己还没写下来, 直到 1949 年.</p>
+
+  <h2>二、Mott 1949: 电子互斥把电子海冻住</h2>
+
+  <p>Mott 1949 年的论文从一个非常朴素的图像出发. 把固体想成一排原子, 每个原子上有一个能容下电子的"格点轨道". 让两件事同时发生在同一个电子身上:</p>
+
+  <p><strong>(a) 跳跃 (hopping).</strong> 电子从这个原子跳到隔壁原子, 振幅由轨道间的重叠积分决定, 记作 $-t$ ($t \gt  0$, 负号表示成键状态能量更低). $t$ 越大, 电子越"想跑", 单粒子能带宽度大约是 $W = 2zt$ (配位数 $z$). 跳跃就是单粒子能带理论看到的那一面.</p>
+
+  <p><strong>(b) 互斥 (interaction).</strong> 同一个原子的同一条轨道上要塞两个电子 (一个自旋上、一个自旋下) 时, 它们彼此推得很厉害, 多付出的能量记作 $U$. $U$ 是赤裸裸的库仑互斥, 量级大致是把两个电子塞进同一条原子轨道的"on-site" Coulomb 积分.</p>
+
+  <p>在凝聚态语言里这两件事写成一个 Hamiltonian, 通常被叫做 Hubbard 模型 — 严格说, Hubbard 1963 才把它写得最清爽, 但 Mott 1949 的物理就是它:</p>
+
+  <p>$$ H \;=\; -t \sum_{\langle ij\rangle, \sigma} \big( c^\dagger_{i\sigma} c_{j\sigma} + \text{h.c.} \big) \;+\; U \sum_i n_{i\uparrow} n_{i\downarrow}. \tag{1} $$</p>
+
+  <p>$c^\dagger_{i\sigma}$ 是在格点 $i$ 上产生自旋 $\sigma$ 电子的算符, $n_{i\sigma} = c^\dagger_{i\sigma} c_{i\sigma}$ 是该格点该自旋的占据数, $\langle ij\rangle$ 跑遍最近邻对. 第一项是动能 (跳跃), 第二项是势能 (双占据代价). 整个模型只有一个无量纲比 $U/t$.</p>
+
+  <p>两个极限把物理摆得很清楚.</p>
+
+  <p><strong>$U/t \to 0$</strong>: 互斥可忽略, $H$ 退化为单粒子的紧束缚 Hamiltonian, Bloch 定理统治, 半填带 = 金属. 这正是能带理论的世界.</p>
+
+  <p><strong>$U/t \to \infty$</strong>: 双占据代价 $U$ 比动能高得多, 任何 $|n_{i\uparrow} = n_{i\downarrow} = 1\rangle$ 的态都被压到能量 $\gtrsim U$ 的高空, 低能子空间被限制在"每格点恰一个电子"的所谓 Mott 真空上. 这一族态有 $2^N$ 个 — 每格点一个自旋, 上下随便指. 跳跃 $t$ 把它们撕裂成更细的能级结构, 但在最低能量这一片, 电子根本动不了 — 任何跳跃都得短暂地经过双占据中间态, 付一份 $U$ 的代价, 在低能下被冻住. 看上去就是绝缘体.</p>
+
+  <p>关键的洞察是: 这件事跟"是不是有能带半填"没关系 — 半填恰恰是 Mott 绝缘体最经典的发生条件. 原本"半填 $\Rightarrow$ 金属"的能带规则, 在 $U \gg t$ 时被翻过来变成"半填 $\Rightarrow$ 绝缘体". 把这两个绝缘体区分开的不是能隙的 $\mathbf k$ 空间结构, 而是它来自互斥 $U$, 而不是周期势 $V$.</p>
+
+  <p>从光谱上看, Mott 把单原子的两条 $d$ 能级 (一占据、双占据) 分别想成两条"Hubbard 子带" — 下方的"Lower Hubbard band" (LHB) 是从空轨道往里加第一个电子的能量, 上方的"Upper Hubbard band" (UHB) 是从单占据往里加第二个电子的能量, 两条带之间隔了 $U$. 半填对应 LHB 满、UHB 空, 中间一个 $\sim U$ 的能隙 — 这就是 Mott 能隙. 它跟带绝缘体的能隙形式上长得一样, 物理上完全不同: 它来自电子的"自我相互作用", 不来自晶格周期势.</p>
+
+  <h2>三、$U \gg t$ 极限: 反铁磁交换 $J = 4t^2/U$</h2>
+
+  <p>Mott 真空有 $2^N$ 个态, 自旋方向自由 — 这跟没磁有序的"高温自旋气"一样多. 这个简并必须被打破, 否则我们没法解释 NiO 的反铁磁有序. 二阶微扰展开会给出答案.</p>
+
+  <p>看两个相邻格点 $i, j$, 两个电子的自旋自由度. 半填限制下, 低能基矢有四个: $|\uparrow\uparrow\rangle, |\uparrow\downarrow\rangle, |\downarrow\uparrow\rangle, |\downarrow\downarrow\rangle$. 跳跃 $t$ 在严格半填 (单占据) 子空间里没有矩阵元 — 任何跳跃都把一个电子搬到另一个电子已经在的格点上, 形成双占据, 跳出低能空间. 但二阶过程可以: 电子 $j$ 跳到 $i$ 形成双占据 (能量代价 $+U$), 然后再跳回原位; 或者电子 $i$ 跳到 $j$ 再跳回. 这些虚跳跃只在 $|\uparrow\downarrow\rangle$ 与 $|\downarrow\uparrow\rangle$ 这两种自旋反平行的态里被允许 — Pauli 原理禁止两个同自旋电子站在同一格点. 二阶能量修正大致是 $\Delta E \sim -t^2/U$, 系数算清楚是 $4t^2/U$.</p>
+
+  <p>把这个二阶微扰写成自旋算符之间的有效相互作用, 得到 Heisenberg 反铁磁:</p>
+
+  <p>$$ H_\text{eff} \;=\; J \sum_{\langle ij\rangle} \mathbf S_i \cdot \mathbf S_j, \qquad J \;=\; \frac{4t^2}{U} \;\gt \; 0. \tag{2} $$</p>
+
+  <p>$J \gt  0$ 是反铁磁号: 相邻自旋反平行时能量低. 这是一条非常深的对应 — 把强关联 Hubbard 模型在 $U \gg t$、半填条件下"积掉"双占据的高能子空间, 剩下的就是 Heisenberg 反铁磁. 所以 Mott 绝缘体很自然地伴生反铁磁有序: 不是巧合, 是同一条物理.</p>
+
+  <p>把 NiO 的数字代进去试试. 实验与第一性原理估计 $U \approx 8\ $eV (Ni 的 $3d$ 轨道很紧, on-site 互斥很强), $t \approx 0.5\ $eV (经过 O $2p$ 中介的有效跳跃, 实际上是个超交换). 比值</p>
+
+  <p>$$ \frac{U}{t} \approx \frac{8}{0.5} = 16. $$</p>
+
+  <p>方块格子 Hubbard 模型的 Mott 转变临界点的数值估计 (各种动力学平均场计算) 大约在 $U/t \sim 12$-$14$, NiO 的 $16$ 已经稳稳地落在 Mott 绝缘体一侧. 把 $J = 4t^2/U \approx 4 \cdot 0.25/8\ $eV $\approx 0.125$ eV $\approx 1450$ K. 这个值跟实验测到的 $T_N = 523$ K 不完全一样 — 差出大约一个 $z = 6$ 量级 (3D 立方格子的配位数), 和理论预期"$T_N \sim J z / k_B \cdot$ 几分之一"一致. 数量级上对得上.</p>
+
+  <p>顺手对一下另外几个母体. La$_2$CuO$_4$ 是高温超导的母相 — 把 La 部分换成 Sr 后掺空穴会进入超导, 但纯样品本身是反铁磁 Mott 绝缘体, $T_N \approx 325$ K. 它属于 Cu $3d^9$ 体系, 一格一个空穴, 完美的"半填". V$_2$O$_3$ 室温下是反铁磁绝缘体, 加压降到 $\sim 10$ kbar 时电阻率突然掉七个量级变金属, 1968 年 Mott 与他在 Cavendish 的合作者就把这种"压致 Mott 转变"作为模型的实验范本. MnO 的 $U/t$ 比 NiO 稍小但仍很大, 同样是反铁磁 Mott 绝缘体 ($T_N = 116$ K).</p>
+
+  <h2>四、Mott 绝缘体的能级图与一行电子局域</h2>
+
+  <p>把一个 Mott 绝缘体画到一张能级图上, 形状跟带绝缘体长得很像但精神截然不同. 单原子情形: 给某一条原子轨道加第一个电子, 能量是 $\varepsilon_0$ (从真空起算的 on-site 能); 加第二个电子, 还要付出 $U$ 的代价, 能量是 $\varepsilon_0 + U$. 把这两个能级在固体里被跳跃 $t$ 拉宽成两条带, 就得到 Lower Hubbard Band (从空到单占据) 与 Upper Hubbard Band (从单占据到双占据), 中间隔一个 Mott 能隙 $\sim U - W$, $W \sim 2zt$ 是带宽. 半填时电子化学势锁在两条 Hubbard 子带之间 — 像带绝缘体那样, 但能隙的来源是 $U$ 而不是周期势.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Mott 绝缘体能级图. 左半: 一条竖直的能量轴, 标 $E$; 上下两条横向加粗的能带, 下面的标 "Lower Hubbard band (LHB) — 单占据填到", 上面的标 "Upper Hubbard band (UHB) — 双占据空", 两条带之间标一个垂直距离 $U$ (实际是 $U - W$), 中间标 "Mott 能隙"; 化学势 $\mu$ 用一条水平虚线画在两条带之间. 右半: 二维方格点阵, 每个格点上画一个箭头表示自旋, 箭头方向相邻交错 (反铁磁有序), 全部格点恰好一个电子, 旁边小字说明 "每格点 $\langle n_i\rangle = 1$, 电子局域". 整张图把"互斥 $U$ 把电子从能带海里挑出来一一锁在原位, 变成绝缘的反铁磁自旋系统"这件事并排呈现.]</div>
+  </figure>
+
+  <p>右半的"一行电子局域"是 Mott 绝缘体最直观的实空间画面: 每个原子上恰好一个电子, 不多不少; 因为多了要付 $U$, 少了要丢 $\varepsilon_0$. 电子在空间上钉在原位, 自旋在自旋空间里仍可自由旋转, 自旋自由度由 $J = 4t^2/U$ 这一份小得多的能量尺度统治, 在低温下凝结成反铁磁有序.</p>
+
+  <p>把这件事跟"普通"金属比一比, 反差就出来. 在金属铜里, $4s$ 电子的 on-site $U$ 估计是 $\sim 2$-$3$ eV, 跳跃 $t \sim 1$-$2$ eV, $U/t \sim 1$-$2$, 远小于临界值, 互斥来不及把电子锁住, $4s$ 带继续半填, 单粒子能带理论照旧管用 — 铜电阻率 $1.7\times 10^{-8}$ $\Omega\cdot$m, 标准金属. 关键不是有没有 $U$, 而是 $U/t$ 大到哪. Mott 1949 那篇短文之所以重要, 是它第一次把这件事讲成一个无量纲临界比, 而不是某种"特殊材料的特殊性质".</p>
+
+  <h2>五、历史与小结: 从 1937 实验台到 1986 之后</h2>
+
+  <p>这条线索的历史可以排成几个节点. 1937 年, de Boer 与 Verwey 在 Faraday 学会的会议把过渡金属氧化物的"应导电而绝缘"实验整理出来, 把问题端上桌. Mott 当场指出方向. 1949 年 Mott 在 Proc. Phys. Soc. 写下那篇关键短文, 用一个朴素的"晶格 + on-site 互斥"图像, 把这件事归结成 $U/t$ 与电子动能之比的竞争. 1963 年 John Hubbard 在 Proc. R. Soc. 一系列论文里把模型 (1) 写得最规范、把它命名 — 从此凝聚态学界把这条 Hamiltonian 叫 Hubbard 模型, 把这种绝缘体叫 Mott-Hubbard 绝缘体. 1968 年 Mott 把 V$_2$O$_3$ 在压致下的金属-绝缘体转变作为现实样本, 系统地讨论了"Mott 转变"作为一个相变. 1970 年 Brinkman 与 Rice 用变分方法给出 Mott 转变临界比的估计与有效质量发散的图像 (这条工作是后来动力学平均场理论 DMFT 的先声). 1985 年 Mott 因这条理论与 P. W. Anderson、J. H. van Vleck 共享 1977 年 Nobel 物理学奖.</p>
+
+  <p>1986 年 Bednorz 与 Müller 在 La$_{2-x}$Ba$_x$CuO$_4$ 里做出 $T_c \approx 35$ K 的高温超导, 重新把 Mott 物理推到中心. 这一系铜氧化物超导的母相, 也就是不掺杂的 La$_2$CuO$_4$、YBa$_2$Cu$_3$O$_6$, 全是 Mott 绝缘体, 反铁磁有序. 把它们掺空穴 (从半填稍微移开), 反铁磁迅速消失, 系统变成"奇异金属", 再继续掺到某个最佳值附近, 出现高温超导. 三十多年过去了, 这条从 Mott 母相出发到超导的相图至今没有第一性原理的完整理论 — Hubbard 模型在二维方块格点上的解到现在仍是开题. 这一节给出的 (1)、(2) 是这片地图的入口, 后面几节会一步步把它推开.</p>
+
+  <p>回头看 NiO 这块绿黑色的氧化物粉末. 1937 年它是实验工作者桌上一个"对不上理论"的怪样本, 1949 年它进了 Mott 的论文, 成为电子互斥统治物质这件事的第一个实例. 同一类机制, 推到铜氧化物上是高温超导的母相, 推到有机盐 $\kappa$-(BEDT-TTF)$_2$X 上是有机 Mott 转变, 推到冷原子 fermion 在光晶格里时是直接量子模拟出来的 Hubbard 模型. 一条无量纲比 $U/t$ 把四条不同的实验线索串在一起, 这是凝聚态物理一条非常深的脉络.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>把跳跃动能 $t$ 与 on-site 互斥 $U$ 放进同一个晶格 Hamiltonian, 就是 Hubbard 模型 (1). 半填条件下, 当 $U/t$ 越过约 $12$-$14$ 的临界值, 电子被互斥钉在原位, 晶体是"应该导电但不导电"的 Mott 绝缘体: NiO 取 $U \approx 8$ eV, $t \approx 0.5$ eV, $U/t \approx 16$, 落在 Mott 一侧, $T_N = 523$ K 反铁磁; La$_2$CuO$_4$ 类似. 把双占据高能子空间二阶微扰积掉, 低能有效 Hamiltonian 是 Heisenberg 反铁磁 (2), $J = 4t^2/U$, NiO 量级上对得上 $T_N$. 历史从 1937 de Boer-Verwey 实验、1949 Mott 短文、1963 Hubbard 模型、1968 V$_2$O$_3$ 压致转变、1986 高 $T_c$ 重燃, 一直延伸到今天的冷原子量子模拟. 下一节我们正式翻开 Hubbard 模型本身, 把 $t$ 与 $U$ 当成两个旋钮, 看相图怎么从金属、Mott 绝缘体、奇异金属一直长到超导.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="11-ferromagnetism.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="13-hubbard.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

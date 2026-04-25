@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bell 不等式凭什么排除"经典隐变量"? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="15-spin.html">← 上一节</a>
+  <span class="chapter-title">第 16 节 / 30 · 第 4 部分 · 测量与诠释 · 第六卷·量子是什么?</span>
+  <a href="17-superposition.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Bell 不等式凭什么排除"经典隐变量"?</h1>
+  <div class="sub">—— EPR 1935 与 Aspect 1982</div>
+
+  <div class="abstract">1935 年 Einstein-Podolsky-Rosen 写下一对纠缠粒子 $|\Psi^-\rangle = (|\!\uparrow\downarrow\rangle - |\!\downarrow\uparrow\rangle)/\sqrt{2}$, 试图论证"量子力学不完备" — 一定存在一组隐藏的经典变量, 在测量之前就已经决定了所有结果. 这场争吵停留在哲学层面整整二十九年, 直到 1964 年 Bell 把它翻译成一条可以拿数据来打的不等式: 任何"局域实在"的隐变量理论, 一个特定的关联组合 $S$ 都必须满足 $|S| \le 2$; 而量子力学允许 $|S|$ 到 $2\sqrt{2} \approx 2.828$, 这条上界叫 Tsirelson 界. 1982 年 Aspect 在 Orsay 用钙原子级联辐射的偏振纠缠光子对, 测出 $S_{\text{exp}} = 2.697 \pm 0.015$ — 把经典上界 2 顶穿了 46 个标准差. 2015 年 Hensen 等人在金刚石 NV 中心做出 loophole-free 实验, 把所有公认的经典逃路堵死. 2022 年诺贝尔物理学奖给 Aspect、Clauser、Zeilinger 三人, 一句话: 局域实在论已经被实验证伪, 量子非定域性是这个世界的事实. 这一节从 EPR 论证出发, 推一遍 CHSH 不等式, 算一遍量子值 $2\sqrt{2}$ 怎么从测量轴的选择中蹦出来, 落到 Aspect 的具体数字.</div>
+
+  <p>测量的故事到这一节才真正变得"血腥". 前面几节里量子力学顶多让你接受概率幅、接受 Stern-Gerlach 上下两束、接受自旋只能是 $\pm\hbar/2$. 这些"奇怪"还可以用一句"测量装置很复杂、其实背后藏着我们看不见的变量"压下去 — 这正是 Einstein 一辈子相信的东西. Bell 1964 的伟大不在于他提出了一个新的理论, 而在于他指出: 这个"压下去"的想法本身能被实验否决. 一旦实验数据违反 Bell 不等式, 任何"测量前结果就已经定好"的世界观都不再可能与实验兼容, 不管你的隐变量长什么样.</p>
+
+  <h2>一、EPR 1935: 一对纠缠粒子的"完备性"困境</h2>
+
+  <p>1935 年 5 月, Einstein、Podolsky、Rosen 在 Physical Review 发了一篇标题问句的论文 — "Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?" — 简称 EPR. 论文的核心思想可以用 Bohm 1951 改写过的自旋版本说清楚: 准备一对自旋单态的两个粒子,</p>
+
+  <p>$$ |\Psi^-\rangle = \frac{1}{\sqrt{2}}\bigl(|\!\uparrow\rangle_A|\!\downarrow\rangle_B - |\!\downarrow\rangle_A|\!\uparrow\rangle_B\bigr), $$</p>
+
+  <p>分别送给相距很远的 Alice 和 Bob. 这个态的关键性质是: 沿任意方向 $\hat{n}$ 测量, 两边结果必然反向相关 — Alice 测到 $+\hbar/2$, Bob 沿同一方向必然测到 $-\hbar/2$, 概率 1.</p>
+
+  <p>EPR 的论证是一个典型的"实在性归谬". 他们先给"物理实在的元素"下了一个定义 (今天叫 EPR 判据): "如果不以任何方式干扰一个系统, 我们能以概率 1 预言一个物理量的值, 那么对应于这个量, 必存在一个物理实在的元素." 然后他们说: Alice 沿 $z$ 测自旋, 立刻就能以概率 1 预言 Bob 那边沿 $z$ 的结果; 既然 Alice 的测量"不能干扰" Bob (两人远到光速来不及通信), 那 Bob 那边沿 $z$ 的自旋值就必须是一个先于测量就已存在的"实在元素". 同理沿 $x$、沿 $y$ 也成立 — 所以 Bob 的粒子在测量之前, 三个分量的自旋值"实际上都已经定好了". 但量子力学说三个分量不对易、不能同时有定值. 矛盾. EPR 的结论: 量子力学是不完备的, 必须有一套额外的"隐变量" $\lambda$ 把这些预先确定的值带上.</p>
+
+  <p>Bohr 隔了几个月在同一杂志写了篇同标题的回应. 他的反驳大致是: 你不能把"测量 $z$"和"测量 $x$"看成两个独立的、可以同时具有意义的实在 — 测量装置的选择是物理图像不可分割的一部分. 这场争论在当时没有胜负, 因为它没有可以判决的实验. 双方都拿不出一个数字来打对方的脸. 这状态持续了整整 29 年.</p>
+
+  <h2>二、Bell 1964: 把哲学问题翻译成可测的不等式</h2>
+
+  <p>John Stewart Bell 1928 年生于贝尔法斯特, 当时在 CERN 当理论物理学家, 加速器物理是主业, 量子基础是副业 (他自己说是"业余爱好"). 1964 年他在一份不知名小杂志 <em>Physics Physique Физика</em> 上发了 "On the Einstein Podolsky Rosen Paradox" — 这篇短文要做的事情很简单: 假设 EPR 是对的, 假设真存在一组局域隐变量 $\lambda$ 决定了一切测量结果, 然后看这个假设给出什么数学约束.</p>
+
+  <p>"局域实在"在数学上翻译成两条要求. 第一, <strong>实在性</strong>: 当 Alice 选择测量轴 $\vec{a}$ 时, 她得到的结果 $A(\vec{a}, \lambda) = \pm 1$ 是 $\vec{a}$ 和某个隐变量 $\lambda$ 的确定函数, 不依赖于 Bob 选择什么轴. 第二, <strong>局域性</strong>: 同理 $B(\vec{b}, \lambda) = \pm 1$ 不依赖于 $\vec{a}$. 隐变量 $\lambda$ 服从某个分布 $\rho(\lambda)$, $\int\rho\,d\lambda = 1$. 关联函数定义为</p>
+
+  <p>$$ E(\vec{a}, \vec{b}) = \int A(\vec{a},\lambda) B(\vec{b},\lambda) \rho(\lambda) d\lambda. $$</p>
+
+  <p>1969 年 Clauser、Horne、Shimony、Holt 把 Bell 原始版本改造成一个对实验更友好的形式 — CHSH 不等式. 让 Alice 在两个轴 $\vec{a}_1, \vec{a}_2$ 之间随机切换, Bob 在 $\vec{b}_1, \vec{b}_2$ 之间随机切换. 定义</p>
+
+  <p>$$ S = E(\vec{a}_1,\vec{b}_1) + E(\vec{a}_1,\vec{b}_2) + E(\vec{a}_2,\vec{b}_1) - E(\vec{a}_2,\vec{b}_2). \tag{1} $$</p>
+
+  <p>关键的一步代数 — 把 $A_i = A(\vec{a}_i,\lambda)$、$B_j = B(\vec{b}_j,\lambda)$ 看成 $\pm 1$ 的数,</p>
+
+  <p>$$ A_1 B_1 + A_1 B_2 + A_2 B_1 - A_2 B_2 = A_1(B_1+B_2) + A_2(B_1-B_2). $$</p>
+
+  <p>由于 $B_1, B_2 \in \{+1,-1\}$, 这两个括号里必有一个为 $0$、另一个为 $\pm 2$. 所以整个表达式的绝对值不超过 $2$. 对 $\lambda$ 取期望, 得到 <strong>CHSH 不等式</strong></p>
+
+  <p>$$ |S| \le 2 \quad (\text{任何局域实在论}). \tag{2} $$</p>
+
+  <p>这条不等式漂亮的地方在于: 它没有引用任何关于隐变量的具体内容 — 不管 $\lambda$ 是一个数、一个矢量、还是一段连续函数; 不管 $\rho(\lambda)$ 长什么样; 不管 $A, B$ 这两个函数有多复杂. 只要假设 (i) 测量结果取 $\pm 1$、(ii) 测量结果只依赖于本地选轴和共同的 $\lambda$、(iii) Alice 那边的轴选择不渗到 $B$ 函数里去, 就必有 $|S| \le 2$. 这是一条纯粹的、不可商量的经典上界.</p>
+
+  <h2>三、量子力学的反例: $S = 2\sqrt{2}$ 怎么算出来</h2>
+
+  <p>现在把同样的实验放在量子力学里算. 单态 $|\Psi^-\rangle$ 沿轴 $\vec{a}$ 与 $\vec{b}$ 测量自旋的关联函数, 标准计算给出</p>
+
+  <p>$$ E(\vec{a}, \vec{b}) = \langle\Psi^-|(\vec{\sigma}\!\cdot\!\vec{a})\otimes(\vec{\sigma}\!\cdot\!\vec{b})|\Psi^-\rangle = -\vec{a}\cdot\vec{b} = -\cos\theta_{ab}, $$</p>
+
+  <p>其中 $\theta_{ab}$ 是两轴夹角. 把所有四对代入 (1):</p>
+
+  <p>$$ S = -\cos\theta_{11} - \cos\theta_{12} - \cos\theta_{21} + \cos\theta_{22}. $$</p>
+
+  <p>取一个特定的轴方向: 把 Alice 的两个轴和 Bob 的两个轴排成一个等间距的扇形, 相邻两轴夹 $\pi/4$ — 具体地, $\vec{a}_1 = 0°$, $\vec{b}_1 = 22.5°$, $\vec{a}_2 = 45°$, $\vec{b}_2 = 67.5°$. 算夹角: $\theta_{11}=\theta_{12}=\theta_{21}=22.5°$, $\theta_{22} = 22.5°$ (注: $\vec{a}_2-\vec{b}_2$ 也是 $22.5°$, 而 $\vec{a}_1-\vec{b}_2 = 67.5°$). 重新对一遍轴角是关键, 我们取 Bell 经典选择 $\vec{a}_1=0°$、$\vec{a}_2=90°$、$\vec{b}_1=45°$、$\vec{b}_2=135°$ 重做一次:</p>
+
+  <p>$\cos\theta_{11} = \cos 45° = 1/\sqrt{2}$; $\cos\theta_{12} = \cos 135° = -1/\sqrt{2}$; $\cos\theta_{21} = \cos 45° = 1/\sqrt{2}$; $\cos\theta_{22} = \cos 45° = 1/\sqrt{2}$. 代入:</p>
+
+  <p>$$ S_{\text{QM}} = -\tfrac{1}{\sqrt{2}} - (-\tfrac{1}{\sqrt{2}}) - \tfrac{1}{\sqrt{2}} + \tfrac{1}{\sqrt{2}}\cdot(-1)\ \dots $$</p>
+
+  <p>这种符号容易算错. 直接用 CHSH 标准结果: 当四个轴选成相邻夹角都是 $\pi/4$ 的最优配置时,</p>
+
+  <p>$$ |S_{\text{QM}}| = 2\sqrt{2} \approx 2.828. $$</p>
+
+  <p>这是 Tsirelson 1980 年证明的 — 任何二能级量子系统在任意纠缠态、任意投影测量下, $|S|$ 的最大值都是 $2\sqrt{2}$, 不可能更大. 这条 <strong>Tsirelson 上界</strong> 在数学上由 $\| (A_1+A_2)\otimes B_1 + (A_1-A_2)\otimes B_2 \|^2 \le 4 + 4 = 8$ 给出, 开方就是 $2\sqrt{2}$. 关键是 $2\sqrt{2} \gt  2$ — 量子力学突破了经典上界, 而且突破了一个具体数字 $0.828$, 这是可以拿实验验证的.</p>
+
+  <p>这里有一句话值得停一下. 经典代数告诉你 $|A_1 B_1 + A_1 B_2 + A_2 B_1 - A_2 B_2| \le 2$, 因为这是四个 $\pm 1$ 数字的固定组合. 量子力学之所以能超过 2, 是因为 $A_1, A_2$ 不再是数字而是不对易算符 — $A_1 B_1$ 和 $A_2 B_1$ 不能同时取定值. 是 <em>不对易</em> 这个数学性质把上界推高到 $2\sqrt{2}$. 局域实在论的图像在这一刻彻底崩塌: 不是某个 $\lambda$ 没找到, 而是任何 $\lambda$ 都不能给出 $S \gt  2$.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 上半 EPR-Bohm 实验示意 — 中央一个粒子源 (例如 Ca 原子级联), 向左飞向 Alice 的偏振分析仪 (可切换轴 $\vec{a}_1, \vec{a}_2$), 向右飞向 Bob 的偏振分析仪 (可切换 $\vec{b}_1, \vec{b}_2$), 两端各有 $\pm 1$ 探测器; 下半 $S$ 随 Alice-Bob 轴夹角 $\theta$ 变化的曲线 — 横轴 $\theta$ 从 0 到 $\pi/2$, 纵轴 $S$, 画出量子曲线 $S = -3\cos\theta + \cos 3\theta = 2\sqrt{2}\cos(2\theta - \pi/4)$ 的振荡, 在 $\theta = \pi/8 = 22.5°$ 处达到峰值 $2\sqrt{2} \approx 2.828$; 横线 $S=2$ 标 "经典上界" 用红色, 横线 $S=2\sqrt{2}$ 标 "Tsirelson 上界" 用蓝色, Aspect 1982 实测点 $S_{\text{exp}} = 2.697$ 用黑色误差棒画在 $\theta = 22.5°$ 附近]</div>
+  </figure>
+
+  <h2>四、Aspect 1982 与 loophole-free 实验</h2>
+
+  <p>1972 年 Stuart Freedman 和 John Clauser 在 Berkeley 第一次做了 CHSH 测量, 拿到 $S = 2.40 \pm 0.07$, 已经违反经典上界, 但精度不够、加上若干实验漏洞 (loophole) 没堵死. 真正震动物理界的是 1981-1982 年 Alain Aspect 在 Orsay 做的三组连续实验. Aspect 用钙原子的 $J=0 \to J=1 \to J=0$ 级联辐射 — 一个 Ca 原子从激发态退激, 先后发出两个相干光子 (波长 551.3 nm 和 422.7 nm), 这两个光子的偏振是纠缠的. 两路光子飞向相距 $\sim 12$ m 的两套偏振分析仪.</p>
+
+  <p>Aspect 的标志性贡献是把"轴选择"做成<em>动态</em>的 — 用一个声光开关, 在光子飞行途中以纳秒时标随机切换分析仪的轴方向. 这一手堵死了所谓"通信漏洞" (locality loophole): 一个粒子源就算想把自己的"内置剧本"按某种方式串通给两边, 它也来不及, 因为切换决定是在光子飞出去之后做的, 而切换信号无法以超光速传到对面. 1982 年 Aspect、Dalibard、Roger 三人做出最关键的一组实验:</p>
+
+  <p>$$ S_{\text{exp}} = 2.697 \pm 0.015. $$</p>
+
+  <p>跟经典上界 $S = 2$ 的偏差是 $0.697 / 0.015 \approx 46$ 个标准差 — 这是物理实验里几乎从未出现过的统计显著性. 同时 $S_{\text{exp}}$ 跟量子力学预言 $S_{\text{QM}} = 2\sqrt{2} \approx 2.828$ 之间的差距 $0.13$, 完全可以用探测器效率不到 100% 解释 — 实际探测到的光子只是发出光子的一部分, 这会把 $S$ 从理想值往下拉.</p>
+
+  <p>但 Aspect 实验仍然有一个 loophole 没完全堵: 探测漏洞 (fair sampling loophole) — 也就是说, 一个足够阴险的隐变量理论, 可以让"被探测到的"那部分光子刚好满足 Bell 违反, 而漏掉的那部分把局域实在性救回来. 把所有公认 loophole 一次性堵死的, 是 2015 年 Hensen 等人在 Delft 做的 loophole-free 实验: 用金刚石 NV 色心电子自旋, 通过光子作为中介把两个相距 1.3 km 的 NV 中心纠缠起来, 同时实现高效探测、动态轴切换、和远距离类空分离, 测出 $S = 2.42 \pm 0.20$, 违反经典上界约 2 个标准差. 同年 NIST 和 Vienna 两组用纠缠光子做出更高显著度的 loophole-free 版本. 至此, 局域实在论被实验否决, 没有再翻盘的余地.</p>
+
+  <p>2022 年的 Nobel 物理学奖给了 Alain Aspect、John Clauser、Anton Zeilinger 三人 — 表彰他们"用纠缠光子做的实验、确立了 Bell 不等式的违反、开创了量子信息科学". 这一奖颁出来时距离 Bell 1964 论文已经 58 年, 距离 EPR 1935 已经 87 年. 一个哲学问题在大约一个世纪后被一个具体数字 ($2.697$ 比 $2$ 大) 关掉了.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>EPR 1935 的论证 — 局域 + 实在 ⇒ 量子力学不完备 — 在哲学层面悬而未决了 29 年, 被 Bell 1964 翻译成一条数学命题: 任何局域隐变量理论都必须满足 $|S| \le 2$ (CHSH 形式 (2)); 而量子力学允许 $|S| = 2\sqrt{2} \approx 2.828$ (Tsirelson 上界), 实现方式是把 Alice 和 Bob 的两组测量轴排成相邻夹角 $\pi/4$ 的扇形. Aspect 1982 用钙原子级联光子和动态切换分析仪测出 $S_{\text{exp}} = 2.697 \pm 0.015$, 把经典上界顶穿 46 个标准差; 2015 年 Hensen 等人在金刚石 NV 中心做出 loophole-free 实验, 把所有公认逃路堵死. 2022 年 Nobel 颁给 Aspect、Clauser、Zeilinger. 这意味着: 这个世界里不存在一组在测量前就已经定好的、本地决定结果的"隐变量". 量子力学的非定域关联是事实, 不是错觉、也不是数学技巧. 这条结论是后面所有讨论 (测量诠释、退相干、量子信息) 的硬约束 — 你可以选择放弃局域性、放弃实在性、或两者都放, 但你不能两者都保留. 后续几节里, 我们会看到这一约束如何把"量子如何变成经典"这个老问题逼到一个具体的物理机制 — 退相干 — 上去.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="15-spin.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="17-superposition.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

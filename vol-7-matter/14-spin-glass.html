@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>无序磁体为什么"冻"成自旋玻璃? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="13-hubbard.html">← 上一节</a>
+  <span class="chapter-title">第 14 节 / 30 · 第 3 部分 · 强关联与磁性 · 第七卷·物质是什么?</span>
+  <a href="15-quantum-phase-transition.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>无序磁体为什么"冻"成自旋玻璃?</h1>
+  <div class="sub">—— Frustration 与多重亚稳态</div>
+
+  <div class="abstract">
+    在一块纯金属铜里掺进 1% 的锰原子, 这种 CuMn 合金乍看平淡无奇 — 电阻、密度、颜色都跟铜差不多. 把它降到液氦温度去测交流磁化率, 怪事来了: 在 $T_g \approx 10\,\mathrm{K}$ 处, $\chi(T)$ 出现一个尖锐的 cusp, 之下磁化方向"冻"住, 没有任何长程序, 弛豫慢得像水泥凝固 — 几小时、几天、几年都还没回到平衡. 这就是 Cannella-Mydosh 1972 年发现的<em>自旋玻璃</em> (spin glass). 它不是铁磁, 也不是反铁磁, 而是介于两者之间的一种全新有序态. 这一节把它讲清楚: 为什么交换耦合 $J_{ij}$ 既铁磁又反铁磁会逼出 frustration, 为什么 frustration 会撕开能量地形让基态变成数不清的亚稳态, Edwards-Anderson 1975 和 Sherrington-Kirkpatrick 1975 怎么把这件事建模成 $H = -\sum J_{ij} S_i S_j$ 的随机 Ising 模型, 以及 Parisi 1980 年代用 replica symmetry breaking 给出的那个让他赢得 2021 年 Nobel 奖的 ultrametric 解.
+  </div>
+
+  <p>从前面几节走过来, 我们一直在讲"有序": Bloch 电子的能带很有秩序, 反铁磁体的奈尔态很有秩序, Hubbard 模型的 Mott 绝缘体也很有秩序. 这一节是个反例 — 一个无序占主导的系统, 它的低温相不是某个对称破缺的均匀态, 而是一个"定格"的随机图样. 你要问"基态长什么样", 它会反问你"你说的是哪一个". 自旋玻璃的核心难处就在这里: 没有唯一基态, 也没有传统意义上的相变序参量, 系统的"秩序"藏在一种更隐蔽的几何结构里, 必须换一套语言来描述. 而这套语言一旦建立, 它的应用面会出乎意料地宽 — 神经网络、组合优化、蛋白质折叠, 都跟自旋玻璃共用同一种数学骨架. 这是为什么 Parisi 这个本来纯做凝聚态理论的人, 最后拿到的诺贝尔奖词里写的是"对从原子到行星尺度物理系统中无序与涨落相互作用的发现".</p>
+
+  <h2>一、CuMn 与 cusp — 实验线索</h2>
+
+  <p>1972 年, V. Cannella 与 J. A. Mydosh 在 SUNY-Albany 的低温实验室里测了一系列稀磁合金的交流磁化率 $\chi'(T)$. 他们用的是 CuMn — 铜基体里掺进 0.5% 到 8% 的锰. 锰原子分散得稀, 平均距离 10 - 20 Å, 直接交换 (direct exchange) 完全够不着, 但 Mn 自旋之间通过传导电子海做"间接交换" (RKKY 交换). 在样品里, $\chi'(T)$ 从高温的 Curie-Weiss 行为往下走, 走到大概 $T_g \approx 10\,\mathrm{K}$ (1% Mn) 处, 突然出现一个尖锐的<strong>cusp</strong> — 不是峰、不是台阶, 是一个尖角. 跨过 $T_g$ 往低温走, $\chi'$ 反而开始下降, 表明系统对小外场的响应变弱, 自旋"冻"住了. 类似的 cusp 在 AuFe (1% Fe) 里出现在 $T_g \approx 5\,\mathrm{K}$, 在 AgMn 里在 8 K 左右. Cannella-Mydosh 当年并没有立刻把它叫"玻璃" — "spin glass" 这个名字是 P. W. Anderson 在听完报告后随手起的, 一年后开始流行.</p>
+
+  <p>cusp 之下系统有几个显眼的反常. 第一, 没有长程磁序. 中子衍射看不到 Bragg 磁峰, 也看不到反铁磁的奇半整数峰 — 自旋方向是随机的, 没有任何空间周期. 第二, 弛豫极慢. 在 $T_g$ 之下加一个小磁场, 把它撤掉, 磁化强度 $M(t)$ 不是按指数衰减, 而是按<em>stretched exponential</em> $M(t) = M_0\exp\big[-(t/\tau)^\beta\big]$ 衰, 指数 $\beta \approx 0.3 - 0.7$, $\tau$ 在 $10^3$ - $10^9$ 秒之间. 也就是说从几小时到几十年的时间尺度上, 系统都没回到平衡. 第三, 历史依赖. 零场冷下来 (ZFC) 与场冷下来 (FC) 测出的磁化强度截然不同, FC 高、ZFC 低, 两条曲线在 $T_g$ 处会合 — 系统记得它怎么进来的. 这种"记忆"在普通铁磁里是没有的, 它告诉你低温相不是一个唯一的热平衡态, 而是众多亚稳态中被偶然占据的一个.</p>
+
+  <p>关键的物理输入是: 锰原子的位置是随机的. 因为锰是稀掺杂, 没有规律地散在铜的 fcc 晶格上. 这随机性不是我们故意加的, 而是冶金过程不可避免的产物. 它通过 RKKY 间接交换转化成了交换耦合的随机性: 两个 Mn 自旋之间的交换积分</p>
+
+  <p>$$ J(R) = J_0\,\frac{\cos(2 k_F R + \phi)}{R^3} $$</p>
+
+  <p>随距离 $R$ 振荡, 既可正 (favoring 平行) 也可负 (favoring 反平行), 周期由 Fermi 波矢 $k_F$ 决定. 对铜, $k_F \approx 1.36\,\mathrm{\AA}^{-1}$, 振荡半周期约 $\pi/(2 k_F) \approx 1.15\,\mathrm{\AA}$, 于是 Mn-Mn 距离稍微变一变, $J$ 的符号就翻一翻. 在一块 1% Mn 的样品里, 有的 Mn 对距离正好让 $J \gt  0$ (要平行), 有的对让 $J \lt  0$ (要反平行), 两种倾向混杂. 整块系统于是不能像普通铁磁那样让所有自旋一齐指南, 也不能像反铁磁那样让相邻自旋一正一反 — 它陷入<em>frustration</em>.</p>
+
+  <h2>二、Frustration — 三角形上的反铁磁告诉我们什么</h2>
+
+  <p>frustration 这个词字面意思是"沮丧", 物理上指: 不存在能让所有耦合都同时满足的自旋构型. 最干净的例子是反铁磁三角形. 想象三个 Ising 自旋 $S_1, S_2, S_3 \in \{+1, -1\}$ 放在三角形顶点, 三条边都是反铁磁交换 $J \lt  0$, Hamilton 量 $H = -J(S_1 S_2 + S_2 S_3 + S_3 S_1)$. 反铁磁要求每条边上两个自旋反向. 你试着满足: 让 $S_1 = +1, S_2 = -1$, 第一条边 OK; $S_2 = -1$ 要求 $S_3 = +1$, 第二条边 OK; 但这样 $S_1 = S_3 = +1$, 第三条边 broken — 反铁磁不允许两端同号. 不管怎么选, 三条边里至少有一条是 frustrated 的, 没法同时满足. 三角晶格的反铁磁基态因此是简并的 — 三个自旋在 6 种构型里有 6 个能量相同的基态.</p>
+
+  <p>这是简并的 frustration; 自旋玻璃里的 frustration 是无序的版本. Toulouse 1977 给出一个干净的判据: 沿着任何一个闭合回路, 把回路上 $J_{ij}$ 的符号乘起来, 如果得到 $-1$, 那条回路就是 frustrated. 在一块 CuMn 里, 因为 $J(R)$ 振荡符号, 大量回路是 frustrated 的. 系统于是被分成众多互相竞争的"团块", 每个团块自己里面想做铁磁, 团块之间想做反铁磁, 但团块的边界又因为 frustration 不能完美对齐. 整体被锁定在某个不优的妥协态上.</p>
+
+  <p>这件事的代价, 是<em>能量地形</em>从原本的"单一谷底" 变成"无数小山谷". 在普通铁磁体里, $H = -J\sum_{\langle ij\rangle}S_i S_j$, $J \gt  0$, 能量做为构型空间 $\{S_i\}$ 上的函数有两个对称的全局极小 (全 $+1$ 与全 $-1$), 中间被一个简单的能垒分开. 在 frustrated 系统里, 能量地形变成一片<strong>rugged landscape</strong> — 山谷套着山谷, 谷底套着谷底, 大谷与小谷之间的能量差只有 $\sim k_B T_g$ 的量级, 而互相穿越却要爬很高的坡. 系统在低温下被困在某个谷里, 跳到隔壁谷需要的时间是 $\tau \sim \tau_0 \exp(\Delta E / k_B T)$, $\Delta E$ 一发散, $\tau$ 就趋于宇宙寿命级. 这正是 stretched exponential 弛豫的微观起源 — 不是一个时间尺度, 而是从微秒到亿万年的连续谱.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左半: 一个三角形, 三个顶点上画自旋, 三条边都标 "$J\lt 0$" (反铁磁). 选定 $S_1=\uparrow, S_2=\downarrow$, 这两条边用绿色 (satisfied), 第三条边连接 $S_3$ 不管 $\uparrow$ 还是 $\downarrow$, 总有一条是红色 (frustrated). 旁边小字: "至少一条 bond 必然 frustrated, 基态简并". 右半: 一条横轴是构型空间 (示意为一维), 纵轴是能量 $E$, 画一条 rugged 曲线 — 多个深浅不一的局部极小, 谷与谷之间能垒 $\Delta E$ 高低各异. 标几个谷为 $\alpha$ 态, $\beta$ 态, $\gamma$ 态. 底下注: "自旋玻璃低温相 = 无数亚稳态, 弛豫时间 $\tau \sim \exp(\Delta E/k_B T)$"]</div>
+  </figure>
+
+  <h2>三、Edwards-Anderson 模型与序参量</h2>
+
+  <p>1975 年, S. F. Edwards 与 P. W. Anderson 在剑桥写下一个最简化的自旋玻璃 Hamilton 量, 后人称<strong>Edwards-Anderson 模型</strong>:</p>
+
+  <p>$$ H_{\rm EA} = -\sum_{\langle ij\rangle} J_{ij}\, S_i S_j, \qquad J_{ij} \sim \mathcal{N}(0, J^2). \tag{1} $$</p>
+
+  <p>$S_i \in \{+1, -1\}$ 是 Ising 自旋, 求和走最近邻对, $J_{ij}$ 是<em>quenched</em> (淬冷) 的高斯随机变量 — 也就是说每一对的 $J_{ij}$ 在样品制备时被骰子定死, 不再变化. 平均值零意味着铁磁与反铁磁倾向一样多. 这是抓住了 RKKY 那个又正又负的本质特征, 又把空间细节简化到极致 — 不要 1% 的 Mn 占位率, 不要 $\cos(2k_F R)/R^3$ 的具体形状, 只保留"$J_{ij}$ 是随机数"这一条核心. (1) 是这一节的第一条核心公式.</p>
+
+  <p>Edwards-Anderson 接着面对一个棘手问题: 这种系统的"序参量"是什么? 在普通铁磁里, 序参量是磁化强度 $m = \langle S_i\rangle$, $T \lt  T_c$ 时 $m \neq 0$. 在自旋玻璃里, $\langle S_i\rangle$ 在样品平均后是零 — 哪怕每个自旋都"冻"在某个方向, 这些方向是随机的, 平均掉之后净磁化为零. 序参量必须看到"自旋冻住"这件事本身, 而不是它冻在哪个方向. Edwards-Anderson 给出的定义是</p>
+
+  <p>$$ q_{\rm EA} = \overline{\,\langle S_i\rangle^2\,}, \tag{2} $$</p>
+
+  <p>外面那条上划线表示对 quenched 无序 $\{J_{ij}\}$ 的平均, 里面 $\langle\,\cdot\,\rangle$ 是某个固定无序样本下的热力学平均. 对自旋"冻"住的态, $\langle S_i\rangle = \pm 1$ (随 $i$ 取值), 平方后总是 $1$, 所以 $q_{\rm EA} \gt  0$. 对高温顺磁态, $\langle S_i\rangle = 0$, $q_{\rm EA} = 0$. 这把"冻 vs 不冻"用一个标量量化. (2) 是这一节的第二条核心公式.</p>
+
+  <p>$q_{\rm EA}$ 在 $T_g$ 处从零长出来, 像一个普通的二阶相变序参量, 但它跟磁化强度本质不同 — 它对自旋的"指向"不敏感, 只对自旋是否被锁定敏感. 这种序参量在 1975 之前没人在固体物理里见过. 它对应的相变也很怪: 比热不发散 (磁化率 cusp 但比热只是个圆滑的肩膀), 中子衍射看不到 Bragg 峰. 你只能通过非线性磁化率 $\chi_3 \propto \partial^3 M/\partial H^3$ 才能看到 $T_g$ 处的发散 — Suzuki 1977 给出这个判据, 后来成为实验上确认 $T_g$ 是真相变 (而非动力学冻结) 的标准.</p>
+
+  <h2>四、SK 模型与 Parisi 的 replica symmetry breaking</h2>
+
+  <p>同一年, D. Sherrington 与 S. Kirkpatrick 把 Edwards-Anderson 模型推向无穷维 — 即每个自旋跟所有其他自旋耦合, 耦合强度 $J_{ij}/\sqrt{N}$ 仍是高斯随机的, $N$ 是自旋总数. 这就是<strong>Sherrington-Kirkpatrick 模型</strong>, 简写 SK. 在 mean field 极限 $N\to\infty$ 下, 它原则上可解 — 因为每个自旋感受到的"局部场"是大量耦合的和, 中心极限定理把它压成高斯分布. SK 在 1975 年的论文里用一种叫 <em>replica trick</em> 的数学魔法做平均: 要算 $\overline{\ln Z}$, 用 $\ln Z = \lim_{n\to 0}(Z^n - 1)/n$, 把样品复制 $n$ 份, 算 $\overline{Z^n}$ 这个比较容易的量, 最后令 $n\to 0$.</p>
+
+  <p>问题是, SK 的 replica 解在低温下出问题 — 它给出负的零温熵 ($S(T=0) \lt  0$), 这显然违反热力学第三定律. 这告诉我们 SK 1975 年的解 (后人称 "replica symmetric" 解, 即假设所有 $n$ 份 replica 之间地位等价) 是错的. 真正的解在 1979 - 1983 由 Giorgio Parisi 给出 — Parisi 在罗马大学一连串论文里提出, 真正的 SK 基态打破了 replica 之间的对称性, 不是均匀的, 而是<strong>有层次的</strong>. Parisi 的方案叫 <em>replica symmetry breaking</em> (RSB), 它把 $n\times n$ 的 overlap 矩阵 $Q_{ab}$ 用一个连续函数 $q(x)$ 参数化, $x \in [0, 1]$, 每一步 RSB 把矩阵切成更小的块, 最终得到一个连续的层次结构.</p>
+
+  <p>这个解的几何含义是: 自旋玻璃低温相的众多亚稳态不是杂乱无章地散布, 而是组织成<em>ultrametric</em> 树状结构 — 任何三个态 $\alpha, \beta, \gamma$ 之间的"距离" $d_{\alpha\beta}, d_{\beta\gamma}, d_{\alpha\gamma}$ 满足强不等式 $d_{\alpha\gamma} \leq \max(d_{\alpha\beta}, d_{\beta\gamma})$ (而不是普通三角不等式 $\leq d_{\alpha\beta} + d_{\beta\gamma}$). ultrametric 是分层聚类的标志, 在生物分类学、语言谱系学里出现, 现在出现在物理基态结构里. 序参量分布 $P(q)$ 不是一个 delta 峰, 而是一个连续分布 — 不同亚稳态之间的 overlap $q_{\alpha\beta}$ 取一段连续谱, 反映的就是树上不同节点的距离. 1980 年代物理学家用 Mézard-Parisi-Virasoro 整理出来的 cavity 方法重新推导, 结果跟 RSB 完全一致.</p>
+
+  <p>Parisi 的 RSB 解花了三十多年才被完全验证. 数学家 Michel Talagrand 2006 年给出第一个严格证明 SK 模型自由能的 Parisi 公式, 后来 Panchenko 2013 严格证明了 ultrametric 性质. 2021 年 10 月, Nobel 委员会把物理学奖一半发给 Parisi, 表彰他"对从原子到行星尺度物理系统中无序与涨落相互作用的发现". 颁奖词里没有用"自旋玻璃"这个词, 因为 RSB 的影响早就溢出物理 — 神经网络的能量地形 (Hopfield 1982 的联想记忆模型就是一个 SK 自旋玻璃)、组合优化里的 K-SAT 相变、蛋白质折叠的 funnel landscape, 全都共用同一套数学骨架. 自旋玻璃于是从一个稀磁合金的实验异常, 变成了"无序系统物理"的奠基石.</p>
+
+  <h2>五、自旋玻璃留下的语言</h2>
+
+  <p>把这一节摆在第七卷的位置看: 前两节我们讲 Hubbard 模型 (强关联), 下一节讲量子相变. 自旋玻璃是这两个题目之间的桥. 它告诉我们, 当强关联碰上 quenched 无序, 系统的低温物理不再用单一序参量描述, 而需要一整片亚稳态空间; 它也告诉我们, "相变"不必是几何破缺对称, 可以是更抽象的"replica 对称破缺". 这套语言在后续凝聚态、统计物理、复杂系统里反复出现 — 任何只要有 quenched 无序 + frustration 的体系, 你都会看到 Edwards-Anderson 模型 (1) 与 RSB 的影子.</p>
+
+  <p>实验上, 自旋玻璃的故事到现在还在写. 高温超导铜氧化物里, 欠掺杂区出现"集群自旋玻璃"行为; 重 fermion 体系 URh$_2$Si$_2$ 的低温相被怀疑有自旋玻璃成分; 二维系统 (CrI$_3$ 单层) 里 frustration 的几何起源跟三维不同, 给出了新的 $T_g$ 标度律. 理论上, RSB 的预测之一是 — 在外加小扰动下, 系统的所有 metastable 态会"重组" (chaos in temperature/field), 实验在 CuMn 里通过场冷-零场冷的差异部分验证, 但完整的"chaos" 至今没有干净测量, 是 2020 年代低温实验的活跃方向.</p>
+
+  <p>把数字落实一遍: CuMn 1% Mn, $T_g \approx 10\,\mathrm{K}$; AuFe 1% Fe, $T_g \approx 5\,\mathrm{K}$; AgMn 1% Mn, $T_g \approx 8\,\mathrm{K}$. 这些 $T_g$ 都远低于纯磁性元素的居里温度 (Fe 的 1043 K, Mn 的 95 K), 说明随机化把磁有序压低了一个量级. RKKY 振荡周期 $\pi/k_F \approx 2.3\,\mathrm{\AA}$ (对铜) 与 Mn-Mn 平均距离 $\sim 10\,\mathrm{\AA}$ 之比说, 一对 Mn 之间符号已经翻了好几次, 这正是 frustration 的微观源头. 弛豫时间 $\tau$ 跨越 $10^{-3}$ 到 $10^9$ 秒, 跨越 12 个数量级 — 没有任何普通磁体能展示如此宽的时间谱, 这是 rugged landscape 的实验签名.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Cannella-Mydosh 1972 在 CuMn (1% Mn) 中看到 $T_g \approx 10\,\mathrm{K}$ 的 cusp, 之下自旋"冻"在随机方向, 没有长程序, 弛豫呈 stretched exponential, 跨越 $10^{-3}$ - $10^9$ 秒 — 这是自旋玻璃. 物理起源是 RKKY 间接交换 $J(R) \propto \cos(2k_F R)/R^3$ 既铁磁又反铁磁, 加上稀杂质的位置无序, 让大量 bonds 不能同时满足 — 系统 frustrated. Edwards-Anderson 1975 用 (1) 式 $H = -\sum J_{ij}S_i S_j$, $J_{ij}$ 高斯随机, 抓住本质; (2) 式 $q_{\rm EA} = \overline{\langle S_i\rangle^2}$ 给出一个对自旋"冻 vs 不冻"敏感而对方向不敏感的全新序参量. Sherrington-Kirkpatrick 1975 把它推向 mean field, 但 replica symmetric 解给负零温熵, 物理错. Parisi 1979 - 1983 通过 replica symmetry breaking 找到正确解, 揭示 SK 基态有 ultrametric 树状结构, 亚稳态连续无穷多, $P(q)$ 是连续分布. 严格证明 2006 (Talagrand)、2013 (Panchenko) 完成, 2021 年 Parisi 共享 Nobel. 这套语言溢出磁学, 进入神经网络、组合优化、蛋白折叠. 下一节我们换一个题: 在零温下让一个量子参数 (磁场、压力、掺杂) 跨过临界值, 系统会经历什么 — 量子相变.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="13-hubbard.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="15-quantum-phase-transition.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

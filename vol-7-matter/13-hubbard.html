@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hubbard 模型为什么是凝聚态的"核心方程"? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="12-mott.html">← 上一节</a>
+  <span class="chapter-title">第 13 节 / 30 · 第 3 部分 · 强关联与磁性 · 第七卷·物质是什么?</span>
+  <a href="14-spin-glass.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Hubbard 模型为什么是凝聚态的"核心方程"?</h1>
+  <div class="sub">—— 跳跃 $t$ 与库仑 $U$</div>
+
+  <div class="abstract">
+    上一节 Mott 绝缘体已经告诉我们: 当电子之间的库仑排斥强到一定程度, 即便能带半填、单粒子图像预言金属, 体系也会卡死成绝缘体. 真正把这件事压缩成一道写得下、解得动的方程, 是 John Hubbard 1963 年的工作 — 留两件事就够: 电子在最近邻原子之间的跳跃幅度 $t$, 同一个原子上两个相反自旋电子的同位排斥能 $U$. 这就是 Hubbard 模型. 它表面看简单到像玩具, 但正是它在 60 年里反复刷新凝聚态: 1968 年 Lieb 和 Wu 用 Bethe ansatz 在一维上拿下精确解; 1987 年 Anderson 在 cuprate 高 $T_c$ 一发现的当年就提议它就是高温超导的母方程, 掺杂 Mott 绝缘体跑出共振价键; 2002 年 Greiner 等人在光晶格里用冷原子直接 "搭" 出 Hubbard, BEC-Mott 转变看得见摸得着; 1992 年 White 的 DMRG, 21 世纪的 DMFT, QMC, 把它在 2D 和 3D 推到数值精度的极限. 这一节我们写下它, 用最小动作 — 算它的极限, 看它怎么生出 Heisenberg 反铁磁的 $J = 4t^2/U$, 把 cuprate 的 $t \approx 0.4\,\mathrm{eV}$, $U \approx 8\,\mathrm{eV}$, $J \approx 0.13\,\mathrm{eV}$ 数对上, 再回头看为什么它一道方程能装下金属、Mott 绝缘体、反铁磁、超导、量子相变.
+  </div>
+
+  <p>从一块 ${\rm La_{2-x}Sr_x CuO_4}$ 单晶出发. 把它在 $x=0$ 时打入光谱仪, 你会看到电荷转移带在 2 eV 附近, 直流电导极低, 它是一个绝缘体, 不是因为没填满某条带, 而是因为同一个 Cu 3d 轨道上两个电子互相挤不下 — 这是上一节那个 Mott 故事. 把锶含量 $x$ 提到 $0.05$, 体系突然变成金属; 提到 $0.15$, 它在 $T_c \approx 38\,\mathrm{K}$ 进入超导. 同一颗晶体, 同样的几何, 只换掺杂 $x$, 物相从绝缘到金属再到超导轮换上演. 凝聚态物理找了几十年, 想要一个最朴素的模型去同时解释这三件事 — 在那之前, 解释金属用 Bloch + Sommerfeld, 解释绝缘体用 Mott + Hubbard, 解释超导用 BCS, 三套语言互不通话. 1963 年 Hubbard 写下的那个 Hamiltonian, 用两个参数把这三件事压在了一张纸上.</p>
+
+  <h2>一、从 Wannier 轨道写下 Hubbard Hamiltonian</h2>
+
+  <p>从最干净的图像出发. 设晶格上每个格点 $i$ 上有一条 Wannier 轨道 $\phi(\mathbf{r}-\mathbf{R}_i)$, 容纳两个自旋方向 $\sigma = \uparrow, \downarrow$. 二次量子化, $c^\dagger_{i\sigma}$ 在格点 $i$ 自旋 $\sigma$ 上加一个电子, $c_{i\sigma}$ 取一个走, 数算符 $n_{i\sigma} = c^\dagger_{i\sigma} c_{i\sigma}$. 真实的多体 Hamiltonian 是单粒子动能 $\sum_{i,j,\sigma} t_{ij}\, c^\dagger_{i\sigma} c_{j\sigma}$ 加上四算符的库仑项 $\frac{1}{2}\sum_{ijkl} V_{ijkl}\, c^\dagger_i c^\dagger_j c_l c_k$. Hubbard 1963 做了两个截断, 都极端但极清楚: 跳跃 $t_{ij}$ 只保留最近邻 $\langle ij\rangle$, 记成 $-t$; 库仑相互作用 $V_{ijkl}$ 只保留同一个格点上、两个相反自旋之间的同位排斥, 记成 $U$. 任何同位异轨道、近邻库仑、交换项, 全部扔掉. 留下的 Hamiltonian 是</p>
+
+  <p>$$ H = -t \sum_{\langle ij\rangle, \sigma} \left( c^\dagger_{i\sigma}\, c_{j\sigma} + \mathrm{h.c.} \right) + U \sum_i n_{i\uparrow} n_{i\downarrow}. \tag{1} $$</p>
+
+  <p>$(1)$ 就是 Hubbard 模型. 两个参数, 一个矩阵元 $t$ 控制电子跑动的能力, 一个 $U$ 控制电子同位重叠的代价. 看它的两个极端就能感到力量. $U = 0$, 模型退化成 tight-binding 自由电子, 在简立方上能带 $\varepsilon(\mathbf{k}) = -2t \sum_\alpha \cos k_\alpha a$, 标准的 Bloch 金属. $t = 0$ 反过来, 电子完全锁住, 每个格点被自旋 $\uparrow, \downarrow, 0$ 或者 $\uparrow\!\downarrow$ 占, 后者要付 $U$ 的代价 — 半填时每个格点恰一个电子, 自旋方向自由, 整个体系是 $2^N$ 重简并的局域 paramagnet, 同时也是绝缘的.</p>
+
+  <p>真正的物理在中间. $t/U$ 是无量纲的小数, 它的大小决定模型在哪一种相里. cuprate 的母体 ${\rm La_2 CuO_4}$, 通过第一性原理的下游拟合 (Hybertsen 1989, Andersen 1995), 给出 $t \approx 0.4\,\mathrm{eV}$, $U \approx 8\,\mathrm{eV}$, $t/U \approx 0.05$ — 强关联, 半填下是绝缘体. 冷原子 ${}^{40}\mathrm{K}$ 在 ${\rm 1064\,nm}$ 光晶格里, 阱深 $V_0 = 8 E_R$ 时 $t/U \sim 0.06$, 直接用激光把这个比值调到 cuprate 量级. 而钠 (Na) 这种碱金属里 $t/U$ 大约在 $1$ 量级, 是普通金属. 一个比值就把材料分到了不同物相.</p>
+
+  <h2>二、强耦合极限: $J = 4t^2/U$ 与反铁磁的诞生</h2>
+
+  <p>$U \gg t$ 时, $(1)$ 式可以做"二阶微扰". 半填、每格点一个电子, 双占据是高能态, 价为 $U$. 真正能动的过程是: 一个 $\uparrow$ 电子借走邻居 $j$ 的位置 (那里有一个 $\downarrow$), 中间态付 $U$, 然后 $j$ 上的 $\downarrow$ 跳到 $i$ 上的空位填回. 一来一去能量回到原来, 但中间走了一趟, 二阶微扰给的能量增益是 $-t^2/U$ 级. 关键是这个过程能进行的前提: 邻居的自旋必须跟自己反向. 若都是 $\uparrow\uparrow$, Pauli 不让你借, 跳不过去. 把所有邻居对加起来, $(1)$ 在 $U \to \infty$, 半填这个子空间里被精确投影成 Heisenberg 反铁磁 Hamiltonian</p>
+
+  <p>$$ H_{\rm eff} = J \sum_{\langle ij\rangle} \left( \mathbf{S}_i \cdot \mathbf{S}_j - \tfrac{1}{4} n_i n_j \right), \quad J = \frac{4 t^2}{U}. \tag{2} $$</p>
+
+  <p>$(2)$ 是凝聚态里最有名的"派生" — 一个看起来与磁无关的电子模型, 在大 $U$ 极限里自动生出了反铁磁. 物理直观是: 反向自旋的邻居能借虚拟跳跃降低能量 $\sim t^2/U$, 同向自旋的邻居一点都借不到 — 系统会自发选反铁磁排序. 数字代进去就更服气. cuprate 把 $t = 0.4\,\mathrm{eV}$, $U = 8\,\mathrm{eV}$ 代入 $(2)$, $J = 4 \times 0.16/8 = 0.08\,\mathrm{eV}$. 实测 ${\rm La_2 CuO_4}$ 的反铁磁交换 $J_{\rm exp} \approx 0.13\,\mathrm{eV}$ (Coldea 2001, 用中子非弹性散射在 BZ 路径上拟合自旋波色散), 量级对到不止一位 — 把 $t, U$ 拟好, 这个 $J$ 直接对上中子谱, 这就是 cuprate 母体之所以是反铁磁绝缘体、Néel 温度 $T_N \approx 325\,\mathrm{K}$ 的全部物理. ${\rm La_2 CuO_4}$ 是一个 Hubbard 模型在大 $U$ 极限做对的活实验.</p>
+
+  <p>从 $(2)$ 里看出更深一步的东西: 半填 Hubbard 模型在 $U \gg t$ 下不只是绝缘体, 它是一个反铁磁绝缘体. 把 Mott 与磁有序绑成同一件事, 这是 Hubbard 1963 + Anderson 的 superexchange 1959 一起搭起来的图像. 自旋波在那个 $J = 0.13\,\mathrm{eV}$ 决定的特征频率上振荡, 中子散射可以直接看; 比热里的低温 $T^2$ 项是 2D 反铁磁自旋波的指纹. 一行 $J = 4t^2/U$ 把电子动能和自旋热力学绑死.</p>
+
+  <h2>三、一维精确解: Lieb-Wu 1968 的 Bethe ansatz</h2>
+
+  <p>$(1)$ 在三维上至今没有解析解, 但在一维上 Lieb 和 Wu 1968 把它打通了. 他们用的是 Bethe ansatz — 1931 年 Bethe 解一维 Heisenberg 链时发明的方法, 把多粒子波函数写成单粒子平面波的反对称化叠加, 通过相互作用诱导的 S 矩阵把动量量子化条件写成一组耦合代数方程. 用到 Hubbard 一维, Lieb-Wu 把电子分成 $N$ 个动能动量 $k_j$ 与 $M$ 个自旋"反向"参数 $\Lambda_\alpha$, 给出</p>
+
+  <p>$$ N k_j = 2\pi I_j - \sum_{\alpha=1}^M \theta\!\left(\frac{\sin k_j - \Lambda_\alpha}{U/4t}\right), \quad \sum_{j=1}^N \theta\!\left(\frac{\sin k_j - \Lambda_\alpha}{U/4t}\right) = 2\pi J_\alpha + \sum_{\beta=1}^M \theta\!\left(\frac{\Lambda_\alpha - \Lambda_\beta}{U/2t}\right), $$</p>
+
+  <p>这里 $\theta(x) = 2\arctan(x)$ 是相移函数, $I_j, J_\alpha$ 是半整数 / 整数量子数. 把它当做 Lieb-Wu 方程, 一组耦合的非线性代数方程. 取热力学极限 $N \to \infty$, 它退化成两个互相耦合的积分方程, 给出基态能量 $E/N$ 与化学势 $\mu(n)$ 的解析积分表示. 几个推论一下子全亮了.</p>
+
+  <p>第一, 任何 $U \gt  0$ 在半填 ($n = 1$) 时一维 Hubbard 都是绝缘体, 电荷激发有间隙 $\Delta_c(U) \gt  0$, 即便 $U$ 比 $t$ 小. 这是 Mott 绝缘体在一维的精确版本 — 维度低得让任何一点关联都能撕开间隙. 第二, 自旋激发是无间隙的, 自旋扇区描述成一种 $\mathrm{SU}(2)$ Wess-Zumino 样的 conformal 场, 中心荷 $c = 1$. 自旋与电荷各走各的速度 $v_s \neq v_c$ — 这是著名的"自旋-电荷分离": 一个一维电子在远场下表现成自旋子 + 全息子两种独立的元激发. 第三, 这一切在二维或三维上都不成立 — 二维 Hubbard 半填是绝缘体, 但激发谱是否 gap 化、自旋电荷是否分离, 至今争论不休, 也是高 $T_c$ 难度的源头.</p>
+
+  <p>Lieb-Wu 解的工程意义不限于"我们多了一个一维例子". 它给所有数值算法树了一根真理棒 — 在一维, 任何 DMRG, QMC, 或者最近的张量网络, 必须在 $U/t$ 各个区段精确再现 Lieb-Wu 的 $E/N$ 曲线和 $\mu(n)$, 这是基准测试. White 1992 在 Reno 大学发明 DMRG (density-matrix renormalization group), 第一项工作就是把 Heisenberg 链算到 $10^{-13}$ 精度对上 Bethe ansatz, 然后扩展到 Hubbard 链, 把 Lieb-Wu 的解析结果在数值层面复刻一遍, 顺手把激发谱, 关联函数都画出来. 自此 DMRG 在一维 Hubbard 上是金标准, 二维近年才被推到带状几何上突破.</p>
+
+  <h2>四、二维难题与高 $T_c$: Anderson 1987 的提议</h2>
+
+  <p>1986 年 Bednorz-Müller 在瑞士 IBM 实验室在 ${\rm La_{2-x}Ba_x CuO_4}$ 上发现 $T_c \approx 30\,\mathrm{K}$ 的超导, 1987 年 ${\rm YBa_2 Cu_3 O_7}$ 把 $T_c$ 推到 90 K, 整个低温物理一下进入"高温超导"时代. 同年 Philip Anderson 在 Science 上发表那篇极短的论文 "The resonating valence bond state in ${\rm La_2 CuO_4}$ and superconductivity", 提议高温超导的母方程就是二维方形格子上的 Hubbard 模型 $(1)$, 而 cuprate 这个 $t \approx 0.4\,\mathrm{eV}, U \approx 8\,\mathrm{eV}$ 的 RVB 区域里, 半填是反铁磁 Mott 绝缘体, 但稍一掺杂 $\delta$, 反铁磁排序被电荷涨落打散, 体系流入一个由近邻自旋单态 (valence bond) 组成的"共振"基态 — RVB. RVB 自然支持 $d$ 波超导配对, 因为 $J$ 的反铁磁起源给单态赋予能量优势; 配对的能隙 $\Delta(\mathbf{k}) \propto \cos k_x - \cos k_y$ 在 BZ 对角线上有节点, 这正是后来 ARPES 与相位敏感 $\pi$-junction 实验里看到的对称性.</p>
+
+  <p>Anderson 这一招把高温超导的"母方程"问题落地了: 解二维 Hubbard $(1)$ 在 $t/U \sim 0.05$, 掺杂 $\delta \sim 0.1$ 上, 就解了 cuprate. 但这"就"字背后是几十年没办下的数学难题. QMC 在二维 Hubbard 半填时没有 sign problem, 给出反铁磁基态; 一旦掺杂, sign problem 让指数复杂度爆炸, 算到 $T \sim 0.05 t$ 已是极限. DMFT (Georges, Kotliar 1992) 把二维 Hubbard 投到一个 self-consistent 杂质问题, 抓到 Mott 转变与 Hubbard band 的高能图像; 它的扩展 cluster-DMFT 在 $4 \times 4$ 的小簇上看到了 $d$ 波超导的萌芽. 最近 Qin, Zheng, Chan, Vidal 等多组用混合算法在 2020 年左右共识: 二维方形 Hubbard 在掺杂 $\delta = 1/8$ 附近, 真实基态是<em>条纹</em>而非均匀超导, 这跟 cuprate 实验里的电荷密度波相吻合. Hubbard $(1)$ 距离"算出 cuprate $T_c$"还有距离, 但每往前一寸都直接转化成对真实材料的理解.</p>
+
+  <p>另一条路是把 Hubbard 拿出实验室外, 在冷原子上"搭" 出来. Greiner, Bloch 等 2002 年 Nature 上把 ${}^{87}\mathrm{Rb}$ 玻色子装进三维光晶格, 发现当晶格深度从 $V_0 = 3 E_R$ 升到 $V_0 = 22 E_R$, 体系从 superfluid 突然进入 Mott 绝缘体 — 这是 Bose-Hubbard 的 Mott 转变, 时移可看. 2008 年 Bloch 组与 Esslinger 组用 ${}^{40}\mathrm{K}$ 费米子做出 Fermi-Hubbard 在光晶格中的实现, 2017 年 Greiner 组的"量子气体显微镜" 直接在单格点分辨率上拍到反铁磁 Néel 排序的 staggered 结构. 这是 Hubbard 模型从纸上方程变成物理装置的过程 — 不再依赖材料, 而是用激光与冷原子直接编程. $t, U$ 由激光阱深与 Feshbach 共振调节, 可以扫遍 $(1)$ 的整张相图.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Hubbard 模型示意. 上半: 一维链, 七个格点连成横排, 每格点画成一个上下两格的小矩形 (上格代表自旋 $\uparrow$, 下格代表自旋 $\downarrow$); 在两个相邻格点之间画一对左右双向箭头并标 $-t$, 代表跳跃; 在某一个格点的上下两格里同时填上小圆 (双占据), 旁边标 $+U$ 表示双占据能量代价. 下半: 三种典型态从左到右排列, 每态都画 5 个格点的链. (a) 半填 Mott 状态: 每格点恰一个电子, 自旋方向交替 $\uparrow\downarrow\uparrow\downarrow\uparrow$ (反铁磁基态), 标注 "Mott 绝缘体, $J = 4t^2/U$". (b) 掺杂态: 5 格点中 1 个空位, 4 个格点各 1 电子, 标注 "doping $\delta$, 流动性恢复". (c) 双占据涨落: 1 格点双占据 ($\uparrow\downarrow$ 同格), 1 格点空, 其余各 1, 标注 "双占据 cost $U$, 虚态". 整体配色与 vol-7 一致, 自旋上/下用蓝/红, 跳跃箭头黑色, $U$ 用红色背景标注以示能量代价]</div>
+  </figure>
+
+  <h2>五、Hubbard 之所以是"核心方程"</h2>
+
+  <p>把上面四节扣回到一句话. $(1)$ 之所以是凝聚态的核心方程, 不是因为它复杂 — 它简单到看一眼就懂; 是因为它包了几乎所有非平凡相在最朴素的一面: 弱 $U$ 是 Bloch 金属, 大 $U$ 半填是 Mott 绝缘体, 同时是 Heisenberg 反铁磁; 一旦掺杂, 反铁磁被打散, 体系流向高 $T_c$ 候选区, 配对对称性 $d$ 波由 $J$ 自然指定; 维度从 1 到 2 到 3, 物理在每一维都不一样, 给出从精确解到无解的全谱; 把它在冷原子里搭, 还能把"模型即材料"反过来用激光实现. cuprate 那一组数 $t \approx 0.4\,\mathrm{eV}, U \approx 8\,\mathrm{eV}, J \approx 0.13\,\mathrm{eV}$, 是凝聚态过去 40 年中被反复对到的"基准三元组" — Hubbard 写在纸上, 中子散射看到 $J$, ARPES 看到 $d$ 波节点, STM 看到电荷密度波, 所有这些能在一张相图上拼起来. 还有重 fermion 化合物 ${\rm UTe_2}$ 的 $U$ 进到 ${\rm 5f}$ 轨道, $U \approx 4\,\mathrm{eV}$, 给出一个 magnetically-mediated 的 $T_c \approx 1.6\,\mathrm{K}$ 超导, 同样是 Hubbard 系框架的延伸.</p>
+
+  <p>方法学的故事也都从这里走过. Hubbard 1963 写下方程; Anderson 1959 把 superexchange 系成 $J = 4t^2/U$; Lieb-Wu 1968 一维精确解; Hubbard 1963 和 Gutzwiller 1963 同年提出近似解 (mean-field 与变分波函数); Hirsch 1985 在二维半填上做出 QMC 的第一次模拟; White 1992 DMRG 把一维定死; Georges-Kotliar 1992 DMFT 把高维抓住; Anderson 1987 RVB 把它跟高 $T_c$ 绑起; Greiner 2002 与 Bloch 2008 把它搬到光晶格. 每一位都是在 $(1)$ 这一行公式的不同侧面上下功夫, 但谁都没绕开它.</p>
+
+  <p>这一节做了三件事. 一是从 Wannier + 截断写下 $(1)$, 解释 $t, U$ 的物理含义与代价; 二是导出 $(2)$ 式的 superexchange $J = 4t^2/U$, 把数对到 cuprate ${\rm La_2 CuO_4}$ 的中子谱; 三是过一遍 1D 精确解, 2D 高 $T_c$ 提议, 与冷原子里的"模拟". 这条线下一节会延伸到自旋玻璃 — 当 $J_{ij}$ 不再是均匀反铁磁, 而是随机 frustrated, Hubbard 衍生的 Heisenberg 模型在无序与挫折下走出另一条物相: $T_g$ 以下冻结, 没有长程序, 但也不是普通 paramagnet, 那是 Edwards-Anderson 1975 与 Sherrington-Kirkpatrick 1975 的世界. 强关联的母方程 $(1)$ 把磁的源头交给 $J$, 自旋玻璃则把 $J$ 交给随机性.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Hubbard 模型 $(1)$ $H = -t \sum_{\langle ij\rangle\sigma} c^\dagger_{i\sigma} c_{j\sigma} + U \sum_i n_{i\uparrow} n_{i\downarrow}$ 用两个参数 $t, U$ 把电子的跳跃与同位排斥压成一行. $U \gg t$, 半填上微扰给出 Heisenberg 反铁磁 $(2)$ 式 $J = 4t^2/U$ — cuprate ${\rm La_2 CuO_4}$ 的 $t \approx 0.4\,\mathrm{eV}, U \approx 8\,\mathrm{eV}$ 给 $J \approx 0.08$-$0.13\,\mathrm{eV}$, 与中子散射拟合的 $J = 0.13\,\mathrm{eV}$ 直接对上. 一维 Lieb-Wu 1968 用 Bethe ansatz 给出精确解, 半填任何 $U \gt  0$ 都是绝缘, 自旋-电荷分离; 二维三维至今无解析, 但 DMRG (White 1992), QMC, DMFT (Georges-Kotliar 1992), tensor networks 推到数值精度的极限. Anderson 1987 提议 $(1)$ 在 $t/U \sim 0.05$, 掺杂 $\delta \sim 0.1$ 上是高 $T_c$ 母方程, RVB + $d$ 波, 至今是 cuprate 最有力的解释框架. 冷原子 Greiner 2002, Bloch 2008 用光晶格把 $(1)$ 搭进激光阱里, $t, U$ 由阱深与 Feshbach 控制, 在量子气体显微镜里看 Mott 与 Néel. ${\rm UTe_2}$ ${\rm 5f}$ 重 fermion 体系 $U \approx 4\,\mathrm{eV}$, 是 Hubbard 思路在另一族材料上的延伸. $(1)$ 简到极致, 但它一个人扛起了金属、Mott 绝缘体、反铁磁、超导、量子相变这五块凝聚态主板 — 它就是这门学科的"核心方程".</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="12-mott.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="14-spin-glass.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

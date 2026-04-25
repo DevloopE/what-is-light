@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X 射线衍射为什么能看到原子排布? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="01-crystals.html">← 上一节</a>
+  <span class="chapter-title">第 2 节 / 30 · 第 1 部分 · 晶体与对称性 · 第七卷·物质是什么?</span>
+  <a href="03-reciprocal.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>X 射线衍射为什么能看到原子排布?</h1>
+  <div class="sub">—— Bragg 定律 $2d\sin\theta = n\lambda$</div>
+
+  <div class="abstract">
+    上一节我们说固体里的原子大多排成 Bravais 格子, 但这件事在 1912 年之前其实没有被"看见"过 — 没人有能直接看进 Å 量级的显微镜. 真正把晶格变成可观测对象的, 是 X 射线衍射: Max von Laue 1912 年想到一个办法 — 既然 Röntgen 的 X 射线波长跟原子间距是同一量级, 那让它穿过晶体, 出来的应当是一组离散的衍射点, 像一支有刻度的尺子打在底片上. 实验室里 Friedrich 和 Knipping 把 ZnS 晶体摆好, 真的拍到了那些点. 第二年, 父子档 W.H. Bragg 和 W.L. Bragg 把这些点的位置归纳成一行公式 $2d\sin\theta = n\lambda$ — 衍射角直接告诉你晶面间距 $d$. 这一节我们沿这条路推一遍 — 干涉条件怎么从光程差长出来, Cu Kα 射线打 NaCl 给出的第一峰角度是多少, Laue 条件 $\Delta\mathbf{k} = \mathbf{G}$ 与 Bragg 公式如何同构, 以及为什么这台"原子显微镜"后来能照出 DNA 双螺旋.
+  </div>
+
+  <p>1895 年 11 月 8 日, Wilhelm Röntgen 在 Würzburg 实验室里偶然发现一种穿透力极强的射线, 他不知道它是什么, 标了一个 X. 此后十几年, X 射线一直处在尴尬境地: 实验上有用 (拍骨头), 但本性不清楚 — 是带电粒子流? 是横波? 波长多少? 都没定论. 一边是 Charles Barkla 主张电磁波, 另一边 William Henry Bragg (老 Bragg) 主张粒子. 1912 年, Munich 的 Arnold Sommerfeld 课题组里有个年轻讲师 Max von Laue, 在和 Paul Ewald 的一次午餐讨论中突然想到: 如果 X 射线确实是波, 而 Ewald 当时正在写的博士论文恰好是关于光在晶格里的传播, 那么 — 晶格本身就是一台天然光栅, 周期是 Å 量级. 可见光波长 5000 Å 太长, 看不见原子尺度的结构; 但 X 射线波长几 Å, 正好跟晶格间距同量级, 应当能产生可观测的衍射. 这个想法的关键在于: 它把"X 射线是波吗"和"晶体真的是周期格子吗"两个问号绑成了一个 — 衍射图样如果出现, 两个问号就同时落地. Friedrich 和 Knipping 当晚就开干, 几天后拍到了第一张 ZnS 衍射照片: 一组规整、对称、离散的斑点. 1914 年的 Nobel 物理学奖给了 von Laue.</p>
+
+  <h2>一、把光程差画出来</h2>
+
+  <p>父子 Bragg 不久后给这组斑点找到一个最干净的解释 — 不必动用 von Laue 当时用的那套三维干涉积分, 只要一行几何就够. 想象晶体里有一族平行的原子平面 (比如简单立方晶格里的 $(100)$ 平面), 相邻面间距 $d$. 一束 X 射线以掠射角 $\theta$ (相对于晶面, 不是法线) 入射, 每个原子像一面小镜子, 把光向各方向散射. 我们关心一种特殊的出射方向: 镜面反射方向 — 出射角也等于 $\theta$. 在这个方向上, 同一平面内不同原子散射出来的光是同相位的 (这一点跟 Huygens 原理一样, 是镜面反射的几何). 真正的事情发生在<em>不同平面之间</em>: 上一面与下一面的光程差是 $2d\sin\theta$ (画一下入射、反射两条光线在两面间走的额外路径就出来了). 干涉相长要求这个光程差是波长的整数倍:</p>
+
+  <p>$$ 2d\sin\theta = n\lambda, \quad n = 1, 2, 3, \ldots \tag{1} $$</p>
+
+  <p>这就是 Bragg 定律. 形式简单到几乎让人怀疑 — 它把整个晶体的衍射归结成一组平面的镜面反射. 但它的物理含义不简单: 给定波长 $\lambda$, 只有在离散的一串角 $\theta_n = \arcsin(n\lambda/2d)$ 上, 才能看见反射峰; 所有别的角度上, 不同平面散射的相位互相抵消, 反射几乎为零. 衍射图样里的每一个亮斑, 对应晶体内一族特定的平面 (有它自己的间距 $d$ 和方向), 加上一个特定的整数 $n$. 反过来, 测了一组角度, 就能反推一组 $d$ — 这是衍射作为"原子显微镜"的核心.</p>
+
+  <p>注意 (1) 里有个隐含的物理前提: $\sin\theta \le 1$, 所以 $\lambda \le 2d$. 想看见任何衍射峰, 波长必须不超过晶面间距的两倍. 可见光对原子晶格完全无效 (5000 Å 比 Å 大 1000 倍, 没有任何角度能让 (1) 成立); X 射线 (Å 量级) 正好; γ 射线 (10⁻² Å 以下) 又过短, 衍射角全挤到很小, 很难分开. 这是一个挑波长的活儿.</p>
+
+  <h2>二、把数字代进去 — Cu Kα 与 NaCl</h2>
+
+  <p>实验室里最常用的 X 射线源是铜靶: 高能电子轰击 Cu, 把内层 K 壳的电子打掉, 外层 L 壳电子跌进去, 发出 Kα 特征 X 光, 波长</p>
+
+  <p>$$ \lambda_{\text{Cu K}\alpha} = 1.5418\,\mathrm{\AA} = 1.5418\times 10^{-10}\,\mathrm{m}. $$</p>
+
+  <p>这是个标准实验室常数 — 大半个世纪的晶体学论文里, 默认就是它. NaCl 是 Bragg 父子最早分析的对象之一, 它是面心立方 (cation 与 anion 各占一套 fcc), 晶格常数 $a = 5.640\,\mathrm{\AA}$. 我们看 $(200)$ 面族, 间距</p>
+
+  <p>$$ d_{200} = \frac{a}{2} = 2.820\,\mathrm{\AA}. $$</p>
+
+  <p>代入 (1) 求一阶 ($n=1$) 衍射角:</p>
+
+  <p>$$ \sin\theta = \frac{\lambda}{2d} = \frac{1.5418}{2 \times 2.820} = 0.2734, \quad \theta = 15.85°. $$</p>
+
+  <p>转动 NaCl 晶体, 把入射光跟 $(200)$ 面调到掠角 $15.85°$, 探测器在镜面反射方向上 (相对入射光偏转 $2\theta = 31.7°$) 就读到一个尖峰. 二阶 ($n=2$) 在 $\theta_2 = \arcsin(2 \times 0.2734) = 33.10°$, 三阶 $\theta_3 = \arcsin(3 \times 0.2734) = 55.18°$, 四阶起 $\sin \gt  1$ 就不存在了. 一组峰, 一组角度, 一根尺子. 这是 1913 年小 Bragg (W.L. Bragg, 当时 22 岁) 在剑桥用一台他父亲设计的 ionization 谱仪做出的最早测量之一; 测到的不仅是 $d$, 还有 NaCl 那时还有人怀疑的"是不是真的没有 NaCl 分子, 而是 Na⁺ 与 Cl⁻ 交替排列的离子格子" — 答案是后者, 因为 $(200)$ 面族里 Na 与 Cl 交替, 实际看到的是 Na 与 Cl 散射因子之差给出的<em>消光与不消光规律</em>, 而不是按"NaCl 分子"应当出现的那一套. 这一点非常重要 — 衍射不仅给晶面间距, 还给原子在晶格里的实际排布.</p>
+
+  <p>一年后, 父子 Bragg 和 von Laue 共同获 1915 年 Nobel 物理学奖. W.L. Bragg 那年 25 岁, 至今仍是史上最年轻的物理 Nobel 得主.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 上半张 — Bragg 反射几何, 一束 X 射线以掠角 $\theta$ 射入, 上下两条平行虚线代表相邻晶面 (间距 $d$, 标 $d$ 字), 入射光在两面上各反射, 出射光也以 $\theta$ 飞出, 在第二面上多走的那一段光程 $2d\sin\theta$ 用粗虚线段标出, 旁边写公式 $2d\sin\theta = n\lambda$; 下半张 — 一张实测衍射图样, 中央暗斑周围一组对称分布的亮点 (代表倒易格子在 Ewald 球上的截点), 提示这是 von Laue 1912 年 ZnS 实验的几何投影]</div>
+  </figure>
+
+  <h2>三、Laue 条件 — 同一件事, 在动量空间里说</h2>
+
+  <p>Bragg 公式 (1) 漂亮但有个限制: 它假设了"晶面族"的存在, 形式上像在做镜面反射, 物理上其实是在把一个三维干涉问题压成一维. 真正一般的形式是 von Laue 写下的, 不挑面, 直接在动量空间里算每个原子的散射相位差.</p>
+
+  <p>设入射波矢 $\mathbf{k}$, 出射 $\mathbf{k}'$, 弹性散射 $|\mathbf{k}| = |\mathbf{k}'| = 2\pi/\lambda$. 一个位于格点 $\mathbf{R}$ 的原子相对原点的散射相位是 $(\mathbf{k} - \mathbf{k}')\cdot \mathbf{R}$. 总散射振幅是所有格点的相干叠加 $\sum_{\mathbf{R}} e^{i(\mathbf{k} - \mathbf{k}')\cdot \mathbf{R}}$. 把转移波矢记 $\Delta\mathbf{k} = \mathbf{k}' - \mathbf{k}$. 求和的结果是一组 delta 函数, 仅当下式成立时才不为零:</p>
+
+  <p>$$ \Delta\mathbf{k} = \mathbf{G}, \tag{2} $$</p>
+
+  <p>其中 $\mathbf{G}$ 是<em>倒易格矢量</em> — 这是下一节的主角, 这里先记号上记下: 倒易格子是与正格子配对的另一组格子, 由 $\mathbf{G}\cdot\mathbf{R} = 2\pi n$ 定义. (2) 叫 Laue 条件. 它说: 衍射只发生在转移波矢恰好等于某个倒易格矢量的方向.</p>
+
+  <p>这跟 Bragg 公式 (1) 看上去毫不相像, 但它们等价. 简单证: 取 (2) 两边模平方, 用 $|\mathbf{k}'| = |\mathbf{k}|$ 化简, 得 $2\mathbf{k}\cdot\mathbf{G} = -|\mathbf{G}|^2$, 即 $\mathbf{k}\cdot\hat{\mathbf{G}} = -|\mathbf{G}|/2$. 几何上, $\mathbf{G}$ 的方向恰好垂直于一族平面, 平面间距 $d = 2\pi/|\mathbf{G}|$ (这一点是倒易格子的定义性质); 而 $\mathbf{k}$ 在 $\hat{\mathbf{G}}$ 上的投影 $|\mathbf{k}|\sin\theta = (2\pi/\lambda)\sin\theta$. 代回:</p>
+
+  <p>$$ \frac{2\pi}{\lambda}\sin\theta = \frac{1}{2}\cdot\frac{2\pi}{d} \;\Longrightarrow\; 2d\sin\theta = \lambda. $$</p>
+
+  <p>这正是 (1) 的 $n=1$ 情形; $n\gt 1$ 对应于取 $n\mathbf{G}$ 而非 $\mathbf{G}$ (倒易格矢量的整数倍仍是倒易格矢量). 所以两条公式是同一回事的两种语言: Bragg 在实空间里说"晶面镜面反射", Laue 在动量空间里说"动量转移落在倒易格点上". Laue 的版本更基本 — 它不依赖把原子配成"面", 只依赖周期性本身; 而对复杂晶体 (一个原胞里有多个原子), 还要再乘一个结构因子 $S(\mathbf{G}) = \sum_j f_j e^{i\mathbf{G}\cdot\mathbf{r}_j}$, 决定哪些倒易格点上 $S \neq 0$, 哪些消光. 比如金刚石型晶格 $(200)$ 反射就消光 — 这是从衍射图样里反推原子排布的关键工具.</p>
+
+  <h2>四、波长尺度, 中子与电子衍射</h2>
+
+  <p>Bragg 公式只关心波长能不能落在 $2d$ 以下, 不关心波是什么. 这是它后来被推广到中子和电子的根源.</p>
+
+  <p>X 射线方面, 实验室 Cu Kα 的 1.54 Å 适合大多数无机晶体 ($d \sim$ 几 Å). 同步辐射光源能调到任意波长 (0.5 - 2 Å 量级), 这给了选择空间: 波长越短, 单峰角度越紧, 但能采到的倒易格点越多, 利于解析复杂结构. 蛋白质晶体学常用 1 Å 左右, 因为蛋白质单胞大 (几十到上百 Å), $d$ 较大但分辨率要求也高 — 当今高分辨蛋白质结构 (1.5 Å 分辨率) 用的就是 ~1 Å 的同步辐射 X 光.</p>
+
+  <p>中子方面, de Broglie 关系 $\lambda = h/p$ 给了一条非电磁的路: 把核反应堆里的热中子 (能量 $\sim k_B T = 25\,\mathrm{meV}$, $T\sim 290\,\mathrm{K}$) 放出来, 算波长</p>
+
+  <p>$$ \lambda_n = \frac{h}{\sqrt{2 m_n E}} \approx \frac{6.63\times 10^{-34}}{\sqrt{2 \times 1.675\times 10^{-27} \times 4.0\times 10^{-21}}} \approx 1.8\,\mathrm{\AA}, $$</p>
+
+  <p>正好是 Å 量级. 中子衍射跟 X 射线衍射用同一条 (1)/(2), 但中子是跟原子核 (而非电子云) 散射, 这给了它一个 X 射线没有的本事: 看见轻原子 (尤其氢) 的位置, 因为氢的电子只有一个, X 射线散射几乎为零, 中子散射却有明显信号; 还能区分同位素 (¹H 和 ²H 散射长度不同), 区分磁结构 (中子磁矩跟原子磁矩有偶极相互作用 — 这是反铁磁 Néel 序最早被 Shull 1949 用中子衍射看见的方式, 1994 年 Nobel).</p>
+
+  <p>电子方面, 100 keV 电子的 de Broglie 波长 0.037 Å, 太短反而不利于晶格衍射, 但适合做电镜里的高分辨成像与电子衍射. 1927 年 Davisson 和 Germer 在贝尔实验室用 54 eV 电子打 Ni 单晶, 看到了清晰的衍射峰 — 这是 de Broglie 物质波假设的直接验证 (vol-6 第 4 节), 也是用 (1) 反过来确认电子的波动性.</p>
+
+  <p>所以 Bragg/Laue 公式不是"X 射线公式"; 它是一台尺子, 适用于所有波长跟晶格同量级的波. 你拿 X 射线看电子云, 拿中子看核与磁矩, 拿电子看薄膜表面 — 物理是同一个: 周期晶格把一束相干波打回成一组离散的方向, 方向告诉你周期, 强度告诉你原胞内部.</p>
+
+  <h2>五、从 NaCl 到 DNA</h2>
+
+  <p>1913 年的 NaCl 分析只是开端. 二十年代起, 衍射逐步啃硬骨头: 金属 (W.L. Bragg 自己分析过铁的 bcc 结构), 硅酸盐 (W.L. Bragg 1929 给出橄榄石、辉石、长石几大类硅酸盐结构, 把矿物学从化学式转换成几何), 合金 (Pauling 跟 Bragg 学派同时推进). 到 1934 年 J.D. Bernal 和 Dorothy Hodgkin 对胃蛋白酶单晶拍出 X 射线衍射图, 蛋白质晶体学正式开张. Hodgkin 后来解出青霉素 (1945) 与维生素 B12 (1955) 的结构, 1964 年 Nobel 化学奖.</p>
+
+  <p>真正让大众记住 X 射线衍射的, 是 1952 年的一张图. King's College 的 Rosalind Franklin 用 DNA 纤维做衍射, 拍到一张被后人叫做 Photo 51 的底片 — 一组以 X 字形分布的暗条纹. James Watson 1953 年 1 月看见这张图, 当场意识到 DNA 是双螺旋: X 形的衍射图样是螺旋结构衍射的标志 (源自一组沿轴向重复的原子位置, Cochran-Crick-Vand 1952 年刚刚解过这类几何), 螺距与直径直接从 X 形开口角和暗条纹间距读出. 几个月后 Watson-Crick 在 Nature 上发了一页纸的双螺旋模型, 同期 Franklin、Wilkins 各发一篇衍射数据. Watson、Crick、Wilkins 1962 年 Nobel — 那时 Franklin 已经因卵巢癌去世四年, Nobel 不追授.</p>
+
+  <p>从一颗 ZnS 到一段 DNA, 中间用的就是同一行 $2d\sin\theta = n\lambda$. 它的力量在于: 周期性是凝聚态物质几乎所有不平凡现象的几何前提 (Bloch 定理、声子色散、能带结构都长在这块土壤上), 而衍射是把"这个东西到底有没有周期 / 周期是多少"做成可测量数据的最直接手段. 没有 X 射线衍射, 凝聚态物理学家手上就只有间接证据 — 比方比热曲线、电阻率、磁化率, 但没人能直接画出原子在哪. 有了它, 1913 年起的每一个晶体结构都进入了图册.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Bragg 定律 (1) 把"晶体里的周期性"和"X 射线衍射图样"用一行连了起来 — 给定波长, 衍射峰只出现在 $\sin\theta = n\lambda/(2d)$ 这一串离散角度上, 角度直接读出 $d$. Laue 条件 (2) 是它在倒易空间的等价表述 — 转移波矢必须落在倒易格点上, 这把图样里每个亮斑对应到一个倒易格矢量 $\mathbf{G}$ (下一节的主角). 数字上: Cu Kα ($\lambda = 1.5418$ Å) 打 NaCl $(200)$ ($d = 2.82$ Å) 在 $\theta = 15.85°$ 给一阶峰; 蛋白质晶体学要 1 Å 量级同步辐射 X 光; 热中子 ($k_B T = 25$ meV) 自然给 $\lambda = 1.8$ Å, 适合看氢与磁结构. 历史上, 1912 年 von Laue 看 ZnS, 1913 年 Bragg 父子写下 (1), 1953 年 Franklin 的 Photo 51 给出 DNA 双螺旋 — 同一台尺子. 在更大图景里: 衍射不只是个测量工具, 它定义了"晶体"这件事的可观测性 — 倒易格子、Brillouin 区、Bloch 定理 (下下节) 都站在它给的几何上. 周期性是凝聚态物理的第一条对称性, $2d\sin\theta = n\lambda$ 是看见这条对称性的第一只眼.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="01-crystals.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="03-reciprocal.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

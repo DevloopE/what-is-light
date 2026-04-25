@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>拓扑绝缘体的"边缘态"为什么不会被无序破坏? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="22-fractional-hall.html">← 上一节</a>
+  <span class="chapter-title">第 23 节 / 30 · 第 5 部分 · 拓扑相 · 第七卷·物质是什么?</span>
+  <a href="24-majorana.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>拓扑绝缘体的"边缘态"为什么不会被无序破坏?</h1>
+  <div class="sub">—— $\mathbb Z_2$ 不变量</div>
+
+  <div class="abstract">把一块普通的绝缘体 (例如 NaCl 或 Si) 切下来一片, 切口的边缘上不会有什么特别的事 — 体内不导电, 边上也不导电, 整片都是绝缘体. 把一块 HgTe/CdTe 量子阱长到 6.3 nm 以上的厚度, 同样把它切下来一片, 切口的边缘上突然出现了一对沿边界跑的导电态 — 而且这对边缘态对边界粗糙、晶格无序、磁矩外的杂质都"看不见", 电导稳定地停在 $2 e^2/h$, 跟样品多脏没有关系. 体内的能隙张到 $\sim 10$ meV 量级, 表面 (或边缘) 的能隙却被强行压成零, 而且没办法用任何不破坏时间反演对称性的"干扰"把它打开. 这件事在 2007 年 Würzburg 的 König-Molenkamp 组的实验上看得清清楚楚, 把它解释清楚的是 Kane-Mele (2005) 和 Bernevig-Hughes-Zhang (2006) 引入的一个新整体守恒量 — $\mathbb Z_2$ 拓扑不变量. 它跟前一节量子 Hall 的 Chern 数 $C \in \mathbb Z$ 不一样, 它只取两个值 $\nu \in \{0, 1\}$ — 平凡或拓扑 — 但它的"非零能保护边界态不被无序杀死"这一条核心精神是一致的. 这一节从一块 HgTe 量子阱出发, 写下时间反演 $\mathcal T$ 对费米子是 $\mathcal T^2 = -1$ 这件关键事, 解释 Kramers 简并怎么把一对边缘模钉死在能隙里, 给出 $\mathbb Z_2$ 不变量的具体表达式, 收在 Bi$_2$Se$_3$ 的三维表面 Dirac 锥上.</div>
+
+  <p>前一节谈的是分数量子 Hall — 强磁场把时间反演彻底打破, 拓扑保护来自 Chern 数, 拓扑序还携带分数化激发. 这一节走另一条路: <em>不破坏时间反演</em>, 但仍然能拿到拓扑保护的边界态. 这条路在 2005 年才被 Kane-Mele 找到, 它的微观源头是<strong>自旋-轨道耦合</strong> — 那个在原子物理里给出精细结构的相对论修正项, 在重元素 (Hg, Bi, Te, Sb) 的能带里强到能改变能带的拓扑. 它给出一种新型的绝缘体, 体内有 $\sim 0.3$ eV 的真实能隙, 表面 (或 2D 系统的边缘) 却必然有一对自旋-动量锁定的金属态. 这就是"拓扑绝缘体".</p>
+
+  <h2>一、HgTe 量子阱: 一个厚度旋钮控制的拓扑相变</h2>
+
+  <p>2006 年 Bernevig-Hughes-Zhang (BHZ) 把 HgTe/CdTe 量子阱挑出来作为 2D 时间反演保护拓扑相 (即 "量子自旋 Hall" 相, QSH) 的候选材料, 因为这套体系有一个干净的旋钮: 量子阱的厚度 $d$. CdTe 是常规半导体, 能带顺序是 $s$-like 导带 ($\Gamma_6$) 在上, $p$-like 价带 ($\Gamma_8$) 在下 — 跟 GaAs 或 Si 没本质差别. HgTe 是个零带隙半金属, 在体材料里 $\Gamma_8$ 反而跑到 $\Gamma_6$ 上面去 — 能带"反置"了, 这是 Hg 这种很重的元素带来的强自旋-轨道耦合 ($\sim 1$ eV) 把 $p$ 态能量推到 $s$ 态以上的结果. 把 HgTe 夹在两层 CdTe 中间做成量子阱, 阱内的几条横向限制次能级会受阱厚 $d$ 控制. 厚度小, 系统更接近 CdTe 的边界条件, 子带顺序跟 CdTe 一致, 拓扑平凡; 厚度大, 系统更接近 HgTe 体材料的"反置"能带, 子带顺序也反过来, 进入拓扑相. 临界厚度 BHZ 算到</p>
+
+  <p>$$ d_c = 6.3\ \text{nm}, $$</p>
+
+  <p>薄于这条线 ($d \lt  d_c$) 是平凡绝缘体, 厚于这条线 ($d \gt  d_c$) 是 2D 拓扑绝缘体, 边缘上必然出现一对反向跑的、自旋极化的、不受非磁性杂质散射的螺旋边缘态 (helical edge modes). 这个预言在论文发表后不到一年就被 König-Buhmann-Molenkamp 在 Würzburg 实验组验证 — 他们做了两批量子阱样品, 一批 $d = 5.5$ nm, 一批 $d = 7.3$ nm, 测两端电导. 薄阱样品在低温下电导掉到底, 表现成普通绝缘体; 厚阱样品在低温下电导稳稳停在 $2 e^2/h \approx 7.75 \times 10^{-5}\ \text{S}$ 这个量子化值, 而且这个值对样品宽度 (从 $0.5\ \mu$m 到 $1.0\ \mu$m) 不敏感 — 这是边缘态独占电流的标志, 因为只有沿一维边界跑的 1D 模式才会给出对样品宽度无关的电导.</p>
+
+  <p>这件事在凝聚态里第一次出现一个由"厚度"这种几何参数控制的拓扑相变, 没有任何对称性破缺、没有序参量从零长起来, 但确实有一类全新的物相在 $d = d_c$ 这条线两侧不一样. 跟铁磁的 Curie 转变 (序参量从零长起来) 或超导的 BCS 转变 (规范对称性破缺) 都不一样 — 它是一类"拓扑相变".</p>
+
+  <h2>二、$\mathcal T^2 = -1$ 与 Kramers 简并: 边缘态的"防破坏证书"</h2>
+
+  <p>"为什么这对边缘态扛得住无序" 是这一节真正的核心问题. 答案在一条比 Heisenberg 交换还基础的事实上: <em>对自旋 1/2 的费米子, 时间反演算符</em> $\mathcal T$ <em>满足</em> $\mathcal T^2 = -1$. 对自旋 0 的玻色子是 $\mathcal T^2 = +1$, 但电子是费米子 — 自旋 1/2 — 这个负号是核心.</p>
+
+  <p>这条性质有一个直接的推论, 叫 <em>Kramers 定理</em>: 在 $\mathcal T$ 对称且 $\mathcal T^2 = -1$ 的体系里, 每个能级都至少二重简并. 证明只用一行: 设 $|\psi\rangle$ 是能量 $E$ 的本征态, 考虑 $\mathcal T|\psi\rangle$, 它也是同一个能量的本征态; 但 $\langle\psi|\mathcal T|\psi\rangle = \langle\mathcal T^2\psi|\mathcal T\psi\rangle^* = -\langle\psi|\mathcal T\psi\rangle^*$ — 这个量满足 $z = -z^*$, 所以是纯虚数, 但它同时也等于自身, 所以只能是零, 即 $|\psi\rangle$ 与 $\mathcal T|\psi\rangle$ 正交. 一个能级上有两个正交态, 简并度至少为 2. 这一对态在物理上就是"自旋 $\uparrow$"和"自旋 $\downarrow$"的对偶 (更准确说: $\mathcal T$ 把自旋翻向反向同时把动量翻向反向).</p>
+
+  <p>Kramers 简并对边缘态意味着什么? 在时间反演不变动量 (TRIM) 上 — 即满足 $\mathbf k = -\mathbf k$ (mod 倒格矢) 的那几个特殊点, 二维布里渊区里有四个 ($\Gamma$, $X$, $Y$, $M$), 一维边界布里渊区里有两个 ($k = 0$ 和 $k = \pi$) — Kramers 简并强行把这两个点上的能级压成二重简并; 在两个 TRIM 之间, 对应的两条边缘色散允许分开, 但它们必须在另一个 TRIM 处再相遇. 结果就是一对反向跑的边缘态在能隙里画出一条"X 型"色散.</p>
+
+  <p>关键的下一步: 这条 X 型色散能不能被无序"加热"打开一个能隙? 任何<em>不破坏时间反演的</em>扰动 (晶格畸变、非磁性杂质、电子-电子 Coulomb 相互) 都不能在 TRIM 上打开能隙 — 因为 Kramers 简并把那个点钉死了. 那么扰动能不能让两个 TRIM 之间的色散互相散射打开能隙? 答案分两类. 平凡相 ($\nu = 0$): 边缘上有偶数对 (包括零对) 边缘模, 它们成对地通过 TRIM 连接, 微小扰动可以让相邻的两条向上向下的模在 TRIM 之外杂化打开能隙, 把所有边缘模都扫出能隙 — 边缘恢复成绝缘. 拓扑相 ($\nu = 1$): 边缘上有奇数对边缘模, 把它们成对消掉之后总剩一对孤悬的、必须穿越能隙的螺旋边缘模, 没有任何与之配对的"伙伴模式"可以杂化 — 这一对必然顶住所有非磁性扰动留在能隙里.</p>
+
+  <p>这就是无序为什么打不破边缘态的核心: <em>奇偶性是拓扑量, 微小的连续扰动改不动它</em>. $\mathbb Z_2$ 不变量 $\nu$ 只取 0 或 1, 数的就是这条边缘模成对穿越的"奇偶性". 这跟整数量子 Hall 数 Chern 数 $C \in \mathbb Z$ 数手性边缘模的"净个数"是不同的拓扑细分: Chern 数在 $\mathcal T$ 破缺的体系里有意义, $\mathbb Z_2$ 在 $\mathcal T$ 保持的体系里有意义.</p>
+
+  <h2>三、$\mathbb Z_2$ 不变量的显式公式与 Dirac 锥</h2>
+
+  <p>$\mathbb Z_2$ 不变量怎么算? Fu-Kane (2006) 给了一条对有空间反演对称性的体系特别简洁的式子: 在四个 (二维) 或八个 (三维) 时间反演不变动量 $\Lambda_a$ 上, 体哈密顿矩阵的"时间反演极化矩阵" $B_{mn}(\mathbf k) = \langle u_m(-\mathbf k)|\mathcal T|u_n(\mathbf k)\rangle$ 在 $\mathbf k = \Lambda_a$ 处变成反对称矩阵, 这种矩阵有一个可以良定义的"Pfaffian" $\text{Pf}(B)$, 它的平方等于行列式. 定义</p>
+
+  <p>$$ (-1)^\nu = \prod_{a} \frac{\text{Pf}\,B(\Lambda_a)}{\sqrt{\det B(\Lambda_a)}}, \tag{1} $$</p>
+
+  <p>右边每一项是 $\pm 1$, 全部乘起来取奇偶, $\nu \in \{0, 1\}$ 就是 $\mathbb Z_2$ 不变量. 这条公式看起来抽象, 但它把"边缘态的奇偶数"翻译成了体哈密顿在几个特殊动量点上的代数性质 — 你不需要把边缘解出来, 只要看体波函数, 就能判断这块材料切开是普通绝缘体还是拓扑绝缘体. 这是"体边对应"的具体兑现 (bulk-edge correspondence).</p>
+
+  <p>对有空间反演的体系, Fu-Kane 把 (1) 进一步简化成"看占据态在四个 (二维) 或八个 (三维) TRIM 上的宇称本征值的乘积取奇偶". HgTe 量子阱满足近似空间反演, 数完宇称就能直接判定 $d \gt  d_c$ 这一侧 $\nu = 1$. Bi$_2$Se$_3$ 的体材料是菱方晶系, 严格空间反演成立, 在 $\Gamma$ 点的占据态宇称在自旋-轨道耦合"打开"前后翻转 — 直接给出 $\nu = 1$.</p>
+
+  <p>三维拓扑绝缘体的标志性观测是<em>表面 Dirac 锥</em>. 在三维 TI 表面, $\mathbb Z_2$ 不变量保证表面态有奇数个 Dirac 锥. 最简单的"一个 Dirac 锥"实现就是 Bi$_2$Se$_3$, 它的表面态色散在 $\Gamma$ 点附近写成</p>
+
+  <p>$$ \mathcal H_{\text{surf}} = \hbar v_F (\mathbf k \times \boldsymbol\sigma)\cdot\hat{\mathbf z}, \tag{2} $$</p>
+
+  <p>其中 $\boldsymbol\sigma = (\sigma_x, \sigma_y, \sigma_z)$ 是自旋 Pauli 矩阵, $v_F$ 是表面 Dirac 费米子的 Fermi 速度. 这个哈密顿的能量本征值是 $E(\mathbf k) = \pm\hbar v_F |\mathbf k|$ — 一个真正的二维无质量 Dirac 谱. 跟石墨烯的 Dirac 锥相比, 关键差别在自旋: 石墨烯的"自旋"是 A/B 两个子格的赝自旋, 真实自旋是普通的; Bi$_2$Se$_3$ 表面的 (2) 里的 $\boldsymbol\sigma$ 是真正的电子自旋, 且自旋方向锁定在动量的垂直方向 (向左跑的电子自旋朝下, 向右跑的电子自旋朝上) — 这就是<em>自旋-动量锁定</em>. 自旋-动量锁定意味着只要不破坏时间反演, 你就不能在不翻转动量的同时翻转自旋, 反向背散射 ($\mathbf k \to -\mathbf k$) 必须配上自旋翻转, 而非磁性杂质不能翻自旋, 所以反向背散射被压制 — 表面 Dirac 费米子的迁移率因此特别高.</p>
+
+  <p>Bi$_2$Se$_3$ 的体带隙约 $0.3$ eV (相比 HgTe 量子阱的 $\sim 10$ meV 大了一个数量级以上), 表面 Dirac 锥的 Fermi 速度</p>
+
+  <p>$$ v_F \approx 5\times 10^5\ \text{m/s} $$</p>
+
+  <p>(约为石墨烯 Dirac 锥 $10^6$ m/s 的一半). 这两个数据在 2009 年由 Stanford-Berkeley 联合的 Hsieh-Chen-Hasan-Shen 用 ARPES 直接看到了 — 在能量-动量谱上, $\Gamma$ 点附近一个清晰的 V 字形 Dirac 锥嵌在体能隙里, 自旋分辨 ARPES 进一步确认了自旋-动量锁定. 这是凝聚态实验史上少数"理论预言一年内被直接谱学验证"的例子.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 主图分两栏画 HgTe 量子阱能带结构 — 左栏 $d \lt  d_c$ (薄阱) 平凡序: 横轴 $k$ 从 $-k_F$ 到 $+k_F$, 纵轴 $E$, 一条向下凹的导带最低子带 (E1) 在上、一条向上凸的价带最高子带 (HH1) 在下, 两者隔着约 $20$ meV 的能隙, 顺序"正常" (E1 高 HH1 低); 右栏 $d \gt  d_c$ (厚阱) 拓扑序: 同样的两条子带顺序反过来 (HH1 高 E1 低), 标 "band inversion". 旁边小图为边缘态色散 — 横轴 $k$ 沿一维边界从 $0$ 到 $\pi/a$, 纵轴 $E$, 体能隙画成两条水平阴影带 (上方导带、下方价带), 在能隙中间画一对反向斜线交叉于 $k = 0$ 处 (Kramers 点), 一条标 "spin $\uparrow$, 向右跑", 一条标 "spin $\downarrow$, 向左跑" — 这就是 helical edge modes; 标注 $d_c = 6.3$ nm. 整体右下角写 "$\nu = 1 \Rightarrow$ 体内绝缘 + 边缘金属"]</div>
+  </figure>
+
+  <h2>四、历史: 从 Kane-Mele 到 König 到三维的 Bi$_2$Se$_3$</h2>
+
+  <p>这条线的发现史压缩在 2005-2009 这五年里, 节奏快得像 1956-1957 年的弱相互作用宇称破缺.</p>
+
+  <p><strong>2005 年, Charles Kane 和 Eugene Mele</strong> (宾夕法尼亚大学) 在两篇连续论文里, 想问"石墨烯加上自旋-轨道耦合会怎么样" — 他们想检验石墨烯的 Dirac 谱在 SO 耦合下还能不能维持. 答案是: SO 在每个 Dirac 点打开一个微小的自旋相关能隙, 但这个能隙的两侧能带在拓扑上不平凡, 系统进入了一个<strong>没有外加磁场、没有时间反演破缺</strong>的新型量子 Hall 类相 — 他们叫它 "量子自旋 Hall 相". 这是 $\mathbb Z_2$ 拓扑分类第一次被引入凝聚态. 但石墨烯里的 SO 耦合实在太弱 (能隙 $\sim 10^{-6}$ eV, 远低于实验温度), 这个相在石墨烯里观测不到. Kane-Mele 的贡献是把"是否存在"和"在哪里能看到"分开了.</p>
+
+  <p><strong>2006 年, Bernevig-Hughes-Zhang</strong> (Stanford) 接着 Kane-Mele 的思路, 在凝聚态材料库里搜索"SO 耦合足够强、能带反置足够明显"的二维体系, 锁定 HgTe/CdTe 量子阱, 算出 (1) 类 $\mathbb Z_2$ 不变量在 $d \gt  d_c = 6.3$ nm 时翻号, 给出可观测 QSH 相的具体材料. BHZ 哈密顿至今仍是 2D 拓扑绝缘体最干净的玩具模型.</p>
+
+  <p><strong>2007 年, König-Wiedmann-Brüne-Roth-Buhmann-Molenkamp-Qi-Zhang</strong> (Würzburg + Stanford) 把 HgTe 量子阱长到指定厚度, 加工成 Hall 条形, 在毫开温度测两端电导, 直接看到了 $d \gt  d_c$ 样品上稳定的 $2 e^2/h$ 量子化平台, 而 $d \lt  d_c$ 样品没有. 这是 QSH 相和 $\mathbb Z_2$ 拓扑分类的实验确立.</p>
+
+  <p><strong>2007-2008 年, Liang Fu, Charles Kane, David Vanderbilt</strong> 把 $\mathbb Z_2$ 分类推广到三维, 给出强 / 弱拓扑绝缘体的区分, 并预言三维 TI 的表面有奇数个 Dirac 锥. <strong>2008 年 Hsieh-Hasan</strong> (Princeton) 在 Bi$_{1-x}$Sb$_x$ 上用 ARPES 看到了第一个三维 TI 的多 Dirac 锥表面态. <strong>2009 年, Bi$_2$Se$_3$, Bi$_2$Te$_3$, Sb$_2$Te$_3$ 这三个"标准"三维 TI 材料</strong> (体带隙 0.1-0.3 eV, 表面单个 Dirac 锥) 被同时由 Stanford-Berkeley (Zhang-Hasan-Shen) 一组论文确立, 把这个领域从"窄带半导体的稀有现象"变成了"室温下可工作的标准凝聚态相". 跟 HgTe 量子阱需要在毫开温度才能看到 QSH 相不同, Bi$_2$Se$_3$ 的 $0.3$ eV 体带隙意味着室温下表面态依然嵌在体能隙里 — 它是真正的"室温拓扑相".</p>
+
+  <p><strong>2016 年诺贝尔物理学奖</strong> 颁给了 Thouless-Haldane-Kosterlitz, "for theoretical discoveries of topological phase transitions and topological phases of matter" — 把拓扑相变 (Kosterlitz-Thouless 涡旋解配, 见前一卷)、量子 Hall 拓扑数 (Thouless-Kohmoto-Nightingale-den Nijs 公式)、Haldane 模型 (无外磁场的量子 Hall, Kane-Mele 工作的源头) 这三条线一起表彰. 这是凝聚态拓扑被主流物理界正式接纳的标志.</p>
+
+  <h2>五、把握住的与下面的去向</h2>
+
+  <p>这一节的因果链: $\mathcal T^2 = -1$ (费米子时间反演) $\Rightarrow$ Kramers 简并把 TRIM 点钉死 $\Rightarrow$ 边缘模在 TRIM 处必然简并 $\Rightarrow$ 奇偶性 $\nu \in \{0, 1\}$ 是体波函数的整体性质, 由 (1) 这条 Pfaffian 公式给出 $\Rightarrow$ $\nu = 1$ 拓扑侧的边缘上必有一对孤悬的螺旋边缘模, 不被任何不破坏 $\mathcal T$ 的扰动 (杂质、晶格畸变、互作用) 杀死. 自旋-动量锁定 (公式 (2)) 是这件事在三维表面 Dirac 锥层面的具体表现 — 反向背散射被时间反演阻止, 表面态的迁移率被强行抬高. 关键数字: HgTe 量子阱临界厚度 $d_c = 6.3$ nm, Bi$_2$Se$_3$ 体带隙 $0.3$ eV、表面 Dirac 速度 $v_F \approx 5\times 10^5$ m/s. 关键史实: Kane-Mele 2005 引入 $\mathbb Z_2$ 分类, BHZ 2006 锁定 HgTe, König 2007 实验验证 QSH, Hsieh 2008 看到三维表面 Dirac 锥, 2016 诺贝尔.</p>
+
+  <p>下一节进入 <strong>Majorana 零模</strong>. 把这一节的 $\mathbb Z_2$ 拓扑绝缘体 (体内时间反演保护) 和超导 (粒子-空穴对称性) 配在一起, 在某些一维或二维超导/半导体异质结里, 边界上的 Kramers 对会进一步解耦成两个孤立的 Majorana 零能模 — 一个粒子等于自己的反粒子的零质量准粒子. 它们携带非阿贝尔统计 (跟分数 Hall 的非阿贝尔任意子是亲戚), 是"拓扑量子计算"硬件路线的核心候选. 那一节会把"$\mathcal T$ 保护的 $\mathbb Z_2$"和"粒子-空穴保护的 $\mathbb Z_2$"放在同一张拓扑分类表 (Altland-Zirnbauer 十重对称类) 上看, 把这一节谈的 HgTe 边缘态和下一节的 Majorana 零模放进同一个理论框架.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>HgTe/CdTe 量子阱厚到 $d \gt  d_c = 6.3$ nm 时进入 2D 拓扑绝缘体 (量子自旋 Hall) 相, 边缘上出现一对反向跑、自旋-动量锁定的螺旋边缘态, 给出量子化电导 $2 e^2/h$ — 这件事 BHZ 在 2006 年预言, König-Molenkamp 2007 实验验证. 三维拓扑绝缘体 (Bi$_2$Se$_3$, Bi$_2$Te$_3$, Sb$_2$Te$_3$) 体带隙 $0.3$ eV, 表面单个 Dirac 锥 $\mathcal H = \hbar v_F (\mathbf k \times \boldsymbol\sigma)\cdot\hat{\mathbf z}$, $v_F \approx 5\times 10^5$ m/s, ARPES 直接观测. 边缘 / 表面态扛得住无序的根源: 费米子时间反演 $\mathcal T^2 = -1$ 给出 Kramers 简并, 把时间反演不变动量 (TRIM) 点钉死, 边缘模穿越能隙的奇偶性 $\nu \in \{0, 1\}$ 是 $\mathbb Z_2$ 拓扑不变量 — Fu-Kane 公式 $(-1)^\nu = \prod_a \text{Pf}\,B(\Lambda_a)/\sqrt{\det B(\Lambda_a)}$ 把它写成体哈密顿在 TRIM 上的 Pfaffian 比值乘积. 历史: Kane-Mele 2005 在石墨烯 + SO 耦合的玩具上引入 $\mathbb Z_2$ 分类, BHZ 2006 找到 HgTe 这个真材料, König 2007 看到 $2e^2/h$ 平台, Hsieh 2008 看到三维 TI 的表面 Dirac 锥, 2016 Nobel 颁给 Thouless-Haldane-Kosterlitz 表彰拓扑相整套理论. 下一节把 $\mathbb Z_2$ 与超导粒子-空穴对称性结合, 走向 Majorana 零模与拓扑量子计算.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="22-fractional-hall.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="24-majorana.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

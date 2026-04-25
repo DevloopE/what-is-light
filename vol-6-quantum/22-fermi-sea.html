@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pauli 不相容凭什么撑起白矮星? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="21-identical-particles.html">← 上一节</a>
+  <span class="chapter-title">第 22 节 / 30 · 第 5 部分 · 多体与场 · 第六卷·量子是什么?</span>
+  <a href="23-second-quantization.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Pauli 不相容凭什么撑起白矮星?</h1>
+  <div class="sub">—— Fermi 海与简并压</div>
+
+  <div class="abstract">天狼星 B 是一颗只有地球大小、却装了 $0.6$ 倍太阳质量的白矮星. 按经典电磁学与热力学, 这种密度下的物质应该坍塌得无影无踪 — 自身引力远超任何已知的"热压"或"原子排斥". 它没塌. 撑住它的不是热, 不是力, 是 Pauli 不相容原理: 同一量子态不能容下两个相同的费米子, 电子被迫一格一格往 $k$ 空间里填, 直到填出一个 $|\mathbf k| \lt  k_F$ 的 Fermi 球. 即便温度趋于零, 这个球内的电子仍带着平均动能 $\frac{3}{5}E_F$ 与压强 $P = \frac{2}{5} n E_F$ — 这就是 <strong>简并压</strong>. Fowler 在 1926 年把刚刚问世的 Fermi-Dirac 统计套到白矮星上, Chandrasekhar 在 1931 年从印度去英国的船上算出了这套电子简并压顶不住引力的临界质量 $M_\text{Ch} \approx 1.4\,M_\odot$. 这一节用最朴素的方式把 $k_F = (3\pi^2 n)^{1/3}$、$P \propto n^{5/3}$ (非相对论) 与 $P \propto n^{4/3}$ (极相对论) 这三件事推到底, 顺便把白矮星 $\rho \sim 10^9$ kg/m³ 的电子 $E_F \sim 0.5$ MeV 与中子星 $\rho \sim 10^{17}$ kg/m³ 的数字都代清楚.</div>
+
+  <p>上一节我们说: 全同粒子有两类, 一类是费米子, 同一量子态最多只能放一个. 这条"最多一个"的禁令在原子物理里给出了壳层结构与元素周期表; 推到固体里, 它给出金属的导带与 Fermi 面; 推到天体物理里, 它做的事更夸张 — 它直接撑住了白矮星与中子星. 一颗已经烧完核燃料、不再有任何热源的恒星, 仍能稳定地停在地球大小的体积上, 抵抗自身引力收缩 — 撑住它的不是任何"力", 是量子统计本身. 这一节就把这件事从 $k$ 空间的填球开始一路推到 Chandrasekhar 极限.</p>
+
+  <h2>一、Fermi 球: 把电子按 Pauli 一格一格填</h2>
+
+  <p>设有 $N$ 个相同的自旋 $\tfrac12$ 费米子被关在体积 $V$ 的盒子里, 暂时忽略它们之间的相互作用 (这是个理想化, 但白矮星里的电子离得远、Coulomb 平均能比动能小, 这套图像数量级上是对的). 用周期边界条件, 单粒子动量本征态由 $\mathbf k = \frac{2\pi}{L}(n_x, n_y, n_z)$ 标记, $n_x, n_y, n_z \in \mathbb Z$, 每个 $\mathbf k$ 还允许两种自旋取向. 单粒子能量在非相对论极限下是 $\varepsilon(\mathbf k) = \hbar^2 k^2/(2m)$.</p>
+
+  <p>Pauli 原理说: 同一 $(\mathbf k, s)$ 态最多放一个电子. 在 $T \to 0$ 的基态上, 电子按能量从低到高一格一格填; 等到 $N$ 个电子全部安顿好, 在 $\mathbf k$ 空间里就形成一个半径为 $k_F$ 的实心球 — Fermi 球. 球内每个状态被占满, 球外全空. 数一数球内格点数:</p>
+
+  <p>$$ N = 2 \cdot \frac{V}{(2\pi)^3} \cdot \frac{4\pi}{3} k_F^3, $$</p>
+
+  <p>前面那个 $2$ 是自旋两种取向, $V/(2\pi)^3$ 是 $\mathbf k$ 空间单位体积里的格点数. 整理出 Fermi 动量与电子数密度 $n = N/V$ 的关系</p>
+
+  <p>$$ k_F = (3\pi^2 n)^{1/3}. \tag{1} $$</p>
+
+  <p>Fermi 能定义为 $E_F = \hbar^2 k_F^2/(2m)$ (非相对论). 注意: $T = 0$ 时, 电子的平均动能不是零, 而是</p>
+
+  <p>$$ \langle \varepsilon \rangle = \frac{1}{N} \int_0^{k_F} \frac{\hbar^2 k^2}{2m} \cdot 2\,\frac{V}{(2\pi)^3}\,4\pi k^2\,dk \;=\; \frac{3}{5} E_F. $$</p>
+
+  <p>这就是 Pauli 不相容原理留下的硬骨头: 把 $N$ 个电子塞进同一个盒子, 即使你把热完全抽干, 它们仍然带着 $\tfrac{3}{5} N E_F$ 的总动能, 因为绝大多数电子不可能"挤"到底层 — 底层早被先来者占满了, 后来者只能往高能量的位置堆. 这是个纯粹的统计效应, 不是任何相互作用力造成的.</p>
+
+  <h2>二、简并压: 没温度也有压</h2>
+
+  <p>有动能就有压强. 用最朴素的热力学定义 $P = -(\partial E/\partial V)_N$. 把总动能</p>
+
+  <p>$$ E_\text{tot} = N \cdot \frac{3}{5} E_F = \frac{3}{5} \cdot \frac{\hbar^2 k_F^2}{2m} \cdot N $$</p>
+
+  <p>用 $k_F = (3\pi^2 N/V)^{1/3}$ 展开成 $V$ 的显函数, $E_\text{tot} \propto N^{5/3} V^{-2/3}$, 求一下导:</p>
+
+  <p>$$ P_\text{NR} = -\left(\frac{\partial E_\text{tot}}{\partial V}\right)_N = \frac{2}{3}\,\frac{E_\text{tot}}{V} = \frac{2}{5}\, n E_F. $$</p>
+
+  <p>把 $E_F = \hbar^2 (3\pi^2 n)^{2/3}/(2m)$ 代回去, 得到非相对论简并压</p>
+
+  <p>$$ P_\text{NR} = \frac{\hbar^2}{5 m} (3\pi^2)^{2/3}\, n^{5/3}. \tag{2} $$</p>
+
+  <p>这条公式干净到惊人 — 它里面没有温度. 没有 $k_B T$, 没有 Boltzmann 因子, 没有"碰撞次数". 只有 $\hbar$、电子质量 $m$ 与数密度 $n$. 也就是说, 即使你把白矮星冷却到绝对零度, 这个压强一点不会消失. 它纯粹是 Pauli 原理硬塞出来的一份"量子排斥". 关键的标度是</p>
+
+  <p>$$ P_\text{NR} \propto n^{5/3} \propto \rho^{5/3}, $$</p>
+
+  <p>密度越大, 压强涨得比线性快得多. 多形指数 $\gamma = 5/3$ — 这跟单原子理想气体的绝热压一致, 但物理来源完全不同: 一个是热的随机运动, 一个是 Pauli 的零点动能.</p>
+
+  <p>当电子被压到很高密度, $k_F$ 涨到一定程度, $\hbar k_F \gtrsim m c$, 电子就不能再当非相对论粒子算 — 它们的动能不再是 $p^2/2m$, 而要换成相对论形式 $\varepsilon(p) = \sqrt{(pc)^2 + (mc^2)^2}$. 在极相对论极限 $\varepsilon \approx pc$ 下重做一遍上面的积分:</p>
+
+  <p>$$ E_\text{tot}^\text{UR} = \int_0^{k_F} \hbar k c \cdot 2\,\frac{V}{(2\pi)^3}\,4\pi k^2\,dk = \frac{V\hbar c\, k_F^4}{4\pi^2}, $$</p>
+
+  <p>对体积求导, 整理后得到极相对论简并压</p>
+
+  <p>$$ P_\text{UR} = \frac{\hbar c}{4} (3\pi^2)^{1/3}\, n^{4/3}. \tag{3} $$</p>
+
+  <p>关键的标度从 $5/3$ 落到了 $4/3$. 多形指数 $\gamma = 4/3$ 这件事在引力坍塌里有要命的后果, 我们下一节就说.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左边一张三维 $\mathbf k$ 空间图 — 三个正交轴 $k_x, k_y, k_z$, 一个半径为 $k_F$ 的球面, 球内用细密点阵 + 灰色填充表示"已被电子占满", 球外留白表示空态; 旁边竖着画一条单粒子色散关系 $\varepsilon = \hbar^2 k^2/(2m)$ 的抛物线, 在高度 $E_F$ 处画一条水平虚线, 抛物线上 $|k| \le k_F$ 这一段标灰; 右边一张 $\log P$-$\log \rho$ 图 — 两段折线, 低密度段斜率 $5/3$ 标 $P_\text{NR} \propto \rho^{5/3}$, 高密度段斜率 $4/3$ 标 $P_\text{UR} \propto \rho^{4/3}$, 拐点附近标 $\hbar k_F \sim m_e c$. 三个标记: $k_F = (3\pi^2 n)^{1/3}$, $P_\text{NR} \propto n^{5/3}$, $P_\text{UR} \propto n^{4/3}$.]</div>
+  </figure>
+
+  <h2>三、代数字: 白矮星 $E_F \sim 0.5$ MeV, 中子星 $\sim 10^{17}$ kg/m³</h2>
+
+  <p>把 (1)-(3) 拿来代具体的天体数字, 这些公式立刻就活了起来.</p>
+
+  <p><strong>白矮星</strong>. 取典型白矮星密度 $\rho \approx 10^9$ kg/m³. 白矮星里的物质大致是完全电离的碳氧 — 每两个核子配一个电子, $n_e \approx \rho/(2 m_p) \approx 10^9/(2 \times 1.67\times 10^{-27}) \approx 3\times 10^{35}$ m⁻³. 量级上 $n_e \sim 10^{36}$ m⁻³. 代入 $(1)$:</p>
+
+  <p>$$ k_F = (3\pi^2 \cdot 3\times 10^{35})^{1/3}\ \text{m}^{-1} \approx 2.1 \times 10^{12}\ \text{m}^{-1}. $$</p>
+
+  <p>对应电子动量 $p_F = \hbar k_F \approx 2.2 \times 10^{-22}$ kg·m/s. 看一眼无量纲量 $p_F c / (m_e c^2)$:</p>
+
+  <p>$$ \frac{p_F c}{m_e c^2} = \frac{2.2 \times 10^{-22} \cdot 3\times 10^8}{9.11\times 10^{-31} \cdot (3\times 10^8)^2} \approx 0.8. $$</p>
+
+  <p>这个比值已经在 $\mathcal O(1)$ 量级 — 白矮星里的电子既不完全非相对论, 也不完全极相对论, 处在过渡带. 直接由相对论 $\varepsilon(p_F)$ 算 Fermi 能 $E_F = \sqrt{(p_F c)^2 + (m_e c^2)^2} - m_e c^2$, 数量级是 $\sim 0.4$-$0.5$ MeV. <strong>0.5 MeV</strong> 这个尺度跟电子静质量 $m_e c^2 = 0.511$ MeV 同量级 — 白矮星的电子都是"半相对论"的, 这正是 Chandrasekhar 推极限时必须用 (3) 而不是 (2) 的原因.</p>
+
+  <p>把这个 $E_F$ 跟白矮星典型温度 $T \sim 10^7$ K, $k_B T \sim 1$ keV 比一下: $E_F / (k_B T) \sim 500$. Fermi 能远远大于热涨落, 电子几乎完全简并 — 即使白矮星表面温度还有几万度, 内部"看上去热"的电子气, 实际上靠的几乎全是简并压.</p>
+
+  <p><strong>中子星</strong>. 把同样的公式换成中子: 质量 $m_n \approx 1840\, m_e$, 密度 $\rho \sim 10^{17}$ kg/m³, $n_n \sim 10^{44}$ m⁻³ — 比白矮星电子密度高 $10^8$ 倍. 由 (1), $k_F$ 涨大约 $10^{8/3} \approx 460$ 倍. 算一下 $p_F c / (m_n c^2)$, 这个比值大概在 $0.3$-$0.4$ 量级 — 中子比电子重得多, 同样高的密度下中子还没那么相对论性. 这正是中子星比白矮星抗压的原因之一: 把同样的费米子压到更高密度才进入相对论区, $\gamma = 5/3$ 的"硬"方程能撑得更久.</p>
+
+  <p>顺手记一个粗糙的"为什么是这两类星"的图像. 老恒星烧完核燃料以后向自身引力收缩. 收到密度 $\sim 10^9$ kg/m³ 时, 电子简并压 $(2)$ 起来顶住引力, 收缩停下 — 这是白矮星. 如果质量太大, 电子被压得越来越相对论, 简并压由 $(2)$ 平滑过渡到 $(3)$, 多形指数从 $5/3$ 落到 $4/3$, 顶不住引力了, 继续坍; 一直坍到电子被压回质子 ($e^- + p \to n + \nu_e$), 留下一团中子, 中子简并压重新起来, 在 $\sim 10^{17}$ kg/m³ 这个台阶把恒星稳住 — 这是中子星. 再往上, 中子也变得相对论, 简并压再次失守, 就是黑洞.</p>
+
+  <h2>四、Chandrasekhar 极限: 1.4 个太阳的算账</h2>
+
+  <p>简并压 $\gamma = 4/3$ 这件事为什么致命, 用流体静力学一句话就能说清. 引力束缚能与压强能的标度都是</p>
+
+  <p>$$ E_\text{grav} \sim -\frac{G M^2}{R}, \qquad E_\text{press} \sim P \cdot V \sim P \cdot R^3. $$</p>
+
+  <p>把 $\rho \sim M/R^3$ 与 $P \propto \rho^\gamma$ 代入, $E_\text{press} \sim M^\gamma R^{3 - 3\gamma}$. 平衡条件 $\partial(E_\text{grav} + E_\text{press})/\partial R = 0$ 给出在 $\gamma = 4/3$ 时一件极其特殊的事 — 引力项与压强项对 $R$ 都是 $\propto 1/R$, 它们的比值跟半径无关, 只跟质量有关. 也就是说, 如果质量超过一个临界值, 不管怎么收缩, 简并压都顶不过引力. 这个临界质量就是 <strong>Chandrasekhar 极限</strong>:</p>
+
+  <p>$$ M_\text{Ch} \;\sim\; \frac{(\hbar c)^{3/2}}{G^{3/2}}\,\frac{1}{(\mu_e m_p)^2}, \qquad M_\text{Ch} \approx 1.4\, M_\odot, $$</p>
+
+  <p>其中 $\mu_e \approx 2$ 是每电子分到的核子数 (碳氧白矮星里两个核子配一个电子). 把它写成无量纲的方式更醒目: $M_\text{Ch} \approx (\hbar c/G)^{3/2}/m_p^2$ 量级, 这个组合恰好是 Planck 质量的立方再除以核子质量的平方 — 一个把量子常数 $\hbar$、相对论常数 $c$、引力常数 $G$ 与核子质量 $m_p$ 全部串起来的组合. 一颗恒星能不能稳住, 取决于这个组合.</p>
+
+  <p>实际数字大约是 $M_\text{Ch} \approx 1.4\, M_\odot$. 超过它的白矮星核, 没办法稳定地停下来 — 这是 Ia 型超新星的引爆机制, 也是中子星 / 黑洞的来源. 1931 年 Chandrasekhar 在从印度孟买乘船去英国剑桥的路上算出了这个数字, 那年他 19 岁. Eddington 当时是天体物理学界的权威, 强烈反对这个结论, 在皇家天文学会的会议上当众嘲讽说"自然界肯定有什么我们不知道的机制阻止恒星塌成这种荒唐的样子". 结论压了几十年; Chandrasekhar 终于在 1983 年因这条工作获得 Nobel 物理学奖, 那时他 73 岁.</p>
+
+  <p>历史拼图把这一节的两端串起来. 1926 年 Fermi、Dirac 各自把 Pauli 原理与统计力学揉到一块, 给出 Fermi-Dirac 分布; Fowler 同年立刻把它套到白矮星上, 第一个解释了天狼星 B 为什么不塌. 1931 年 Chandrasekhar 把相对论效应加进去, 算出极限 $1.4\, M_\odot$. 1932 年 Landau 在中子被发现的同一年就在论文里推断: 恒星可以靠中子简并压撑住更密的极限, 也就是中子星. 1934 年 Baade 与 Zwicky 更明确地把超新星与中子星残骸的图像写下来. 中子星整整等到 1968 年才被实验找到 — 那年 Hewish 与他 24 岁的研究生 Bell Burnell 在英国的射电观测里抓到周期 $1.337$ s 的稳定脉冲信号 PSR B1919+21, 起初编号叫 LGM-1 ("Little Green Men 1", 因为这条信号的稳定性几乎让人怀疑是外星文明). 后来证实就是 Landau 三十多年前预言的"靠简并压稳住的中子团".</p>
+
+  <p>从 Pauli 原理写下来到一颗恒星撑住自身引力, 中间没有任何"额外的相互作用"在工作. 1925 年 Pauli 写下"两个电子不能占同一态"时, 用的还只是原子光谱里两条没法区分的多重线; 不到十年, 同一条原理被推到了 $30$ 个量级以外, 撑住了直径上万公里、质量比太阳还重的天体. 量子统计是这本书里最低调、最不张扬的那一块, 但它能扛起的东西远比想像中重.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>把同种费米子塞进同一体积, Pauli 不相容原理逼它们一格一格往 $k$ 空间里填, 即使温度趋于零, $\mathbf k$ 空间里仍然有一个半径 $k_F = (3\pi^2 n)^{1/3}$ 的 Fermi 球被填满. 球内电子的平均动能 $\tfrac35 E_F$ 不会消失, 由它派生出的简并压 $P_\text{NR} = \tfrac{\hbar^2}{5m}(3\pi^2)^{2/3} n^{5/3}$ 是个不依赖温度的纯量子效应. 把电子推到相对论区, 多形指数从 $5/3$ 落到 $4/3$, 简并压不再够顶引力 — Chandrasekhar 由此算出白矮星上限 $M_\text{Ch} \approx 1.4\, M_\odot$. 把电子换成中子, 同一条数学搬到 $\rho \sim 10^{17}$ kg/m³ 重做一遍, 就是中子星. Pauli 原理是写在 1925 年原子光谱里的一条小规则, 三十年后它撑住了一颗恒星. 下一节我们换一种语言把它写得更紧凑 — 二次量子化, 把 Fermi 海与多体波函数全部塞进算符代数里.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="21-identical-particles.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="23-second-quantization.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

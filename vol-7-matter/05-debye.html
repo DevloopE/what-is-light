@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么固体比热在低温走 $T^3$? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="04-phonons.html">← 上一节</a>
+  <span class="chapter-title">第 5 节 / 30 · 第 1 部分 · 晶体与对称性 · 第七卷·物质是什么?</span>
+  <a href="06-free-electron.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么固体比热在低温走 $T^3$?</h1>
+  <div class="sub">—— Debye 模型与德拜温度</div>
+
+  <div class="abstract">十九世纪三十年代, Dulong 和 Petit 在巴黎称量了二十多种金属的比热, 得到一个简洁的实验定律: 每摩尔固体的定容比热 $C_V \approx 3R \approx 24.94~\mathrm{J/(mol\cdot K)}$, 与材料是什么无关. 这个数字在室温附近对铅、铜、铁都对得很好. 但十九世纪末有了液氢、液氦后, 人们能把固体降到 $20~\mathrm{K}$ 乃至 $4~\mathrm{K}$, 比热突然就崩了 — 急剧下落到几乎为零, 完全不是 $3R$. 1907 年 Einstein 用单频量子谐振子模型给出第一个能解释 "比热在低温为零" 的理论, 但它在低温下衰减得太快 (像 $e^{-\theta_E/T}$). 1912 年 Debye 在苏黎世把这个模型改成 "整个 phonon 谱积分", 一下就拿到了正确的低温幂律: $C_V \propto T^3$. 这一节我们从声子谱密度走到 Debye 积分公式 $C_V = 9NR(T/\theta_D)^3 \int_0^{\theta_D/T} x^4 e^x/(e^x-1)^2\, dx$, 看 $T \ll \theta_D$ 时它怎么退化成 $(12\pi^4/5)NR(T/\theta_D)^3$, 再代铜、钻石、铅三组数字看德拜温度怎么决定 "什么算低温".</div>
+
+  <p>第 4 节我们已经把晶格振动量子化, 写出 phonon 作为简正模的量子, 频率谱由色散关系 $\omega(\mathbf{k})$ 决定. 那是机制层面. 这一节是用机制算一个具体可测的量: 比热. 比热是热力学里最早被精确测量的几个量之一, 能量灯捻进材料、温度计读出温升、再除以摩尔数, 没有任何抽象成分. 它也是凝聚态物理第一次让量子力学不得不出场的地方 — 经典 Dulong-Petit 没有办法在低温救自己, 必须放弃 "每个自由度均分 $k_B T/2$" 这条等分能量定理. 而放弃的方式, 不是引入怪异的相互作用, 是把振动能量切成 $\hbar\omega$ 的台阶. 这是 Planck 的黑体公式之外, 量子论第二次直接对实验生效.</p>
+
+  <h2>一、Dulong-Petit 与等分能量定理为什么在低温崩</h2>
+
+  <p>先回到经典. 一个三维谐振子有 6 个二次型自由度 (3 个动量平方加 3 个位移平方), 等分能量定理给每个二次型分 $k_B T/2$ 的平均能, 所以一个谐振子平均能是 $3 k_B T$. 一摩尔固体里有 $N_A$ 个原子, 每个原子在三个方向上振动, 总共 $3N_A$ 个独立谐振子, 总能量</p>
+
+  <p>$$ U_{\text{cl}} = 3 N_A k_B T = 3 R T, $$</p>
+
+  <p>所以摩尔比热 $C_V = (\partial U/\partial T)_V = 3R$, 与温度、与原子种类、与晶格结构都无关. 这就是 Dulong-Petit 1819 年从十几种金属归纳出来的经验律. 室温下铜、铁、铝、铅都对得很好, 误差几个百分点之内.</p>
+
+  <p>问题是当时没人能把固体降到很低温度. 二十世纪初 Onnes 在莱顿做出了液氦 (1908), 把样品冷到 $4.2~\mathrm{K}$ 就成了常规操作. 一冷下去, 比热不再是 $3R$, 而是急剧下降. 比方铜, $\theta_D = 343~\mathrm{K}$ (后面我们会看到这个量怎么定义), 在 $T = 10~\mathrm{K}$ 时实测 $C_V/(3R) \sim 10^{-4}$ 量级 — 比经典预言低了一万倍. 这是经典物理无解的现象: 等分能量定理是热力学的基石, 没有任何挥手能让它在低温自动退场.</p>
+
+  <p>Einstein 1907 年提出的解法是直接量子化每一个谐振子: 一个频率为 $\omega$ 的谐振子, 平均能不再是 $k_B T$, 而是 Planck 公式</p>
+
+  <p>$$ \langle E\rangle = \hbar\omega \left(\frac{1}{e^{\hbar\omega/k_B T}-1} + \frac{1}{2}\right). $$</p>
+
+  <p>在高温 $k_B T \gg \hbar\omega$, 这个表达式回到 $k_B T$ (加常数), Dulong-Petit 自动恢复. 在低温 $k_B T \ll \hbar\omega$, $\langle E\rangle \to \hbar\omega/2 + \hbar\omega\, e^{-\hbar\omega/k_B T}$, 比热 $C_V \propto e^{-\hbar\omega/k_B T}$. 也就是说, Einstein 模型预言低温下比热以指数方式趋于零. 这在定性上是对的 — 比热确实趋于零. 但在定量上不对: 实验测出来的低温比热 $\propto T^3$ 而不是 $\propto e^{-\theta/T}$. 幂律比指数衰减得慢得多, Einstein 模型在低温段被压得太狠.</p>
+
+  <p>Einstein 知道自己的模型是粗暴的: 假设所有 $3N$ 个谐振子都振动在同一个频率 $\omega_E$. 真实晶体的振动谱是连续的, 从声学声子的低频零点一直延伸到光学声子的高频上限. 低温下被激发的, 主要是那些低频的、能量小于 $k_B T$ 的模式. 而低频模式即便在 $T \to 0$ 时也仍然有 (声学声子 $\omega \to 0$ at $\mathbf{k} \to 0$), 它们的指数压制不像 $\omega_E$ 那么严苛. 这就是为什么实验看到比热缓慢趋零而不是急剧趋零. 解决方法是: 老老实实把整个 phonon 谱积分起来.</p>
+
+  <h2>二、Debye 的截断: 把声子谱当成弹性介质</h2>
+
+  <p>Debye 1912 年的关键简化是: <strong>放弃精确的色散关系, 用线性近似</strong> $\omega = c_s |\mathbf{k}|$ — 像把整块晶体当成一个连续弹性介质, 声波的相速度 $c_s$ 是材料的横/纵声速 (实际是三个声学支的某种平均). 这在 $\mathbf{k} \to 0$ 附近是严格的; 在 Brillouin 区边缘上线性关系会偏离真实色散, 但 Debye 不在乎细节, 他要的是低频区的物理.</p>
+
+  <p>线性色散下, 单位 $\mathbf{k}$ 体积里的模式密度是常数, 于是单位频率范围 $[\omega, \omega+d\omega]$ 内的模式数</p>
+
+  <p>$$ g(\omega)\, d\omega = \frac{V}{2\pi^2}\, \frac{\omega^2}{c_s^3}\, d\omega \cdot 3, $$</p>
+
+  <p>因子 3 是三个声学极化 (一个纵波 + 两个横波, 这里粗略地用同一个 $c_s$). 这个 $g(\omega)\propto \omega^2$ 的 phonon 态密度, 是 Debye 模型最核心的输入. 但是注意, 如果我把 $\omega$ 从 0 积到无穷, 会得到无穷多个模式 — 显然违反 "$N$ 个原子最多有 $3N$ 个简正模" 的事实. 所以 Debye 在这里加了一个截断: 设一个最高频率 $\omega_D$ (Debye 频率), 让</p>
+
+  <p>$$ \int_0^{\omega_D} g(\omega)\, d\omega = 3 N. \tag{1} $$</p>
+
+  <p>代入上面的 $g(\omega)$, 得</p>
+
+  <p>$$ \omega_D^3 = 6\pi^2 \frac{N}{V}\, c_s^3, $$</p>
+
+  <p>也就是 Debye 频率由数密度 $N/V$ 和声速 $c_s$ 决定. 把它写成温度形式, 引入 <strong>德拜温度</strong></p>
+
+  <p>$$ \theta_D \equiv \frac{\hbar \omega_D}{k_B}. $$</p>
+
+  <p>这个温度是 Debye 模型唯一的材料相关参数, 它把 phonon 谱的整体硬度装进了一个数. 钢的 $\theta_D$ 大, 因为它键硬声速快; 铅的 $\theta_D$ 小, 因为它键软声速慢. 三个例子: <strong>Cu $\theta_D = 343~\mathrm{K}$, Pb $\theta_D = 105~\mathrm{K}$, 钻石 $\theta_D = 1860~\mathrm{K}$</strong>. 一万倍的密度差和共价键强度差最终被压成不到二十倍的 $\theta_D$ 差距 (因为 $\theta_D \propto c_s\, n^{1/3}$, 量纲上不容易快速变化).</p>
+
+  <p>$\theta_D$ 是 "高温/低温" 的天然分界. 当 $T \gg \theta_D$, 所有模式都被热激发, 行为接近 Dulong-Petit. 当 $T \ll \theta_D$, 只有那些 $\omega \lt  k_B T/\hbar$ 的低频模式能被激发, 高频被冻住.</p>
+
+  <h2>三、积分公式与低温 $T^3$ 极限</h2>
+
+  <p>把 Planck 平均能乘上态密度, 总热能</p>
+
+  <p>$$ U(T) = \int_0^{\omega_D} g(\omega)\, \frac{\hbar\omega}{e^{\hbar\omega/k_B T}-1}\, d\omega. $$</p>
+
+  <p>(零点能项不依赖 $T$, 求 $C_V$ 时被消去, 直接扔掉.) 把 $g(\omega) = (9N/\omega_D^3)\,\omega^2$ (用 (1) 反推系数) 代进去, 换变量 $x = \hbar\omega/k_B T$, 上限变成 $\theta_D/T$, 直接对 $T$ 求导得到</p>
+
+  <p>$$ C_V(T) = 9 N R\, \left(\frac{T}{\theta_D}\right)^3 \int_0^{\theta_D/T} \frac{x^4 e^x}{(e^x-1)^2}\, dx. \tag{2} $$</p>
+
+  <p>这就是 <strong>Debye 比热公式</strong>. 它是一个温度的普适函数, 一旦你横轴用 $T/\theta_D$ 来标, 所有材料的比热曲线都重合在一条曲线上. 这种 "材料独立" 的标度行为是 Debye 模型最美的预言. 实验上把铜、铝、银、铅的 $C_V/(3R)$ 对 $T/\theta_D$ 画出来, 它们确实落在 (2) 给出的同一条曲线附近 (低温段对得极好, 高温段稍有偏差).</p>
+
+  <p>(2) 在两个极限是可以解析的.</p>
+
+  <p><strong>高温 $T \gg \theta_D$:</strong> 上限 $\theta_D/T \to 0$, 被积函数在 $x$ 小时近似为 $x^4 \cdot 1/x^2 = x^2$, 积分约为 $(\theta_D/T)^3/3$, 代回 $C_V \to 9NR\,(T/\theta_D)^3 \cdot (\theta_D/T)^3 / 3 = 3NR$. 完美回到 Dulong-Petit. 这是高温自动恢复经典的检验.</p>
+
+  <p><strong>低温 $T \ll \theta_D$:</strong> 上限 $\theta_D/T \to \infty$, 积分变成 $\int_0^\infty x^4 e^x/(e^x-1)^2\, dx = 4\pi^4/15$ (这是黑体辐射里的同一个积分, 和 $\int_0^\infty x^3/(e^x-1)\, dx = \pi^4/15$ 关联). 代回</p>
+
+  <p>$$ C_V \xrightarrow{T \ll \theta_D}\; \frac{12 \pi^4}{5}\, N R\, \left(\frac{T}{\theta_D}\right)^3. \tag{3} $$</p>
+
+  <p>这就是 <strong>Debye $T^3$ 律</strong>. 系数 $12\pi^4/5 \approx 233.78$. 用铜代数字检验: $\theta_D = 343~\mathrm{K}$, $T = 10~\mathrm{K}$, $(T/\theta_D)^3 = (10/343)^3 \approx 2.5 \times 10^{-5}$, 乘以 $233.78$ 得 $C_V/(3NR/3) \approx 0.058 \cdot \text{(乘 3)}$, 也就是 $C_V/(3R) \sim 2 \times 10^{-3}$. 实测就是这个量级 (考虑到电子比热 $\propto T$ 的贡献在这个温度也开始显现, 数字会有偏移, 但 phonon 部分确实是 $\sim 10^{-3}$).</p>
+
+  <p>钻石的 $\theta_D = 1860~\mathrm{K}$ — 室温 $300~\mathrm{K}$ 对它来说还远远是 "低温". $300/1860 \approx 0.16$, 仍然处在 $T^3$ 律深处. 室温下钻石比热 $C_V \approx 6~\mathrm{J/(mol\cdot K)}$, 远低于 Dulong-Petit 的 $24.94$, 这是钻石作为绝缘体最容易测的几个性质之一. 反过来铅 $\theta_D = 105~\mathrm{K}$, 室温下 $T/\theta_D \approx 2.86$, 已经在 "高温" 区, 比热接近 $3R = 24.94$, 实测约 $26.4~\mathrm{J/(mol\cdot K)}$ (微微超出是因为非简谐效应使得 $C_p$ 略大于 $C_V$).</p>
+
+  <p>$T^3$ 律的物理意义可以这么读: 在低温, 只有 $\omega \lt  k_B T/\hbar$ 的模式被激发, 这一部分的相空间是个半径为 $k_B T/(\hbar c_s)$ 的小球, 体积 $\propto T^3$, 里面的每一个模式贡献 $\sim k_B$ 的比热, 所以总贡献 $\propto T^3$. 这是 phonon 谱的低频线性色散直接刻在比热上的指纹. 如果色散不是线性而是别的幂次 (例如二次, 像铁磁体里的 magnon $\omega \propto k^2$), 那比热的低温幂律也会变 (magnon 给 $T^{3/2}$). 所以低温比热的指数, 是探测低能激发谱的探针.</p>
+
+  <h2>四、Einstein 与 Debye 的对比, 以及 Born-von Karman 的严格化</h2>
+
+  <p>Einstein 1907 年那篇文章是量子论第一次走出黑体辐射、走进固体. 他在论文里明白地指出: 等分能量定理的失败说明能量必须是离散的台阶. 那之前几年 Planck 的能量量子是为了拯救黑体公式, 现在 Einstein 说同一个台阶要套用到固体的振动. 历史上, 这是 "量子" 这个概念第一次跨出辐射场的边界.</p>
+
+  <p>但 Einstein 的具体模型是粗糙的: $3N$ 个谐振子全部同频. 他自己也清楚这不可能精确对; 他写道, 这只是一个 "如果量子论对, 比热应当怎么变化的最简单模型". 在中高温它给 $C_V$ 的下降趋势对; 在 $T \to 0$ 它衰减太快 (指数). 钻石比热在 $20$-$200~\mathrm{K}$ 这个区间, Einstein 模型的衰减速度肉眼可辨地比实验快 — 这是 1908-1911 年 Nernst 在 Berlin 的低温实验室里反复验证过的事实.</p>
+
+  <p>Debye 1912 年在苏黎世大学接 Einstein 的位置后写了那篇标志性的论文. 他的关键改动: 不是单频, 是连续谱; 不是任意谱, 是 $\omega \propto k$ 的弹性介质谱; 不是无穷多模, 是按 $3N$ 截断. 这三步加起来, 给出 (2) 式. 实验上 Debye 的曲线在低温段几乎完美地贴住数据, 而 Einstein 的曲线则在 $T \lt  0.3\, \theta_D$ 处明显偏低. 同年 1912, Born 和 von Kármán 在 Göttingen 写出了完整的晶格动力学: 真实色散关系 $\omega(\mathbf{k})$ 由动力学矩阵的本征值给出, 不是 Debye 假设的那条直线, 也不是 Einstein 假设的那个常数. Born-von Kármán 是严格的, Debye 是 "弹性介质近似", Einstein 是 "Einstein 频率近似". 在低温区, 三者排序: Born-von Kármán (精确) 接近 Debye (低频对得好), 远离 Einstein (低频太硬).</p>
+
+  <p>但有意思的是, Born-von Kármán 在中温区反而不如 Debye 简单好用. Debye 把整个色散结构压缩成一个数 $\theta_D$, 这个数可以从声速测出, 也可以从比热反推, 两者通常一致到几个百分点. 这种 "一参数普适曲线" 的优雅, 是 Debye 模型一直留在教科书里、而更精确的 Born-von Kármán 反而成为研究生才接触的工具的原因. 不同的近似各占一席之地.</p>
+
+  <p>顺带说一下数字之间的内在联系. (3) 式里的 $T^3$ 系数 $12\pi^4/5$, 和黑体辐射的 Stefan-Boltzmann 常数 $\sigma$ 里出现的 $\pi^4/15$, 共享同一个积分 $\int_0^\infty x^3/(e^x-1)\, dx$. 这不是巧合: phonon 是 boson, photon 是 boson, 二者在低温都是 "$\omega \propto k$ 的无质量场", 占据数都是 Bose-Einstein 分布, 唯一的差别是 phonon 谱有上限 $\omega_D$ 而 photon 谱没有. 在 $T \ll \theta_D$ 的极限里, 这个上限被指数抑制看不见了, 于是 phonon 比热和黑体能量都按 $T^4$ 规律变 (能量 $T^4$, 比热 $T^3$). 一个固体的低温比热, 数学上等价于一个有 "声速" 而非 "光速" 的小宇宙的辐射热容.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 比热 vs 温度曲线 — 横轴 $T/\theta_D$ 从 0 到 2, 纵轴 $C_V/(3R)$ 从 0 到 1. 三条曲线: (a) Debye 曲线: 低温 $T^3$ 起步, 在 $T \approx \theta_D$ 处约为 0.95, 高温渐近到 1; (b) Einstein 曲线 (取 $\omega_E = \omega_D$): 低温下指数压制, 在 $T \ll \theta_D$ 处明显低于 Debye 曲线; (c) 经典 Dulong-Petit 水平线 $C_V/(3R) = 1$. 在低温段标注 $\propto T^3$ 与 $\propto e^{-\theta_E/T}$ 的渐近形式; 在 $T = \theta_D$ 处画一条竖虚线作为分界.]</div>
+  </figure>
+
+  <h2>五、$\theta_D$ 作为材料指纹与现代用法</h2>
+
+  <p>Debye 温度今天仍然是凝聚态物理里使用频率最高的几个数字之一, 但它的角色比 1912 年要丰富得多. 一个材料的 $\theta_D$ 不只决定比热曲线, 它还决定:</p>
+
+  <p><strong>(a) Debye-Waller 因子.</strong> X 射线衍射的峰强度被 $e^{-2W}$ 压低, 其中 $W \propto T/\theta_D^2$ 是热振动均方位移. 测衍射峰随温度的衰减, 反推 $\theta_D$, 与比热反推的数值在同一材料上要一致. 这是 Debye 模型在两个完全不同实验里互相校验的方法.</p>
+
+  <p><strong>(b) 电声耦合与超导.</strong> BCS 公式 $T_c \sim \theta_D\, e^{-1/N(0)V}$ 里, $\theta_D$ 是 phonon 谱的特征频率. 钻石 $\theta_D = 1860~\mathrm{K}$ 极高, 配上重掺杂的 boron 后能在 $4~\mathrm{K}$ 出现超导, 这是把 $\theta_D$ 大当作 $T_c$ 大候选材料的逻辑根. MgB$_2$ ($\theta_D \sim 900~\mathrm{K}$, $T_c = 39~\mathrm{K}$) 是近代用 "高 $\theta_D$ 找超导" 找到的代表. 当然氢化物 (如压力下的 H$_3$S, $T_c = 203~\mathrm{K}$, 2015 年报道) 走的也是同一条路.</p>
+
+  <p><strong>(c) 热导.</strong> phonon 是绝缘体里的主要热载流子, 室温热导 $\kappa \propto C_V\, v_s\, \ell$, 其中 $\ell$ 是 phonon 平均自由程. $\theta_D$ 高的材料 (如金刚石) 同时也是声速高的材料, 通常是好的热导体 — 钻石的热导率 $\sim 2200~\mathrm{W/(m\cdot K)}$, 是铜 ($\sim 400$) 的五倍多, 物理根就在 $\theta_D$ 高所导致的高声速和高 phonon 截止频率.</p>
+
+  <p>从教学角度看, Debye 模型还有一个独特价值: 它是少数几个在凝聚态里能完整解析、又能严格对接实验数字的模型之一. 你写下 (2) 式, 取一个材料的 $\theta_D$, 数值积分, 画出曲线, 直接和 PPMS 量出来的比热数据放一起 — 误差通常在几个百分点之内 (除非有电子贡献、磁性贡献、或低维结构使得 $g(\omega)$ 偏离 $\omega^2$ 形式). 这种 "理论一行公式, 实验吻合一条曲线" 的体验, 是凝聚态学习里的高光时刻之一.</p>
+
+  <p>当然 Debye 模型有它的失败. 在 $T \approx \theta_D/5$ 附近, 真实材料的比热曲线略低于 Debye 曲线, 因为 Brillouin 区边缘的色散不是线性的 (色散变弯, 高频模式比 Debye 模型预言的要少). 这种偏差量级在 5%-15%, 习惯上把这种偏差归入 "$\theta_D$ 是温度的弱函数" — 你拟合不同温度的数据点会得到略不同的 $\theta_D$, 这本身就是 Debye 近似不严格的痕迹. 真正严格要回到 Born-von Kármán, 或者更现代地, 回到 DFT 计算的声子色散. 但作为入门级模型, Debye 把热力学的脏活留给了一行公式, 完成度极高.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Dulong-Petit $C_V = 3R$ 是经典等分能量定理的直接结果, 在室温对得好, 在低温崩到 $10^{-4}$ 量级 (铜在 10 K). Einstein 1907 年用单频谐振子量子化抢救了下来, 但低温衰减太快 (指数). Debye 1912 年把整个 phonon 谱当作 $\omega \propto k$ 的弹性介质并用 $\omega_D$ 截断, 给出公式 (2), 在低温退化为 (12$\pi^4$/5)$NR(T/\theta_D)^3$, 与实验吻合. $\theta_D$ 是材料的指纹: 铜 343 K, 铅 105 K, 钻石 1860 K, 同一物质三种典型尺度. 这一节是凝聚态物理第一次让量子论从黑体跨进固体, 也是低温比热作为低能激发谱探针的范本. 下一节我们换个主角 — 把固体里的电子从 phonon 旁边请出来, 用 Sommerfeld 自由电子模型解释金属电阻随温度线性升的物理.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="04-phonons.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="06-free-electron.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

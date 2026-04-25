@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高分子为什么"卷成一团"? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="26-liquid-crystals.html">← 上一节</a>
+  <span class="chapter-title">第 27 节 / 30 · 第 6 部分 · 软物质与涌现 · 第七卷·物质是什么?</span>
+  <a href="28-self-assembly.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>高分子为什么"卷成一团"?</h1>
+  <div class="sub">—— 自由连接链与高斯统计</div>
+
+  <div class="abstract">
+    把一根聚乙烯链拉直, 它有几百纳米长; 但把它丢进一杯水或一桶熔体里, 它不像一根针, 也不像一团乱麻 — 它是一个"统计意义上的球", 半径只有 10 纳米左右, 比拉直长度小一个量级. 这件事在 1934 年 Werner Kuhn 那里第一次被讲清楚: 长链高分子的构象是 $N$ 步随机游走, 末端距 $R$ 满足高斯分布, $\langle R^2\rangle = N b^2$. 1949 年 Paul Flory 注意到链段不能自相穿过 (excluded volume), 这把理想链的指数 $\nu = 1/2$ 抬到 $\nu = 3/(d+2) = 3/5$ (三维, 好溶剂). 1972 年 Pierre-Gilles de Gennes 发现这跟磁性体在 $n \to 0$ 极限下的临界点是同一件事, 把 Wilson 重整化群直接搬到高分子上 (1991 年诺奖). 这一节我们从"为什么不是棒"出发, 把无规线团、Kuhn 长度、Flory 指数、持久长度这一组概念钉死, 顺便算两个数: 聚乙烯 $N=1000$ 单体的理想线团半径约 79 Å, 1 mm 长的 DNA 在水里盘成约 10 μm 的球.
+  </div>
+
+  <p>从化学课本里抠一根聚乙烯 $\mathrm{(-CH_2-CH_2-)}_N$. 单体长 $b \approx 2.5$ Å, 取 $N = 1000$, 完全拉直就是 250 nm. 但日常的聚乙烯样品 — 塑料袋、保鲜膜 — 不是 250 nm 一根针, 而是一团缠在一起的"面条". 把它溶进二甲苯, 用静态光散射测每条链的回转半径, 得到的数字大概是 15 nm. 一根 250 nm 的"针"为什么塌成 15 nm 的"球"? 这不是因为链短, 而是因为链<em>不知道往哪走</em>: 每个相邻的 C-C 键有自由的扭转角, 走到第二个、第三个键的时候它就失忆了, 整条链对自身来说就是一段随机游走. 随机游走的尺度按 $\sqrt{N}$ 涨, 而不是按 $N$ 涨 — 这是高分子物理的全部秘密. 这一节我们把这件事算清楚.</p>
+
+  <h2>一、自由连接链: $N$ 步随机游走</h2>
+
+  <p>最朴素的模型由 Werner Kuhn 1934 年在弗赖堡写下, 现在叫<strong>自由连接链</strong> (freely jointed chain, FJC). 假设一条链由 $N$ 段刚性键组成, 每段长 $b$, 相邻段之间的方向<em>完全独立</em>且各向同性 — 没有键角约束, 没有自相排斥. 把第 $i$ 段写成向量 $\mathbf{b}_i$, 长度 $|\mathbf{b}_i| = b$, 方向均匀分布在球面上. 链的末端到末端向量是</p>
+
+  <p>$$ \mathbf{R} = \sum_{i=1}^{N} \mathbf{b}_i. $$</p>
+
+  <p>由于各段方向独立, $\langle \mathbf{b}_i \cdot \mathbf{b}_j \rangle = b^2 \delta_{ij}$, 直接平方求平均</p>
+
+  <p>$$ \langle R^2 \rangle = \sum_{i,j} \langle \mathbf{b}_i \cdot \mathbf{b}_j \rangle = N b^2. \tag{1} $$</p>
+
+  <p>这是高分子物理的"第一公式". 它告诉两件事: 一, 末端距的均方根 $\sqrt{\langle R^2\rangle} = b\sqrt{N}$ 比拉直长度 $L = N b$ 小一个 $\sqrt{N}$ 因子, 链是"卷"的; 二, 这个尺度对单体细节不敏感, 只看 $N$ 和 $b$. 把数字代上: 聚乙烯 $N = 1000$, $b = 2.5$ Å, 得 $\sqrt{\langle R^2\rangle} \approx 79$ Å $\approx 7.9$ nm. 拉直长度 $L = 250$ nm, 比值 $L/\sqrt{\langle R^2\rangle} \approx 32$ — 链确实"卷"得厉害, 这正是塑料袋里聚乙烯的实际状态.</p>
+
+  <p>更细的一步: 末端距 $\mathbf{R}$ 的概率分布. 每一段是一个独立同分布的随机向量, 中心极限定理告诉我们 $\mathbf{R}$ 在 $N \gg 1$ 时趋于<strong>三维高斯分布</strong></p>
+
+  <p>$$ P(\mathbf{R}) = \left(\frac{3}{2\pi N b^2}\right)^{3/2} \exp\!\left(-\frac{3 R^2}{2 N b^2}\right). \tag{2} $$</p>
+
+  <p>这就是为什么我们说理想高分子链是"高斯链". $(2)$ 式有一个深刻的副产品: 把它取对数, 得到熵 $S(R) = -k_B \cdot \frac{3 R^2}{2 N b^2} + \mathrm{const}$, 拉伸链 (增大 $R$) 要付出熵代价. 自由能 $F = -T S$ 给出胡克定律 $F = \frac{3 k_B T}{N b^2} \mathbf{R}$ — 一根橡皮筋的弹性<em>纯粹是熵</em>, 跟原子之间的化学键力没关系. 这是橡胶弹性 (rubber elasticity) 的原理, 也是"为什么橡皮筋拉热了反而缩"这件反直觉小事的解释 (温度高, 熵代价更贵).</p>
+
+  <h2>二、键角与持久长度: 把"自由连接"修一修</h2>
+
+  <p>真实的高分子链不是自由连接的. 化学键有固定的键角 (聚乙烯里 C-C-C 角约 $109.5°$), 还有受限的扭转角 (反式/旁式构象). 这些约束让相邻键之间的方向有<em>正关联</em>, 走几步以后才忘掉. 不过 — 这是 Kuhn 的精妙之处 — 只要走得足够长, 关联指数衰减, 这条真实链<em>等价于</em>一条 Kuhn 段更长的自由连接链:</p>
+
+  <p>$$ \langle R^2 \rangle = N_K b_K^2 = C_\infty N b^2, $$</p>
+
+  <p>其中 $N_K$ 是 Kuhn 段数, $b_K$ 是 Kuhn 长度, $C_\infty$ 是"特征比" (characteristic ratio), 反映键角和扭转的硬度. 聚乙烯实测 $C_\infty \approx 6.7$, 即 1 个 Kuhn 段约相当于 7 个 C-C 键. 这条规则的物理意义是: 凡是<em>柔性</em>高分子, 远场行为都坍缩到同一个普适的高斯链, 化学细节只决定 $b_K$ 的大小; 这就是<strong>普适性</strong> (universality) 在软物质里的第一次出场.</p>
+
+  <p>另一个等价的描述是<strong>持久长度</strong> $\ell_p$, 由 Kratky-Porod 1949 年的 worm-like chain 模型给出. 把链当作一根可以弯但不能拉的细杆, 切线方向的关联函数</p>
+
+  <p>$$ \langle \hat{\mathbf{t}}(s) \cdot \hat{\mathbf{t}}(0)\rangle = e^{-s/\ell_p}, $$</p>
+
+  <p>其中 $s$ 是沿链弧长. 在长链极限 $L \gg \ell_p$, 末端距给出</p>
+
+  <p>$$ \langle R^2 \rangle = 2 \ell_p L \left[1 - \frac{\ell_p}{L}\bigl(1 - e^{-L/\ell_p}\bigr)\right] \xrightarrow{L \gg \ell_p} 2 \ell_p L. $$</p>
+
+  <p>这跟 $(1)$ 是同一件事 — Kuhn 长度 $b_K = 2 \ell_p$. 持久长度直接告诉你"这根链有多硬": 聚乙烯 $\ell_p \approx 0.5$ nm (软), DNA 双螺旋 $\ell_p \approx 50$ nm (硬, 比单体大两个量级), 肌动蛋白丝 $\ell_p \approx 17$ μm (基本是刚性棒). 拿 DNA 算一笔: 大肠杆菌染色体全长 $L \approx 1.6$ mm, 用 $\sqrt{2 \ell_p L} \approx \sqrt{2 \times 50\,\mathrm{nm} \times 1.6\,\mathrm{mm}} \approx 12.6$ μm — 这正是 DNA 在水溶液中"看起来"的盘绕尺度. 一个直径 1 μm 的细菌怎么把 12 μm 的 DNA 球塞进去? 这是另一个故事 (拓扑、超螺旋), 不过统计骨架先到这里.</p>
+
+  <h2>三、Flory 1949: 自相排斥把 $\nu$ 从 $1/2$ 抬到 $3/5$</h2>
+
+  <p>$(1)$ 式有一个偷偷的假设: 链段可以<em>自相穿越</em>. 真实高分子里, 任何两个单体不能占据同一个空间 — 这叫<strong>排斥体积</strong> (excluded volume) 效应. 在好溶剂里 (单体-溶剂相互作用比单体-单体强), 链段倾向于"撑开"避开彼此, 实际尺度比 $(1)$ 给出的高斯链更大. 这就是 Paul Flory 1949 年在康奈尔做的事: 在自由能里同时写下两项, 一项是排斥体积带来的能量惩罚, 一项是拉伸带来的熵惩罚.</p>
+
+  <p>排斥能正比于体内单体对的概率, $\sim N^2 / R^d \cdot v$ ($v$ 是排斥体积, $d$ 是空间维数); 熵代价由 $(2)$ 式来, $\sim k_B T R^2 / (N b^2)$. 写出总自由能</p>
+
+  <p>$$ \frac{F(R)}{k_B T} \sim \frac{v N^2}{R^d} + \frac{R^2}{N b^2}, $$</p>
+
+  <p>对 $R$ 求导取极小, 得 $R^{d+2} \sim v N^3 b^2$, 即</p>
+
+  <p>$$ R \sim N^\nu, \qquad \nu = \frac{3}{d+2}. \tag{3} $$</p>
+
+  <p>三维 ($d=3$): $\nu = 3/5 = 0.6$. 二维 ($d=2$, 如吸附在表面的链): $\nu = 3/4$. 一维 ($d=1$): $\nu = 1$, 链被迫展直. Flory 的论证混合了平均场近似和量纲分析, 严格性其实并不高 — 他自己后来都承认这是"看着对结果就拿了"的论证. 但它居然几乎答对: 后来精确的重整化群 + 蒙特卡洛模拟给出 $\nu \approx 0.588$ (三维), 跟 $3/5$ 只差不到 2%. 这是平均场近似在临界现象里少有的幸运例子之一.</p>
+
+  <p>把这条规则代到聚乙烯 $N = 1000$ 上, 在好溶剂里 $R \sim N^{3/5} b = 1000^{0.6} \times 2.5\,\mathrm{Å} \approx 158$ Å $\approx 16$ nm. 比理想链的 7.9 nm 大一倍 — 链被排斥体积"撑大"了, 这跟二甲苯里光散射测到的回转半径吻合. 在熔体里 (没有溶剂, 周围都是同种链段), 排斥体积被周围链段精确屏蔽掉, $\nu$ 又回到 $1/2$ — 这是 Flory 的"屏蔽定理", 也是为什么橡胶熔体里链是高斯的, 而稀溶液里是 self-avoiding 的.</p>
+
+  <h2>四、de Gennes 1972: 高分子是 $n \to 0$ 的磁性体</h2>
+
+  <p>1949 到 1972 这二十多年, 高分子物理在用 Flory 平均场 + 修修补补. 真正把这门学问跟整个统计物理打通的, 是 Pierre-Gilles de Gennes — 一位巴黎奥赛大学的物理学家, 同时管液晶、超导和高分子三件事. 1972 年他注意到: self-avoiding walk 的生成函数, 跟一个 $n$ 分量旋量磁性体 (O($n$) 模型) 在 $n \to 0$ 极限下的两点关联函数<em>恰好一样</em>. 也就是说, 一根 $N$ 单体的链相当于磁性体在长度尺度 $\sim \sqrt{N}$ 处的临界涨落; 链长 $N \to \infty$ 对应于磁性体逼近临界点; Flory 指数 $\nu$ 对应于磁性体关联长度的临界指数.</p>
+
+  <p>这一对应叫做 <strong>de Gennes-des Cloizeaux 定理</strong>. 一旦写下来, 整个 Wilson 重整化群机器就能直接用上: 高分子的临界指数可以用 $\epsilon = 4 - d$ 展开来算, 重整化群流告诉你哪些微观细节在长链极限下"无关" (irrelevant) 而被冲掉. 这把 Flory 的 $\nu = 3/5$ 修到 $\nu = 0.588$, 把高分子物理变成临界现象的一个分支. de Gennes 因此 (连同他在液晶和软物质上的其他工作) 拿到 1991 年诺贝尔物理学奖, 颁奖词里特别提到他"发现简单系统中的有序行为也能在更复杂的物质形态中找到对应".</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 自由连接链与自相回避链对照 — 左边画一条 $N \approx 50$ 段的随机游走, 段长 $b$, 末端距 $R \sim b\sqrt{N}$, 注明"理想链 $\nu = 1/2$"; 右边画一条同样段数但带排斥体积 (无自交) 的链, 整体明显更"展开", $R \sim b N^{3/5}$, 注明"好溶剂 self-avoiding $\nu = 3/5$"; 两侧底下各画一个虚线圆代表回转半径; 比例尺标"段长 $b$"</div>
+  </figure>
+
+  <p>这套对应还回送了一份礼物: 高分子可以反过来给磁性体提供实验. 想测 $n \to 0$ 极限下的 O($n$) 临界指数? 没办法直接做, 因为没有"零分量自旋"的实物; 但去稀溶液里测一根高分子链的回转半径随 $N$ 怎么变, 就等价于测 $n=0$ 的临界指数 $\nu$. de Gennes 这套思路在 1979 年的小书 <em>Scaling Concepts in Polymer Physics</em> 里被讲得彻底通透, 至今仍是这个领域的标准教材.</p>
+
+  <h2>五、从单链到熔体: 缠结、流变、结晶</h2>
+
+  <p>一根孤立的链是"卷成一团"的高斯/self-avoiding 球, 这是稀溶液. 工业上的塑料 — 聚乙烯袋、PET 瓶、橡胶轮胎 — 都是<strong>熔体</strong>或<strong>固态</strong>: 链与链<em>互相穿过</em>, 形成缠结网络. 熔体里每根链仍然是高斯的 ($\nu = 1/2$, 屏蔽生效), 但拓扑约束 ("两根链不能穿越彼此") 让动力学发生质变. de Gennes 1971 年提出<strong>蛇形蠕动</strong> (reptation) 模型: 一根链在缠结管道里像蛇一样沿自身轮廓滑动, 扩散系数 $D \sim 1/N^2$, 黏度 $\eta \sim N^3$ (实验更接近 $N^{3.4}$). 这就是为什么聚乙烯加热熔化以后还是黏稠的"软糖"而不是流水: 长链的拓扑缠结把黏度抬到比小分子液体高出几十亿倍.</p>
+
+  <p>结晶又是另一码事. 把熔体冷却, 链段会试图排成有序结构. 但因为每根链很长, 完全结晶几乎做不到 — 实际形成的是"半结晶聚合物": 折叠链片晶 (lamellae) 嵌在无定形区里. 高密度聚乙烯结晶度可达 80%, 弹性模量 $E \approx 1$ GPa (沿片晶法向); 而沿链方向理论上 $E \approx 300$ GPa, 跟钢相当 — 这是高强度纤维 (Spectra, Dyneema) 的物理基础, 它们靠的就是把链尽量拉直再结晶.</p>
+
+  <p>生命体系里的高分子更精彩: DNA 是一种半柔性带电链 ($\ell_p = 50$ nm, 还要加上电荷-电荷排斥的 Debye 屏蔽), 蛋白质是<em>有特定折叠态</em>的链 — 不是随机线团, 而是熵-能竞争下凝聚到唯一的天然态 (native state). Flory-Kuhn 框架仍然是<em>未折叠</em>蛋白 (denatured) 的零级近似, 但折叠态的结构由序列具体决定, 这是计算生物学的核心难题, 2024 年 AlphaFold 的诺贝尔化学奖正是这一脉的延伸. 高分子物理给所有这些复杂体系提供了一个"零级骨架": 长链系统在尺度 $\gtrsim \ell_p$ 处先按高斯统计/自相回避走, 化学细节再叠加修正.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>长链高分子在溶液或熔体里是"统计意义上的球", 这件事的核心是 Kuhn 1934 写下的自由连接链 — 末端距 $\langle R^2\rangle = N b^2$, 概率分布是高斯的, 链尺度 $R \sim b \sqrt{N}$ 比拉直长度 $N b$ 小一个 $\sqrt{N}$. Flory 1949 把排斥体积加进来, 在三维好溶剂里把指数从 $\nu = 1/2$ 抬到 $\nu = 3/(d+2) = 3/5$ ($(3)$ 式), 重整化群修到 $0.588$. de Gennes 1972 把这件事映成 $n \to 0$ 的 O($n$) 磁性体, 整个临界现象的工具被搬过来 (1991 年诺奖). 数字: 聚乙烯 $N = 1000$, $b = 2.5$ Å, 理想线团半径 7.9 nm, 好溶剂里 $\sim 16$ nm; DNA 持久长度 $\ell_p = 50$ nm, $1$ mm 长在水里 $\sim 10$ μm. 高分子结晶后弹性模量 $\sim 1$ GPa, 沿链方向理论可达 300 GPa. 这条路从单链高斯统计起步, 经过排斥体积 + 普适指数, 通向蛋白折叠和生命系统 — 复杂物质的"零级骨架"是一段随机游走.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="26-liquid-crystals.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="28-self-assembly.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

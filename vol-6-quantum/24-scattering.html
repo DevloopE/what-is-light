@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>散射截面是怎么算出来的? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="23-second-quantization.html">← 上一节</a>
+  <span class="chapter-title">第 24 节 / 30 · 第 5 部分 · 多体与场 · 第六卷·量子是什么?</span>
+  <a href="25-tunneling.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>散射截面是怎么算出来的?</h1>
+  <div class="sub">—— Born 近似与 S-矩阵</div>
+
+  <div class="abstract">高能物理唯一直接测得的量, 几乎全部是某种 "散射截面" — 一个具有面积量纲的数字 $\mathrm{d}\sigma/\mathrm{d}\Omega$, 表示每立体角接收到的散射粒子数与入射通量的比值. Rutherford 1911 年把 5 MeV 的 $\alpha$ 粒子打金箔, 在屏上记到大角度反弹的 "金核反冲", 经典推出 $\mathrm{d}\sigma/\mathrm{d}\Omega \propto 1/\sin^4(\theta/2)$, 直接捏出了 "原子核" 这个概念. 1926 年 Max Born 在 Göttingen 把 Schrödinger 方程做了一次微扰展开, 推出 $f(\theta) = -(m/2\pi\hbar^2)\int e^{-i\vec q\cdot\vec r'}V(\vec r')\,d^3r'$ — 一阶 Born 近似 — 量子的结果跟经典的 Rutherford 公式分毫不差; 顺手, 也就是在这篇散射论文的脚注里, Born 第一次提出了 "$|\psi|^2$ 是概率" 这个诠释. 这一节把 Born 近似从头推一遍, 用它算出 Rutherford 的 $1/\sin^4(\theta/2)$, 再代入 LHC 在 13 TeV 量到的 ~110 mb 总截面, 看一眼这个量纲为面积的小数字怎么把整个高能物理的实验数据串起来.</div>
+
+  <p>到这一节为止, 我们已经把多体系统提到了二次量子化 — 用产生湮灭算符 $a^\dagger_k, a_k$ 把粒子数当成场的激发. 但实验室里真正测的不是抽象的产生算符, 而是 "我从加速器把一束粒子轰过去, 有多少会以什么角度散开". 这个比例就是散射截面 $\sigma$, 量纲是面积. 1 barn $= 10^{-24}$ cm$^2$, 跟一个原子核的横截面 $(\sim 10^{-13}$ cm$)^2$ 量级匹配 — Manhattan 项目的核物理学家觉得这个面积大得 "像谷仓门 (barn)", 名字就此固定下来. 这一节要回答的就是: 给一个静止势 $V(\vec r)$, 怎么把入射平面波 $e^{i\vec k_i\cdot\vec r}$ 接进 Schrödinger 方程, 算出探测器在角度 $(\theta, \varphi)$ 收到的微分截面 $\mathrm{d}\sigma/\mathrm{d}\Omega$, 最后跟 1911 年 Rutherford 在金箔后面一颗一颗数到的 $\alpha$ 计数对上.</p>
+
+  <h2>一、Rutherford 1911: 5 MeV α 打金, 大角度反弹</h2>
+
+  <p>1909 年 Manchester 的 Geiger 和 Marsden 在 Rutherford 的指导下做了一个看上去本来该 "无聊" 的实验: 把镭源衰变出来的 $\alpha$ 粒子 (动能约 5 MeV, 速度 $\sim c/15$) 准直成一束打到一片厚度 $\sim 4\times 10^{-5}$ cm 的金箔上, 然后用一块涂了 ZnS 的屏在金箔后方各个角度数闪光. 当时的原子模型是 J.J. Thomson 的 "葡萄干布丁": 正电荷弥散在一个原子大小 $(\sim 10^{-8}$ cm$)$ 的球里, 电子像葡萄干一样嵌在里面. 按这个模型 $\alpha$ 穿过去时受到的偏折应该极小 ($\theta \lt  1^\circ$), 大角度反弹的概率应该几乎为零.</p>
+
+  <p>实际上每数八千颗 $\alpha$ 就有一颗反弹回到入射方向 ($\theta \gt  90^\circ$). Rutherford 后来回忆这件事时说, "这就好像你拿一发 15 英寸的炮弹打一张餐巾纸, 它居然弹回来打到了你脸上". 1911 年他坐下来用纯经典 Coulomb 散射推了一下: 把原子的正电荷集中在一个半径 $\ll 10^{-12}$ cm 的小核里, 电荷量 $Ze$, $\alpha$ 在它的 $V(r) = 2Ze^2/(4\pi\varepsilon_0 r)$ Coulomb 势中走双曲线轨道. 一段标准的开普勒-双曲计算给出</p>
+
+  <p>$$ \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = \left(\frac{Ze^2}{4 \cdot 4\pi\varepsilon_0\, E_\alpha}\right)^2 \frac{1}{\sin^4(\theta/2)}, $$</p>
+
+  <p>其中 $E_\alpha$ 是 $\alpha$ 的动能. 后向 ($\theta = \pi$) 截面 finite, 前向 ($\theta \to 0$) 发散 ($1/\theta^4$) — 这个发散是 Coulomb 势 $1/r$ 长程的标志. Geiger 和 Marsden 后来逐角度仔细测了 $\theta \in [5^\circ, 150^\circ]$ 的计数, 跟 $1/\sin^4(\theta/2)$ 整整十一个数量级地吻合. 把数字代进去, 金 $Z = 79$, $E_\alpha = 5$ MeV, $\theta = 90^\circ$: $\mathrm{d}\sigma/\mathrm{d}\Omega \approx 1.7\times 10^{-25}$ cm$^2$/sr $\approx 0.17$ b/sr. 这个数字今天本科物理实验课上还在做, 跟 Rutherford 当年用的探测器 (人眼+放大镜+黑屋子) 比已经轻松了一万倍.</p>
+
+  <p>两件事这里要先记住. 一是经典推法用了 "粒子走轨道" 这个图像, 但 $\alpha$ 是量子的; 二是 1911 年 Schrödinger 方程还没出生, 这件事按理说应该用量子力学重做一遍. 1926 年 Born 重做了, 神奇的是结果一模一样.</p>
+
+  <h2>二、Born 1926: 把 $V$ 当微扰</h2>
+
+  <p>设有一束入射平面波 $\psi_i(\vec r) = e^{i\vec k_i\cdot\vec r}$ 飞向一个有限范围的势 $V(\vec r)$. 远离势的地方波函数应该写成 "入射平面波加上一个向外辐射的球面波"</p>
+
+  <p>$$ \psi(\vec r) \xrightarrow{r \to \infty} e^{i\vec k_i\cdot\vec r} + f(\theta, \varphi)\,\frac{e^{ikr}}{r}. $$</p>
+
+  <p>球面波部分的复振幅 $f(\theta, \varphi)$ 称作 <strong>散射振幅</strong>, 单位是长度. 探测器距离 $r$ 张角 $\mathrm{d}\Omega$ 的小窗口, 接收到的概率流密度跟入射通量之比直接就是</p>
+
+  <p>$$ \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = |f(\theta, \varphi)|^2. \tag{1} $$</p>
+
+  <p>问题转化为: 给 $V(\vec r)$, 怎么算 $f$. 把 Schrödinger 方程 $(-\hbar^2/2m)\nabla^2\psi + V\psi = E\psi$ 重排成 $(\nabla^2 + k^2)\psi = (2m/\hbar^2)V\psi$, 其中 $k = \sqrt{2mE}/\hbar$. 这条方程的解可以用 Green 函数 $G(\vec r - \vec r') = -e^{ik|\vec r - \vec r'|}/(4\pi|\vec r - \vec r'|)$ (满足 $(\nabla^2 + k^2)G = \delta^3$, 取出射边界条件) 写成积分方程</p>
+
+  <p>$$ \psi(\vec r) = e^{i\vec k_i\cdot\vec r} - \frac{m}{2\pi\hbar^2}\int \frac{e^{ik|\vec r - \vec r'|}}{|\vec r - \vec r'|}\, V(\vec r')\,\psi(\vec r')\,d^3r'. $$</p>
+
+  <p>这是一条精确方程, 但 $\psi$ 在两边都出现, 没法直接解. Born 1926 年 6 月 25 日在 <em>Zeitschrift für Physik</em> 那篇标题为 <em>Quantenmechanik der Stoßvorgänge</em> 的论文里干脆把右边的 $\psi$ 也换成 $e^{i\vec k_i\cdot\vec r'}$ — 把 $V$ 当一阶微扰. 然后让 $r \to \infty$, $|\vec r - \vec r'| \approx r - \hat r\cdot\vec r'$, 把 $k\hat r$ 当成出射波矢 $\vec k_f$ ($|\vec k_f| = |\vec k_i| = k$, 弹性散射), 提出来一个共同的 $e^{ikr}/r$, 剩下来的就是</p>
+
+  <p>$$ f(\theta) = -\frac{m}{2\pi\hbar^2}\int e^{-i\vec q\cdot\vec r'}\,V(\vec r')\,d^3r', \qquad \vec q = \vec k_f - \vec k_i. \tag{2} $$</p>
+
+  <p>$\vec q$ 是动量传递, $|\vec q| = 2k\sin(\theta/2)$. 公式 (2) 就是 Born 一阶近似: <strong>散射振幅是势的 Fourier 变换</strong>. 这是个非常深的结论 — 高能物理后来几十年所有的 "形状因子 (form factor)"、"结构函数 (structure function)" 都是这个 Fourier 变换的衍生物. 你打高能粒子进去, 用 (2) 反过来从测到的 $f(\theta)$ 解出 $V(\vec r')$, 就是在用粒子做 "X 光"看势的内部结构.</p>
+
+  <p>顺便, 这就是 Born 概率诠释的诞生地. 上面这条公式给出的 $f(\theta)$ 是一个复振幅, $|f|^2$ 是探测器收到的概率密度. Born 在那篇文章的脚注里写了一句几乎是后悔加上去的话: "对一束 $\psi$ 而言, $|\psi|^2$ 解释成粒子在那里出现的概率". 这一句话之前 Schrödinger 还以为 $|\psi|^2$ 是物质的密度. 1954 年 Born 拿到 Nobel 奖, 颁奖词上写的就是这一句脚注.</p>
+
+  <h2>三、把 (2) 用到 Coulomb 势 — 复刻 Rutherford</h2>
+
+  <p>取 $V(r) = Z_1 Z_2 e^2/(4\pi\varepsilon_0 r)$, 是一个纯 Coulomb 势 ($Z_1, Z_2$ 是入射粒子和靶核的电荷数, $\alpha$-金对应 $Z_1 = 2$, $Z_2 = 79$). 把它代进 (2):</p>
+
+  <p>$$ f(\theta) = -\frac{m}{2\pi\hbar^2} \cdot \frac{Z_1 Z_2 e^2}{4\pi\varepsilon_0}\int \frac{e^{-i\vec q\cdot\vec r'}}{r'}\,d^3r'. $$</p>
+
+  <p>积分 $\int (e^{-i\vec q\cdot\vec r'}/r')\,d^3r'$ 是数学物理里的标准结果, 严格说来对 $1/r$ 不收敛, 要用 Yukawa 正则化 $V_\mu(r) = (Z_1 Z_2 e^2/4\pi\varepsilon_0)e^{-\mu r}/r$ 算完再令 $\mu \to 0$. 标准结果是 $4\pi/q^2$. 代回去:</p>
+
+  <p>$$ f(\theta) = -\frac{2m Z_1 Z_2 e^2}{4\pi\varepsilon_0\,\hbar^2 q^2}, \qquad q = 2k\sin(\theta/2). $$</p>
+
+  <p>把 $q^2 = 4k^2\sin^2(\theta/2)$ 和 $\hbar^2 k^2/2m = E$ 代入, 算 $|f|^2$:</p>
+
+  <p>$$ \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega} = |f|^2 = \left(\frac{Z_1 Z_2 e^2}{4 \cdot 4\pi\varepsilon_0\, E}\right)^2 \frac{1}{\sin^4(\theta/2)}. $$</p>
+
+  <p>跟经典 Rutherford 公式 <strong>逐字相等</strong>. 这件事是个 "巧合" — Coulomb 势的特殊性使得 Born 一阶近似跟严格解给出同一答案 (因为 $1/r$ 是 Laplace 算符的 Green 函数, 数学上就是这么干净); 一般势 Born 一阶通常只是定性正确. 把 $\alpha$ 打金的数字代进去验算: $Z_1 Z_2 = 2\cdot 79 = 158$, $E = 5$ MeV, $\theta = 90^\circ$, 求得</p>
+
+  <p>$$ \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}\bigg|_{90^\circ} \approx 1.7\times 10^{-25}\;\text{cm}^2/\text{sr}, $$</p>
+
+  <p>跟 Geiger-Marsden 1913 在金箔背面一颗一颗数闪光数出来的数字对得上. 这是量子力学第一次跟一个 "形状" 截然不同的经典图像 (粒子走双曲线轨道 vs. 波函数 Fourier 变换) 给出同一个微分截面.</p>
+
+  <p>Coulomb 势的 $1/q^2$ 还告诉你一件事: 前向发散 ($\theta \to 0 \Rightarrow q \to 0 \Rightarrow f \to \infty$), 总截面 $\sigma_\text{tot} = \int (\mathrm{d}\sigma/\mathrm{d}\Omega)\,\mathrm{d}\Omega$ 发散. 这是长程 Coulomb 力的特征 — 实验室里实际测到 $\sigma$ finite 是因为靶原子的电子云把核 Coulomb 屏蔽到了 Yukawa 形 $e^{-r/a}/r$, 使大角度积分自然截断在玻尔半径量级.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 散射示意 — 左边水平箭头标 "入射平面波 $e^{i\vec k_i\cdot\vec r}$", 中央一个深色圆点标 "中心势 $V(\vec r)$", 从圆点向外画一组同心圆弧标 "出射球面波 $f(\theta)e^{ikr}/r$"; 圆点上方一个张角小立体角标 $\mathrm{d}\Omega$ 指向探测器; 散射角 $\theta$ 标在入射方向与探测器连线之间. 右下角一条曲线 $\mathrm{d}\sigma/\mathrm{d}\Omega \propto 1/\sin^4(\theta/2)$ 横轴 $\theta \in (0, \pi)$, 标出前向发散与后向有限值.]</div>
+  </figure>
+
+  <h2>四、超出 Born 一阶: S-矩阵与 LSZ</h2>
+
+  <p>Born 一阶在弱势/高能极限下足够, 但 1930 年代起强相互作用、原子核反应、电子散射这些场景里势不再小, 入射粒子可能经历 multiple scattering, $\psi$ 在势里被 "压紧" 后再向外辐射 — Born 二阶、三阶… 高阶项必须写出来, 收敛性也变成问题. Heisenberg 1943 年正面跨过这件事: 不再问 "波函数是什么", 只问 "进 (in) 态怎样变成出 (out) 态" — 进/出态都是远离相互作用区的自由平面波, 中间发生什么算什么不去管, 整个过程被一个幺正算符 $S$ 完全描述, 矩阵元 $S_{fi} = \braket{f}{S|i}$ 直接就是从初态 $\ket{i}$ 跑到终态 $\ket{f}$ 的振幅. 微分截面是 $|S_{fi} - \delta_{fi}|^2$ 加上相空间因子.</p>
+
+  <p>S-矩阵的好处是它把"相互作用的细节" 当成黑箱: 你不需要知道核内的 quark 怎么动, 只要 $S$ 是幺正、Lorentz 不变、因果律满足, 一切散射截面都从 $S$ 推. Lehmann-Symanzik-Zimmermann 1955 在 Hamburg 把 S-矩阵跟相互作用场的真空期望值 $\braket{\Omega}{T\,\phi(x_1)\cdots\phi(x_n)|\Omega}$ 严格挂起来 — LSZ 约化公式. 从此以后, 高能物理里一切 "费曼图算截面" 都是 LSZ 公式的具体执行: 写 Lagrangian, 取微扰展开, 画费曼图, 算 amplitude $\mathcal{M}_{fi}$, 平方求截面.</p>
+
+  <p>这套机器跑出来的数字今天能精确到什么程度. 取 LHC 14 TeV 质心能 $pp$ 碰撞的总散射截面 $\sigma_\text{tot} \approx 110$ mb $= 1.1\times 10^{-25}$ cm$^2$ — 巧的是跟 Rutherford 那个 $\alpha$-金 90° 几乎是同一个数, 但物理完全不同 (这边是几千 GeV 的强子相互作用). 真正能算的是 "稀有过程": 标准模型预测 Higgs 通过胶子-胶子融合产生的截面 $\sigma_\text{ggH} \approx 50$ pb $= 5\times 10^{-35}$ cm$^2$ (差 9 个数量级!), ATLAS 和 CMS 在 2012 年测到的数字跟 NNLO QCD 预测在 ±10% 以内吻合. 微分截面 $\mathrm{d}\sigma/\mathrm{d}p_T$ 的形状把 Higgs 的产生机制 (gluon-gluon fusion vs. vector boson fusion vs. associated production) 一一切开 — 这一切的数学骨架, 都是 1926 年 Born 在 Göttingen 那张纸上写下的 (2).</p>
+
+  <h2>五、留给下一节</h2>
+
+  <p>这一节我们把 "高能粒子打靶, 屏上数计数" 这件事一步步还原到了 Schrödinger 方程的微扰展开: 散射振幅 $f(\theta)$ 是势的 Fourier 变换 (一阶 Born), 微分截面是 $|f|^2$. 把它用到 Coulomb 势, 自动复刻了 1911 年 Rutherford 推出来的 $1/\sin^4(\theta/2)$, 5 MeV $\alpha$ 打金的 $1.7\times 10^{-25}$ cm$^2$/sr 跟实验对得上; 推到高阶就是 S-矩阵和 LSZ, 让 LHC 14 TeV 的 $\sigma_\text{ggH} \approx 50$ pb 跟标准模型预测吻合到 10%. 散射截面是一个具有面积量纲的小数字, 但它是连接量子力学和实验数据的几乎全部桥梁.</p>
+
+  <p>下一节要看 "粒子明明没有足够的能量, 却跑过了势垒" 这件事 — 量子隧穿. 钥匙是同一条 Schrödinger 方程的解, 但边界条件从 "出射球面波" 换成 "另一边的透射波", 透射系数 $|T|^2$ 算出来对一个高度 1 eV、宽 1 nm 的方势垒电子能给到 $\sim 10^{-10}$ 量级 — 这个 "永远能穿过去一点点" 的特性, 撑起了 STM 显微镜、太阳的氢聚变、乃至 $\alpha$ 衰变的 Gamow 因子.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>散射截面 $\mathrm{d}\sigma/\mathrm{d}\Omega$ 是面积量纲的小数字, 实验里直接对应 "每立体角探测到的粒子数 / 入射通量". 量子计算它的标准武器是 Born 1926 一阶近似: $f(\theta) = -(m/2\pi\hbar^2)\int e^{-i\vec q\cdot\vec r'}V(\vec r')\,d^3r'$, 微分截面 $= |f|^2$ — 散射振幅就是势的 Fourier 变换. 用到 Coulomb 势 $V = kZ_1Z_2 e^2/r$ 自动复刻 Rutherford 1911 的 $1/\sin^4(\theta/2)$, 5 MeV $\alpha$ 打金 $\theta=90°$ 给出 $1.7\times 10^{-25}$ cm$^2$/sr, 跟 Geiger-Marsden 数闪光的数字逐颗对得上. 顺便, Born 在那篇散射论文的脚注里第一次把 $|\psi|^2$ 解释成概率密度, 是量子力学概率诠释的诞生地. 推到高阶非弱势的情形, Heisenberg 1943 提出 S-矩阵把进/出态用一个幺正算符整体连起来, LSZ 1955 严格挂到场算符上, 让 LHC 13 TeV 的 $\sigma_\text{tot} \sim 110$ mb 和 $\sigma_\text{ggH} \sim 50$ pb 都从同一条费曼-Born 链路算出来. 今天高能物理几乎所有实验数据, 都是这条 1926 年 Fourier 变换公式的不同投影.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="23-second-quantization.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="25-tunneling.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

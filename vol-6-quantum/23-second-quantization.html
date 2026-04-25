@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么场比粒子更基本? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="22-fermi-sea.html">← 上一节</a>
+  <span class="chapter-title">第 23 节 / 30 · 第 5 部分 · 多体与场 · 第六卷·量子是什么?</span>
+  <a href="24-scattering.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么场比粒子更基本?</h1>
+  <div class="sub">—— 二次量子化与产生湮灭</div>
+
+  <div class="abstract">
+    波函数 $\psi(\mathbf{x}_1, \dots, \mathbf{x}_N, t)$ 是给固定 $N$ 个粒子用的语言. 但实验里粒子会消失会出现 — 一个原子吸收一颗光子, 光子从世界上去掉了一颗; 中子衰变 $n \to p + e^- + \bar\nu_e$, 三个新粒子从一个旧粒子里冒出来. 一次量子化的波函数对这种事无话可说. 二次量子化把视角倒过来: 基本对象是<em>场</em> $\hat\phi(\mathbf{x})$ — 一个填满整个空间的算符值的对象; 粒子是这场的<em>激发</em>, 像声子之于晶格、像水波之于水面. 一对算符 $\hat a_\mathbf{k}, \hat a_\mathbf{k}^\dagger$ 在每一动量模上扮演升降算符, 满足 $[\hat a_\mathbf{k}, \hat a_\mathbf{q}^\dagger] = \delta_{\mathbf{k}\mathbf{q}}$ (玻色) 或 $\{\hat a_\mathbf{k}, \hat a_\mathbf{q}^\dagger\} = \delta_{\mathbf{k}\mathbf{q}}$ (费米). 真空 $\ket{0}$ 是 "什么粒子都没有" 的态, $\hat a_\mathbf{k}^\dagger\ket{0}$ 是 "动量 $\mathbf{k}$ 的一颗粒子". 这一节我们从一根原子链的 $N=1000$ 个谐振子出发, 把它对角化, 看到声子是怎样从场里冒出来的; 然后把同一套语言搬到电磁场, 黑体辐射 Planck 谱直接从对易关系里掉出来. Dirac 1927 是这条路的开端, Jordan-Wigner 1928 把费米子接进来, 1929 年 Pauli-Heisenberg 给出一般框架, 1940 年代 QED 重整化把它推到工业级精度. 场的代数, 是粒子的代数.
+  </div>
+
+  <p>把视角放到一根弹簧上. 经典物理里, 一颗珠子在弹簧端来回振, 它是一个有位置 $q(t)$ 和动量 $p(t)$ 的粒子. 现在串 $N=1000$ 颗珠子, 邻近用弹簧连起来, 它就是 $N$ 个耦合谐振子. 经典对角化 — 用 Fourier 变换换到波矢空间 — 这一堆耦合振子分解成 $N$ 个独立的简正模, 每一模的角频率 $\omega_k$ 由色散关系给出. 量子化每一模, 它就成了第十二节那个谐振子: 能级 $\hbar\omega_k(n_k + \tfrac12)$, $n_k = 0, 1, 2, \dots$, 升降算符 $\hat a_k, \hat a_k^\dagger$. 但现在 $n_k$ 不再叫 "第几能级", 它叫 "第 $k$ 模上有多少颗声子". 一个 $n_k=3$ 的态, 是 "动量 $k$ 上有三颗一样的声子" — 这三颗声子是 $\hat a_k^\dagger$ 作用三次得到的, 互相不可区分, 是同一物种.</p>
+
+  <p>这个视角的颠倒就是二次量子化. 在第一次量子化里, 每一颗粒子有自己的波函数 $\psi(\mathbf{x})$, 把波函数升级成算符就是 $\hat\phi(\mathbf{x})$. 在二次量子化里, 场 $\hat\phi(\mathbf{x})$ 是基本变量, 它定义在每一个空间点上, 算符性质满足正则对易关系; 粒子不再是 "一只独立的小球", 它是场在某模上的一颗激发. 单粒子、$N$-粒子、$N\to\infty$、粒子产生湮灭 — 都装在一套语言里. 这一节走两步: 第一, 从原子链推出声子; 第二, 把电磁场量子化推出光子, 顺手算 Planck 谱.</p>
+
+  <h2>一、原子链 — 声子从哪儿冒出来</h2>
+
+  <p>$N$ 个原子, 间距 $a$, 每个质量 $m$, 邻近用劲度 $\kappa$ 的弹簧连起来. 第 $n$ 个原子相对平衡位置的位移 $u_n$, 经典哈密顿量</p>
+
+  <p>$$ H = \sum_{n=1}^{N} \frac{p_n^2}{2m} + \frac{\kappa}{2} \sum_{n=1}^{N} (u_{n+1} - u_n)^2. $$</p>
+
+  <p>这是一堆耦合谐振子. 加周期性边界 $u_{N+1} = u_1$, 用 Fourier 变换换基</p>
+
+  <p>$$ u_n = \frac{1}{\sqrt N} \sum_k e^{ikna}\, Q_k, \qquad p_n = \frac{1}{\sqrt N} \sum_k e^{-ikna}\, P_k, $$</p>
+
+  <p>$k$ 取离散值 $k = 2\pi j/(Na)$, $j = -N/2+1, \dots, N/2$, 一共 $N$ 个值, 落在第一 Brillouin 区 $[-\pi/a, \pi/a]$ 内. 代回去, 哈密顿量对角化成</p>
+
+  <p>$$ H = \sum_k \left[ \frac{|P_k|^2}{2m} + \tfrac12 m\,\omega_k^2\,|Q_k|^2 \right], \qquad \omega_k = 2\sqrt{\kappa/m}\,\left|\sin(ka/2)\right|. $$</p>
+
+  <p>这就是声子色散关系. 长波 ($ka \to 0$): $\omega_k \approx \sqrt{\kappa/m}\,|k|\,a = c_s |k|$, 其中声速 $c_s = a\sqrt{\kappa/m}$ — 这是宏观弹性介质里的声波. 短波 ($k \to \pm\pi/a$, Brillouin 区边缘): $\omega_k \to 2\sqrt{\kappa/m}$, 达到上限, 称为声子带顶 $\omega_{\max}$.</p>
+
+  <p>代具体数字. 取一根金属丝模拟: 间距 $a = 3\,\text{Å} = 3\times 10^{-10}\,\mathrm{m}$, 声速 $c_s = 5\,\mathrm{km/s} = 5\times 10^3\,\mathrm{m/s}$, $N = 1000$. 由 $c_s = a\sqrt{\kappa/m}$ 反推 $\sqrt{\kappa/m} = c_s/a$, 带顶</p>
+
+  <p>$$ \omega_{\max} = 2\,c_s/a = 2 \times \frac{5\times 10^3}{3\times 10^{-10}}\,\mathrm{rad/s} \approx 3.3 \times 10^{13}\,\mathrm{rad/s}, $$</p>
+
+  <p>对应频率 $\nu_{\max} = \omega_{\max}/(2\pi) \approx 5.3\,\mathrm{THz}$ — 量级正好在固体声子带顶 (10-30 THz) 的低端. 最低非零模 ($k = 2\pi/(Na)$) $\omega_{\min} = c_s \cdot 2\pi/(Na) \approx 1\times 10^{11}\,\mathrm{rad/s}$, 比带顶低三个量级 — 这就是 $N=1000$ 颗珠子撑出的可分辨频率分辨率.</p>
+
+  <p>每一模 $k$ 上量子化, 升降算符</p>
+
+  <p>$$ \hat a_k = \sqrt{\frac{m\omega_k}{2\hbar}}\,\hat Q_k + i\sqrt{\frac{1}{2\hbar m\omega_k}}\,\hat P_k, \qquad \hat a_k^\dagger = (\hat a_k)^\dagger, $$</p>
+
+  <p>满足 $[\hat a_k, \hat a_q^\dagger] = \delta_{kq}$, 其它对易子为零. 哈密顿量化成</p>
+
+  <p>$$ \hat H = \sum_k \hbar\omega_k\,(\hat a_k^\dagger \hat a_k + \tfrac12). \tag{1} $$</p>
+
+  <p>真空 $\ket{0}$ 由 $\hat a_k\ket{0}=0$ 对所有 $k$ 定义, 它的能量是 $\sum_k \tfrac12 \hbar\omega_k$ — 全部模式的零点能之和; 对 $N=1000$, 这是 1000 个 $\tfrac12\hbar\omega_k$, 在 meV 量级, 是固体不能冷到 "全部静止" 那个状态的原因. 一颗声子的态 $\hat a_k^\dagger\ket{0}$, 两颗声子 $\hat a_k^\dagger \hat a_q^\dagger\ket{0}$ — 两个产生算符对易, 所以两颗声子可以在同一模 $k=q$ 上, 这就是 Bose 统计.</p>
+
+  <figure class="diagram-stub"><div class="stub-box">[此处应有一张图: 一维谐振子链 + 声子色散 — 上半 N 个珠子用弹簧串起来 (沿 x 轴), 下半 ω(k) = 2(c_s/a) sin(ka/2) 弧线, 标第一 BZ [−π/a, π/a], k=0 处线性 ω = c_s|k|]</div></figure>
+
+  <h2>二、把场写成算符 — 玻色场展开</h2>
+
+  <p>把上面那根原子链推到连续极限 ($a \to 0$, $N \to \infty$, 但 $L = Na$ 固定), 离散位移 $u_n$ 变成场 $\hat\phi(\mathbf{x})$, 离散对易 $[\hat u_n, \hat p_m] = i\hbar\delta_{nm}$ 变成 $[\hat\phi(\mathbf{x}), \hat\pi(\mathbf{y})] = i\hbar\,\delta^3(\mathbf{x}-\mathbf{y})$, 其中 $\hat\pi$ 是 $\hat\phi$ 的共轭动量场. 在体积 $V = L^3$ 的盒子里, Fourier 展开</p>
+
+  <p>$$ \hat\phi(\mathbf{x},t) = \sum_{\mathbf{k}} \frac{1}{\sqrt{2\omega_\mathbf{k} V}} \left[\hat a_\mathbf{k}\, e^{i(\mathbf{k}\cdot\mathbf{x}-\omega_\mathbf{k} t)} + \hat a_\mathbf{k}^\dagger\, e^{-i(\mathbf{k}\cdot\mathbf{x}-\omega_\mathbf{k} t)}\right], \tag{2} $$</p>
+
+  <p>$\omega_\mathbf{k}$ 由场的色散关系给出 (相对论自由标量场 $\omega_\mathbf{k} = \sqrt{|\mathbf{k}|^2 c^2 + m^2c^4/\hbar^2}$, 自由声子 $\omega_\mathbf{k}=c_s|\mathbf{k}|$, 自由光子 $\omega_\mathbf{k} = c|\mathbf{k}|$). 系数 $1/\sqrt{2\omega_\mathbf{k} V}$ 是为了让 $\hat a$ 满足干净的对易关系:</p>
+
+  <p>$$ [\hat a_\mathbf{k}, \hat a_\mathbf{q}^\dagger] = \delta_{\mathbf{k}\mathbf{q}}, \qquad [\hat a_\mathbf{k}, \hat a_\mathbf{q}] = 0, \qquad [\hat a_\mathbf{k}^\dagger, \hat a_\mathbf{q}^\dagger] = 0. \tag{3} $$</p>
+
+  <p>读法. 公式 $(2)$ 的右边有两块: 一块带 $e^{-i\omega t}$ (正频, 系数是 $\hat a_\mathbf{k}$), 一块带 $e^{+i\omega t}$ (负频, 系数是 $\hat a_\mathbf{k}^\dagger$). 第一次量子化里, 一个完整复值波函数同时含正负频, 那是因为一个粒子的波函数没有粒子产生湮灭这一说. 在二次量子化里, 这两块的物理意义分开了: 正频部分湮灭一颗粒子, 负频部分产生一颗粒子. 同一个场, 既能 "造粒子" 又能 "毁粒子", 这就是为什么场天然知道粒子产生湮灭 — 它是这套代数的母语.</p>
+
+  <p>真空 $\ket{0}$, 一颗动量为 $\mathbf{k}$ 的粒子 $\ket{\mathbf{k}} = \hat a_\mathbf{k}^\dagger\ket{0}$, 两颗 $\ket{\mathbf{k}_1, \mathbf{k}_2} = \hat a_{\mathbf{k}_1}^\dagger \hat a_{\mathbf{k}_2}^\dagger\ket{0}$. 因为 $[\hat a_{\mathbf{k}_1}^\dagger, \hat a_{\mathbf{k}_2}^\dagger]=0$, 所以 $\ket{\mathbf{k}_1, \mathbf{k}_2} = \ket{\mathbf{k}_2, \mathbf{k}_1}$ — 交换两颗粒子的标签, 态完全不变. 这是玻色子的对称性, 不是后加的限制, 是产生算符对易的直接推论. 多颗都在同一模 $\hat a_\mathbf{k}^{\dagger n}\ket{0}/\sqrt{n!}$ 是允许的态, 占据数 $n$ 没有上限 — Bose-Einstein 凝聚的舞台就在这里.</p>
+
+  <p>费米场怎么办? 把对易换成反对易</p>
+
+  <p>$$ \{\hat c_\mathbf{k}, \hat c_\mathbf{q}^\dagger\} = \delta_{\mathbf{k}\mathbf{q}}, \qquad \{\hat c_\mathbf{k}, \hat c_\mathbf{q}\} = 0, \qquad \{\hat c_\mathbf{k}^\dagger, \hat c_\mathbf{q}^\dagger\} = 0. $$</p>
+
+  <p>从最后一条 $\hat c_\mathbf{k}^{\dagger 2} = 0$, 同一模上不能放两颗 — Pauli 不相容直接掉出来; 交换两颗 $\hat c_{\mathbf{k}_1}^\dagger \hat c_{\mathbf{k}_2}^\dagger = -\hat c_{\mathbf{k}_2}^\dagger \hat c_{\mathbf{k}_1}^\dagger$, 多体波函数对交换反对称. Jordan 和 Wigner 1928 那篇文章 <em>Über das Paulische Äquivalenzverbot</em> 的工作正是把电子写成这套反对易代数的产生湮灭算符, 把上一节那个 Fermi 海一气写下来 (单 Slater 行列式态在这套语言里就是 $\prod_{|\mathbf{k}| \lt  k_F} \hat c_\mathbf{k}^\dagger\ket{0}$). 玻色 vs 费米, 对易 vs 反对易 — 两条代数把宇宙里所有粒子分成两类.</p>
+
+  <h2>三、电磁场 — 光子从场里跳出来, 算 Planck 谱</h2>
+
+  <p>把这套搬到电磁场上. 在体积 $V$ 的腔里, 真空 Maxwell 方程组的解可以分解成驻波模 $\mathbf{A}(\mathbf{x},t) = \sum_{\mathbf{k},\lambda} A_{\mathbf{k}\lambda}(t)\,\boldsymbol\epsilon_{\mathbf{k}\lambda}\,e^{i\mathbf{k}\cdot\mathbf{x}} + \mathrm{h.c.}$, 其中 $\boldsymbol\epsilon_{\mathbf{k}\lambda}$ 是横向偏振矢量 ($\lambda=1,2$, 满足 $\boldsymbol\epsilon\cdot\mathbf{k}=0$), 每一模式的振幅 $A_{\mathbf{k}\lambda}$ 满足 $\ddot A + \omega_\mathbf{k}^2 A = 0$, $\omega_\mathbf{k} = c|\mathbf{k}|$ — 这就是一个谐振子. 量子化它, 升降算符 $\hat a_{\mathbf{k}\lambda}, \hat a_{\mathbf{k}\lambda}^\dagger$, 满足 $(3)$ 式那条对易 (再带一个 $\delta_{\lambda\lambda'}$). 整个电磁场的能量</p>
+
+  <p>$$ \hat H_\mathrm{EM} = \sum_{\mathbf{k},\lambda} \hbar\omega_\mathbf{k}\,(\hat a_{\mathbf{k}\lambda}^\dagger \hat a_{\mathbf{k}\lambda} + \tfrac12). $$</p>
+
+  <p>每一颗激发就是一颗光子: 动量 $\hbar\mathbf{k}$, 能量 $\hbar\omega_\mathbf{k}$, 偏振 $\boldsymbol\epsilon_{\mathbf{k}\lambda}$. 这是 Dirac 1927 在那篇 <em>The Quantum Theory of the Emission and Absorption of Radiation</em> 里干的事 — 量子电动力学的第一次场量子化, 标志现代量子场论的开端.</p>
+
+  <p>有了这套语言, 黑体辐射 Planck 谱直接掉出来. 把腔放在温度 $T$ 的热库里, 第 $\mathbf{k}\lambda$ 模上的占据数 $n_{\mathbf{k}\lambda}$ 服从 Bose-Einstein 分布. 用第十二节学的能级 $\hbar\omega(n+\tfrac12)$ 加 Boltzmann 权重 $e^{-E_n/k_B T}$ 做配分函数, 一模平均光子数</p>
+
+  <p>$$ \langle n_\mathbf{k} \rangle = \frac{1}{e^{\hbar\omega_\mathbf{k}/k_B T} - 1}. \tag{4} $$</p>
+
+  <p>这就是 Planck 公式. 第一卷里 Planck 1900 凑出来的 "量子假设" $E = nh\nu$, 在二次量子化语言里不再是凑的, 它是 $[\hat a, \hat a^\dagger]=1$ 这一条代数的当然推论 — 升降算符要求每一模的能级是均匀间隔的整数倍 $\hbar\omega$, $n$ 就是占据数. 单模平均能量 $\langle E \rangle = \hbar\omega/(e^{\hbar\omega/k_B T}-1)$ (扣零点能), 把所有模 $\mathbf{k}$ 的贡献加起来 (用 $\sum_\mathbf{k} \to V\int d^3k/(2\pi)^3$, 频率 $\omega = c|\mathbf{k}|$, 两个偏振), 得能量谱密度</p>
+
+  <p>$$ u(\omega, T) = \frac{\hbar\omega^3}{\pi^2 c^3} \cdot \frac{1}{e^{\hbar\omega/k_B T}-1}. $$</p>
+
+  <p>代具体数字. 室温 $T=300\,\mathrm{K}$, $k_B T \approx 0.026\,\mathrm{eV}$. 看一颗微波光子 $\nu = 100\,\mathrm{GHz}$ ($\hbar\omega = 4.1\times 10^{-4}\,\mathrm{eV}$, $\hbar\omega/k_B T \approx 0.016 \ll 1$), 平均占据 $\langle n\rangle \approx 1/0.016 \approx 62$ — 微波模在室温下大量被占据, 这是为什么微波背景在低频近似 Rayleigh-Jeans. 看一颗可见光光子 $\lambda = 500\,\mathrm{nm}$ ($\hbar\omega = 2.5\,\mathrm{eV}$, $\hbar\omega/k_B T \approx 96 \gg 1$), $\langle n\rangle \approx e^{-96} \approx 10^{-42}$ — 室温下几乎没有可见光光子. 太阳表面 $T \approx 5800\,\mathrm{K}$, $k_B T \approx 0.5\,\mathrm{eV}$, 同一颗 $2.5\,\mathrm{eV}$ 光子的占据 $\langle n\rangle = 1/(e^5-1) \approx 0.0068$ — 上升 11 个量级, 这就是太阳之所以发可见光. 一条平均占据公式 $(4)$, 拿到具体波长和具体温度上, 就预测了哪种灯泡发出哪种光.</p>
+
+  <h2>四、为什么场更基本 — 历史脉络</h2>
+
+  <p>从历史看, 这套语言是被一系列 "粒子语言失败" 的现象逼出来的.</p>
+
+  <p>第一件事是黑体辐射. Rayleigh-Jeans 1900 把电磁场当成连续场算热平衡能量, 给出 $u(\omega) \propto \omega^2 k_B T$, 高频发散 — 紫外灾难. Planck 1900 凑了 $E=nh\nu$ 救这个, 没人 (包括他自己) 真懂为什么. 二次量子化给的答案是: 每一模是一个谐振子, 谐振子能级离散, 高频模 $\hbar\omega \gg k_B T$ 在 Boltzmann 权重下被压死, 紫外发散就此截掉. Planck 公式不是经验拟合, 它是场量子化的当然结果.</p>
+
+  <p>第二件事是光的吸收发射. 经典电磁场可以连续升高强度, 但实验里原子要么吸收一颗光子 (强度差一颗), 要么发射一颗 (多一颗) — 不能 "半颗". 一次量子化的原子 + 经典场可以解释吸收 (原子的能级跳跃, 场提供能量), 但解释不了原子在没有外场时也会自发发射 — 因为没有外场, 经典电磁场为零, 怎么会让原子从激发态跳下来? Dirac 1927 的二次量子化电磁场把答案给出来了: 真空里所有模 $n_\mathbf{k}=0$, 但 $\hat a_\mathbf{k}^\dagger\ket{0}\ne 0$, 也就是说真空可以 "造" 出一颗光子, 这就是自发辐射. 算出来的 $A_{21}$ 系数跟实验对得上, 这是量子电动力学 (QED) 的第一颗预言.</p>
+
+  <p>第三件事是粒子身份的彻底改写. β 衰变 $n \to p + e^- + \bar\nu_e$ — 一颗中子里冒出来三颗粒子, 跨物种的转化. 第一次量子化没有任何机制描述 "电子从无到有". 二次量子化里这件事自然: 每一种粒子各有一组场算符, 中子有 $\hat\psi_n$, 质子 $\hat\psi_p$, 电子 $\hat\psi_e$, 反中微子 $\hat\psi_{\bar\nu}$. 弱相互作用哈密顿量在 1934 年 Fermi 的形式里就是 $\hat\psi_p^\dagger \hat\psi_n \hat\psi_e^\dagger \hat\psi_{\bar\nu}^\dagger$ (示意结构) — 一个中子被湮灭, 一颗质子、一颗电子、一颗反中微子被产生. β 衰变的衰变率, 中子寿命 $\tau_n \approx 880\,\mathrm{s}$, 都从这套场算符的耦合里直接算. 没有产生湮灭算符就没有粒子物理.</p>
+
+  <p>第四件事是反粒子. Dirac 1928 的相对论方程允许负能解, 物理上很尴尬. 二次量子化把这些负能解重新解读成 "正能反粒子的产生算符" — 电子场 $\hat\psi$ 同时湮灭电子、产生正电子. Anderson 1932 在云室里看到正电子轨迹, 二次量子化的预言被实验确认. 反粒子不是单独装进来的, 它就是场展开 $(2)$ 式里 "另一项" 的物理读法.</p>
+
+  <p>历史脉络. Dirac 1927 量子化电磁场, 第一次给出场二次量子化的具体例子 (光子). Jordan 和 Klein 1927 把它推广到非相对论玻色子, Jordan-Wigner 1928 把费米子接进来, Heisenberg-Pauli 1929-30 给出一般框架 — 任何场, 拉氏量、共轭动量、对易关系, 一套规则量子化. 但这套理论一开头就有发散问题: 真空零点能 $\sum_\mathbf{k}\tfrac12\hbar\omega_\mathbf{k}$ 形式上是无穷大, 自能、顶角修正都是无穷大. 1947-49 年 Tomonaga, Schwinger, Feynman 三个人独立做出可重整化方案, 把无穷大有秩序地吸收到物理参数 (电荷、质量) 里, 留下有限的可观测预言 — 电子反常磁矩 $g$-2, Lamb 移位 — 跟实验吻合到 12 位有效数字, 是物理史上最精的理论. Dyson 1949 证三套方法等价, Feynman 图变成主流计算工具. 完整的 QED 由此奠基.</p>
+
+  <p>到了 1960 年代, 这套语言被推广: 1954 Yang-Mills 把对易关系换到非阿贝尔群, 给出强弱相互作用的几何骨架; 1971 't Hooft 证 Yang-Mills 场可重整化; Standard Model 在 1970 年代成形, 它彻底就是若干个二次量子化的场 (夸克、轻子、规范玻色子、Higgs) 加规范耦合. 2012 LHC 看到 Higgs 玻色子, 它就是 Higgs 场的一颗激发, 落在二次量子化语言里的 $\hat\phi_H^\dagger\ket{0}$ 上. 一根原子链上的 $\hat a_k, \hat a_k^\dagger$, 推到固体上是声子, 推到电磁场上是光子, 推到电子场上是电子和正电子, 推到 Higgs 场上是 Higgs 玻色子 — 同一套代数, 同一种语法, 撑起整本现代物理.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>一次量子化把 "粒子的位置" 升级成算符, 写下波函数 $\psi(\mathbf{x},t)$; 但它处理不了粒子产生湮灭. 二次量子化把视角倒过来, 让<em>场</em> $\hat\phi(\mathbf{x})$ 当基本变量, 粒子是场的激发. 公式 $(2)$ 把场展开成动量模上的 $\hat a_\mathbf{k}, \hat a_\mathbf{k}^\dagger$, $(3)$ 是它们的对易关系 — 玻色场 $[\hat a, \hat a^\dagger]=\delta$, 费米场则是反对易 $\{\hat c, \hat c^\dagger\}=\delta$. 同一模上 $\hat a^\dagger$ 反复作用造多颗玻色子, 反对易让 $\hat c^{\dagger 2}=0$ 直接给 Pauli 不相容 — Bose 和 Fermi 的统计是代数选择, 不是后加的限制. 应用一: 原子链 $N=1000$ 颗珠子对角化成 $N$ 个独立模, 长波 $\omega = c_s|k|$, 带顶 $\omega_{\max} \approx 3.3\times 10^{13}\,\mathrm{rad/s}$ (5.3 THz), 一颗激发就是一颗声子. 应用二: 电磁场每一模一颗谐振子, 量子化给光子, 平均占据 $\langle n\rangle = 1/(e^{\hbar\omega/k_B T}-1)$ 直接是 Planck 谱 — 第一卷那个凑出来的 $E=nh\nu$ 在这里被代数推出来. 历史: Dirac 1927 量子化电磁场, Jordan-Wigner 1928 费米场, Heisenberg-Pauli 1929 一般框架, Tomonaga-Schwinger-Feynman 1947-49 重整化, Standard Model 1970s, LHC 2012 验 Higgs. 接下来的散射截面、Feynman 图、Standard Model 都是在这套场代数上盖楼.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="22-fermi-sea.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="24-scattering.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

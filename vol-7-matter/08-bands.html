@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>金属、半导体、绝缘体只差一个能隙吗? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="07-bloch.html">← 上一节</a>
+  <span class="chapter-title">第 8 节 / 30 · 第 2 部分 · 电子在固体里 · 第七卷·物质是什么?</span>
+  <a href="09-semiconductors.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>金属、半导体、绝缘体只差一个能隙吗?</h1>
+  <div class="sub">—— 能带结构与 Fermi 面</div>
+
+  <div class="abstract">
+    上一节 Bloch 把周期势里的电子写成 $\psi_{n\mathbf k}(\mathbf r) = e^{i\mathbf k\cdot \mathbf r} u_{n\mathbf k}(\mathbf r)$, 能量 $E_n(\mathbf k)$ 是 $\mathbf k$ 在第一 Brillouin 区里的连续函数, 但带指标 $n$ 是离散的 — 这就是"能带". 这一节我们把目光锁在 Bragg 反射点附近: 自由电子的抛物线 $\hbar^2 k^2/2m$ 一旦与周期势的 Fourier 分量碰头, 简并立刻被打开, 留下一道窄缝, 缝下面是"价带", 缝上面是"导带". 电子按 Pauli 不相容一格一格往上填, 填到的最高水平 $\varepsilon_F$ 落在哪里, 决定这块材料是金属、半导体、还是绝缘体. Cu 一个价电子刚好半填 $sp$ 带, $\varepsilon_F$ 在带内, 是好金属; Si 四个价电子把价带填满, $\varepsilon_F$ 落在 1.12 eV 宽的间接带隙正中, 是半导体; SiO$_2$ 同样填满, 但隙宽 $\sim 9$ eV, 室温热激活拉不上来, 是绝缘体. Wilson 1931 一篇论文把这三类材料压进同一个判据 — "$\varepsilon_F$ 在带内还是带隙中" — 终结了 Drude、Sommerfeld 留下的几个老谜.
+  </div>
+
+  <p>把一根 Cu 线和一根石英棒并排放在桌上, 接同一节电池. Cu 立刻有 $10\,\mathrm A$ 量级的电流, 石英棒上微安表都读不出动静. 两根棒每立方厘米都有 $\sim 10^{22}$ 量级的原子, 每个原子都有差不多多的电子, 凭什么差距这么大? 经典 Drude 答不上 — 它把电子当自由气体, 数出来的电子密度 Cu 和 SiO$_2$ 在数量级上区别没那么大. Sommerfeld 加上 Pauli 海, 仍然解释不了"为什么有的填了的电子能动, 有的填了的电子不能". 直到 Bloch 1928 写下周期势里的电子态、Wilson 1931 把它们按"是否填满"分类, 这件事才有干净答案: 一切都钉在 $\varepsilon_F$ 落在哪个能量区间这一条上.</p>
+
+  <h2>一、Bragg 反射点为什么会开缝?</h2>
+
+  <p>从最简单的图像出发. 自由电子能量 $E^{(0)}(\mathbf k) = \hbar^2 k^2/(2m)$ 是 $\mathbf k$ 空间里一支光滑抛物面. 加一个周期势 $V(\mathbf r) = V(\mathbf r + \mathbf R)$, 它的 Fourier 展开只在倒易格矢 $\mathbf G$ 处有非零分量 $V_{\mathbf G}$. 微扰论告诉我们: 远离 Bragg 面 (即 $\mathbf k$ 不靠近任何 $\mathbf G/2$) 的地方, 一阶修正只是常数移动, 抛物线几乎没变. 但在 Bragg 面 $\mathbf k\cdot \mathbf G = G^2/2$ 上, 状态 $\mathbf k$ 与 $\mathbf k - \mathbf G$ 的能量退化, 微扰必须做简并对角化. 把 $2\times 2$ 子块写出</p>
+
+  <p>$$ H = \begin{pmatrix} E^{(0)}(\mathbf k) & V_{\mathbf G} \\ V_{\mathbf G}^* & E^{(0)}(\mathbf k - \mathbf G) \end{pmatrix}, $$</p>
+
+  <p>对角化得到</p>
+
+  <p>$$ E_\pm(\mathbf k) = \tfrac12\big[E^{(0)}(\mathbf k) + E^{(0)}(\mathbf k - \mathbf G)\big] \pm \sqrt{\tfrac14\big[E^{(0)}(\mathbf k) - E^{(0)}(\mathbf k - \mathbf G)\big]^2 + |V_{\mathbf G}|^2}. \tag{1} $$</p>
+
+  <p>在 Bragg 面正中心 ($\mathbf k = \mathbf G/2$) 两段抛物线本来要交叉, 现在交点被掀开成 $E_\pm = E^{(0)}(\mathbf G/2) \pm |V_{\mathbf G}|$, 中间空出一道宽 $\Delta = 2|V_{\mathbf G}|$ 的禁带 — 这就是<strong>能隙</strong>. 微扰只动了 Bragg 面附近, 远处抛物面几乎原样, 所以"自由电子图像 + 在 Bragg 面 mod 一个隙"是大多数简单金属能带的第一近似, 学界叫"近自由电子图像".</p>
+
+  <p>反过来从原子轨道堆起来 (紧束缚) 也得到能带: 单个原子的 $1s$ 能级是离散的 $\varepsilon_{1s}$, 把 $N$ 个原子拼成晶体, 它们的 $1s$ 通过相邻原子轨道间的跳跃 $t$ 耦合, 能级从一条变成宽度 $\sim 2zt$ 的连续带 ($z$ 是配位数). 化学家把这套图像念熟了: 原子轨道 $\to$ 分子轨道 $\to$ 能带. 两边出发都到同一处 — 周期势把"自由抛物线"和"原子能级"都揉成一系列窄宽不一的带, 中间夹着隙. 数怎么数都对得上: 一个原始格胞贡献一个 $\mathbf k$ 状态, 一个能带能装 $2N$ 个电子 ($N$ 是原始胞数, 因子 2 是自旋).</p>
+
+  <h2>二、$\varepsilon_F$ 落在哪儿决定一切</h2>
+
+  <p>电子按 Pauli 一个一个往上填. 设晶体里每个原始胞贡献 $\nu$ 个价电子, 总共 $N\nu$ 个电子要装进 $2N$ 容量的带, 装满 $\nu/2$ 个带. 三种情况:</p>
+
+  <p><strong>(a) $\nu$ 是奇数</strong>: 比如 Cu (Ar 内壳 + 3$d^{10}$4$s^1$), 算价电子是 1, 那条 $4s$-band 只填了一半. Fermi 能 $\varepsilon_F$ 落在这条 band 内部, 上面有空状态, 一个无穷小电场就能把电子从 $-\mathbf k$ 平衡推到 $+\mathbf k$, 产生电流. 这就是<strong>金属</strong>. Cu 的电导率 $\sigma \approx 5.96\times 10^7$ S/m (室温), 反过来电阻率 $\rho \approx 1.7\times 10^{-8}$ Ω·m, 半填 $sp$ 复合带是它金属性的根源.</p>
+
+  <p><strong>(b) $\nu$ 是偶数, 但带与带之间略有重叠</strong>: 比如 Mg, Ca 这种"二价金属", 简单计数会预言绝缘, 实验上却是金属 — 原因是相邻带在能量上重叠, 上一带顶比下一带底低, 电子流过去把两带都填一半. 这种情况叫"semimetal" 或重叠金属.</p>
+
+  <p><strong>(c) $\nu$ 是偶数, 带与带之间有真隙</strong>: 价带恰好填满, 导带恰好空, $\varepsilon_F$ 落在带隙正中. 这时再施加电场, 价带里的所有 $-\mathbf k$ 电子有对应的 $+\mathbf k$ 电子做平衡, 净电流为零 — 一个填满的带不导电, 这是 Bloch 定理的直接推论. 要导电必须把电子从价带跨过 $E_g$ 拉到导带, 拉的能量来自温度 $k_B T$、光子 $\hbar\omega$、或杂质引入的局域能级. $E_g$ 大小决定它是哪一类材料:</p>
+
+  <p>$$ \boxed{\; \varepsilon_F \in \text{某一带内} \Rightarrow \text{金属};\quad \varepsilon_F \in \text{带隙中}\Rightarrow \text{半导体}/\text{绝缘}\;}\tag{2} $$</p>
+
+  <p>"半导体"和"绝缘体"没有截然分界, 习惯把 $E_g \lesssim 3$ eV 叫半导体, 更大叫绝缘. 数字依据是 $k_B T_{\text{room}} \approx 0.026$ eV, 室温热激活到导带的电子数 $\sim e^{-E_g/2k_B T}$, $E_g = 1$ eV 时这个因子 $\sim 10^{-9}$ (本征 Si $n_i \sim 10^{10}\,\mathrm{cm}^{-3}$), $E_g = 3$ eV 时 $\sim 10^{-25}$ (差 $10^{16}$ 倍, 工程上等于绝缘了). 这条指数依赖把"室温能不能用电压驱动出电流"在 1-3 eV 之间撕开了一个非常陡的边界.</p>
+
+  <h2>三、四种典型材料代入数字</h2>
+
+  <p><strong>Cu (金属).</strong> 一价, 半填 $4s$-derived 带 ($sp$ 复合). 自由电子估计 $\varepsilon_F = (\hbar^2/2m)(3\pi^2 n)^{2/3}$, 代入 $n = 8.45\times 10^{28}\,\mathrm m^{-3}$, 得 $\varepsilon_F \approx 7.0$ eV — 这是 Pauli 海高度, 真实能带计算会修正到 $\sim 7$-8 eV 之间, 重要的是 $\varepsilon_F$ 落在 $sp$-band 中部. Fermi 面在 $\Gamma$ 附近近似球面, 但在 $L$ 方向上由于和带顶碰头, 球面被刺穿成"颈"— 这是 Pippard 1957 用 anomalous skin effect 测出来的, 后来 de Haas-van Alphen 振荡和 ARPES 都看得到.</p>
+
+  <p><strong>Si (半导体).</strong> 四价, 金刚石结构, 每原始胞 8 个价电子, 正好填满 4 条价带. 间接带隙: 价带顶在 $\Gamma$ 点, 导带底在 $\Delta$ 线上 $\sim 0.85\,\mathrm{X}$ 附近, $E_g = 1.12$ eV (室温). 因为是间接, 价带 $\to$ 导带跃迁要伴随声子吸收/发射动量, 光吸收边比直接带隙弱很多个数量级, 也是 Si 不适合做 LED 的原因. 但作晶体管和太阳电池它仍然占主流, 工艺成熟、热稳、地球丰度第二.</p>
+
+  <p><strong>GaAs (直接带隙半导体).</strong> 同金刚石结构里换两种元素 (闪锌矿), 价带顶和导带底都在 $\Gamma$. $E_g = 1.43$ eV, 直接跃迁, 光发射效率高, LED、激光二极管、高效太阳电池的主力. 1.43 eV 对应波长 $\lambda = 1240/E_g \approx 870$ nm, 近红外, 跟太阳光谱在地表的峰位置吻合 — 这是 GaAs 单结电池效率上限 ($\sim 33\%$ 在 AM1.5 下) 的物理根. 类似地 GaN ($E_g = 3.4$ eV) 给出蓝光, 中村修二 1990s 把 GaN 蓝色 LED 做出来, 拿了 2014 Nobel.</p>
+
+  <p><strong>SiO$_2$ (绝缘体).</strong> 石英, 同样满壳填法但带隙 $\sim 9$ eV. 室温下导带载流子密度 $\sim 10^{-50}\,\mathrm{cm}^{-3}$ (实际上是杂质和缺陷主导), 干净 SiO$_2$ 的体电导率 $\sim 10^{-18}$ S/m, 比 Cu 低 25 个数量级. 这是 MOSFET 栅介质能挡住几伏栅压、漏电流远小于源漏电流的物理根 — 现代芯片的所有逻辑门都建立在这条 9 eV 的隙上.</p>
+
+  <p><strong>石墨烯 (零带隙).</strong> 单层蜂窝碳, 两条 $\pi$ 带在 $K, K'$ 两个高对称点处恰好相碰, 但接触是一个点而非面, 周围线性色散 $E(\mathbf k) = \pm \hbar v_F |\mathbf k - \mathbf K|$ ($v_F \approx 10^6$ m/s), 两条带形成"Dirac 锥". 这是一种"半金属", 严格说既不是金属 (零态密度) 也不是半导体 (零隙), Geim 与 Novoselov 2004 用胶带剥出, 2010 拿 Nobel.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 三块并排画 $E$-$k$ 图. 左 (金属): 一条波浪带横跨, $E_F$ 一条水平虚线穿过带的中部, 下方阴影标 "filled", 上方留白标 "empty". 中 (半导体): 下方一条满价带 (整片阴影), 上方一条空导带 (留白), 中间留 $E_g \sim 1$ eV 的窄条标 "gap", $E_F$ 虚线落在隙正中. 右 (绝缘): 同样结构, 但 $E_g \sim 9$ eV 隙非常宽. 三图共享 $E$ 轴, 标 Cu / Si / SiO$_2$ 字样和具体数值]</div>
+  </figure>
+
+  <h2>四、Fermi 面和它的形状</h2>
+
+  <p>金属里 $\varepsilon_F$ 落在带内, $\mathbf k$ 空间里满足 $E_n(\mathbf k) = \varepsilon_F$ 的点构成一张 (或几张) 二维曲面, 叫 <strong>Fermi 面</strong>. 它是金属的"身份证": 电导、热导、Pauli 顺磁、de Haas-van Alphen 振荡频率、超声衰减、ARPES 谱图全在 Fermi 面上读. 自由电子模型里 Fermi 面是球, 真实金属里被周期势压扁、刺穿、撕成片. Cu 主体仍是球, 但在 $\langle 111\rangle$ 方向上被推到 $L$-band 顶, 形成"颈"; 碱金属 (Na, K) 接近完美球; Al 是三价, 三层 Fermi 面交错; 半金属 Bi 是几个小椭球, 载流子密度只 $\sim 10^{17}\,\mathrm{cm}^{-3}$, 因此 Bi 容易做磁电阻测量.</p>
+
+  <p>测 Fermi 面的实验有两条主线. 一是 de Haas-van Alphen 振荡: 强磁场下电子轨道在 $\mathbf k$ 空间画 Landau 圆, 圆面积量子化, 磁化强度对 $1/B$ 周期振荡, 周期反比于 Fermi 面的极值截面积 — Onsager 1952 公式. 二是<strong>ARPES</strong> (Angle-Resolved PhotoEmission Spectroscopy), 光把电子打出晶体, 测出射动能和角度反推 $\mathbf k$ 与 $E$, 直接画出 $E_n(\mathbf k)$. 1980s 真空技术成熟后 ARPES 成了凝聚态主力工具; 高 $T_c$ 铜氧化物的 "d 波"对称性、石墨烯的 Dirac 锥、拓扑绝缘体的边缘态, 都靠 ARPES 直接看到. ARPES 把 Bloch 当年纸面上的 $E_n(\mathbf k)$ 一格一格地画在示波器上, 是抽象能带变成实验图的关键.</p>
+
+  <p>Fermi 面的形状还塞着对称性的指纹. Wigner-Seitz 1933 提出按格点的"势力范围"切晶胞, 给出了 Brillouin 区的实空间对偶, 这套切法是后来一切 $\mathbf k$ 空间作图的基础. 一块立方晶格的金属, Fermi 面如果完美球, 表明电子和晶格几乎不知道对方; 一旦 Fermi 面在 Brillouin 区面上变形, 就提示 Bragg 反射在那里"啮合"上了, 产生新的物理 — 例如 Cr 的反铁磁来自 Fermi 面在 $\langle 100\rangle$ 方向的"嵌套"(nesting), 这是后来强关联体系里"自旋密度波"故事的起点.</p>
+
+  <h2>五、历史: Wilson 一刀切下的分类</h2>
+
+  <p>1900 年 Drude 把电子当自由气体, 解释了 Wiedemann-Franz 定律和金属反射但解释不了室温下电子热容 — 经典理想气体每个电子 $\tfrac32 k_B$, 算出来比实测大 100 倍. 1926 Pauli 加上不相容, 1927 Sommerfeld 把电子换成 Fermi 气, 比热问题立刻解决, 但导电问题还在: 为什么有的"自由电子海"在外场下会动 (金属), 有的不会 (绝缘)? Sommerfeld 自己写在 1928 年的总结文章里说"还差一块拼图".</p>
+
+  <p>同一年 (1928) Bloch 在 Heisenberg 那做博士论文, 提出周期势里的电子态 $\psi = e^{i\mathbf k\cdot \mathbf r} u(\mathbf r)$. Bloch 自己一开始关注的是"为什么电阻会有限" (Drude 散射假设没物理基础), 他的答案是: 完美晶格里电子是平面波, 不散射; 散射来自晶格振动 (声子) 和缺陷. 但 Bloch 没立刻把"填满 vs 半填"和金属/绝缘联系起来.</p>
+
+  <p>这一步是 <strong>Wilson 1931</strong> 在两篇 Royal Society 论文里完成的. 他指出: 完整填满的能带不导电; 半填的能带导电; 中间夹着带隙的体系按隙的大小分成绝缘和半导体. 这是凝聚态的第一条"分类定理". 同期 Bethe 1928 给了二维方格子的紧束缚精确解, Peierls 1930 提出"空穴"概念 (满带顶上少一个电子等价于一个正电荷粒子), Mott 1936 在此基础上发现"应该导电但不导电"的 Mott 绝缘体反例 — 这成了第 12 节的题目.</p>
+
+  <p>Wilson 的判据简洁有力, 但有几个隐藏假设要注意: 它假定电子之间相互作用可以纳入"平均场" (Bloch 单粒子近似), 这一近似在弱关联材料 (Cu, Si, GaAs) 里好得惊人, 但在过渡金属氧化物、高温超导母体、稀土化合物里彻底失效 — 那里 Hubbard $U$ 可以单凭电子-电子相斥就把"半填能带"撕成两半, 把它从金属变成绝缘体. Anderson 1958 又指出无序也能开隙 (Anderson 局域化), 干净的能带图像 (干净的 $\mathbf k$, 干净的 $\varepsilon_F$) 在那种情况下完全失效. 所以 Wilson 的"$\varepsilon_F$ 在带内还是带隙中"是凝聚态的<em>第一近似</em>分类, 后面 20 节我们会一步一步看它在哪些地方崩, 又怎么被新的图像替换.</p>
+
+  <p>但作为日常材料的判据, 它仍然准. 你打开手机, 屏幕里的 GaN-based LED、Si CMOS 芯片、TiO$_2$ 防反射膜、Cu 互联线、SiO$_2$ 栅介质、Al 散热片, 每一种功能选材都可以用一句"看它的 $\varepsilon_F$ 落在哪"来解释. Wilson 那一刀切下来快 95 年了, 现代半导体工业一万亿美元的产值压在它的判据上, 没出过差错.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>周期势的 Fourier 分量 $V_{\mathbf G}$ 在 Bragg 面打开 $\Delta = 2|V_{\mathbf G}|$ 的能隙, $(1)$ 给完整公式. 电子按 Pauli 填能带, 一带容 $2N$ 电子, 价电子奇数 $\to$ 半填 $\to$ 金属 (Cu, $\rho = 1.7\times 10^{-8}$ Ω·m); 价电子偶数 + 间接隙 1.12 eV $\to$ 半导体 (Si); 偶数 + 直接隙 1.43 eV $\to$ 光电材料 (GaAs); 偶数 + 巨隙 9 eV $\to$ 绝缘 (SiO$_2$); 两带 Dirac 点接触 $\to$ 半金属 (石墨烯). $(2)$ 把 Wilson 1931 的判据写成一行: $\varepsilon_F$ 在带内 $\Rightarrow$ 金属, 在带隙中 $\Rightarrow$ 半导体/绝缘. 这是 Drude、Sommerfeld 留下的金属/绝缘谜的最终答案, 也是现代半导体工业 (CMOS、LED、太阳电池) 的物理根. ARPES、de Haas-van Alphen 把 Fermi 面一格一格画出来, $\varepsilon_F$ 周围的几何决定金属的电导、磁化、热容. 但单粒子图像不是终点 — 下一节我们看掺杂怎么把 $\varepsilon_F$ 在 Si 的带隙里上下挪动, 后面 12 节看 Hubbard $U$ 怎么把"应该是金属"的体系压成 Mott 绝缘体, 21 节看强磁场怎么把 Si MOSFET 的二维电子气压成量子 Hall — Wilson 这个一刀切的图, 后面会被一层一层加注脚, 但底色不变.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="07-bloch.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="09-semiconductors.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

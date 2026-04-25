@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>凝聚态里能找到 Majorana 费米子吗? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="23-topological-insulator.html">← 上一节</a>
+  <span class="chapter-title">第 24 节 / 30 · 第 5 部分 · 拓扑相 · 第七卷·物质是什么?</span>
+  <a href="25-topological-superconductor.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>凝聚态里能找到 Majorana 费米子吗?</h1>
+  <div class="sub">—— 半导体纳米线与零偏置峰</div>
+
+  <div class="abstract">1937 年 Ettore Majorana 在 Nuovo Cimento 上写下一篇短文, 给出 Dirac 方程的一个实表象解, 提出一类"自共轭"费米子: 它的反粒子就是它本身, $\gamma = \gamma^\dagger$. 高能物理一直在找它 — 中微子是否是 Majorana 费米子, 决定无中微子双 $\beta$ 衰变能不能发生, 至今没有确切实验. 上一节我们看到拓扑绝缘体的边缘有一对受拓扑保护的螺旋态; 把超导也加进来, 结果更怪 — 拓扑超导体的边缘上不是普通费米子, 而是 Majorana 零模 (Majorana zero mode, MZM): 自共轭、零能、彼此分离, 像被切成两半的电子. Kitaev 在 2001 年写下一个一维 spinless $p$-wave 超导链玩具模型, 把这件事讲得最干净 — 在拓扑相里, 链端点上各留一个未配对 Majorana, 整条链作为一个非局域费米子, 占不占据是一个全局自由度, 对局域噪声免疫. 这是拓扑量子计算最理想的硬件: 把两个 Majorana 像辫子一样交换 (braiding), 量子态会拾起一个非阿贝尔相位, 操作精度由拓扑保护. 2010 年 Lutchyn-Sau-Tewari-Das Sarma 与 Oreg-Refael-von Oppen 同步提出实验配方: InSb 半导体纳米线 + s-wave 超导薄膜 (NbTiN 或 Al) + 强自旋轨道耦合 + 外磁场 Zeeman, 在合适参数窗口里整条线表现得像 Kitaev 链, 端点应出现 MZM. 2012 年 Mourik 等在 Delft 用 NbTiN/InSb 异质结测到 $\sim 0.4\ $mV 处一个稳健的零偏置电导峰 (zero-bias peak, ZBP), 被视为 MZM 的第一个迹象. 之后十多年争议不断: 2021 年 Microsoft 团队的 Nature 论文在审稿质疑下被撤回, 2023 年新一轮"拓扑门"实验报告了符合 topological gap protocol 的稳健信号. 这一节用 Kitaev 链 (1) 与 MZM 算符 (2) 把骨架立起来, 把 Mourik 2012 的 0.4 mV 与拓扑量子门 $\pi/4$ 这两个数字代清楚, 顺一遍 Majorana 1937 失踪、Kitaev 2001 玩具模型、Sau-Lutchyn 2010 配方、Mourik 2012 ZBP 这条历史.</div>
+
+  <p>上一节拓扑绝缘体把"边缘必须有什么东西"变成了一个 $\mathbb Z_2$ 不变量决定的命题. 这一节我们把超导态也卷进来, 看一类更激进的边缘激发: Majorana 零模. 它不是"准粒子"在某种意义上的近似, 它在严格的低能极限里就是自共轭的, 也就是说一个正规费米子被拓扑保护切成了两半, 各自栖息在体系的两端. 这是凝聚态物理给量子信息的一份硬件级礼物 — 如果它真的存在.</p>
+
+  <h2>一、Majorana 1937: 把费米子写成实表象</h2>
+
+  <p>先回到原始版本. Dirac 1928 年写下相对论性电子方程时, 用四个 $4\times 4$ 复矩阵 $\gamma^\mu$ 满足 Clifford 关系 $\{\gamma^\mu, \gamma^\nu\} = 2\eta^{\mu\nu}$, 解出来是复 spinor $\psi$, 反粒子由复共轭 $\psi^c = C\bar\psi^T$ 给出, 物理上是正电子. 1937 年, 还在 Naples 大学物理研究所工作的 Ettore Majorana 注意到, 这套 $\gamma$ 矩阵存在另一个等价表象 — 全部纯虚, 这样 Dirac 方程 $(i\gamma^\mu \partial_\mu - m)\psi = 0$ 系数全实, 它有自共轭的实解 $\psi = \psi^c$. 满足这条约束的费米子, 它的反粒子就是它自己 — 后人称为 Majorana 费米子.</p>
+
+  <p>用产生湮灭算符语言写更直观. 普通的 Dirac 费米子有一对独立算符 $c$ 与 $c^\dagger$, 反对易关系 $\{c, c^\dagger\} = 1$, $\{c, c\} = 0$. Majorana 费米子是这一对的"实部和虚部":</p>
+
+  <p>$$ \gamma_A = c + c^\dagger, \qquad \gamma_B = -i(c - c^\dagger), \qquad \gamma_A^\dagger = \gamma_A, \quad \gamma_B^\dagger = \gamma_B. \tag{1} $$</p>
+
+  <p>从 $c, c^\dagger$ 的反对易关系出发, 直接验证 $\gamma_\alpha^2 = 1$, $\{\gamma_\alpha, \gamma_\beta\} = 2\delta_{\alpha\beta}$ ($\alpha, \beta \in \{A, B\}$). 一个 Dirac 费米子拆成两个 Majorana, 反过来两个 Majorana 拼成一个 Dirac: $c = (\gamma_A + i\gamma_B)/2$. 数自由度是平的 — 一个复算符 $=$ 两个实算符. 关键差别在物理: 普通费米子有一个粒子-空穴对偶 $c \leftrightarrow c^\dagger$, Majorana 是这对偶的不动点.</p>
+
+  <p>高能物理至今没找到一个确认是 Majorana 的费米子. 中微子是不是 Majorana 是这条线索最受关注的实验: 如果是, 无中微子双 $\beta$ 衰变 $(A, Z) \to (A, Z+2) + 2e^-$ 应该被允许, 振幅与有效 Majorana 质量 $|\langle m_{\beta\beta}\rangle|$ 成比例; 若否, 这种过程严格禁止. 多年实验给出的下限是半衰期 $T_{1/2}^{0\nu\beta\beta} \gt  2\times 10^{26}$ yr (KamLAND-Zen, ${}^{136}$Xe), 还没看到信号. 高能物理的 Majorana 仍是一个悬案. 1938 年, Majorana 本人在那不勒斯到巴勒莫的航班上失踪, 没有留下任何痕迹, 连这条问题的提出者也成了悬案.</p>
+
+  <h2>二、Kitaev 2001: 一维 $p$-wave 超导链</h2>
+
+  <p>把 Majorana 从相对论场论搬到凝聚态, 关键的是 Alexei Kitaev 2001 年在 Phys.-Usp. 上发表的 toy model. 取一条 $N$ 个格点的一维链, 每格点放一个 spinless 费米子 (想成自旋已被极化, 只剩一种自旋方向), 算符 $c_i, c_i^\dagger$. Hamiltonian 是最简单的紧束缚 + $p$-wave 配对:</p>
+
+  <p>$$ H = \sum_{i=1}^{N-1} \left[ -t\, c_i^\dagger c_{i+1} + \Delta\, c_i c_{i+1} + \text{h.c.} \right] - \mu \sum_{i=1}^{N} c_i^\dagger c_i. \tag{2} $$</p>
+
+  <p>$t$ 是最近邻跳跃, $\Delta$ 是 $p$-wave 配对振幅 ($p$-wave = 配对的两个粒子在动量空间是奇宇称, 在实空间是相邻不同格点而非同一格点 — 这跟 BCS 的 s-wave 配对在同一格点不同), $\mu$ 是化学势. 这套模型有一个特殊点 (Kitaev 称之为 sweet spot): $t = \Delta$, $\mu = 0$. 在那里, 把每个格点的费米子拆成两个 Majorana, $c_i = (\gamma_{A,i} + i\gamma_{B,i})/2$, 代入 Hamiltonian, 经过几步代数, $H$ 完全解耦成相邻格点之间 $\gamma_{B,i}$ 与 $\gamma_{A,i+1}$ 的两两配对:</p>
+
+  <p>$$ H = i t \sum_{i=1}^{N-1} \gamma_{B,i}\, \gamma_{A,i+1}. $$</p>
+
+  <p>注意: 第一格点的 $\gamma_{A,1}$ 与最后一格点的 $\gamma_{B,N}$ 没有出现在 Hamiltonian 里 — 它们是两个未配对的 Majorana, 各自栖息在链的一端. 它们与 $H$ 对易, $[\gamma_{A,1}, H] = [\gamma_{B,N}, H] = 0$, 所以是严格的零能本征模. 把这两个端点 Majorana 拼回一个普通费米子:</p>
+
+  <p>$$ f = (\gamma_{A,1} + i\gamma_{B,N})/2, $$</p>
+
+  <p>这是一个非局域费米子 — 它的"位置"同时在链的两端. 它占不占据是一个全局自由度, 对应基态二重简并 $|0\rangle_f, |1\rangle_f$. 关键性质: 任何只作用在某一端附近的局域噪声只能涉及 $\gamma_{A,1}$ 或 $\gamma_{B,N}$ 中的一个, 但要改变 $f$ 的占据态需要同时翻转两个 — 局域噪声无法做这件事, 这就是拓扑保护.</p>
+
+  <p>把 $\mu$ 在 $t, \Delta$ 给定下扫一遍, 模型有两个相: $|\mu| \lt  2t$ (拓扑相, 端点 Majorana 存在), $|\mu| \gt  2t$ (平凡相, 没有 Majorana). 跨过相边界 $|\mu| = 2t$, 体能隙关闭再打开, 系统的 $\mathbb Z_2$ 拓扑不变量翻转 — 这跟上一节拓扑绝缘体的相图同构. Kitaev 这个一维 $p$-wave 链是 BDI 类拓扑超导体的最简代表, 一切关于 MZM 的物理都可以从它读出来.</p>
+
+  <h2>三、Sau-Lutchyn-Tewari-Das Sarma 2010 配方与 Mourik 2012 实验</h2>
+
+  <p>真实材料里没有现成的 spinless $p$-wave 超导体, 但 Sau-Lutchyn-Tewari-Das Sarma 与 Oreg-Refael-von Oppen 在 2010 年同时给出了一份非常具体的合成配方: 把一根半导体纳米线 (InSb 或 InAs, 强 Rashba 自旋轨道耦合) 紧贴在一片 $s$-wave 超导薄膜 (NbTiN 或 Al) 上, 通过近邻效应让纳米线感受到超导对势 $\Delta$, 再外加一个沿线方向的磁场 $B$ 给电子加 Zeeman 劈裂 $V_Z = g\mu_B B/2$. 三件东西合在一起, 在合适参数窗口</p>
+
+  <p>$$ V_Z \gt  \sqrt{\mu^2 + \Delta^2} $$</p>
+
+  <p>里, 纳米线低能物理被有效地映射到 spinless $p$-wave 链, 端点上应该出现 MZM. 这个配方完全用现成的材料和工艺, 把高能物理几十年没找到的"自共轭费米子"搬到了一根可以贴在芯片上的纳米线上.</p>
+
+  <p>Delft 的 Leo Kouwenhoven 组 2012 年在 Science 上报道了第一个实验. 他们把直径 $\sim 100$ nm 的 InSb 纳米线放在 NbTiN 薄膜上, 一端做欧姆接触, 另一端做隧道结, 测微分电导 $dI/dV$. 在 $\sim 0.1$ T 磁场以上, 偏置电压扫到零附近, 出现一个稳健的尖峰 — 在 $\sim 0.4$ mV 范围内 (SC 能隙之内) 的 zero-bias peak (ZBP), 在磁场、温度、化学势调到设计窗口时持续存在, 调出窗口时消失. 这个 ZBP 的位置、磁场依赖、与超导能隙关闭的对应, 都跟 Sau-Lutchyn 配方对端点 MZM 的预言一致 — 一个 MZM 在 zero bias 处贡献一个理想化的 quantized 电导峰 $G = 2e^2/h$ (虽然 Mourik 实验里数值低于这个理论值, 因为温度抹宽).</p>
+
+  <p>这是 ZBP 信号但不一定是 MZM 信号 — 这件事在 2012 年之后被反复地踩到. 一个普通的 Andreev 束缚态、一个软能隙里的杂质态、近藤效应、weak antilocalization, 都可能在 $V = 0$ 处给出一个看上去很像的尖峰. 区分 MZM 与"非 MZM ZBP"需要更严格的判据: 端点峰对应 (两端同时出现且相干联系)、能隙关闭再打开的相变信号、quantized 电导高度 $2e^2/h$ 的稳定性、对参数扫描的拓扑保护. 2018 年一篇 Nature 论文报告了 quantized 电导, 后被作者团队在 2021 年因数据处理问题撤回 — 这件事是凝聚态拓扑相实验史上一次广受关注的危机. Microsoft Quantum 同期的 InAs/Al 平台也卷入争议, 部分早期论文被撤回.</p>
+
+  <p>2023 年, Microsoft Quantum 团队在 Phys. Rev. B 发表新一轮实验, 引入所谓"topological gap protocol": 同时用 RF 反射测量、隧道谱、超流密度等多个独立观测量交叉验证, 在工作点附近核对体能隙是否如理论预言一样关闭再打开, 判定该器件是否处于拓扑相. 多个器件给出符合 protocol 的稳健信号. 这条线还没有"拍板"的共识, 但实验工艺和判据精度在 2023-2025 年间都比 Mourik 2012 严格了一个量级.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 上半 — Kitaev 一维链示意. 一条水平线上画 $N$ 个圆圈代表格点, 每个格点上画两个小点, 标 $\gamma_{A,i}$ 与 $\gamma_{B,i}$ (即每个普通费米子拆成两个 Majorana 子模式). 在拓扑相 sweet spot 里, 用一条短线段把 $\gamma_{B,i}$ 与 $\gamma_{A,i+1}$ 配对相连 (相邻格点之间), 留下链最左端的 $\gamma_{A,1}$ 与最右端的 $\gamma_{B,N}$ 未配对, 用红色高亮, 标 "未配对 Majorana 零模"; 这两个红点用一条虚线连起来, 标 "非局域费米子 $f = (\gamma_{A,1} + i\gamma_{B,N})/2$". 下半 — 半导体纳米线实验示意: 一条灰色横向纳米线代表 InSb, 上面盖一段超导薄膜 NbTiN 用网格图案表示, 沿线方向画一个磁场箭头 $\mathbf B$ 标 Zeeman, 线的左端画一个隧道结接口, 右端接欧姆电极; 在两端各画一个红色亮点标 MZM, 上方画一个示意 $dI/dV$ 曲线, 横轴 $V$, 纵轴 $dI/dV$, 在 $V = 0$ 处一个尖峰, 标 "ZBP $\sim 0.4\ $mV 范围, $G \to 2e^2/h$".]</div>
+  </figure>
+
+  <h2>四、非阿贝尔统计与拓扑量子计算</h2>
+
+  <p>MZM 之所以是拓扑量子计算的"圣杯"硬件, 关键不在于它怎么测出来, 而在于它怎么操作. 二维体系里的 Majorana 准粒子 (MZM 在 2D 里栖息于涡旋核心) 满足非阿贝尔统计: 把两个 Majorana 在空间里互换 (braiding) 一次, 多体波函数不只是拾起 $\pm 1$ 的费米/玻色相位, 而是被一个非平庸的幺正算符 $U_{ij}$ 作用</p>
+
+  <p>$$ U_{ij} = \exp\left(\frac{\pi}{4} \gamma_i \gamma_j\right) = \frac{1}{\sqrt 2}(1 + \gamma_i \gamma_j). $$</p>
+
+  <p>这里出现的 $\pi/4$ 相位就是 braiding 一次的"角度". 不同对的 braiding 算符不互相对易: $U_{12} U_{23} \neq U_{23} U_{12}$, 多次 braiding 形成的 braid group 给出非平凡表示, 这是非阿贝尔的本意. 把若干 MZM 当作量子比特 (一对 MZM = 一个 Dirac 费米子 = 一个 qubit), 通过空间里的 braiding 操作就能做单 qubit 与双 qubit 门. 因为 braiding 路径只在拓扑等价类里改变结果, 操作精度由"路径属于哪个等价类"这件事保护, 不像普通 qubit 操作那样需要精确的脉冲振幅与时序 — 这就是"拓扑量子计算"的承诺.</p>
+
+  <p>$\pi/4$ 这个相位本身是 Clifford 群的一部分; 单靠 Majorana braiding 还不能实现任意单 qubit 门 (Clifford 不普适), 还需要一个 $T$ 门 (相位 $\pi/8$) 才能跨到普适计算. 这一步需要"魔术态蒸馏"或非拓扑保护的辅助操作. 但 Clifford 这一段已经足够把量子纠错码的核心操作做出来, 这是 Microsoft 与几个学术组押的方向.</p>
+
+  <p>把数字代清楚. 一对 MZM 的非局域费米子 $f$ 的能量分裂取决于它们的空间距离 $L$ 与体相干长度 $\xi$:</p>
+
+  <p>$$ \delta E \sim \Delta_\text{ind} e^{-L/\xi}, $$</p>
+
+  <p>$\Delta_\text{ind} \sim 0.2$-$0.5$ meV (Al/InAs 系统), $\xi \sim 100$-$300$ nm. 想让 $\delta E$ 比测温度尺度 $k_B T \sim 1\ \mu$eV ($T \sim 10$ mK) 小, 需要 $L \gtrsim 1\ \mu$m, 这是器件设计的尺度门槛. Mourik 2012 的纳米线长 $\sim 2\ \mu$m, 已经在临界尺度. 现在的"拓扑量子门"实验目标是把 $\xi$ 压到 $50$-$100$ nm, 把 MZM 之间的能量分裂压到测量噪声以下.</p>
+
+  <h2>五、历史与小结: 从 Naples 到 Delft 到 Redmond</h2>
+
+  <p>把这条线索的人物排列出来. 1937 年 Ettore Majorana 在 Nuovo Cimento 写下"Teoria simmetrica dell'elettrone e del positrone", 提出实表象 spinor 与自共轭费米子. 1938 年 3 月, Majorana 在那不勒斯到巴勒莫的航班上失踪, 至今无人确知去向 (法律上 1959 年宣告死亡, 实际命运未知). 高能物理至今没确认任何 Majorana 费米子. 1959 年 Klaus Hasselmann 等人开始考虑超导体里的"自共轭"准粒子, 但都没有真把"端点零模"挑出来.</p>
+
+  <p>2001 年 Alexei Kitaev 在 Phys.-Usp. 的 "Unpaired Majorana fermions in quantum wires" 里写下一维 $p$-wave 超导链 (2), 把端点未配对 Majorana 与拓扑量子计算同时端上桌. 2003 年 Kitaev 又给出二维"toric code"模型与非阿贝尔任意子, 把 Majorana braiding 的图像彻底说清. 2008 年 Fu-Kane 提出在拓扑绝缘体表面 + s-wave 超导界面上找 MZM (替代直接的 $p$-wave). 2010 年 Sau-Lutchyn-Tewari-Das Sarma 在 PRL 发表第一份纳米线 + s-wave + 自旋轨道 + Zeeman 配方, 同年 Oreg-Refael-von Oppen 独立给出等价方案; 这套半导体纳米线方案被实验团队迅速采纳, 因为材料要求都在标准半导体工艺范围内.</p>
+
+  <p>2012 年 Mourik 等在 Delft 报道 NbTiN/InSb 纳米线 ZBP, 在 $\sim 0.4\ $mV 范围内观测到稳健尖峰, 被广泛认为是 MZM 的"first sighting". 之后十年里 InAs/Al 系统逐步取代 InSb/NbTiN 成为主流平台 (Al 的能隙较干净, InAs 与 Al 的接面化学更可控). 2018 年 Zhang 等在 Nature 报道 quantized 电导 $2e^2/h$, 数据后续被作者团队 2021 年因数据处理与样品筛选问题撤回 — 这件事在 Castelvecchi 的 Nature 新闻里被广泛报道, 是凝聚态拓扑相实验史上的一次重大反思. 2022-2023 年, Microsoft Quantum 团队提出 "topological gap protocol" 多观测量交叉验证, 多个实验小组报告新一轮符合该 protocol 的信号. 2025 年这条战线仍未"拍板", 实验的核心问题是怎么把 MZM 与一些非拓扑的 Andreev 束缚态彻底区分, 怎么真正把 braiding 操作做出来.</p>
+
+  <p>回到这一节最初的问题. 凝聚态里能找到 Majorana 费米子吗? 答案是: 还不能板上钉钉地说找到, 但已经从纯理论假设走到了"在一根纳米线端点上, 满足若干非平凡判据的低能模式". 它是不是真的 Majorana, 取决于实验在多大程度上验证了"自共轭"、"非局域"、"拓扑保护"、"非阿贝尔 braiding"这四件事 — 前两件 Mourik 2012 与之后的实验给出了部分迹象, 第三件正在 topological gap protocol 下被严格化, 第四件还没在实验上做出来.</p>
+
+  <p>作为相对论场论里一条 1937 年的孤立想法, Majorana 费米子在物质里的化身可能比它在真空里的化身更早被人类找到. 这是凝聚态物理给基础物理学的一个特殊礼物 — 把高能物理几十年悬而未决的问题搬到一根贴在芯片上的纳米线上, 用扫描电压、磁场、化学势这些工程手段在桌面上"模拟"一个原本属于宇宙线对撞的概念. 拓扑相把这件事翻成了它最深的一面: 物质形态的分类不只在对称性破缺这一边, 还有一边由整体拓扑数决定, 而这些数, 偶尔会让物质长出一些原本只在场论书里写过的奇怪东西.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Majorana 1937 提出自共轭费米子 $\gamma = \gamma^\dagger$, 高能物理至今未找到. 把普通费米子拆成两个 Majorana, $c = (\gamma_A + i\gamma_B)/2$, 是 (1) 给出的代数. Kitaev 2001 一维 $p$-wave 超导链 (2) 在拓扑相里把链端两个 Majorana 留作未配对零能模, 拼回一个非局域费米子, 受拓扑保护. 2010 年 Sau-Lutchyn-Tewari-Das Sarma 与 Oreg-Refael-von Oppen 配方: InSb 半导体纳米线 + s-wave 超导薄膜 + 强自旋轨道 + Zeeman, 端点应出 MZM. 2012 年 Mourik 等在 Delft 用 NbTiN/InSb 在 $\sim 0.4\ $mV 范围内测到 zero-bias peak. 之后十年里 quantized $2e^2/h$ 实验、Microsoft 2018 论文 2021 撤回, 一路争议. 2023 年 topological gap protocol 给出新一轮稳健信号. MZM braiding 一次给出的相位 $\pi/4$ 是非阿贝尔统计的标志, 是拓扑量子计算 Clifford 门的硬件实现. 这条问题还没完, 但凝聚态把高能物理 1937 年的 Majorana 搬到了芯片上. 下一节我们正面看拓扑超导体, 把这一节里反复出现的"$p$-wave 配对"放到更一般的拓扑分类里.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="23-topological-insulator.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="25-topological-superconductor.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

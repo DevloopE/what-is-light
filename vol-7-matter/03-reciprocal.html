@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>倒易格子是什么? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="02-bragg.html">← 上一节</a>
+  <span class="chapter-title">第 3 节 / 30 · 第 1 部分 · 晶体与对称性 · 第七卷·物质是什么?</span>
+  <a href="04-phonons.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>倒易格子是什么?</h1>
+  <div class="sub">—— Brillouin 区与动量空间的几何</div>
+
+  <div class="abstract">
+    上一节 Bragg 条件 $2 d \sin\theta = n\lambda$ 已经告诉我们, 晶体不响应任意波长的入射波, 而是只挑那些满足"几何整数条件"的散射方向. 把这件事写到动量空间, 就出现一个跟实空间晶格平行存在、但住在波矢 $\mathbf{k}$ 空间里的新格子 — Ewald 1913 在 X 射线衍射理论里第一次画下它, Brillouin 1930 年代把它升级成能带和声子色散的"舞台". 所谓倒易格子, 是一组离散的动量点 $\mathbf{G}$, 它们让周期函数 $V(\mathbf{r}+\mathbf{R}) = V(\mathbf{r})$ 的 Fourier 系数只在这些点上不为零; 围绕原点 $\mathbf{G} = 0$ 取的 Wigner-Seitz 多面体, 就是 Brillouin 区 (BZ). 我们沿这条路走一遍 — 从 Fourier 级数推出倒易基矢的 $\mathbf{b}_i = 2\pi (\mathbf{a}_j \times \mathbf{a}_k)/\Omega$, 把 Bragg 条件重写成 $\Delta \mathbf{k} = \mathbf{G}$, 数 fcc 与 bcc 互为倒易, 算 Si 的 BZ 边长大约 $1\,\mathrm{\AA}^{-1}$.
+  </div>
+
+  <p>把一颗硅单晶放在 X 光下, 在远处的胶片上得到一组锐利的衍射点; 把同一颗晶体劈开成块儿做电学测量, 电子的态密度也只在某些离散的能量上聚集 — 两件事乍看不挨着, 却是同一回事的两个面: 晶体的实空间是周期排布的, 动量空间就被切成了离散的格点. 上一节我们把 Bragg 几何写成了实空间里晶面间距 $d$ 与入射角 $\theta$ 的关系; 这一节我们换一个表象 — 把"周期"这件事直接送进动量空间, 看它长什么样. 这一搬, 不只是数学换装. 凡是与晶格周期有关的物理量 — Bloch 电子的能带 $E_n(\mathbf{k})$、声子色散 $\omega_s(\mathbf{q})$、X 光衍射强度、Fermi 面的形状 — 全部都"住"在同一个有限的几何对象里, 那就是 Brillouin 区.</p>
+
+  <h2>一、周期势的 Fourier 展开 — 倒易格子的诞生</h2>
+
+  <p>晶体的离子骨架给电子一个周期势 $V(\mathbf{r})$, 满足平移对称</p>
+
+  <p>$$ V(\mathbf{r} + \mathbf{R}) = V(\mathbf{r}), \qquad \mathbf{R} = n_1 \mathbf{a}_1 + n_2 \mathbf{a}_2 + n_3 \mathbf{a}_3, \quad n_i \in \mathbb{Z}. $$</p>
+
+  <p>这里 $\{\mathbf{a}_i\}$ 是 Bravais 格子的基矢, $\mathbf{R}$ 跑遍所有平移格点. 把 $V$ 做 Fourier 展开 $V(\mathbf{r}) = \sum_{\mathbf{k}} V_{\mathbf{k}}\, e^{i\mathbf{k}\cdot\mathbf{r}}$, 周期性要求</p>
+
+  <p>$$ e^{i\mathbf{k}\cdot\mathbf{R}} = 1 \quad \forall\, \mathbf{R} \in \text{Bravais}. $$</p>
+
+  <p>这条件不是对所有 $\mathbf{k}$ 成立, 而是只对一组特殊的波矢 — 把它们记作 $\mathbf{G}$, 必须满足 $\mathbf{G}\cdot\mathbf{R} = 2\pi n$, $n \in \mathbb{Z}$. 所有这样的 $\mathbf{G}$ 也构成一个 Bravais 格子, 这就是<strong>倒易格子</strong> (reciprocal lattice). 它在动量空间里跟原晶格在实空间里一模一样地周期排列, 只是基矢不同.</p>
+
+  <p>怎么算它的基矢? 设 $\mathbf{G} = m_1 \mathbf{b}_1 + m_2 \mathbf{b}_2 + m_3 \mathbf{b}_3$, 要让 $\mathbf{G}\cdot\mathbf{R} = 2\pi (m_1 n_1 + m_2 n_2 + m_3 n_3)$ 对任意整数 $n_i$ 成立, 必须有 $\mathbf{b}_i \cdot \mathbf{a}_j = 2\pi \delta_{ij}$. 解这个对偶关系, 直接给出</p>
+
+  <p>$$ \mathbf{b}_1 = \frac{2\pi (\mathbf{a}_2 \times \mathbf{a}_3)}{\mathbf{a}_1 \cdot (\mathbf{a}_2 \times \mathbf{a}_3)}, \quad \mathbf{b}_2 = \frac{2\pi (\mathbf{a}_3 \times \mathbf{a}_1)}{\Omega}, \quad \mathbf{b}_3 = \frac{2\pi (\mathbf{a}_1 \times \mathbf{a}_2)}{\Omega}. \tag{1} $$</p>
+
+  <p>分母 $\Omega = \mathbf{a}_1\cdot(\mathbf{a}_2\times\mathbf{a}_3)$ 是实空间原胞体积. $(1)$ 是这一节最核心的公式 — 它把实空间的三个矢量翻译成动量空间的三个矢量, 并且这个翻译是<em>几何对偶</em>: $\mathbf{b}_1$ 垂直于 $\mathbf{a}_2, \mathbf{a}_3$ 张成的面, 长度反比于 $\mathbf{a}_1$ 在那条法线方向上的投影. 这就是为什么叫"倒易"的由来 — 实空间长度大, 倒易空间长度小, 反之亦然.</p>
+
+  <p>结果是: 任何周期势的 Fourier 展开只在倒易格子点上有分量,</p>
+
+  <p>$$ V(\mathbf{r}) = \sum_{\mathbf{G}} V_{\mathbf{G}}\, e^{i\mathbf{G}\cdot\mathbf{r}}. $$</p>
+
+  <p>这一条结论后面会反复用到 — Bloch 定理、能带方程、X 光衍射强度、声子谱, 没有一个绕得开它.</p>
+
+  <h2>二、Bragg 条件的动量空间形式</h2>
+
+  <p>有了倒易格子, 上一节的 Bragg 条件可以重写得极其干净. 入射波矢 $\mathbf{k}$, 散射后波矢 $\mathbf{k}'$, 弹性散射 $|\mathbf{k}'| = |\mathbf{k}|$. 周期势把电子或光子从 $\mathbf{k}$ 散到 $\mathbf{k}'$ 的振幅, 来自势的 Fourier 分量 $V_{\mathbf{G}}$, 因此唯一允许的动量转移是</p>
+
+  <p>$$ \Delta \mathbf{k} \equiv \mathbf{k}' - \mathbf{k} = \mathbf{G}, \tag{2} $$</p>
+
+  <p>其中 $\mathbf{G}$ 是倒易格子的某个矢量. 这就是 Laue 条件, 跟 Bragg 公式 $2 d \sin\theta = n\lambda$ 数学上等价: 两边平方 $|\mathbf{k}+\mathbf{G}|^2 = |\mathbf{k}|^2$, 化简成 $2\mathbf{k}\cdot\mathbf{G} + |\mathbf{G}|^2 = 0$, 这就是 $\mathbf{k}$ 落在 $\mathbf{G}$ 的中垂面上 — Bragg 平面. 中垂面把整个 $\mathbf{k}$ 空间切成蜂窝状, 中间那块以原点为中心的多面体, 就是<strong>第一 Brillouin 区</strong> (1BZ). 它在动量空间扮演的角色, 跟 Wigner-Seitz 原胞在实空间扮演的角色完全相同 — 一个最小的、对称的、能填满整个空间的体元.</p>
+
+  <p>所以 BZ 的定义有两种等价说法. 几何上, BZ 是倒易格子的 Wigner-Seitz cell — 把所有最近邻 $\mathbf{G}$ 的中垂面取下, 围出原点周围那块. 物理上, BZ 是一组动量, 任何更外面的动量都可以平移一个 $\mathbf{G}$ 折回到 BZ 里 — 这就是 Bloch 电子的"约化区方案", 能带 $E_n(\mathbf{k})$ 是 $\mathbf{k}$ 在 BZ 上的周期函数, 一切都被囚禁在这个有限大小的盒子里.</p>
+
+  <h2>三、几个具体格子的倒易长什么样</h2>
+
+  <p><strong>简单立方</strong>. 实空间基矢 $\mathbf{a}_i = a\hat{\mathbf{e}}_i$, 边长 $a$. 代入 $(1)$, 倒易基矢 $\mathbf{b}_i = (2\pi/a)\hat{\mathbf{e}}_i$, 倒易格子也是简单立方, 边长 $2\pi/a$. BZ 是一个边长 $2\pi/a$ 的立方体, 高对称点取在: 中心 $\Gamma = (0,0,0)$、面心 $X = (\pi/a, 0, 0)$、棱心 $M = (\pi/a, \pi/a, 0)$、角点 $R = (\pi/a, \pi/a, \pi/a)$. 命名约定可追溯到 Bouckaert-Smoluchowski-Wigner 1936 — Wigner 当时把群论搬进固体物理, 给每个 BZ 上的高对称点用希腊或拉丁字母标号, 这套字母至今没改.</p>
+
+  <p><strong>fcc 面心立方</strong>. 实空间基矢 $\mathbf{a}_1 = (a/2)(\hat{\mathbf{y}}+\hat{\mathbf{z}})$, $\mathbf{a}_2 = (a/2)(\hat{\mathbf{z}}+\hat{\mathbf{x}})$, $\mathbf{a}_3 = (a/2)(\hat{\mathbf{x}}+\hat{\mathbf{y}})$, 原胞体积 $\Omega = a^3/4$. 代入 $(1)$ 算出</p>
+
+  <p>$$ \mathbf{b}_1 = \frac{2\pi}{a}(-\hat{\mathbf{x}}+\hat{\mathbf{y}}+\hat{\mathbf{z}}),\ \mathbf{b}_2 = \frac{2\pi}{a}(\hat{\mathbf{x}}-\hat{\mathbf{y}}+\hat{\mathbf{z}}),\ \mathbf{b}_3 = \frac{2\pi}{a}(\hat{\mathbf{x}}+\hat{\mathbf{y}}-\hat{\mathbf{z}}). $$</p>
+
+  <p>这正是<em>体心立方</em> bcc 的基矢. 也就是说, fcc 的倒易格子是 bcc, 反过来 bcc 的倒易格子是 fcc — 这两个晶格在动量空间里互相是对方. 几何上验证一下: bcc 的 Wigner-Seitz cell 是一个截角八面体 (truncated octahedron), 14 个面, 8 个六边形 + 6 个正方形, 它就是 fcc 晶体的 BZ. 这个形状里的高对称点叫: $\Gamma$ 中心、$X$ 正方形面心、$L$ 六边形面心、$K$ 棱中点、$W$ 顶点 — 凡是接触过能带计算的人, 一看到 $\Gamma$-$X$-$L$ 这串字母就知道在说 fcc 晶体的 BZ 路径, 比如 Cu, Al, Si, GaAs.</p>
+
+  <p>反过来: <strong>bcc 体心立方</strong>的倒易格子是 fcc, BZ 是 fcc 的 Wigner-Seitz cell — 一个<em>菱形十二面体</em> (rhombic dodecahedron), 12 个全等的菱形面. Na, K, Fe (高温相), W 这些 bcc 金属的能带计算就是在这个十二面体里走 $\Gamma$-$N$-$P$-$H$ 路径. 一个空间结构的 Wigner-Seitz cell 形状如此精致, 其实是 14 世纪开普勒研究蜂巢就开始想的问题, 直到 19 世纪 Bravais 把所有 14 种周期格子分类完毕, Wigner-Seitz 1933 给出"最近邻多面体"原胞的形式定义, 这套几何才真正成型.</p>
+
+  <p>把它具体到一块硅. Si 是金刚石结构, Bravais 格子是 fcc, 边长 $a = 5.43\,\mathrm{\AA}$. 倒易格子的最短矢量是 $|\mathbf{b}_i| = 2\pi\sqrt{3}/a \approx 2.00\,\mathrm{\AA}^{-1}$, BZ 的几何尺度大致 $|\Gamma X| = 2\pi/a \approx 1.16\,\mathrm{\AA}^{-1}$, $|\Gamma L| = \pi\sqrt{3}/a \approx 1.00\,\mathrm{\AA}^{-1}$. 也就是说硅的 Brillouin 区"周长"在 $1\,\mathrm{\AA}^{-1}$ 量级 — 这正好是 1 keV 量级 X 射线波矢的尺度, 也是几个 eV 电子德布罗意波矢的尺度. 凡是涉及"晶体里的电子能带"和"晶体里的 X 光衍射", 你看到的所有动量, 都用这个 $\mathrm{\AA}^{-1}$ 量级标定.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 二维对照图. 左半: 实空间的二维三角晶格 (即 fcc(111) 面投影, 也就是 hexagonal close-packed 二维), 三个最近邻方向, 标基矢 $\mathbf{a}_1, \mathbf{a}_2$, 原胞为一个棱形. 右半: 同一个晶格的倒易, 它本身仍是六角格子但旋转 30°, 标基矢 $\mathbf{b}_1, \mathbf{b}_2$, 中心一个六边形 Wigner-Seitz cell 即 1BZ, 区内标三个高对称点 $\Gamma$ (中心)、$M$ (棱心)、$K$ (顶点); 用淡灰画出周围若干 $\mathbf{G}$ 点的中垂面, 显示 BZ 是怎么被这些中垂面"切"出来的; 整体配色与 vol-7 风格一致, 实/倒易两侧用同色调以示对偶]</div>
+  </figure>
+
+  <h2>四、历史: 从 Ewald 球到 Brillouin 区</h2>
+
+  <p>倒易格子并不是一开始为了讲能带才被发明的. 它最早出现在 X 射线衍射理论里. 1912 年 Laue 和 Friedrich 在慕尼黑做出第一张晶体衍射照片之后, Paul Peter Ewald 1913 年发表了一套精致的几何方法 — 他把入射波矢 $\mathbf{k}$ 当圆心、半径 $|\mathbf{k}|$ 画一个球, 这就是<em>Ewald 球</em>; 把倒易格子叠在同一张图上, 凡是落在 Ewald 球面上的 $\mathbf{G}$ 点就是产生 Bragg 衍射的方向. $(2)$ 式 $\Delta\mathbf{k} = \mathbf{G}$ 在 Ewald 球图里就是几何上的"球面经过倒易点". 这是历史上倒易格子第一次被认真使用 — Ewald 那篇论文比 Laue 自己的衍射理论还要简洁. Bragg 父子 1913 - 1915 年继续在剑桥做实验, 用同样的几何分析了 NaCl, KCl 的结构, Lawrence Bragg 后来回忆, Ewald 的倒易格子是他们工作里"最锋利的工具".</p>
+
+  <p>把倒易格子从衍射几何升格成"电子和声子的舞台", 是 Léon Brillouin 在 1930 年代做的. Brillouin 1928 - 1931 系列论文里研究金属电子在周期势里的色散, 他注意到能量函数 $E(\mathbf{k})$ 在每个 Bragg 平面上必然出现间断 — 那就是能隙的起源. 把整个 $\mathbf{k}$ 空间用 Bragg 平面切开, 第一块多面体里的 $\mathbf{k}$ 给出最低带, 第二壳给出第二带, 以此类推, 这套结构今天叫"扩展区方案", 每个区被命名为第一、第二、第三 Brillouin 区. Brillouin 区这个术语就这么固定了下来. 同一时期, Bloch 1928 在 Heisenberg 实验室证明了 Bloch 定理, Wigner 1933 把群论搬进固体物理, 给 BZ 上的高对称点起字母名 — $\Gamma$ 来自 "center", $X, L, K$ 来自相应面/棱/顶的几何位置. 一整套语言在 1928 - 1936 短短八年里搭好.</p>
+
+  <p>之后的故事, 是这套几何被用到何种深度. Wilson 1931 用能带模型解释了金属与绝缘体的根本区分 — Fermi 面是否切到 BZ 边界; Onsager 1952 把 BZ 上 Fermi 面的极值轨道 (extremal orbit) 跟磁场下 de Haas-van Alphen 振荡的周期联系起来, 让人能从振荡周期反推 Fermi 面形状, 这是 1950 - 60 年代金属物理学的核心方法; Cohen-Bergstresser 1966 用经验赝势在硅、锗的 BZ 上算出整张能带, 跟光吸收谱对比, 误差降到 0.1 eV 级; van Hove 1953 证明态密度在 BZ 高对称点上必然出现奇点 (van Hove 奇点), 给比热和光谱里那些"突变特征"找到了几何起源. 所有这些工作的舞台, 都是 1913 年 Ewald 那个倒易格子和 1930 年代 Brillouin 那个多面体.</p>
+
+  <p>今天打开任何一篇凝聚态论文, 看到 $\Gamma$-$X$-$M$ 或 $\Gamma$-$K$-$M$ 这串字母, 翻译过来无非是: 我们沿 BZ 上几条高对称路径采样, 把 $E_n(\mathbf{k})$ 画出来. 一切都依附在那个由 $(1)$ 式定义的几何对象上. 倒易格子从一开始就是一个数学装置, 但它逐渐变成了凝聚态物理的母语 — 不会读它的人, 看不懂能带图.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>实空间的周期晶格在动量空间里有一个对偶 — 倒易格子, 由 $(1)$ 式 $\mathbf{b}_i = 2\pi (\mathbf{a}_j\times\mathbf{a}_k)/\Omega$ 给出. 周期势的 Fourier 系数只在倒易点 $\mathbf{G}$ 上不为零, Bragg 衍射条件干净地写成 $(2)$ 式 $\Delta\mathbf{k} = \mathbf{G}$. 围绕原点取的 Wigner-Seitz 多面体就是第一 Brillouin 区: 简单立方对应立方体, fcc 对应截角八面体 (Si, Cu, Al, GaAs 都用它), bcc 对应菱形十二面体 (Na, Fe, W 都用它). 把数字落实到硅: 边长 $a = 5.43\,\mathrm{\AA}$, BZ 尺度约 $1\,\mathrm{\AA}^{-1}$, 与 keV X 光和几 eV 电子的波矢相称. 历史上, Ewald 1913 用倒易格子加 Ewald 球解出 X 光衍射的几何; Brillouin 1928 - 1931 把它升级成能带的舞台; Wigner 1933, Bouckaert-Smoluchowski-Wigner 1936 给高对称点起名. 这一节给的是接下来三十节的语言地基: 下一节的声子色散 $\omega_s(\mathbf{q})$ 住在 BZ 里, 后面 Bloch 能带、Fermi 面、量子 Hall 拓扑数也都住在 BZ 里 — $\mathbf{k}$ 是凝聚态物理的位置坐标.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="02-bragg.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="04-phonons.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

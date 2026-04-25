@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>角动量为什么有半整数? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="12-harmonic-oscillator.html">← 上一节</a>
+  <span class="chapter-title">第 13 节 / 30 · 第 3 部分 · 解谱 · 第六卷·量子是什么?</span>
+  <a href="14-hydrogen.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>角动量为什么有半整数?</h1>
+  <div class="sub">—— $\hat L^2$, $\hat L_z$ 与 SU(2) 阶梯</div>
+
+  <div class="abstract">把谐振子那一套阶梯算符重做一遍, 这一次主角换成角动量. $\hat L_x, \hat L_y, \hat L_z$ 不互相对易, 但有一个保守的"长度的平方" $\hat L^2$ 跟其中任一分量都对易. 沿着这条线索, 升降算符 $\hat L_\pm = \hat L_x \pm i\hat L_y$ 把本征态串成一条阶梯, 阶梯的长度被代数封住, 顶端 $\hat L_+|l,l\rangle = 0$ 的条件挤出一个公式: $\hat L^2$ 的本征值是 $\hbar^2 l(l+1)$, $\hat L_z$ 的本征值是 $\hbar m$, $m = -l, -l+1, \dots, l$, 一共 $2l+1$ 个. 但代数本身只要求 $2l$ 是非负整数 — 也就是说 $l$ 既可以是 $0, 1, 2$, 也可以是 $1/2, 3/2$. 整数那一套是轨道角动量, 来自 $\mathrm{SO}(3)$ 上的单值波函数; 半整数那一套不是凭空多出来的, 它对应电子内禀的自旋, 跟覆盖群 $\mathrm{SU}(2)$ 一一对应. Stern-Gerlach 实验里银原子精确地分裂成上下两束, $m_s = \pm 1/2$, 这正是半整数的实验印记.</div>
+
+  <p>上一节谐振子告诉我们一件事: 一个保守的代数关系 (位置和动量的对易) 加上一对升降算符, 不靠任何积分就能把整套能谱挤出来, 还是均匀间隔的整数倍. 这一节我们对角动量做同样的事 — 三条对易关系一摆, 升降算符一拉, 阶梯出来, 数字也出来. 唯一意外的是: 这次代数允许的解不止整数, 还有半整数. 物理上前者是空间转动里的轨道角动量, 后者是 1925 年才被认出来的电子自旋. 这两件事归根到底是同一条代数, 但对应空间结构不同 — 一个是 $\mathrm{SO}(3)$, 一个是它的双重普覆 $\mathrm{SU}(2)$.</p>
+
+  <h2>一、三条对易关系定义角动量</h2>
+
+  <p>从经典力学开始, 角动量是 $\vec L = \vec r \times \vec p$. 量子化按规则把 $r_i, p_j$ 换成算符, $[r_i, p_j] = i\hbar\,\delta_{ij}$. 简单地把分量写出来:</p>
+
+  <p>$$ \hat L_x = \hat y \hat p_z - \hat z \hat p_y, \quad \hat L_y = \hat z \hat p_x - \hat x \hat p_z, \quad \hat L_z = \hat x \hat p_y - \hat y \hat p_x. $$</p>
+
+  <p>用 $[r_i, p_j] = i\hbar\,\delta_{ij}$ 直接算, 三个分量两两不对易, 而是闭合成一条循环关系:</p>
+
+  <p>$$ [\hat L_x, \hat L_y] = i\hbar\,\hat L_z, \quad [\hat L_y, \hat L_z] = i\hbar\,\hat L_x, \quad [\hat L_z, \hat L_x] = i\hbar\,\hat L_y. \tag{1} $$</p>
+
+  <p>三条循环对易子合起来就是 $\mathrm{SO}(3)$ (或者更精确地说, 它的李代数 $\mathfrak{so}(3) \cong \mathfrak{su}(2)$) 的全部内容. 不对易告诉你一件物理: 你不能同时确定一个粒子角动量的两个不同分量. 选一条轴 (传统上是 $z$), 你就只能拿到 $\hat L_z$ 的本征值, 其余两个方向的角动量分量在这态上有不为零的方差.</p>
+
+  <p>但是有一个组合是好的 — 角动量的"长度平方":</p>
+
+  <p>$$ \hat L^2 = \hat L_x^2 + \hat L_y^2 + \hat L_z^2. $$</p>
+
+  <p>用 (1) 一项一项展开, 结果是</p>
+
+  <p>$$ [\hat L^2, \hat L_x] = [\hat L^2, \hat L_y] = [\hat L^2, \hat L_z] = 0. $$</p>
+
+  <p>意思是 $\hat L^2$ 跟任何一个 $\hat L_i$ 都对易. 这等于说我可以同时确定"角动量的总长度"和"沿某一轴的投影"两件事 — 但只能两件事, 不能再多. 标准的做法是挑 $\{\hat L^2, \hat L_z\}$ 作一对完备对易可观测量, 共同本征态记作 $|l, m\rangle$:</p>
+
+  <p>$$ \hat L^2|l, m\rangle = \hbar^2 \lambda_l\,|l, m\rangle, \qquad \hat L_z|l, m\rangle = \hbar m\,|l, m\rangle. $$</p>
+
+  <p>$\lambda_l$ 和 $m$ 暂时是两个待定数. 我们的目标是只用 (1) 把它们全挖出来.</p>
+
+  <h2>二、升降算符 $\hat L_\pm$ 与阶梯关系</h2>
+
+  <p>跟谐振子那里一样, 关键是构造非厄米的"侧向"组合. 定义</p>
+
+  <p>$$ \hat L_+ = \hat L_x + i\hat L_y, \qquad \hat L_- = \hat L_x - i\hat L_y. $$</p>
+
+  <p>注意 $\hat L_+^\dagger = \hat L_-$. 用 (1) 算几个对易子:</p>
+
+  <p>$$ [\hat L_z, \hat L_\pm] = \pm \hbar\,\hat L_\pm, \qquad [\hat L_+, \hat L_-] = 2\hbar\,\hat L_z, \qquad [\hat L^2, \hat L_\pm] = 0. \tag{2} $$</p>
+
+  <p>第一条立刻给出阶梯结构. 设 $\hat L_z|l,m\rangle = \hbar m|l,m\rangle$, 那么</p>
+
+  <p>$$ \hat L_z\,(\hat L_+|l,m\rangle) = (\hat L_+\hat L_z + \hbar\hat L_+)|l,m\rangle = \hbar(m+1)\,(\hat L_+|l,m\rangle). $$</p>
+
+  <p>所以 $\hat L_+|l,m\rangle$ 也是 $\hat L_z$ 的本征态, 但本征值升了一格 $\hbar$. 同理 $\hat L_-$ 把 $m$ 降一格. 又因为 $[\hat L^2, \hat L_\pm] = 0$, 升降不动 $\hat L^2$ 的本征值 — 整套阶梯属于同一个 $\lambda_l$. 一个 $|l,m\rangle$ 周围的图像于是清楚了: 一列竖排的格子, $\hat L_z$ 的本征值从某一个最小值 $\hbar m_{\min}$ 一格一格爬到最大值 $\hbar m_{\max}$, 每一步 $\hbar$, 全部共享同一个 $\hat L^2$ 本征值 $\hbar^2 \lambda_l$.</p>
+
+  <p>阶梯不能向上无限, 也不能向下无限, 因为 $\hat L_z^2 \le \hat L^2$ — 投影长度不可能超过总长度. 所以必有一个顶 $|l,l\rangle$ 满足 $\hat L_+|l,l\rangle = 0$, 一个底 $|l,-l'\rangle$ 满足 $\hat L_-|l,-l'\rangle = 0$. 这是物理给代数划的边界.</p>
+
+  <h2>三、把代数挤出 $l(l+1)$ 与 $2l+1$</h2>
+
+  <p>顶端条件 $\hat L_+|l,l\rangle = 0$ 直接给出一条数值约束. 注意一个等式</p>
+
+  <p>$$ \hat L_-\hat L_+ = \hat L_x^2 + \hat L_y^2 + i[\hat L_x, \hat L_y] = \hat L^2 - \hat L_z^2 - \hbar\hat L_z. $$</p>
+
+  <p>把它作用在 $|l,l\rangle$ 上, 由顶端条件左边为零:</p>
+
+  <p>$$ 0 = \hat L_-\hat L_+|l,l\rangle = \big(\hbar^2\lambda_l - \hbar^2 l^2 - \hbar^2 l\big)|l,l\rangle. $$</p>
+
+  <p>所以</p>
+
+  <p>$$ \lambda_l = l(l+1). \tag{3} $$</p>
+
+  <p>这一条公式一举把 $\hat L^2$ 的本征值确定下来: $\hat L^2|l,m\rangle = \hbar^2 l(l+1)|l,m\rangle$. 注意它不是 $l^2$ — 多出来的那个 $+l$ 项是不对易性的代价, 它告诉你即便 $m = l$ 把全部角动量"投到 $z$ 轴上", 仍有 $\hbar^2 l$ 的"剩余长度"分散在 $x, y$ 两个方向上, 因为这两个分量在这态上本征不为零, 期望为零却方差不为零.</p>
+
+  <p>类似地, 在底端 $\hat L_-|l,m_{\min}\rangle = 0$ 用 $\hat L_+\hat L_- = \hat L^2 - \hat L_z^2 + \hbar\hat L_z$ 得</p>
+
+  <p>$$ \lambda_l = m_{\min}(m_{\min} - 1) = l(l+1). $$</p>
+
+  <p>这要求 $m_{\min} = -l$ (另一个解 $m_{\min} = l+1$ 比顶端还高, 物理上不行). 所以阶梯从 $m = -l$ 一直走到 $m = +l$, 一共 $2l+1$ 格. 而每一步只能加 $1$, 所以 $2l$ 必须是非负整数:</p>
+
+  <p>$$ l \in \left\{0,\ \tfrac{1}{2},\ 1,\ \tfrac{3}{2},\ 2,\ \dots\right\}. $$</p>
+
+  <p>这是这一节的核心结果. 整数 $l$ 给出的是"老式"的轨道角动量, 半整数 $l$ 是代数本身允许、但要等到自旋出现才在物理里被认领的新东西.</p>
+
+  <p>升降算符的归一化系数也跟着挤出来. 从 $\langle l, m|\hat L_-\hat L_+|l, m\rangle = \hbar^2[l(l+1) - m(m+1)]$, 取正根:</p>
+
+  <p>$$ \hat L_+|l, m\rangle = \hbar\sqrt{l(l+1) - m(m+1)}\;|l, m+1\rangle. \tag{4} $$</p>
+
+  <p>$\hat L_-$ 的对应公式把 $m+1$ 换成 $m-1$. 当 $m = l$ 时方根里是 $l(l+1) - l(l+1) = 0$, 升不动了, 顶端条件自洽; 同理底端. 把数字代两个例子. $l = 1$, 三个态 $m = -1, 0, 1$: $\hat L_+|1, 0\rangle = \hbar\sqrt{2 - 0}|1, 1\rangle = \hbar\sqrt 2\,|1, 1\rangle$, $\hat L_+|1, 1\rangle = 0$. $l = 2$, 五个态 $m = -2, -1, 0, 1, 2$: $\hat L_+|2, 1\rangle = \hbar\sqrt{6-2}|2, 2\rangle = \hbar 2\,|2, 2\rangle$. 这些数字会在每一个原子物理或核物理课题里反复出现.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 角动量阶梯 — 横向并列五列垂直格子, 各列代表 $l = 0, 1/2, 1, 3/2, 2$; 每列竖向画 $2l+1$ 个方格 (1, 2, 3, 4, 5 个), 自下而上标 $|l, -l\rangle, \dots, |l, l\rangle$, 旁注每格 $\hat L_z$ 本征值 $\hbar m$; 相邻两格之间一对反向箭头标 $\hat L_+ / \hat L_-$, 顶格上方加注 $\hat L_+|l,l\rangle = 0$, 底格下方加注 $\hat L_-|l,-l\rangle = 0$; 整列上方写 $\hat L^2 = \hbar^2 l(l+1)$ 的具体值 ($0, \tfrac{3}{4}\hbar^2, 2\hbar^2, \tfrac{15}{4}\hbar^2, 6\hbar^2$); 在 $l=0$ 与 $l=1$ 标"轨道", 在 $l=1/2, 3/2$ 标"自旋, 内禀"]</div>
+  </figure>
+
+  <h2>四、整数对应轨道, 半整数对应自旋</h2>
+
+  <p>代数允许 $l$ 取半整数, 物理上为什么轨道角动量只见整数? 答案在波函数的几何上. 轨道部分 $\hat L_z = -i\hbar\,\partial/\partial\phi$, 本征方程 $-i\hbar\,\partial_\phi\psi = \hbar m\psi$ 的解是 $\psi(\phi) \propto e^{im\phi}$. 物理坐标 $\phi$ 和 $\phi + 2\pi$ 是同一个空间点, 单值要求 $e^{im\cdot 2\pi} = 1$, 这就把 $m$ 卡死在整数. 整数 $l$ 这一支正是球谐函数 $Y_l^m(\theta, \phi)$, 写在三维空间上的真实波函数, 这是 1860 年代 Laplace 方程球坐标分离出来的老结果.</p>
+
+  <p>半整数那一支不要求 $\psi$ 是空间坐标的单值函数, 因为它根本不写在 $(\theta, \phi)$ 上. 对应它的不是 $\mathrm{SO}(3)$ 而是 $\mathrm{SU}(2)$ — 三维转动群的二重普覆. 转 $360^\circ$ 在 $\mathrm{SO}(3)$ 上回到原点, 但在 $\mathrm{SU}(2)$ 上只走到一半, 要转 $720^\circ$ 才回到出发点 (这件事在第四卷第 12-13 节讲过). 半整数表示的态在 $\phi \to \phi + 2\pi$ 下变号 $\psi \to -\psi$, 这种变号在能级或概率密度上是看不见的, 但在两个粒子交换或相对相位上可以看见. 物理上承担半整数的, 是电子的自旋 $s = 1/2$, 也包括质子、中子、各种中微子等所有费米子.</p>
+
+  <p>历史顺序很值得记一下. 1925 年初, Pauli 在还没有"自旋"这个名字的时候, 已经用本节 (1)-(2) 这套升降算符方法重新算了一遍 Bohr 1913 那套氢原子能级 — 那一篇被认为是矩阵代数解谱的滥觞之一, 比 Heisenberg 6 月那篇矩阵力学论文还早几个月. Pauli 当时想的是清理量子条件, 把 $L = n\hbar$ 这条凭空塞进来的法令换成一个能从对易代数推出来的结果. 同年秋天, 两位荷兰研究生 G. Uhlenbeck 和 S. Goudsmit 看到原子光谱里碱金属的双线分裂、Zeeman 效应里的反常因子, 提出电子要带一个内禀的角动量, 大小 $\hbar/2$, 投影只能 $\pm\hbar/2$. 这就是自旋登场. Pauli 一开始写信反对 (他认为引入"会自转的电子"不合相对论), 几个月后又转过来, 把自旋装进 1927 年的 Pauli 方程, 用三个 $2\times 2$ 矩阵 $\sigma_x, \sigma_y, \sigma_z$ 把 $\hat S_i = \tfrac{\hbar}{2}\sigma_i$ 写下来. 三个 Pauli 矩阵满足的对易关系正是 (1) 在 $l = 1/2$ 的两维表示: $\mathrm{SU}(2)$ 这个名字恰恰来自这两维矩阵的酉群.</p>
+
+  <p>Stern-Gerlach 1922 年的实验数据是这一切最早的实验证据, 虽然他们当时不知道自己测的是什么. 把一束银原子穿过非均匀磁场, 经典预言束斑应该被磁矩在外场中的方向连续模糊地铺开, 但实验里看到的是: 束斑精确地裂成 <strong>两条</strong>. 银原子最外层 5s 电子的轨道角动量 $l = 0$, 整个磁矩来自这一个电子的自旋 $s = 1/2$, $m_s = \pm 1/2$, 两个磁矩取向, 两条束. 这是历史上第一次直接看到一个角动量分量的离散本征值, 也是人类第一次直接看到半整数. 1922 年 Stern 和 Gerlach 不懂, 1925 年 Goudsmit-Uhlenbeck 之后才被翻译过来. Stern 因此拿了 1943 年 Nobel.</p>
+
+  <p>把 (3) 套到具体例子上. 自旋 $1/2$ 时, $\hat S^2$ 的本征值是 $\hbar^2 \cdot \tfrac{1}{2} \cdot \tfrac{3}{2} = \tfrac{3}{4}\hbar^2$, 但 $\hat S_z$ 的最大投影只是 $\hbar/2$. 总长度的平方比最大投影的平方多出 $\tfrac{3}{4}\hbar^2 - \tfrac{1}{4}\hbar^2 = \tfrac{1}{2}\hbar^2$, 这一份"剩余"分散在 $x, y$ 上, 反映在 $\langle\hat S_x^2\rangle = \langle\hat S_y^2\rangle = \hbar^2/4$ 上. 自旋向量没有指向某一条精确的方向, 它只是"长度平方等于 $\tfrac{3}{4}\hbar^2$, 投影到 $z$ 轴是 $\pm\hbar/2$"这样一对约束. 这件事如果你画一张矢量加锥面的图, 锥面半角 $\theta$ 满足 $\cos\theta = m/\sqrt{l(l+1)} = (1/2)/\sqrt{3/4} = 1/\sqrt 3$, $\theta \approx 54.7^\circ$ — 量子化的方向不是"竖起来", 而是斜挂在锥面上.</p>
+
+  <p>相对地, 整数情形 $l = 1$ 时, $\hat L^2 = 2\hbar^2$, 三个态 $m = -1, 0, 1$, 在原子物理里这正是 p 轨道 (2p, 3p 等). 五个 $l = 2$ 的态对应 d 轨道, 七个 $l = 3$ 对应 f 轨道. 化学课表上"s, p, d, f"那一行字母, 字母数对应的格子数, 全部都是这条公式 $2l+1$ 在背后撑.</p>
+
+  <h2>五、三轴算同一条代数</h2>
+
+  <p>这一节最干净的力学事实是: 对易关系 (1) 三条不依赖于轴选择. 你可以选 $x$ 轴, 选 $z$ 轴, 选任何方向 $\hat n$, 把 $\hat L_{\hat n} = \hat n\cdot\vec L$ 当成 $\hat L_z$ 的角色, 同样的代数, 同样的阶梯, 同样的 $2l+1$ 格. 这背后是空间的旋转对称: 没有方向被特别挑出来, 只是观测时必须选一条作为参考轴. Stern-Gerlach 把磁场沿 $z$ 摆和沿 $x$ 摆, 看到的不是同一组态, 而是同一条代数的两组正交基. 把第一台 SG 沿 $z$ 选出 $|+\rangle_z$, 再喂进沿 $x$ 摆的第二台, 出来的不是 100% 的某一束, 而是 50/50 — 因为 $|+\rangle_z = \tfrac{1}{\sqrt 2}(|+\rangle_x + |-\rangle_x)$. 这就是教科书里的"第一台筛过的态被第二台再分裂"的实验, 也是最干净的一个不可对易观测量的实例.</p>
+
+  <p>沿任意方向 $\hat n$ 的旋转算符是 $U(\theta) = \exp(-i\theta\hat n\cdot\vec L/\hbar)$. 在 $l = 1/2$ 表示里, $\vec L \to (\hbar/2)\vec\sigma$, 算出来 $U(2\pi) = -\mathbb 1$ — 半整数态在物理转一圈后变号. 整数表示里 $U(2\pi) = +\mathbb 1$, 该回什么样回什么样. 同一个空间转动, 在 $\mathrm{SU}(2)$ 里走一半, 在 $\mathrm{SO}(3)$ 里走一圈, 这就是覆盖群的几何含义. 关于这件事在第四卷第 12-13 节讲过 — 那里我们用绳子绕咖啡杯的 $720^\circ$ 现象作例子, 这一节给出了它的代数版本.</p>
+
+  <p>把代数全部的内容压缩成一行: <em>升降算符的非负方根次数等于 $2l$, 必须是非负整数</em>. 这个数等于 0, 1, 2, 3, ..., 一一对应 $l = 0, 1/2, 1, 3/2, \dots$. 仅此一条决定了整个角动量的谱. 一切具体物理现象 — 氢原子角向部分的球谐展开 (下一节用到)、自旋$1/2$ 的双态 qubit (第 22-23 节用到)、原子壳层结构 ($s, p, d, f$)、Stern-Gerlach 分裂、Zeeman 效应能级数、Pauli 矩阵的相位 — 全都被压在 (3) 和 (4) 这两条公式里.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>三条对易关系 (1) 加上 $\hat L^2$ 与 $\hat L_z$ 对易, 升降算符 $\hat L_\pm$ 把共同本征态串成一条阶梯; 顶端条件 $\hat L_+|l,l\rangle=0$ 立刻给出 $\hat L^2$ 的本征值 $\hbar^2 l(l+1)$ 和 $\hat L_z$ 的 $2l+1$ 个整数格 $\hbar m, m=-l,\dots,l$. 代数本身只要求 $2l$ 是非负整数, 所以 $l$ 既能取 $0, 1, 2$, 也能取 $1/2, 3/2$. 整数那一支是空间转动 $\mathrm{SO}(3)$ 上单值波函数的轨道角动量, 给出原子壳层 $s, p, d, f$; 半整数那一支只活在普覆群 $\mathrm{SU}(2)$ 上, 是电子的内禀自旋 — Stern-Gerlach 1922 年看到银原子精确地分裂成两束 ($m_s = \pm 1/2$), Goudsmit-Uhlenbeck 1925 年把它命名, Pauli 同年早些时候已经用本节这套阶梯算符重做过 Bohr 的氢原子. 下一节我们把整数 $l$ 这一支的球谐函数装回到三维 Schrödinger 方程, 看径向部分如何挤出 Bohr 1913 年那套 $-13.6/n^2$ 的能级 — 但这次每一条公式都从波函数推出来, 不再凭空塞.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="12-harmonic-oscillator.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="14-hydrogen.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

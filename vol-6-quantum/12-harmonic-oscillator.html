@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>谐振子能级为什么间距相等? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="11-square-well.html">← 上一节</a>
+  <span class="chapter-title">第 12 节 / 30 · 第 3 部分 · 解谱 · 第六卷·量子是什么?</span>
+  <a href="13-angular-momentum.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>谐振子能级为什么间距相等?</h1>
+  <div class="sub">—— 升降算符与 $\hbar\omega(n+\tfrac12)$</div>
+
+  <div class="abstract">
+    把势能在稳定平衡点附近 Taylor 展开, 一阶项为零、二阶项 $\tfrac12 V''(x_0)\,(x-x_0)^2$, 它就是谐振子. 弹簧、双原子分子的振动模、固体里的声子、电磁场里的光子模、QED 里的真空起伏 — 每一个都是这同一个数学问题. Schrödinger 方程在这里有干净的解析解, 能级 $E_n = \hbar\omega(n+\tfrac12)$, 等距, 零点能 $\tfrac12\hbar\omega$ 不为零. 这一节走两条路: 一条是 Schrödinger 1926 的微分方程方法, 解出 Hermite 多项式; 一条是 Dirac 1930 的升降算符方法, 用 $[a, a^\dagger] = 1$ 这一行交换关系把整张谱拎出来. 两条路都给同一个答案. 等距的来源, 就是这条交换关系.
+  </div>
+
+  <p>把一颗小球放在任何稳定平衡点上, 它在那里来回小幅振动 — 单摆、弹簧、晶格里被电磁力拽着的离子、双原子分子里被化学键拴着的两个原子核. 把势能 $V(x)$ 在平衡点 $x_0$ 处展开, $V'(x_0)=0$, 留下来的领头项是</p>
+
+  <p>$$ V(x) \approx V(x_0) + \tfrac12 V''(x_0)\, (x-x_0)^2 = \tfrac12 k\, q^2, \qquad q \equiv x - x_0. $$</p>
+
+  <p>这是经典力学的简谐近似, 只要小球不跑远, 这一截 Taylor 是够用的. 经典周期 $T = 2\pi\sqrt{m/k}$, 频率 $\omega = \sqrt{k/m}$, 跟振幅无关. 把同一个势放进 Schrödinger 方程, 故事变得不一样: 能量不能取连续值, 只能取等距离散的一组. 等距是个非平凡事实 — 量子方阱能级 $\propto n^2$, 氢原子 $\propto -1/n^2$, 都是不等距的. 谐振子是为数不多每两级之间相隔同一个 $\hbar\omega$ 的系统, 这件事的根, 落在哈密顿量的代数结构上.</p>
+
+  <h2>一、把 Schrödinger 方程写成无量纲形式</h2>
+
+  <p>一维谐振子的哈密顿量</p>
+
+  <p>$$ \hat H = \frac{\hat p^2}{2m} + \tfrac12 m\omega^2 \hat x^2. $$</p>
+
+  <p>定标. 引入特征长度 $x_0 = \sqrt{\hbar/(m\omega)}$, 把无量纲坐标 $\xi = x/x_0$ 和无量纲能量 $\varepsilon = E/(\hbar\omega/2)$ 代入, 时不依赖 Schrödinger 方程 $\hat H \psi = E\psi$ 化成</p>
+
+  <p>$$ -\frac{d^2\psi}{d\xi^2} + \xi^2\,\psi = \varepsilon\,\psi. \tag{1} $$</p>
+
+  <p>这个方程的两个不同视角给出谐振子谱的两种推导.</p>
+
+  <p>大 $\xi$ 渐近: $\xi^2$ 项主导, $\psi'' \approx \xi^2\psi$, 解像 $e^{\pm \xi^2/2}$. 物理上要求 $\psi \to 0$, 取 $\psi(\xi) = H(\xi)\, e^{-\xi^2/2}$, $H$ 是有限多项式因子. 把它代回 $(1)$, $H(\xi)$ 满足 Hermite 微分方程</p>
+
+  <p>$$ H'' - 2\xi H' + (\varepsilon-1)\, H = 0. $$</p>
+
+  <p>用幂级数 $H = \sum a_k \xi^k$ 求解, 递推关系 $a_{k+2} = \frac{2k - (\varepsilon-1)}{(k+1)(k+2)}\, a_k$. 若级数不截断, 系数比 $a_{k+2}/a_k \to 2/k$, 整个级数像 $e^{\xi^2}$ 一样发散, 跟我们之前剥出的 $e^{-\xi^2/2}$ 合起来仍然发散 — 不行. 唯一让 $\psi$ 在无穷远处可归一的方式是: 级数在某一项截断, 即存在 $n \geq 0$ 使分子为零</p>
+
+  <p>$$ \varepsilon - 1 = 2n \quad\Longleftrightarrow\quad E_n = \hbar\omega\left(n + \tfrac12\right), \quad n = 0, 1, 2, \ldots \tag{2} $$</p>
+
+  <p>这就是谐振子的能谱. 截断条件给出的多项式 $H_n(\xi)$ 就是 Hermite 多项式 $H_0 = 1, H_1 = 2\xi, H_2 = 4\xi^2 - 2, \ldots$, 各自有 $n$ 个零点 — 也就是波函数 $\psi_n(\xi) = N_n\, H_n(\xi)\, e^{-\xi^2/2}$ 在 $\xi$ 轴上有 $n$ 个节点. 这是 Schrödinger 1926 年第二篇论文的做法.</p>
+
+  <h2>二、Dirac 的升降算符</h2>
+
+  <p>Schrödinger 那条路要会 Hermite 多项式, 要做幂级数渐近分析. Dirac 1930 在他的 <em>The Principles of Quantum Mechanics</em> 里给出了一个完全不同的, 几乎只用代数的推导, 干净到后来成了量子场论里所有"创生—湮灭"语言的原型.</p>
+
+  <p>定义两个非厄米算符</p>
+
+  <p>$$ \hat a = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x + \frac{i\hat p}{m\omega}\right), \qquad \hat a^\dagger = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x - \frac{i\hat p}{m\omega}\right). $$</p>
+
+  <p>它们是 $\hat x$ 和 $\hat p$ 的两组复线性组合, 一对共轭. 直接算它们的对易子, 用正则关系 $[\hat x, \hat p] = i\hbar$:</p>
+
+  <p>$$ [\hat a, \hat a^\dagger] = \frac{m\omega}{2\hbar}\left[\hat x + \frac{i\hat p}{m\omega},\ \hat x - \frac{i\hat p}{m\omega}\right] = \frac{m\omega}{2\hbar}\cdot \frac{-2i}{m\omega}[\hat x, \hat p] = 1. $$</p>
+
+  <p>把 $\hat x, \hat p$ 反过来用 $\hat a, \hat a^\dagger$ 表达, 代回哈密顿量, 整理得</p>
+
+  <p>$$ \hat H = \hbar\omega\left(\hat a^\dagger \hat a + \tfrac12\right) = \hbar\omega\left(\hat N + \tfrac12\right), \qquad \hat N \equiv \hat a^\dagger \hat a. $$</p>
+
+  <p>$\hat N$ 是粒子数算符, 厄米, 半正定 — 因为对任意态 $|\psi\rangle$, $\langle\psi|\hat N|\psi\rangle = \langle\psi|\hat a^\dagger \hat a|\psi\rangle = \|\hat a|\psi\rangle\|^2 \geq 0$. 设 $|n\rangle$ 是 $\hat N$ 的本征态, $\hat N|n\rangle = n|n\rangle$. 用对易子 $[\hat N, \hat a] = -\hat a$ 与 $[\hat N, \hat a^\dagger] = \hat a^\dagger$:</p>
+
+  <p>$$ \hat N\, (\hat a|n\rangle) = (n-1)\, (\hat a|n\rangle), \qquad \hat N\, (\hat a^\dagger|n\rangle) = (n+1)\, (\hat a^\dagger|n\rangle). $$</p>
+
+  <p>$\hat a$ 把一个本征态降一级, $\hat a^\dagger$ 升一级. 因为 $\hat N$ 半正定, 反复作用 $\hat a$ 不能无限往下降, 必须在某一级停住 — 那一级满足 $\hat a|0\rangle = 0$, 对应 $n = 0$. 别的本征值就靠 $\hat a^\dagger$ 一级一级建上去, $|n\rangle \propto (\hat a^\dagger)^n |0\rangle$. 用对易子算归一化系数</p>
+
+  <p>$$ \hat a\, |n\rangle = \sqrt{n}\, |n-1\rangle, \qquad \hat a^\dagger\, |n\rangle = \sqrt{n+1}\, |n+1\rangle. $$</p>
+
+  <p>每升一级能量加 $\hbar\omega$ — 这就是等距的来源. 整张谱是 $E_n = \hbar\omega(n+\tfrac12)$, 跟 $(2)$ 完全一致, 但这次推导里我们一次都没碰过 Hermite 多项式. 全部信息压在 $[\hat a, \hat a^\dagger] = 1$ 这一行里.</p>
+
+  <p>等距的物理意思也变得透亮: 因为 $\hat H$ 跟一个"数台阶"的算符 $\hat N$ 等价 (差一个常数), 而台阶之间在代数上是平等的 — $\hat a^\dagger$ 把第 0 级搬到第 1 级和把第 100 级搬到第 101 级, 用的是同一个算符. 后来在量子场论里, 把这个 $\hat a^\dagger$ 重新解释成"创生一个光子", $\hat N$ 解释成"光子数", 整张谐振子谱就是电磁场单一模式的 Fock 态阶梯; 把场分解成无数模式, 每个模式都是一个独立谐振子, 整个 QED 就建在这一节的代数上.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 谐振子势 + 等距能级 + 前 3 个波函数 — 横轴 $x$ (或 $\xi = x/x_0$), 纵轴 $E$, 背景画 $V(x) = \tfrac12 m\omega^2 x^2$ 的抛物线; 在 $E_0 = \tfrac12\hbar\omega$, $E_1 = \tfrac32\hbar\omega$, $E_2 = \tfrac52\hbar\omega$ 三处画三条水平虚线, 标 "$\Delta E = \hbar\omega$"; 在每条线上叠画 $\psi_n(x) = N_n H_n(\xi) e^{-\xi^2/2}$ 的图形 (高斯包络乘 Hermite 多项式), $\psi_0$ 单峰高斯无节点, $\psi_1$ 一个节点过原点, $\psi_2$ 两个节点; 标注 "节点数 $= n$" 和经典转折点 $x = \pm\sqrt{(2n+1)/m\omega \cdot \hbar}$]</div>
+  </figure>
+
+  <h2>三、零点能与不确定性原理</h2>
+
+  <p>$E_0 = \tfrac12\hbar\omega \neq 0$ 这件事在经典图像里没法理解 — 经典最低能量态是粒子静止在 $x_0$, 动能、势能都是零. 量子里这是被禁止的: 静止在 $x_0$ 意味着 $\langle x^2 \rangle = \langle p^2 \rangle = 0$, 跟不确定性关系 $\Delta x\,\Delta p \geq \hbar/2$ 矛盾.</p>
+
+  <p>把这件事算干净. 在基态 $|0\rangle$ 上, $\langle x \rangle = \langle p \rangle = 0$ (势是偶函数), 所以 $\Delta x^2 = \langle x^2 \rangle$, $\Delta p^2 = \langle p^2 \rangle$. 用 $\hat x = \sqrt{\hbar/(2m\omega)}\,(\hat a + \hat a^\dagger)$ 和 $\hat p = i\sqrt{m\omega\hbar/2}\,(\hat a^\dagger - \hat a)$:</p>
+
+  <p>$$ \langle 0|\hat x^2|0\rangle = \frac{\hbar}{2m\omega}, \qquad \langle 0|\hat p^2|0\rangle = \frac{m\omega\hbar}{2}. $$</p>
+
+  <p>乘起来 $\Delta x\,\Delta p = \hbar/2$ — 谐振子基态恰好饱和不确定性下界, 是一个 minimum-uncertainty 高斯波包. 总能量</p>
+
+  <p>$$ E_0 = \frac{\langle p^2\rangle}{2m} + \tfrac12 m\omega^2 \langle x^2\rangle = \tfrac14 \hbar\omega + \tfrac14\hbar\omega = \tfrac12 \hbar\omega. $$</p>
+
+  <p>反过来, 不要量子力学的细节, 只用 $\Delta x\,\Delta p \geq \hbar/2$ 估计基态能量也行. 假设波包尺度是 $\Delta x$, 动量尺度 $\Delta p \sim \hbar/\Delta x$, 总能量</p>
+
+  <p>$$ E(\Delta x) \approx \frac{\hbar^2}{2m\,(\Delta x)^2} + \tfrac12 m\omega^2\,(\Delta x)^2. $$</p>
+
+  <p>对 $\Delta x$ 极小, 第一项是动能贡献 ($\propto 1/\Delta x^2$, 把粒子限制得越紧动能越大); 大 $\Delta x$ 时第二项主导 (势能罚分). 对 $\Delta x$ 求导找极小: 最优 $\Delta x = \sqrt{\hbar/(m\omega)}$, 代回 $E_{\min} = \hbar\omega$. 这跟正解 $\tfrac12\hbar\omega$ 差一个 $\tfrac12$ 因子 — 是估计的精度问题, 但量级和参数依赖都对了. 零点能不是哪个公式的副产品, 它就是不确定性原理的能量代价.</p>
+
+  <p>具体数字. 双原子分子 $\mathrm{H}_2$ 是个最熟的例子: 振动频率 (光谱学家用波数表达) $\tilde\nu = \omega/(2\pi c) = 4395\,\mathrm{cm^{-1}}$, 换算成能量</p>
+
+  <p>$$ \hbar\omega = h c \tilde\nu = (4.136 \times 10^{-15}\,\mathrm{eV\!\cdot\!s}) \times (3.00 \times 10^{10}\,\mathrm{cm/s}) \times 4395\,\mathrm{cm^{-1}} \approx 0.545\,\mathrm{eV}. $$</p>
+
+  <p>零点能 $E_0 = \tfrac12 \hbar\omega \approx 0.27\,\mathrm{eV}$. 用 Boltzmann 关系 $E = k_B T$, $0.27\,\mathrm{eV}$ 对应 $T \approx 3170\,\mathrm{K}$ — 也就是说, 即使把 $\mathrm{H}_2$ 气体冷到绝对零度, 每个分子的化学键里还有相当于 3000 K 热运动那个尺度的振动. 这不是热涨落, 是量子涨落; 它在化学键长度、零点振动光谱、负氢离子的稳定性、超导里的同位素效应上都留下印记.</p>
+
+  <p>另一个例子. $\mathrm{CO}_2$ 反对称伸缩振动 $\tilde\nu_3 = 2349\,\mathrm{cm^{-1}}$, $\hbar\omega \approx 0.291\,\mathrm{eV}$. 这一个模式对应的红外吸收波长 $\lambda = 1/\tilde\nu \approx 4.26\,\mu\mathrm{m}$, 处在地表黑体热辐射 (峰值 $\sim 10\,\mu\mathrm{m}$) 的边缘. 大气里 $\mathrm{CO}_2$ 的两个弯曲模 $\tilde\nu_2 \approx 667\,\mathrm{cm^{-1}}$ ($\lambda \approx 15\,\mu\mathrm{m}$) 处在地表辐射主峰附近 — 那是温室效应里 $\mathrm{CO}_2$ 起作用的真正频率. 一个等距能级阶梯 $E_n = \hbar\omega(n+\tfrac12)$, 在大气物理里直接挂上了气候问题.</p>
+
+  <h2>四、推广 — 一根谱解开三件事</h2>
+
+  <p>谐振子模型在量子力学里出现频率高得惊人, 因为"稳定平衡点附近"这件事在物理里太普遍了. 列三件事说明这条谱有多远的覆盖.</p>
+
+  <p>第一, 固体里的声子. 把晶格的位移 $u_n$ 展开到二阶, 哈密顿量是大堆耦合谐振子. 用 Fourier 变换把它对角化, 每一个波矢 $\mathbf{k}$ 对应一个独立谐振子模, 频率 $\omega(\mathbf{k})$ 由色散关系给出. 整个固体的低能激发就是这些模上的"声子" — 第 $\mathbf{k}$ 模在第 $n_\mathbf{k}$ 级, 总能量 $E = \sum_\mathbf{k} \hbar\omega(\mathbf{k})\,(n_\mathbf{k} + \tfrac12)$. Debye 1912 用这个图像算固体比热, 在低温给出 $C_V \propto T^3$, 这是一片实验上长期搞不清的数据被一锤敲定. 比热里那个 $\tfrac12$ 加和给出固体的零点能, 量级在每摩尔几千 J 上, 是固体之所以不能冷到经典基态 (晶格静止) 的原因.</p>
+
+  <p>第二, 电磁场. 把 Maxwell 方程组在一个腔里分解成驻波模, 每一模的振幅的运动方程是 $\ddot q + \omega_\mathbf{k}^2 q = 0$ — 一个一维谐振子. 量子化它, 每个模都得到一阶梯 $\hbar\omega_\mathbf{k}(n + \tfrac12)$, $n$ 解释成"光子数". Dirac 1927 把这套东西第一次写下来, 那篇文章就叫 <em>The Quantum Theory of the Emission and Absorption of Radiation</em>. 上一节里黑体辐射 Planck 公式 $\langle E \rangle = h\nu/(e^{h\nu/k_B T}-1)$ 现在有了出处 — 它就是一个 $\hbar\omega(n+\tfrac12)$ 等距阶梯在温度 $T$ 下的 Boltzmann 平均 (扣掉零点能那一项常数). 真空 — 所有模都在 $n=0$ — 仍然有 $\sum_\mathbf{k} \tfrac12\hbar\omega_\mathbf{k}$ 这堆零点能, 形式上是发散的; Casimir 1948 算两块导体板之间的<em>差</em>, 给出有限的 Casimir 力, 1997 年 Lamoreaux 实测到, 误差 5%.</p>
+
+  <p>第三, 任何弱耦合的稳定系统. 如果一个量子系统有一个稳定基态, 把哈密顿量在那附近展开到二阶, 低能激发就是若干个谐振子模式 — 这是凝聚态里"准粒子"图像的源头, 也是粒子物理里 Higgs 机制把场量化时背后的代数. 等距阶梯, 升降算符, 真空, 创生湮灭 — 全部源自 $[\hat a, \hat a^\dagger] = 1$ 这一行.</p>
+
+  <p>历史脉络. Heisenberg 1925 年那篇 "Über quantentheoretische Umdeutung kinematischer und mechanischer Beziehungen" 里, 他第一次把"动力学量"看成不对易的东西 — 那是矩阵力学诞生; 他在文章里第一个具体例子算的就是非谐振子, 谐振子是它退化成的可解情形, 他在 Helgoland 岛上熬夜算出能级 $\hbar\omega(n+\tfrac12)$ 时, 半夜跑出去看海. Schrödinger 1926 第二篇文章用波动方程方法重做了一遍, 解出 Hermite 多项式波函数, 跟 Heisenberg 的矩阵元一致. Born 把矩阵力学的代数结构整理好, 跟 Jordan 一起建立了 $[x, p] = i\hbar$ 的体系. Dirac 1930 把这一切归结成升降算符语言, 整本 <em>Principles</em> 的第 35 节标题就叫 "The harmonic oscillator". 五年里, 五个人, 把同一道题从五个角度做了五遍, 答案完全一样 — 那五年就是现代量子力学的奠基期.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>谐振子是量子力学的"工作母机". 哈密顿量 $\hat H = \hat p^2/(2m) + \tfrac12 m\omega^2 \hat x^2$ 通过两条独立的路给出同一张谱 $E_n = \hbar\omega(n+\tfrac12)$ — 一条是 Schrödinger 的微分方程加 Hermite 多项式截断条件, 另一条是 Dirac 的升降算符 $\hat a, \hat a^\dagger$ 加 $[\hat a, \hat a^\dagger] = 1$. 等距阶梯的根, 就是这条对易关系. 零点能 $\tfrac12\hbar\omega$ 是不确定性原理 $\Delta x\,\Delta p = \hbar/2$ 的能量代价, 在 $\mathrm{H}_2$ 上对应 $0.27\,\mathrm{eV} \approx 3000\,\mathrm{K}$, 在 $\mathrm{CO}_2$ 反对称伸缩 $0.29\,\mathrm{eV}$ 上挂着大气温室效应. 把这同一阶梯推广到所有模式, 谐振子语言长出三件事: 固体里的声子, 电磁场的光子, 凝聚态/粒子物理的准粒子. 这是接下来角动量、自旋、$H$-原子、谐振子相干态、Bose 统计、QED 真空所有这些章节的代数底层 — 一个对易子, 撑起半本书.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="11-square-well.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="13-angular-momentum.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

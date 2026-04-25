@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>波函数 ψ 究竟编码了什么? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="05-stern-gerlach.html">← 上一节</a>
+  <span class="chapter-title">第 6 节 / 30 · 第 2 部分 · 量子力学的语言 · 第六卷·量子是什么?</span>
+  <a href="07-operators.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>波函数 $\psi$ 究竟编码了什么?</h1>
+  <div class="sub">—— Schrödinger 方程与概率幅</div>
+
+  <div class="abstract">
+    第 1 部分把量子的"硬证据"摆完了: 黑体辐射要求能量量子化, 光电效应要求光是颗粒, 玻尔原子要求轨道离散, de Broglie 把"波"塞进电子, Stern-Gerlach 把"分立"塞进自旋. 五项加起来, 把经典力学逼到墙角 — 我们必须找一个新对象来描述微观粒子, 它既要能干涉, 又要能"打到屏上一个点". Schrödinger 1926 给的答案就是<strong>波函数</strong> $\psi(x,t)$. 本节把这个对象拎出来反复审视: (i) 它是<strong>复数</strong>的, 不是物理场; (ii) 它满足一条<strong>线性</strong>方程, 因而服从叠加原理; (iii) 它的模平方 $|\psi(x,t)|^2$ 是<strong>位置概率密度</strong> — 这就是 Born 1926 提出、后来拿了 1954 年诺贝尔奖的诠释. 我们从能量关系 $E = p^2/2m + V$ 出发, 用 $E\leftrightarrow i\hbar\partial_t$、$\boldsymbol p\leftrightarrow -i\hbar\nabla$ 这两条对应, 写下 Schrödinger 方程; 在长 $L=1$ 纳米的一维盒里求基态, 得 $E_1\approx 0.376$ eV; 再让自由波包跑一段, 看它的群速 $v_g = p/m$ 与经典粒子完全一致. 全节回答的是同一个问题: <strong>$\psi$ 究竟编码了什么</strong>, 又如何变成实验台上的数字.
+  </div>
+
+  <p>Stern-Gerlach 把银原子分成两束, 我们已经被迫承认: 微观粒子的态比"位置加动量"丰富得多. 但分两束这件事还能用"两个内禀方向"凑合解释; 真正让经典图景彻底崩盘的, 是双缝实验 — 电子一个一个发射, 到屏上仍然形成干涉条纹. 一个电子一次只在屏上打出一个点, 却又"知道"两条缝同时开着. 没有任何经典量能同时具备"颗粒落点"与"波场干涉"两种行为. 我们必须找一个新对象, 它能同时承载"概率"与"相位". 这个对象就是 $\psi(x,t)$. 这一节把它从头讲清楚: 它是什么, 为什么是复数, 满足什么方程, 怎么算出可观测的数字.</p>
+
+  <h2>一、从双缝到概率幅 — $\psi$ 不是物理场</h2>
+
+  <p>先把概念归位. 在第 4 节我们写 de Broglie 关系 $\lambda = h/p$, 它告诉我们"电子有波长"; 但"波"这个词太歧义 — 是声波那种压力扰动, 还是电磁波那种实矢量场? 答案: 都不是. 电子的"波"是一个<strong>复数函数</strong>:</p>
+
+  <p>$$ \psi : \mathbb R^3 \times \mathbb R \to \mathbb C, \qquad \psi(x,t) = \Re\psi(x,t) + i\,\Im\psi(x,t).\tag{1}$$</p>
+
+  <p>它没有空间方向 (不是矢量), 没有压力 (不是标量场), 也不像电场那样能用电荷探针直接读出来. 你不能说"在 $x$ 这一点 $\psi$ 的值是 $0.7+0.3i$ 伏特". $\psi$ 本身在实验上是不可观测的 — 把它整体乘一个相位 $e^{i\alpha}$, $|\psi|^2$ 不变, 任何测量结果都不变. 这种"全局相位无关"是 $\psi$ 的<strong>结构特征</strong>, 而不是缺陷.</p>
+
+  <p>那它编码了什么? Born 1926 给出三个字:<strong>概率幅</strong>. 具体说</p>
+
+  <p>$$ \rho(x,t) \;=\; |\psi(x,t)|^2 \;=\; \psi^*(x,t)\,\psi(x,t)\tag{2}$$</p>
+
+  <p>是 "$t$ 时刻在位置 $x$ 附近 $\mathrm dx$ 内找到粒子的概率". 这就是 Born 规则的位置版本. 注意"幅"和"概率"差了一次平方 — 这是双缝实验唯一合理的解释方式: 两条路径的<strong>幅</strong>可以相消相长, 而概率本身只能相加. 把 $\psi_1$ 和 $\psi_2$ 是穿过两条缝各自的概率幅, 屏上的总概率就是 $|\psi_1+\psi_2|^2 = |\psi_1|^2+|\psi_2|^2+2\Re(\psi_1^*\psi_2)$ — 最后一项 $2\Re(\psi_1^*\psi_2)$ 就是干涉项, 经典概率无法产生.</p>
+
+  <p>因为 $|\psi|^2$ 是密度, 它必须能积分成 $1$ — 粒子总在<strong>某处</strong>:</p>
+
+  <p>$$ \int_{\mathbb R^3} \abs{\psi(x,t)}^2 \, \mathrm d^3 x \;=\; 1. \tag{3}$$</p>
+
+  <p>这是<strong>归一化条件</strong>, 它就是把"总概率为 $1$"翻译成数学. 不能归一化的函数 (比如纯平面波 $e^{ikx}$ 在全空间) 严格说不是物理状态, 而是<strong>极限对象</strong>; 真正的电子是这些极限对象的叠加, 即一个能归一化的<strong>波包</strong>.</p>
+
+  <p>到这里 $\psi$ 的角色已经清楚: 它是一张<strong>复数概率幅地图</strong>, 模平方读出位置概率密度, 相位决定不同路径之间的相对干涉. 它并不是粒子"摊开"在空间, 而是<strong>在我们去测之前, 关于"粒子可能在哪里"的全部信息的紧凑编码</strong>.</p>
+
+  <h2>二、Schrödinger 方程 — 把 $E = p^2/2m + V$ 翻译成微分方程</h2>
+
+  <p>有了 $\psi$, 下一个问题是: 它怎么随时间演化. Schrödinger 1926 的推导思路异常简单 — 把经典哈密顿量 $H = p^2/2m + V(x)$ 中的能量与动量, 换成<strong>作用在 $\psi$ 上的微分算符</strong>. 这一步背后的依据是 de Broglie 关系: 一个动量为 $p$、能量为 $E$ 的平面波</p>
+
+  <p>$$ \psi(x,t) \;=\; A\,e^{i(kx - \omega t)}, \qquad p = \hbar k,\quad E = \hbar\omega.$$</p>
+
+  <p>对它求时间一阶偏导, 得 $\partial_t\psi = -i\omega\psi$, 即 $i\hbar\partial_t \psi = \hbar\omega \psi = E\psi$. 对它求空间一阶偏导, 得 $\partial_x\psi = ik\psi$, 即 $-i\hbar\partial_x \psi = \hbar k\psi = p\psi$. 把这件事抽象成两条对应:</p>
+
+  <p>$$ E \;\longleftrightarrow\; i\hbar\,\frac{\partial}{\partial t}, \qquad \boldsymbol p \;\longleftrightarrow\; -i\hbar\,\nabla.$$</p>
+
+  <p>把这两条代进 $E = p^2/2m + V$, 让两边都"作用在 $\psi$ 上", 就得到本节<strong>主公式</strong>:</p>
+
+  <p>$$ \boxed{\; i\hbar\,\frac{\partial \psi(x,t)}{\partial t} \;=\; -\frac{\hbar^2}{2m}\,\nabla^2 \psi(x,t) \;+\; V(x)\,\psi(x,t). \;}\tag{4}$$</p>
+
+  <p>这就是 Schrödinger 方程. 它有几个值得反复看的特征.</p>
+
+  <p>第一,<strong>线性</strong>. 等号右边对 $\psi$ 是线性的, 因此如果 $\psi_1, \psi_2$ 都是解, 任意复线性组合 $c_1\psi_1 + c_2\psi_2$ 也是解. 这正是<strong>叠加原理</strong>的数学形式. 双缝中"两条路径同时存在"靠的就是这一点.</p>
+
+  <p>第二,<strong>一阶时间, 二阶空间</strong>. 它<em>不</em>像经典波动方程 $\partial_t^2\psi = c^2\nabla^2\psi$ — 那种方程会出现两个独立的初值 ($\psi$ 与 $\partial_t\psi$); Schrödinger 方程只需要一个初值 $\psi(x, 0)$, 之后的演化完全决定. 这与"波函数本身就是态的全部"是相符的.</p>
+
+  <p>第三,<strong>$i$ 是关键</strong>. 如果把 $i$ 拿掉, 方程退化成扩散方程 $\partial_t\psi = (\hbar/2m)\nabla^2\psi$, 解会随时间衰减抹平; 把 $i$ 放进去, 解则像振荡, 模长可以守恒. 后面我们会看到, 正是因为这个 $i$, 概率 $\int|\psi|^2$ 在演化中保持为 $1$ — 这就是"幺正演化"的初次亮相 (留到第 10 节).</p>
+
+  <p>第四,<strong>$V(x)$ 决定问题</strong>. 不同势 $V$ 给不同物理: $V=0$ 是自由粒子, $V=\frac12 m\omega^2 x^2$ 是谐振子, $V = -e^2/(4\pi\varepsilon_0 r)$ 是氢原子. 几乎整个第 3 部分都在做同一件事: 给定 $V$, 求 (4) 的本征解.</p>
+
+  <h2>三、一维盒中电子 — 把方程算出一个数字</h2>
+
+  <p>把 (4) 落到具体. 取最简单的 $V$: 一个长 $L$ 的一维"无限深方阱", 即 $V(x)=0$ 在 $0\lt x\lt L$ 内, $V=\infty$ 之外. 电子被关在盒子里, $\psi(0)=\psi(L)=0$. 问基态能.</p>
+
+  <p>盒内方程 (4) 退化为 $-\frac{\hbar^2}{2m}\psi'' = E\psi$, 即 $\psi'' = -k^2\psi$ 其中 $k^2 = 2mE/\hbar^2$. 通解 $\psi = A\sin(kx) + B\cos(kx)$. 代边界 $\psi(0)=0\Rightarrow B=0$; 再代 $\psi(L)=0\Rightarrow \sin(kL)=0$, 即 $kL = n\pi$, $n=1,2,3,\ldots$. 能级</p>
+
+  <p>$$ E_n \;=\; \frac{\hbar^2 k_n^2}{2m} \;=\; \frac{n^2 \pi^2 \hbar^2}{2m L^2}. \tag{5}$$</p>
+
+  <p>代具体数: $\hbar = 1.055\times10^{-34}$ J·s, $m_e = 9.109\times10^{-31}$ kg, $L = 1$ nm $= 10^{-9}$ m. 取 $n=1$:</p>
+
+  <p>$$ E_1 \;=\; \frac{\pi^2 (1.055\times10^{-34})^2}{2\cdot 9.109\times10^{-31} \cdot (10^{-9})^2}\,\text{J} \;\approx\; 6.02\times10^{-20}\,\text{J} \;\approx\; 0.376\,\text{eV}. $$</p>
+
+  <p>归一化的基态波函数 $\psi_1(x) = \sqrt{2/L}\sin(\pi x/L)$. 想知道电子出现在盒子中央 $L/4 \lt  x \lt  3L/4$ 的概率, 直接算 (3) 的局部版本:</p>
+
+  <p>$$ P\bigl(\tfrac{L}{4}\lt x\lt \tfrac{3L}{4}\bigr) \;=\; \int_{L/4}^{3L/4}\!\frac{2}{L}\sin^2\!\Bigl(\frac{\pi x}{L}\Bigr)\mathrm dx \;=\; \frac12 + \frac{1}{\pi} \;\approx\; 0.818.$$</p>
+
+  <p>约 $82\%$ — 比经典上"均匀分布给出 $50\%$"高很多, 这正是基态"中央加权"的直接体现. 这不是哲学, 是数. 把 $L$ 改成 $0.5$ nm, $E_1$ 上升 $4$ 倍到 $\approx 1.5$ eV; 这就是为什么半导体里把电子限在更小的量子点中, 能产生更蓝的发射 — 一切回到 (5).</p>
+
+  <p>这例子小, 但已经把 Schrödinger 力学的全套流程演示了一遍: 选 $V$ → 写方程 → 加边界 → 解本征值 → 代数得能级 → 求概率分布. 后面 11 节起还会反复跑这套流程, 只是 $V$ 会越来越花哨.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 一维高斯波包 $\psi(x) = \pi^{-1/4}\sigma^{-1/2}e^{-x^2/2\sigma^2}e^{ik_0 x}$ 的三条曲线叠在同一坐标系: 实部 $\Re\psi$ 振荡 (红, 余弦包络), 虚部 $\Im\psi$ 同周期但相位差 90° (蓝, 正弦包络), $|\psi|^2$ 单峰高斯包络 (灰底填充, 概率密度); 横轴 $x/\sigma$, 标出 $k_0$ 周期, 标出包络宽度 $\sigma$, 注释 "实虚部错位 90° → $|\psi|^2$ 平滑无振荡"]</div>
+  </figure>
+
+  <h2>四、自由波包 — 群速度等于经典速度</h2>
+
+  <p>把 $V=0$ 代回 (4), 自由粒子的解是<strong>平面波</strong> $\psi_k(x,t) = e^{i(kx - \omega(k)t)}$, 其中色散关系由代回得到:</p>
+
+  <p>$$ \omega(k) \;=\; \frac{\hbar k^2}{2m}. \tag{6}$$</p>
+
+  <p>注意这里 $\omega$ 不是 $k$ 的线性函数 — 自由的非相对论性粒子, 不同 $k$ 跑得不一样快. 单一 $k$ 的平面波在全空间模长恒为 $1$, 不能归一化, 也不在某一处. 真实的电子是"很多 $k$ 叠在一起"的<strong>波包</strong>:</p>
+
+  <p>$$ \psi(x,t) \;=\; \int \frac{\mathrm dk}{\sqrt{2\pi}}\,\tilde\psi(k)\,e^{i(kx - \omega(k)t)}.$$</p>
+
+  <p>把 $\tilde\psi(k)$ 取一个尖锐的高斯, 中心 $k_0$、宽 $\Delta k$, 那么波包整体以<strong>群速度</strong></p>
+
+  <p>$$ v_g \;=\; \left.\frac{\mathrm d\omega}{\mathrm d k}\right|_{k_0} \;=\; \frac{\hbar k_0}{m} \;=\; \frac{p_0}{m}\tag{7}$$</p>
+
+  <p>移动 — 这正是经典动量公式 $v = p/m$. 也就是说: 量子波包在没有外力时, 它的"重心"按经典力学的速度走 — 这是<strong>Ehrenfest 定理</strong>的特例 (留待算符那节正式证明). 而<strong>相速度</strong> $v_p = \omega/k = \hbar k/(2m) = p/(2m)$, 是经典速度的一半 — 你能在书里看到的, 但物理上没有粒子按相速度跑这件事. 真实粒子按群速度走.</p>
+
+  <p>代数: 取 $k_0$ 对应电子动能 $1$ eV, 那么 $p_0 = \sqrt{2m_e \cdot 1.6\times10^{-19}\,\text{J}}\approx 5.4\times10^{-25}$ kg·m/s, 群速度 $v_g \approx 5.9\times10^5$ m/s, 大约 $0.002 c$. 这个速度直接进经典轨迹方程, 一切自洽 — 量子力学在低速、长时段、缓变势下平滑过渡到牛顿力学.</p>
+
+  <p>波包还有个性质: 因为不同 $k$ 跑得不一样快 (色散), 它会随着时间<strong>展宽</strong>. 从 (6) 可推出, 一个初始宽 $\sigma_0$ 的高斯波包, 时间 $t$ 后宽度 $\sigma(t) = \sigma_0\sqrt{1+(\hbar t/2m\sigma_0^2)^2}$. 取 $\sigma_0 = 1$ nm 的电子, 展宽到 $\sqrt 2$ 倍只需 $\approx 1.7\times 10^{-14}$ 秒 — 这就是为什么"电子"很难像台球那样保持局部. 它本质上不是质点, 只在测量瞬间装作质点.</p>
+
+  <h2>五、一些常见的误解与 1926 年的小屋</h2>
+
+  <p>讲到这里, 反过来澄清几个常被混淆的点会有用. <strong>(a) $\psi$ 不是粒子的"形状"</strong>. 电子不是一团涂在空间上的"云"; 它每次被测到都是一个点, $|\psi|^2$ 描述的是无数次重复实验的位置统计, 而非"它正摊开成这种形状". <strong>(b) $\psi$ 不是经典电场或物质场</strong>. 它是复数, 全局相位不可观, 不背能量动量, 不会自我引力. (一旦做"二次量子化", $\psi$ 才再度被推回成<strong>算符场</strong>, 那是第 5 部分的事.) <strong>(c) Schrödinger 方程是非相对论性的</strong>. 时间一阶、空间二阶, 一开始就破坏了 Lorentz 对称; 把它"相对论化"会得到 Klein-Gordon 与 Dirac 方程, 那是第 6 部分. <strong>(d) "波函数坍缩"不是 (4) 的内容</strong>. 方程 (4) 描述的是平稳幺正演化, 测量带来的"投影"是另一条公设 (Born 规则与态约化), 这是第 8、19 节的话题.</p>
+
+  <p>历史上, Schrödinger 在 1925 年圣诞到 1926 年初, 跑去阿尔卑斯山区一间叫 Arosa 的小屋滑雪兼写论文 — 据说陪着他的不是妻子, 而是一位"维也纳的旧情人" (其名至今未解). 在那两周里他写下了 (4), 并完成了氢原子的求解 — $-13.6$ eV、$1/n^2$ 谱、Lyman/Balmer 线全部从一条方程里跑出来. 论文 1926 年 1 月发表, 标题《本征值问题作为量子化》(Quantisierung als Eigenwertproblem). 同年 6 月 Born 发表《关于碰撞过程的量子力学》, 在脚注里加了一句 "$|\psi|^2$ 应被解释为概率密度" — 这就是 (2). 多年后 Born 拿了 1954 年诺贝尔奖, 颁奖词把这一行脚注称为"量子物理诠释的支点".</p>
+
+  <p>讽刺的是, Schrödinger 自己<strong>并不喜欢</strong>概率诠释. 他偏爱把 $\psi$ 想成"实在的物质波", 概率只是次品. 他后来抱怨 "我相信迷人的小猫" (薛定谔的猫思想实验也来自这种不满); 但物理学不听写下方程的人, 它只听数据 — 而数据从 1927 年 Davisson-Germer 电子衍射、1949 年 Möllenstedt 双棱镜电子干涉, 一直到 2013 年单分子 ($\sim 800$ 原子) 干涉实验, 全都印证了 Born 而非 Schrödinger 的诠释.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节把"波函数 $\psi$"这个量子力学最核心的对象拆开看: 它是一个<strong>复数概率幅</strong> $\psi(x,t)\in\mathbb C$, 模平方 $|\psi|^2$ 是位置概率密度 (Born 1926), 满足线性偏微分方程 — Schrödinger 方程 (4) — 因而服从叠加原理. 我们用一维盒中电子算出了 $E_1\approx 0.376$ eV, 用自由波包验证了群速度 $v_g = p/m$ 等于经典速度. 后续几节会把这套机器推广到更深层: 第 7 节把"动量"从对应原则升级为厄米算符, 第 8 节正面处理 Born 规则与测量, 第 9 节从对易关系导出不确定性, 第 10 节证明 (4) 的演化必须是幺正的. 然后第 3 部分把同一个机器套到方阱、谐振子、角动量、氢原子上, 验证它能复现整张元素周期表的低能谱. 这一切的起点, 都是这个看似简朴的复函数 $\psi$.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="05-stern-gerlach.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="07-operators.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

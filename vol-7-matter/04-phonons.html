@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晶格振动为什么也"量子化"? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="03-reciprocal.html">← 上一节</a>
+  <span class="chapter-title">第 4 节 / 30 · 第 1 部分 · 晶体与对称性 · 第七卷·物质是什么?</span>
+  <a href="05-debye.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>晶格振动为什么也"量子化"?</h1>
+  <div class="sub">—— 声子作为简正模的量子</div>
+
+  <div class="abstract">
+    把一块铜的原子核放到它们的平衡格点附近, 它们不老老实实地待着, 而是在格点周围来回小幅振动. 用经典力学写下牛顿方程, 这是一堆耦合谐振子, Born 与 von Karman 1912 用周期边界条件把它们对角化, 每一个波矢 $\mathbf{k}$ 对应一个独立的简正模, 频率由色散关系 $\omega(\mathbf{k})$ 给出. 这一步还是经典的. 真正的量子化在于: 每一个简正模本身是一个一维谐振子 (vol-6 第 12 节), 能级 $\hbar\omega_\mathbf{k}(n_\mathbf{k}+\tfrac12)$, 等距阶梯, $n_\mathbf{k}$ 是一个整数 — 我们把这个整数解释成"这一模上有几个声子". 声子之于晶格振动, 等同于光子之于电磁场: 都是一个谐振子模式上的量子, 都靠 $[a, a^\dagger]=1$ 这一行代数撑起来. 它解释了 Einstein 1907 与 Debye 1912 的固体比热, 并在 Brockhouse 1955 的中子非弹性散射里被直接量到 — 那台谱仪后来给他拿了 1994 年的诺贝尔奖.
+  </div>
+
+  <p>把一颗铜的金属块放在桌上, 它的原子核不是静止的. 室温下每个原子都在它的平衡格点附近振动 — 经典图像里, 振幅大约是格距的几个百分点; 量子图像里, 即便冷到绝对零度, 振动也不会停, 还有一份零点振动. 这一节要把这件事的代数与色散关系搞清楚: 一堆 $10^{23}$ 个互相耦合的谐振子怎么解, 解完之后它们的量子是什么, 怎么跟实验对上.</p>
+
+  <p>结构上承接两条线索. 一条是 vol-6 第 12 节: 单个谐振子能级 $E_n = \hbar\omega(n+\tfrac12)$, 升降算符 $a, a^\dagger$, 全部代数压在 $[a, a^\dagger]=1$ 上. 另一条是本卷第 1-3 节的晶体几何: 周期格子 + Brillouin 区, 波矢 $\mathbf{k}$ 限制在第一 BZ 内. 把这两条线索拼起来, 就是"声子".</p>
+
+  <h2>一、一维原子链的色散关系</h2>
+
+  <p>取最简单的玩具模型 — 一维等质量等弹簧链. 沿 $x$ 轴排 $N$ 个原子, 平衡位置 $x_n^0 = n a$, $a$ 是格距, 质量都为 $m$, 相邻原子之间用劲度系数 $K$ 的弹簧拴起来. 设第 $n$ 个原子相对平衡位置的位移是 $u_n(t)$. 牛顿方程</p>
+
+  <p>$$ m\, \ddot u_n = -K\,(u_n - u_{n+1}) - K\,(u_n - u_{n-1}) = K\,(u_{n+1} - 2 u_n + u_{n-1}). $$</p>
+
+  <p>这是一个无穷多 (实践里 $N$ 个) 自由度耦合的线性方程组. Born 与 von Karman 1912 引入周期边界条件 $u_{n+N} = u_n$ — 把链子绕成圈, 既保住物理上的平移对称, 又让谱变成离散可数. 这个技巧后来在固体物理里用得跟空气一样常见.</p>
+
+  <p>试探解 $u_n(t) = A\, e^{i(k n a - \omega t)}$, 代回方程</p>
+
+  <p>$$ -m\omega^2 = K\,(e^{ika} + e^{-ika} - 2) = -2K\,(1 - \cos ka) = -4K \sin^2\!\tfrac{ka}{2}. $$</p>
+
+  <p>提出来就是色散关系</p>
+
+  <p>$$ \omega(k) = 2\sqrt{\frac{K}{m}}\;\Big|\sin\!\tfrac{ka}{2}\Big|. \tag{1} $$</p>
+
+  <p>这是声子色散最干净的一行. 几个特征.</p>
+
+  <p>第一, $\omega(k)$ 是 $k$ 的偶函数, 而且对 $k \to k + 2\pi/a$ 不变 — 所以独立的 $k$ 只取一个 Brillouin 区, $k \in (-\pi/a, \pi/a]$ 就够. 这跟 vol-7 第 3 节的"BZ 是动量空间的元胞"完全是同一件事在一维上的化身.</p>
+
+  <p>第二, 长波极限 $|k|a \ll 1$, $\sin(ka/2) \approx ka/2$, 色散退化成线性</p>
+
+  <p>$$ \omega(k) \approx \sqrt{\frac{K}{m}}\;|k|\,a = c_s\,|k|, \qquad c_s \equiv a\sqrt{K/m}. $$</p>
+
+  <p>$c_s$ 就是这条链子的声速. 长波就是日常意义上的"声音". 一根晶体里的纵波声速跟这个表达式同形, 只是把 $K$ 换成弹性模量.</p>
+
+  <p>第三, BZ 边缘 $k = \pm\pi/a$ 处, $\sin(ka/2) = \pm 1$, $\omega$ 取到最大值</p>
+
+  <p>$$ \omega_{\max} = 2\sqrt{K/m}, $$</p>
+
+  <p>而且在 $k = \pi/a$ 处 $d\omega/dk = 0$ — 色散曲线在边缘是水平的, 群速度 $v_g = d\omega/dk \to 0$. 这是由于在 $k=\pi/a$ 时, 相邻原子位移相反 ($e^{ika} = e^{i\pi} = -1$), 整个链是一个"驻波", 不传播能量.</p>
+
+  <p>具体代铜的数字. 铜的纵波声速 $c_s \approx 3940\,\mathrm{m/s}$, fcc 立方边长 $\approx 3.6\,\text{Å}$. 用 $\omega_{\max} \approx c_s\,\pi/a$ 估</p>
+
+  <p>$$ \omega_{\max} \approx \frac{3940\,\mathrm{m/s} \times \pi}{3.6\times 10^{-10}\,\mathrm{m}} \approx 3.4\times 10^{13}\;\mathrm{rad/s} \approx 5.5\;\mathrm{THz}. $$</p>
+
+  <p>对应的能量</p>
+
+  <p>$$ \hbar\omega_{\max} \approx (6.58\times 10^{-16}\,\mathrm{eV\!\cdot\!s}) \times (3.4\times 10^{13}\,\mathrm{rad/s}) \approx 22\;\mathrm{meV}. $$</p>
+
+  <p>这跟实验测到的铜声子带宽 (约 30 meV) 量级吻合 — 我们用一根弹簧链就把铜的最高声子频率估到了对的数量级. 在中子非弹性散射的语言里, 这个数字告诉你: 想看到铜的声子, 入射中子能损要在 0-30 meV 这个窗口里, 对应中子波长 $\lambda \sim 1$ Å 上下 — 正好是热中子.</p>
+
+  <h2>二、量子化 — 简正模 + 升降算符</h2>
+
+  <p>第一节那一段全是经典力学. 量子化怎么进来? 把每个简正模看成一个独立的一维谐振子.</p>
+
+  <p>把链子的位移做一次离散 Fourier 展开</p>
+
+  <p>$$ u_n(t) = \frac{1}{\sqrt{N}}\sum_{k} Q_k(t)\, e^{i k n a}, $$</p>
+
+  <p>$k$ 取 BZ 里的 $N$ 个允许值 $k_j = 2\pi j/(N a)$. 把这个展开代回经典哈密顿量 $H = \tfrac12 \sum_n m\dot u_n^2 + \tfrac12 \sum_n K (u_{n+1}-u_n)^2$, 用正交关系 $\sum_n e^{i(k-k')na} = N\delta_{k,k'}$ 整理一遍, 得到</p>
+
+  <p>$$ H = \sum_k \left[\frac{|P_k|^2}{2m} + \tfrac12 m\omega_k^2\, |Q_k|^2\right], $$</p>
+
+  <p>$P_k$ 是跟 $Q_k$ 共轭的动量, $\omega_k$ 就是 $(1)$ 给的色散. 哈密顿量被对角化成一堆解耦的谐振子 — 一个 $k$ 一个谐振子.</p>
+
+  <p>到这一步, 量子化就是把每一个谐振子模式各自量化. 引入升降算符</p>
+
+  <p>$$ a_k = \sqrt{\frac{m\omega_k}{2\hbar}}\left(Q_k + \frac{i P_{-k}}{m\omega_k}\right), \qquad a_k^\dagger = \sqrt{\frac{m\omega_k}{2\hbar}}\left(Q_{-k} - \frac{i P_k}{m\omega_k}\right), $$</p>
+
+  <p>满足正则对易关系 $[a_k, a_{k'}^\dagger] = \delta_{k,k'}$, 其余对易子为零. 把它代回哈密顿量, 得到</p>
+
+  <p>$$ \hat H = \sum_{k} \hbar\omega_k\left(\hat a_k^\dagger \hat a_k + \tfrac12\right) = \sum_k \hbar\omega_k\left(\hat n_k + \tfrac12\right). \tag{2} $$</p>
+
+  <p>这是这一节的中心式. 整个晶格振动的哈密顿量, 写成一堆独立谐振子的和, 每个谐振子的频率由色散关系给出, 每一级标号 $n_k = 0, 1, 2, \ldots$ 我们把 $n_k$ 解释成"在波矢 $k$ 那个简正模上的声子数", $\hbar\omega_k$ 是单个声子的能量, $\hbar k$ 是它在 BZ 内的准动量. 真空 (所有 $n_k = 0$) 对应"晶格没有热振动, 只有零点能 $\sum_k \tfrac12 \hbar\omega_k$"; 加热升温, 每个模上声子数按 Bose-Einstein 分布 $\bar n_k = 1/(e^{\hbar\omega_k/k_B T}-1)$ 涨起来.</p>
+
+  <p>这件事跟 vol-6 第 12 节谐振子全章的代数结构, 形式上一模一样. 区别只在: 那里 $a^\dagger$ 创生"一个谐振子的振动量子", 这里 $a_k^\dagger$ 创生"一颗波矢为 $k$ 的声子". 物理 reinterpretation 不同, 数学是一回事. 把这同一套代数再换一组对象 — 电磁场的 mode 振幅 — 就得到光子. 这是为什么后来粒子物理里"创生湮灭"的语言可以横跨从声子到光子到电子 (反对易而已) 到 Higgs 真空起伏的所有图像: 它们共用同一行 $[a, a^\dagger]=1$.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 一维原子链色散与示意 — 主图横轴 $k$ 从 $-\pi/a$ 到 $\pi/a$, 纵轴 $\omega$, 画 $\omega(k) = 2\sqrt{K/m}\,|\sin(ka/2)|$ 的两个波瓣 (sin 形曲线), 在 $k=0$ 附近用虚线画出线性渐近 $\omega = c_s|k|$, 在 $k=\pm\pi/a$ 处标 $\omega_{\max} = 2\sqrt{K/m}$ 并标"群速度 $v_g \to 0$"; 右侧附一小图: 五六个圆球用弹簧连成一串, 每个圆球画一个小的水平箭头表示 $u_n$ 的瞬时位移, 上方标"$u_n$"和"$K, m, a$"; 整图加注 BZ 边界 $k = \pm\pi/a$ 与原点 $\Gamma$]</div>
+  </figure>
+
+  <h2>三、推广 — 三维, 多原子基, 声学/光学支</h2>
+
+  <p>真实晶体不是一维等原子链. 三维晶体, 单胞里可能不止一个原子, 有的还几种. 推广分两步.</p>
+
+  <p>第一步, 维度. 一维链上每个 $k$ 对应一支色散; 三维里 $\mathbf{k}$ 是个矢量, 而每个原子在 3 个独立方向上都能动, 所以一个单原子单胞的 Bravais 格子有 3 支声子色散 $\omega_s(\mathbf{k})$, $s = 1, 2, 3$ 标极化方向. 长波下, 1 个纵向 (位移平行 $\mathbf{k}$, 声速 $c_L$) + 2 个横向 (位移垂直 $\mathbf{k}$, 声速 $c_T$). 一般 $c_L \gt  c_T$, 这就是地震里 P 波先到 S 波后到的原因 — 同一组色散关系.</p>
+
+  <p>第二步, 多原子基. 一个原胞里若有 $p$ 个原子, 整个晶体一共有 $3p$ 支色散. 这 $3p$ 支里, 3 支在 $\mathbf{k} \to 0$ 时 $\omega \to 0$, 称声学支 (acoustic) — 单胞里所有原子整体一致地振 (同相), 长波看上去就是连续介质里的声波. 剩下 $3p-3$ 支即使 $\mathbf{k} \to 0$, $\omega$ 也不为零, 称光学支 (optical) — 单胞里不同原子互相反相振, 比如 NaCl 里 Na 与 Cl 离子向相反方向位移, 形成一个振荡电偶极子, 这就是为什么红外光能直接激发它们 (跟 vol-1 那一节里 IR 吸收同一回事). NaCl 的横光学支频率约 5 THz, 跟 20 meV 量级红外光子能量对得上.</p>
+
+  <p>另一个写法是用动力学矩阵. 把单胞里 $p$ 个原子在 3 维方向上的位移塞进一个 $3p$ 分量列向量 $\mathbf{u}(\mathbf{k})$, 牛顿方程化成 $\omega^2 \mathbf{u} = D(\mathbf{k}) \mathbf{u}$, $D(\mathbf{k})$ 是 $3p \times 3p$ 厄米矩阵 (一个对每个 $\mathbf{k}$ 都要诊断的本征值问题), 它的 $3p$ 个本征值就是 $3p$ 支声子在该 $\mathbf{k}$ 上的频率平方. 整张声子谱, 就是把 BZ 里每个 $\mathbf{k}$ 都对角化一次 $D(\mathbf{k})$ 的结果. 第一性原理计算 (DFT + linear response, "DFPT") 现在能把这件事在几小时之内做完, 误差大约几个百分点 — 整个领域叫"声子从头计算".</p>
+
+  <p>顺带说一句: 量子化只动哈密顿量的形式, 不动 $D(\mathbf{k})$ 与色散 $\omega_s(\mathbf{k})$ 本身. 经典与量子的差别在 $E$ 是 $\omega^2 |Q|^2$ (经典连续) 还是 $\hbar\omega(n+\tfrac12)$ (量子离散), 不在色散公式 — 这件事重要, 是声子模型可以用 $T \gg \theta_D$ 的高温做经典极限验证的原因.</p>
+
+  <h2>四、实验 — 从比热到中子非弹性散射</h2>
+
+  <p>这套图像的实验落地, 历经五十年. 把它压成三个里程碑.</p>
+
+  <p>(i) 1907, Einstein. 经典 equipartition 给固体每摩尔比热 $C_V = 3R \approx 25\,\mathrm{J/(mol\!\cdot\!K)}$ (Dulong-Petit 1819), 温度无关 — 但实验里金刚石室温 $C_V$ 远低于 $3R$, 而且温度趋零时 $C_V \to 0$, 经典彻底解释不动. Einstein 1907 假设固体里每个原子都是一个固定频率 $\omega_E$ 的量子谐振子, 借用 Planck 1900 的量子能级公式 $\langle E \rangle = \hbar\omega/(e^{\hbar\omega/k_B T}-1)$, 算出</p>
+
+  <p>$$ C_V = 3 N k_B\,\Big(\frac{\theta_E}{T}\Big)^2\,\frac{e^{\theta_E/T}}{(e^{\theta_E/T}-1)^2}, \qquad \theta_E \equiv \hbar\omega_E/k_B. $$</p>
+
+  <p>这是历史上量子能级第一次被用来解释一个非辐射的、宏观的现象. 高温 $T \gg \theta_E$ 给 Dulong-Petit, 低温 $C_V$ 指数压低. 但它低温细节不对 — 实验数据是 $\propto T^3$, Einstein 模型给指数压低. 原因是它假设了"全部模在同一频率 $\omega_E$", 把声子谱压成一根 $\delta$ 函数.</p>
+
+  <p>(ii) 1912, Debye. Debye 把 Einstein 的单频替换成连续色散 $\omega = c_s |\mathbf{k}|$ — 把整块晶体当成一个连续弹性介质, 模式数到一个截断频率 $\omega_D$ 为止 (满足总自由度 $3N$). 在低温, 主导贡献来自长波声学声子, $C_V$ 拿到 $\propto T^3$ 这个干净的标度律. 这一节后边马上有专门一节讲 Debye 模型的 $T^3$ 律, 所以这里只点一下: Debye 是第一个公开把"声子谱"作为思想工具用的人, 那年也是 Born-Karman 引入周期边界条件那年. 1912 是声子年.</p>
+
+  <p>(iii) 1955, Brockhouse. 前面两步全是从比热反推谱的形状; Brockhouse 在加拿大 Chalk River 反应堆上, 用三轴中子谱仪 (triple-axis spectrometer, 他自己发明) 把 $\omega(\mathbf{k})$ 直接量出来. 思路是这样的: 慢中子 (热中子, 几 meV 到几十 meV) 跟单个声子做非弹性散射, 守恒条件给</p>
+
+  <p>$$ \mathbf{k}_i - \mathbf{k}_f = \mathbf{Q} = \mathbf{G} + \mathbf{q}, \qquad E_i - E_f = \hbar\omega(\mathbf{q}), $$</p>
+
+  <p>$\mathbf{G}$ 是某个倒格矢, $\mathbf{q}$ 是 BZ 里的声子波矢. 测中子的入射、出射动量与能量, 就把声子的 $\omega(\mathbf{q})$ 一点一点扫出来. Brockhouse 1955 量了铝、铜、氘化钠 (NaD) 的色散曲线, 形状跟 Born-Karman 模型给的预测对得严丝合缝, 这是声子图像的"决定性证据". 那台三轴谱仪后来成了凝聚态实验的标准工具, Brockhouse 跟 Shull (中子衍射) 共享了 1994 年的诺贝尔物理奖 — 距实验首发已经过去 39 年, 距 Born-Karman 论文 82 年.</p>
+
+  <p>把 Brockhouse 测到的铜声子色散跟我们一节开头估的 $\omega_{\max} \approx 5.5$ THz 比一比: 实验铜的最高横声学支约 5.0 THz, 最高纵声学支约 7.3 THz, 平均跟我们估的差不到 30%. 一根弹簧链, 一个 $c_s$ 数, 估对一个铜晶体里 $10^{23}$ 个原子集体振动的能标. 这就是为什么这本书反复说"代代数字看物理"—代下去能对上, 模型就是诚实的.</p>
+
+  <p>顺带一句, 声子还有一些不直接但同样硬的实验出口. (a) Raman 散射量光学声子 (Raman 1928 在液体里发现, 在固体里 Smekal 1923 先理论预言, 后来在 Si 上测出 $\hbar\omega \approx 64$ meV 的横光学声子峰); (b) 同位素效应: 把 $\mathrm{Hg}^{198}$ 换成 $\mathrm{Hg}^{202}$, 超导临界温度按 $T_c \propto m^{-1/2}$ 变, Maxwell 1950 + Reynolds 1950 同时测到, 这是声子介导超导 (Cooper 配对走的就是声子) 的"指纹"; (c) 热导率随温度变: 声子是绝缘体里热的主要载子, 它们之间的散射 (声子-声子, 声子-杂质, Umklapp) 决定了热导率的温度行为. 这些都跟 $(2)$ 直接挂钩.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>把晶格振动一步步算清楚, 走两层. 第一层是经典对角化 — 把 $N$ 个耦合原子的牛顿方程通过 Fourier 变换 + 周期边界条件 (Born-Karman 1912) 化成 $N$ 个独立简正模, 每模一个频率 $\omega(\mathbf{k})$, 一维等质量等弹簧链给最干净的 $\omega(k) = 2\sqrt{K/m}|\sin(ka/2)|$, 长波线性 $\omega = c_s|k|$, BZ 边缘 $k=\pi/a$ 处群速度归零. 铜代数: $c_s \approx 3940$ m/s, $a \approx 3.6$ Å, 估出 $\omega_{\max} \approx 5.5$ THz, $\hbar\omega_{\max} \approx 22$ meV — 跟实验对得上. 第二层是量子化 — 把每一个简正模看成 vol-6 谐振子, 引升降算符, 哈密顿量就是 $\hat H = \sum_k \hbar\omega_k(\hat a_k^\dagger \hat a_k + \tfrac12)$. 整数 $n_k$ 解释成"波矢 $k$ 那一模上的声子数", 声子带准动量 $\hbar k$, 是粒子语言下的振动量子. 推广到三维多原子基, 一个 $p$ 原子单胞有 $3p$ 支色散 — 3 支声学 (低 $\mathbf{k}$ 退化成连续介质声波) + $3p-3$ 支光学 (反相振动, 红外耦合). 实验落地经历 Einstein 1907 单频量子振子模型 (第一次量子能级解释比热), Debye 1912 连续声子谱 (低温 $T^3$, 见下一节), Brockhouse 1955 中子非弹性散射 (直接测出 $\omega(\mathbf{k})$, 1994 诺贝尔). 全部代数底层: $[a_k, a_k^\dagger] = 1$. 接下来下一节就用这套谱算 Debye 比热, 再往后, 同一组声子在 BCS 章里成为 Cooper 配对的胶水.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="03-reciprocal.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="05-debye.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

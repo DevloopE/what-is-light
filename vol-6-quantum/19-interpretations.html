@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多世界 vs Copenhagen — 这真的是两种物理吗? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="18-decoherence.html">← 上一节</a>
+  <span class="chapter-title">第 19 节 / 30 · 第 4 部分 · 测量与诠释 · 第六卷·量子是什么?</span>
+  <a href="20-quantum-jumps.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>多世界 vs Copenhagen — 这真的是两种物理吗?</h1>
+  <div class="sub">—— 测量问题的几种回答</div>
+
+  <div class="abstract">量子力学有一个几乎丑陋的接缝: 在没有 "测量" 的时候, 态向量按 Schrödinger 方程幺正演化, 一切是连续、决定论、可逆; 一旦发生 "测量", 态向量按 Born 规则塌缩, 变成不连续、概率、不可逆. 这个二分法被钉进教科书叫做 "测量公设", 但它从未给出 "测量到底是什么" 的物理解释 — Copenhagen 学派 (Bohr, Heisenberg, 1925-1930) 干脆宣布这条线不可跨越, Einstein 一辈子拒绝接受, Bohm 1952 用隐变量复活决定论, Everett 1957 用 "整个宇宙永远幺正演化, 只是分支" 把塌缩抹掉, Rovelli/QBism 走到另一端把概率说成观察者信念. 本节摆出四种主流诠释、写下 Born 规则在多世界中的 Deutsch 1999 推导、引一个真正能区分诠释的实验 (GRW 塌缩模型已被部分参数空间排除), 然后回答标题: 多世界与 Copenhagen 在 99% 的情形下不是两种物理, 而是同一份数据的两套故事; 但有 1% 真能被实验区分, 这 1% 让 "诠释" 不只是哲学.</div>
+
+  <p>把所有量子力学教科书翻到第一章, 你会看到一组公设: (i) 系统状态由 Hilbert 空间单位向量 $\ket{\psi}$ 描述; (ii) 可观察量由厄米算符 $A$ 描述; (iii) 状态按 Schrödinger 方程 $i\hbar\,\partial_t\ket{\psi}=\hat H\ket{\psi}$ 幺正演化; (iv) <strong>测量瞬间</strong>, 测出本征值 $a_n$ 的概率为 $|\braket{n}{\psi}|^2$, 之后状态塌缩到 $\ket{n}$. 公设 (iii) 与公设 (iv) 是不同语法 — 一个连续 + 决定论, 一个跳跃 + 概率. 教科书让你接受这两条并存, 实验也确实匹配, 但一旦深究 "测量到底是哪个物理过程触发的塌缩", 就掉进了 1925 年到今天还没有正式解决的<strong>测量问题</strong>.</p>
+
+  <p>这一节不去解决测量问题 (没人能), 而是把市面上几种主流答卷摆开, 让你看清楚每一份在公设 (iii)(iv) 处划线的位置. 我们关心三件事: (a) 它们的本体论假设是什么; (b) 它们怎么从数学结构里推出 Born 规则 $|c_n|^2$; (c) 是否有任何实验能区分它们. 第三点是关键: 如果两个诠释给出完全相同的预言, 那它们不是两种物理, 而是两种讲故事的方式; 如果它们在某个参数区分歧, 物理学家就有兴趣去测.</p>
+
+  <h2>一、Copenhagen: 经典/量子分界与测量瞬间</h2>
+
+  <p>Bohr 1927 在 Como 演讲、Heisenberg 1927 写不确定性原理论文、Born 1926 提出概率诠释 — 三人在 1925-1930 之间锚定了所谓 Copenhagen 诠释. 它的最简陈述如下: 量子力学描述微观系统的可能测量结果的概率, 不描述系统在两次测量之间的 "实际状态". 测量仪器是经典的, 与之相互作用时态向量按 Born 规则塌缩. 至于 "为什么塌缩"、"塌缩在哪一步发生" — Copenhagen 拒绝回答, 说这是不可超越的认识论边界 (Bohr) 或纯粹是技术问题 (Heisenberg).</p>
+
+  <p>用算符表达, Copenhagen 把世界劈成两半. "量子" 一半 (被研究系统 $S$) 在 Hilbert 空间 $\mathcal{H}_S$ 中, 演化由</p>
+  <p>$$ \ket{\psi(t)} = U(t)\ket{\psi(0)},\quad U(t)=e^{-i\hat H t/\hbar}, \tag{1} $$</p>
+  <p>幺正算符 $U(t)$ 决定. 测量算符 $A=\sum_n a_n\ket{n}\bra{n}$ 作用时, 状态从 $\ket{\psi}=\sum_n c_n\ket{n}$ 跳到某个 $\ket{n}$, 概率为</p>
+  <p>$$ P(a_n)=\abs{c_n}^2 = \abs{\braket{n}{\psi}}^2. \tag{2} $$</p>
+
+  <p>Copenhagen 学派的强项: 它对实验数据的预言精确到 12 位有效数字 (例如 QED 中电子反常磁矩 $g/2$, 见 vol 6 第 26 节), 没有任何实验偏离过这套规则. 它的弱项: <em>"测量" 究竟是什么?</em> 一只电子撞到光阴极算测量吗 (vol 6 第 2 节)? 一团 100 个原子的 Bose 凝聚体经过双缝算测量吗? 仪器自己也是由原子构成的量子系统, 把它单独放进 $\hat H_{\text{tot}}$ 也按 Schrödinger 演化, 哪一步分界、为什么分界 — Copenhagen 不回答. Schrödinger 1935 年的猫就是为了把这个尴尬推到极端: 把盒子里那只可怜的猫连到一个放射性原子, 原子衰变触发毒气, 那么猫的态向量该是 $\frac{1}{\sqrt 2}(\ket{活}+\ket{死})$ 直到有人开盒子? Schrödinger 自己嘲讽这是 "ridiculous case". 但 Copenhagen 没有给出 "猫跟原子之间的分界" 在哪.</p>
+
+  <h2>二、多世界 (Everett 1957): 没有塌缩, 只有分支</h2>
+
+  <p>Everett 在 Princeton 当 Wheeler 学生, 1957 年博士论文给出最激进的方案: <strong>抹掉公设 (iv)</strong>. 整个宇宙 (包括仪器、观察者、猫、地球) 的态向量永远按 (1) 幺正演化, 不存在塌缩. 那 Born 规则的概率从哪来? Everett 的回答是 — 概率是 "分支" 的相对权重, 测量发生时仪器与系统纠缠, 整个宇宙波函数变成多个互不干扰的分支, 每个分支里 "我" 看到一个确定的结果.</p>
+
+  <p>具体: 系统 $S$ 在状态 $\ket{\psi}_S=\sum_n c_n\ket{n}_S$, 仪器 $M$ 初始 $\ket{0}_M$, 相互作用幺正算符 $U_{SM}$ 把 $\ket{n}_S\ket{0}_M$ 映到 $\ket{n}_S\ket{n}_M$ (仪表盘读 $a_n$). 由线性, 整体演化为</p>
+  <p>$$ U_{SM}\Bigl(\sum_n c_n\ket{n}_S\Bigr)\ket{0}_M = \sum_n c_n \ket{n}_S\ket{n}_M. $$</p>
+  <p>右边是一个纠缠态 — 但没有塌缩. Everett 说: 每一项 $\ket{n}_S\ket{n}_M$ 是一个 "分支", 仪器自己以及与之耦合的观察者都在那一支里, 主观看到的就是 $a_n$. 不同分支由 decoherence (vol 6 第 18 节) 迅速正交化, 互不干扰. 没有 "客观的塌缩"; 只有 "主观的相对状态".</p>
+
+  <p>问题: Born 规则 $P=|c_n|^2$ 怎么进来? 这是多世界最难的一步. 直觉上, 每个分支 "存在", 那么概率应该是 $1/N$ 而不是 $|c_n|^2$. 1999 年 Deutsch 给出一个决策理论推导: 假设一个理性 agent 在多世界图像下对赌局做选择, 接受几条朴素公理 (可加性、概率不变性、对称性), 那么 agent 必须按 $|c_n|^2$ 给分支赋权重才能保证一致. Wallace 2003-2010 把这套发展成完整推导, 称作 Deutsch-Wallace 定理. 它把 Born 规则从 "公设" 降级为 "定理", 是多世界一大卖点. 但批评者 (Kent, Albert) 说这套推理自带循环, 始终有争议.</p>
+
+  <p>Everett 的论文 1957 年发表时几乎被忽视. Wheeler 写了序但措辞含糊以免冒犯 Bohr, 删掉了 Everett 原稿里 "phenomenological vs ontological" 那段最关键的辩护. Everett 之后离开学术界进军核武分析, 1982 年早逝. 多世界一直被当成科幻般的边缘观点, 直到 1990s decoherence 理论成熟, 学界才重新认真考虑 — 因为 decoherence 自然给出 "分支不再干扰" 的机制, 让 "分支" 这个词有了具体物理意义.</p>
+
+  <h2>三、Bohm 1952: 隐变量与引导波</h2>
+
+  <p>第三条路: 让粒子有真实的位置. Bohm 1952 (在 de Broglie 1927 引导波想法基础上) 假设每个粒子有确定的位置 $\vec r(t)$, 同时有一个 "引导波" $\psi(\vec r, t)$ 按 Schrödinger 方程演化. 粒子的速度由波函数决定:</p>
+  <p>$$ \frac{d\vec r}{dt} = \frac{1}{m}\nabla S(\vec r, t),\quad \psi = R\,e^{iS/\hbar}. $$</p>
+  <p>给定初始位置分布 $\rho_0(\vec r)=|\psi_0(\vec r)|^2$ 与初始波函数, 由连续性方程能证明任意时刻 $\rho(\vec r, t)=|\psi(\vec r, t)|^2$ — 称为 "量子均衡". 测量的概率分布因此自动复现 Born 规则.</p>
+
+  <p>Bohm 模型的代价: 它是显式<strong>非局域</strong>的. $N$ 粒子时, 引导波是 $\psi(\vec r_1,\ldots,\vec r_N, t)$ 在 $3N$ 维构型空间中的复函数, 第 1 个粒子的速度依赖第 $N$ 个粒子的瞬时位置. Bell 1964 (vol 6 第 17 节) 后来用 Bohm 思想为出发点, 证明任何复现量子统计的 "局域隐变量" 模型都不可能 — 就是说 Bohm 路线必须放弃局域性. 但 Bohm 自己从来不把非局域当缺陷, 因为标准 QM 早就非局域 (EPR 关联).</p>
+
+  <p>Bohm 1952 论文的命运: Einstein 给 Born 写信说 "这看起来太便宜了", Heisenberg 说 "这是一个意识形态的上层结构", Pauli 找了几个技术疑点 (Bohm 后来反驳掉). 1950s 政治背景里 Bohm 被赶出 Princeton 与美国, 流亡巴西、英国. 隐变量复活到主流要等到 Bell. 但 Bohm 模型保留至今, 在量子信息圈里偶尔被用作 "存在论清晰的工作模型" — 给你一个可以模拟、可以画图的图像 (粒子有轨迹), 而不是 "云雾般的概率波".</p>
+
+  <h2>四、关系性诠释、QBism 与 GRW 塌缩模型: 主观与客观之间</h2>
+
+  <p>第四条路把概率重新定位. Rovelli 1996 的关系性诠释 (Relational QM) 说: <em>状态总是相对于某个参考系/观察者</em>, 不存在绝对态向量. 同一个事件在不同观察者眼里有不同 "事实". 这听上去像 SR 的洛伦兹相对性, Rovelli 的灵感正是这个类比. QBism (Fuchs, Mermin, Schack 2010s) 走得更远: $\ket{\psi}$ 不描述系统的客观属性, 而是描述<strong>某个 agent 关于自己未来观测的信念</strong>; Born 规则 $P=|c_n|^2$ 是这个 agent 的 Bayesian 概率赋值, 测量塌缩只是 agent 更新信念. 没有客观的 "塌缩事件", 只有 agent 学到了新数据.</p>
+
+  <p>这两种诠释把 "客观波函数" 替换成 "观察者-相对的信息". 它们对实验预言完全一致 (与 Copenhagen / Everett / Bohm 一样, 都给标准 Born 规则), 区别只在本体论. 主流物理学家对 QBism 的态度从 "聪明的 reformulation" 到 "唯心主义复辟" 不一. 但有一点必须承认: 它把 Wigner 1961 提出的 "Wigner's friend" 悖论 (一个朋友在实验室里测电子, 朋友的整个实验室对外界的 Wigner 而言是一个量子态) 处理得最自然 — 既然每个 agent 有自己的信念, 朋友与 Wigner 给同一系统赋不同状态没有矛盾.</p>
+
+  <p>到这里所有诠释都给同样的实验预言. 真有<strong>不</strong>同的吗? 有 — 但要修改 Schrödinger 方程本身. GRW (Ghirardi-Rimini-Weber 1986) 加一项随机非线性项, 让态向量以速率 $\lambda\sim 10^{-16}\,\mathrm{s}^{-1}$ 自发空间局域化, 局域宽度 $r_C\sim 10^{-7}\,\mathrm{m}$. 单个粒子几乎察觉不到这一项 ($10^{16}$ 秒才塌缩一次, 大约 $10^9$ 年); 但 Avogadro 量级的体系塌缩速率放大到 $N\lambda\sim 10^{7}/\mathrm{s}$, 自动给宏观体系一个 "客观塌缩" 机制 — 不再需要 "测量" 这个含糊概念. 关键是: GRW 不只是诠释, 它修改了演化方程, 因此<strong>原则上可被实验检验</strong>.</p>
+
+  <p>2010s 后多个实验直接搜索 GRW 信号: 自由膨胀的低温晶体若被 GRW 项作用, 会被慢慢加热; X 射线发射也会有微弱过量信号 (因为塌缩涉及电荷加速). 2017 年 Bilardello 等人用 LNGS (Gran Sasso 地下实验室) 的 X 射线测量给 GRW 速率打了一个上限 $\lambda_{\text{GRW}} \le 10^{-11}\,\mathrm{s}^{-1}$ for $r_C=10^{-7}\,\mathrm{m}$, 已排除 Adler 提议的 "增强" 参数 $\lambda\sim 10^{-8}\,\mathrm{s}^{-1}$. CSL (Continuous Spontaneous Localization) 模型作为 GRW 的连续版本受同样约束. 这是一个真正的 "诠释被实验淘汰部分参数空间" 的案例 — 显示 "诠释" 不全是空话.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: "诠释树" — 中心一个方框写 "Schrödinger 方程 + Born 规则", 向外辐射 4 条线, 每条线末端一个方框: (1) Copenhagen — "经典/量子分界, 测量塌缩, 不解释如何"; (2) 多世界 (Everett 1957) — "无塌缩, 整体幺正, 每次测量分支整个宇宙, Born 规则由 Deutsch-Wallace 决策理论推出"; (3) Bohm 1952 隐变量 — "粒子有确定轨迹 + 引导波 $\psi$, 显式非局域"; (4) 关系性 / QBism — "概率是 agent 关于未来观测的信念". 在树的右下角再加一个独立分支 GRW 1986 — "修改 Schrödinger 方程, 自发塌缩, 实验可证伪". 每个方框下方一句话总结其本体论假设]</div>
+  </figure>
+
+  <h2>五、回到标题: 是同一份物理还是不同物理?</h2>
+
+  <p>把上面四种诠释加 GRW 的预言列一张比较表 (用语言版):</p>
+
+  <ul>
+    <li><strong>Copenhagen, 多世界, Bohm, Rovelli/QBism</strong>: 在所有现有可执行实验 (双缝、Bell 测试、量子计算电路、量子隐形传态、原子钟、CHSH 不等式) 都给出<em>完全相同</em>的预言. 没有任何实验区分过它们 — 不是 "暂时还没区分", 而是数学上等价 (它们共享 Schrödinger + Born). 因此严格说, 这四者不是不同的<strong>物理</strong>, 而是同一物理的不同<strong>故事</strong> (本体论选择). 你按哪个故事写论文, 实验数据照样匹配.</li>
+    <li><strong>GRW / CSL 等动力学塌缩模型</strong>: 修改了演化方程, <em>有不同预言</em> — 在宏观叠加态稳定性、自由晶体加热、低温 X 射线发射上偏离标准 QM. 部分参数空间已被 LNGS 等实验排除. 这是真正的 "另一种物理".</li>
+  </ul>
+
+  <p>所以标题问 "多世界 vs Copenhagen 这真的是两种物理吗?" — 答案是<em>不</em>. 它们是同一组方程、同一份数据、同一组数字预言, 只是讲故事的方式不同. 哪个故事 "对", 是哲学/品味问题: 你愿意接受 "塌缩这个原始过程不解释" (Copenhagen), 还是 "整个宇宙不停地分裂" (多世界), 还是 "粒子有轨迹只是看不见" (Bohm), 还是 "波函数只是我的信念" (QBism). 但区分故事对实验物理学家没有杠杆.</p>
+
+  <p>例外是 GRW 与 CSL — 它们不只换故事, 还换方程. 这才是 "真的不同的物理", 也因此<em>能被</em>实验证伪 (已部分被). 类似的修正还有 Penrose-Diósi 引力诱导塌缩 (vol 6 第 30 节会触及), 它把测量与时空曲率耦合, 也给具体不同预言 — 部分已被 macroscopic interferometer 实验约束.</p>
+
+  <p>这告诉你一件事: <strong>诠释只是诠释, 直到它修改方程, 才升级为物理</strong>. 测量公设之所以一百年来没解决, 不是因为物理学家懒, 而是因为标准 QM 本身在所有已知尺度都给精确预言, 没有数据缝隙逼我们换公设. 真要破局, 要么找到一个 GRW 类型修正 (能预言新现象然后被实验确认或否决), 要么等到量子引力 (Planck 尺度上 Schrödinger 方程本身可能失效, vol 6 第 29 节), 要么在某个未来宏观叠加态实验里看到偏离. 在那之前, "多世界 vs Copenhagen" 是茶余饭后的谈资, 不是实验主题.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>测量公设把 Schrödinger 方程的幺正演化与 Born 规则的概率塌缩并置, 留下一道数学接缝. 一百年来主流诠释绕着这道缝写故事: Copenhagen (Bohr, Heisenberg 1925-30) 拒绝解释、用经典/量子分界把缝盖上; Bohm 1952 给粒子加上隐含的真实轨迹与引导波, 代价是显式非局域; Everett 1957 干脆抹掉塌缩公设, 让宇宙永远幺正分支, Deutsch-Wallace 1999-2010 用决策理论从分支结构推 Born 规则; Rovelli 关系性 1996 与 QBism 2010s 把 $\ket{\psi}$ 重定义为观察者-相对的信息或信念. 这四类在所有现有实验中给出完全相同的预言, 因此不是不同物理, 而是同一物理的不同故事. 唯一真正不同的是 GRW 1986 与 CSL 这类动力学塌缩模型 — 它们修改 Schrödinger 方程加随机局域化项 (率 $\lambda$, 长度 $r_C$), 给宏观叠加额外塌缩机制, 而且<em>能</em>被实验证伪: 2017 年 Gran Sasso X 射线数据已排除 $\lambda\gtrsim 10^{-11}\,\mathrm{s}^{-1}$ 的部分参数空间. 这是 "诠释升级为物理" 的唯一已知路径. 下一节我们回到实验层面, 看 "量子跳跃" 在单原子捕获里如何被实时观测 — 那是一个把 Copenhagen 的 "测量瞬间" 直接拍下来的实验.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="18-decoherence.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="20-quantum-jumps.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

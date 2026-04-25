@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shor 算法为什么能多项式时间分解大整数? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="26-qubits.html">← 上一节</a>
+  <span class="chapter-title">第 27 节 / 30 · 第 6 部分 · 量子信息与前沿 · 第六卷·量子是什么?</span>
+  <a href="28-quantum-error-correction.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Shor 算法为什么能多项式时间分解大整数?</h1>
+  <div class="sub">—— 量子 Fourier 变换的力量</div>
+
+  <div class="abstract">RSA-2048 之所以是密码学行业的"无害设定", 是因为按今天最好的经典算法 (一般数域筛, GNFS) 去分解一个 2048 比特的合数, 复杂度是 $\exp\!\big(O\big((\log N)^{1/3}(\log\log N)^{2/3}\big)\big)$, 把全人类的算力调动起来也得算上数十亿年. 1994 年 Peter Shor 在贝尔实验室给出一份完全不同的算法: 在量子计算机上, 同样的分解任务花费 $O((\log N)^3)$ 步骤就够 — 多项式时间. 关键不在"枚举得快", 而在把问题改写成"找一个周期", 然后用量子 Fourier 变换 (QFT) 把 $2^n$ 个可能的周期一次性铺成叠加, 测一次, 概率峰值就出现在 $Q/r$ 的整数倍上, 经典处理顺手算出周期 $r$, 进而 $\gcd(a^{r/2}\pm 1, N)$ 给出 $N$ 的非平凡因子. 这一节从 RSA 的硬度讲起, 把 Shor 算法的电路一段段拆开 (Hadamard 叠加 → 模幂 oracle → QFT⁻¹ → 测量), 然后顺带把 1996 年 Grover 的 $\sqrt{N}$ 搜索也讲明白; 最后说一下今天距离把 RSA-2048 真正破掉还差多少 — 大概是 ~4000 个 logical qubit, 而 logical qubit 又要折成 ~百万 physical qubit, IBM 路线图把这条线画到了 2030 年代以后.</div>
+
+  <p>上一节我们把 qubit 写干净了: 一个二维 Hilbert 空间的纯态 $\alpha|0\rangle + \beta|1\rangle$, 一组通用门 (Hadamard, CNOT, T) 加测量, 就能模拟任何量子计算. 写到这里就该问一个问题了: 量子计算机算什么算得真快? 把 $n$-qubit 的 $2^n$ 维状态空间罗列起来, 似乎"指数大"是免费的, 但量子力学只允许你在末尾测一次, 而且只看到一个长度为 $n$ 的比特串. 单纯地把所有可能性塞进叠加里没用, 你必须让感兴趣的那个分量的振幅在最后干涉得最大. 这一节讲历史上第一个把这件事做漂亮的算法 — Shor 1994 — 和它之所以漂亮的工具: 量子 Fourier 变换.</p>
+
+  <h2>一、RSA 的硬度: 为什么分解大整数难</h2>
+
+  <p>1977 年 Rivest-Shamir-Adleman 给出 RSA: 选两个大素数 $p, q$, 公开它们的乘积 $N = pq$, 加密时要做的全部就是模 $N$ 的幂运算; 解密那一步要先用到 $\phi(N) = (p-1)(q-1)$, 而要算 $\phi(N)$, 你得把 $N$ 分回 $p$ 和 $q$. 整个公开钥密码体系的硬度, 落到一句话: 给你一个 2048 比特的合数 $N$, 找出它的两个素因子要花多少时间.</p>
+
+  <p>经典上最好的通用算法是 1993 年定型的"一般数域筛 (General Number Field Sieve, GNFS)", 它的复杂度按比特长 $b = \log_2 N$ 量级估是</p>
+
+  <p>$$ T_{\text{GNFS}}(N) = \exp\!\Big(\big(\tfrac{64}{9}\big)^{1/3}\,(\log N)^{1/3}\,(\log\log N)^{2/3}\,(1+o(1))\Big). $$</p>
+
+  <p>把数字代进去: 2009 年人们用世界各地的几百台计算机花了两年合作分解了 RSA-768 (768 比特), 折算到单 CPU 大约 1500 CPU·年; 把这个标度推到 RSA-2048, 多出来的指数因子大约是 $10^{9}$ 量级 — 同样的硬件配方需要 $\sim 10^{12}$ CPU·年, 也就是几十亿年的连续工作. 这是 RSA-2048 至今仍然算"安全"的根据. 注意这个增长虽然不是真正的指数, 但是亚指数 (sub-exponential) — 增长得比任何 $(\log N)^k$ 都快.</p>
+
+  <p>Shor 1994 的论文标题就明明白白地写: <em>Algorithms for Quantum Computation: Discrete Logarithms and Factoring</em>. 他给出的复杂度是 $O((\log N)^3)$ — 严格的多项式. 把 $\log N \approx 2048$ 代进去, $\sim 10^{10}$ 步基本量子门, 时钟频率随便估到 MHz, 一台理想量子机器把 RSA-2048 因式分解大致是几小时到一天的事情. 多项式 vs. 亚指数, 这个差距大到把整套公开钥密码体系都得重写.</p>
+
+  <h2>二、把分解改写成找周期</h2>
+
+  <p>Shor 的关键洞察不在量子部分, 而在经典数论那一步: 分解 $N$ 等价于"找一个数 $a$ 模 $N$ 的乘法周期 $r$". 具体地, 任取一个跟 $N$ 互素的 $a$ ($1 \lt  a \lt  N$, $\gcd(a, N) = 1$), 考虑函数</p>
+
+  <p>$$ f(x) = a^x \bmod N. $$</p>
+
+  <p>这个函数是周期的: 存在最小的 $r \gt  0$ 使 $a^r \equiv 1 \pmod N$, 这个 $r$ 称为 $a$ 模 $N$ 的阶. 一旦知道 $r$, 而且 $r$ 恰好是偶数, 而且 $a^{r/2} \not\equiv -1 \pmod N$, 那么</p>
+
+  <p>$$ a^r - 1 = (a^{r/2} - 1)(a^{r/2} + 1) \equiv 0 \pmod N $$</p>
+
+  <p>意味着 $N$ 整除 $(a^{r/2}-1)(a^{r/2}+1)$, 但 $N$ 不整除单独的任一个因子, 所以 $\gcd(a^{r/2}-1, N)$ 与 $\gcd(a^{r/2}+1, N)$ 必各分担 $N$ 的一部分素因子. 用 Euclid 算法在 $O((\log N)^2)$ 时间里就能算这两个 gcd, 拿到 $N$ 的两个非平凡因子.</p>
+
+  <p>"$r$ 偶数 + $a^{r/2}\not\equiv -1$"这两个条件在随机选 $a$ 时以至少 $1/2$ 的概率被满足 (经典数论可证), 失败就换一个 $a$ 重来, 几次之内必中. 所以分解 $N$ 这件事就完全归结到: <strong>给一个周期函数 $f(x) = a^x \bmod N$, 找出它的周期 $r$.</strong></p>
+
+  <p>问题是: 经典上找这个 $r$ 也很慢. $r$ 本身可能跟 $N$ 一样大 ($\sim 2^{2048}$), 你不能逐个算 $f(0), f(1), \ldots$ 直到撞回 $1$. Shor 的贡献是: 这一步用量子计算机一次性做完.</p>
+
+  <h2>三、量子 Fourier 变换: 周期一次显出来</h2>
+
+  <p>量子 Fourier 变换 (QFT) 是离散 Fourier 变换的量子版. 在 $Q = 2^n$ 维计算基底 $\{|x\rangle : x = 0, 1, \ldots, Q-1\}$ 上, 它定义为</p>
+
+  <p>$$ \mathrm{QFT}\,|x\rangle \;=\; \frac{1}{\sqrt{Q}}\,\sum_{y=0}^{Q-1}\,e^{\,2\pi i\,xy/Q}\,|y\rangle. \tag{1} $$</p>
+
+  <p>(1) 这个酉变换在经典上看像一个 $Q\times Q$ 矩阵, 直接算似乎要 $O(Q^2) = O(4^n)$ 次乘法. 但 Cooley-Tukey 那套递归分解在量子电路上更漂亮: QFT 可以用 $O(n^2) = O((\log Q)^2)$ 个 Hadamard 门和受控相位门完整实现. 这是它能进入多项式时间算法的根本原因 — 经典 FFT 是 $O(Q \log Q)$, 已经是离散 Fourier 的最优经典算法; 量子 FFT 进一步省到 $O((\log Q)^2)$, 因为它操作的是叠加振幅而不是 $Q$ 个独立数据点.</p>
+
+  <p>QFT 的"周期检测"功能可以这样直接看. 设输入态是某个长度为 $r$、周期为 $r$ 的等振幅态:</p>
+
+  <p>$$ |\psi\rangle = \frac{1}{\sqrt{M}}\sum_{k=0}^{M-1}|x_0 + k r\rangle, \qquad M r \approx Q. $$</p>
+
+  <p>把 (1) 作用上去, 交换求和顺序, 用几何级数求和, 振幅在 $|y\rangle$ 上变成</p>
+
+  <p>$$ \frac{1}{\sqrt{MQ}}\,e^{2\pi i\,x_0 y/Q}\,\sum_{k=0}^{M-1}e^{2\pi i\,kry/Q}. $$</p>
+
+  <p>那个对 $k$ 的和, 当 $ry/Q$ 是整数 (即 $y$ 是 $Q/r$ 的整数倍) 时, 每一项相位都是 1, $M$ 项相干叠加, 振幅 $\sim \sqrt{M/Q}$; 不是整数倍时, 相位均匀分布在单位圆上, 几何级数互相抵消, 振幅压到 $\sim 1/\sqrt{MQ}$. 测量结果以高概率落在 $y \approx j Q/r$ ($j = 0, 1, \ldots, r-1$) 这 $r$ 个尖峰上 — 这就是周期 $r$ 在频域留下的指纹. 用连分式展开把 $y/Q$ 化成最简分数 $j/r$, 经典后处理给出 $r$.</p>
+
+  <h2>四、Shor 算法的电路: 一遍跑完</h2>
+
+  <p>把上面三件事串起来, 得到一个标准的相位估计型电路. 准备两个寄存器: 上寄存器 $n$ 个 qubit (取 $Q = 2^n$ 略大于 $N^2$, 保证频率分辨够), 下寄存器若干 qubit 装下 $a^x \bmod N$ 的输出.</p>
+
+  <p>第一步, 对上寄存器每个 qubit 加 Hadamard, 把它从 $|0\rangle^{\otimes n}$ 推到所有计算基的均匀叠加</p>
+
+  <p>$$ \frac{1}{\sqrt{Q}}\sum_{x=0}^{Q-1}|x\rangle\,|0\rangle. $$</p>
+
+  <p>第二步, 一个把 $|x\rangle|0\rangle \mapsto |x\rangle|a^x \bmod N\rangle$ 的可逆酉算符 $U_a$, 通常叫"模幂 oracle". 这一步在经典数论上靠"反复平方法 (repeated squaring)" $O((\log N)^3)$ 时间实现, 在量子电路上需要 $O((\log N)^3)$ 个基本门, 是整个算法的瓶颈代价. 作用完后, 联合态变成</p>
+
+  <p>$$ \frac{1}{\sqrt{Q}}\sum_{x=0}^{Q-1}|x\rangle\,|a^x \bmod N\rangle. \tag{2} $$</p>
+
+  <p>第三步, 测量下寄存器 (或者干脆不测, 等价的). 设测得某个具体值 $y_0 = a^{x_0} \bmod N$, 那么上寄存器塌缩到所有满足 $a^x \equiv y_0$ 的 $x$ 的等振幅叠加 — 这正是周期 $r$、相位 $x_0$ 的等距栅格态, 形如 $|x_0\rangle + |x_0+r\rangle + |x_0+2r\rangle + \cdots$.</p>
+
+  <p>第四步, 对上寄存器作 QFT⁻¹ (其实是 QFT 的复共轭, 电路对称). 由上一节的论证, 振幅会聚在 $y \approx j Q/r$ 的尖峰上.</p>
+
+  <p>第五步, 测量上寄存器, 得到一个具体的整数 $y$. 用经典的连分式算法把 $y/Q$ 展开, 截断到分母不超过 $N$ 的最简分数, 大概率拿到 $j/r$, 由此读出 $r$. 验算 $a^r \stackrel{?}{=} 1 \pmod N$, 若 $r$ 偶且 $a^{r/2}\not\equiv -1$, 算 $\gcd(a^{r/2}\pm 1, N)$ — 拿到 $N$ 的非平凡因子, 收工.</p>
+
+  <p>整个过程, 量子部分 $O((\log N)^3)$, 经典后处理 $O((\log N)^2)$, 总复杂度 $O((\log N)^3)$. 把 (1) 和 (2) 摆在一起对比经典 GNFS 的亚指数, 量子机器在分解上的优势是真正的"质变".</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Shor 算法电路框图 — 横向时间轴, 上下两条粗线表示两个寄存器. 上寄存器: $|0\rangle^{\otimes n}$ → Hadamard 阵列 $H^{\otimes n}$ (画成 $n$ 个并排的 $H$ 方块) → 与下寄存器之间一个大方框标 $U_a$ ("模幂 $a^x\bmod N$") → 上寄存器接一个大方框标 $\mathrm{QFT}^{-1}$ → 末端 $n$ 个测量符号 (画成扇形仪表), 测量结果连到一个虚线方框 "经典后处理: 连分式 → 周期 $r$ → $\gcd(a^{r/2}\pm 1, N)$ → 因子 $p, q$". 下寄存器: $|0\rangle^{\otimes m}$ → 经过 $U_a$ → 末端测量 (得到 $y_0 = a^{x_0}\bmod N$, 不影响主流程). 整个电路右下角注释 "Shor 1994, $O((\log N)^3)$ 门", 与左下角注释经典 GNFS 复杂度 $\exp(O((\log N)^{1/3}))$ 形成对比]</div>
+  </figure>
+
+  <h2>五、Grover 1996: $\sqrt{N}$ 搜索</h2>
+
+  <p>顺带把另一类典型量子算法讲清楚. 1996 年 Lov Grover 在贝尔实验室给出无序数据库搜索: 给一个布尔函数 $f: \{0, 1, \ldots, N-1\} \to \{0, 1\}$, 假设恰好一个 $x^* $满足 $f(x^*)=1$, 找出 $x^*$. 经典上你不得不平均查询 $N/2$ 次, 最坏 $N$ 次, 这是信息论下界. 量子上 Grover 算法只用 $O(\sqrt N)$ 次查询.</p>
+
+  <p>它的电路是一个迭代: 先 Hadamard 把 $n$ qubit 推到 $\frac{1}{\sqrt N}\sum_x|x\rangle$ 这个均匀叠加, 然后反复施加 "Grover 算子" $G = -H^{\otimes n} (2|0\rangle\langle 0| - I) H^{\otimes n}\cdot O_f$, 其中 $O_f$ 是一个把 $|x^*\rangle$ 翻一个负号的 oracle. 几何上, $G$ 是在二维子空间 ($|x^*\rangle$ 与"非目标"两个轴张成) 内的旋转, 每次旋转 $\sim 2/\sqrt N$ 弧度, 所以约 $\frac{\pi}{4}\sqrt N$ 次以后, 状态从纯叠加旋转到几乎纯 $|x^*\rangle$, 测量直接给出答案.</p>
+
+  <p>Grover 是平方加速, 不是指数加速 — 实用上的影响也比 Shor 小得多. 比如对 AES-128 (一种对称密码, 安全性靠 $2^{128}$ 量级的暴力搜索), Grover 把它压到 $2^{64}$ 量级查询, 还是相当大但已经显著弱化; 对策是把对称密钥从 128 比特升到 256 比特, 即 AES-256, 这样 Grover 后仍剩 $2^{128}$ 量级安全度. 而对 RSA, Shor 是真正的"灭顶之灾" — 没有把"密钥变长"这种小修小补的解法, 必须改换体系 (后量子密码, lattice-based, hash-based, 等等).</p>
+
+  <p>HHL 算法是另一条线. 2009 年 Harrow-Hassidim-Lloyd 给出: 对于稀疏的、条件数良好的 $A x = b$ 线性方程组, 量子机器以 $O(\log N)$ 时间给出 $|x\rangle$ 的振幅 — 比经典 $O(N)$ 指数级地快. 但它返回的是量子态, 你只能从中读概率振幅, 而非整个解向量. 对很多机器学习/物理模拟问题, 这个限制是可以接受的, 所以 HHL 是近年量子算法研究的另一个核心.</p>
+
+  <h2>六、距离真正破 RSA 还差多少</h2>
+
+  <p>把上面的复杂度估计落到现实工程上, 数字会很不一样. Shor 算法的"$O((\log N)^3)$ 步"是基本酉门数, 但每个 logical qubit 都要被实现成大约 $10^3$-$10^4$ 个 physical qubit (下一节讲量子纠错码会讲到, 表面码大约 $d^2$ 个 physical qubit 给一个 logical qubit, 当下错误率水平要 $d \sim 20$). 把 RSA-2048 完整跑下来, 论文级估计大致需要 $\sim 4000$ logical qubit + $\sim 10^{10}$ T-gate 操作, 折算下来 $\sim 10^6$ - $10^7$ physical qubit, 运行时间数天到数周. IBM 的公开路线图把"Condor (1121 qubit, 2023)" → "Kookaburra (~4000 qubit, 2025)" → "Blue Jay (~10000 qubit, 2030 后)" 排成一线, 而且这些是 physical qubit, logical qubit 还要除以那个 $10^3$ 的开销. 所以 RSA 在十年量级是安全的, 但二三十年后就值得担心 — NIST 已经在 2024 年发布了第一批后量子密码标准 (CRYSTALS-Kyber, CRYSTALS-Dilithium, SPHINCS+), 工业界开始迁移.</p>
+
+  <p>实验验证方面, 2001 年 IBM 的 Vandersypen 等人用 NMR 上一台 7 qubit 的小机器跑 Shor 分解 $N = 15 = 3\times 5$, 真实地拿到了周期 $r = 4$ — 这是 Shor 算法的第一次实验演示. 2012 年加拿大 D-Wave 量子退火机也演示过类似的小实例; 2019-2024 各家超导量子机器在 21、35 等小数上反复验证. 但从分解 15 到分解 2048 比特的 RSA, 中间隔着大约 10 个数量级的 qubit 数 — 这十年迈一个数量级, 是当前量子工程的主要节奏.</p>
+
+  <p>历史维度上还有一段值得记住: Shor 1994 那篇论文提交时, 量子计算机这个东西在物理上还基本不存在. Feynman 1982 在 "Simulating Physics with Computers" 里第一次问"用量子机器模拟量子系统, 是否本质上更高效"; Deutsch 1985 写了第一个明确的量子图灵机模型, 提出了第一个超经典的量子算法 (Deutsch-Jozsa, 但那是个很学术的玩具问题); Shor 把它拽到了 RSA 这种"全人类都关心的"具体问题上, 量子计算从此从理论玩具变成了战略议题. Grover 1996 紧接着补上搜索这一线; HHL 2009 把它推到线性代数. 二十多年过去, 算法库已经相当丰富, 但能跑这些算法的机器, 还得再等几年.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>RSA 的安全性靠"分解大整数难": 经典最优 GNFS 复杂度 $\exp(O((\log N)^{1/3}(\log\log N)^{2/3}))$, RSA-2048 需要数十亿 CPU·年. Shor 1994 把这件事变成多项式时间 $O((\log N)^3)$, 关键三步: (i) 数论改写 — 分解 $N$ 等价于找 $a^x\bmod N$ 的周期 $r$, $r$ 偶则 $\gcd(a^{r/2}\pm 1, N)$ 给非平凡因子; (ii) 量子并行 — Hadamard 阵列 + 模幂 oracle 把 $\frac{1}{\sqrt Q}\sum_x|x\rangle|a^x\bmod N\rangle$ 写出, 一次性铺满 $Q = 2^n$ 个分量; (iii) 频域提取 — QFT $|x\rangle = \frac{1}{\sqrt Q}\sum_y e^{2\pi i xy/Q}|y\rangle$ 把周期 $r$ 折成 $Q/r$ 倍数处的尖峰, 测一次, 经典连分式算出 $r$. 总代价 $O((\log N)^3)$ 量子门. Grover 1996 给出 $\sqrt N$ 搜索, 平方加速, 对 AES 这类对称密码不致命 (升到 256 比特即可). 实验上 IBM 2001 用 NMR 分解了 $15 = 3\times 5$; 真要破 RSA-2048 大约需 4000 logical qubit ≈ 百万 physical qubit, IBM 路线图指向 2030 年代以后. 后量子密码 (NIST 2024 标准) 已经在路上. Shor 1994、Grover 1996、HHL 2009 — 量子算法学的奠基之三.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="26-qubits.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="28-quantum-error-correction.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

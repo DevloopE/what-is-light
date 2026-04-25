@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么量子 Hall 电阻精确到 h/e²? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="20-josephson.html">← 上一节</a>
+  <span class="chapter-title">第 21 节 / 30 · 第 5 部分 · 拓扑相 · 第七卷·物质是什么?</span>
+  <a href="22-fractional-hall.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么量子 Hall 电阻精确到 $h/e^2$?</h1>
+  <div class="sub">—— 整数 Hall 与 von Klitzing 1980</div>
+
+  <div class="abstract">
+    1980 年 2 月 5 日清晨, 在法国 Grenoble 的高磁场实验室, Klaus von Klitzing 盯着一台 Si MOSFET 的输出, 强磁场 18 T, 温度 1.5 K, 栅压在扫描. 仪器的纸带上画出来一条令人目瞪口呆的曲线: 横向电阻 $R_{xy}$ 不像经典 Hall 效应那样随磁场线性涨, 而是出现一系列水平的平台; 每个平台的电阻精确地等于 $h/(\nu e^2)$, $\nu = 1, 2, 3, \dots$, 而且与样品形状、杂质浓度、迁移率几乎全无关 — 后来被验证到 $10^{-9}$ 量级. 一个用普通 Si 工艺做出来的二维电子气, 在强磁场低温下, 把基本电阻 $h/e^2 \approx 25812.807\,\Omega$ 直接读出来给你. 这一节我们从经典 Hall 出发, 在强磁场低温里把电子推到 Landau 能级, 看完全填满 $\nu$ 个能级时的精确量子化, 再走到 Laughlin 1981 的规范不变性论证, 走到 TKNN 1982 的 Chern 数 — 最后看到为什么这个数字能在 2019 年的 SI 单位制改革里取代 1 公斤砝码, 成为电阻的国际定义.
+  </div>
+
+  <p>
+    一个看似平庸的几何实验. 1879 年 Edwin Hall 在 Johns Hopkins 大学还是个研究生, 他想验证 Maxwell 的一句猜测: 通电导体在磁场里, 载流子是不是会被 Lorentz 力推向一边. 他取一片金箔, 沿 $x$ 通电, 在 $z$ 加磁场, 在 $y$ 测电压 — 测到了, 而且与磁场成正比. 经典 Hall 电阻 $R_{xy} = B/(n_e q)$, 是材料里载流子浓度 $n_e$ 的直接探针. 一百年后, 同样的几何, 同样的 $V/I$, 在强磁场低温下, 突然不再线性, 而是阶梯状, 而且台阶的位置由两个基本常数 $h$ 和 $e$ 决定 — 与材料里有多少载流子无关, 与样品里有多少杂质无关, 与 mean free path 是 1 nm 还是 1 μm 都无关. 这就是 1980 年那个早晨, von Klitzing 看到的东西. 我们的任务是把它算出来 — 不是大致, 而是为什么这个数到第九位小数都不动.
+  </p>
+
+  <h2>一、Landau 能级 — 二维电子在强磁场里的能谱</h2>
+
+  <p>
+    把所有的物理简化到最干净的版本: 一片二维电子气 (2DEG), 厚度只有几纳米, 远小于其他长度尺度, 电子被钉在 $z = 0$ 平面上自由运动, 加一个垂直 $z$ 方向的均匀磁场 $\vec{B} = B\hat{z}$. 实验上这种 2DEG 来自两种地方: Si MOSFET 反型层 (von Klitzing 当年用的), 以及 GaAs/AlGaAs 异质结里的二维电子气 (现在标准做法), 后者迁移率可以做到 $\mu \sim 10^7\,\mathrm{cm^2/(V \cdot s)}$, 远比体材料干净.
+  </p>
+
+  <p>
+    单粒子哈密顿量是
+  </p>
+
+  <p>
+    $$ H \;=\; \frac{1}{2m^*}\!\left(\vec{p} - q\vec{A}\right)^{\!2}, $$
+  </p>
+
+  <p>
+    $m^*$ 是有效质量 (GaAs 里 $m^* = 0.067\,m_e$, Si 里 $\sim 0.19\,m_e$), $\vec{A}$ 是给出 $\vec{B} = \nabla\times\vec{A}$ 的矢势. 这是一个量子力学的标准课, 取 Landau 规范 $\vec{A} = (0, Bx, 0)$, 解出来本征能量根本不依赖 $k_y$, 而是分立的:
+  </p>
+
+  <p>
+    $$ \varepsilon_n \;=\; \hbar\omega_c\!\left(n + \tfrac{1}{2}\right), \qquad \omega_c \;=\; \frac{eB}{m^*}, \qquad n = 0, 1, 2, \dots \tag{1} $$
+  </p>
+
+  <p>
+    这就是 Lev Landau 1930 年算出来的 Landau 能级. 二维电子气在强磁场里, 连续的动能谱坍缩成等距的离散梯子, 间距 $\hbar\omega_c$. 每个能级是巨简并的 — 简并度等于穿过样品的磁通量子数 $N_\Phi = BA / \Phi_0$, 其中 $\Phi_0 = h/e \approx 4.136 \times 10^{-15}\,\mathrm{Wb}$ 是磁通量子. 也就是说, 单位面积每条 Landau 能级能装的电子数为
+  </p>
+
+  <p>
+    $$ n_L \;=\; \frac{eB}{h}. $$
+  </p>
+
+  <p>
+    定义填充因子
+  </p>
+
+  <p>
+    $$ \nu \;\equiv\; \frac{n_e}{n_L} \;=\; \frac{n_e \, h}{e B}. \tag{2} $$
+  </p>
+
+  <p>
+    $\nu$ 数的物理意义直观: 把电子按能量从低到高填进 Landau 能级, 填了几条? 当 $\nu$ 是整数, 恰好把第 1, 2, …, $\nu$ 条能级填满, 第 $\nu+1$ 条空空. Fermi 能正好卡在两条能级之间的能隙里, 体内没有可激发的态 — 体材料是绝缘的.
+  </p>
+
+  <p>
+    代具体数字感受一下能标. 取 GaAs 标准实验 $B = 10\,\mathrm{T}$, $m^* = 0.067 m_e$:
+  </p>
+
+  <p>
+    $$ \hbar\omega_c \;=\; \frac{\hbar e B}{m^*} \;\approx\; \frac{(1.055\times 10^{-34})(1.6\times 10^{-19})(10)}{0.067 \times 9.11 \times 10^{-31}} \;\approx\; 2.77 \times 10^{-21}\,\mathrm{J} \;\approx\; 17.3\,\mathrm{meV}. $$
+  </p>
+
+  <p>
+    与之相比, 室温热能 $k_B T \approx 25\,\mathrm{meV}$, 几乎相当. 所以室温下 Landau 能级被热涨落抹平, 量子 Hall 看不到; 必须降到 $T \lt  1\,\mathrm{K}$ ($k_B T \sim 0.09\,\mathrm{meV}$), Landau 能级之间的能隙才显著大于热涨落, 平台才清晰. 而磁场不能太弱, 否则 $\hbar\omega_c$ 还没拉开, $n_L$ 太小, 能容纳的电子也太少 $\nu$ 跳得太密. 所以典型实验条件 $B = 4 \text{-} 10\,\mathrm{T}$, $T \lt  1\,\mathrm{K}$, 是被两个能标 ($\hbar\omega_c \gg k_B T$) 框死的.
+  </p>
+
+  <h2>二、为什么 $\sigma_{xy}$ 平台精确到 $h/e^2$</h2>
+
+  <p>
+    经典 Hall 给出 $\sigma_{xy} = n_e e / B = (n_e h/eB)\cdot(e^2/h) = \nu \cdot (e^2/h)$. 这个换算只是把变量换了一下, 还看不出 "精确量子化" 的来由. 要把它精确地钉在整数上, 关键有两点: 一是体里的能隙, 二是边界态.
+  </p>
+
+  <p>
+    干净系统里, $\nu$ 是连续可调的 — 调栅压改 $n_e$, 调外磁场改 $n_L$. 但实际样品有杂质. 杂质的存在把每条 Landau 能级展宽 (无序展宽), 但更重要的是它把展宽后的态分成两类: 中间一窄条延展态 (extended states), 它们在样品里穿透, 能贡献宏观电流; 两侧很宽的 "尾巴" 是局域态 (localized states), 它们被杂质势阱钉住, 不参与导电. 当 Fermi 能扫过局域态区, $n_e$ 在变, 但参与导电的延展态数量不变 — $\sigma_{xy}$ 也不变. 这就是平台的物理来源: 杂质虽然脏, 反而稳住了平台.
+  </p>
+
+  <p>
+    更深的论证是 Robert Laughlin 1981 年给的. 把 2D 样品卷成一个圆筒, 沿圆周方向加一个时变的磁通 $\Phi(t)$ 缓慢从 $0$ 增加到 $\Phi_0 = h/e$. 整个过程对体内所有的态来说, 哈密顿量回到原状 (规范不变性). 但是单粒子态的标号会移动: $\Phi$ 增加 $\Phi_0$, 沿圆周的角动量量子数 $k_y$ 移动一格, 整个谱平移一位. 既然延展态都填满了, 平移后的延展态分布和平移前完全一样, 但有 $\nu$ 个电子从筒的一端被搬到另一端 — 因为每条满的 Landau 能级搬了一个电子. 这个搬运对应一个跨样品的电荷转移 $\Delta Q = \nu e$. 用 Faraday 定律, 时变磁通在圆周上感应电压 $V = -d\Phi/dt$, 而搬运的电流为 $I = \Delta Q / \Delta t$, 所以横向电导
+  </p>
+
+  <p>
+    $$ \sigma_{xy} \;=\; \frac{I}{V} \;=\; \nu \cdot \frac{e^2}{h}. \tag{3} $$
+  </p>
+
+  <p>
+    Laughlin 的论证里, $\nu$ 必须是整数 — 因为一周转完后整数个电子搬过去, 不能搬半个 (单粒子态是离散的). 而 $h/e^2$ 是规范变换里 "一周" 这一拓扑事件的天然单位. 这个论证的精度只取决于规范不变性 — 而规范不变性是 QED 的根本. 这就是为什么 $R_K = h/e^2 = 25812.80745\,\Omega$ (CODATA 2018) 能精确到 $10^{-9}$: 它的精度等同于电荷守恒的精度.
+  </p>
+
+  <p>
+    1982 年 David Thouless, Mahito Kohmoto, Peter Nightingale, Marcel den Nijs (TKNN) 给了第二个独立的论证, 把 $\nu$ 直接算成一个拓扑不变量 — Bloch 波函数在磁布里渊区里的 Berry 曲率的总积分:
+  </p>
+
+  <p>
+    $$ \nu \;=\; \frac{1}{2\pi}\!\int_{\mathrm{BZ}}\! \mathcal{F}(\vec{k})\, d^2 k \;\in\; \mathbb{Z}. $$
+  </p>
+
+  <p>
+    这就是数学家所谓的第一 Chern 数, 是拓扑学里最干净的整数之一. 它取整数, 不是因为某个对称性恰好成立, 而是因为它是流形上 U(1) 主丛的拓扑类 — 在样品形状变形、杂质重新分布、温度小幅波动下, 这个数不可能连续地变到 1.999 或 2.001, 它要变只能跳一整个台阶. 这就是 "拓扑稳健": 它不是某个因为巧合而对的近似, 而是只要能隙存在, 它就只能是整数.
+  </p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 主图 — 横轴磁场 $B$ (单位 T, 从 0 到 12), 纵轴 $R_{xy}$ (单位 $\Omega$ 或 $h/e^2$ 单位). 经典 Hall 是一条斜线, 量子 Hall 是一系列水平平台, 高度依次为 $h/e^2, h/(2e^2), h/(3e^2), \dots$, 平台之间用陡峭过渡连接. 同一图里叠上 $R_{xx}$ 曲线 (用第二条纵轴或不同颜色), 在每个平台上为零, 在平台之间出现尖峰. 旁边的小子图 — 横轴 $B$, 纵轴能量 $\varepsilon$, 画出 Landau 能级 $\hbar\omega_c (n+1/2)$ 五条扇形发散的直线, 标记 Fermi 能 $E_F$ 位置, 显示每填满一条能级 Fermi 能就跳到下一条之间的隙里.]</div>
+  </figure>
+
+  <h2>三、纵向电阻为零 — 边界态与无散射</h2>
+
+  <p>
+    平台上 $\sigma_{xy}$ 量子化只是故事的一半. 实验同时发现 $\sigma_{xx} = 0$ — 体内纵向电阻为零. 这是另一件惊人的事: 一片有杂质的脏样品, 在某些磁场点, 电子散射看起来彻底消失了.
+  </p>
+
+  <p>
+    机制是边界态. 体内有能隙、电子被局域、不导电; 但在样品边缘, Landau 能级会向上弯 (因为边缘势能高于体内), 总有几条能级在边缘处穿过 Fermi 能 — 这些就是边界态 (chiral edge states), 而且只往一个方向走 (左边的边走 $+x$, 右边的边走 $-x$, 由 Lorentz 力的方向决定). 这个 "单向" 是关键: 边界态只能向前传播, 不能反射 — 因为反向的态在另一边的边, 中间隔着体内能隙, 无法跨越. 这等于在边界上有一根没有反射、没有耗散的量子高速公路. 电子从一个电极进, 沿边界绕过来, 从另一个电极出, 中间没有 backscattering, 所以纵向电阻为零.
+  </p>
+
+  <p>
+    把电导张量翻成电阻张量
+  </p>
+
+  <p>
+    $$ \sigma_{xy} = \nu \frac{e^2}{h}, \quad \sigma_{xx} = 0 \;\Longrightarrow\; \rho_{xy} = \frac{h}{\nu e^2}, \quad \rho_{xx} = 0. $$
+  </p>
+
+  <p>
+    注意 $\sigma_{xx} = 0$ 与 $\rho_{xx} = 0$ 同时成立 — 在 $\sigma_{xy} \neq 0$ 时这是相容的, 因为张量求逆里两个分量耦合. 物理图像就是: 电流不沿电压方向走, 它沿垂直方向走 (Hall 几何), 既然没有沿电压方向的分量, 那个方向上自然没有耗散.
+  </p>
+
+  <p>
+    边界态的图景把整数量子 Hall 翻译成一类 "拓扑绝缘体" — 体内绝缘, 边缘上有拓扑保护的导电通道. 这是后来三维拓扑绝缘体 (Bi$_2$Se$_3$, Bi$_2$Te$_3$) 与 Chern 绝缘体的原型. 这类思想从 1982 年 TKNN 出发, 一直长成今天凝聚态最大的子领域之一. 我们下一节会把它推到分数 Hall, 之后几节会回到拓扑绝缘体.
+  </p>
+
+  <h2>四、von Klitzing 1980 与 SI 单位制</h2>
+
+  <p>
+    历史的现场. 1980 年 2 月初, Klaus von Klitzing 是 Würzburg 大学的副教授, 借用 Grenoble 的 Max-Planck-Institut 的高磁场强子, 想测 Si MOSFET 反型层在强磁场下的迁移率. 他和 Gerhard Dorda、Michael Pepper 已经看到过 Hall 平台样的结构 — 但都被解释成杂质散射的某种偶然. 那个晚上他扫栅压, 在 18 T 磁场、1.5 K 温度下, 发现 $R_{xy}$ 平台高度精确到当时仪表读数极限 ($10^{-5}$, 后来被推到 $10^{-9}$), 而且与样品 (Si 工艺) 的细节无关. 他写下: $R_{xy} = h/(ie^2)$, $i = 1, 2, 3, \dots$, 把他自己也吓了一跳 — 因为这个数与 QED 的精细结构常数直接挂钩 ($\alpha = \mu_0 c e^2 / 2h$). 论文在 1980 年 8 月的 Physical Review Letters 发表. 1985 年 von Klitzing 独得诺贝尔物理学奖, 速度之快在凝聚态历史上少见.
+  </p>
+
+  <p>
+    一个数被精确到 $10^{-9}$ 意味着什么? 它意味着这个电阻值可以作为基础常数. 1990 年起, 国际计量大会就采用 von Klitzing 常数 $R_K = 25812.807\,\Omega$ 作为电阻的"约定值"用于全球计量校准. 2019 年 5 月 20 日, 国际单位制 (SI) 进行根本性重定义 — 抛弃 1889 年的国际原器 (那块铂铱合金的 1 公斤砝码), 改成用基本常数定义. 从此 Planck 常数 $h$ 取定值 $6.62607015 \times 10^{-34}\,\mathrm{J\cdot s}$, 电荷 $e$ 取定值 $1.602176634\times 10^{-19}\,\mathrm{C}$, 而 $R_K = h/e^2 = 25812.80745\,\Omega$ 自动变为定义值 (无误差). 任何想校准电阻的实验室, 都可以做一个量子 Hall 装置, 直接读出 $R_K$ — 没有比这更基本的标准.
+  </p>
+
+  <p>
+    2016 年, David Thouless、Duncan Haldane、Michael Kosterlitz 因为对凝聚态拓扑相变和拓扑物质的开创性工作获诺贝尔物理学奖. Thouless 那部分, 直接源自 1982 年 TKNN 关于量子 Hall Chern 数的论文. 物理学很少能把 1980 的实验、1981 的 Laughlin 论证、1982 的 TKNN 数学、1985 的诺贝尔奖、2016 的诺贝尔奖、2019 的 SI 重定义连成这么紧密的一条链 — 量子 Hall 几乎是凝聚态在 20 世纪最完美的故事.
+  </p>
+
+  <h2>五、几个推论与边界</h2>
+
+  <p>
+    (i) 自旋退简并. 真正的 Landau 能级还要乘以自旋 (Zeeman 劈裂) 与谷简并 (Si 里的两谷). Si MOSFET 上看到的 $\nu$ 包括自旋和谷的贡献; GaAs 二维气里两谷退化, 主要是自旋. 这就是为什么早期 Si 看到的平台和 GaAs 上的看起来不完全一样 — 计数方式不同, 但每条非简并 Landau 能级仍贡献一个 $e^2/h$.
+  </p>
+
+  <p>
+    (ii) 石墨烯量子 Hall 与狄拉克电子. 2005 年 Geim, Novoselov 等在单层石墨烯里看到了量子 Hall, 但平台位置移了半步: $\sigma_{xy} = \pm(n+1/2) \times 4 e^2/h$. 因为石墨烯的低能电子是无质量狄拉克电子, Landau 能级谱不是 $\hbar\omega_c(n+1/2)$ 而是 $\pm v_F\sqrt{2\hbar e B n}$, 包含一条独特的零模. 这是相对论性二维电子气的量子 Hall, 进一步拓展了 Laughlin 论证的适用范围. (与下一节的分数 Hall 不同, 这只是把整数序列移半步, 仍然是单粒子物理.)
+  </p>
+
+  <p>
+    (iii) 反常量子 Hall. 没有外磁场, 仅靠材料内禀的磁性 (e.g. Cr 掺杂的 (Bi,Sb)$_2$Te$_3$ 拓扑绝缘体薄膜), 也能看到 $\sigma_{xy} = e^2/h$ 平台. 这就是 2013 年薛其坤组实验观察到的量子反常 Hall 效应. Haldane 1988 早就在一个蜂窝晶格模型里预言了这种可能性, 这正是他 2016 年获诺贝尔奖的工作之一.
+  </p>
+
+  <p>
+    (iv) 与精细结构常数的关系. $R_K = h/e^2$, 与精细结构常数 $\alpha = e^2/(4\pi\varepsilon_0 \hbar c) = 1/(2 c \varepsilon_0 R_K)$ 直接相关. 量子 Hall 给出了独立测量 $\alpha$ 的途径, 与原子物理 (g-2)、QED、原子干涉等独立测量值交叉验证, 一致到 $10^{-10}$. 这是一组现代物理学最一致的常数之一.
+  </p>
+
+  <p>
+    (v) 分数化的预兆. 1982 年 Tsui-Stormer-Gossard 在更干净的 GaAs 二维气里看到 $\nu = 1/3$ 的平台, $\sigma_{xy} = (1/3) e^2/h$ — 一个分数. 这意味着 Laughlin 的整数论证不够, 必须引入相互作用与分数电荷的准粒子. 这就是下一节的内容: 当电子相互作用占主导, 体内的能隙不再是单粒子的 Landau 能隙, 而是多体凝聚的能隙, 而准粒子带分数电荷 $e/3$.
+  </p>
+
+  <div class="small-summary">
+    <h4>小结</h4>
+    <p>
+      二维电子气在垂直强磁场里, 单粒子能谱坍缩成等距的 Landau 能级 $\varepsilon_n = \hbar\omega_c(n+1/2)$, 每条能级在单位面积上能装 $eB/h$ 个电子. 当填充因子 $\nu = n_e h/(eB)$ 是整数, Fermi 能落在 Landau 能隙里, 体内绝缘, 边界上有拓扑保护的手性边界态. 横向电导 $\sigma_{xy} = \nu \cdot e^2/h$ 精确量子化, 纵向电阻 $\rho_{xx} = 0$ — 这就是 von Klitzing 1980 在 Grenoble 高磁场实验室、Si MOSFET 18 T、1.5 K 下读出的 25812.807 Ω. Laughlin 1981 用规范不变性论证了量子化的精度等同于电荷守恒的精度; TKNN 1982 把 $\nu$ 算成 Bloch 波函数的 Chern 数, 把整数稳健性翻译成 U(1) 主丛的拓扑类. von Klitzing 1985 独得诺贝尔奖, Thouless 等 2016 因为拓扑物相再得一次诺贝尔奖, 2019 年国际单位制改革直接用 $R_K = h/e^2 = 25812.80745\,\Omega$ 定义电阻. 在更大的图景里, 这是凝聚态第一次把 "拓扑" 引进物质科学 — 体内能隙保护的不是某种对称性, 而是一个整数 Chern 数; 这个想法接下来会长出分数 Hall (下一节)、拓扑绝缘体、Weyl 半金属、Majorana 边界态、拓扑量子计算 — 我们物质世界里所有 "稳健的" 量子整数, 几乎都源自 1980 那一晚 von Klitzing 看到的那张纸带.
+    </p>
+    <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="20-josephson.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="22-fractional-hall.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

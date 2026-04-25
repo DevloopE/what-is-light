@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自旋是什么? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="14-hydrogen.html">← 上一节</a>
+  <span class="chapter-title">第 15 节 / 30 · 第 3 部分 · 解谱 · 第六卷·量子是什么?</span>
+  <a href="16-epr-bell.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>自旋是什么?</h1>
+  <div class="sub">—— Pauli 矩阵与 Dirac 方程的暗示</div>
+
+  <div class="abstract">电子带着一份与轨道运动无关的角动量 $\hbar/2$ — 你怎么把它装进一个 "球"、"陀螺"、"自转" 的图像里都不行: 一个经典电荷球若想以表面线速度产生 $\hbar/2$ 的角动量, 表面要超过光速. 1925 年 Goudsmit 和 Uhlenbeck 还是把这个数字提出来了, Lorentz 当面摇头, Pauli 一开始也反对. 但 Stern-Gerlach 的银原子束在 1922 年已经在屏上劈成了两条, 反常塞曼效应给出了多余的对称性, 钠的 D 线又分得明明白白. 1927 年 Pauli 把它写成两个分量的旋量加上三个 $2\times 2$ 矩阵 $\sigma_x, \sigma_y, \sigma_z$; 1928 年 Dirac 把 Schrödinger 方程相对论化, 自旋作为四分量旋量的一部分自动跑出来, 顺手附赠反粒子. 这一节从 Stern-Gerlach 的两条银线开始, 写下 Pauli 矩阵, 算 g 因子, 推到 Dirac 方程的暗示.</div>
+
+  <p>到这一节为止, 我们已经把 Schrödinger 方程解到了氢原子, 拿出了主量子数 $n$、轨道角动量 $\ell$、磁量子数 $m_\ell$. 这三个数字告诉你电子在 Coulomb 势下能停在哪些 "驻波" 上, 也告诉你这些驻波在外磁场里怎么按 $L_z$ 投影分裂. 但 1920 年代初实验上多出来一个根本说不通的事实 — 谱线分裂的条数永远比 Schrödinger 三量子数能给的要多, 而且多出来的那一份分裂方向永远是 "对半开". 这一节要回答的就是: 电子身上多带的那份 $\hbar/2$, 是从哪来的, 怎么算, 又为什么 Dirac 一写下相对论方程就自然抓到了它.</p>
+
+  <h2>一、Stern-Gerlach: 银原子束被磁场劈成两条</h2>
+
+  <p>1922 年 Otto Stern 和 Walther Gerlach 在 Frankfurt 的实验室里做了一个干脆利落的实验: 把炉子里蒸出的银原子束打进一个非均匀磁场, 看屏幕上落点分布. 经典预言很简单 — 银原子带磁矩 $\vec\mu$, 在非均匀场 $\partial B_z/\partial z$ 中受力 $F_z = \mu_z\,\partial B_z/\partial z$, 因为 $\mu_z = \mu\cos\theta$ 取连续值, 屏上应该是一条沿磁场方向连续涂开的带子. 量子论 Bohr-Sommerfeld 那套则预测取整数个 $\mu_B$ 的若干离散点 — 对一个 $\ell=1$ 的态, 应该是 $m_\ell = -1, 0, +1$ 三个点.</p>
+
+  <p>结果是: 屏上出现了 <strong>两条</strong>. 不是一条带子, 也不是三个点, 而是恰好两条对称分开的线, 间距大约 $0.2$ mm. "两" 是个偶数, 没有任何整数个 $\hbar$ 的轨道角动量能分出偶数个 $m$ 值 — $2\ell+1$ 永远是奇数. 这条实验数据把后来三年的 "整数 $\hbar$ 角动量" 信仰彻底拗了一下: 屏上的银原子像是身上有半整数自由度.</p>
+
+  <p>把数字代进去看. 银原子最外层是一个 $5s$ 电子, 整个原子的轨道角动量 $\ell=0$. 按理说没有磁矩, 不该被劈分. 偏偏分了, 分成了两条. 留下来的角动量来源就只剩电子自身. 内禀磁矩的大小由偏移量 $\Delta z$ 反推: $\Delta z \sim (\mu_z/m)(\partial B_z/\partial z)\,L^2/v^2$, 把炉温、束速、场梯度代进去, 算出 $|\mu_z| \approx \mu_B = e\hbar/(2m_e) \approx 9.27\times 10^{-24}$ J/T, 也就是一个完整的 Bohr 磁子. 但对应的角动量却只有 $\hbar/2$ — 磁矩与角动量之比 (gyromagnetic ratio) 偏偏是轨道运动那个值的两倍.</p>
+
+  <h2>二、Goudsmit-Uhlenbeck 1925: 一个 "转得太快" 的提议</h2>
+
+  <p>1925 年秋天, Leiden 的两个研究生 Samuel Goudsmit 和 George Uhlenbeck 还在写博士论文. 他们盯着碱金属的双线结构 (钠的 D 线 D$_1$ 与 D$_2$ 相差 $0.6$ nm) 和反常塞曼效应那套永远凑不上的因子, 提出了一个赤裸裸的假设: 电子本身带一份角动量 $\hbar/2$, 像个小陀螺自己转. 配上一个反常的因子 2: 磁矩 $\mu = g_s \cdot (e/2m_e) \cdot S$, $g_s \approx 2$.</p>
+
+  <p>他们把这条想法拿给导师 Ehrenfest 看, Ehrenfest 又转给 Lorentz. Lorentz 算了一下就把稿子退了回来 — 用经典电荷球的图像, 半径取经典电子半径 $r_e = e^2/(4\pi\varepsilon_0 m_e c^2) \approx 2.8\times 10^{-15}$ m, 要让表面线速度乘上 $m_e r_e$ 得到 $\hbar/2$, 那个表面速度差不多要 $c$ 的几十倍. 没有任何经典图像撑得住这个数字.</p>
+
+  <p>Pauli 一开始也反对, 他刚刚在 1924 年提出了 "电子有第四个二值量子数" 来解释泡利不相容, 但他不愿意把这个二值数解释成 "自转". Ehrenfest 后来据说对 Goudsmit 说过一句很 Ehrenfest 的话: "你们还年轻, 干一件蠢事没关系." 论文寄出去了. Heisenberg 算了下精细结构, 中间漏了一个相对论的 Thomas 旋进因子 1/2, 数字差了两倍; 1926 年 Thomas 把这个因子补上, 实验和理论一下子卡上了.</p>
+
+  <p>真正要明白这件事, 必须放弃 "电子是个旋转的小球" 这个图像 — 自旋不是自转. 它是电子作为一个粒子在 Hilbert 空间里多带的一个二维内部空间, 这个内部空间在三维转动下按一种特殊的方式变换: 转 $360^\circ$ 不回到自己, 转 $720^\circ$ 才回. Goudsmit-Uhlenbeck 的图像只能当成助记符. 但他们写下的那个数字 $\hbar/2$ 和那个因子 $g_s \approx 2$, 是真的.</p>
+
+  <h2>三、Pauli 1927: 三个 $2\times 2$ 矩阵</h2>
+
+  <p>1927 年 Pauli 写了一篇标题朴素的论文 <em>Zur Quantenmechanik des magnetischen Elektrons</em>. 里面他不再追问 "自旋是什么形状", 直接把它当成一个二维 Hilbert 空间上的算符. 自旋态写成两分量旋量</p>
+
+  <p>$$ |\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}, \qquad |\alpha|^2 + |\beta|^2 = 1, $$</p>
+
+  <p>$\alpha$ 是 $S_z = +\hbar/2$ 的振幅, $\beta$ 是 $S_z = -\hbar/2$ 的振幅. 算符就是三个 $2\times 2$ Pauli 矩阵</p>
+
+  <p>$$ \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, $$</p>
+
+  <p>自旋角动量算符是</p>
+
+  <p>$$ \vec S = \frac{\hbar}{2}\vec\sigma. \tag{1} $$</p>
+
+  <p>这三个矩阵满足两条很短但分量足的代数关系. 反对易子</p>
+
+  <p>$$ \{\sigma_i, \sigma_j\} = \sigma_i\sigma_j + \sigma_j\sigma_i = 2\delta_{ij}\,\mathbb{1}, $$</p>
+
+  <p>意思是同一分量平方等于 $\mathbb{1}$, 不同分量乘起来反对易. 对易子</p>
+
+  <p>$$ [\sigma_i, \sigma_j] = 2i\,\varepsilon_{ijk}\sigma_k. \tag{2} $$</p>
+
+  <p>把 (1) 和 (2) 合一下就是 $[S_i, S_j] = i\hbar\,\varepsilon_{ijk}S_k$ — 跟轨道角动量的对易关系一模一样, 所以 $\vec S$ 是一个标准的角动量算符, $S^2 = (3/4)\hbar^2 = s(s+1)\hbar^2$ 给出 $s = 1/2$.</p>
+
+  <p>Pauli 顺手把电子在外磁场里的 Hamiltonian 写出来:</p>
+
+  <p>$$ H = \frac{(\vec p - e\vec A)^2}{2m_e} + V(\vec r) - \vec\mu\cdot\vec B, \qquad \vec\mu = g_s\,\frac{e}{2m_e}\vec S. $$</p>
+
+  <p>取 $g_s = 2$, 就把 Stern-Gerlach 两条线、反常塞曼效应、钠 D 双线的精细结构数字一口气全装进同一个框架. 但 $g_s = 2$ 这个 "为什么是 2" Pauli 自己也讲不出, 跟 Bohr 1913 的 $L=n\hbar$ 一样, 是凭空塞进去的. 这个 "为什么" 要等一年.</p>
+
+  <h2>四、Dirac 1928: $g=2$ 自动从相对论方程里掉出来</h2>
+
+  <p>1928 年初 Paul Dirac 在 Cambridge 试图给电子写一个相对论的波动方程. 把 Klein-Gordon 那种二阶方程做出来不难, 但二阶方程把概率密度 $\rho$ 变得不一定为正, 而且自旋还是要手塞. Dirac 决定要一个 <em>一阶</em> 的方程, 形式上跟 Schrödinger 方程一样左边只有 $\partial_t$ 一阶导, 但右边要满足 $E^2 = p^2 c^2 + m^2 c^4$. 这件事写下来就是</p>
+
+  <p>$$ i\hbar\,\partial_t\psi = (c\,\vec\alpha\cdot\vec p + \beta\, m c^2)\psi. $$</p>
+
+  <p>要求 $H^2 = p^2 c^2 + m^2 c^4$, 对 $\vec\alpha$ 和 $\beta$ 立刻得到 $\{\alpha_i, \alpha_j\} = 2\delta_{ij}$, $\{\alpha_i, \beta\} = 0$, $\beta^2 = 1$ — 这套反对易关系在 $2\times 2$ 矩阵里凑不出来 (因为 Pauli 矩阵已经把那 4 个方向用满), 至少要 $4\times 4$. 最简单的解就是</p>
+
+  <p>$$ \vec\alpha = \begin{pmatrix} 0 & \vec\sigma \\ \vec\sigma & 0 \end{pmatrix}, \qquad \beta = \begin{pmatrix} \mathbb{1} & 0 \\ 0 & -\mathbb{1} \end{pmatrix}, $$</p>
+
+  <p>$\psi$ 变成四分量. Dirac 把这个方程在外电磁场下耦合好, 取非相对论极限 (展开 $1/c^2$), 得到的有效 Hamiltonian 是</p>
+
+  <p>$$ H_\text{eff} = \frac{(\vec p - e\vec A)^2}{2m_e} + e\phi - \frac{e\hbar}{2m_e}\vec\sigma\cdot\vec B + \cdots, $$</p>
+
+  <p>最后一项就是磁矩耦合, 系数自动给出 <strong>$g_s = 2$</strong>, 完全不用手塞. Pauli 那个 "为什么是 2" 的疑惑, 在这条相对论方程里变成几乎是必然的结论 — 自旋 $\hbar/2$ 加上 $g$ 因子 2, 是 "电子是 Dirac 旋量" 这件事的几何后果. 顺手, 这个方程多出来的两个分量后来被解释成反粒子 (正电子), 1932 年 Anderson 在云室里看到了, 1933 年 Dirac 拿到 Nobel.</p>
+
+  <p>到这一步还有最后一个数字要兑现. 实验上电子的 g 因子并不严格等于 2, 测得 $g_s = 2.00231930\ldots$. 多出来的 $0.00231930$ 这一份叫 anomalous magnetic moment. 1947 年 Schwinger 在普林斯顿一个酒店房间里用一晚上算出了它的最低阶 QED 修正:</p>
+
+  <p>$$ a_e = \frac{g_s - 2}{2} = \frac{\alpha}{2\pi} \approx \frac{1}{2\pi\cdot 137.036} \approx 0.001161. $$</p>
+
+  <p>这个公式现在被刻在 Schwinger 的墓碑上. 把更高阶的 QED 圈图算到第五阶, 理论值跟实验值在小数点后 12 位一致 — 物理学历史上最精密的预测之一. 而中子和质子, 因为是夸克的束缚态而不是 Dirac 点粒子, $g$ 因子完全跑偏: $g_n \approx -3.826$, $g_p \approx 5.586$, 偏离 $\pm 2$ 这件事本身就是它们 "不是基本粒子" 的强烈信号 — 1960 年代 SLAC 的深度非弹性散射后来验证了内部的夸克结构.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: Bloch 球 — 一个单位球面, 表面上每一点 $(\theta, \varphi)$ 对应一个自旋 1/2 纯态 $|\psi\rangle = \cos(\theta/2)|\uparrow\rangle + e^{i\varphi}\sin(\theta/2)|\downarrow\rangle$; 北极标 $|\uparrow\rangle$ ($S_z = +\hbar/2$), 南极标 $|\downarrow\rangle$, 赤道上四个方向标 $|+\rangle = (|\uparrow\rangle + |\downarrow\rangle)/\sqrt 2$ ($S_x$ 正本征态)、$|-\rangle$、$|+i\rangle = (|\uparrow\rangle + i|\downarrow\rangle)/\sqrt 2$ ($S_y$ 正本征态)、$|-i\rangle$; 球心一个空心点提示混合态在球内部, 半径 = 纯度]</div>
+  </figure>
+
+  <h2>五、自旋作为电子的内部 "二维空间"</h2>
+
+  <p>把上面四节合起来回头看, 自旋的图像应该是这样的: 电子的波函数不再是一个复数 $\psi(\vec r)$, 而是一个二分量旋量 $\psi(\vec r) = (\psi_\uparrow(\vec r), \psi_\downarrow(\vec r))^T$. 三维空间转动 $R \in SO(3)$ 同时作用在 $\vec r$ 上 (经典坐标变换) 和这个二分量上 (按 $SU(2)$ 表示 $U = e^{-i\vec n\cdot\vec\sigma\,\theta/2}$). 转 $360^\circ$ 时 $U(2\pi) = -\mathbb{1}$ — 旋量变号, 转 $720^\circ$ 才回. 这件事 1975 年由 Werner、Colella、Overhauser 三人用中子干涉实验直接看到了: 让中子束在一臂中通过让自旋多转 $2\pi$ 的磁场, 观察干涉条纹反相, $4\pi$ 才回相 — 旋量的负号是物理观测量.</p>
+
+  <p>这个二维内部空间还导致了量子力学里一些只在自旋系统上才能干净写出来的东西. Stern-Gerlach 的连续投影只有两个出口, 给了我们一个最干净的二能级量子比特 (qubit); 上面那张 Bloch 球就是任何一个 qubit 的态空间. 量子计算把信息存在自旋上 (NMR、电子自旋共振、量子点、超导比特最后都以某种方式映射回 $SU(2)$), 因为自旋是宇宙提供给我们的最干净的二态系统 — 没有逃逸通道, 没有 "第三个能级" 漏掉. 下一节我们要讨论的 Bell 不等式与 EPR 关联, 拿来做实验的也正是自旋 (或它的光子版本: 极化), 因为 $\sigma_x, \sigma_y, \sigma_z$ 这三个互相不对易的算符对应正好三个互相不可同时确定的二值测量, 是 Bell 实验所需的最少 "工具集".</p>
+
+  <p>另一处是凝聚态. 自旋的统计性质把电子推到费米子那一边 — 半整数自旋 $\Rightarrow$ 反对称波函数 $\Rightarrow$ Pauli 不相容, 决定了原子壳层结构、金属里的费米面、白矮星与中子星的简并压. 1940 年 Pauli 自己证明了自旋统计定理: 在相对论量子场论里半整数自旋必须按反对易关系量子化, 整数自旋必须按对易关系. 这件事再次是 "自旋作为一个 Lorentz 群的表示" 的几何后果, 不是一个能凭直觉理解的事实.</p>
+
+  <h2>六、留给下一节</h2>
+
+  <p>这一节我们把自旋这个东西从 Stern-Gerlach 的两条银线一路推到了 Dirac 方程: 一个不来自任何空间运动、只在 Hilbert 空间里多带一份 $\hbar/2$ 的内部自由度, 它的代数是 Pauli 三矩阵, 它的 g 因子从 Dirac 旋量的几何里掉出来等于 2, 它的反常修正 $\alpha/2\pi$ 从 QED 圈图里算出来精确到 12 位小数. 它最重要的两个遗产, 一是给原子的所有电子结构封了顶 — Pauli 不相容直接来自 "半整数自旋" — 二是给量子信息提供了最干净的两态系统.</p>
+
+  <p>下一节我们要把 "两个自旋耦在一起" 这件事推到极端: 一对反向飞开的电子 (或光子), 各自被独立的 Stern-Gerlach 测一下, 测到的关联会强到什么地步? Einstein-Podolsky-Rosen 1935 年说强不过经典, Bell 1964 年说量子可以强过经典 $\sqrt 2$ 倍, Aspect 1982 年和后续实验真的测出来了那个 $2\sqrt 2$ — 自旋这个看似纯代数的小东西, 在那里把 "局域实在论" 整个钉死了.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>电子带着一份与轨道无关的内禀角动量 $\hbar/2$: Stern-Gerlach 1922 把银原子束劈成两条直接看到了它, Goudsmit-Uhlenbeck 1925 给出数字, Pauli 1927 写下 $\vec S = (\hbar/2)\vec\sigma$ 三个 $2\times 2$ 矩阵, Dirac 1928 用相对论一阶方程让 $g_s = 2$ 自动跑出来, 顺带预言反粒子. Schwinger 1947 算出 anomalous moment $\alpha/(2\pi)\approx 0.00116$, 实验和理论吻合到小数点后 12 位; 中子 $g_n = -3.826$、质子 $g_p = 5.586$ 的反常程度则反向告诉你它们不是 Dirac 点粒子. 自旋的真正面目不是 "小球自转", 而是电子作为一个 Lorentz 旋量的几何属性 — 转 $360^\circ$ 变号、转 $720^\circ$ 才回, $SU(2)$ 双覆盖 $SO(3)$. 它把 Pauli 不相容、原子壳层、白矮星支撑、量子比特、Bell 实验全捆在了同一个二维内部空间上. 这是量子力学里最 "几何" 的一笔, 也是 Schrödinger 方程纯靠自己永远写不出来的一笔.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="14-hydrogen.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="16-epr-bell.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

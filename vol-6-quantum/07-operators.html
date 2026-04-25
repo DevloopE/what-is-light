@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>算符与可观察量怎么对应? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="06-wavefunction.html">← 上一节</a>
+  <span class="chapter-title">第 7 节 / 30 · 第 2 部分 · 量子力学的语言 · 第六卷·量子是什么?</span>
+  <a href="08-measurement.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>算符与可观察量怎么对应?</h1>
+  <div class="sub">—— 厄米算符的本征值就是测量值</div>
+
+  <div class="abstract">上一节我们看到, 量子态是 Hilbert 空间上的一个单位向量 $\ket{\psi}$. 但 "测量" 究竟测什么? 经典力学里, 位置、动量、能量都是 phase space 上的实函数 — 给定状态, 就有数. 量子力学里这条路被切断: 状态是向量, 数从哪里来? Heisenberg 1925 年在 Helgoland 岛给出答案 — 把可观察量换成算符 (operator), 厄米算符的本征值就是允许测出的数, 而向量在本征基下的展开系数模平方就是概率. 本节把 "可观察量 ↔ 厄米算符" 这条对应关系拆开: 写下厄米性条件、谱分解、期望值公式, 用谐振子和 Pauli 矩阵两个具体例子, 把 $[a,a^\dagger]=1$、$\bra{n}H\ket{n}=\hbar\omega(n+1/2)$、$\bra{\uparrow}\sigma_z\ket{\uparrow}=1$ 算出来.</div>
+
+  <p>把眼前那只茶杯的位置说出来, 你说的是一个数 (或一组数, $x,y,z$). 把茶杯的动量说出来, 也是一组数. 经典物理里, "可观察量" 就是 phase space $(q,p)$ 上的实值函数 $f(q,p)$ — 给定一个相点, 你就知道能量、角动量、自旋分量是多少, 一锤定音. 这是日常直觉默认的图像: <em>属性是数, 数预先存在那里, 测量只是去读它</em>.</p>
+
+  <p>量子力学把这套图像彻底拆了. 上一节我们写过单缝实验里的电子波函数 $\psi(x)$, 它是一个复函数; 更一般地, 量子态是 Hilbert 空间 $\mathcal{H}$ 中的单位向量 $\ket{\psi}$. 一个向量是 "属性" 吗? 不是. 你想问 "这个向量的位置是多少", 这句话本身就是错的语法 — 向量没有位置, 向量在 Hilbert 空间里. 那么测量到的那个具体数字 (实验显示屏上跳出来的 $-13.6\,\mathrm{eV}$, 或闪烁屏上某个像素 $x=2.31\,\mathrm{mm}$) 从哪里来?</p>
+
+  <p>Heisenberg 1925 年 6 月在北海的 Helgoland 岛上找到答案. 当时他被花粉热折磨, 一个人在岛上养病, 顺手把氢原子谱线公式重新推导. 他发现 — 与其追问电子在每个时刻的轨道 (因为不可观测), 不如直接处理可观测的量: 跃迁频率与跃迁振幅. 把这些振幅排成方阵, 算法则就出来了 — 矩阵乘法. 几个月后 Born 与 Jordan 在 Göttingen 把这套观察公理化, 1926 年 Dirac 在剑桥用算符代数综合一切, 引入 bra-ket 记号. 量子力学的核心从此被一句话钉死: <strong>每个可观察量对应一个 Hilbert 空间上的厄米算符, 测量值是这个算符的本征值, 测量概率由态向量在本征基下的系数决定</strong>. 本节把这句话拆成可计算的零件.</p>
+
+  <h2>一、厄米算符: 为什么本征值非得是实数?</h2>
+
+  <p>从最朴素的要求倒推. 实验室里测出来的数 — 长度、能量、自旋分量 — 都是实数. 复数没法在仪表盘上显示. 量子力学既然要求 "可观察量是算符的本征值", 这个算符就必须满足 "本征值都是实的". 满足这条的最自然的代数条件就是<strong>厄米性</strong> (Hermitian, 也叫自伴 self-adjoint, vol 4 第 6 节里证过谱定理).</p>
+
+  <p>设 $A$ 是 Hilbert 空间 $\mathcal{H}$ 上的线性算符. 它的伴随 $A^\dagger$ 由下式定义:</p>
+  <p>$$ \braket{\phi}{A\psi} = \braket{A^\dagger \phi}{\psi}, \quad \forall\,\ket{\phi},\ket{\psi}\in\mathcal{H}. $$</p>
+  <p>在有限维矩阵语境下, $A^\dagger$ 就是 $A$ 转置加复共轭: $(A^\dagger)_{ij}=\overline{A_{ji}}$. 厄米性条件:</p>
+  <p>$$ A = A^\dagger. \tag{1} $$</p>
+
+  <p>由 (1) 可立即推出本征值实性. 设 $A\ket{n}=a_n\ket{n}$, 两边作 inner product 与 $\ket{n}$:</p>
+  <p>$$ a_n = \frac{\braket{n}{A n}}{\braket{n}{n}} = \frac{\braket{An}{n}}{\braket{n}{n}} = \frac{\overline{\braket{n}{An}}}{\braket{n}{n}} = \overline{a_n}. $$</p>
+  <p>所以 $a_n\in\mathbb{R}$. 第二步用了 $A=A^\dagger$, 第三步用了 inner product 的共轭对称. 同时, 不同本征值对应的本征向量自动正交: 若 $A\ket{m}=a_m\ket{m}$ 且 $a_m\ne a_n$, 则 $(a_m-a_n)\braket{n}{m}=0$, 故 $\braket{n}{m}=0$.</p>
+
+  <p>这两条 — 本征值实数, 本征向量正交 — 联合起来给出一组好基. 在有限维或紧算符情况下, 这组本征向量构成 $\mathcal{H}$ 的<strong>正交完备基</strong>; 在连续谱情况下要换成谱测度, 但思想一样. 谱定理保证厄米算符 $A$ 总有谱分解:</p>
+  <p>$$ A = \sum_n a_n \,\ket{n}\bra{n}, \qquad \sum_n \ket{n}\bra{n} = I. \tag{2} $$</p>
+
+  <p>(2) 是这一节的核心公式. 它的几何意义: 把任何向量 $\ket{\psi}$ 沿本征向量分解 $\ket{\psi}=\sum_n c_n\ket{n}$, 其中 $c_n=\braket{n}{\psi}$, 那么 $A\ket{\psi}=\sum_n a_n c_n \ket{n}$ — 算符 $A$ 把每个本征方向上的分量 "拉伸" $a_n$ 倍. 测量公设 (下一节会展开) 说: 测量 $A$ 时, 仪表盘以概率 $|c_n|^2$ 跳出读数 $a_n$, 同时态向量 "塌缩" 到对应的 $\ket{n}$.</p>
+
+  <h2>二、期望值: 从单次测量到统计平均</h2>
+
+  <p>单次测量是离散的 (跳出某个 $a_n$), 但反复在同一个态 $\ket{\psi}$ 上重复测 $A$, 平均下来得到一个连续的数 — <strong>期望值</strong>. 由谱分解直接读出:</p>
+  <p>$$ \braket{A}_\psi \;=\; \bra{\psi}A\ket{\psi} \;=\; \sum_n a_n |c_n|^2. \tag{3} $$</p>
+
+  <p>(3) 是经典统计的量子版本: 概率 $|c_n|^2$ 乘上读数 $a_n$ 求和. 区别在于 $|c_n|^2$ 不是经典概率, 而是从复数概率幅 $c_n=\braket{n}{\psi}$ 取模再平方 — 这一点导致不同基下的相干性 (vol 4 第 7 节, vol 6 第 6 节). 注意期望值本身并不是任何一次测量真的会出现的数字 (除非 $\ket{\psi}$ 恰好是一个本征态), 它是大量重复测量统计极限.</p>
+
+  <p>方差衡量结果的离散程度:</p>
+  <p>$$ (\Delta A)^2 = \braket{A^2}_\psi - \braket{A}_\psi^2. $$</p>
+  <p>$\Delta A = 0$ 当且仅当 $\ket{\psi}$ 是 $A$ 的本征态 — 这时所有概率集中到一个 $a_n$, 测量 "确定". 否则 $\Delta A\gt 0$, 量子态对 $A$ 而言<strong>不确定</strong>. 不同算符的不确定度受对易关系约束 (Heisenberg 不确定原理), 见下一节.</p>
+
+  <h2>三、位置、动量与对易子: $[\hat x,\hat p]=i\hbar$</h2>
+
+  <p>把抽象框架接到具体的物理. 取一维粒子, $\mathcal{H}=L^2(\mathbb{R})$ — 平方可积函数空间. 位置算符 $\hat x$ 定义为乘法:</p>
+  <p>$$ (\hat x \psi)(x) = x\,\psi(x). $$</p>
+  <p>它的 "本征函数" 是 Dirac $\delta$ 分布: $\hat x \delta(x-x_0)=x_0\delta(x-x_0)$, 本征值 $x_0\in\mathbb{R}$ 连续. 严格来说 $\delta$ 不在 $L^2$ 里, 处理这种连续谱要 rigged Hilbert space (Gel'fand 三元组) — 物理书里直接用就行, 公式照样对.</p>
+
+  <p>动量算符更巧妙. de Broglie 关系 $p=\hbar k$ 加 Fourier 直觉, 平面波 $\psi_k(x)=e^{ikx}$ 应该是动量的本征态, 本征值 $\hbar k$. 那个能把 $e^{ikx}$ 抓出 $\hbar k$ 的算符是:</p>
+  <p>$$ \hat p = -i\hbar\frac{d}{dx}, \quad \hat p \,e^{ikx} = -i\hbar\cdot ik \cdot e^{ikx} = \hbar k\,e^{ikx}. $$</p>
+  <p>厄米性可以由分部积分验证 (假设 $\psi$ 在 $\pm\infty$ 衰减): $\bra{\phi}\hat p\ket{\psi}=-i\hbar\int \overline{\phi}\,\psi'\,dx = -i\hbar\,[\overline{\phi}\psi]_{-\infty}^\infty + i\hbar\int \overline{\phi}'\psi\,dx = \overline{(-i\hbar)\int \overline{\psi}\phi'\,dx}^\dagger=\bra{\hat p\phi}\ket{\psi}$.</p>
+
+  <p>位置和动量不对易. 直接算:</p>
+  <p>$$ [\hat x,\hat p]\psi = \hat x\hat p\psi - \hat p\hat x\psi = -i\hbar\,x\psi'(x) - (-i\hbar)\frac{d}{dx}\bigl(x\psi(x)\bigr) = -i\hbar x\psi' + i\hbar(\psi+x\psi') = i\hbar\,\psi. $$</p>
+  <p>所以</p>
+  <p>$$ [\hat x,\hat p] = i\hbar\,I. $$</p>
+  <p>这是量子力学最基础的对易关系 — Born-Jordan 在 1925 年 9 月正是认出 Heisenberg 矩阵的乘积差恰好是 $i\hbar$, 才把整套理论建立起来. Heisenberg 自己当时没立刻看出 "矩阵" 这个名字 (Born 看出的). 由 $[\hat x,\hat p]\ne 0$ 推出后续: $\hat x$ 与 $\hat p$ 不能同时对角化, 没有共同本征基, 测量一个会扰动另一个. 不确定原理 $\Delta x\,\Delta p\ge\hbar/2$ 就从这里来.</p>
+
+  <p>一旦有了 $\hat x,\hat p$, 经典力学的 Hamiltonian $H(x,p)=p^2/(2m)+V(x)$ 直接对应到:</p>
+  <p>$$ \hat H = \frac{\hat p^2}{2m} + V(\hat x) = -\frac{\hbar^2}{2m}\frac{d^2}{dx^2} + V(x). $$</p>
+  <p>能量算符的本征值方程 $\hat H\ket{n}=E_n\ket{n}$ 就是定态 Schrödinger 方程. 所有 "能级量子化" 都来自这个本征值问题 — 边界条件 (束缚态要求 $\psi\to 0$ at $\infty$) 把允许的 $E_n$ 挑成离散集.</p>
+
+  <h2>四、两个具体例子: 谐振子与 Pauli 自旋</h2>
+
+  <p>抽象到此为止. 写两个最常用的例子, 把 (1)(2)(3) 全用一遍.</p>
+
+  <p><strong>例 1. 一维谐振子.</strong> 弹簧常数 $m\omega^2$, 势 $V(x)=\tfrac12 m\omega^2 x^2$. Hamiltonian:</p>
+  <p>$$ \hat H = \frac{\hat p^2}{2m} + \frac{1}{2}m\omega^2 \hat x^2. $$</p>
+
+  <p>Dirac 用代数方法: 引入升降算符</p>
+  <p>$$ a = \sqrt{\frac{m\omega}{2\hbar}}\Bigl(\hat x + \frac{i}{m\omega}\hat p\Bigr), \quad a^\dagger = \sqrt{\frac{m\omega}{2\hbar}}\Bigl(\hat x - \frac{i}{m\omega}\hat p\Bigr). $$</p>
+  <p>用 $[\hat x,\hat p]=i\hbar$ 直接算:</p>
+  <p>$$ [a,a^\dagger] = \frac{m\omega}{2\hbar}\Bigl([\hat x,-\tfrac{i}{m\omega}\hat p] + [\tfrac{i}{m\omega}\hat p,\hat x]\Bigr) = \frac{m\omega}{2\hbar}\cdot\frac{2}{m\omega}\cdot\hbar = 1. $$</p>
+  <p>把 Hamiltonian 重写:</p>
+  <p>$$ \hat H = \hbar\omega\Bigl(a^\dagger a + \tfrac{1}{2}\Bigr). $$</p>
+  <p>定义数算符 $\hat N=a^\dagger a$, 本征值方程 $\hat N\ket{n}=n\ket{n}$, 由 $[a,a^\dagger]=1$ 推出 $n=0,1,2,\ldots$ (基态 $\ket{0}$ 由 $a\ket{0}=0$ 定义). 能级:</p>
+  <p>$$ \bra{n}\hat H\ket{n} = E_n = \hbar\omega\bigl(n+\tfrac{1}{2}\bigr). $$</p>
+  <p>代具体数: 取一个原子振动模式 $\hbar\omega=0.1\,\mathrm{eV}$, 则基态能量 $E_0=0.05\,\mathrm{eV}$ (零点能, 不为零!), 第一激发态 $E_1=0.15\,\mathrm{eV}$, 二者间距 $\hbar\omega=0.1\,\mathrm{eV}$ 对应红外 $\lambda=12.4\,\mu\mathrm{m}$. 这就是分子振动光谱的基本机制 — vol 6 第 14 节会再用到.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 算符作用与谱分解示意 — 左侧画 Hilbert 空间中的态向量 $\ket{\psi}$, 中间画一组正交本征向量 $\ket{1},\ket{2},\ket{3},\ldots$, $\ket{\psi}$ 在每个本征向量上投影出系数 $c_n$; 右侧画测量塌缩: 以概率 $|c_n|^2$ 选中 $\ket{n}$, 仪表读数 $a_n$. 标 $\ket{\psi}=\sum_n c_n\ket{n}$, $A\ket{n}=a_n\ket{n}$, $P(a_n)=|c_n|^2$]</div>
+  </figure>
+
+  <p><strong>例 2. 自旋 1/2 与 Pauli $\sigma_z$.</strong> 电子自旋角动量第三分量 $S_z=\tfrac{\hbar}{2}\sigma_z$, 其中 Pauli 矩阵</p>
+  <p>$$ \sigma_z = \begin{pmatrix} 1 & 0\\ 0 & -1\end{pmatrix},\quad \sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad \sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix}. $$</p>
+  <p>三者均为厄米 ($\sigma_i^\dagger=\sigma_i$, 直接对照 (1)). $\sigma_z$ 的本征向量 $\ket{\uparrow}=(1,0)^T$, $\ket{\downarrow}=(0,1)^T$, 本征值 $\pm 1$. 谱分解:</p>
+  <p>$$ \sigma_z = (+1)\ket{\uparrow}\bra{\uparrow} + (-1)\ket{\downarrow}\bra{\downarrow}. $$</p>
+  <p>验证期望值. 取态 $\ket{\uparrow}$ 自身:</p>
+  <p>$$ \bra{\uparrow}\sigma_z\ket{\uparrow} = (1\;0)\begin{pmatrix}1&0\\0&-1\end{pmatrix}\begin{pmatrix}1\\0\end{pmatrix} = (1\;0)\begin{pmatrix}1\\0\end{pmatrix} = 1. $$</p>
+  <p>取叠加态 $\ket{\psi}=\tfrac{1}{\sqrt 2}(\ket{\uparrow}+\ket{\downarrow})$ — 这是 $\sigma_x$ 的本征态:</p>
+  <p>$$ \bra{\psi}\sigma_z\ket{\psi} = \tfrac{1}{2}(1\;1)\begin{pmatrix}1\\-1\end{pmatrix} = 0. $$</p>
+  <p>0 表示 $\sigma_z$ 测量在 $\pm 1$ 上等概率出现, 平均为零 — 这就是 Stern-Gerlach 实验里, 经过 $x$ 方向极化后再测 $z$ 方向, 上下两束等强度的根本理由. 同时 $\bra{\psi}\sigma_z^2\ket{\psi}=1$ (因 $\sigma_z^2=I$), 故 $\Delta\sigma_z=\sqrt{1-0}=1$ — 完全不确定. 而 $\bra{\psi}\sigma_x\ket{\psi}=1$, $\Delta\sigma_x=0$ — 完全确定. 自旋的 $\sigma_x,\sigma_z$ 是一对互补可观察量, 一个确定时另一个最不确定, 反过来也是.</p>
+
+  <p>第三个例子留作思考: 三维空间角动量 $\vec L=\vec r\times\vec p$, 三个分量满足 $[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k$. 联合谱: $\hat L^2$ 与 $\hat L_z$ 可同时对角化, 本征值 $\hbar^2 \ell(\ell+1)$ 与 $\hbar m$, $m=-\ell,\ldots,\ell$. 这套代数贯穿原子光谱、分子转动、核磁共振 — vol 6 第 13、15 节用到.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节做了一件事: 把 "可观察量" 从经典的实值函数 $f(q,p)$ 替换成 Hilbert 空间上的<strong>厄米算符</strong> $A=A^\dagger$. 厄米性保证本征值实, 本征向量正交完备, 给出谱分解 $A=\sum_n a_n\ket{n}\bra{n}$; 测量值就是 $a_n$, 在态 $\ket{\psi}=\sum_n c_n\ket{n}$ 上以概率 $|c_n|^2$ 出现, 期望值 $\bra{\psi}A\ket{\psi}=\sum_n a_n |c_n|^2$. 三个核心算符 — $\hat x,\hat p,\hat H$ — 由对易关系 $[\hat x,\hat p]=i\hbar$ 和能量函数 $\hat H=\hat p^2/(2m)+V(\hat x)$ 串起来. 谐振子用升降算符 $[a,a^\dagger]=1$ 给出能级 $E_n=\hbar\omega(n+1/2)$; Pauli $\sigma_z$ 给出 $\bra{\uparrow}\sigma_z\ket{\uparrow}=1$, $\bra{(+x)}\sigma_z\ket{(+x)}=0$. 整套对应是 1925-1926 三人 Heisenberg / Born+Jordan / Dirac 在不到一年里钉死的. 但还差一块: <em>测量过程本身</em> — 为什么仪表会跳出某个 $a_n$, 概率是 $|c_n|^2$? 这就是下一节要回答的 Born 规则与塌缩公设. 之后 (第 9 节) 我们会用算符代数推 Heisenberg 不确定原理, 并把 $[\hat x,\hat p]=i\hbar$ 与 $\Delta x\Delta p\ge\hbar/2$ 严格连起来.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="06-wavefunction.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="08-measurement.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么宏观世界看上去是经典的? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="17-superposition.html">← 上一节</a>
+  <span class="chapter-title">第 18 节 / 30 · 第 4 部分 · 测量与诠释 · 第六卷·量子是什么?</span>
+  <a href="19-interpretations.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>为什么宏观世界看上去是经典的?</h1>
+  <div class="sub">—— 退相干与环境引起的选择</div>
+
+  <div class="abstract">上一节我们看到, 量子叠加是 Hilbert 空间里完全合法的态: 一个电子可以同时 "在两个缝", 一个核自旋可以同时 "向上 + 向下". 但日常世界完全不是这副模样 — 一只猫要么死要么活, 一粒灰尘要么在桌上要么在地上, 没人见过 $\frac{1}{\sqrt 2}(\ket{\text{桌上}}+\ket{\text{地上}})$ 的灰尘. 量子的奇特行为去哪了? 答案不在公理里加 "宏观就塌缩", 而是 — 任何宏观系统都不是孤立的, 它每时每刻被空气分子、热光子、宇宙微波背景 "撞" 一下, 每撞一次就把自己的位置信息泄漏到环境里. 一旦信息出去, 系统单独看到的密度矩阵 off-diagonal 元素以指数衰减, 干涉就消失了. Zeh 1970 提出, Zurek 1980-90 完整理论化. 本节写下系统 + 环境耦合的 reduced density matrix, 估退相干时间 $\tau_\mathrm{dec}$, 给一组数: 1 cm 灰尘在常温空气里 $\tau_\mathrm{dec}\sim 10^{-23}\,\mathrm{s}$, 同样灰尘在 4 K 真空里 $\sim 0.1\,\mathrm{s}$, 离子阱里单个 $^9\mathrm{Be}^+$ 在 UHV 中 $\tau_\mathrm{dec}\gt $ 数秒 — 这就是为什么宏观经典而离子阱可以做量子计算.</div>
+
+  <p>把一杯咖啡放在桌上. 你不会担心它下一秒突然出现在两米外 — 即使量子力学允许 "在桌上" 与 "在两米外" 的叠加 (Hilbert 空间里两个 $L^2$ 函数的线性组合), 你也从来没见过. Schrödinger 1935 年构造他著名的猫: 把一只猫和一个放射性原子关在盒子里, 原子衰变的概率幅与未衰变的概率幅相干叠加, 按线性 Schrödinger 方程演化, 整个系统应当处于 $\frac{1}{\sqrt 2}(\ket{\text{原子未衰变}}\otimes\ket{\text{活猫}}+\ket{\text{衰变}}\otimes\ket{\text{死猫}})$ 这种叠加. 但打开盒子, 猫要么死要么活, 没看见过 "半死半活" 的猫. Schrödinger 用这个例子尖刻地讽刺哥本哈根诠释 — 量子线性叠加显然不能毫无障碍地扩展到宏观尺度, 否则世界就该长这样.</p>
+
+  <p>很长一段时间, 这道墙被认为是诠释问题: Wigner 怀疑意识塌缩, von Neumann 假设测量公设之外有第二种演化 ("过程 1") 把叠加压成本征态. 但 1970 年, 海德堡的 H. Dieter Zeh 在一篇被几乎所有期刊拒绝最后才发表在 <em>Foundations of Physics</em> 创刊号上的文章里指出: 这个问题不需要新公设. 一个宏观物体根本不是孤立系统, 它跟环境时刻在交换信息. 把环境老老实实写进 Hilbert 空间, 用线性 Schrödinger 方程演化, 然后对环境取迹 — 单看系统就会发现叠加的 "干涉项" 自动消失. 1980 年代 Wojciech Zurek 在 Los Alamos 把这套观察发展成完整理论, 取名 <em>environment-induced superselection</em> (einselection): 环境扮演了不停 "测量" 系统的角色, 选出一组特定的本征基 (一般是位置基) 作为唯一可观察的 "经典" 态. 本节把这套机制拆开算: 写下 reduced density matrix, 估退相干时间, 看几组实验数据.</p>
+
+  <h2>一、密度矩阵: 描述 "可能不知道全部信息" 的态</h2>
+
+  <p>纯态 $\ket{\psi}$ 是量子力学最完整的描述. 但日常做实验, 你常常不知道系统的精确态 — 比如一束原子从烤箱出来, 你只知道温度 $T$, 不知道每个原子具体在哪个能级. 这种 "统计混合" 用密度矩阵描述:</p>
+  <p>$$ \rho = \sum_i p_i \ket{\psi_i}\bra{\psi_i}, \qquad p_i\ge 0,\;\sum_i p_i=1. $$</p>
+  <p>$\rho$ 厄米, 半正定, 迹为 1. 期望值由 $\braket{A}=\Tr(\rho A)$ 给出, 这把 (3) 节的 $\bra{\psi}A\ket{\psi}$ 推广到 "知道概率不知道哪个态" 的情形. 纯态对应 $\rho^2=\rho$ (即 $\Tr\rho^2=1$), 否则为<strong>混态</strong>, $\Tr\rho^2\lt 1$.</p>
+
+  <p>关键的区别在两个看上去类似的 $\rho$. 比较:</p>
+  <p>$$ \rho_\mathrm{coh} = \tfrac12\bigl(\ket{0}+\ket{1}\bigr)\bigl(\bra{0}+\bra{1}\bigr) = \tfrac{1}{2}\begin{pmatrix}1 & 1\\ 1 & 1\end{pmatrix}, $$</p>
+  <p>$$ \rho_\mathrm{mix} = \tfrac12\ket{0}\bra{0} + \tfrac12\ket{1}\bra{1} = \tfrac{1}{2}\begin{pmatrix}1 & 0\\ 0 & 1\end{pmatrix}. $$</p>
+  <p>第一个是<strong>相干叠加</strong> $\frac{1}{\sqrt 2}(\ket{0}+\ket{1})$ 的纯态, off-diagonal 元素 $1/2$. 第二个是<strong>经典统计混合</strong>, 50% 概率 $\ket{0}$, 50% 概率 $\ket{1}$, off-diagonal 为零. 两者对 $\sigma_z=\ket 0\bra 0-\ket 1\bra 1$ 的测量分布完全一样 (都给出 $\pm 1$ 各 50%), 但对 $\sigma_x$ 完全不同: $\rho_\mathrm{coh}$ 给 $\bra{+}\sigma_x\ket{+}=+1$ 确定值, $\rho_\mathrm{mix}$ 给 0. <strong>off-diagonal 元素就是相干性, 就是叠加的 "量子性"</strong>. 一旦 off-diagonal 衰为零, 系统单看像经典概率混合.</p>
+
+  <p>退相干的故事就是: <em>off-diagonal 元素如何在与环境耦合后衰减到零</em>.</p>
+
+  <h2>二、Reduced density matrix 与对环境取迹</h2>
+
+  <p>设系统 $S$ 与环境 $E$ 一开始无关联, 初始态为</p>
+  <p>$$ \ket{\Psi(0)} = \bigl(\alpha\ket{0}_S+\beta\ket{1}_S\bigr)\otimes\ket{e_0}_E. $$</p>
+  <p>系统态是 $\alpha\ket 0+\beta\ket 1$, 环境处于初始 $\ket{e_0}$. 假设耦合 Hamiltonian 让系统的 $\ket 0,\ket 1$ 各自把环境推到不同方向 (位置耦合是最常见的形式 — 一个粒子在 $x_0$ 与 $x_1$ 处对气体分子的散射不一样, 留下不同的 "印记"):</p>
+  <p>$$ \ket{0}_S\ket{e_0}_E \;\to\; \ket{0}_S\ket{E_0}_E,\qquad \ket{1}_S\ket{e_0}_E \;\to\; \ket{1}_S\ket{E_1}_E. $$</p>
+  <p>线性, 初始叠加按线性演化:</p>
+  <p>$$ \ket{\Psi(t)} = \alpha\ket{0}_S\ket{E_0(t)}_E + \beta\ket{1}_S\ket{E_1(t)}_E. $$</p>
+  <p>整个 $S+E$ 仍是纯态, 没有任何信息丢失 (Schrödinger 方程是幺正的). 但实验只能测系统, 看不到散布在 $10^{23}$ 个气体分子里的环境状态. 单看系统, 用部分迹定义 reduced density matrix:</p>
+  <p>$$ \rho_S(t) = \Tr_E\bigl[\ket{\Psi(t)}\bra{\Psi(t)}\bigr]. \tag{1} $$</p>
+
+  <p>具体算: $\Tr_E$ 就是把环境正交基 $\{\ket{f_k}_E\}$ 上的内积 $\bra{f_k}\ket{\Psi}\bra{\Psi}\ket{f_k}_E$ 求和. 直接展开:</p>
+  <p>$$ \rho_S(t) = \begin{pmatrix} |\alpha|^2 & \alpha\beta^*\,\braket{E_1(t)}{E_0(t)}\\[2pt] \alpha^*\beta\,\braket{E_0(t)}{E_1(t)} & |\beta|^2\end{pmatrix}. $$</p>
+  <p>对角元 $|\alpha|^2,|\beta|^2$ 不动, 跟无环境的纯态一样. 但 off-diagonal 元素被乘上一个因子 $\braket{E_1(t)}{E_0(t)}$ — 两个环境态的内积. 这是核心. 如果环境记录得足够 "干净" (两个 $\ket{E_0}, \ket{E_1}$ 几乎正交), 它们的内积就趋于零, off-diagonal 也跟着趋于零. 系统单看从纯态变成对角混态:</p>
+  <p>$$ \rho_S \;\longrightarrow\; \begin{pmatrix}|\alpha|^2 & 0\\ 0 & |\beta|^2\end{pmatrix}. $$</p>
+  <p>这跟经典统计混合 (以 $|\alpha|^2$ 概率在 $\ket 0$, 以 $|\beta|^2$ 概率在 $\ket 1$) 完全无法区分. 干涉、相位、Schrödinger 猫的 "活+死叠加" — 全部丢进了环境的高维 Hilbert 空间, 单看系统再也找不回来.</p>
+
+  <p>注意没用任何 "塌缩" 公设, 没引入额外随机过程. Schrödinger 方程线性幺正, 环境与系统 entangled, 取迹就给出有效的 "塌缩-like" 行为. 这是退相干理论最深刻的一点: 经典性 (单一历史、无干涉) 是大 Hilbert 空间幺正演化加上 "我们看不到环境" 这一限制的<em>派生</em>结果, 不是新增公设.</p>
+
+  <h2>三、退相干时间: 从碰撞模型到具体数字</h2>
+
+  <p>把 (1) 落地, 估算 off-diagonal 衰减得有多快. Joos-Zeh 1985 的碰撞模型: 一个质量 $m$、空间宽度 $\Delta x$ 的物体放在密度 $n$、温度 $T$ 的气体里. 每个气体分子飞过来撞一下, 散射截面取决于物体位置. 物体的两个相干位置 $x$ 与 $x'$ 相隔越远, 单次碰撞越能把它们 "区分开" (即让两个出射波 $\ket{E_0}, \ket{E_1}$ 越正交). 经一段时间后 off-diagonal 矩阵元 $\rho_S(x,x';t)$ 满足</p>
+  <p>$$ \rho_S(x,x';t) = \rho_S(x,x';0)\,\exp\bigl[-\Lambda(x-x')^2 t\bigr], $$</p>
+  <p>其中速率 $\Lambda\sim n\,\bar v\,\sigma_\mathrm{eff}/\lambda_\mathrm{th}^2$, $\bar v$ 是热速度, $\sigma_\mathrm{eff}$ 是有效散射截面, $\lambda_\mathrm{th}=\hbar/\sqrt{2\pi m_g k_B T}$ 是气体分子的热 de Broglie 波长. 取 $|x-x'|=\Delta x$, 退相干时间</p>
+  <p>$$ \tau_\mathrm{dec} \;\sim\; \frac{1}{\Lambda(\Delta x)^2} \;\sim\; \frac{\lambda_\mathrm{th}^2}{n\,\bar v\,\sigma_\mathrm{eff}\,(\Delta x)^2}. \tag{2} $$</p>
+
+  <p>(2) 的关键是它跟物体大小、温度、气压的强烈依赖. 代具体数字看几个场景.</p>
+
+  <p><strong>场景 A: 1 cm 灰尘, 常温常压空气.</strong> 取 $\Delta x = 10^{-2}\,\mathrm{m}$, $T=300\,\mathrm{K}$, $n=2.7\times 10^{25}\,\mathrm{m}^{-3}$ (1 atm), 气体分子均速 $\bar v\approx 470\,\mathrm{m/s}$, $\sigma_\mathrm{eff}\sim (10^{-2})^2=10^{-4}\,\mathrm{m}^2$ (灰尘几何截面). 撞击率 $n\bar v\sigma\approx 2.7\times 10^{25}\cdot 470\cdot 10^{-4}\approx 1.3\times 10^{24}\,\mathrm{s^{-1}}$. 每撞一次几乎完美区分 $\Delta x=1\,\mathrm{cm}$ 的两个位置 (一颗气体分子的 thermal de Broglie 波长 $\sim 0.2\,\mathrm{\AA}\ll 1\,\mathrm{cm}$, 完全分辨). 故</p>
+  <p>$$ \tau_\mathrm{dec}\approx \frac{1}{1.3\times 10^{24}}\,\mathrm{s} \approx 10^{-24}\,\mathrm{s}. $$</p>
+  <p>取保守估计 $\sim 10^{-23}\,\mathrm{s}$ — Joos-Zeh 原文里给的数. 比 Planck 时间 $10^{-43}\,\mathrm{s}$ 大很多, 但比任何观察实验的分辨率 (最快的飞秒激光 $10^{-15}\,\mathrm{s}$) 短八个数量级. 也就是说, 1 cm 灰尘的 $\frac{1}{\sqrt 2}(\ket{x_1}+\ket{x_2})$ 叠加, 在你眨眼前的 $10^{8}$ 个 $10^{-23}\,\mathrm{s}$ 周期里早就被空气彻底退相干, 你压根没机会观察.</p>
+
+  <p><strong>场景 B: 同样 1 cm 灰尘, 4 K + 高真空.</strong> 把灰尘放进低温恒温器 (类似引力波探测器干涉镜的环境): $T=4\,\mathrm{K}$, 气压降到 $10^{-9}\,\mathrm{atm}$, 即 $n\sim 2.7\times 10^{16}\,\mathrm{m}^{-3}$, $\bar v\approx 50\,\mathrm{m/s}$. 撞击率降为 $2.7\times 10^{16}\cdot 50\cdot 10^{-4}\sim 1.4\times 10^{14}\,\mathrm{s^{-1}}$. 但低温下 thermal de Broglie 波长变长, 单次碰撞分辨 $1\,\mathrm{cm}$ 仍然有效, 故</p>
+  <p>$$ \tau_\mathrm{dec}\approx 10^{-14}\,\mathrm{s}. $$</p>
+  <p>还是非常短 — 但若进一步把热光子也压住, 极端情况下可以到 $\sim 0.1\,\mathrm{s}$ 量级 (热黑体辐射成主导贡献时, 退相干被光子动量 $\hbar\omega/c$ 与 $\Delta x$ 决定). 即便如此, 这跟人眼分辨时间 $\sim 1/24\,\mathrm{s}$ 比也是远远不够 — 你还是看不到 1 cm 灰尘的叠加.</p>
+
+  <p><strong>场景 C: 一个原子, 离子阱 + UHV.</strong> 取一个 $^9\mathrm{Be}^+$ 离子, 阱里囚禁, $T\lt 1\,\mathrm{mK}$, 真空度 $10^{-13}\,\mathrm{atm}$. 离子的 "位置叠加" $\Delta x$ 可以做到 nm 级. 残余气体撞击率约每秒一次或更稀, 残余黑体辐射几乎不可见. 实际测得 $^9\mathrm{Be}^+$ 内态相干时间</p>
+  <p>$$ \tau_\mathrm{dec} \;\gt \; 10\,\mathrm{s}. $$</p>
+  <p>这就是为什么 NIST 的 Wineland 组 (2012 Nobel) 能把单个 $^9\mathrm{Be}^+$ 当 qubit 用、做 GHZ 态、做量子门. 关键不是离子 "本质上更量子", 而是你<em>把环境抽掉</em>了 — 没空气、没热光子、几乎没散射, off-diagonal 元素衰减率被压到秒级, 你有 10 秒来做相干操作再读出. 量子计算的所有工程难题, 本质都在拼命延长 $\tau_\mathrm{dec}$ — 制冷、屏蔽、错误纠正都是.</p>
+
+  <p>三个场景跨 24 个数量级: 1 cm 灰尘 $10^{-23}\,\mathrm{s}$ → 4 K 真空 $10^{-14}\,\mathrm{s}$ → 离子阱 $10\,\mathrm{s}$. 这就是 "宏观经典、微观量子" 在数字上的具体含义 — 不是大小本身决定经典/量子, 是大小 + 环境耦合决定<em>能不能保住相干性</em>.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 退相干 reduced density matrix 演化示意 — 横轴时间 $t$, 纵轴画三个时刻的 $2\times 2$ 矩阵热图. $t=0$: $\rho=\begin{pmatrix}|\alpha|^2 & \alpha\beta^*\\ \alpha^*\beta & |\beta|^2\end{pmatrix}$ 纯态, 四格全亮 (off-diagonal 满); $t=\tau_\mathrm{dec}/2$: off-diagonal 元素亮度减半 (乘 $\braket{E_0}{E_1}\sim 1/\sqrt e$); $t\gg\tau_\mathrm{dec}$: 只剩对角两格亮, off-diagonal 接近黑色, 完全混态. 下方画包络曲线 $|\rho_{01}(t)|=|\alpha\beta^*|\,e^{-t/\tau_\mathrm{dec}}$ 指数衰减. 旁注 1 cm 灰尘 $\tau_\mathrm{dec}\sim 10^{-23}\,\mathrm{s}$, $^9\mathrm{Be}^+$ 离子 $\tau_\mathrm{dec}\gt 10\,\mathrm{s}$]</div>
+  </figure>
+
+  <h2>四、Einselection: 为什么是位置基, 不是动量基?</h2>
+
+  <p>退相干给出 off-diagonal 衰减 — 但 off-diagonal 是<em>相对于哪组基</em>而言的? 同一个 $\rho$ 在位置基下 off-diagonal 大, 换到能量基下可能变成对角, 这两件事没矛盾. Zurek 1981-93 的关键洞察: 环境通过具体的耦合 Hamiltonian 选择了一组特定的基, 让<strong>这组基</strong>在长时间下变成稳定的 "对角" 形, 而其它基下 off-diagonal 保留. 这组被环境选中的稳定基叫<strong>指针基</strong> (pointer basis), 选择机制叫 <em>einselection</em> (environment-induced selection).</p>
+
+  <p>判据简单: 哪组算符跟环境耦合<em>对易</em>, 那组算符的本征基就是指针基. 现实中宏观系统的相互作用绝大部分通过位置耦合 — Coulomb 势 $\propto 1/r$, 范德瓦尔斯势 $\propto 1/r^6$, 重力 $\propto 1/r^2$ — 都是位置的函数. 故耦合 Hamiltonian $H_\mathrm{int}=H_\mathrm{int}(\hat x_S, \hat x_E,\ldots)$ 与系统位置算符 $\hat x_S$ 对易. einselection 因此选位置作为指针基: 灰尘看上去 "在某个具体位置", 而不是 "某个具体动量". 这跟日常感觉一致 — 你看到的茶杯有明确位置, 没人 "看到" 一个茶杯有明确动量但位置完全不确定.</p>
+
+  <p>Zurek 进一步指出指针基的另一个特征: 它的本征态在演化中能<strong>稳定地把信息复制到环境的多个备份里</strong> (他叫 <em>quantum Darwinism</em>, 2003-09). 一个茶杯的位置被房间里 $10^{12}$ 个空气分子、$10^{15}$ 个热光子各自记录一份 — 多个观测者看同一个茶杯都能读到一致的位置, 不是因为有个 "客观位置", 而是因为这个属性的信息被环境冗余地广播出去, 任何观测者随便抓一小块环境就能解码. 动量呢? 动量没法被环境如此复制 (相互作用不与 $\hat p_S$ 对易), 故没有 "客观动量" 这种集体一致看法.</p>
+
+  <p><strong>历史与实验.</strong> Zeh 1970 的奠基论文长期被忽视; 1980 年代 Zurek 接续, 与 Joos、Kiefer、Caldeira-Leggett (耗散浴模型) 一起把理论搭起. 实验首次直接看到退相干: Brune, Haroche 等 1996 年在 ENS 巴黎用腔 QED — 把单个 Rydberg 原子放进高品质微波腔, 跟少数光子 (1 到 10 个) 耦合, 实测到 cat-like 态相干性的指数衰减, 衰减率正比于光子数, 跟理论严格符合. Haroche 因此分享 2012 Nobel. 第二个标志性实验: Markus Arndt 组 (Vienna) 2003-2007 把 $\mathrm{C}_{70}$ 富勒烯通过 Talbot-Lau 干涉仪, 故意通入不同压强气体 (Hornberger 2003 给的理论), 观察干涉条纹随气压增加而衰减, 拟合得到 $\tau_\mathrm{dec}$ 跟碰撞模型 (2) 在数量级上一致 — 这是 "中等大小" 物体 (708 amu, $\sim 1\,\mathrm{nm}$) 上首次的定量退相干测量.</p>
+
+  <p>到此, 量子-经典过渡这道墙不再神秘. 它不是新公设, 而是幺正演化加部分迹的必然结果. 经典世界是量子世界的一个大尺度极限: Hilbert 空间够大、耦合强、信息泄漏到大量环境自由度, 单看 reduced density matrix 就长得像经典概率分布. Schrödinger 的猫从来没真正活+死同时叠加 — 在你打开盒子前的 $10^{20}$ 个 $\tau_\mathrm{dec}$ 里, 它早被自身代谢 / 空气 / 体温辐射退到对角混态了. 它要么死要么活, 但概率不是 "意识塌缩" 给出的, 是环境在几亿亿亿分之一秒内默默给的.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节回答 "宏观为什么经典". 不需要新公设 — 只需把环境老老实实写进 Hilbert 空间. 系统 $S$ 与环境 $E$ 通过位置耦合 entangle 后, 由 (1) $\rho_S=\Tr_E\ket{\Psi}\bra{\Psi}$ 取部分迹, off-diagonal 元素被乘上环境内积 $\braket{E_0}{E_1}$, 这一内积随时间指数衰减, 干涉消失. (2) $\tau_\mathrm{dec}\sim \lambda_\mathrm{th}^2/[n\bar v\sigma(\Delta x)^2]$ 给出退相干时间 — 1 cm 灰尘在常温空气里 $10^{-23}\,\mathrm{s}$ (瞬间), 4 K 真空 $\sim 10^{-14}$ s 到 0.1 s, 离子阱 UHV 中 $^9\mathrm{Be}^+\gt 10\,\mathrm{s}$ (够做量子计算). Zurek 的 einselection 解释了为什么是位置基而非动量基 — 因为耦合 Hamiltonian 跟 $\hat x$ 对易, 位置算符的本征态稳定, 信息被环境多重复制 (quantum Darwinism). 实验验证: Brune/Haroche 1996 腔 QED 直接看到 cat 态相干衰减; Hornberger/Arndt 2003-07 用 $\mathrm{C}_{70}$ 富勒烯 + 可调气压把 (2) 量化测出. 历史: Zeh 1970 起手, Zurek 1980-90 理论化, Haroche 2012 Nobel 奖给实验. 但退相干<em>没有</em>解释 "为什么最后是这一个结果而不是那一个" — 它把相干叠加变成统计混合, 但仍是<em>统计</em>混合, 单次测量为何选中某一支? 这是测量问题剩下的部分, 把哥本哈根、多世界、隐变量、客观塌缩等诠释逼到台前 — 下一节展开.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="17-superposition.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="19-interpretations.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>氢原子基态 -13.6 eV 是怎么算出来的? · 第六卷·量子是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="13-angular-momentum.html">← 上一节</a>
+  <span class="chapter-title">第 14 节 / 30 · 第 3 部分 · 解谱 · 第六卷·量子是什么?</span>
+  <a href="15-spin.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>氢原子基态 $-13.6$ eV 是怎么算出来的?</h1>
+  <div class="sub">—— Coulomb 势与 $1/n^2$ 谱</div>
+
+  <div class="abstract">第三节那条 Bohr 1913 的路径, 用 $L = n\hbar$ 一刀切下去, 干净地拿到了 $a_0 = 0.529$ Å 与基态 $-13.6$ eV. 但那条路径有两条裂痕: 一是角动量量子化的"为什么"始终交白卷; 二是它只能处理一个电子绕一个核做圆周运动的玩具图像, 对真实的三维波函数、对简并、对节点结构, 全都说不出一个字. 这一节走真正的路: 把氢原子的 Hamilton 算符 $H = -\hbar^2\nabla^2/(2m) - ke^2/r$ 写下来, 在球坐标里分离变量, 让 Coulomb 势的特殊代数把能级压回到 $E_n = -13.6\ \text{eV}/n^2$, 简并度恰好 $n^2$. 我们会算出基态波函数 $\psi_{100} = \pi^{-1/2} a_0^{-3/2} e^{-r/a_0}$, 算出 Lyman α $10.2$ eV、Balmer α $1.89$ eV、平均半径 $\langle r\rangle_{100} = 1.5\,a_0$ 这几个所有量子力学课本绕不开的数字, 看清"主量子数 $n$、轨道角动量 $l$、磁量子数 $m$"这三个整数从哪里冒出来 — 以及它们在外加自旋 $m_s$ 之后, 怎么把整张元素周期表的骨架一节节地搭起来.</div>
+
+  <p>第三节的 Bohr 模型给了对的能级, 但没有真正的"波函数"这个东西. de Broglie 把电子说成波之后, Schrödinger 1926 年坐下来, 把那个波该满足的偏微分方程写出来; 同一年初, Pauli 用一种纯代数的办法 (用上 Coulomb 势特有的 Runge-Lenz 守恒矢量) 也独立把氢原子的能级解了出来. 两条路都通向同一个答案. 这一节走 Schrödinger 那条偏微分方程的路 — 数学多一点, 但每一步都有几何意义, 每一步都能跟一个具体数字对上.</p>
+
+  <h2>一、Hamilton 写下来: 三维 Coulomb 势</h2>
+
+  <p>把氢原子看作一个静止在原点的质子加上一个电子. 严格讲应该把质子的有限质量也写上, 用约化质量 $\mu = m_e m_p/(m_e+m_p)$ 代替 $m_e$, 但 $m_p/m_e \approx 1836$, 修正只有万分之五的量级, 这一节先一律写 $m_e$ 不影响主要结论. Coulomb 势是各向同性的, 只依赖距离 $r$:</p>
+
+  <p>$$ V(r) = -\frac{ke^2}{r}, \qquad k = \frac{1}{4\pi\varepsilon_0}. $$</p>
+
+  <p>定态 Schrödinger 方程</p>
+
+  <p>$$ \left[-\frac{\hbar^2}{2m_e}\nabla^2 - \frac{ke^2}{r}\right]\psi(\mathbf{r}) = E\,\psi(\mathbf{r}). $$</p>
+
+  <p>球对称势的标准做法是球坐标 $(r,\theta,\varphi)$, 把 Laplace 算符拆成径向部分加上角向部分:</p>
+
+  <p>$$ \nabla^2 = \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial}{\partial r}\right) - \frac{\hat L^2}{\hbar^2 r^2}, $$</p>
+
+  <p>这里的 $\hat L^2$ 就是上一节那个角动量平方算符. 上一节里它的本征函数已经解干净了: 球谐函数 $Y_l^m(\theta,\varphi)$, $l = 0, 1, 2, \dots$, $m = -l, -l+1, \dots, l$, 满足</p>
+
+  <p>$$ \hat L^2 Y_l^m = \hbar^2 l(l+1)\,Y_l^m, \qquad \hat L_z Y_l^m = \hbar m\,Y_l^m. $$</p>
+
+  <p>因此可以分离变量 $\psi(r,\theta,\varphi) = R(r)\,Y_l^m(\theta,\varphi)$, 把方程压成径向部分:</p>
+
+  <p>$$ -\frac{\hbar^2}{2m_e}\!\left[\frac{1}{r^2}(r^2 R')' - \frac{l(l+1)}{r^2}R\right] - \frac{ke^2}{r}R = E\,R. \tag{1} $$</p>
+
+  <p>角向已经被求解掉, 剩下的就是这一根纯径向的常微分方程. 它的物理结构非常清楚: 电子在一个有效势 $V_\text{eff}(r) = -ke^2/r + \hbar^2 l(l+1)/(2m_e r^2)$ 里运动 — Coulomb 吸引加上一个跟 $l$ 有关的离心势垒. $l=0$ (s 态) 没有离心势垒, 电子可以一路跑到 $r=0$; $l$ 越大, 离心势垒越高, 电子被赶得越远. 这是日后理解原子半径、轨道形状的几何起点.</p>
+
+  <h2>二、求解径向方程: 整数 $n$ 从哪里冒出来</h2>
+
+  <p>聚焦束缚态 $E \lt  0$. 引入特征长度和能量</p>
+
+  <p>$$ a_0 = \frac{\hbar^2}{m_e k e^2} = 5.29\times 10^{-11}\ \text{m} = 0.529\ \text{Å}, \qquad \mathrm{Ry} = \frac{m_e k^2 e^4}{2\hbar^2} = 13.6\ \text{eV}, $$</p>
+
+  <p>把方程无量纲化, 令 $\rho = r/a_0$, $\epsilon = E/\mathrm{Ry}$, 引入辅助变量 $\kappa = \sqrt{-\epsilon}$. 远距离 $\rho \to \infty$ 时方程退化到 $R'' \approx \kappa^2 R$, 物理解 $R \sim e^{-\kappa\rho}$ (指数衰减). 近原点 $\rho \to 0$ 时离心势垒主导, 方程退化到 Euler 型 $R'' + 2R'/\rho - l(l+1)R/\rho^2 = 0$, 正则解 $R \sim \rho^l$. 把这两段抽出来, 设</p>
+
+  <p>$$ R(\rho) = \rho^l\,e^{-\kappa\rho}\,L(\rho), $$</p>
+
+  <p>$L(\rho)$ 满足一条二阶线性方程, 用幂级数 $L(\rho) = \sum_{j=0}^\infty c_j \rho^j$ 展开会得到递推</p>
+
+  <p>$$ c_{j+1} = \frac{2(\kappa(l+j+1) - 1/\sqrt{1})}{(j+1)(j+2l+2)}\,c_j, $$</p>
+
+  <p>(这里指数 $1$ 来自 Coulomb 势的 $1/r$, 是它特有的"巧合"). 关键的事情是: 如果级数不截断、一直加下去, 大 $j$ 时 $c_{j+1}/c_j \to 2\kappa/j$, 整个 $L(\rho)$ 行为像 $e^{2\kappa\rho}$, 跟前面的 $e^{-\kappa\rho}$ 乘起来变成 $e^{+\kappa\rho}$ — 在无穷远处发散, 不是束缚态. 因此必须强制级数在某个 $j$ 处截断, 这要求</p>
+
+  <p>$$ \kappa\,(l+j+1) = 1 \quad\Longrightarrow\quad \kappa = \frac{1}{n}, \qquad n \equiv l + j + 1 = 1, 2, 3, \dots $$</p>
+
+  <p>这就是<strong>主量子数 $n$ 的来源</strong> — 不是凭空塞进去的, 而是"波函数在无穷远不发散"这个边界条件强加的. 整数性是分析约束, 不是先验假设. 把 $\kappa = 1/n$ 翻译回能量:</p>
+
+  <p>$$ E_n = -\mathrm{Ry}\cdot\kappa^2 = -\frac{\mathrm{Ry}}{n^2} = -\frac{13.6\ \text{eV}}{n^2}, \qquad n = 1, 2, 3, \dots \tag{2} $$</p>
+
+  <p>跟 Bohr 1913 的结果一字不差. 但这次推导是从 Schrödinger 方程加边界条件出发的, 没有 "$L = n\hbar$" 这种突兀的假设. $n$ 的整数性来自波函数的可归一化, 跟驻波在弦上必须有整数节点是同一件事的高维版本.</p>
+
+  <h2>三、量子数和简并度: 为什么是 $n^2$</h2>
+
+  <p>从上面 $n = l + j + 1$ 这个关系倒推: 给定 $n$, 允许的 $l$ 值是 $l = 0, 1, 2, \dots, n-1$ (因为 $j \ge 0$). 给定 $l$, 磁量子数 $m$ 跑过 $-l, -l+1, \dots, l$ 共 $2l+1$ 个. 所以能级 $E_n$ 上的态数是</p>
+
+  <p>$$ d_n = \sum_{l=0}^{n-1} (2l+1) = n^2. $$</p>
+
+  <p>这是 Coulomb 势的<strong>额外简并</strong>: 一般球对称势 ($V(r)$ 任意函数 $r$) 的能级只依赖 $n$ 和 $l$ 两个量子数, 不同 $l$ 的能量不同. 但 $1/r$ 势特殊 — 它有一个隐藏的 SO(4) 对称性, 由 Coulomb 势特有的 Runge-Lenz 矢量生成 — 把所有 $l = 0, 1, \dots, n-1$ 拉回到同一能量. 这正是 Pauli 1925 年用纯代数方法 (不解任何微分方程) 算出 $-13.6\ \text{eV}/n^2$ 的钥匙: 他认出了这个 SO(4), 把 H 原子的束缚态空间按 SO(4) 不可约表示分类, 表示维数恰好是 $n^2$, 能量直接由代数关系定出来. Schrödinger 几个月后给出微分方程的解, 两条路汇合.</p>
+
+  <p>电子还有自旋 (下一节专门讲). 把自旋的两个状态 $m_s = \pm 1/2$ 一起算上, 每个空间态变两份, 简并度变成 $2n^2$. 这就是化学家熟悉的"每壳层最多 $2n^2$ 个电子": $K$ 壳 ($n=1$) 2 个, $L$ 壳 ($n=2$) 8 个, $M$ 壳 ($n=3$) 18 个 — 元素周期表第一行 2 列, 第二、三行各 8 列, 第四行开始引入 d 轨道, 全部按这个 $2n^2$ 排. 一组四个量子数 $(n, l, m, m_s)$ 唯一标定一个电子态, 配上 Pauli 不相容原理 (1925 也是 Pauli) 就给出整张周期表的骨架.</p>
+
+  <h2>四、波函数: 基态 $\psi_{100}$ 与平均半径</h2>
+
+  <p>把上面级数解写成具体函数. 径向波函数 $R_{nl}(r)$ 是 Laguerre 多项式乘指数, 归一化后形式为</p>
+
+  <p>$$ R_{nl}(r) = \mathcal{N}_{nl}\,\left(\tfrac{2r}{na_0}\right)^l\,e^{-r/(na_0)}\,L_{n-l-1}^{2l+1}\!\left(\tfrac{2r}{na_0}\right). $$</p>
+
+  <p>关键的几个特征: $R_{nl}$ 在 $r \gt  0$ 处有 $n - l - 1$ 个节点 (零点). 基态 $n=1, l=0$ 没有节点; $2s$ ($n=2, l=0$) 有 1 个; $2p$ ($n=2, l=1$) 没有 (因为 $n-l-1 = 0$). 节点数随 $n$ 增加, 一节多一个 — 这跟无限深势阱里第 $n$ 个本征态有 $n-1$ 个节点是同一类规律的延伸, 物理是 "更高能态需要在波函数里塞进更多节点".</p>
+
+  <p><strong>基态 ($n=1, l=0, m=0$) 完整波函数</strong>是最干净的一个:</p>
+
+  <p>$$ \psi_{100}(r,\theta,\varphi) = \frac{1}{\sqrt{\pi}}\,\frac{1}{a_0^{3/2}}\,e^{-r/a_0}. $$</p>
+
+  <p>球对称, 没有节点, 在原点有限 (因为 $l=0$ 没离心势垒). 概率密度 $|\psi_{100}|^2 = e^{-2r/a_0}/(\pi a_0^3)$, 在原点最大、向外指数衰减. 注意"概率最大在原点"不等于"电子最常停在原点" — 真实在 $r$ 附近的概率要乘上球面元 $4\pi r^2 dr$, 也就是径向概率密度 $P(r) = 4\pi r^2 |\psi_{100}|^2 = (4r^2/a_0^3)e^{-2r/a_0}$. $P(r)$ 极大处 $r = a_0$, 这才是 Bohr 半径在波函数图像里"最可能位置"的真正含义 — 它不是一个轨道, 是一个最可能的距离.</p>
+
+  <p>平均半径要再积一次:</p>
+
+  <p>$$ \langle r\rangle_{100} = \int_0^\infty r\cdot P(r)\,dr = \frac{4}{a_0^3}\int_0^\infty r^3 e^{-2r/a_0}\,dr = \frac{4}{a_0^3}\cdot\frac{6}{(2/a_0)^4} = \frac{3}{2}\,a_0 = 0.794\ \text{Å}. $$</p>
+
+  <p>所以氢原子基态的"大小"有三个不一样的数字, 全部都对: 最可能的 $r = a_0 = 0.529$ Å, 平均的 $\langle r\rangle = 1.5\,a_0 = 0.794$ Å, 均方根 $\sqrt{\langle r^2\rangle} = \sqrt{3}\,a_0 = 0.916$ Å. 经典 Bohr 模型只能给一个数, 量子力学给出一个分布. 同样的积分能算出 $\langle 1/r\rangle_{100} = 1/a_0$, 顺便验证 virial 定理: 期望势能 $\langle V\rangle = -ke^2\langle 1/r\rangle = -2\mathrm{Ry}$, 期望动能 $\langle T\rangle = +\mathrm{Ry}$, 总能 $-\mathrm{Ry} = -13.6$ eV, 一致.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 左半 — 氢原子能级图. 纵轴是能量 (eV), 从下到上画水平线: $E_1 = -13.6$, $E_2 = -3.4$, $E_3 = -1.51$, $E_4 = -0.85$, ..., 收敛到 $E=0$ (电离阈值). 每条线右侧标 $n=1, 2, 3, \dots$ 和数值. 在 $n=2 \to n=1$ 之间画向下箭头标 "Lyman α $10.2$ eV / 121.6 nm", $n=3 \to n=2$ 标 "Balmer α $1.89$ eV / 656.3 nm". 右半 — 三条径向波函数 $R_{nl}(r)$ vs $r/a_0$. (a) 1s ($n=1, l=0$): 单调指数衰减, 0 个节点. (b) 2s ($n=2, l=0$): 在 $r = 2a_0$ 处过零, 1 个节点. (c) 2p ($n=2, l=1$): 从 0 起升, 在 $r = 4a_0$ 附近达极大, 0 个节点. 三条曲线在同一坐标里叠画, 标注节点位置]</div>
+  </figure>
+
+  <h2>五、跃迁谱与历史: Lyman、Balmer、精细结构</h2>
+
+  <p>把 (2) 代进 Bohr 跃迁条件 $h\nu = E_n - E_m$, 拿到的就是第三节里那条 Rydberg 公式. 几个标志谱线再写一遍:</p>
+
+  <p>$$ E_2 - E_1 = \mathrm{Ry}\!\left(1 - \tfrac{1}{4}\right) = \tfrac{3}{4}\,\mathrm{Ry} = 10.2\ \text{eV} \quad (\lambda = 121.6\ \text{nm}, \text{Lyman}\,\alpha), $$</p>
+
+  <p>$$ E_3 - E_2 = \mathrm{Ry}\!\left(\tfrac{1}{4} - \tfrac{1}{9}\right) = \tfrac{5}{36}\,\mathrm{Ry} = 1.89\ \text{eV} \quad (\lambda = 656.3\ \text{nm}, \text{Balmer}\,\alpha). $$</p>
+
+  <p>区别在于现在我们知道这些跃迁背后的具体波函数, 因此能算<strong>跃迁概率</strong>: 通过电偶极矩阵元 $\langle \psi_{nlm}|e\mathbf{r}|\psi_{n'l'm'}\rangle$ 算出来的 Einstein A 系数, 给出每条谱线的强度和寿命. 这个矩阵元只在 $\Delta l = \pm 1$ (角动量必须改变 1) 时不为零 — 这就是<strong>选择定则</strong>, 直接来自球谐函数的正交性. 实验上观测到的氢光谱线强度比例, 跟这套矩阵元算出来的全部对得上, 第一次让"波函数"成为一个能跟实验定量对应的物理对象, 而不只是一个数学辅助.</p>
+
+  <p>但事情没在 $-13.6\ \text{eV}/n^2$ 这一档停下. 高分辨率光谱里的 Balmer α 线不是单一一根, 而是一个微小双线, 间距约 $4.5\times 10^{-5}$ eV. 这就是<strong>精细结构</strong>: 来自相对论修正 (动能 $p^2/2m$ 要变成 $\sqrt{p^2c^2+m^2c^4}-mc^2$) 和自旋-轨道耦合 (电子自旋磁矩在它"看到"的核磁场里的能量). 1916 年 Sommerfeld 用相对论修正圆轨道, 算出精细结构常数 $\alpha = ke^2/(\hbar c) \approx 1/137$, 修正量级 $\alpha^2 \mathrm{Ry} \sim 10^{-4}$ eV — 数值对上了, 但他用的还是经典轨道的语言. 1928 年 Dirac 把相对论性的电子方程写出来 (第 21 节专门讲), 一脚踢出: 自旋是相对论性的副产品, 不是手动加上去的; 精细结构是 Dirac 方程在 $1/c^2$ 展开下的自然结果, 公式</p>
+
+  <p>$$ E_{nj} = -\mathrm{Ry}\,\frac{1}{n^2}\!\left[1 + \frac{\alpha^2}{n^2}\!\left(\frac{n}{j+\tfrac12} - \tfrac{3}{4}\right) + O(\alpha^4)\right], $$</p>
+
+  <p>其中 $j = l \pm 1/2$ 是总角动量量子数. 这套公式跟实验对到 $10^{-9}$ 的相对精度, 是 20 世纪物理最严苛的检验之一. 再往下还有<strong>Lamb 移位</strong> (1947 年 Lamb-Retherford 实验测出来的 $2s_{1/2}$ 与 $2p_{1/2}$ 之间一个本应严格简并、却差了大约 $4.4\times 10^{-6}$ eV 的微小裂开), 那是电子跟真空电磁场涨落的耦合, 把氢原子从单纯的"束缚态问题"推向 QED — 那是第 22-23 节的主题.</p>
+
+  <h2>六、对称性的钥匙: Pauli 1925 的代数解</h2>
+
+  <p>留一个小尾巴讲 Pauli 那条路, 因为它给后面学群论的人省事. Coulomb 势除了角动量 $\mathbf{L}$ 守恒, 还有一个守恒矢量</p>
+
+  <p>$$ \mathbf{A} = \frac{1}{2m_e}(\mathbf{p}\times\mathbf{L} - \mathbf{L}\times\mathbf{p}) - ke^2\,\frac{\mathbf{r}}{r}, $$</p>
+
+  <p>叫 Runge-Lenz 矢量. 经典力学里它对应 Kepler 椭圆轨道的"长轴方向"—正因为这个量守恒, 行星椭圆才不进动 (相对论修正以后才会进动, 给出水星近日点). 量子化以后, 把它适当归一化, 它和 $\mathbf{L}$ 一起生成 SO(4) (=SO(3)$\times$SO(3)) 李代数. 在束缚态空间 $E \lt  0$ 上, SO(4) 不可约表示由两个量子数 $(j_1, j_2)$ 标记, $j_1 = j_2 = (n-1)/2$, 维数 $(2j_1+1)(2j_2+1) = n^2$. Casimir 算符直接给出 $E_n = -\mathrm{Ry}/n^2$. 整个推导不写一个微分方程, 只用对易关系. 这是第一例用"动力学对称性"(隐藏的非空间对称) 解出谱的范例 — 后来这套思想会反复回到我们眼前: 简谐振子的 SU(N) 对称、强相互作用 SU(3) 味对称、超对称代数, 全部沿着 Pauli 1925 这条路开辟下来.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>把 Bohr 1913 那条凭空假设 $L = n\hbar$ 的路, 用 Schrödinger 1926 的偏微分方程和 Pauli 1925 的代数, 各自走了一遍, 全部回到同一个干净答案: $E_n = -13.6\ \text{eV}/n^2$, 简并度 $n^2$. 主量子数 $n$ 的整数性不再是先验假设, 而是径向波函数在无穷远不发散这个边界条件强加的; 角动量量子数 $l = 0, 1, \dots, n-1$ 与磁量子数 $m = -l,\dots,l$ 来自上一节的球谐分析; Coulomb 势的额外 SO(4) 对称把所有不同 $l$ 拉回同一能级. 基态波函数 $\psi_{100}(r) = \pi^{-1/2}a_0^{-3/2}e^{-r/a_0}$ 是球对称的概率云, 最可能距离 $a_0 = 0.529$ Å, 平均距离 $1.5\,a_0$. 把电子自旋 $m_s = \pm 1/2$ 加进来, 每壳层 $2n^2$ 个状态, 配上 Pauli 不相容原理就是元素周期表的骨架. Lyman α $10.2$ eV、Balmer α $1.89$ eV 这些谱线现在不仅算得出能量, 还能用电偶极矩阵元算跃迁概率和强度, 给出选择定则 $\Delta l = \pm 1$. 高分辨率下的精细结构由 Sommerfeld 1916 的相对论修正和自旋-轨道耦合解释, Dirac 1928 给出干净公式精度到 $10^{-9}$, 再细一点的 Lamb 移位则把氢原子推到 QED. 这一节的真正意义是: "解谱"这件事不再是凭灵感拟数据, 而是从一个定义干净的 Hamiltonian 出发, 通过对称性和分析约束推出整套量子数与简并结构 — 后面所有解谱问题 (谐振子、自旋、塞曼效应、变分法、散射), 都是这一套手法的变奏. 下一节我们去看一个 Bohr 模型彻底装不下的东西: 电子自旋.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="13-angular-momentum.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="15-spin.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

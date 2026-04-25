@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>液氦为什么会爬上杯壁? · 第七卷·物质是什么?</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="17-cooper-pairs.html">← 上一节</a>
+  <span class="chapter-title">第 18 节 / 30 · 第 4 部分 · 超导与超流 · 第七卷·物质是什么?</span>
+  <a href="19-high-tc.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>液氦为什么会爬上杯壁?</h1>
+  <div class="sub">—— Bose-Einstein 凝聚与超流</div>
+
+  <div class="abstract">
+    把一个开口的玻璃杯泡进液氦里, 灌一点液氦进去, 慢慢冷到 2.17 K 以下 — 杯子里的液体会沿着内壁向上爬, 翻过杯沿, 在外壁顺着向下滴. 这是 Rollin 1936 在莱顿实验室拍下来的"爬膜"; 同一年代 Kapitza (莫斯科) 与 Allen-Misener (剑桥) 1938 分别在毛细管里发现 ⁴He 在这个温度以下黏度突然降到测不出, 比常温水低至少六个量级. 这个相变就叫 λ-转变, 名字来自比热曲线在 $T_\lambda$ 处的形状像个希腊字母 λ. 进入 He II 相之后的液氦同时表现出: 零黏度 (无阻地穿过细缝)、量化涡 (环量只能取 $\Gamma = h/m$ 整数倍)、第二声 (温度自己作为一个声波传播)、爬膜流 (薄膜沿着任何接触的固体表面爬). 解释这件事的两条线索都源自 1938: London 提出这是 Bose-Einstein 凝聚的宏观显现 (Einstein 1925 算了一个理想 Bose 气体在低温下大部分粒子塌进零动量态, ⁴He 是 boson, 估出 $T_c = 3.13$ K, 跟 $T_\lambda = 2.17$ K 量级对); Landau 1941 不直接靠 BEC, 而是给一个唯象的双流体模型 (流体分成 $\rho_n$ 与 $\rho_s$ 两份, 后者无熵无黏) 加上一套元激发谱 (声子 + roton), 凭这套预测了第二声并给出临界速度. 两条线索花了三十年合流: ⁴He 是一个强相互作用的 Bose 流体, 不是理想 BEC, 但凝聚分数 (中子散射量到约 7-10%) 与超流分数 ($T \to 0$ 时趋于 100%) 都不是零, 它确实"是" BEC, 只是被相互作用把图像弄复杂了.
+  </div>
+
+  <p>第七卷讲到这里, 我们已经把固体里的电子 (Bloch 带、Fermi 海) 与晶格 (声子、Debye) 拆过一遍, 第 17 节又讲了金属里两个电子怎么靠声子凑成一对 boson — 这一节把 boson 这件事推到极致: 不是配出来的 boson, 而是天生就是 boson 的原子, 也就是 ⁴He. 它的核 (2 质子 + 2 中子) 加电子壳一共 6 个 fermion, 自旋全部配对, 复合粒子是 spin-0 的 boson. ³He 多一个中子, 复合自旋 1/2, 是 fermion — 这两种同位素在低温下走两条完全不同的路, 后者要等到 1972 年 Osheroff-Lee-Richardson 才发现自己的"BCS-like"超流.</p>
+
+  <p>这一节只讲 ⁴He. 路径是: 先看现象 (λ 转变 + 超流四件套), 再讲 Einstein 1925 的理想 BEC 估算, 然后把 Landau 双流体模型架起来, 最后回到爬膜与量化涡这两个最古怪的实验现象, 看双流体模型怎么把它们消化掉.</p>
+
+  <h2>一、λ 转变 — He I 与 He II</h2>
+
+  <p>液氦的相图跟一切寻常物质都不一样. 把 ⁴He 在常压下从室温降下来, 4.21 K 时液化 (这是所有元素里最低的沸点); 继续降, 2.17 K 时液氦没有凝固成固体 (常压下 ⁴He 在 $T \to 0$ 都不凝固, 量子零点振动太大), 而是从一个寻常的低黏度液体 He I 跳进一个新相 He II. 跨过这一点的实验信号有几个.</p>
+
+  <p>(i) 比热. $C(T)$ 在 $T_\lambda = 2.17\,\mathrm{K}$ 附近从两边都发散上来 — 左边 ($T \lt  T_\lambda$) 一支按 $\propto -\ln(T_\lambda - T)$ 长上去, 右边 ($T \gt  T_\lambda$) 一支也按 $\propto -\ln(T - T_\lambda)$ 长上去, 整条曲线画出来像希腊字母 λ, 这就是 λ 转变的名字来源 (Keesom-Clusius 1932 在莱顿测出). 现代术语里这是一个二阶相变, 与 3D XY 模型同一个普适类 (这件事到 1980 年代才彻底搞清楚).</p>
+
+  <p>(ii) 黏度. Kapitza 在莫斯科把液氦挤进 0.5 μm 宽的窄缝, 测穿过流量, 1938 年 1 月 8 日 Nature 上的论文报告: $T \lt  T_\lambda$ 之后, 流量大到他的仪器无法分辨黏度的下限, 他直接给出一个上限 $\eta \lt  10^{-11}\,\mathrm{Pa\cdot s}$ — 比常温水 ($\eta \approx 10^{-3}\,\mathrm{Pa\cdot s}$) 至少低八个量级. 同一期 Nature 紧挨着的一篇是 Allen 与 Misener 在剑桥用毛细管做的同款实验, 结论一致. Kapitza 在论文里自己造了一个词"superfluidity", 仿照 Onnes 1911 的 superconductivity. 这个相 He II 的物理性质从此跟一切寻常液体都不一样了.</p>
+
+  <p>(iii) 热超导. He II 的热导率比 He I 大约高 $10^6$ 倍 — 倒一点液氦在杯里, 一旦进了 He II, 表面的剧烈沸腾突然停下来, 因为温度梯度被瞬间抹平, 局部不再过热. 这件事任何一位做过低温实验的人都见过: 4.2 K 下倒进杜瓦瓶的液氦在咕嘟咕嘟地沸, 抽气降温到 $T_\lambda$ 以下的瞬间, 整个杯面变成镜面般平静. 莱顿的 Keesom 1932 第一次记录这个现象时, 写"the liquid suddenly becomes very still".</p>
+
+  <p>(iv) 第二声. 1944 年 Peshkov 在 Kapitza 的实验室里把 He II 当成介质做声学实验, 发现温度本身可以作为一种波传播 — 局部加热产生的不是密度起伏, 而是温度起伏, 速度跟普通声波 (第一声, $c_1 \approx 240$ m/s) 不同, 称第二声 ($c_2 \approx 20$ m/s 在 1.5 K 左右). Landau 1941 在双流体模型里预言了它, Peshkov 后来直接测到. 这是 He II 最干净的"双流体"指纹.</p>
+
+  <p>(v) 爬膜 (Rollin film). 这是题目问的现象. 一个开口容器装着 He II, 任何与液面接触的固体表面 — 玻璃杯壁、温度计探针、连液面外的空气都不行 — 都会被一层 30 nm 量级厚的 He II 薄膜覆盖, 这层膜本身具有零黏度, 它在重力 + 表面张力作用下沿着固体爬, 越过容器壁, 在外壁顺着重力向下滴回液池. 实验上的具体表现: 把内杯抬高到液面以上, 内杯里液氦的液面会自动逐渐降低, 直到内外液面齐平为止 (Daunt-Mendelssohn 1939 在莱顿用电影胶片记录下整个过程, 可重复). 爬膜的速度 $\approx 30\,\mathrm{cm/s}$, 跟管壁形状粗细无关 — 是 He II 的一个"内禀"流速.</p>
+
+  <p>把这五件事 (λ-比热、零黏度、超热导、第二声、爬膜) 摆在一起, 其实只有一个共同根源: 液氦在 $T \lt  T_\lambda$ 时分成两部分, 其中一份没有黏性也没有熵, 它能渗、能爬、能在窄缝里漏过去, 也能扛起非平衡时的所有质量流. 这就是 Landau 双流体模型的核心.</p>
+
+  <h2>二、理想 Bose 气体的凝聚 — Einstein 1925</h2>
+
+  <p>1924 年印度青年 Bose 把光子的统计算法寄给 Einstein, Einstein 看出这同样适用于有静质量的全同 boson 气体, 1925 年发表后续论文. 在低温下他算出一个奇怪的结果: 对一个理想 boson 气体, 当温度低于某个临界温度 $T_c$, 有限比例的粒子会塌进单粒子基态 ($\mathbf{p} = 0$), 这部分凝聚体的占据数随 $N$ 一起 $\to \infty$, 不再是热涨落的"一个动量态偶尔被占一个粒子".</p>
+
+  <p>具体数. 一个理想自由 boson 气体在体积 $V$ 里、粒子数 $N$ 固定时, 化学势 $\mu \le 0$ (基态能量取零). 当 $T$ 高时 $\mu$ 远负, $N$ 全部分布在激发态; 降温让 $\mu \to 0^-$, 激发态最多能装下的粒子数</p>
+
+  <p>$$ N_{\text{ex}}^{\max}(T) = V \int \frac{d^3p}{(2\pi\hbar)^3}\frac{1}{e^{p^2/(2mk_BT)} - 1} = V\,\zeta(3/2)\,\Big(\frac{m k_B T}{2\pi\hbar^2}\Big)^{3/2}, $$</p>
+
+  <p>$\zeta(3/2) \approx 2.612$ 是 Riemann zeta 函数. 当 $T$ 降到 $N_{\text{ex}}^{\max}(T) = N$ 那一刻, 激发态再也塞不下所有粒子, 多出来的只能去基态. 这个临界温度由 $n = N/V = \zeta(3/2)(mk_BT_c/2\pi\hbar^2)^{3/2}$ 反解</p>
+
+  <p>$$ T_c = \frac{2\pi\hbar^2}{m k_B}\left(\frac{n}{\zeta(3/2)}\right)^{2/3}. \tag{1} $$</p>
+
+  <p>给液氦代数. ⁴He 在 $T_\lambda$ 附近的密度 $\rho \approx 0.145\,\mathrm{g/cm^3}$, 原子质量 $m = 4 \times 1.66 \times 10^{-27}\,\mathrm{kg} = 6.64\times 10^{-27}\,\mathrm{kg}$, 数密度 $n = \rho/m \approx 2.18\times 10^{28}\,\mathrm{m^{-3}}$. 代进 $(1)$</p>
+
+  <p>$$ T_c = \frac{2\pi (1.055\times 10^{-34})^2}{(6.64\times 10^{-27})(1.38\times 10^{-23})}\left(\frac{2.18\times 10^{28}}{2.612}\right)^{2/3} \approx 3.13\;\mathrm{K}. $$</p>
+
+  <p>跟 $T_\lambda = 2.17\,\mathrm{K}$ 比, 同一量级, 但偏高约 44%. 这个差距正是问题所在: 液氦不是理想 boson 气体, ⁴He 原子之间有强排斥 (短程硬核 + 中等长程吸引, Lennard-Jones 势井深约 10 K), 这些相互作用把临界温度从 3.13 K 压到 2.17 K, 还把动量分布从"全部凝在 $\mathbf{p}=0$, 其余按 BE 分布"扭曲成一个复杂的多体基态. 中子散射 (Sokol 1990 总结, Glyde 等人后续) 实测的"凝聚分数" $n_0/n$ 在 $T \to 0$ 时也只有约 7-10%, 远不是 100% — 但即便这 7%, 它的相位是相干的, 这就是超流的起点.</p>
+
+  <p>1938 年伦敦 (F. London, 在巴黎) 看到 Kapitza 与 Allen 的论文后立刻在 Nature 上写了一篇短信, 把 He II 的相变跟 Einstein 1925 的 BEC 联系起来 — "the strange behaviour of liquid helium ... bears such a striking resemblance to ... condensation". 那时 BEC 在物理学界基本被遗忘 (没有人当真过 Einstein 1925 这个看起来纯抽象的预言), London 这篇短信受到了猛烈反对 (Landau 公开反对, 理由是相互作用太强, BEC 图像不可信), 整整三十年里它都是一个少数派意见. 直到 1956 年 Penrose-Onsager 把 BEC 的概念严格化成"单粒子约化密度矩阵的最大本征值正比于 $N$" (off-diagonal long-range order, ODLRO), 才把强相互作用 boson 流体也纳入 BEC 的定义.</p>
+
+  <h2>三、Landau 双流体模型 — 不靠 BEC 也能算</h2>
+
+  <p>Landau 1941 取了不同路线. 他不假设 BEC, 而是唯象地写下: $T \lt  T_\lambda$ 时液氦的总质量密度可以分解为</p>
+
+  <p>$$ \rho = \rho_n(T) + \rho_s(T), $$</p>
+
+  <p>$\rho_n$ 称正常组分 (normal), 携带全部熵, 有黏性, 像普通流体一样响应外力; $\rho_s$ 称超流组分 (super), 不携带熵, 没有黏性, 在某个临界速度以下不能跟正常组分发生粒子交换 (没有耗散通道). 边界条件: $T \to T_\lambda^-$ 时 $\rho_s/\rho \to 0$ (恢复成普通流体 He I); $T \to 0$ 时 $\rho_s/\rho \to 1$ (整个流体变成"纯超流"). Andronikashvili 1946 用一摞间距很小的圆盘扭摆量到 $\rho_n(T)/\rho$ — 圆盘只能拖动正常组分 (黏性流体跟着圆盘一起转), 超流组分不被拖, 测扭摆周期就反推出 $\rho_n/\rho$ 的温度依赖, 1.5 K 时 $\rho_n/\rho \approx 0.15$, 验证了双流体模型不只是数学游戏.</p>
+
+  <p>Landau 进一步给出超流组分的元激发谱. 他假设在 $\mathbf{p} \to 0$ 时是声子 ($\omega = c \abs{\mathbf{p}}/\hbar$, $c$ 第一声速), $\mathbf{p}$ 大一点出现一个局部极小 — roton — 形如 $\omega(p) \approx \Delta/\hbar + (p - p_0)^2/(2 \mu \hbar)$, 参数 $\Delta/k_B \approx 8.6\,\mathrm{K}$, $p_0/\hbar \approx 1.9\,\mathrm{Å^{-1}}$, $\mu \approx 0.16\, m_{\mathrm{He}}$. 这套谱后来被 Henshaw-Woods 1961 用中子非弹性散射直接量到, 跟 Landau 的形状对得严丝合缝.</p>
+
+  <p>从这套元激发谱 Landau 推出一个关键结论: 临界速度判据. 一个以速度 $v$ 移动的物体, 如果能通过激发一个动量 $\mathbf{p}$、能量 $\epsilon(\mathbf{p})$ 的元激发来耗散能量, 必须 $v \ge \min_p \epsilon(p)/p$. 对 He II 这个最小值出现在 roton 极小处, 给出</p>
+
+  <p>$$ v_{\text{Landau}} = \min_p \frac{\epsilon(p)}{p} \approx \frac{\Delta}{p_0} \approx 60\,\mathrm{m/s}. $$</p>
+
+  <p>低于这个速度, 没有任何元激发能被激发, 流体无法耗散动能 — 即超流. 实验上的临界速度通常比 Landau 上限低很多 (在毛细管中约 0.1-1 cm/s, 在自由薄膜中约 50 cm/s), 因为在这些情形下涡环的形成比 roton 激发更早出现 (Feynman 1955 的图像).</p>
+
+  <p>Landau 这套理论 (1941, 改进 1947) 直接预言了第二声: 既然 $\rho_n$ 与 $\rho_s$ 可以独立做相对运动, 一个"$\rho_n$ 与 $\rho_s$ 此消彼长但总质量不变"的振荡就是温度波 — $\rho_n$ 把熵带走, $\rho_s$ 跟进来, 没有质量净流动, 但温度在一处上一处下. Peshkov 1944 在 Landau 直接指点下做出实验, 测到 $c_2 \approx 20\,\mathrm{m/s}$ 在 1.6 K, 跟理论预测的</p>
+
+  <p>$$ c_2^2 = \frac{\rho_s}{\rho_n}\,\frac{T s^2}{c_v} $$</p>
+
+  <p>($s$ 是熵密度, $c_v$ 比热) 量值符合. Landau 因为这套理论得了 1962 年诺贝尔奖, 颁奖词专门提到了 He II 的双流体模型与元激发谱.</p>
+
+  <h2>四、量化涡 + 爬膜 — 把现象塞回模型</h2>
+
+  <p>双流体模型的"超流组分"在 Landau 的写法里只是一份没有熵也没有黏性的流体. 它真正的微观图像由 Onsager 1949 与 Feynman 1955 给出: $\rho_s$ 这部分对应于一个宏观波函数</p>
+
+  <p>$$ \psi(\mathbf{r}) = \sqrt{n_s(\mathbf{r})}\,e^{i\varphi(\mathbf{r})}, $$</p>
+
+  <p>它的相位 $\varphi$ 是空间位置的函数, 而超流速度由相位梯度给出</p>
+
+  <p>$$ \mathbf{v}_s = \frac{\hbar}{m}\nabla\varphi. \tag{2} $$</p>
+
+  <p>这是这一节的第二个中心式. 它来自一个非常一般的事实: $\psi$ 本身满足 Schrödinger 类方程, 它的概率流密度是 $\mathbf{j} = (\hbar/m)\Im(\psi^*\nabla\psi) = n_s \mathbf{v}_s$, 所以 $\mathbf{v}_s = (\hbar/m)\nabla\varphi$ 的形式是从平方根 + 相位拆分自动出来的. ⁴He 的 $m$ 是单原子质量, 不是 Cooper 对的 $2m_e$ — 这是它跟超导的关键区别.</p>
+
+  <p>$(2)$ 立刻给出超流的两个核心后果.</p>
+
+  <p>第一, 速度场是无旋的: $\nabla\times\mathbf{v}_s = (\hbar/m)\nabla\times\nabla\varphi = 0$ 在所有 $\psi$ 单值且光滑的区域里. 这意味着超流不能像普通流体那样形成连续分布的涡度场; 它只能容许"奇异"的涡丝, 在涡丝的核心 $\psi = 0$ 让相位绕一圈得到 $2\pi n$ 的多值不矛盾.</p>
+
+  <p>第二, 沿任何不穿过涡核的闭合回路, 环量被量子化. 因为 $\psi$ 在每点单值, $\oint\nabla\varphi\cdot d\mathbf{l} = 2\pi n$, $n$ 是整数; 代进 $(2)$,</p>
+
+  <p>$$ \Gamma \equiv \oint \mathbf{v}_s \cdot d\mathbf{l} = n\,\frac{h}{m_{\mathrm{He}}}, \qquad \frac{h}{m_{\mathrm{He}}} = \frac{6.626\times 10^{-34}\,\mathrm{J\!\cdot\!s}}{6.64\times 10^{-27}\,\mathrm{kg}} \approx 9.97\times 10^{-8}\,\mathrm{m^2/s}. $$</p>
+
+  <p>实验上 Vinen 1961 在转动的液氦圆筒里直接测到这个量子, 误差 5%, $n=1$ 的最低单位涡占主导 (能量上 $n=2$ 涡不稳定, 会分裂成两个 $n=1$). 这是凝聚态里最干净的"宏观量子化"实验之一, 跟 Deaver-Fairbank-Doll-Näbauer 1961 测出的超导磁通量子 $h/2e$ 形式上一对应.</p>
+
+  <p>转动的 He II — 1964 年 Williams-Packard 在液面上撒电子做泡室式照片 — 不是像普通流体那样形成一个统一的涡, 而是用一束密集排列的量子涡的阵列来"模仿"刚体旋转: 涡密度 $n_v = 2\Omega/(h/m)$ 个每平方米, $\Omega$ 是转速. Yarmchuk-Gordon-Packard 1979 拍下了这些涡的离散图像, 可以一根一根数出来.</p>
+
+  <p>回到爬膜. 在容器内壁与液面交界处, He II 沿着固体表面被范德华力吸住, 形成厚度由表面距离 $z$ 决定的薄膜 (van der Waals: $d \sim z^{-1/3}$, 30 nm 量级). 这层膜里, $\rho_s$ 占主导, 它没有黏性, 也无法被重力以"普通流体压强差"的方式压住 — 在膜内, 化学势必须空间均匀 (零黏度组分的平衡条件), 而化学势包括重力势, 所以哪里高 (重力势更高), 哪里就被"主动"补充流量直到液面在容器内外齐平为止. 物理上看, 这条薄膜就是一根厚度小、表面积大的 He II"细管", 超流组分以一个临界速度 (实测 $\approx 30\,\mathrm{cm/s}$) 持续从低液面流向高液面, 直到两边等高, 整个过程在杯外液面沿外壁滴下来, 是 Daunt-Mendelssohn 1939 拍到的"喷泉效应"的一种弱形态. 这个流速以 $h/m$ 为单位, 大致对应一根 $n=1$ 涡线绕在膜的厚度尺度上的环量.</p>
+
+  <p>同样, 第二声、零黏度毛细流、热超导也都能在 (双流体 + $(2)$ + 量化涡) 这套模型里找到自然位置. 黏度测不到, 是因为黏性组分被困在边界层里, 而 $\rho_s$ 直接穿缝而过 (Vinen 把这件事在窄缝实验里调出过过渡); 热从 $\rho_n$ 携带, $\rho_s$ 反向回流补质量, 等效于一个"有限热阻、零黏阻"的输运通道, 等效热导率比纯导热高几个量级; 第二声就是 $\rho_n$ 与 $\rho_s$ 反相振荡的简正模.</p>
+
+  <p>把整张图集中一下.</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 双流体模型示意 — 主图横轴 $T/T_\lambda$ 从 0 到 1.2, 纵轴 $\rho_n/\rho$ 与 $\rho_s/\rho$ 两条曲线, 在 $T = 0$ 时 $\rho_s/\rho = 1$, $\rho_n/\rho = 0$, 单调向 $T_\lambda$ 处交叉到 $\rho_s/\rho = 0$, $\rho_n/\rho = 1$; 用阴影把"超流相 He II"区 ($T \lt  T_\lambda$) 与"正常相 He I"区分开, 在 $T_\lambda = 2.17$ K 处标 λ; 主图右下角附一小图: 一根直立的量子涡丝, 周围用环形箭头画出 $\mathbf{v}_s$ 的速度场, 标"$\oint\mathbf{v}_s\cdot d\mathbf{l} = h/m_{\mathrm{He}} \approx 9.97\times 10^{-8}\,\mathrm{m^2/s}$"; 主图左上角附第二声示意: 一个温度脉冲 ($\delta T$ 包络) 沿着管道传播, 速度 $c_2 \approx 20$ m/s]</div>
+  </figure>
+
+  <h2>五、为什么这个图像花了三十年才被接受</h2>
+
+  <p>把回头看的视角拉一下. London 1938 写出 BEC 假设的时候, 物理学界对 BEC 的反应是怀疑 + 冷处理 — Landau 公开反对 (他在 1941 论文里写明"我们不需要假设 Bose 凝聚来解释这些现象"); Einstein 自己 1924-25 之后再没回到 BEC 主题. 双流体模型在 1940s-50s 主导, 而 BEC 视角被推迟到几个关键节点之后才被广泛接受.</p>
+
+  <p>(a) 1956, Penrose-Onsager 把 BEC 推广到强相互作用 boson 系统: 不再要求"基态被宏观占据", 而是定义 ODLRO — 单粒子约化密度矩阵 $\rho_1(\mathbf{r}, \mathbf{r}')$ 在 $\abs{\mathbf{r} - \mathbf{r}'} \to \infty$ 时不趋于零, 反而趋于一个有限值 $n_0$. 这等价于"系统具有一个宏观相干相位 $\varphi$", 跟 $(2)$ 直接挂钩. He II 的 $n_0/n$ 不需要是 1, 但只要不是 0, 超流就有微观依据.</p>
+
+  <p>(b) 1957, BCS 把同样的想法 (宏观波函数 + 相位相干) 移植到 fermion 配对系统 — 第 16-17 节讲过. 这强烈支持"超流 + 超导是同一类 ODLRO 现象"的图像, 让 He II 的 BEC 解释从孤立假设变成一个家族成员.</p>
+
+  <p>(c) 1979-1989, 中子散射技术 (脉冲源, ISIS、IPNS) 直接测出 ⁴He 的动量分布, 在 $T \to 0$ 时确实在 $p = 0$ 出现一个 δ 函数权重 (有限 $n_0/n \approx 0.07$-0.10), 这是 BEC 在动量空间的硬证据. 至此 He II = BEC 的图像才成为教科书共识.</p>
+
+  <p>(d) 1995, JILA 的 Cornell-Wieman 与 MIT 的 Ketterle 用激光冷却把 ⁸⁷Rb 与 ²³Na 的稀薄气体降到 nK, 实现真正的稀薄理想 BEC ($n_0/n \to 1$), 跟 1925 年 Einstein 写下的方程严格符合. 2001 年三人共享诺贝尔奖. 这件事让人们能反过来对照 He II — 它是同一现象的"密集相互作用极限".</p>
+
+  <p>整个故事的形状: 一个 1925 年看起来像数学游戏的预言 (Einstein), 1938 年被一个孤立的远见者 (London) 联系到一个新发现的实验现象 (Kapitza, Allen, 同年), 立刻被一个更强的本地理论 (Landau 双流体) 遮盖, 然后花三十年时间被一系列严格化 + 实验直接测量重新认领, 最后在另一个材料平台 (稀薄碱金属气体) 被以 textbook 形态再演一次. 这个时间轴也告诉我们: BEC 不是一个 ⁴He 独有的现象, 而是 boson 在量子简并下的普遍归宿; 超导是这同一回事在 Cooper 对上的化身; 我们一会儿讲到的 BEC-BCS crossover 就是把这两个极限连成一条连续光谱.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>液氦在 $T_\lambda = 2.17\,\mathrm{K}$ 以下进入 He II 相, 表现出零黏度 (Kapitza 1938 上限 $\eta \lt  10^{-11}$ Pa·s)、超热导、第二声 ($c_2 \approx 20$ m/s, Peshkov 1944)、量子涡 (环量量子 $h/m_{\mathrm{He}} \approx 9.97 \times 10^{-8}\,\mathrm{m^2/s}$, Vinen 1961) 与爬上杯壁的 Rollin 膜. 这个相变的两个等价描述: (a) Einstein 1925 的理想 Bose 气体凝聚, $T_c = (n/2.612)^{2/3} \cdot 2\pi\hbar^2/(mk_B)$, 给液氦 $T_c \approx 3.13$ K, 跟 $T_\lambda$ 量级对但偏高 (因为强相互作用), London 1938 把它跟 He II 联系起来; (b) Landau 1941 的唯象双流体模型, $\rho = \rho_n(T) + \rho_s(T)$, $\rho_s$ 无熵无黏, 配上声子 + roton 的元激发谱, 直接预言 Andronikashvili 1946 圆盘扭摆能测到的 $\rho_n/\rho$ 与 Peshkov 第二声, Landau 1962 诺贝尔. 微观底层: 超流组分对应一个宏观相干波函数 $\psi = \sqrt{n_s}e^{i\varphi}$, 超流速度 $\mathbf{v}_s = (\hbar/m)\nabla\varphi$, 它的无旋性强制涡量子化, 它的化学势均匀性强制爬膜让两边液面齐平. 整个图像在 1956 Penrose-Onsager (ODLRO)、1980s 中子动量分布测量、1995 稀薄碱金属气体 BEC 之后才完全合流. 下一节走向高 $T_c$ 超导 — 把 BCS 推到铜氧化物里, 看一个跟 Cooper 对图像本身打架的相位.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="17-cooper-pairs.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="19-high-tc.html">下一节 →</a>
+</nav>
+
+</body>
+</html>
