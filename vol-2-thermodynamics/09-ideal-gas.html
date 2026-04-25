@@ -57,20 +57,7 @@
 
   <p>注意 $1/N!$ 和 $1/h^{3N}$ 都是量子力学的痕迹, 但它们进入了一个看起来完全经典的表达式. 这不是矛盾 — 是因为"经典统计力学"本身就是量子统计力学的高温极限, 而这两个因子正是取极限时遗留下来的常数. 换一句话, 一个完全不知道 $\hbar$ 的 19 世纪物理学家能写出 $PV=NkT$, 但他没法给出 $S$ 的绝对值 — 熵有一个积分常数他填不上. Sackur 和 Tetrode 在 1912 年借用了刚诞生不久的量子概念, 把这个常数填了, 这就是我们在第四节要做的事.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 从盒子到 $Z$, 再到 $P,U,S$</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一个理想气体盒子, 旁边是从 $Z$ 一步步推出 $P,U,S,C_V$ 的流程图</dd>
-      <dt>必含元素</dt><dd>左侧: 立方体盒子, 体积标为 $V$, 内含若干小圆点代表 $N$ 个粒子; 右侧流程框, 从上到下依次为 $Z_1 = V/\lambda_T^3 \to Z = Z_1^N/N! \to F=-kT\ln Z \to \{P=-\partial F/\partial V,\ U=-\partial\ln Z/\partial\beta,\ S=-\partial F/\partial T\}$; 每个箭头旁注明关键方程</dd>
-      <dt>几何/数学精度</dt><dd>流程清晰, 每一步都能追踪到本文的编号公式; 盒子比例接近立方</dd>
-      <dt>标签与公式</dt><dd>$V$, $N$, $\lambda_T$, $F$, $PV=NkT$, $U=\tfrac{3}{2}NkT$, Sackur-Tetrode 熵</dd>
-      <dt>风格建议</dt><dd>白底, 盒子用细线勾勒, 粒子用实心圆点, 流程用框+箭头, 整体保持书稿黑白风格</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  从单粒子配分函数一路推出理想气体所有热力学性质的流程.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/09.svg" alt="图 1 · 从盒子到 $Z$, 再到 $P,U,S$" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  从单粒子配分函数一路推出理想气体所有热力学性质的流程.</figcaption></figure>
 
   <h2>三、从 $\ln Z$ 拧出状态方程、内能与比热</h2>
 

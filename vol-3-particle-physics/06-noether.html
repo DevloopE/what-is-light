@@ -76,19 +76,7 @@
 
   <p>这一整段推导需要的全部原料就是一条变分恒等式, 一条对称定义, 一条运动方程. 没有任何额外猜测, 没有挥手. Emmy Noether 本人 1918 年在 Göttingen 完成这件事, 比任何一本教材讲得都要严密.</p>
 
-<figure class="diagram-placeholder">
-<div class="placeholder-box">
-  <span class="tag">TikZ 待渲染</span>
-  <h4>图 1 · 对称 ↔ 守恒: Noether 词典</h4>
-  <dl class="tikz-req">
-    <dt>主题</dt><dd>一张白底对照表, 左栏列出拉氏密度承认的五个典型连续对称, 右栏列出由 Noether 定理给出的守恒荷. 表格周围配三张小图解: (a) 时间平移的两个等价历史曲线, (b) 空间平移的坐标刻度对照, (c) $U(1)$ 相位在复平面里的单位圆旋转.</dd>
-    <dt>必含元素</dt><dd>两列五行的表格: "时间平移 $x^0\to x^0+a$" ↔ "能量 $E = \int d^3x\,T^{00}$"; "空间平移 $x^i\to x^i+a^i$" ↔ "动量 $P^i = \int d^3x\,T^{0i}$"; "空间转动" ↔ "角动量 $L^{ij}$"; "内禀 $U(1)$: $\phi\to e^{i\alpha}\phi$" ↔ "电荷 $Q = \int d^3x\,j^0$"; "内禀 $SU(2)$ 强同位旋" ↔ "同位旋 $I^a$". 表格下方给公式: $\partial_\mu j^\mu = 0$, $j^\mu = \pi^\mu\Delta\phi - K^\mu$.</dd>
-    <dt>几何/数学精度</dt><dd>概念对齐严格, 时空对称对应张量指标明确 ($T^{\mu\nu}$, $M^{\mu\nu\lambda}$ 等), 内禀对称单独归一栏.</dd>
-    <dt>标签与公式</dt><dd>顶部标题 "Noether 词典: 对称 ↔ 守恒荷"; 底部脚注 "Emmy Noether 1918, Göttingen".</dd>
-    <dt>风格建议</dt><dd>白底, 细黑线表格, 表头淡灰填充; 三张小图解用深蓝细线描出概念示意, 不必精确按比例.</dd>
-  </dl>
-</div>
-<figcaption>图 1  Noether 定理是一张机械词典: 左边任何一个连续对称, 都能按 $j^\mu = \pi^\mu\Delta\phi - K^\mu$ 配出右边一个守恒流. 时空对称给能量–动量张量 $T^{\mu\nu}$, 内禀对称给电荷、同位旋.</figcaption>
+<figure class="diagram"><img src="build/06.svg" alt="图 1 · 对称 ↔ 守恒: Noether 词典" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Noether 定理是一张机械词典: 左边任何一个连续对称, 都能按 $j^\mu = \pi^\mu\Delta\phi - K^\mu$ 配出右边一个守恒流. 时空对称给能量–动量张量 $T^{\mu\nu}$, 内禀对称给电荷、同位旋.</figcaption>
 </figure>
 
   <h2>三、例子: 时空平移给 $T^{\mu\nu}$, $U(1)$ 给电荷</h2>

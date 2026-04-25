@@ -83,20 +83,7 @@
 
   <p>这就是全部. 相对涨落随 $1/\sqrt N$ 缩小, 不是一个巧合, 而是因为"方差外延, 均值也外延". 在 $N\to\infty$ 的热力学极限下, 相对涨落趋于零 —— 正则系综跟微正则系综给出同一个内能 —— 这就是系综等价性的起点.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 正则系综下 $P(E)$ 随 $N$ 收窄</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>能量分布 $P(E) \propto \Omega(E)\, e^{-\beta E}$ 在不同粒子数 $N$ 下的形状变化, 以及临界点附近的反常宽化.</dd>
-      <dt>必含元素</dt><dd>横轴 $E/\langle E\rangle$, 纵轴 $P(E)$ (相对归一); 三到四条曲线, 对应 $N = 10,\,10^2,\,10^4,\,10^6$ (或类似量级), 越大越尖; 在同一图上用虚线再画一条"临界点上" $C_V\to\infty$ 的反常宽化曲线 (明显比同 $N$ 的正常情况宽); 每条曲线标 $N$ 值; 峰位都在 $E = \langle E\rangle$ 处, 并在横轴上用短竖线标出 $\langle E\rangle$.</dd>
-      <dt>几何/数学精度</dt><dd>各条曲线按近似高斯 $\exp[-(E-\langle E\rangle)^2/(2\sigma_E^2)]$ 画, 其中 $\sigma_E/\langle E\rangle \propto 1/\sqrt N$; 相邻两条曲线的半宽比约为 $\sqrt{10}\approx 3.16$; 反常曲线半宽明显 ($\sim$ 3–5 倍) 大于同 $N$ 正常曲线.</dd>
-      <dt>标签与公式</dt><dd>标题 "$P(E)\propto \Omega(E)\,e^{-\beta E}$"; 右上角方程 $\sigma_E = \sqrt{kT^2 C_V}$, $\sigma_E/\langle E\rangle \propto 1/\sqrt N$; 反常曲线旁注 "临界点, $C_V\to\infty$".</dd>
-      <dt>风格建议</dt><dd>白底, 不同 $N$ 用冷色渐变 (浅蓝到深蓝), 临界反常曲线用暖红虚线区分; 字号适中, 公式用 LaTeX 风格.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  正则系综下的能量分布 $P(E)$. 正常情况下相对宽度按 $1/\sqrt N$ 缩小; 但在临界点, $C_V$ 的发散使分布异常宽化, 涨落重新变得宏观可观测.</figcaption>
-  </figure>
+<figure class="diagram"><img src="build/10.svg" alt="图 1 · 正则系综下 $P(E)$ 随 $N$ 收窄" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  正则系综下的能量分布 $P(E)$. 正常情况下相对宽度按 $1/\sqrt N$ 缩小; 但在临界点, $C_V$ 的发散使分布异常宽化, 涨落重新变得宏观可观测.</figcaption></figure>
 
   <h2>三、中心极限定理: $1/\sqrt N$ 从哪里来的</h2>
 

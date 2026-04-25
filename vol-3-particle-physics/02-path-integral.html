@@ -73,20 +73,7 @@
 
   <p><strong>代入数字.</strong> 取一个电子 ($m_e=9.11\times 10^{-31}\,\mathrm{kg}$), 让它在 $T=1\,\mathrm{ns}=10^{-9}\,\mathrm{s}$ 内从原点跑到 $x_f=1\,\mathrm{\mu m}=10^{-6}\,\mathrm{m}$. 经典作用量 $S_{\text{cl}}=m x_f^2/(2T)=9.11\times 10^{-31}\cdot 10^{-12}/(2\cdot 10^{-9})\approx 4.56\times 10^{-34}\,\mathrm{J\cdot s}$. 与 $\hbar\approx 1.055\times 10^{-34}\,\mathrm{J\cdot s}$ 相比, $S_{\text{cl}}/\hbar\approx 4.3$ —— 这是 $\mathcal O(1)$, 意味着经典路径与近邻路径的干涉仍然显著, 是完全量子的区域. 换一个宏观对比: 一颗 $1\,\mathrm g$ 的小球在 $1\,\mathrm s$ 内移动 $1\,\mathrm{cm}$, $S_{\text{cl}}=10^{-3}\cdot 10^{-4}/2\approx 5\times 10^{-8}\,\mathrm{J\cdot s}$, $S_{\text{cl}}/\hbar\approx 5\times 10^{26}$, 经典路径以 $10^{26}$ 圈的相位压倒一切其他路径, 所以我们看到球是按 Newton 方程的方式走的. Feynman 的公式在两种极端下都给出正确答案, 这不是巧合 —— 它本身就从 Schrödinger 方程导出.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 时间切片与路径求和 — Feynman 积分的几何</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>时空图上展示时间切片与多条路径求和的图像</dd>
-      <dt>必含元素</dt><dd>(a) 横轴 $x$, 纵轴 $t$ 的时空图; (b) 起点 $(x_i, t_i)$ 与终点 $(x_f, t_f)$ 用黑点标出; (c) 一条粗黑的经典路径 $x_{\text{cl}}(t)$ 从起点到终点, 近似直线 (自由粒子); (d) 围绕经典路径的五到七条偏离路径 (浅灰细线, 有的弯曲有的 zigzag), 端点都固定在 $(x_i,t_i)$ 与 $(x_f,t_f)$; (e) 水平虚线把时间区间切成 $N=8$ 段, 标出 $\Delta t=T/N$; (f) 在任一段上, 标注路径在中间切片上的离散点 $x_n$; (g) 图边或右侧写出公式 $K(x_f,t_f;x_i,t_i)=\int\!\mathcal D x(t)\,e^{iS[x]/\hbar}$</dd>
-      <dt>几何精度</dt><dd>经典路径居中, 偏离路径围绕经典路径左右散开但端点严格钉住; 时间切片等距; $\Delta t$ 的标注放在某相邻两虚线之间; 所有路径从下端点出发, 终点汇聚到上端点</dd>
-      <dt>标签与公式</dt><dd>$(x_i,t_i)$, $(x_f,t_f)$, $\Delta t$, $x_n$ (一个代表性的切片点), 经典路径标 $x_{\mathrm{cl}}$, 求和公式 $K=\int\!\mathcal D x\,e^{iS/\hbar}$</dd>
-      <dt>风格建议</dt><dd>白底; 经典路径砖红色粗线; 偏离路径浅灰细线; 切片虚线极细; 坐标轴与点标黑色; 公式用 LaTeX</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  把时间轴切成 $N$ 段, 路径积分被定义为 $N\to\infty$ 极限下对所有端点钉住的折线求和. 每条路径带相位 $e^{iS/\hbar}$, 经典路径 (砖红) 是 $S$ 的驻点.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/02.svg" alt="图 1 · 时间切片与路径求和 — Feynman 积分的几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  把时间轴切成 $N$ 段, 路径积分被定义为 $N\to\infty$ 极限下对所有端点钉住的折线求和. 每条路径带相位 $e^{iS/\hbar}$, 经典路径 (砖红) 是 $S$ 的驻点.</figcaption></figure>
 
   <h2>四、$\hbar\to 0$ 鞍点, 场论推广与 Wick 转动</h2>
 

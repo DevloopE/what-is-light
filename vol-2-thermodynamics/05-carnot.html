@@ -59,20 +59,7 @@
 
   <p>$$ \eta_C = 1 - \frac{Q_c}{Q_h} = 1 - \frac{T_c\Delta S}{T_h\Delta S} = 1 - \frac{T_c}{T_h}. \tag{2} $$</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Carnot 循环在 PV 与 TS 两张图上的几何</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>同一个 Carnot 循环的两种表达: 左图 $P$-$V$ 坐标下的闭合曲边四边形, 右图 $T$-$S$ 坐标下的长方形.</dd>
-      <dt>必含元素</dt><dd>左图: 两条等温双曲线 (标 $T_h, T_c$, 红色, 形如 $PV=\text{const}$), 两条绝热线 (蓝色, 更陡, 形如 $PV^{\gamma}=\text{const}$), 四个顶点 $A,B,C,D$, 箭头指示循环方向 $A\to B\to C\to D\to A$, 标注等温段吸热 $Q_h$ 和排热 $Q_c$; 右图: 水平线 $T=T_h$ 与 $T=T_c$ (红色 isotherm), 竖直线 $S=S_A$ 与 $S=S_B$ (蓝色 adiabat), 四顶点一一对应, 长方形内标 $W = (T_h-T_c)\Delta S$, 上下两边各标 $Q_h = T_h\Delta S$ 和 $Q_c = T_c\Delta S$.</dd>
-      <dt>几何/数学精度</dt><dd>PV 图: 等温双曲线与绝热线交点构成真实闭合四边形, 绝热线斜率大于等温线 (绝对值), 符合 $PV^{\gamma}$ 与 $PV$; TS 图: 严格长方形, 左右两边完全竖直, 上下两边完全水平.</dd>
-      <dt>标签与公式</dt><dd>两图下方并列写 $\eta_C = 1 - Q_c/Q_h = 1 - T_c/T_h$; TS 图内阴影标"面积 = 净功 $W$".</dd>
-      <dt>风格建议</dt><dd>白底, 双图并列, 等温线红色, 绝热线蓝色, 线宽一致, 中性灰色坐标轴, 无多余装饰.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Carnot 循环在 PV 图上是一块曲边四边形, 在 TS 图上是一个严格的长方形, 长方形面积即净做功.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/05.svg" alt="图 1 · Carnot 循环在 PV 与 TS 两张图上的几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Carnot 循环在 PV 图上是一块曲边四边形, 在 TS 图上是一个严格的长方形, 长方形面积即净做功.</figcaption></figure>
 
   <p>验证 (2) 还可以不走熵, 直接用理想气体代入 (这是 Carnot 本人那时还没有的优势, 因为熵要到 Clausius 1865 才出场). 等温段 $A\to B$ 气体做功 $Q_h = NkT_h\ln(V_B/V_A)$, 等温段 $C\to D$ 气体排热 $Q_c = NkT_c\ln(V_C/V_D)$. 绝热段上 $TV^{\gamma-1}$ 守恒, 给 $T_h V_B^{\gamma-1} = T_c V_C^{\gamma-1}$ 和 $T_h V_A^{\gamma-1} = T_c V_D^{\gamma-1}$, 相除得 $V_B/V_A = V_C/V_D$. 所以两段对数等量, 比值 $Q_c/Q_h = T_c/T_h$, 正是 (2). 这一段小代数往往被教科书跳过, 但它让读者看到: $\eta_C$ 在"工作物质取理想气体"的特殊情形里是可以硬算出来的, 和任何一般性论证无关 — 这既是佐证, 也是 Carnot 的原始思路.</p>
 

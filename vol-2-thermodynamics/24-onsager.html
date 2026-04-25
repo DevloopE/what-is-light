@@ -110,20 +110,7 @@
 
   <h2>三、热-电耦合作为 $2\times 2$ 具体例子</h2>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 热-电耦合的 Onsager 对称</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一段热电材料杆的热-电耦合示意, 展示 Seebeck (温差驱动电流) 与 Peltier (电压驱动热流) 两种过程的对称性 $L_{UQ} = L_{QU}$, 并用公式 $\Pi = TS$ 标出 Kelvin 关系.</dd>
-      <dt>必含元素</dt><dd>水平放置的橙色矩形杆代表热电材料 (例如 Bi$_2$Te$_3$), 左端标 $T_1$ 右端标 $T_2$ (取 $T_1 \gt  T_2$), 杆两端各加一个电势 $V_1, V_2$ 的触点. 杆中画两对箭头: (a) 下方一对表示热流 $J_Q$ 方向从左到右, 标签 $J_Q = L_{UQ}X_E + L_{UU}X_T$; (b) 上方一对表示电流 $I$ 方向从左到右, 标签 $I = L_{QQ}X_E + L_{QU}X_T$. 在杆下方中央画一个双向箭头连接两个非对角项, 标 "$L_{UQ} = L_{QU}$". 右侧空白写 Kelvin 关系 $\Pi = T\cdot S$, 其中 $\Pi$ = Peltier 系数, $S$ = Seebeck 系数.</dd>
-      <dt>几何精度</dt><dd>杆长约 $6\,\mathrm{cm}$ 宽 $1\,\mathrm{cm}$, 箭头长度表征相对大小不必严格比例, 但两对箭头位置左右对称, 用以强调 $L_{UQ}$ 与 $L_{QU}$ 在同一段材料中指向同样的对称方向. 双向箭头居中, 公式 $L_{UQ} = L_{QU}$ 用粗体.</dd>
-      <dt>标签与公式</dt><dd>杆本身标 "Bi$_2$Te$_3$"; 左端 $T_1, V_1$, 右端 $T_2, V_2$; 热流 $J_Q$ 用红色箭头, 电流 $I$ 用蓝色箭头; 中间公式 $L_{UQ}=L_{QU}$, 右上角 $J_i = \sum_j L_{ij}X_j$, 右下角 $\Pi = TS$.</dd>
-      <dt>风格建议</dt><dd>白底, 杆填充橙色 (代表热/热电活跃), 热流红色、电流蓝色以形成冷暖对比, 箭头清楚, 对称箭头对齐. 所有字体使用衬线, 公式略大.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  一段 Bi$_2$Te$_3$ 热电杆里同时有温差和电压两种"力", 各自驱动热流与电流; Onsager 倒易关系 $L_{UQ} = L_{QU}$ 让这两个交叉系数在完全独立的两种实验 (Seebeck 与 Peltier) 里用同一个数连接起来, 正是 Kelvin 1854 年猜到却无法严格证明的 $\Pi = TS$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/24.svg" alt="图 1 · 热-电耦合的 Onsager 对称" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  一段 Bi$_2$Te$_3$ 热电杆里同时有温差和电压两种"力", 各自驱动热流与电流; Onsager 倒易关系 $L_{UQ} = L_{QU}$ 让这两个交叉系数在完全独立的两种实验 (Seebeck 与 Peltier) 里用同一个数连接起来, 正是 Kelvin 1854 年猜到却无法严格证明的 $\Pi = TS$.</figcaption></figure>
 
   <p>把 $2\times 2$ 的矩阵表达式展开成"人话". 定义温度梯度驱动的力 $X_T = \Delta(1/T) \approx -\Delta T/T^2$, 电势驱动的力 $X_E = -\Delta(\mu/T)$ (在固定电荷载流子种类下 $\Delta\mu \approx e\Delta V$). 流分别是热流 $J_Q$ 和电流 $I$. 展开 (1):</p>
 

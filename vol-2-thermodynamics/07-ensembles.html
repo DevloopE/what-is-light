@@ -54,21 +54,7 @@
 
   <p>注意一个规律: 每"松开"一个守恒量 ($E$, 然后 $N$), 就把对应的广延量换成它的共轭强度量 ($T$, 然后 $\mu$) 当成独立变量. 这一步在数学上就是 Legendre 变换, 在统计上就是从 $\Omega$ 到 $Z$ 到 $\Xi$ 的 Laplace 变换. 这两件事是同一件事的两种表达; 接下来第二节我们就把"它是同一件事"严格地推出来.</p>
 
-  <!-- 唯一图占位符 -->
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三种系综与外界的交换关系</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一个系统 (盒子) 处于三种不同的外部环境中: 完全隔绝、热浴接触、热浴 + 粒子库接触. 每种情景对应一种系综.</dd>
-      <dt>必含元素</dt><dd>三个并列的盒子. 第一个盒子四壁完全封闭 (以厚重阴影线表示绝热刚性壁), 标注"$E, V, N$ 固定"; 第二个盒子浸在一个用波浪线勾勒的"热浴"里, 用双向箭头示意能量可以进出, 标注"$T, V, N$ 固定, $E$ 涨落"; 第三个盒子浸在一个同时带"热浴 + 粒子库"的环境里, 用一支箭头画能量、一支箭头画粒子进出, 标注"$T, V, \mu$ 固定, $E, N$ 都涨落". 每个盒子下方列出对应的核心公式.</dd>
-      <dt>几何精度</dt><dd>三盒等宽对齐, 区分"固定边界"和"可穿透边界"用线型 (实线 vs 虚线) 与阴影浓度; 箭头粗细反映交换量 (能量细、粒子粗或反之, 保持一致). 保证"什么是固定的""什么是涨落的"一眼可辨.</dd>
-      <dt>标签与公式</dt><dd>盒子下方依次: $S = k_{\mathrm B}\log\Omega$; $F = -k_{\mathrm B}T\log Z$; $\Omega_{\mathrm g} = -k_{\mathrm B}T\log\Xi$. 盒子上方用小字标"微正则 / 正则 / 巨正则".</dd>
-      <dt>风格建议</dt><dd>白底三栏, 黑色线稿为主, 单一点缀色 (如暗红 $\#8b2f1a$) 用于强调"固定 vs 涨落"的对比标签. 整体与第一卷的几何图一致.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  三种系综对应三种"系统 — 环境"接触方式, 决定了哪些量是独立变量、哪些是随机变量.</figcaption>
-  </figure>
+<figure class="diagram"><img src="build/07.svg" alt="图 1 · 三种系综与外界的交换关系" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  三种系综对应三种"系统 — 环境"接触方式, 决定了哪些量是独立变量、哪些是随机变量.</figcaption></figure>
 
   <h2>二、等价性的严格推导 —— Laplace 变换与鞍点法</h2>
 

@@ -76,22 +76,7 @@
 
   <p>(iii) <b>$\partial_\mu$ 和 $\partial/\partial(\partial_\mu\phi)$ 是两回事.</b> 前者是时空坐标的偏导数 (作用在函数上), 后者是把 $\mathcal L$ 当作 $\phi$ 和 $\partial_\mu\phi$ 的多元函数时, 对 $\partial_\mu\phi$ 这个"槽位"求偏导 (把 $\phi$ 和其他分量当常数). 混淆这两个是新手最常见的坑. 记得 $\partial\mathcal L/\partial(\partial_\mu\phi)$ 本身是一个四矢量场, 然后外面再用 $\partial_\mu$ 求发散, 两个指标 $\mu$ 缩并, 得到一个标量.</p>
 
-  <figure class="diagram-placeholder">
-    <div class="placeholder-box">
-      <span class="tag">图占位符</span>
-      <h4>图 1 · 拉格朗日密度 → 作用量 → Euler-Lagrange 场方程流程图</h4>
-      <p>中心主图: 一张从 $\mathcal L(\phi, \partial_\mu\phi)$ 到场方程的流程框图.</p>
-      <dl class="tikz-req">
-        <dt>中心方框</dt><dd>$\mathcal L(\phi, \partial_\mu\phi)$, 淡橙色填充</dd>
-        <dt>上方</dt><dd>"作用量 $S = \int d^4x\,\mathcal L$" 框, 向下箭头标 "$\delta S = 0$"</dd>
-        <dt>下方</dt><dd>"变分 + 分部积分" 环节, 再向下指向 "Euler-Lagrange 场方程" 方框, 公式 $\partial_\mu(\partial\mathcal L/\partial(\partial_\mu\phi)) - \partial\mathcal L/\partial\phi = 0$</dd>
-        <dt>右侧三栏</dt><dd>并列三个例子. 第一栏 Klein-Gordon: $\mathcal L_{\rm KG} = \frac12(\partial_\mu\phi)^2 - \frac12 m^2\phi^2 \Rightarrow (\Box+m^2)\phi = 0$. 第二栏 Dirac: $\mathcal L_{\rm Dirac} = \bar\psi(i\gamma^\mu\partial_\mu-m)\psi \Rightarrow (i\gamma^\mu\partial_\mu-m)\psi=0$. 第三栏 Maxwell: $\mathcal L_{\rm Maxwell} = -\frac14 F_{\mu\nu}F^{\mu\nu} \Rightarrow \partial_\mu F^{\mu\nu} = 0$.</dd>
-        <dt>几何</dt><dd>框图对齐、箭头清晰、三栏宽度一致</dd>
-        <dt>风格</dt><dd>白底, 中心方框淡橙色, 其他方框灰线边框, 字号统一</dd>
-      </dl>
-    </div>
-    <figcaption>图 1  从 $\mathcal L$ 到场方程的流水线: 一个拉氏密度, 经变分机器自动出场方程.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/01.svg" alt="图 1 · 拉格朗日密度 → 作用量 → Euler-Lagrange 场方程流程图" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  从 $\mathcal L$ 到场方程的流水线: 一个拉氏密度, 经变分机器自动出场方程.</figcaption></figure>
 
   <h2>三、三个模板: 标量、旋量、矢量</h2>
 

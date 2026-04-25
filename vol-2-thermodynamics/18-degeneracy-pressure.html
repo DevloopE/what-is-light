@@ -118,20 +118,7 @@
     <li>半径显式含 $\hbar^2$ — 宏观恒星的大小取决于一个量子常数. 把 $\hbar$ 设零, $R$ 就塌成零.</li>
   </ol>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 白矮星质量-半径关系与 Chandrasekhar 极限</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>白矮星半径 $R$ (以地球半径 $R_\oplus$ 为单位) 随质量 $M$ (以太阳质量 $M_\odot$ 为单位) 的变化曲线, 标出 Chandrasekhar 极限 $M_\mathrm{Ch}\approx 1.44\,M_\odot$; 右侧附加一个白矮星剖面示意, 里面画出占满的 Fermi 海</dd>
-      <dt>必含元素</dt><dd>主图: 坐标横轴 $M/M_\odot$ 范围 0-1.5, 纵轴 $R/R_\oplus$ 范围 0-2. 一条 $R(M)$ 曲线: 当 $M\to 0$ 时 $R$ 大 (非相对论极限 $R\propto M^{-1/3}$, 缓慢下降); 当 $M$ 接近 $M_\mathrm{Ch}\approx 1.44$ 时 $R$ 迅速下降到 0. 在 $M=M_\mathrm{Ch}$ 处用红色虚线垂直标注. 实测几颗白矮星 (Sirius B 约 $1.0\,M_\odot$, $0.8\,R_\oplus$; Procyon B 约 $0.6\,M_\odot$, $1.2\,R_\oplus$) 以黑色圆点标在曲线上. 右侧嵌图: 一个圆形剖面代表白矮星, 上标 $\rho\sim 10^9\,\mathrm{kg/m^3}$; 圆内画一个 $k$ 空间中的 Fermi 球 (阴影填充到 $k_F$), 空间中标 $\varepsilon\lt E_F$ 已占满, $\varepsilon\gt E_F$ 为空</dd>
-      <dt>几何精度</dt><dd>曲线在 $M_\mathrm{Ch}$ 处切线近于竖直 (半径在有限斜率下跌到零是相对论效应导致的, 曲率需表达); $M=0.5M_\odot$ 处 $R\approx 1.4 R_\oplus$, $M=1.0M_\odot$ 处 $R\approx 0.8R_\oplus$, $M=1.3M_\odot$ 处 $R\approx 0.4R_\oplus$, 作为示意刻度</dd>
-      <dt>标签与公式</dt><dd>主图旁标 $P_\mathrm{deg} = \tfrac{2}{5}nE_F$; $E_F = \tfrac{\hbar^2}{2m}(3\pi^2 n)^{2/3}$; $M_\mathrm{Ch}\approx \left(\tfrac{\hbar c}{G}\right)^{3/2}\tfrac{1}{(\mu_e m_p)^2}\approx 1.44\,M_\odot$; 曲线左段标 "非相对论, $R\propto M^{-1/3}$"; 曲线右段标 "相对论, $R\to 0$"; $M_\mathrm{Ch}$ 红色虚线上方标 "Chandrasekhar 极限"</dd>
-      <dt>风格建议</dt><dd>白底, 主曲线黑色实线, $M_\mathrm{Ch}$ 处红色虚竖线, 实测白矮星数据点黑色实心圆, 右侧 Fermi 海示意的球内阴影用浅灰色填充, 所有坐标轴黑色细线</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  白矮星质量-半径关系. 非相对论极限下 $R\propto M^{-1/3}$ (越重越小); 接近 $M_\mathrm{Ch}\approx 1.44\,M_\odot$ 时电子进入相对论区, 简并压幂次软化至 $n^{4/3}$, 曲线陡峭下坠至零. 超过 $M_\mathrm{Ch}$ 无稳定白矮星存在.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/18.svg" alt="图 1 · 白矮星质量-半径关系与 Chandrasekhar 极限" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  白矮星质量-半径关系. 非相对论极限下 $R\propto M^{-1/3}$ (越重越小); 接近 $M_\mathrm{Ch}\approx 1.44\,M_\odot$ 时电子进入相对论区, 简并压幂次软化至 $n^{4/3}$, 曲线陡峭下坠至零. 超过 $M_\mathrm{Ch}$ 无稳定白矮星存在.</figcaption></figure>
 
   <p><strong>数字代入.</strong> 取 $M = 1.0\,M_\odot = 2.0\times 10^{30}\,\mathrm{kg}$, $\mu_e = 2$, $m_p = 1.67\times 10^{-27}\,\mathrm{kg}$, $m_e = 9.1\times 10^{-31}\,\mathrm{kg}$, $\hbar = 1.05\times 10^{-34}\,\mathrm{J\cdot s}$, $G = 6.67\times 10^{-11}\,\mathrm{m^3/kg\cdot s^2}$. 把这些代进上面的 $R$ 估算, 得 $R\approx 7\times 10^6\,\mathrm{m}\approx 7000\,\mathrm{km}$ — 跟地球半径 $6400\,\mathrm{km}$ 同阶. 对应密度</p>
 

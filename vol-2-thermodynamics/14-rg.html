@@ -88,20 +88,7 @@
 
   <p>注意这个推理的形式: 我们只用了"关联长度按 $b$ 收缩"这一条几何事实, 加上"$b$ 是自选的"这一条任意性. 两条合起来就把 $\xi(t)$ 的形式锁成了幂律. 这和量纲分析的精神一模一样 — 但维度分析处理无量纲参量无能为力, RG 正是要处理无量纲参量. 这是它本质上的补足.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 块自旋与耦合空间的 RG 流</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>上图展示二维方格自旋的块化: $9\times 9$ 格点, 粗虚线划成 $3\times 3$ 个块, 每块下方一个块自旋 (多数决); 下图是 $(K, H)$ 耦合平面上的 RG 流, 标出临界固定点 (半稳定鞍点), 高温/低温两个稳定汇点, 流线方向对.</dd>
-      <dt>必含元素</dt><dd>上: $9\times 9$ 自旋格子, 每格写 "+" 或 "-" 符号; 三条横的和三条竖的粗虚线切成 $3\times 3$ 块; 每块下方箭头指到一个圆圈里的块自旋 $S'_I$, 块内多数为 "+" 则块自旋为 "+", 反之为 "-". 标注 "b = 3", 粗粒化规则 $S'_I = \mathrm{sgn}(\sum_{i\in I} S_i)$. 下: 二维 $(K, H)$ 平面, 横轴 $K$ 从 $0$ 到 $\infty$, 纵轴 $H$ 从 $-\infty$ 到 $+\infty$; 三个固定点 — 原点附近高温顺磁汇 $(0, 0)$, $K = \infty$ 处的两个低温铁磁汇 $(\infty, \pm \text{small})$, 中间临界固定点 $(K^*, 0)$; 红色箭头表示 RG 流方向, 两条相关方向 (温度方向水平、磁场方向竖直) 标为 $\lambda_t \gt  1, \lambda_h \gt  1$; 临界流形 (稳定流入的线) 画成蓝色虚线.</dd>
-      <dt>几何精度</dt><dd>上图: 块划分清晰对称; 下图: 流线方向正确 — 从临界固定点看, 温度方向 (水平) 和磁场方向 (竖直) 都是"不稳定"(箭头指向外), 临界流形 (不相关方向) 的箭头指向临界固定点.</dd>
-      <dt>标签与公式</dt><dd>上图: "$b = 3$"; "$S' = \mathrm{sgn}(\sum S)$". 下图: "$K' = R(K)$"; 流图右上方写"$\nu = \log b/\log\lambda_t$"; 固定点分别标 "high-T fp", "low-T fp ($\pm$)", "critical fp ($K^*, 0$)".</dd>
-      <dt>风格建议</dt><dd>白底; 上图自旋 "+" 用深红色, "-" 用深蓝色, 块边框淡蓝 (#b3d4e6); 下图 RG 流箭头红色, 临界流形蓝色虚线, 固定点黑色空心圆; 公式 MathJax 标准 serif.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  块自旋把格距拉大 $b$ 倍, 耦合常数因此沿 $R$ 流动; 临界固定点是流的鞍点, 它的本征值直接给出临界指数.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/14.svg" alt="图 1 · 块自旋与耦合空间的 RG 流" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  块自旋把格距拉大 $b$ 倍, 耦合常数因此沿 $R$ 流动; 临界固定点是流的鞍点, 它的本征值直接给出临界指数.</figcaption></figure>
 
   <h2>三、2D Ising 的数值估算: 用多数决块自旋硬算 $T_c$</h2>
 

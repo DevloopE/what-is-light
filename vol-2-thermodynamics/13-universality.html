@@ -69,20 +69,7 @@
 
   <p>实验在六种系统里逐一检验, 都在误差范围内成立. 这是一个很深的暗示 —— 临界区域只有两个独立的标度数字 ($a_t, a_h$ 或等价地 $\nu, \eta$), 其余一切都是几何关系导出的. 但 Widom 假说本身还是"唯象的" —— 它假设了 $(2)$ 的形式, 却不解释为什么临界点附近一定长成这样. 要真正回答, 我们要走进下一节 —— 这本节的 deepdive.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 不同物理系统的临界数据折叠到同一条普适曲线</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>双面板图, 左边是原始数据 (每种系统占据不同位置的幂律曲线), 右边是按普适标度重新绘图后, 所有数据点重叠到同一条普适曲线上. 视觉重点: 机制上完全不同的系统经适当标度后不可区分.</dd>
-      <dt>必含元素</dt><dd>左面板: 横轴 $(T_c-T)/T_c = |t|$ 对数坐标 (从 $10^{-4}$ 到 $10^{-1}$), 纵轴序参量 $\eta$ 对数坐标. 画四组数据: (a) 液-气 CO$_2$ 密度差 $\rho_l-\rho_g$ (圆点); (b) 铁磁 EuO 磁化强度 $M$ (方块); (c) $\beta$-黄铜序参量 (三角); (d) $^4$He 超流密度 $\rho_s$ (菱形). 四条数据幂律斜率都约为 $0.33$, 但截距不同, 分布在不同的平行带上. 右面板: 每条数据都除以各自的临界幅度 $B_0$ (无量纲化), 所有四组数据重叠到同一条直线 $\hat\eta = |t|^\beta$ 上, 斜率标注 $\beta\approx 0.326$. 标注 "3D Ising 普适类" 在右面板中央.</dd>
-      <dt>几何精度</dt><dd>双对数图, 幂律呈直线; 左右面板纵横轴刻度一致; 右面板数据点重叠误差以误差棒显示在 $\pm 3\%$ 范围.</dd>
-      <dt>标签与公式</dt><dd>左面板旁标: "$\eta \sim B_0\,|t|^\beta$, 不同系统 $B_0$ 不同"; 右面板旁标: "$\eta/B_0 = |t|^\beta$, $\beta_{3\text{D Ising}}\approx 0.326$"; 底部注: "尽管机制完全不同, 四个系统共享同一普适类".</dd>
-      <dt>风格建议</dt><dd>白底, 四种系统用不同符号 (圆/方/三角/菱形), 颜色统一深色; 左右面板之间画一个大箭头 "按普适 $B_0$ 归一"; 网格细线浅灰.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  不同物理机制的临界数据经普适常数 $B_0$ 重新归一后, 折叠到同一条幂律 $\hat\eta = |t|^\beta$ 上 —— 这就是 universality 最直接的视觉证据.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/13.svg" alt="图 1 · 不同物理系统的临界数据折叠到同一条普适曲线" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  不同物理机制的临界数据经普适常数 $B_0$ 重新归一后, 折叠到同一条幂律 $\hat\eta = |t|^\beta$ 上 —— 这就是 universality 最直接的视觉证据.</figcaption></figure>
 
   <h2>三、deepdive: 从 RG 固定点看 universality 的起源</h2>
 

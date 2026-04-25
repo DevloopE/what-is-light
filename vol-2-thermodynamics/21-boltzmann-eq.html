@@ -49,20 +49,7 @@
 
   <p>左边叫"流" (streaming), 右边叫"碰撞积分". 流部分是 Newton 给的、可逆的; 碰撞部分是需要额外模型的. <em>整个动理论的全部张力都压在怎么写这个 $(\partial f/\partial t)_{\mathrm{coll}}$</em>.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 相空间中 $f$ 的演化: 流 + 碰撞</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>在 2D 相空间 $(r, v)$ (即一维位置 + 一维速度) 中展示分布函数 $f(r, v, t)$ 的演化由两部分贡献组成: "streaming" 沿 $v$ 方向的位置平移, 以及 "collision" 在 $v$ 方向的重新分布</dd>
-      <dt>必含元素</dt><dd>一个矩形的 2D 相空间格子 (横轴 $r$, 纵轴 $v$); 在格子中间画一团等高线闭合曲线标记 $f(r, v, t)$ (可用 2-3 条同心椭圆近似); 一个水平箭头指向 $+r$ 方向, 标签 "streaming: $\dot r = v$", 位置在等高线团右侧; 一个竖直双向箭头在等高线团下方, 标签 "collision: 在 $v$ 中重分布"; 在等高线团上方另放两个小的等高线团并用虚线连接, 表示碰撞前后的两粒子, 用短箭头示意碰撞前二者独立 ($f_2\approx f_1 f_1$)</dd>
-      <dt>几何精度</dt><dd>streaming 箭头必须水平, 表明在 $(r, v)$ 相空间中沿 $v$ 方向的流是沿 $r$ 轴的平移 (因为 $\dot r = v$, 对固定 $v$ 粒子只在 $r$ 方向移动); collision 箭头垂直, 表明碰撞瞬间不改变 $r$ 只改变 $v$</dd>
-      <dt>标签与公式</dt><dd>图下方放一行公式: $\partial_t f + v\,\partial_r f = (\partial_t f)_{\mathrm{coll}}$; 图上方放 "分子混沌: $f_2(1,2) \approx f_1(1) f_1(2)$ (碰撞前)"</dd>
-      <dt>风格建议</dt><dd>白底黑框, 等高线用细实线, 箭头用粗黑线, 公式用 LaTeX 样式, 整体简洁无阴影</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Boltzmann 方程的两种贡献: 左边 (流) 是确定性的 Newton 流动, 右边 (碰撞) 是瞬间的动量重分布. 分子混沌假设让碰撞积分可以只用单粒子 $f$ 来写.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/21.svg" alt="图 1 · 相空间中 $f$ 的演化: 流 + 碰撞" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Boltzmann 方程的两种贡献: 左边 (流) 是确定性的 Newton 流动, 右边 (碰撞) 是瞬间的动量重分布. 分子混沌假设让碰撞积分可以只用单粒子 $f$ 来写.</figcaption></figure>
 
   <h2>二、严格 deepdive: Stosszahlansatz — 分子混沌假设到底是什么</h2>
 

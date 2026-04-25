@@ -78,20 +78,7 @@
   <p>关键是看清楚: 不可逆不在于"降势垒"或"抬势垒"这些具体动作 — 这些动作只要做得足够慢都是可逆的 (准静态); 不可逆在于"不管输入是什么, 输出都是 $0$"这条逻辑映射本身 — 它把两个不同的初态映到同一个末态, 相空间只能塌缩, 不能还原. 哪怕你把每一步物理操作做成绝热可逆, 这张多对一的映射也依然让过程整体不可逆.</p>
 
   <!-- 唯一图占位符 -->
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Szilárd 引擎循环 + 双井 erasure</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>上下两栏: 上栏画 Szilárd 引擎四步, 下栏画双井擦除三步, 对照说明"榨出 $k_BT\ln 2$ 功"与"擦除付出 $k_BT\ln 2$ 热"的对偶</dd>
-      <dt>必含元素</dt><dd>(上) 长方形气缸四格, 依次画: (a) 一个小球在某半边 (位置随机), (b) 插入中央挡板, (c) 妖看见小球并贴"1 bit"标签, (d) 挡板缓慢滑到一端, 气缸底标注 $W=k_BT\ln 2$; (下) 双井势能曲线四格, 依次画: (a) 对称双井 $U(x)$, 小球在某井, 标 $0$ 或 $1$, (b) 势垒已抹平的单井, 小球漫游, (c) 倾斜势, 小球滑向左井, (d) 势垒恢复, 小球锁在左井, 箭头指向热库并标 $\Delta Q_{\text{erase}} \ge k_BT\ln 2$</dd>
-      <dt>几何/数学精度</dt><dd>双井严格对称, $U_b \gg k_BT$ 视觉上势垒高度远大于热噪声虚线; 四步横排, 每步间用箭头加标签 (测量 / 插板 / 膨胀 / 抹势 / 倾斜 / 恢复)</dd>
-      <dt>标签与公式</dt><dd>上栏标 $W = k_BT\ln 2$; 下栏标 Landauer $\Delta Q_{\text{erase}} \ge k_BT\ln 2$; 两栏之间用双向箭头加文字"信息的两面"</dd>
-      <dt>风格建议</dt><dd>白底两栏, 粒子用小实心圆, 势垒用细黑曲线, 热库用浅灰框加波浪线; 公式字号略大于正文</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Szilárd 引擎 (上) 利用 1 bit 信息榨出 $k_BT\ln 2$ 功; 双井 erasure (下) 擦除 1 bit 至少耗散 $k_BT\ln 2$ 热. 两件事数值相等, 让 Maxwell 妖的循环恰好平账.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/26.svg" alt="图 1 · Szilárd 引擎循环 + 双井 erasure" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Szilárd 引擎 (上) 利用 1 bit 信息榨出 $k_BT\ln 2$ 功; 双井 erasure (下) 擦除 1 bit 至少耗散 $k_BT\ln 2$ 热. 两件事数值相等, 让 Maxwell 妖的循环恰好平账.</figcaption></figure>
 
   <h2>三、Bennett 1982: 妖的账是怎么平的</h2>
 

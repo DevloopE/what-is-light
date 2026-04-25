@@ -81,20 +81,7 @@
 
   <p><strong>历史.</strong> 加速器的故事是一部"想把环做得更大、磁铁做得更强"的工程史. 1929–1931 年, Ernest Lawrence 与 Stanley Livingston 在 Berkeley 造出第一台 cyclotron, 直径 $11\,\mathrm{cm}$, 把质子加速到 $80\,\mathrm{keV}$; Lawrence 1939 Nobel. Cyclotron 的频率 $\omega=qB/m$ 不含 $\gamma$, 非相对论下粒子每转一圈同步; 一到相对论 $\gamma\gt 1$, 频率漂移, cyclotron 失效. 1945 Veksler 与 McMillan 独立提出 "phase stability" (同步加速原理): 让 RF 频率随粒子能量同步变化, 破除相对论限制. 这就是 synchrotron. 从 1952 Brookhaven Cosmotron ($3\,\mathrm{GeV}$) 到 1959 CERN PS ($26\,\mathrm{GeV}$), 1972 Fermilab Main Ring ($500\,\mathrm{GeV}$), 每代都用"更大环 + 更强磁铁"把能标往上推. 真正的分水岭是 1983 Fermilab Tevatron 开机: $1\,\mathrm{TeV}$ 每束的 $p\bar p$ 对撞机, 首次用超导 NbTi 磁铁 ($4.4\,\mathrm{T}$), 让"循环 TeV"从纸面变成硬件; 1995 年在 Tevatron 上发现 top 夸克. 同一时期 CERN SPS 改造成 $Sp\bar pS$ ($540\,\mathrm{GeV}$), 1983 UA1 发现 $W,Z$. LEP 1989–2000 填了 $27\,\mathrm{km}$ 隧道做电子对撞 (同一条隧道, 后来拆了改 LHC), 精测电弱, 确认 $Z$ 有三代中微子. LHC 2008 年 9 月 10 日第一束粒子循环, 9 天后一次 quench 事故停机, 2009 重开, 2010 $\sqrt s=7\,\mathrm{TeV}$ 首对撞, 2012 升 $8\,\mathrm{TeV}$ 并发现 Higgs, 2015 升 $13\,\mathrm{TeV}$ (Run 2), 2022 起 Run 3 在 $13.6\,\mathrm{TeV}$. 从 Lawrence 的 $80\,\mathrm{keV}$ 桌面机器到 LHC 的 $13\,\mathrm{TeV}$ 二十七公里环, 能标提高了 $10^8$ 倍, 横跨了不到一个世纪. 对撞能标每十年提高约一个数量级的节奏叫 "Livingston plot", 一直维持到 LHC — 之后放缓了, 因为地理、工艺、成本三者同时走到了边际.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · LHC 环、加速链与同步辐射的质子/电子对比</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一张综合示意图, 左上为 LHC 27 km 环的平面俯视, 左下为多级加速链流程, 右侧为 $\Delta E_{\mathrm{turn}}$ vs $E$ 的双对数曲线比较质子与电子</dd>
-      <dt>必含元素</dt><dd>(a) 左上: 27 km 圆环俯视, 标注半径 $R\approx 4.3\,\mathrm{km}$ (几何中心半径), 标出四个对撞点位置 Point 1 (ATLAS), Point 2 (ALICE), Point 5 (CMS), Point 8 (LHCb), 以及 CERN Meyrin 场地位置参照; 标注两束对向箭头 (顺时针与逆时针); (b) 左下: 一条流水线箭头 Linac 4 (160 MeV) → Booster (2 GeV) → PS (26 GeV) → SPS (450 GeV) → LHC (6.5 TeV), 每段用矩形框或椭圆表示, 方框大小约反映环直径比例 (PS 200 m, SPS 2 km, LHC 27 km); (c) 右侧: 双对数坐标, 横轴 $E$ 从 $10^0$ 到 $10^4\,\mathrm{GeV}$, 纵轴 $\Delta E_{\mathrm{turn}}$ 从 $10^{-3}\,\mathrm{eV}$ 到 $10^{12}\,\mathrm{eV}$; 两条斜率为 $4$ 的直线 (因 $\propto E^4$), 电子线 (上) 与质子线 (下) 相距 $(m_p/m_e)^4\approx 10^{13}$ 倍即 $13$ 个数量级; 在电子线 $E=100\,\mathrm{GeV}$ 处标 LEP 2 工作点, 在质子线 $E=6500\,\mathrm{GeV}$ 处标 LHC 工作点, 两点对应的 $\Delta E$ 值分别为 $\sim 3\,\mathrm{GeV}$ 与 $\sim 7\,\mathrm{keV}$; 加一条水平虚线标 "$\Delta E=E$" 即辐射损耗等于粒子总能量的阈值, 电子线触此阈值处对应的 $E$ 约为 $200\,\mathrm{GeV}$ 级, 明确标为 "电子圆环对撞机的硬限"</dd>
-      <dt>几何精度</dt><dd>27 km 环为圆; 四个实验点严格等分或按真实角度分布 (Point 1 在北, 其他按 2/5/8 位置); 加速链方块的相对大小近似真实比例 (LHC 最大); 右侧双对数图中两条直线斜率精确为 $4$, 垂直间距在对数上等于 $4\log_{10}(m_p/m_e)\approx 13$</dd>
-      <dt>标签与公式</dt><dd>$\sqrt s=13\,\mathrm{TeV}$, $L=2\times 10^{34}\,\mathrm{cm}^{-2}\mathrm{s}^{-1}$, $B=8.33\,\mathrm{T}$, $R\approx 2.6\,\mathrm{km}$, $\Delta E_{\mathrm{turn}}\propto E^4/(m^4 R)$, $(m_p/m_e)^4\approx 1.1\times 10^{13}$; 四个实验名 ATLAS/CMS/LHCb/ALICE; 加速链每段的能量标签</dd>
-      <dt>风格建议</dt><dd>白底, 线条深蓝或黑色, 砖红色标注关键数字与 LHC 工作点, 灰色辅助线 (网格、对数格); 双对数图用清晰对数刻度标签 ($10^0, 10^1, ..., 10^4$); 整图紧凑, 左右分栏清晰</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左: LHC 27 km 环与四大实验位置, 以及从质子源到对撞环的五级加速链. 右: 同步辐射单转损耗 $\Delta E_{\mathrm{turn}}\propto E^4/m^4$ 在质子与电子之间相差 $(m_p/m_e)^4\approx 10^{13}$ 倍; 电子在 $\sim 200\,\mathrm{GeV}$ 附近触及损耗等于能量的硬墙, 这是 LEP 止步于此而 LHC 能上 TeV 的核心原因.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/21.svg" alt="图 1 · LHC 环、加速链与同步辐射的质子/电子对比" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左: LHC 27 km 环与四大实验位置, 以及从质子源到对撞环的五级加速链. 右: 同步辐射单转损耗 $\Delta E_{\mathrm{turn}}\propto E^4/m^4$ 在质子与电子之间相差 $(m_p/m_e)^4\approx 10^{13}$ 倍; 电子在 $\sim 200\,\mathrm{GeV}$ 附近触及损耗等于能量的硬墙, 这是 LEP 止步于此而 LHC 能上 TeV 的核心原因.</figcaption></figure>
 
   <div class="small-summary">
   <h4>小结</h4>

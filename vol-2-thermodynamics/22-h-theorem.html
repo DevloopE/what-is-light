@@ -69,20 +69,7 @@
 
   <p>Boltzmann 的回应这次很漂亮: 他承认 Poincaré 回归是严格的, 但估算了回归时间. 对 1 cm$^3$ 空气在常温下 $N\sim 3\times 10^{19}$ 个分子, 回归时间粗估为相空间体积除以通量 $\sim e^{cN}$ 秒, $c$ 是 $O(1)$ 的常数. 取一个很保守的估计 $c=1$ (真实值更大), 回归时间至少是 $e^{3\times 10^{19}}\approx 10^{1.3\times 10^{19}}$ 秒. 宇宙年龄是 $1.4\times 10^{10}$ 年 $\approx 4\times 10^{17}$ 秒. 回归时间/宇宙年龄 $\approx 10^{10^{19}}$, 也就是 10 的"比地球上所有原子数还多"次方倍. 第二定律"不是严格成立"—— 它只是"在任何人类或宇宙学的时标下实际成立". 这一让步, 反而让热力学的地位更清晰了.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · H(t) 的真实演化与 Loschmidt 反向镜像</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>主面板展示 H(t) 的平滑下降曲线 (真实演化) 和一条从镜像初始条件出发向上的反向轨迹, 两条曲线关于一个"反转时刻" $t^*$ 对称. 视觉强调: 反向曲线在 Hamilton 方程下完全合法, 但对应的初始条件测度为零. 小面板展示 Ehrenfest urn 模型的概率分布, 说明"几乎所有"路径单调而极少数路径逆行的精确图景.</dd>
-      <dt>必含元素</dt><dd>主面板: 横轴时间 $t$ (单位任意), 纵轴 $H(t)$. 主曲线: 从 $H_0$ 高处单调光滑下降到平衡值 $H_\text{eq}$ (水平虚线), 指数趋近. 标注某个中间时刻 $t^*$. 从 $t^*$ 的 $H$ 值出发向上的镜像曲线, 回升到与原曲线在 $t=0$ 的相同高度, 画成虚线表示"反向构造"; 标注 "Loschmidt 镜像, 测度零". 主曲线旁标 "Stosszahlansatz 方向 → $dH/dt\leq 0$". 小面板 (右上角内嵌): Ehrenfest urn 模型, 横轴粒子数差 $m\in[-N,N]$, 纵轴停留概率 $P(m)$, 画一个钟形分布, 峰值在 $m=0$, 标出标准差 $\sigma\sim\sqrt N$; 小注: "从 $m=N$ 出发几乎总是流向 $m=0$ 附近".</dd>
-      <dt>几何精度</dt><dd>主曲线平滑单调递减, 衰减时间尺度约与平均自由程/热速度比值相当; 镜像曲线严格关于 $t^*$ 垂直翻转; Ehrenfest 钟形曲线为二项分布, 峰宽 $\sim\sqrt N$.</dd>
-      <dt>标签与公式</dt><dd>主面板: "$H(t) = \int f\log f\,d^3p$", "$dH/dt \leq 0$"; 镜像曲线旁: "Hamilton 方程允许, Loschmidt 1876"; 水平渐近线标 "平衡 $H_\text{eq}$"; 底部注: "Poincaré 回归时间 $\sim e^{N}\approx 10^{10^{19}}$ 秒 (1 mol)".</dd>
-      <dt>风格建议</dt><dd>白底, 主曲线实线深色, 镜像曲线虚线并淡化; Ehrenfest 小面板占主面板右上约 1/5 大小, 用更细的线; 标注文字用中英文混排的无衬线字体.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  实际 H(t) 单调下降 (实线), Loschmidt 通过反转动量构造的镜像演化 (虚线) 在 Hamilton 方程下同样合法但对应测度零的初始条件; 内嵌小图显示 Ehrenfest urn 模型的涨落分布, 诠释"几乎所有路径单调"的精确含义.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/22.svg" alt="图 1 · H(t) 的真实演化与 Loschmidt 反向镜像" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  实际 H(t) 单调下降 (实线), Loschmidt 通过反转动量构造的镜像演化 (虚线) 在 Hamilton 方程下同样合法但对应测度零的初始条件; 内嵌小图显示 Ehrenfest urn 模型的涨落分布, 诠释"几乎所有路径单调"的精确含义.</figcaption></figure>
 
   <h2>三、deepdive: Stosszahlansatz 是时间方向的真正来源</h2>
 

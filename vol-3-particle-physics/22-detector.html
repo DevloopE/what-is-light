@@ -69,20 +69,7 @@
 
   <p><strong>触发系统的一个极限: pileup</strong>. 每个束团碰撞同时发生 $\mu$ 个硬 pp 相互作用 (按 Poisson 分布), 其中只有一个是"我们真正关心"的, 剩下的是 MB (minimum-bias) 软强子散射, 贡献几百条低 $p_T$ 径迹、若干低能簇、不相关顶点. PU 主顶点重建可以靠顶点探测器分辨 $\sigma_z\sim 100\,\mu\mathrm{m}$ 与 PU 顶点的平均间距 $\sim 5\,\mathrm{mm}$ 分开, 没问题. 真正的痛点在量能器 — photon 的 $m_{\gamma\gamma}$ 需要精确顶点来计算角度, PU 里挑错顶点会让 $m_{\gamma\gamma}$ 偏离几个 GeV, 把峰抹平. CMS 为此用"$p_T$ 最大的 sum" 选主顶点, 加上 $\gamma$ 簇本身在 ECAL 里的 $z$ 信息 (通过晶体指向对准), 在 PU $=50$ 下信号分辨保持 $\sigma_m\approx 1.3\,\mathrm{GeV}$. 当 PU $\gt 100$ 时顶点混淆率上升, ECAL 里孤立性 (isolation) 切割失效 (PU 带来大量低能尘埃, 假装把信号 $\gamma$ 周围也变脏), fake rate 上升, $S/\sqrt B$ 下降. 这是 HL-LHC 升级要解决的主要问题之一, 也是"precision timing"探测器 (时间分辨 $\sim 30\,\mathrm{ps}$) 在 Phase II 里被加入的原因 — 用时间维度进一步分离 PU 顶点.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 探测器洋葱结构与 $H\to\gamma\gamma$ 信号峰</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>左侧画 ATLAS/CMS 洋葱式五层剖面 (横截面), 右侧画 $m_{\gamma\gamma}$ 谱上的平滑背景加 $125\,\mathrm{GeV}$ 处小峰</dd>
-      <dt>必含元素</dt><dd>左图: (a) 同心圆五层, 由内向外: 束流管 (细黑圈, $r\sim 2\,\mathrm{cm}$), 顶点探测器 (浅黄色, $r\sim 3$—$10\,\mathrm{cm}$), 径迹探测器 (浅蓝色, $r\sim 10$—$110\,\mathrm{cm}$), 电磁量能器 ECAL (绿色, 厚 $\sim 20\,\mathrm{cm}$), 强子量能器 HCAL (橙红色, 厚 $\sim 1\,\mathrm{m}$), $\mu$ 子室 (浅灰色, 最外圈, 厚 $\sim 3\,\mathrm{m}$); (b) 对撞点在圆心, 从圆心画出若干条示意径迹: 电子 (红色实线, 在 ECAL 停下), 光子 (橙色虚线, 无径迹, 在 ECAL 沉积), 强子 jet (蓝色折线束, 穿过 ECAL, 在 HCAL 停下), $\mu$ 子 (绿色实线, 穿过所有层到 $\mu$ 室); (c) 右侧 $m_{\gamma\gamma}$ 谱: 横轴 $m_{\gamma\gamma}$ in GeV, 范围 $100$—$160$, 纵轴 事件数/GeV; 画一条平滑下降的灰色背景曲线 $\sim m^{-2}$, 在 $m_{\gamma\gamma}=125\,\mathrm{GeV}$ 处叠加一个明显但不夸张的高斯峰 (高度约为背景的 $30\%$, 宽度 $\sigma\sim 1.3\,\mathrm{GeV}$, 颜色砖红); 数据点 (黑点 + 误差棒) 沿曲线散布</dd>
-      <dt>几何精度</dt><dd>五层比例: 顶点/径迹/ECAL/HCAL/$\mu$ 厚度比约 $1:10:2:10:30$; 光子径迹必须不可见, 电子径迹必须可见但到 ECAL 即停; 右图峰位 $125\,\mathrm{GeV}$ 精确标注, 信号峰包含约 $5\sigma$ 量级的显著过剩</dd>
-      <dt>标签与公式</dt><dd>左图: 每层名称 (顶点、径迹、ECAL、HCAL、$\mu$ 子室), 粒子类型标签 ($e, \gamma, jet, \mu$); 右图: 横轴 $m_{\gamma\gamma}$ [GeV], $m_H\approx 125\,\mathrm{GeV}$ 处的箭头与标注, 信号/背景曲线分别标注</dd>
-      <dt>风格建议</dt><dd>白底; 五层用不同饱和度色块, 对比分明; 右图标准物理图风格, 黑点灰曲线砖红峰</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左: ATLAS/CMS 横截面, 五层由内向外分工明确, 同一张图上可以看到不同类型粒子在哪一层停下. 右: $H\to\gamma\gamma$ 的不变质量谱, 平滑的 QCD 双光子背景上, $125\,\mathrm{GeV}$ 处浮出一个窄高斯峰, 就是 Higgs.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/22.svg" alt="图 1 · 探测器洋葱结构与 $H\to\gamma\gamma$ 信号峰" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左: ATLAS/CMS 横截面, 五层由内向外分工明确, 同一张图上可以看到不同类型粒子在哪一层停下. 右: $H\to\gamma\gamma$ 的不变质量谱, 平滑的 QCD 双光子背景上, $125\,\mathrm{GeV}$ 处浮出一个窄高斯峰, 就是 Higgs.</figcaption></figure>
 
   <h2>四、事件重建、数字代入与历史</h2>
 

@@ -86,20 +86,7 @@
 
   <p>还可以再做一次一致性检查. $x\to\infty$ (即 $E-\mu \gg kT$) 时, $e^x \gg 1$, 两个分布都变成 $e^{-x} = e^{-\beta(E-\mu)}$. 这是经典 Maxwell-Boltzmann 分布, $\mu$ 现在没有硬约束, 只是从归一化里定下来的参数. 所以在"单粒子能级高于化学势很多倍 $kT$"的区域, 量子统计自动退回经典极限 —— 这是本节的第一个极限检验.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三种分布函数沿 $E-\mu$ 的对比</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>BE / FD / MB 三种分布对同一个横轴 $x = (E-\mu)/kT$ 的 $\langle n\rangle$ 曲线, 展示 $\pm 1$ 造成的定性差异, 外加不同 $T$ 的叠加.</dd>
-      <dt>必含元素</dt><dd>横轴 $x = (E-\mu)/kT$ 从 $-4$ 到 $+4$; 纵轴 $\langle n\rangle$ 从 $0$ 到 $\sim 3$ (对数坐标也可接受, 但线性坐标更有直观对比). 三条主曲线: 蓝 BE $1/(e^x-1)$; 红 FD $1/(e^x+1)$; 灰 MB $e^{-x}$. 在 BE 附近可加一条虚线 (较高 $T$) 说明温度降低时曲线在 $x\to 0^+$ 更陡峭.</dd>
-      <dt>几何精度</dt><dd>BE 曲线在 $x\to 0^+$ 发散到 $+\infty$ (画到 $x=0.3$ 即可, 加一条垂直虚线标注 $E=\mu$ 为禁区); 在 $x\to +\infty$ 三条曲线重合并指数衰减. FD 曲线严格过 $(0, 1/2)$, $x\to -\infty$ 趋于 $1$, $x\to +\infty$ 趋于 $0$; 对称于 $(0, 1/2)$ 中心. MB 纯指数 $e^{-x}$, 在 $x\lt 0$ 处超过 $1$, 说明经典近似在简并区失效.</dd>
-      <dt>标签与公式</dt><dd>图内标注 $\langle n\rangle_{\mathrm{BE}} = 1/(e^x - 1)$, $\langle n\rangle_{\mathrm{FD}} = 1/(e^x + 1)$, $\langle n\rangle_{\mathrm{MB}} = e^{-x}$. 在 $x=0$ 画一竖线并标"$E=\mu$". FD 曲线在 $(0, 1/2)$ 处加一个标注"$1/2$ 填充". BE 曲线一侧加一个"$\mu \lt  E_{\min}$ 强制要求"的小标签.</dd>
-      <dt>风格建议</dt><dd>白底, 线宽适中; 三色编码 (蓝 BE, 红 FD, 灰 MB) 与文中描述一致; 坐标轴用细灰线, 网格可加淡灰 0.1 透明度; 右上加小图例.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  三种分布函数对 $x = (E-\mu)/kT$ 的对比. 分母里的 $\pm 1$ 把 BE 推向 $E=\mu$ 处的发散, 把 FD 拉成 $0$-$1$ 的台阶, 而两者在 $x\gg 1$ 都退化为 MB 的指数.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/16.svg" alt="图 1 · 三种分布函数沿 $E-\mu$ 的对比" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  三种分布函数对 $x = (E-\mu)/kT$ 的对比. 分母里的 $\pm 1$ 把 BE 推向 $E=\mu$ 处的发散, 把 FD 拉成 $0$-$1$ 的台阶, 而两者在 $x\gg 1$ 都退化为 MB 的指数.</figcaption></figure>
 
   <h2>三、化学势的允许区间: 两条相反的命运</h2>
 

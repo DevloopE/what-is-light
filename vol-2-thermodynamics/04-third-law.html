@@ -80,20 +80,7 @@
 
   <p>反过来想一个极端情况巩固直觉: 假设某个系统 $C(T) = $ 非零常数 (这是经典统计力学的预言, 违反第三定律). 那 $\int_0^T C/T'\,dT'$ 在下限处发散为 $-\infty$; $S(T)\to -\infty$. 经典理论里没有第三定律, 所以它不知道熵有 "下界"; 是量子力学把能级离散化, 才把基态从连续谱里挖了出来, 给了熵一个硬底. 换言之, 第三定律骨子里是量子定律.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 完美晶体与残余熵系统的 $S(T)$ 对比</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>在同一张 $S$-$T$ 图上画两条 $S(T)$ 曲线 —— 一条代表完美晶体 (无残余熵, 趋向 $S = 0$), 一条代表冰式系统 (有残余熵, 趋向 $S_0 = R\ln(3/2)$), 直观展示第三定律的两种形式.</dd>
-      <dt>必含元素</dt><dd>横轴 $T$ (从 $0$ 到某个 $T_{\rm max}$); 纵轴 $S$; 两条平滑曲线, 在高 $T$ 趋近重合并一起向上; 在低 $T$ 分道扬镳, 一条降到 $0$, 另一条降到 $S_0 = R\ln(3/2)\approx 3.37\,\text{J/(K\cdot mol)}$; 明显标注 "完美晶体 $S_0 = 0$" 和 "冰 $S_0 = R\ln(3/2)$ (Pauling 1935)".</dd>
-      <dt>几何精度</dt><dd>两条曲线在 $T\to 0$ 处都水平 (斜率 $dS/dT = C/T \to 0$ 如果 $C\propto T^n$, $n\ge 1$); 在高 $T$ 渐近趋同; 中低温区表现出 $T^3$ 型曲率.</dd>
-      <dt>标签与公式</dt><dd>$S(T\to 0) = k\ln\Omega_0$; 完美晶体线注 "$\Omega_0 = 1$"; 冰线注 "$\Omega_0 = (3/2)^N$"; $S_0 = R\ln(3/2) = 3.37\,\text{J/(K\cdot mol)}$.</dd>
-      <dt>风格建议</dt><dd>白底; 完美晶体用深蓝实线, 冰用赭红实线; 两条线颜色对比清楚; 坐标轴黑色, 刻度简洁; 关键数值在低 $T$ 端标注.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  完美晶体 $S(T)$ 在 $T\to 0$ 趋向 $0$; 带宏观残余熵的系统 (如冰) 趋向 $S_0 = R\ln(3/2)\approx 3.37\,\text{J/(K\cdot mol)}$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/04.svg" alt="图 1 · 完美晶体与残余熵系统的 $S(T)$ 对比" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  完美晶体 $S(T)$ 在 $T\to 0$ 趋向 $0$; 带宏观残余熵的系统 (如冰) 趋向 $S_0 = R\ln(3/2)\approx 3.37\,\text{J/(K\cdot mol)}$.</figcaption></figure>
 
   <h2>三、推论一: 比热必须趋零, $T=0$ 必须不可达</h2>
 

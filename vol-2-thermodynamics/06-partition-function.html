@@ -63,20 +63,7 @@
 
   <p>这就是那句口号的严格推导. 它不是一条公设, 而是"MaxEnt + 热力学温度定义"的必然产物. 注意我们一路只用了三件事: (i) 概率归一化; (ii) 给定平均能量; (iii) 熵最大. 这个结构的普适性是它厉害的地方 —— 把约束换一换 (例如加一条"平均粒子数给定"), 立即得到巨正则系综; 把 Shannon 熵换成量子 von Neumann 熵, 立即得到密度矩阵版本. 同一个模板, 不同的细节.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · $\log Z$ 作为热力学的中心枢纽</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>以 $\log Z$ 为中心的树形/星形图, 箭头指向各热力学量, 每条箭头上标注具体的导数关系. 图右下角附一小插图: 单谐振子的 $U(T)$ 曲线, 低温渐近 $\hbar\omega/2$, 高温渐近线 $kT$.</dd>
-      <dt>必含元素</dt><dd>中心节点: $\log Z = \log\sum_n e^{-\beta E_n}$; 周围六个节点: $F, U, S, P, C_V, \sigma_E^2$ (能量涨落); 每条箭头标注其导数关系 —— $F = -kT\log Z$, $U = -\partial_\beta \log Z$, $S = k(\log Z + \beta U)$, $P = kT\,\partial_V \log Z$, $C_V = \partial U/\partial T$, $\sigma_E^2 = \partial_\beta^2 \log Z = kT^2 C_V$. 右下小插图: 谐振子 $U(T)$ vs $T$ 曲线两端标 "$\hbar\omega/2$" 和 "$kT$".</dd>
-      <dt>几何/数学精度</dt><dd>树形/星形布局整齐, 中心节点圆形, 周围节点六角均布; 箭头长度一致; 小插图横轴 $kT/\hbar\omega$ 从 0 到 3, 纵轴 $U/\hbar\omega$ 从 0 到 3.5, 低温水平渐近线 $0.5$, 高温斜率 $1$.</dd>
-      <dt>标签与公式</dt><dd>$Z = \sum_n e^{-\beta E_n}$ (中心下方); $F = -kT\log Z$; $U = -\partial \log Z/\partial \beta$; $P = kT\,\partial\log Z/\partial V$; $C_V = \partial^2(kT^2 \log Z)/\partial T \partial \beta^{-1}$; 小插图标 "经典极限 $U \to kT$", "量子极限 $U \to \hbar\omega/2$".</dd>
-      <dt>风格建议</dt><dd>白底, 中心节点淡橙填充 (#fde4c9), 周围节点浅蓝 (#d6eaf8), 箭头黑色, 公式用 MathJax 渲染后的标准 serif, 小插图细线条.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  $Z$ 不是一个"辅助量", 它是生成函数: 所有热力学量都是 $\log Z$ 对 $\beta$ 和 $V$ 的不同阶导数.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/06.svg" alt="图 1 · $\log Z$ 作为热力学的中心枢纽" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  $Z$ 不是一个"辅助量", 它是生成函数: 所有热力学量都是 $\log Z$ 对 $\beta$ 和 $V$ 的不同阶导数.</figcaption></figure>
 
   <h2>三、$\log Z$ 的生成函数结构: 一阶是平均, 二阶是涨落</h2>
 

@@ -37,20 +37,7 @@
 
   <p>先讲几何的一路. 给一条凸的光滑曲线 $y=f(x)$, 它可以被两种信息完全指定: 第一种, 每个 $x$ 点的纵坐标 $f(x)$; 第二种, 每条切线. 第二种乍听奇怪 — 切线是一条条直线, 怎么就"等价"于原曲线了? 事情是这样: 对凸函数, 所有切线的包络恰好还原出原曲线本身. 每条切线的斜率 $p$ 与在 $y$ 轴上的截距 $-f^*(p)$ 两个数就完全确定该切线. 于是只要我给出一张 "斜率 $p$ $\mapsto$ 截距 $b(p)$" 的对照表, 曲线就被复原.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Legendre 变换的几何 — 曲线与其切线包络</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>凸函数 $f(x)$ 与其对偶 $f^*(p)$: 左侧画曲线与切线包络, 右侧画 $f^*(p)$ 对 $p$ 的图</dd>
-      <dt>必含元素</dt><dd>(a) 一条凸曲线 $y=f(x)$ (黑); (b) 四五条不同斜率 $p$ 的切线 (浅灰), 它们的包络勾勒出曲线轮廓; (c) 一条特别选出的切线 (红), 斜率 $p_0$, 切点在 $x_0=x(p_0)$; (d) 该红切线与 $y$ 轴交于 $(0,-f^*(p_0))$, 标出 $-f^*(p_0)$ 这个截距; (e) 右侧子图画 $f^*$ 作为 $p$ 的函数, 也是凸曲线, 用红点标出 $(p_0, f^*(p_0))$</dd>
-      <dt>几何精度</dt><dd>红切线方程严格为 $y=p_0 x - f^*(p_0)$; 切点纵坐标 $f(x_0)$ 与 $p_0 x_0 - f^*(p_0)$ 一致; 右图 $f^*$ 的斜率在 $p_0$ 处应等于 $x_0$ (对偶性)</dd>
-      <dt>标签与公式</dt><dd>左图标注 $y=f(x)$, $p_0=f'(x_0)$, 切线 $y=p_0 x - f^*(p_0)$, 截距 $-f^*(p_0)$; 右图标注 $f^*(p)=p\,x(p)-f(x(p))$, $x_0=\mathrm{d}f^*/\mathrm{d}p$</dd>
-      <dt>风格建议</dt><dd>白底; $f$ 用黑色实线; 切线族用浅灰细线; 高亮的那条切线用砖红色粗线; 坐标轴细灰; 所有公式用 LaTeX 排版</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Legendre 变换把"在 $x$ 处取的值 $f(x)$"对换为"在斜率 $p$ 处切线的负截距 $f^*(p)$". 对凸 $f$, 两种描述完全等价.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/02.svg" alt="图 1 · Legendre 变换的几何 — 曲线与其切线包络" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Legendre 变换把"在 $x$ 处取的值 $f(x)$"对换为"在斜率 $p$ 处切线的负截距 $f^*(p)$". 对凸 $f$, 两种描述完全等价.</figcaption></figure>
 
   <p>代数上写出来更干净. 在 $x$ 处, 切线斜率是 $p=f'(x)$; 切线方程是 $y=f(x)+p\,(X-x)=pX+[f(x)-px]$, 所以它与纵轴的截距是 $f(x)-px$. 我们把这个截距取负号, 定义$$ f^*(p)\;=\;px-f(x), \qquad p=f'(x). \tag{2}$$这就是 Legendre 变换. 注意 $p$ 与 $x$ 互为函数 —— 只要 $f$ 严格凸, $f'$ 严格单调, $p=f'(x)$ 就有唯一的反函数 $x=x(p)$, 上式右端彻底变成 $p$ 的函数.</p>
 

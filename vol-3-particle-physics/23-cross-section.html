@@ -76,20 +76,7 @@
 
   <p><strong>LHC Higgs 产生.</strong> 在 LHC $\sqrt s=13\,\mathrm{TeV}$, 质子-质子非弹性总截面 $\sigma_\text{inel}\approx 80\,\mathrm{mb}$, 弹性部分 $\sim 25\,\mathrm{mb}$, 总计 $\sigma_\text{tot}\approx 105\,\mathrm{mb}$. 这个数基本就是 $\pi R_p^2$ 量级 ($R_p\approx 0.84\,\mathrm{fm}$, $\pi R_p^2\approx 22\,\mathrm{mb}$, 随能量缓慢增长 4-5 倍). 但 Higgs 产生 (主道 gluon-gluon fusion) 的截面是 $\sigma(gg\to H)\approx 50\,\mathrm{pb}=5\times 10^{-11}\,\mathrm{b}$, 即总截面的 $5\times 10^{-10}$. 这意味着 LHC 每 $2\times 10^9$ 次 $pp$ 对撞才产生一个 Higgs. 以瞬时亮度 $\mathcal L=2\times 10^{34}\,\mathrm{cm^{-2}s^{-1}}$ 计, 每秒产生约 $\mathcal L\cdot\sigma_H=2\times 10^{34}\cdot 5\times 10^{-35}=1$ 个 Higgs. 一年取数 $10^7\,\mathrm s$ 积分亮度 $\sim 100\,\mathrm{fb^{-1}}$, 得 $5\times 10^6$ 个 Higgs, 其中双光子道分支 $\sim 0.2\%$ 给 $10^4$ 个, 但信号淹没在 $10^{10}$ 量级的 QCD 本底里, 所以统计显著性来得慢. 中微子截面做对比: $\sigma(\nu_\mu N)\sim 0.7\times 10^{-38}\,\mathrm{cm^2}\cdot(E_\nu/\mathrm{GeV})=7\,\mathrm{ab}\cdot(E_\nu/\mathrm{GeV})$, 弱相互作用的特征 $G_F^2 E^2\sim (1.17\times 10^{-5}\,\mathrm{GeV^{-2}})^2\cdot\mathrm{GeV}^2\cdot (\hbar c)^2/(\mathrm{fm^2})\approx 10^{-38}\,\mathrm{cm^2}$, 与实测吻合.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 截面的几何意义与 Rutherford 散射</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>左半图展示截面的几何定义 ($\sigma=\mathrm{Rate}/(\Phi N)$, 入射 flux 打到 $N$ 个靶粒子, 每个靶有 "有效面积" $\sigma$); 右半图展示 Rutherford 散射几何, 入射 $\alpha$ 粒子在 Coulomb 势中的双曲线轨道, 以及微分截面 $\mathrm d\sigma/\mathrm d\Omega$ 的定义</dd>
-      <dt>必含元素</dt><dd>(a) 左图: 一束平行箭头从左侧入射表示 flux $\Phi$, 进入一个矩形 "靶区域"; 矩形里画 $\sim 10$ 个随机分布的黑色小圆盘表示 $N$ 个 target, 每个圆盘周围画一个更大的淡色圆表示 "有效面积 $\sigma$"; 入射箭头有些穿过无事, 有些被拨偏; 右下角标公式 $\sigma=R/(\Phi N)$; (b) 右图: 一个较大的十字/加号标靶核 (电荷 $+Ze$, 标金色 Au 符号), 一条入射轨迹 (底部水平入射) 进入 Coulomb 场后沿双曲线弯向上, 出射方向与入射夹角 $\theta$ 明确标出; 以靶核为中心画一个立体角锥 $\mathrm d\Omega=\sin\theta\,\mathrm d\theta\,\mathrm d\phi$; 在轨迹旁标 impact parameter $b$ 与 $\theta$; 在右侧底部写 Rutherford 公式 $\mathrm d\sigma/\mathrm d\Omega=(Z\alpha/(4E\sin^2(\theta/2)))^2(\hbar c)^2$</dd>
-      <dt>几何精度</dt><dd>左图 flux 方向一致水平, 靶粒子均匀不重叠; 右图双曲线轨道在远场渐近直线, 近场弯曲, 焦点位于核后方</dd>
-      <dt>标签与公式</dt><dd>$\Phi$, $N$, $\sigma$, $R=\Phi N\sigma$ (左图); $Ze$, $b$ (impact parameter), $\theta$, $\mathrm d\Omega$, $\mathrm d\sigma/\mathrm d\Omega\propto 1/\sin^4(\theta/2)$ (右图)</dd>
-      <dt>风格建议</dt><dd>白底; 几何线条黑色, 入射 flux 箭头深蓝, Coulomb 轨道砖红; 靶粒子实心黑, 有效截面淡灰阴影; 公式排版与正文统一</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左: 截面的几何意义 — 事件率 $=$ 入射通量 $\Phi$ 乘靶数 $N$ 乘每靶 "有效面积" $\sigma$, 这定义了 $\sigma$. 右: Rutherford $\alpha$ 粒子在金核 Coulomb 场中偏转, 微分截面 $\mathrm d\sigma/\mathrm d\Omega\propto 1/\sin^4(\theta/2)$ 的 $1/E^2$ 下降来自势的 Fourier 变换 $\sim 1/q^2$ 经 Born 近似平方.</figcaption>
-  </figure>
+<figure class="diagram"><img src="build/23.svg" alt="图 1 · 截面的几何意义与 Rutherford 散射" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左: 截面的几何意义 — 事件率 $=$ 入射通量 $\Phi$ 乘靶数 $N$ 乘每靶 "有效面积" $\sigma$, 这定义了 $\sigma$. 右: Rutherford $\alpha$ 粒子在金核 Coulomb 场中偏转, 微分截面 $\mathrm d\sigma/\mathrm d\Omega\propto 1/\sin^4(\theta/2)$ 的 $1/E^2$ 下降来自势的 Fourier 变换 $\sim 1/q^2$ 经 Born 近似平方.</figcaption></figure>
 
   <h2>四、历史、极限与连结</h2>
 

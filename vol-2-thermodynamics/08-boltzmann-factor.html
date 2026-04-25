@@ -89,20 +89,7 @@
 
   <p>这个推导完全没有用到"每个微观态等概率"这条教材里常见的公设. 我们没有假设任何先验; 我们只用了"已知约束下最无偏"一条. 这也是为什么 Jaynes 当年的文章被物理学家觉得惊讶甚至不舒服 — 他把原本以为是"自然机制"的东西, 翻译成了"推断原则". 但数学上它毫无疑问是成立的.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Boltzmann 分布的形状与 Lagrange 乘子的几何</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>上图展示 Boltzmann 分布 $p_n\propto e^{-\beta E_n}$ 随能量的指数衰减, 并用三条不同温度的曲线 (低温陡峭、中温中等、高温平缓) 做对比; 下图用概念性几何图示 Lagrange 乘子法: 在两条约束 (归一化平面、平均能量超平面) 相交的约束流形上, 寻找 Shannon 熵 $S$ 的等值线与该流形相切之处.</dd>
-      <dt>必含元素</dt><dd>上图: 以横轴 $E_n$、纵轴 $p_n$ 画三条指数衰减曲线, 按 $T_{\mathrm{low}}\lt T_{\mathrm{mid}}\lt T_{\mathrm{high}}$ 由陡到缓; 明确标出低温曲线集中在低能级、高温曲线变得接近均匀分布的趋势. 下图: 一个二维概率单纯形的示意, 画出归一约束线、能量约束线两者相交得到的约束集; 在上面画 $S$ 的几条椭圆等值线, 最大熵点是等值线与约束相切的那一点, 对应 Lagrange 乘子 $\alpha, \beta$.</dd>
-      <dt>几何精度</dt><dd>三条指数曲线斜率比严格按 $\beta_i = 1/(kT_i)$, 三条温度取整数比例 (例如 $1:2:4$), 同一个 $E_n$ 处高度比应该是准确的指数比; 下图的约束线为直线 (等式约束), 等值线族为彼此嵌套的凸闭曲线 (熵的凹性决定).</dd>
-      <dt>标签与公式</dt><dd>上图标 $p_n = e^{-\beta E_n}/Z$, 标出三条曲线对应的 $T$; 下图标 $S=-\sum p_n\log p_n$, 标出两条约束 $\sum p_n=1$ 与 $\sum p_n E_n=U$, 标注最大熵解及其 Lagrange 乘子 $\beta = 1/(kT)$.</dd>
-      <dt>风格建议</dt><dd>白底, 三条温度曲线分别用冷暖三色区分 (蓝/橙/红), 文字留出空白, 不使用阴影填充; Lagrange 几何图用浅灰等值线 + 实线约束, 切点用黑圆点标记.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  上: Boltzmann 分布随温度的变化; 下: 最大熵原理的几何解释 — 在约束流形上找 $S$ 的极值, Lagrange 乘子正是约束方向上的"价格".</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/08.svg" alt="图 1 · Boltzmann 分布的形状与 Lagrange 乘子的几何" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  上: Boltzmann 分布随温度的变化; 下: 最大熵原理的几何解释 — 在约束流形上找 $S$ 的极值, Lagrange 乘子正是约束方向上的"价格".</figcaption></figure>
 
   <h2>三、$\beta$ 凭什么是 $1/kT$: 用 $\partial S/\partial U = 1/T$ 钉死它</h2>
 

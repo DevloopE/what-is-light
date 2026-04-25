@@ -51,20 +51,7 @@
 
   <p>这里藏着一个关键物理: 权重 $e^{-\beta W}$ 极端偏爱低 $W$ 事件. 如果 $\beta W$ 涨落是 10 量级, 那 $e^{-\beta W}$ 在罕见 (low-$W$) 的 tail 上能大上 $e^{10} \approx 2\times 10^4$ 倍. 主导平均的, 恰恰是那些"运气好、碰巧耗散少"的拉伸轨迹. Jarzynski 等式允许你从涨落很大的非平衡数据里, 通过指数加权, 把"几乎可逆"的那部分挑出来, 用它们来读 $\Delta F$.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Jarzynski 等式从功分布提取自由能</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>一次非平衡拉伸实验中功 $W$ 的分布 $P(W)$, 与 $\langle W\rangle$ 和 $\Delta F$ 在 $W$ 轴上的相对位置</dd>
-      <dt>必含元素</dt><dd>横轴 $W$ (单位 $k_B T$), 纵轴 $P(W)$; 画一个右斜的直方图 (lognormal-like), 平均值 $\langle W\rangle$ 用虚线竖线标在分布峰右侧; $\Delta F$ 在分布的左 tail 上 (因为 $\Delta F = -\frac{1}{\beta}\ln \langle e^{-\beta W}\rangle \lt  \langle W\rangle$); 用渐变阴影覆盖 $W \lt  \Delta F$ 的左 tail, 标注"rare low-$W$ events dominate $\langle e^{-\beta W}\rangle$"; 图顶放 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$, 右下放 $\langle W\rangle \ge \Delta F$ 注解</dd>
-      <dt>几何/数学精度</dt><dd>分布 $P(W)$ 取 lognormal 形状, 均值 $\langle W\rangle \approx 65 k_B T$, 标准差 $\sigma_W \approx 5 k_B T$, $\Delta F \approx 60 k_B T$ 放在峰左侧 $\sim 1 \sigma$; 左 tail 渐变色要醒目 (红/橙), 显示"稀有但高权重"</dd>
-      <dt>标签与公式</dt><dd>图内: $P(W)$, $\langle W\rangle$, $\Delta F$; 公式 $\langle e^{-\beta W}\rangle = e^{-\beta \Delta F}$ 与 $\langle W\rangle - \Delta F = \langle W_{\rm diss}\rangle$; 图侧注"exponential weight amplifies rare low-$W$"</dd>
-      <dt>风格建议</dt><dd>白底, 直方图蓝色填充, rare tail 用橙-红渐变覆盖 (半透明), $\langle W\rangle$ 虚线黑色, $\Delta F$ 实线红色; 整体干净几何</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  功分布 $P(W)$ 是右斜的, $\langle W\rangle$ 在分布峰右侧; $\Delta F$ 藏在左 tail 里, 由 $e^{-\beta W}$ 指数权重挖出.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/27.svg" alt="图 1 · Jarzynski 等式从功分布提取自由能" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  功分布 $P(W)$ 是右斜的, $\langle W\rangle$ 在分布峰右侧; $\Delta F$ 藏在左 tail 里, 由 $e^{-\beta W}$ 指数权重挖出.</figcaption></figure>
 
   <h2>二、Deepdive: Jarzynski 等式的严格推导</h2>
 

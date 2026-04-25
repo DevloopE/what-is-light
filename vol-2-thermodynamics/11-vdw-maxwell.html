@@ -51,20 +51,7 @@
 
   <p>你可能第一个想法是"画在极大和极小的中间", 或者"画在曲线自交处". 这些几何上的猜测都不对. 正确答案由 Maxwell 1875 年给出: <strong>水平线的位置使它与原曲线围出的上下两块面积相等</strong>. 凭什么? 这就是本节要严格推的 cliché.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · van der Waals 等温线与 Maxwell 等面积构造</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>$p$-$v$ 平面上三条 van der Waals 等温线 ($T\lt T_c$, $T=T_c$, $T\gt T_c$) 与 Maxwell 等面积构造</dd>
-      <dt>必含元素</dt><dd>(a) 坐标轴: 横轴 $v$, 纵轴 $p$, 原点; (b) 高温等温线 (蓝色) 单调下降; (c) 临界等温线 (黑色) 过 $(v_c,p_c)$ 有水平拐点, 标出临界点红圆; (d) 低温等温线 (砖红色) 带极大、极小, 中间 $\partial p/\partial v\gt 0$ 的段用虚线画出表示"非物理"; (e) 横贯低温等温线的水平虚线连接液点 $v_l$ 与气点 $v_g$, 压强值 $p_\text{sat}$ 在纵轴上标出; (f) 水平线上方与曲线之间的区域 (曲线高于水平线那块) 着浅橙色, 水平线下方与曲线之间的区域 (曲线低于水平线那块) 着浅橙色, 两块面积视觉上相等</dd>
-      <dt>几何精度</dt><dd>临界点 $(v_c,p_c)=(3b,a/(27b^2))$; 三条等温线形状正确 (高温单调, 临界拐点, 低温 S 形); Maxwell 水平线的位置应使两块面积目测相等; 液、气两端与低温曲线相切于水平线上</dd>
-      <dt>标签与公式</dt><dd>标注 "$T\gt T_c$", "$T=T_c$", "$T\lt T_c$"; 临界点 $(v_c,p_c)$; 液气两端 $v_l,v_g$ 与 $p_\text{sat}$; 方程 $(p+a/v^2)(v-b)=RT$ 放在空白处; Maxwell 条件 "上下面积相等 $\Leftrightarrow \int v\,\mathrm{d}p=0$"</dd>
-      <dt>风格建议</dt><dd>白底; 三条等温线用不同颜色 (蓝/黑/砖红); 非物理段用虚线; 面积着浅橙色半透明; 坐标轴细灰; 关键点用实心圆点</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  低温等温线 (砖红) 上有一段 $\partial p/\partial v\gt 0$ 的机械不稳定区; 真实系统沿水平虚线 $p=p_\text{sat}$ 从液相 $v_l$ 走到气相 $v_g$. Maxwell 1875: 水平线的位置使它与曲线围出的上下两块面积相等.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/11.svg" alt="图 1 · van der Waals 等温线与 Maxwell 等面积构造" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  低温等温线 (砖红) 上有一段 $\partial p/\partial v\gt 0$ 的机械不稳定区; 真实系统沿水平虚线 $p=p_\text{sat}$ 从液相 $v_l$ 走到气相 $v_g$. Maxwell 1875: 水平线的位置使它与曲线围出的上下两块面积相等.</figcaption></figure>
 
   <h2>三、deepdive: Maxwell 等面积律 —— 从 $\mu_l=\mu_g$ 到"上下面积相等"</h2>
 

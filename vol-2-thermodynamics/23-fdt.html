@@ -99,20 +99,7 @@
 
   <p>定理的量子版本 (Callen-Welton 1951) 是 $S_{AA}(\omega) = 2\hbar(1 + \bar n_\omega)/\omega \cdot \mathrm{Im}\,\chi_{AA}(\omega)$, 其中 $\bar n_\omega = 1/(e^{\beta\hbar\omega}-1)$ 是 Planck 分布. 经典极限 $\hbar\omega \ll kT$ 下 $\bar n_\omega \approx kT/\hbar\omega$, 代入即得到 (4). 这是本节第一个极限检验: 我们从经典路径 (3) → (4) 推出来的东西, 作为量子结果的低频 / 高温极限被正确再现.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 响应的吸收峰与涨落谱峰一一对应</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>涨落耗散定理 $S_{AA}(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi_{AA}(\omega)$ 的可视化: 上图是系统的响应/吸收曲线 $\mathrm{Im}\,\chi(\omega)$ 在共振频率 $\omega_0$ 附近的 Lorentzian 峰; 下图是平衡涨落的功率谱 $S_{AA}(\omega)$ 在同一 $\omega_0$ 处的峰. 两图用竖直虚线 + 双向箭头 + 公式 (4) 连接, 说明涨落与耗散在同一个频率上同步出现.</dd>
-      <dt>必含元素</dt><dd>上图: 横轴 $\omega$, 纵轴 $\mathrm{Im}\,\chi(\omega)$, 红色 Lorentzian 峰, 峰位 $\omega_0$, 峰宽 $\gamma$; 下图: 同一横轴, 纵轴 $S_{AA}(\omega)$, 相同峰位 $\omega_0$ 的峰, 峰高按 $(2kT/\omega_0)\,\mathrm{Im}\,\chi(\omega_0)$ 确定. 中间加一条双向箭头与标签 $S(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi$. 右侧空白处写 Einstein 关系 $D = kT/(6\pi\eta a)$ 作为具体示例.</dd>
-      <dt>几何精度</dt><dd>两条 Lorentzian 峰位严格一致; 下图峰值高度与上图按 $2kT/\omega_0$ 的比例关联 (即高度比 = $2kT/\omega_0$ 乘一个无量纲常数); 峰宽 $\gamma$ 在两图中相等; 两图的横轴对齐, 用一条垂直虚线把峰位连起来.</dd>
-      <dt>标签与公式</dt><dd>上图内部: $\mathrm{Im}\,\chi(\omega)$ 标 $\omega_0$ 和 $\gamma$. 下图内部: $S_{AA}(\omega)$ 标同一 $\omega_0$. 两图之间: FDT 公式 $S(\omega) = (2kT/\omega)\,\mathrm{Im}\,\chi(\omega)$. 图右下加一个小框, 写 Einstein 关系作为 $\omega = 0$ 的 DC 极限: $D = kT/(6\pi\eta a)$.</dd>
-      <dt>风格建议</dt><dd>白底两图, 共振峰红色, 坐标轴与刻度黑色细线, 中间连接箭头深灰色; 公式用小号衬线字体排在图间空白处; 整体不要拥挤, 两峰一清二楚是重点.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  上下两图的峰位一致、宽度一致, 高度比精确地由 $2kT/\omega_0$ 给出 —— 这就是涨落耗散定理的可视形式: 一个系统"在哪里吸收能量" (上图) 就"在哪里涨落" (下图), 两者成正比.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/23.svg" alt="图 1 · 响应的吸收峰与涨落谱峰一一对应" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  上下两图的峰位一致、宽度一致, 高度比精确地由 $2kT/\omega_0$ 给出 —— 这就是涨落耗散定理的可视形式: 一个系统"在哪里吸收能量" (上图) 就"在哪里涨落" (下图), 两者成正比.</figcaption></figure>
 
   <h2>三、回到 Brown 和 Nyquist: (1) 和 (2) 是 (4) 的两个例子</h2>
 

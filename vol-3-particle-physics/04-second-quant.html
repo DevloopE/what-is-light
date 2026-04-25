@@ -97,20 +97,7 @@
   <p>即每个模的能量 = $\omega_k\times$ 该模粒子数, 加上一个发散常数 $E_0 = \frac12\sum_k \omega_k$ —— 真空能. 这一项在孤立系统里无关紧要 (能量零点可平移), 但接上引力就会成为宇宙学常数问题的物理源头, 后面第六部分会细讲.</p>
 
   <!-- 唯一图占位符 -->
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 单粒子 QM (左) vs 多粒子 Fock 空间 (右)</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>用左右两栏对比 Schrödinger 单粒子图像 (一个粒子 + $\psi(x)$) 和 Fock 空间塔 (一层一层的 $n$-粒子态, 用 $a_k^\dagger$ 上爬, 用 $a_k$ 下落), 让读者一眼看到"升级"发生了什么.</dd>
-      <dt>必含元素</dt><dd>(a) 左栏: 一个带波形的 $\psi(\mathbf x)$ 曲线、一个小粒子图标、标签 "单粒子 Hilbert 空间 $\mathscr H_1$"; (b) 右栏: 从底向上 5 层的 Fock 塔, 分别标注 $|0\rangle$、$|1_k\rangle$、$|1_k 1_{k'}\rangle$、$|2_k\rangle$、"$\cdots$"; 每层之间两条箭头, 向上的箭头旁注 "$a_k^\dagger$", 向下的旁注 "$a_k$"; (c) 顶部贴公式 $\phi(x)=\int[a_k e^{-ikx}+a_k^\dagger e^{ikx}]$; (d) 底部贴对易关系 $[a_k,a_{k'}^\dagger]=(2\pi)^3 2\omega_k\,\delta(k-k')$.</dd>
-      <dt>几何精度</dt><dd>Fock 塔各层等高, 间距均匀 (约 1 cm 一层); 箭头首尾对齐层中点; 左右两栏之间用一条细竖线分隔.</dd>
-      <dt>标签与公式</dt><dd>左栏标签"单粒子 QM:$i\partial_t|\psi\rangle=H|\psi\rangle$"; 右栏标签"QFT (Fock 空间)"; 塔最下方写"真空 $|0\rangle$, $a_k|0\rangle=0$"; 塔最上方省略号表示无穷层; 箭头 $a^\dagger$ 用深红色, $a$ 用深蓝色.</dd>
-      <dt>风格建议</dt><dd>白底; 线条黑色 0.8 pt; 算符用 italic sans-serif; 态 ket 用 bra-ket 符号; 整体保持黑白 + 两种主色点缀.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  左侧单粒子 QM 的状态就是一个 $|\psi\rangle$, 右侧 Fock 空间允许任意粒子数, $a_k^\dagger$ 与 $a_k$ 在相邻层之间上下跃迁. 二次量子化做的就是这个"升级".</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/04.svg" alt="图 1 · 单粒子 QM (左) vs 多粒子 Fock 空间 (右)" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  左侧单粒子 QM 的状态就是一个 $|\psi\rangle$, 右侧 Fock 空间允许任意粒子数, $a_k^\dagger$ 与 $a_k$ 在相邻层之间上下跃迁. 二次量子化做的就是这个"升级".</figcaption></figure>
 
   <h2>三、数字校准: 300 K 黑体腔里有多少光子?</h2>
 

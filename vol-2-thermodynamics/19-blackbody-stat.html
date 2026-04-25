@@ -47,20 +47,7 @@
 
   <p>这个 $\omega^2$ 的模式密度是黑体谱形状的一半来源 (另一半来源是 Bose 分布). 为什么是 $\omega^2$ 而不是 $\omega^3$? 因为模式住在 3 维 $\mathbf{k}$ 空间里, 球壳是二维面, 带 $k^2$; 再乘 $dk/d\omega = 1/c$ 不改变幂次. 如果电磁场住在 $d$ 维空间里, 模式密度是 $\omega^{d-1}$, 黑体定律会变成 $u \propto T^{d+1}$ 而不是 $T^4$. 我们之所以看到 $T^4$, 根源在我们住在 3+1 维时空里.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三个温度下的 Planck 谱及其积分的 $T^4$ 标度</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>Planck 谱密度 $u_\omega(\omega, T)$ 在 $T = 3000,\,5800,\,10000$ K 三个温度下的曲线, 及其对所有频率积分后得到的 $u(T) = a T^4$.</dd>
-      <dt>必含元素</dt><dd>三条 $u_\omega$ vs $\omega$ 的曲线 (低温红色, 太阳温度黄色, 高温蓝色); 每条曲线的 Wien 峰位置 $\omega_\mathrm{max}$ 用垂线标出, $\omega_\mathrm{max}(T)\propto T$; 右上角一个小嵌入图, 横轴 $T$, 纵轴 $u$, 曲线为 $u = a T^4$, 三个温度点标在上面.</dd>
-      <dt>几何/数学精度</dt><dd>Wien 位移严格: 极大由 $3(1-e^{-x}) = x$ 给出 $x_\mathrm{max}\approx 2.821$, 即 $\hbar\omega_\mathrm{max} = 2.821\, kT$; 每条曲线下的总面积严格正比于 $T^4$.</dd>
-      <dt>标签与公式</dt><dd>主图上方写 $u_\omega = \dfrac{\hbar\omega^3}{\pi^2 c^3}\cdot\dfrac{1}{e^{\beta\hbar\omega}-1}$; 小图旁写 $\sigma = \dfrac{2\pi^5 k^4}{15 h^3 c^2}$; 横轴标 $\omega$ (rad/s), 纵轴 $u_\omega$ (J·s/m³).</dd>
-      <dt>风格建议</dt><dd>白底, 三色 (红/黄/蓝); 曲线细实线, 峰位垂线细虚线; 嵌入小图四分之一主图尺寸.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Planck 谱 $u_\omega(T)$ 在三个温度下的形状, 以及对应的 $u(T)\propto T^4$.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/19.svg" alt="图 1 · 三个温度下的 Planck 谱及其积分的 $T^4$ 标度" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Planck 谱 $u_\omega(T)$ 在三个温度下的形状, 以及对应的 $u(T)\propto T^4$.</figcaption></figure>
 
   <h2>三、从 Bose 分布到能量密度: 完整一条线推到 $u = aT^4$</h2>
 

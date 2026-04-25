@@ -89,20 +89,7 @@
 
   <p>这是能得到连续相变的最简参数化. 任何更复杂的依赖 $a(T)$ 只要在 $T_c$ 附近有同样的单调过零, 都给出同样的临界指数 — 这已经是普适性的先兆.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · Landau 自由能的三种形态</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>Landau 自由能 $F(\eta)$ 在 $T\gt T_c$, $T=T_c$, $T\lt T_c$ 三个温度下的形状, 展示对称破缺如何从单井变出双井</dd>
-      <dt>必含元素</dt><dd>同一坐标系中画三条 $F(\eta)$ vs $\eta$ 曲线 (共享横纵轴), 都关于 $\eta=0$ 左右对称. 曲线 A ($T\gt T_c$, $a\gt 0$): 单井, $\eta=0$ 是唯一极小. 曲线 B ($T=T_c$, $a=0$): $F\propto\eta^4$, 底部平坦且四阶零点. 曲线 C ($T\lt T_c$, $a\lt 0$): "墨西哥帽"双井, 左右两个对称极小点标记 $\pm\eta_0$, 中间 $\eta=0$ 为局部极大. 箭头标示系统降温时从 A $\to$ B $\to$ C 的演化顺序</dd>
-      <dt>几何精度</dt><dd>双井最低点 $\pm\eta_0 = \pm\sqrt{a_0(T_c-T)/(2b)}$ 对称分布; 中央 bump 相对谷底的高度 $\Delta F = a^2/(4b)$, 即 $\propto (T_c-T)^2$, 需在图示曲线 C 上可视化这一关系; 坐标原点为零能量参考</dd>
-      <dt>标签与公式</dt><dd>图上标 $F(\eta) = a_0(T-T_c)\eta^2 + b\eta^4$, $\eta_0 = \sqrt{a_0(T_c-T)/(2b)}$, $\beta = 1/2$; 三条曲线分别标注 $T\gt T_c$ / $T=T_c$ / $T\lt T_c$</dd>
-      <dt>风格建议</dt><dd>白底, 三条曲线用不同颜色 (建议 A 蓝色, B 灰色, C 红色), 坐标轴黑色细线, 极小点用小圆点标注</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  Landau 自由能 $F(\eta)$ 随温度穿过 $T_c$ 的形变: $T\gt T_c$ 单井 → $T=T_c$ 平底 → $T\lt T_c$ 双井. 对称破缺发生在双井一出现、系统必须"选一边"的那一刻.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/12.svg" alt="图 1 · Landau 自由能的三种形态" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  Landau 自由能 $F(\eta)$ 随温度穿过 $T_c$ 的形变: $T\gt T_c$ 单井 → $T=T_c$ 平底 → $T\lt T_c$ 双井. 对称破缺发生在双井一出现、系统必须"选一边"的那一刻.</figcaption></figure>
 
   <h2>三、算临界指数 $\beta=1/2$: 平均场的核心预言</h2>
 

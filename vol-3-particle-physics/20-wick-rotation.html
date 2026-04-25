@@ -86,28 +86,7 @@
 
   <p>需要强调的一点: 上面的证明在自由理论里是严格的 — 传播子是有理函数, 极点位置明确. 相互作用理论里, Cauchy 论证更微妙: 每一张 Feynman 图是若干传播子的乘积, 每个传播子都贡献一对极点, 作为一个整体它们仍在第二、第四象限 (loop 动量积分的 $i\epsilon$ 与外线动量的 $i\epsilon$ 需要同号), 所以 Wick 旋转仍合法. 但这个"同号"是一个 technical 条件, 涉及 Landau 面的位置 — Symanzik 1960 年代 Euclidean QFT 的公理化就在处理这些. 下面我们就讲这件事.</p>
 
-  <figure class="diagram-placeholder">
-    <div class="placeholder-box">
-      <span class="tag">图占位符</span>
-      <h4>图 1 · 复 $t$ 平面 Wick 旋转与 Minkowski/Euclidean 作用量对照</h4>
-      <p>上半部: 复 $t$ (或等价 $p^0$) 平面的旋转图示; 下半部: 两个路径积分公式的并列对比.</p>
-      <dl class="tikz-req">
-        <dt>上部主图 (复 $t$ 平面)</dt>
-        <dd>复平面方格背景, 横轴 $\text{Re}(t)$ 标 "Minkowski 实时间", 纵轴 $\text{Im}(t)$ 标 "Euclidean 虚时间 $\tau = it$". 沿实轴画粗黑线表示 Minkowski 围道, 沿正虚轴画粗黑线表示 Euclidean 围道. 中间用圆弧箭头画出顺时针 $90^\circ$ 旋转, 标签 "$t \to -i\tau$". </dd>
-        <dt>极点位置 (等价 $p^0$ 平面视角)</dt>
-        <dd>右下方小嵌图: $p^0$ 复平面, 第二象限画一个空心圆标 "$-E_p + i\epsilon$", 第四象限画一个空心圆标 "$+E_p - i\epsilon$". 第一和第三象限画阴影带, 标 "旋转扇区 (无极点)". 顺时针旋转箭头从正实轴转到正虚轴.</dd>
-        <dt>下部公式带 (左右并列)</dt>
-        <dd>左: "Minkowski: $Z = \displaystyle\int\mathcal D\phi\,e^{iS_M[\phi]/\hbar}$, 相位, 不收敛". 右: "Euclidean: $Z = \displaystyle\int\mathcal D\phi\,e^{-S_E[\phi]/\hbar}$, Boltzmann, 收敛". 中间用双向箭头 "Wick 旋转" 连接.</dd>
-        <dt>自由 KG 作用量对比</dt>
-        <dd>下方小字: "$S_M = \int d^4x_M[\tfrac12(\partial_\mu\phi)^2 - \tfrac12 m^2\phi^2]$ (有负号)" 与 "$S_E = \int d^4x_E[\tfrac12(\partial_\mu\phi)^2 + \tfrac12 m^2\phi^2]$ (全正号)" 并列.</dd>
-        <dt>几何要求</dt>
-        <dd>旋转方向严格顺时针 (从正实轴向正虚轴), 极点位置严格在第二/第四象限, 旋转扇区用阴影覆盖第一/第三象限. </dd>
-        <dt>风格</dt>
-        <dd>白底, 黑线粗 1.2pt, 方格浅灰, 文字 serif; 整体紧凑不拥挤.</dd>
-      </dl>
-    </div>
-    <figcaption>图 1  复 $t$ 平面上的 Wick 旋转: 顺时针 $90^\circ$ 扫过的扇形内无极点, Cauchy 定理保证积分值不变, 把 Minkowski 的振荡相位积分转成 Euclidean 的 Boltzmann 衰减积分.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/20.svg" alt="图 1 · 复 $t$ 平面 Wick 旋转与 Minkowski/Euclidean 作用量对照" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  复 $t$ 平面上的 Wick 旋转: 顺时针 $90^\circ$ 扫过的扇形内无极点, Cauchy 定理保证积分值不变, 把 Minkowski 的振荡相位积分转成 Euclidean 的 Boltzmann 衰减积分.</figcaption></figure>
 
   <h2>三、Euclidean QFT ↔ 4D 统计力学 ↔ 热场论</h2>
 

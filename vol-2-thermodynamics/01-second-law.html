@@ -42,19 +42,7 @@
 
   <p>注意我们什么都还没证. 只是把"系统倾向走向熵最大的宏观态"翻译成了"系统倾向走向 $\Omega$ 最大的宏观态". 要真的把它和 Clausius 的 $\delta Q/T$ 画等号, 还得做一些工作 —— 这就是下一节的 deepdive.</p>
 
-<figure class="diagram-placeholder">
-<div class="placeholder-box">
-  <span class="tag">TikZ 待渲染</span>
-  <h4>图 1 · 宏观态、微观态与多重性 $\Omega(N_L)$</h4>
-  <dl class="tikz-req">
-    <dt>主题</dt><dd>一个气体盒子被中线分成左右两半, 通过三个微观态示例 (左多 / 均匀 / 右多) 说明"宏观态 — 微观态 — 多重性"三层结构, 并给出 $\Omega(N_L)$ 的二项分布直方图.</dd>
-    <dt>必含元素</dt><dd>(a) 主盒子一个, 细黑线边框, 中间竖虚线分左右; (b) 三个小盒子微观态示例, 分别 $N_L \approx 0.2N,\, 0.5N,\, 0.8N$, 粒子位置随机撒点; (c) 右侧直方图, 横轴 $N_L$ 从 0 到 $N$, 纵轴 $\Omega(N_L)$; (d) 标注公式 $S = k\ln\Omega$ 与 $\Omega(N_L,N_R) = \binom{N}{N_L}$.</dd>
-    <dt>几何/数学精度</dt><dd>直方图峰值严格居中于 $N_L = N/2$, 半高全宽 $\sim \sqrt{N}$ 级, 两侧快速衰减成 Gauss 形; 直方图面积归一但不必画数值刻度.</dd>
-    <dt>标签与公式</dt><dd>盒子上方贴 "宏观态 = $(N_L, N_R)$"; 三个微观态各贴一个小标签 "微观态 #1, #2, #3"; 直方图右上方贴 $S = k\ln\Omega$; 横轴 $N_L$, 纵轴 $\Omega$; Stirling 近似 $\ln N! \approx N\ln N - N$ 在图下角以小字附注.</dd>
-    <dt>风格建议</dt><dd>白底; 粒子用填充小圆点 (深蓝); 盒子细黑线 (0.8 pt); 直方图淡蓝填充带深蓝轮廓; 字体与正文一致, 数学记号用 italic.</dd>
-  </dl>
-</div>
-<figcaption>图 1  一个宏观态 $(N_L, N_R)$ 通常对应巨大数目的微观态. 多重性 $\Omega(N_L)$ 的峰在 $N_L = N/2$, 宽度 $\sim\sqrt{N}$; 其对数就是 Boltzmann 熵 $S = k\ln\Omega$.</figcaption>
+<figure class="diagram"><img src="build/01.svg" alt="图 1 · 宏观态、微观态与多重性 $\Omega(N_L)$" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  一个宏观态 $(N_L, N_R)$ 通常对应巨大数目的微观态. 多重性 $\Omega(N_L)$ 的峰在 $N_L = N/2$, 宽度 $\sim\sqrt{N}$; 其对数就是 Boltzmann 熵 $S = k\ln\Omega$.</figcaption>
 </figure>
 
   <h2>二、严格接起来: $S = k\ln\Omega$ 凭什么就是那个熵?</h2>

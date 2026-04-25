@@ -69,20 +69,7 @@
 
   <p><strong>低能端.</strong> 取 $\mu=1\,\mathrm{GeV}$: $\ln(1/0.21)^2=2\ln(4.76)\approx 3.12$, $\alpha_s(1\,\mathrm{GeV})\approx 4\pi/(23/3\cdot 3.12)\approx 0.53$. 这个数字已经不小 — 二阶项 $\alpha_s^2\sim 0.28$, 三阶 $\alpha_s^3\sim 0.15$, 微扰级数收敛很慢 (或者干脆发散). 再往下到 $\mu=400\,\mathrm{MeV}$: $\ln(0.4/0.21)^2=2\ln(1.90)\approx 1.29$, $\alpha_s\approx 4\pi/(23/3\cdot 1.29)\approx 1.27$ — 微扰理论完全失效. 严格地在 $\mu\to\Lambda_{\mathrm{QCD}}$ 时 $\alpha_s\to\infty$. 这里不是理论崩了, 而是我们用的工具 (图逐阶展开) 失效; 真实的物理在这个尺度上进入另一个区域, 用 lattice QCD 或有效理论 (chiral perturbation, HQET, NRQCD) 描述.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · QCD 与 QED 跑耦合的两种面貌</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>在双对数图上画 $\alpha_s(\mu)$ 与 $\alpha_{\mathrm{em}}(\mu)$ 两条曲线, 展示 QCD 渐近自由与 QED Landau pole 的符号相反行为</dd>
-      <dt>必含元素</dt><dd>(a) 横轴: 能标 $\mu$ (GeV), 对数刻度, 范围 $10^{-1}$ 到 $10^{4}$ GeV; (b) 纵轴: $\alpha$, 对数刻度, 范围 $10^{-3}$ 到 $10^{1}$; (c) QCD 曲线 (砖红色): 高能 ($M_Z$ 处) 小, 低能大, 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 处向上发散; 标点 $\alpha_s(M_Z)=0.118$; 在 $1\,\mathrm{GeV}$ 处标 $\alpha_s\approx 0.5$; (d) QED 曲线 (深蓝色): 低能 $\alpha\approx 1/137$ 基本平, 高能缓慢增大, 在 $M_Z$ 处标 $\alpha_{\mathrm{em}}(M_Z)\approx 1/127$; 向高能延伸到 Landau pole 符号性标出 (不画到 $10^{277}$); (e) 垂直虚线标 $\Lambda_{\mathrm{QCD}}$ 位置与 $M_Z$ 位置; (f) 在图角注 $\beta$ 函数符号: QCD $\beta\lt 0$, QED $\beta\gt 0$</dd>
-      <dt>几何精度</dt><dd>log-log 图上两条曲线斜率符号相反, 交叉点约在 $\mu\sim M_Z$; QCD 曲线渐近发散于 $\Lambda_{\mathrm{QCD}}$ 处, QED 曲线在显示范围内平缓</dd>
-      <dt>标签与公式</dt><dd>$\alpha_s(\mu)$, $\alpha_{\mathrm{em}}(\mu)$, $\Lambda_{\mathrm{QCD}}$, $M_Z$, $\alpha_s(M_Z)=0.118$, $\alpha_{\mathrm{em}}(M_Z)=1/127.9$; 公式标注 $\beta(g)=-b\,g^3/(16\pi^2)$, $b\gt 0$ for QCD</dd>
-      <dt>风格建议</dt><dd>白底; QCD 砖红色粗线, QED 深蓝色粗线, 两色对比分明; 坐标轴与标签黑色; 发散渐近线用虚线</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  两种跑耦合: QCD 的 $\alpha_s$ 高能小、低能大, 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 形式上发散; QED 的 $\alpha_{\mathrm{em}}$ 高能大、低能 $1/137$, 曲线斜率符号正好相反, 直接对应 $\beta$ 函数符号的翻转.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/13.svg" alt="图 1 · QCD 与 QED 跑耦合的两种面貌" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  两种跑耦合: QCD 的 $\alpha_s$ 高能小、低能大, 在 $\Lambda_{\mathrm{QCD}}\approx 200\,\mathrm{MeV}$ 形式上发散; QED 的 $\alpha_{\mathrm{em}}$ 高能大、低能 $1/137$, 曲线斜率符号正好相反, 直接对应 $\beta$ 函数符号的翻转.</figcaption></figure>
 
   <h2>四、禁闭的定性图像与数字</h2>
 

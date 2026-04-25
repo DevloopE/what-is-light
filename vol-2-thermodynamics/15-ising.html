@@ -93,20 +93,7 @@
 
   <p>这三档的分岔完全由一个几何事实决定: <em>$d$ 维空间里, $d$ 维岛屿的边界是 $(d-1)$ 维物体</em>. 一维的"边界"是 0 维的点, 大小不随岛增长, 代价被熵战胜. 二维、三维的边界分别是一维曲线、二维曲面, 代价随岛的大小增长, 低温下可以战胜熵. 这一条论证后来被 Mermin-Wagner 定理在连续对称情形推广为更精细的结果, 核心都是同一件事: 低维的涨落太便宜, 秩序难以存活.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三种维度三种命运的 Ising 模型</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>三栏并列: (左) 一维自旋链 + 其 $m(T)$ 图; (中) 二维方格自旋 + 其 $m(T)$ 图; (右) 三维简立方自旋 + 其 $m(T)$ 图. 下方把三条 $m(T)$ 曲线用不同颜色叠到同一坐标系里对比.</dd>
-      <dt>必含元素</dt><dd>左栏: 一条横向的 Ising 链, 每格放 $\uparrow$ 或 $\downarrow$ (至少 8 个), 其中显示一个短的反向岛; 下方 $m(T)$ 图从 $T = 0^+$ 起立即为 0, 水平线; 标注 "$T_c = 0$". 中栏: $6\times 6$ 方格子, 大部分 $+$ 少数 $-$ 聚成一个小岛 (展示 Peierls 畴壁为闭合曲线); 下方 $m(T)$ 图在 $T_c^{2D} \approx 2.269\,J/k_B$ 处下降到 0, 近 $T_c$ 时按 $(T_c - T)^{1/8}$ 陡峭地起; 标注 "$T_c^{2D} = 2J/[k_B\ln(1+\sqrt 2)]$" 与 "$\beta = 1/8$". 右栏: 示意 $3\times 3\times 3$ 简立方自旋阵 (用等角投影), 大部分 $+$; 下方 $m(T)$ 图在 $T_c^{3D} \approx 4.512\,J/k_B$ 处下降到 0, 曲线比二维稍"圆"; 标注 "$T_c^{3D} \approx 4.512\,J/k_B$" 与 "$\beta \approx 0.326$". 最下方一张小合图: 三条 $m(T)$ 共轴, 横轴 $k_B T/J$ 从 0 到 6, 用颜色区分. 平均场预测 $T_c^{\rm MFT} = 6\,J/k_B$ 画一条虚线作为对比.</dd>
-      <dt>几何/数学精度</dt><dd>二维 $m(T)$ 曲线近 $T_c$ 必须显著陡于三维 ($\beta = 1/8$ 比 $\beta = 0.326$ 陡很多); 一维曲线除 $T = 0$ 外全程为零; 三条曲线都在 $T = 0$ 处等于 1. 自旋箭头大小统一. 二维畴壁必须是闭合环.</dd>
-      <dt>标签与公式</dt><dd>"1D: $T_c = 0$", "2D: $T_c = 2J/[k_B\ln(1+\sqrt 2)] \approx 2.269\,J/k_B$, $\beta = 1/8$", "3D: $T_c \approx 4.512\,J/k_B$, $\beta \approx 0.326$, $\nu\approx 0.630$", "MFT: $T_c = qJ/k_B = 6\,J/k_B$ (3D 简立方 $q = 6$)". 自旋图上方写 "$H = -J\sum S_i S_j$".</dd>
-      <dt>风格建议</dt><dd>白底; $+1$ 自旋用深橙色向上箭头 ($\uparrow$), $-1$ 用深蓝色向下箭头 ($\downarrow$); 二维畴壁用红色粗线闭合标出; $m(T)$ 曲线用与自旋配色不同的冷色调 (深绿、暗红、紫) 区分三档; 虚线代表平均场预测, 灰色.</dd>
-    </dl>
-  </div>
-  <figcaption>图 1  同一个哈密顿量 $H = -J\sum_{\langle ij\rangle} S_i S_j$ 在三种维度下给出三条截然不同的 $m(T)$ 曲线. 一维没有相变, 二维和三维有相变但临界指数显著不同; 平均场给的 $T_c^{\rm MFT} = 6\,J/k_B$ 远高于三维真值, 误差来自它忽略了涨落.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/15.svg" alt="图 1 · 三种维度三种命运的 Ising 模型" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1  同一个哈密顿量 $H = -J\sum_{\langle ij\rangle} S_i S_j$ 在三种维度下给出三条截然不同的 $m(T)$ 曲线. 一维没有相变, 二维和三维有相变但临界指数显著不同; 平均场给的 $T_c^{\rm MFT} = 6\,J/k_B$ 远高于三维真值, 误差来自它忽略了涨落.</figcaption></figure>
 
   <h2>三、二维: Onsager 精确解与二维的幸运</h2>
 

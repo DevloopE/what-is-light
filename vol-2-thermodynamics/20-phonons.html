@@ -67,20 +67,7 @@
 
   <p>这就是 Debye 公式. 它在高温极限 $T \gg \Theta_D$ 下退回 Dulong-Petit, 在低温极限下给出 $T^3$ —— 下一节我们把低温极限严格推一遍.</p>
 
-  <figure class="diagram-placeholder">
-  <div class="placeholder-box">
-    <span class="tag">TikZ 待渲染</span>
-    <h4>图 1 · 三种固体比热模型的对比</h4>
-    <dl class="tikz-req">
-      <dt>主题</dt><dd>Dulong-Petit、Einstein、Debye 三条 $C_V(T)$ 曲线在归一化温度轴上的比较</dd>
-      <dt>必含元素</dt><dd>横轴 $T/\Theta_D$ 从 0 到 2; 纵轴 $C_V / 3Nk$ 从 0 到 1.05; 水平虚线 Dulong-Petit $C_V = 3Nk$; Einstein 曲线 (取 $\Theta_E = 0.77\Theta_D$ 保证高温极限对齐) 在低温按 $e^{-\Theta_E/T}$ 指数消失; Debye 曲线在低温按 $T^3$ 起步, 中温穿过 $T/\Theta_D \sim 0.2$ 附近到达 $C_V \approx 0.5\cdot 3Nk$, 高温渐近到 $3Nk$</dd>
-      <dt>几何/数学精度</dt><dd>Debye 低温段严格符合 $C_V = (12\pi^4/5)Nk(T/\Theta_D)^3$, 高温段严格接 $3Nk$; Einstein 曲线在 $T/\Theta_D = 0.1$ 左右就陡峭下降到接近 0 而 Debye 仍有可观值</dd>
-      <dt>标签与公式</dt><dd>曲线旁标 "Dulong-Petit $3Nk$"、"Einstein $e^{-\Theta_E/T}$"、"Debye $\propto T^3$"; 附方程 $C_V \approx (12\pi^4/5)Nk(T/\Theta_D)^3$、$\Theta_D = \hbar\omega_D/k$、$\omega_D = c_s(6\pi^2 n)^{1/3}$</dd>
-      <dt>风格建议</dt><dd>白底, 三条曲线分色 (Dulong-Petit 灰虚线、Einstein 蓝、Debye 暗红), 坐标轴用细黑线, 网格浅灰; 图注在图下方</dd>
-    </dl>
-  </div>
-  <figcaption>图 1 &nbsp; Dulong-Petit、Einstein、Debye 三种模型下 $C_V / 3Nk$ 随 $T/\Theta_D$ 变化. 三者在高温都趋于 Dulong-Petit, 但在低温 Einstein 指数压制、Debye 按 $T^3$ 缓慢消失, 与实验吻合.</figcaption>
-  </figure>
+  <figure class="diagram"><img src="build/20.svg" alt="图 1 · 三种固体比热模型的对比" style="max-width:100%;height:auto;background:#fff;border:1px solid #c9c3b5;padding:8px;border-radius:4px;"><figcaption>图 1 &nbsp; Dulong-Petit、Einstein、Debye 三种模型下 $C_V / 3Nk$ 随 $T/\Theta_D$ 变化. 三者在高温都趋于 Dulong-Petit, 但在低温 Einstein 指数压制、Debye 按 $T^3$ 缓慢消失, 与实验吻合.</figcaption></figure>
 
   <h2>三、(deepdive) 为什么恰好是 $T^3$ ? — Debye 律的精确推导</h2>
 
