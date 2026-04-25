@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>什么是群? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="10-tensor-product.html">← 上一节</a>
+  <span class="chapter-title">第 11 节 / 30 · 第 3 部分 · 群论与对称性 · 第四卷·物理学的数学基础</span>
+  <a href="12-so3-su2.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>什么是群?</h1>
+  <div class="sub">—— 从平面旋转开始</div>
+
+  <div class="abstract">本节从一个最日常的现象出发: 把一颗均匀的球转一个角度, 它"看起来一样"; 把一个等边三角形翻过来, 它也"看起来一样". 我们追问这些"看起来一样的变换"组合起来是什么数学结构, 抽出群的四条公理 (闭合、结合、单位、逆), 在整数加法、平面旋转 SO(2) 和正三角形对称群 $D_3$ 三个例子上反复验证, 然后引入子群、陪集、Lagrange 定理, 区分阿贝尔与非阿贝尔, 分立与连续. 最后落回物理: 卷三 06《Noether》中"连续对称给守恒律"的"对称"二字, 就是这里的连续群.</div>
+
+  <p>物理学的写法里, "对称性"几乎是个不可避免的词. 把氢分子绕键轴转一个任意角度, 它的电子云看起来一样; 把一颗食盐晶体沿任一晶轴反演, 它看起来一样; 把一篇均匀宇宙的方程往任意方向平移, 它看起来一样. 这些"看起来一样的变换" — 数学家叫它们 <em>对称变换 (symmetry transformation)</em> — 一旦放在一起, 就显出一个共同的骨架: 两个对称变换接在一起还是对称变换, 每个对称变换都可以倒着做回去, 而"什么也不做"也是一种对称变换. 这副骨架, 数学上就是<strong>群</strong>.</p>
+
+  <p>本节的目标不是把抽象群论一口气讲完, 而是先建立一个最稳的直觉: 群不是一堆奇怪的字母, 而是"对称变换的集合 + 它们的复合规则". 我们从最熟的例子起步 — 整数加法、平面旋转、三角形的翻转 — 把群的四条公理在每一个上面验一次. 后面几节 (12-15) 还要讲 $SO(3)$、$SU(2)$、Lie 代数、表示论, 它们都建在本节的地基上.</p>
+
+  <h2>一、四条公理: 群的最小内核</h2>
+
+  <p>先给定义. 取一个集合 $G$, 配上一个二元运算 $\cdot:G\times G\to G$ (我们一般把它写成乘法, 但它可以是加法、矩阵乘法、函数复合 — 任何把两个元素打成一个元素的规则). 这个运算如果满足下面四条, 我们就叫 $(G,\cdot)$ 是一个<strong>群</strong>:</p>
+
+  <p>$$
+  \begin{aligned}
+  &\text{(G1) 闭合}: &&\forall a,b\in G,\ a\cdot b\in G \\
+  &\text{(G2) 结合律}: &&\forall a,b,c\in G,\ (a\cdot b)\cdot c = a\cdot(b\cdot c) \\
+  &\text{(G3) 单位元}: &&\exists e\in G,\ \forall a\in G,\ e\cdot a = a\cdot e = a \\
+  &\text{(G4) 逆元}: &&\forall a\in G,\ \exists a^{-1}\in G,\ a\cdot a^{-1} = a^{-1}\cdot a = e
+  \end{aligned}
+  \tag{1}
+  $$</p>
+
+  <p>四条公理读起来朴素, 但每一条都对应着对称变换的一种"必然": (G1) 说两个对称接起来仍是对称; (G2) 说复合是天然结合的 — 这是因为它本质是函数复合, 而函数复合本来就结合; (G3) 是"什么也不做"; (G4) 是"倒着做". 反过来想, 任何在物理上配得上"对称"二字的变换族, 一定满足这四条 — 否则它就不是一个完整的对称.</p>
+
+  <p>注意公理里没有要求 $a\cdot b = b\cdot a$. 满足这一条的群叫<strong>阿贝尔群</strong> (Abelian, 纪念挪威数学家 Niels Henrik Abel), 不满足的叫<strong>非阿贝尔群</strong>. 物理上"两个对称变换的次序重不重要"是个分水岭 — 平移之间次序不重要, 但三维转动之间次序就重要 (你拿一本书, 先绕 $x$ 轴转 $90^\circ$ 再绕 $y$ 轴转 $90^\circ$, 跟反过来做, 末态不一样). 这一区别从本节起就跟着我们.</p>
+
+  <h2>二、三个起手例子: 从加法到旋转</h2>
+
+  <p><strong>例 1: 整数加法 $(\mathbb Z,+)$</strong>. 取 $G=\mathbb Z = \{\dots,-2,-1,0,1,2,\dots\}$, 运算是普通加法. 闭合: 整数加整数还是整数. 结合: $(a+b)+c=a+(b+c)$. 单位元: $0$. 逆元: $a$ 的逆是 $-a$, 因为 $a+(-a)=0$. 而且 $a+b=b+a$, 所以 $(\mathbb Z,+)$ 是阿贝尔群. 元素无穷多, 但都是分立的整数 — 这是<strong>分立无限群</strong>的代表.</p>
+
+  <p><strong>例 2: 平面旋转 SO(2)</strong>. 把整张二维平面绕原点逆时针转 $\theta$ 角度, 这个变换可以写成矩阵
+  $$ R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}. \tag{2}$$
+  集合 $\mathrm{SO}(2)=\{R(\theta): \theta\in[0,2\pi)\}$, 运算是矩阵乘法. 关键的复合公式是
+  $$ R(\theta_1)\,R(\theta_2) = R(\theta_1+\theta_2), \tag{3}$$
+  这一行可以直接展开矩阵乘法、用 $\cos(\theta_1+\theta_2)=\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2$ 一类和角公式验证. 由 (3): 闭合 (转两次还是转一次), 单位元是 $R(0)=I$, $R(\theta)$ 的逆是 $R(-\theta)$, 结合律来自矩阵乘法. 而且 $R(\theta_1+\theta_2)=R(\theta_2+\theta_1)$, 所以 SO(2) 是阿贝尔的. 不过它的元素是连续的 ($\theta$ 取实数), 这是<strong>连续群</strong>(也叫 <em>Lie 群</em>)的最简代表 — 它实际上同构于单位圆 $S^1$.</p>
+
+  <p><strong>例 3: 等边三角形对称群 $D_3$</strong>. 在桌面上画一个等边三角形, 顶点编号 $1,2,3$. 不动它的位置但让它"看起来一样"的刚体变换共有 6 个: 恒等 $e$; 绕中心逆时针转 $120^\circ$ 记为 $r$; 转 $240^\circ$ 记为 $r^2$; 三条经过一个顶点和对边中点的镜面反射, 分别记为 $s_1,s_2,s_3$ — $s_i$ 把顶点 $i$ 留在原地, 把另外两个顶点对换. 集合
+  $$ D_3 = \{e,\,r,\,r^2,\,s_1,\,s_2,\,s_3\},\qquad |D_3|=6, \tag{4}$$
+  运算是变换的复合. 它是<strong>非阿贝尔</strong>的 (我们下一节算给你看), 也是<strong>分立有限群</strong>的代表. 又因为这 6 个变换正好对应顶点 $\{1,2,3\}$ 的全部 6 种置换, $D_3$ 同时也等于三元置换群 $S_3$.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 等边三角形对称群 $D_3$ 的 6 个元素与群表</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$D_3$ 的三个旋转 (含恒等) 加三个反射, 共 6 个对称变换, 配 $6\times 6$ 群乘法表</dd>
+      <dt>必含元素</dt><dd>左侧一个大正三角形作"参考"; 中部 6 张顶点编号过的小三角形分别画出 $e,r,r^2,s_1,s_2,s_3$ 作用后的样子 (旋转用弧形箭头, 反射用对称轴虚线); 右侧一张 $6\times 6$ 群乘法表, 行列均按 $e,r,r^2,s_1,s_2,s_3$ 排列, 表格内每格填入复合结果</dd>
+      <dt>几何精度</dt><dd>三角形为等边三角形, 三条镜面正确通过 顶点-对边中点, 旋转 $120^\circ/240^\circ$ 的弧长按比例</dd>
+      <dt>标签与公式</dt><dd>顶点标 $1,2,3$; 群公理 (G1)–(G4) 简注; $D_3=S_3$, $|D_3|=6$, $sr=r^2 s$</dd>
+      <dt>风格建议</dt><dd>白底, 黑色线条, 唯一强调色用于乘法表中的"非阿贝尔"对照格 (例如 $rs_1$ 与 $s_1 r$ 两格)</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  $D_3$ 的元素逐一展示与完整乘法表 — 群的所有信息都凝在这张表里.</figcaption>
+  </figure>
+
+  <h2>三、动手算: $D_3$ 的乘法表与一处具体验证</h2>
+
+  <p>现在我们正经把 $D_3$ 当成群来用. 写下 6 个元素对顶点 $(1,2,3)$ 的置换效果:</p>
+  <p>$$ \begin{aligned}
+  e&: (1,2,3)\mapsto(1,2,3), &\quad r&: (1,2,3)\mapsto(2,3,1), &\quad r^2&: (1,2,3)\mapsto(3,1,2),\\
+  s_1&: (1,2,3)\mapsto(1,3,2), & s_2&: (1,2,3)\mapsto(3,2,1), & s_3&: (1,2,3)\mapsto(2,1,3).
+  \end{aligned}$$</p>
+
+  <p>这里约定 $r$ 把第 $i$ 位的顶点送到第 $i+1$ 位 (绕中心逆时针转 $120^\circ$); $s_i$ 把第 $i$ 位的顶点留下, 对换另外两位.</p>
+
+  <p><strong>具体计算: 验证 $r\,s_1$ 与 $s_1\,r$ 不相等</strong>. 我们采用<em>左作用</em>约定 $g\cdot h$ 表示先做 $h$ 再做 $g$. 先算 $r\, s_1$ 作用在 $(1,2,3)$ 上:</p>
+  <p>$$ (1,2,3) \xrightarrow{s_1} (1,3,2) \xrightarrow{r} (2,1,3). \tag{5}$$</p>
+  <p>结果 $(1,2,3)\mapsto(2,1,3)$, 这正是 $s_3$. 所以 $r\, s_1 = s_3$.</p>
+
+  <p>再算 $s_1\, r$:</p>
+  <p>$$ (1,2,3) \xrightarrow{r} (2,3,1) \xrightarrow{s_1} (3,2,1). \tag{6}$$</p>
+  <p>结果 $(1,2,3)\mapsto(3,2,1)$, 这是 $s_2$. 所以 $s_1\, r = s_2$.</p>
+
+  <p>结论: $r\, s_1 = s_3 \neq s_2 = s_1\, r$. <strong>$D_3$ 是非阿贝尔的</strong>. 同样的法子可以填满 $6\times 6$ 张乘法表 — 群的所有信息都收在这张表里. 顺带可以读出一条核心关系
+  $$ s_1\, r = s_1\,r = s_2,\qquad r\,s_1 = s_3,\qquad \Rightarrow\quad s\, r = r^{-1}\,s = r^2\,s\ (\text{对任一反射 } s). \tag{7}$$
+  这就是<em>二面体群 $D_n$</em> 的标准表现关系, 我们下一节会用它把 $D_3$ 推广到 $D_n$ 与连续的 $\mathrm{O}(2)$.</p>
+
+  <h2>四、子群、陪集、Lagrange 定理</h2>
+
+  <p>群的内部往往不是一块铁板, 而是嵌套着许多更小的群. 一个子集 $H\subseteq G$ 如果对原运算自己也构成群 (闭合 + 含 $e$ + 含每个元素的逆), 就叫 $G$ 的<strong>子群</strong>.</p>
+
+  <p><strong>例</strong>: 在 $D_3$ 里, $\{e,r,r^2\}$ 是个子群 — 它就是只保留旋转的部分, 同构于 $\mathbb Z/3\mathbb Z$. $\{e,s_1\}$ 也是 — 反射两次就回原点. $\{e\}$ 与 $D_3$ 自己也算 (平凡子群). $D_3$ 的全部子群正好这 6 个: $\{e\}$, $\{e,s_1\}$, $\{e,s_2\}$, $\{e,s_3\}$, $\{e,r,r^2\}$, $D_3$.</p>
+
+  <p>给定子群 $H$, 把 $G$ 切成大小相同的"片", 每片叫一个<strong>左陪集</strong> $gH=\{g\,h:h\in H\}$. 它们要么相等要么完全不交, 把 $G$ 拆成不相交的并集. 数一数: 取 $H=\{e,r,r^2\}\subset D_3$, 那么 $eH=\{e,r,r^2\}$, $s_1 H=\{s_1, s_1 r, s_1 r^2\}=\{s_1,s_2,s_3\}$ — 正好两片, 每片 3 个. 这正是著名的</p>
+
+  <p><strong>Lagrange 定理</strong> (1771): 有限群 $G$ 的任意子群 $H$ 的阶 (元素个数) 整除 $|G|$:</p>
+  <p>$$ |G| = |H|\cdot[G:H], \tag{8}$$
+  其中 $[G:H]$ 是陪集的个数, 叫<em>指数</em>. 在 $D_3$ 里 $|G|=6$, 子群阶只能是 $1,2,3,6$, 与上面列出的全部子群一致. 这条定理虽简单, 但是有限群结构定理的钢梁 — 它直接告诉你"找子群"的范围被严格限制了.</p>
+
+  <h2>五、连续与分立, 与物理的对接</h2>
+
+  <p>我们至此见过的群可以分两类:</p>
+  <ul>
+    <li><strong>分立群</strong>: 元素可以一个个数出来. 有限的如 $S_n$ (阶 $n!$)、$D_n$ (阶 $2n$)、晶体的 32 个点群、空间群 230 个; 无限的如 $(\mathbb Z,+)$.</li>
+    <li><strong>连续 (Lie) 群</strong>: 元素由连续参数标记, 群本身是个流形. 最常见的几个: $\mathrm{SO}(2)$ (圆周, 1 维), $\mathrm{SO}(3)$ (空间转动, 3 维), $\mathrm{U}(1)$ (复相位 $e^{i\theta}$, 同构于 $\mathrm{SO}(2)$), $\mathrm{SU}(N)$ ($N\times N$ 行列式为 1 的酉矩阵).</li>
+  </ul>
+
+  <p><strong>物理回响 1 — Noether (卷三 06)</strong>. Noether 1918 年的定理说: 拉格朗日量在一个连续单参数对称下不变, 就推出一条守恒律. "连续单参数对称"翻译成本节语言, 就是一个一维 Lie 群 (同构于 $\mathrm{U}(1)$ 或 $\mathbb R$) 在场上的作用. 时间平移 $\to$ 能量守恒, 空间平移 $\to$ 动量守恒, 转动 $\to$ 角动量守恒 — 卷一 04《光的弯曲》里背景球对称给出的角动量守恒, 数学骨架就是 $\mathrm{SO}(3)$ 这个连续群.</p>
+
+  <p><strong>物理回响 2 — 晶体 230 群</strong>. 把空间平移格子和点群操作合起来, 得到的是<em>空间群</em>. 三维空间里数学家穷尽证明只有 230 个不同的空间群, 这就是固体物理对晶体分类的依据 — 写下"NaCl 是 $Fm\bar 3m$"时, 那个符号就是这 230 个群之一.</p>
+
+  <p><strong>物理回响 3 — 量子内禀对称</strong>. 后续 12 节会看到, 自旋 $1/2$ 不是 $\mathrm{SO}(3)$ 的表示而是 $\mathrm{SU}(2)$ 的表示, 这种"看起来一样但群不一样"的细微区别, 直接决定了费米子要转 $720^\circ$ 才回到自身. 标准模型的规范结构 $\mathrm{SU}(3)\times\mathrm{SU}(2)\times\mathrm{U}(1)$ 也是连续群的乘积.</p>
+
+  <h2>六、历史: Galois, Cayley, Klein</h2>
+
+  <p>群论的源头不在物理而在代数. 1830 年代, 法国 20 岁的 <strong>Évariste Galois</strong> 在写给朋友的信里 (他在 21 岁因决斗去世前一夜赶完笔记) 用一个"置换群"判定五次方程的根式不可解. 他没有把"群"明写为公理化对象, 但已经在用子群的结构 (后来叫 <em>Galois 群的可解性</em>) 决定方程能不能解. 这是群第一次以"结构"而非"具体的对称"出现.</p>
+
+  <p>1854 年, 英国数学家 <strong>Arthur Cayley</strong> 在《On the theory of groups》一文里第一次把群抽象出来: 不再依附于具体的置换或方程, 而是看一个集合 + 一个满足公理的运算. 这是公理化群论的起点, 也是我们 (1) 的源头.</p>
+
+  <p>1872 年, <strong>Felix Klein</strong> 在 Erlangen 就职演说 (后人称<em>Erlangen 纲领</em>) 里更进一步: 一种<em>几何</em> = 一个<em>变换群</em>下的不变量研究. 欧几里得几何 = $\mathrm{O}(3)$ 不变量; 仿射几何 = 仿射群不变量; 射影几何 = 射影群不变量; 后来一直顺到广义相对论 = 微分同胚群不变量. 群从此不再只是代数工具, 而成了<strong>几何的本体</strong> — 这一观念到 20 世纪被 Cartan、Weyl、Wigner 直接搬进物理, 是后续 12-15 节的灵魂.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节用 4 条公理 (1) 锁住了"对称变换"的最小骨架, 拿整数加法、SO(2) 转动、$D_3$ 三角形对称三个例子把骨架填出血肉, 算了一处具体的 $rs_1\neq s_1 r$ 验证非阿贝尔, 并由 Lagrange 定理 (8) 划清了子群的可能阶. 这个"集合 + 公理"的小内核, 在卷三 06《Noether》里作为连续对称给出守恒律, 在卷一 04《光的弯曲》里以 $\mathrm{SO}(3)$ 给出角动量守恒, 在固体物理里以 230 个空间群给出晶体分类. 下一节起, 我们把这副骨架接到 $\mathrm{SO}(3)$ 与 $\mathrm{SU}(2)$ 上, 进而推出 Lie 代数与表示论 — 那是把"对称"翻译成"算符"的关键一步.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="10-tensor-product.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="12-so3-su2.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

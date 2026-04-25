@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lie 群与 Lie 代数 — 怎么把"连续对称"线性化? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="13-representations.html">← 上一节</a>
+  <span class="chapter-title">第 14 节 / 30 · 第 3 部分 · 群论与对称性 · 第四卷·物理学的数学基础</span>
+  <a href="15-suN.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Lie 群与 Lie 代数 — 怎么把"连续对称"线性化?</h1>
+  <div class="sub">—— 单位元处的切空间与指数映射</div>
+
+  <div class="abstract">本节从一个最熟悉的连续对称 — 三维转动群 SO(3) — 出发. 一个有限角度的转动并不容易直接描述, 但一个"无限小转动"却只是个反对称矩阵, 简单到可以加减. 我们把"无限小转动"的集合提取出来作为单位元处的切空间, 配上 Lie 括号 $[X,Y]=XY-YX$, 它就是 Lie 代数. 我们将严格定义 Lie 群与 Lie 代数, 用指数映射 $\exp:\mathfrak g\to G$ 把代数还原回群, 并具体计算 $\mathfrak{so}(3)$ 与 $\mathfrak{su}(2)$ 的对易关系, 看到它们作为代数完全同构 — 而群层面 SU(2) 是 SO(3) 的双重覆盖. 最后我们用 BCH 公式说明: 群的乘法在代数里被翻译成括号. 这是量子力学时间演化 $U(t)=e^{-iHt/\hbar}$ 与 Noether 守恒荷的同一根线.</div>
+
+  <p>上一节我们看到, SO(3) 上一个表示 (e.g., 角动量本征态如何随转动变换) 包含很多信息. 但 SO(3) 本身有一个让人头疼的事实 — 它是一个三维的弯曲流形, 转动 $R(\alpha,\beta,\gamma)$ 对欧拉角的依赖非线性, 复合两个转动 $R_1 R_2$ 不能逐分量相加. 物理上我们却经常需要谈"无限小转动" — 角速度 $\boldsymbol\omega$ 给出 $R=I+\boldsymbol\omega\times\mathrm dt+O(dt^2)$, 这个量是矢量, 可以加减, 比转动本身简单太多.</p>
+
+  <p>这个差距正是 Lie 群理论要处理的事. Sophus Lie 在 1870–1880 年代受 Galois 用群论解决代数方程的启发, 想对微分方程做同样的事 — 把方程的"连续对称"组织成群, 再用某种线性化手段把曲面化为平面. 他发现: 一个连续群在单位元附近的"切空间", 加上一个由群乘法导出的二元运算 (我们今天叫 Lie 括号), 居然能记住整个群的几乎全部信息. 本节就把这件事讲清楚.</p>
+
+  <h2>一、什么是 Lie 群 — 既是流形也是群</h2>
+
+  <p>先把名字拆开. 一个 <em>群</em> 是一个集合 $G$ 配上一个乘法 $\cdot:G\times G\to G$, 满足结合律, 有单位元 $e$, 每个元素有逆. 在第 11 节我们已熟悉. 一个 <em>流形</em> 是一个局部像 $\mathbb R^n$ 的几何对象 — 比如球面 $S^2$, 在每一点周围画一小块都是平的. Lie 群就是同时是这两件事, 而且乘法和取逆作为流形上的映射是光滑的:</p>
+
+  <p>$$
+  \text{乘法 } \mu:G\times G\to G, \quad \mu(g,h)=gh, \text{ 与取逆 } \iota:G\to G,\ \iota(g)=g^{-1} \text{ 都 } C^\infty. \tag{1}
+  $$</p>
+
+  <p>这个定义把"代数结构"和"几何结构"绑在一起, 群运算的连续性允许我们求导, 流形的光滑性允许我们谈切空间. 我们立刻给一些例子, 从最简单到稍微复杂:</p>
+
+  <ul>
+    <li>$GL(n,\mathbb R)$: 所有 $n\times n$ 可逆实矩阵, 维数 $n^2$ (开子集). 矩阵乘法显然光滑, 取逆 $A^{-1}=\mathrm{adj}(A)/\det A$ 在 $\det\ne 0$ 处也光滑. 这是最大的"通用线性群".</li>
+    <li>$SL(n,\mathbb R)$: 行列式等于 1 的子集, 维数 $n^2-1$. 单位元附近 $A=I+\epsilon X$, 条件 $\det A=1$ 翻成 $\Tr X=0$.</li>
+    <li>$O(n)$: 满足 $A^{T}A=I$ 的正交矩阵. $SO(n)$ 加上 $\det=1$, 即不带反射的转动.</li>
+    <li>$U(n)$: 满足 $A^{\dagger}A=I$ 的酉矩阵. $SU(n)$ 加上 $\det=1$. $U(1)$ 是 QED 的相位群, $SU(2)$ 是自旋, $SU(3)$ 是色 (我们将在第 15 节专门谈 $SU(N)$).</li>
+  </ul>
+
+  <p>注意 SO(3) 不是欧氏空间 — 它是一个三维的紧致连通流形, 拓扑上等同于实射影空间 $\mathbb{RP}^3$. 但 <em>在单位元附近</em> 它看上去就是一片三维平面, 这片平面就是我们要找的 Lie 代数.</p>
+
+  <h2>二、Lie 代数 — 单位元处的切空间</h2>
+
+  <p>关键操作如下. 取一条经过单位元的光滑曲线 $g(t)\in G$, $g(0)=e$. 它在 $t=0$ 处的速度向量 $X=\dot g(0)$ 就是单位元处的切向量. 全体这样的速度向量组成一个向量空间, 我们记作</p>
+
+  <p>$$
+  \mathfrak g \;:=\; T_e G \;=\; \{X=\dot g(0): g(0)=e\}. \tag{2}
+  $$</p>
+
+  <p>它的维数等于 $G$ 作为流形的维数. 比如 $\dim SO(3)=3$, 所以 $\dim\mathfrak{so}(3)=3$.</p>
+
+  <p>单纯一个向量空间不够 — 群乘法的非交换性会留下一个"残骸". 取两条曲线 $g(t)=e+tX+\cdots$, $h(s)=e+sY+\cdots$ (这里我们隐式地用了矩阵群, 一般情况要做局部坐标), 算交换子</p>
+
+  <p>$$
+  g(t)h(s)g(t)^{-1}h(s)^{-1} = e+ts\,(XY-YX)+O(t^2,s^2,\ldots).
+  $$</p>
+
+  <p>这个 $XY-YX$ 在矩阵情形就是普通矩阵交换子. 我们把它定义为 <em>Lie 括号</em>:</p>
+
+  <p>$$
+  [X,Y] := XY-YX. \tag{3}
+  $$</p>
+
+  <p>它满足两个抽象性质 — 反对称 $[X,Y]=-[Y,X]$ 以及 Jacobi 恒等式</p>
+
+  <p>$$
+  [X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0.
+  $$</p>
+
+  <p>(后者直接展开三个乘法两两相消验证即可.) 一个抽象的 <em>Lie 代数</em> 就是一个向量空间加这么一个满足反对称与 Jacobi 的双线性括号. 矩阵 Lie 群的代数自动是这种形式, 而对一般 (非矩阵) 的 Lie 群, 也可以通过左不变向量场之间的对易子定义同样的结构 — 我们这里只需要矩阵情形就够了.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Lie 群作为流形, Lie 代数作为单位元处的切空间</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>Lie 群 $G$ 作为弯曲流形, 单位元 $e$ 附近铺一片切空间 $T_eG=\mathfrak g$, 指数映射 $\exp$ 把代数中的直线"卷"回到群上</dd>
+      <dt>必含元素</dt><dd>(a) 一片弯曲流形面 (代表 $G$); (b) 流形上一点标记 $e$; (c) 在 $e$ 处贴一片切平面盘 (代表 $\mathfrak g$); (d) 切平面上一个矢量 $X$, 起点在 $e$; (e) 流形上从 $e$ 出发的一条曲线 $g(t)=e^{tX}$, 与切矢 $X$ 在 $e$ 相切; (f) 箭头从 $\mathfrak g$ 弯到 $G$, 标 $\exp$</dd>
+      <dt>几何/示意精度</dt><dd>切平面在 $e$ 严格相切; 单参数子群 $e^{tX}$ 在 $t=0$ 切矢恰为 $X$; 流形与切空间用不同颜色区分</dd>
+      <dt>标签与公式</dt><dd>$G$, $e$, $\mathfrak g=T_eG$, $X\in\mathfrak g$, $\exp:\mathfrak g\to G$, $g(t)=e^{tX}$, $[X,Y]=XY-YX$</dd>
+      <dt>风格建议</dt><dd>白底, 流形与切空间用浅冷暖色对比, 矢量与曲线用深色, 公式标在右上角</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  Lie 群 $G$ 是一个弯曲流形, 单位元 $e$ 处的切空间 $T_eG$ 就是它的 Lie 代数 $\mathfrak g$. 指数映射 $\exp$ 沿单参数子群 $e^{tX}$ 把代数还原回群.</figcaption>
+  </figure>
+
+  <h2>三、指数映射, 与 $\mathfrak{so}(3)$ 的对易关系</h2>
+
+  <p>有了切空间, 怎么从 $X\in\mathfrak g$ 走回到群里去? 答案是矩阵指数</p>
+
+  <p>$$
+  \exp X \;=\; \sum_{k=0}^{\infty}\frac{X^k}{k!}, \qquad g(t)=e^{tX}.
+  $$</p>
+
+  <p>这个 $g(t)$ 满足 $g(0)=I$, $g(s+t)=g(s)g(t)$ — 一个 <em>单参数子群</em>. 它是 ODE $\dot g = Xg$, $g(0)=I$ 的解. 单位元附近, $\exp$ 是局部微分同胚 (因为它在 $X=0$ 的微分是恒等); 因此 Lie 代数完全决定了 Lie 群在单位元附近的结构, 进而 (因为群可以被左乘平移过去) 决定了整个连通分量.</p>
+
+  <p>下面我们做一个具体计算 — 把 $\mathfrak{so}(3)$ 写出来, 并求它的对易关系. 一个 $A\in SO(3)$ 满足 $A^TA=I$, $\det A=1$. 在单位元附近写 $A=I+\epsilon X+O(\epsilon^2)$, 代入 $A^TA=I$ 取一阶</p>
+
+  <p>$$
+  X^T+X=0,
+  $$</p>
+
+  <p>即 $X$ 反对称. (条件 $\det=1$ 在反对称下自动满足, 因为反对称矩阵迹为零.) 所以 $\mathfrak{so}(3)$ 是 $3\times 3$ 反对称实矩阵的集合, 维数 $3$. 取一组基</p>
+
+  <p>$$
+  L_x=\begin{pmatrix}0&0&0\\0&0&-1\\0&1&0\end{pmatrix},\quad
+  L_y=\begin{pmatrix}0&0&1\\0&0&0\\-1&0&0\end{pmatrix},\quad
+  L_z=\begin{pmatrix}0&-1&0\\1&0&0\\0&0&0\end{pmatrix}.
+  $$</p>
+
+  <p>直接乘出来:</p>
+
+  <p>$$
+  L_xL_y=\begin{pmatrix}0&0&0\\1&0&0\\0&0&0\end{pmatrix}\cdot\text{(整理)},\quad L_yL_x=\begin{pmatrix}0&-1&0\\0&0&0\\0&0&0\end{pmatrix}^T\text{(整理)},
+  $$</p>
+
+  <p>耐心做完得 $L_xL_y-L_yL_x=L_z$. 同样 $[L_y,L_z]=L_x$, $[L_z,L_x]=L_y$. 统一写</p>
+
+  <p>$$
+  [L_i,L_j]=\epsilon_{ijk}L_k. \tag{4}
+  $$</p>
+
+  <p>这是 $\mathfrak{so}(3)$ 的结构方程. 把 $L_z$ 取指数验证一个具体例子 — $\theta L_z$ 是个简单的 $2\times 2$ 转动嵌进 $3\times 3$, 容易算</p>
+
+  <p>$$
+  e^{\theta L_z}=\begin{pmatrix}\cos\theta&-\sin\theta&0\\\sin\theta&\cos\theta&0\\0&0&1\end{pmatrix},
+  $$</p>
+
+  <p>果然是绕 $z$ 轴转 $\theta$ 角的转动. 单参数子群闭合在 SO(3) 里.</p>
+
+  <p>再看 $\mathfrak{su}(2)$. 一个 $U\in SU(2)$ 满足 $U^\dagger U=I$, $\det U=1$. 写 $U=I+\epsilon X$ 取一阶得 $X^\dagger+X=0$ (反厄米) 与 $\Tr X=0$ (无迹). 这是一个三维实向量空间 (注意 $X$ 反厄米且 $2\times 2$ 无迹的实自由度为 $3$). 取基 $T_a=\tfrac{i}{2}\sigma_a$, 其中 $\sigma_a$ 为 Pauli 矩阵. 用 Pauli 矩阵的著名关系 $\sigma_a\sigma_b=\delta_{ab}I+i\epsilon_{abc}\sigma_c$ 算交换子</p>
+
+  <p>$$
+  [\sigma_a,\sigma_b]=2i\epsilon_{abc}\sigma_c \;\Rightarrow\; [T_a,T_b]=\epsilon_{abc}T_c.
+  $$</p>
+
+  <p>跟 (4) 一字不差! 所以 <em>作为 Lie 代数</em> $\mathfrak{so}(3)\cong\mathfrak{su}(2)$. 但群层面不同 — 在第 13 节我们已看到 $SU(2)$ 是 $SO(3)$ 的二重覆盖, 例如 $e^{i\pi\sigma_z}=\cos\pi\,I+i\sin\pi\,\sigma_z=-I$, 转一圈不回到自己, 转两圈才回. 代数同构对应群在单位元附近 (即"小转动") 一致, 而整体拓扑可以差一个覆盖.</p>
+
+  <h2>四、群乘法在代数里 — BCH 公式与物理回响</h2>
+
+  <p>群层面的乘法 $g_1g_2$ 怎么翻译成代数层面的运算? 答案是 Baker–Campbell–Hausdorff 公式 — 设 $X,Y$ 充分小,</p>
+
+  <p>$$
+  e^X e^Y \;=\; \exp\!\left(X+Y+\tfrac12[X,Y]+\tfrac1{12}\big([X,[X,Y]]+[Y,[Y,X]]\big)+\cdots\right). \tag{5}
+  $$</p>
+
+  <p>所有高阶项都只用到 $X,Y$ 的反复嵌套括号, 不需要其他信息 — 这是 Lie 代数掌握群结构的真正陈述. 当 $[X,Y]=0$ (代数交换), BCH 退化为 $e^{X+Y}$, 群也是 Abel 的; 反之, 非交换性精确地存在于括号里. 物理上的 Heisenberg 不确定性 $[\hat x,\hat p]=i\hbar$ 就是这种括号在 Heisenberg–Weyl 代数里的体现 (回顾卷三 04 二次量子化的 $[a,a^\dagger]=1$).</p>
+
+  <p>这套语言把卷一/二/三的几个核心场景都串起来了:</p>
+
+  <ul>
+    <li><strong>QM 时间演化.</strong> Schrödinger 方程 $i\hbar\partial_t|\psi\rangle=H|\psi\rangle$ 的解是 $|\psi(t)\rangle=U(t)|\psi(0)\rangle$, $U(t)=e^{-iHt/\hbar}$ 正是单参数子群, 由 $-iH/\hbar\in\mathfrak u(\mathcal H)$ (反厄米算子) 通过指数映射生成. 哈密顿量是时间平移的 Lie 代数生成元.</li>
+    <li><strong>Noether.</strong> 卷三 06 我们看到连续对称给出守恒荷; 在算子语言里, 守恒荷 $\hat Q$ 就是该对称在 Hilbert 空间上表示的 Lie 代数生成元, $[\hat Q,\hat H]=0$.</li>
+    <li><strong>角动量.</strong> 量子力学的角动量算符 $\hat L_i$ 满足 $[\hat L_i,\hat L_j]=i\hbar\epsilon_{ijk}\hat L_k$, 跟 (4) 只差因子 $i\hbar$ — 因为 QM 用厄米生成元 $\hat L=i\hbar L$ 而非反厄米 $L$, 但代数结构相同. 自旋 $\hat S$ 也满足同一对易关系, 来自 $SU(2)$ 一侧.</li>
+    <li><strong>规范理论.</strong> 卷三的 QED 与 Yang–Mills 用的规范势 $A_\mu$ 取值在 Lie 代数里 — $\mathfrak u(1)$ 给电磁, $\mathfrak{su}(2)\oplus\mathfrak u(1)$ 给电弱, $\mathfrak{su}(3)$ 给强相互作用. 联络的曲率 $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu+[A_\mu,A_\nu]$ 那个非线性项就是 Lie 括号.</li>
+  </ul>
+
+  <p>历史上, Sophus Lie (1842–1899) 在 1872 年与 Felix Klein 合作受 Galois 启发, 把"群"应用到微分方程的连续对称, 1880 年代发展出"无穷小变换"的系统理论 — 那就是后来的 Lie 代数. Lie 本人没用矩阵群的现代写法; 严格意义上的 "Lie 代数"一词与抽象定义是 Hermann Weyl 在 1934 年才引入. Élie Cartan (1869–1951) 在 1894 年的博士论文中给出半单 Lie 代数的完整分类 (经典族 $A_n,B_n,C_n,D_n$ 与五个例外 $G_2,F_4,E_6,E_7,E_8$), 这是 19 世纪数学最辉煌的成就之一. 直到 1925 年 Heisenberg 提出矩阵力学, 接着 Pauli 1927 引入自旋矩阵, 再到 Wigner 与 Weyl 1930 年代把群论系统地引进量子力学, Lie 群才成为物理学家的日常工具.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Lie 群既是流形也是群, 它在单位元处的切空间 $\mathfrak g$ 配上 Lie 括号 $[X,Y]=XY-YX$ 构成 Lie 代数. 指数映射 $\exp:\mathfrak g\to G$ 把代数中的直线卷回到群上的单参数子群; BCH 公式 (5) 表明群乘法在代数里完全由反复嵌套的括号刻画. 我们具体算了 $\mathfrak{so}(3)$ 与 $\mathfrak{su}(2)$ 同构于 (4) 给出的对易关系. 这门数学是卷三 QM 时间演化 $U(t)=e^{-iHt/\hbar}$、Heisenberg 代数 $[a,a^\dagger]=1$、Noether 守恒荷以及规范场 $A_\mu\in\mathfrak g$ 的统一语言. 下一节我们专门走进 $SU(N)$ — 它是粒子物理标准模型的核心舞台.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="13-representations.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="15-suN.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

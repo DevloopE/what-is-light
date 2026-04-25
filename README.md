@@ -9,6 +9,7 @@ A collection of first-principles physics books. Each volume circles a single con
 | 第一卷 | [光是什么?](vol-1-light/) | 几何 → 波动 → 能动量 → 量子 → 物质 → 信息 → 宇宙 → 生命 | 40 |
 | 第二卷 | [热力学与统计力学](vol-2-thermodynamics/) | 热力学根基 → 统计力学核心 → 相变 → 量子统计 → 非平衡 → 信息与黑洞热力学 | 30 |
 | 第三卷 | [粒子物理](vol-3-particle-physics/) | QFT 脚手架 → 对称与守恒 → 标准模型 → 计算与发散 → 实验与统计 → BSM | 30 |
+| 第四卷 | [物理学的数学基础](vol-4-math-foundations/) | 微积分与向量分析 → 线性代数 → 群论 → 流形 → 函数空间 → 概率/复分析/路径积分 | 30 |
 
 ## 阅读
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>向量场的旋度与散度 — Maxwell 方程组里的算子从哪来? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="02-chain-rule.html">← 上一节</a>
+  <span class="chapter-title">第 3 节 / 30 · 第 1 部分 · 微积分与向量分析 · 第四卷·物理学的数学基础</span>
+  <a href="04-stokes-gauss.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>向量场的旋度与散度 — Maxwell 方程组里的算子从哪来?</h1>
+  <div class="sub">—— 通量密度与环量密度</div>
+
+  <div class="abstract">本节从一个物理图像出发: Maxwell 方程组里的 $\nabla\cdot\mathbf E = \rho/\varepsilon_0$ 与 $\nabla\times\mathbf B = \mu_0\mathbf J + \mu_0\varepsilon_0\,\partial_t\mathbf E$ 用了两个看起来神秘的算子. 我们要给它们以几何身份: 散度是"每点的单位体积流出量", 旋度是"每点的单位面积绕一周的环流". 用这两个极限定义反推出直角坐标里的偏导表达, 验证两条恒等式 $\nabla\cdot(\nabla\times\mathbf F)=0$ 与 $\nabla\times(\nabla f)=0$, 并具体计算 $\nabla\cdot(\hat{\mathbf r}/r^2)$ 给出 $4\pi\delta^3(\mathbf r)$ — 库仑场为什么自动满足 Gauss 定律的全部秘密就在这一行. 最后回到 Maxwell, Heaviside, Gibbs 的故事: 我们今天的 $\nabla$ 符号, 是 1880 年代两位工程师与化学家把四元数"减半"的产物.</div>
+
+  <p>翻开任何一本电磁学教材, 第一眼会看到这一组式子:</p>
+  <p>$$ \nabla\cdot\mathbf E=\frac{\rho}{\varepsilon_0},\quad \nabla\cdot\mathbf B=0,\quad \nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t},\quad \nabla\times\mathbf B=\mu_0\mathbf J+\mu_0\varepsilon_0\frac{\partial\mathbf E}{\partial t}. $$</p>
+  <p>第一次见的人不免要问: $\nabla\cdot$ 与 $\nabla\times$ 究竟是什么? 倒三角是个微分算子简写, 这没问题; 但点乘和叉乘出现在一个"算子"上, 物理意义是什么? 为什么宇宙偏要用这两个算子, 而不是别的?</p>
+
+  <p>这一节的策略是: <strong>先忘掉 $\nabla$, 直接问几何</strong>. 我们想给一个向量场 $\mathbf F:\mathbb R^3\to\mathbb R^3$ 在每一点 $\mathbf r$ 上配两个数值标记 — 一个表示"这点是不是源/汇", 一个表示"这点附近是不是有涡". 把这两件事用极限严格定义出来, 我们会发现它们恰好就是散度与旋度. $\nabla$ 作为符号是<em>事后</em>引入的便利, 不是出发点.</p>
+
+  <h2>一、向量场: 给空间每一点配一个箭头</h2>
+
+  <p>定义先放在前面. 一个 (光滑的) 向量场就是一个映射</p>
+  <p>$$ \mathbf F:U\subset\mathbb R^3\longrightarrow\mathbb R^3,\quad \mathbf r\mapsto \mathbf F(\mathbf r) =\bigl(F_x(\mathbf r),F_y(\mathbf r),F_z(\mathbf r)\bigr). \tag{1} $$</p>
+  <p>直观地说, 它在 $U$ 的每一点都钉上一支带方向带长度的小箭头. 流体的速度场 $\mathbf v(\mathbf r,t)$, 房间里的温度梯度 $-\nabla T$, 静电场 $\mathbf E(\mathbf r)$, 永磁体的磁场 $\mathbf B(\mathbf r)$ — 都是这样的"箭头分布".</p>
+
+  <p>但仅仅有箭头还不够. 物理学家关心的是<strong>箭头怎么变化</strong>: 在某点附近, 这些箭头是从该点向外发散, 还是收敛到该点, 还是绕该点旋转? 这三种行为分别对应三种不同的物理来源 — 发散意味着这里有"源" (e.g. 正电荷), 收敛意味着"汇" (负电荷), 旋转意味着附近有涡 (e.g. 磁感应来自电流环). 我们要找的, 是把这三种几何特征翻译成数字的方法.</p>
+
+  <p>为此我们需要两个准备. 第一是<strong>面积分</strong>: 把一个小面元 $\mathrm d\mathbf A$ 想成带方向的面 (方向沿外法线), $\mathbf F\cdot\mathrm d\mathbf A$ 就是单位时间穿过这个面的"通量"; 沿一闭合面 $\partial V$ 积分得到 $\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$, 这是流出体积 $V$ 的总通量. 第二是<strong>线积分</strong>: 沿闭合曲线 $\partial S$ 积分 $\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$, 这是 $\mathbf F$ 沿这条回路的"环流"或"做功".</p>
+
+  <p>有了这两件工具, 我们就能给"源密度"与"涡密度"以严格定义.</p>
+
+  <h2>二、散度: 单位体积的流出量</h2>
+
+  <p>取一点 $\mathbf r_0$, 围着它画一个小体积 $V$ (球也好, 立方体也好), 它的边界是闭合面 $\partial V$. 计算 $\mathbf F$ 流出 $V$ 的总通量 $\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$. 如果 $\mathbf r_0$ 是源, 这个通量是正的; 是汇, 是负的; 既不是源也不是汇, 流入等于流出, 通量为零. 把它除以 $V$ 的体积, 然后让 $V\to 0$ 收缩到 $\mathbf r_0$, 得到的就是<strong>每点的源密度</strong>:</p>
+  <p>$$ (\nabla\cdot\mathbf F)(\mathbf r_0)\;\equiv\;\lim_{V\to 0}\frac{1}{|V|}\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A. \tag{2} $$</p>
+  <p>这就是散度的<em>几何</em>定义. 注意它跟坐标无关 — 不管你用直角坐标、柱坐标、球坐标, 通量与体积的比值都是同一个数.</p>
+
+  <p>但要算具体场的散度, 我们需要把 (2) 翻译成偏导. 取 $V$ 为以 $\mathbf r_0=(x,y,z)$ 为中心、棱长 $\Delta x,\Delta y,\Delta z$ 的小盒子. 它有六个面. 算 $x$ 方向两个面的通量: 右面 $x+\Delta x/2$ 处, 通量约为 $F_x(x+\Delta x/2,y,z)\,\Delta y\Delta z$; 左面 $x-\Delta x/2$ 处, 通量约为 $-F_x(x-\Delta x/2,y,z)\,\Delta y\Delta z$ (负号是因为左面外法线朝 $-x$). 两面相加, 用 Taylor 展开到一阶:</p>
+  <p>$$ F_x(x+\tfrac{\Delta x}{2},\cdot)-F_x(x-\tfrac{\Delta x}{2},\cdot)\;\approx\;\frac{\partial F_x}{\partial x}\Delta x. $$</p>
+  <p>所以 $x$ 方向贡献的通量是 $\partial_x F_x\cdot \Delta x\Delta y\Delta z$. $y,z$ 方向同理. 三者加起来除以体积 $\Delta x\Delta y\Delta z$, 取极限:</p>
+  <p>$$ \nabla\cdot\mathbf F=\frac{\partial F_x}{\partial x}+\frac{\partial F_y}{\partial y}+\frac{\partial F_z}{\partial z}. \tag{3} $$</p>
+  <p>这就是教科书上那个公式的来历. 它<em>不是</em>定义, 它是几何定义 (2) 在直角坐标下的具体计算.</p>
+
+  <p>反向写一遍: 把 (2) 跟 (3) 等同起来, 我们就得到了 Gauss 散度定理 $\int_V\nabla\cdot\mathbf F\,\mathrm dV=\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$ 的<em>微分形式</em> — 整个 Gauss 定理只是说 (2) 中的极限, 在体积有限时也成立, 把"每点源密度"加起来等于"边界总通量".</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 三种典型向量场: 散度、旋度、平流</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>用三栏并列展示三种典型向量场, 直观区分散度与旋度作为"几何标记"的不同含义</dd>
+      <dt>必含元素</dt><dd>左栏: 一个有正散度无旋度的场, 用从原点向外辐射的箭头 (类似点电荷电场), 在原点周围画一个小立方体表示流出体积 $V$; 中栏: 一个无散度有旋度的场, 用同心圆切向的环形箭头 (类似导线周围的磁场), 在中心画一个小回路 $\partial S$; 右栏: 一个无散度无旋度的平行流, 所有箭头同向同长. 每栏下方写出对应的极限式定义</dd>
+      <dt>几何/示意精度</dt><dd>左栏箭头长度应随 $1/r^2$ (或类似) 递减但仍向外; 中栏所有箭头切向, 长度可恒定或随 $1/r$ 衰减; 右栏箭头长度严格相同方向严格平行</dd>
+      <dt>标签与公式</dt><dd>左下: $\nabla\cdot\mathbf F=\lim_{V\to 0}\dfrac{1}{|V|}\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$; 中下: $\nabla\times\mathbf F=\lim_{A\to 0}\dfrac{1}{A}\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l\,\hat{\mathbf n}$; 右下: $\nabla\cdot\mathbf F=0,\ \nabla\times\mathbf F=0$</dd>
+      <dt>风格建议</dt><dd>白底, 三栏等宽, 三色分别用暖红 (源)、深蓝 (旋)、灰绿 (平流), 画图风格仿 Feynman Lectures 第二卷</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  散度看通量, 旋度看环量, 平行流两者皆零 — 这是把 $\nabla\cdot$ 与 $\nabla\times$ 几何化的最干净方式.</figcaption>
+  </figure>
+
+  <h2>三、旋度: 单位面积上的环流</h2>
+
+  <p>对旋度的处理是平行的, 但维度低一级 — 我们换成面积. 取一点 $\mathbf r_0$, 在它附近选一个法向为 $\hat{\mathbf n}$ 的小面片 $S$, 边界是闭合曲线 $\partial S$ (右手定则定方向). 沿 $\partial S$ 走一圈, 计算 $\mathbf F$ 的环流 $\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$. 除以面积, 让 $S\to 0$:</p>
+  <p>$$ (\nabla\times\mathbf F)\cdot\hat{\mathbf n}\;\equiv\;\lim_{A\to 0}\frac{1}{A}\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l. \tag{4} $$</p>
+  <p>这给出旋度在 $\hat{\mathbf n}$ 方向的分量. 把 $\hat{\mathbf n}$ 取遍三个坐标轴方向, 就拿到了整支旋度向量. 这<strong>不是巧合</strong>: 上式右边线性依赖于 $\hat{\mathbf n}$ — 把面绕 $\hat{\mathbf n}$ 旋一旋, 方向变了, 环流也按余弦律变 — 所以旋度的确是个向量场.</p>
+
+  <p>翻译成偏导? 取 $\hat{\mathbf n}=\hat z$, $S$ 为 $xy$ 平面内的小矩形, 棱长 $\Delta x\times\Delta y$. 沿四条边走 (右手定则即逆时针):</p>
+  <ul>
+    <li>下边 ($y-\Delta y/2$): 长度 $\Delta x$, 沿 $+\hat x$, 贡献 $F_x(x,y-\Delta y/2,z)\,\Delta x$;</li>
+    <li>右边 ($x+\Delta x/2$): 沿 $+\hat y$, 贡献 $F_y(x+\Delta x/2,y,z)\,\Delta y$;</li>
+    <li>上边 ($y+\Delta y/2$): 沿 $-\hat x$, 贡献 $-F_x(x,y+\Delta y/2,z)\,\Delta x$;</li>
+    <li>左边 ($x-\Delta x/2$): 沿 $-\hat y$, 贡献 $-F_y(x-\Delta x/2,y,z)\,\Delta y$.</li>
+  </ul>
+  <p>对前后两组取一阶 Taylor: $F_y(x+\Delta x/2,\cdot)-F_y(x-\Delta x/2,\cdot)\approx\partial_x F_y\,\Delta x$, 类似地 $F_x(x,y-\Delta y/2,\cdot)-F_x(x,y+\Delta y/2,\cdot)\approx -\partial_y F_x\,\Delta y$. 加起来除以面积 $\Delta x\Delta y$:</p>
+  <p>$$ (\nabla\times\mathbf F)_z\;=\;\frac{\partial F_y}{\partial x}-\frac{\partial F_x}{\partial y}. $$</p>
+  <p>同理另两个分量, 整体写成行列式:</p>
+  <p>$$ \nabla\times\mathbf F\;=\;\begin{vmatrix}\hat{\mathbf x}&\hat{\mathbf y}&\hat{\mathbf z}\\ \partial_x&\partial_y&\partial_z\\ F_x&F_y&F_z\end{vmatrix}\;=\;\bigl(\partial_y F_z-\partial_z F_y,\;\partial_z F_x-\partial_x F_z,\;\partial_x F_y-\partial_y F_x\bigr). \tag{5} $$</p>
+  <p>同样, 这个偏导式不是定义, 是几何定义 (4) 在直角坐标下的实现. 把 (4) 升级到任意闭合面 $S$ 上, 我们就得到了 Stokes 定理 $\int_S(\nabla\times\mathbf F)\cdot\mathrm d\mathbf A=\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$, 这是下一节的主题.</p>
+
+  <h2>四、两条恒等式与一次具体计算</h2>
+
+  <p>有了 (3) 和 (5), 两条恒等式立等可证.</p>
+
+  <p><strong>恒等式 A:</strong> 任何旋度场都是无源的:</p>
+  <p>$$ \nabla\cdot(\nabla\times\mathbf F)=\partial_x(\partial_y F_z-\partial_z F_y)+\partial_y(\partial_z F_x-\partial_x F_z)+\partial_z(\partial_x F_y-\partial_y F_x)\equiv 0, $$</p>
+  <p>因为 $\partial_x\partial_y=\partial_y\partial_x$ 等等, 六项两两抵消.</p>
+
+  <p><strong>恒等式 B:</strong> 任何梯度场都是无旋的:</p>
+  <p>$$ \bigl(\nabla\times(\nabla f)\bigr)_z=\partial_x(\partial_y f)-\partial_y(\partial_x f)\equiv 0, $$</p>
+  <p>同样靠混合偏导可换序.</p>
+
+  <p>这两条乍看像代数游戏, 实际上是物理结构的<strong>守门人</strong>. 静电场满足 $\nabla\times\mathbf E=0$ (无旋), 由恒等式 B 反推, 一定能写成某个标量势的梯度: $\mathbf E=-\nabla\phi$ — 这就是电势的存在性. 磁场满足 $\nabla\cdot\mathbf B=0$ (无源, "不存在磁单极子"), 由恒等式 A 反推, 一定能写成某个向量势的旋度: $\mathbf B=\nabla\times\mathbf A$ — 规范势 $\mathbf A$ 由此登场, 它将在卷三里成为整个量子场论的语言.</p>
+
+  <p>但代数式只在<strong>足够光滑</strong>的地方成立. 我们来做一次最重要的具体计算 — 库仑场 $\mathbf F=\hat{\mathbf r}/r^2=\mathbf r/r^3$ (这里 $r=|\mathbf r|$). 在 $\mathbf r\neq 0$ 处, 直接用 (3) 算:</p>
+  <p>$$ \nabla\cdot\!\left(\frac{\mathbf r}{r^3}\right)=\sum_i\partial_i\!\left(\frac{x_i}{r^3}\right)=\sum_i\!\left(\frac{1}{r^3}-\frac{3x_i^2}{r^5}\right)=\frac{3}{r^3}-\frac{3r^2}{r^5}=0. $$</p>
+  <p>那么散度处处为零? 不对. 用几何定义 (2) — 取 $V$ 为以原点为中心、半径 $R$ 的球, 通量 $\oint_{\partial V}(\mathbf r/r^3)\cdot\mathrm d\mathbf A=\oint(1/R^2)\,R^2\,\mathrm d\Omega=4\pi\neq 0$. 这个通量与 $R$ 无关, 全部"源"集中在原点. 唯一自洽的解释: 散度是个分布 (Dirac delta):</p>
+  <p>$$ \nabla\cdot\!\left(\frac{\mathbf r}{r^3}\right)=4\pi\delta^3(\mathbf r). \tag{6} $$</p>
+  <p>把 $\mathbf E=q\mathbf r/(4\pi\varepsilon_0 r^3)$ 代回 Maxwell, 我们立刻就有 $\nabla\cdot\mathbf E=q\delta^3(\mathbf r)/\varepsilon_0=\rho/\varepsilon_0$ — Gauss 定律自动成立. 这是 (2) 这个<em>积分式</em>定义胜过 (3) 这个<em>偏导式</em>的关键时刻: 偏导式在原点不可定义, 积分式照样工作.</p>
+
+  <p>顺便, 用同样的方法把 (6) 翻译成 $\nabla^2(1/r)=-4\pi\delta^3(\mathbf r)$ (因为 $\mathbf r/r^3=-\nabla(1/r)$), 这就是 Poisson 方程 $\nabla^2\phi=-\rho/\varepsilon_0$ 的 Green 函数, 也是卷三量子场论里所有 Feynman 传播子的低能祖宗.</p>
+
+  <h2>五、Maxwell, Heaviside, Gibbs: 倒三角的诞生</h2>
+
+  <p>今天我们写 $\nabla\cdot\mathbf E$ 觉得天经地义, 但这种符号一百五十年前是不存在的. 1873 年 Maxwell 出版《电磁通论》(<em>A Treatise on Electricity and Magnetism</em>), 二十条方程横跨整本书 — 用的是 Hamilton 1843 年发明的<strong>四元数</strong>语言. 一个四元数 $q=a+bi+cj+dk$ 同时携带一个标量与一个向量, 两个四元数的乘积同时含点积与叉积:</p>
+  <p>$$ (\mathbf u)(\mathbf v)=-\mathbf u\cdot\mathbf v+\mathbf u\times\mathbf v. $$</p>
+  <p>这种"打包"在 Hamilton 看来是优雅的, 在 Maxwell 看来是足够的. 但在工程师眼里 — 太复杂. 一个搞电报的英国人 Oliver Heaviside 在 1880 年代决定动刀, 把四元数<em>劈开</em>: 标量积归点乘, 向量积归叉乘, 各算各的. 他自学硬刚 Maxwell 二十方程, 重新表达为今天我们熟悉的四个 (实际上是把 $\nabla\cdot,\nabla\times$ 引进来作为简写). 几乎同时, 大西洋彼岸的耶鲁化学家 Josiah Willard Gibbs 在给学生印的讲义《向量分析的要素》(<em>Elements of Vector Analysis</em>, 1881–1884) 里独立做了一样的事.</p>
+
+  <p>剩下的就是历史. 四元数派 (以 P. G. Tait 为首) 与向量派 (Heaviside, Gibbs) 在 1890 年代展开一场至今仍被称作"Quaternion War"的论战, 互相在 <em>Nature</em> 上撰文. Heaviside 写得辛辣: "四元数是过分复杂、过分昂贵的工具, 而向量代数就是一把够用的螺丝刀." 二十世纪初, 物理学普遍倒向向量分析 — 不是因为它<em>更深</em>, 而是因为它<em>更便宜</em>: 一个工程师不需要懂结合律不交换的代数也能算偏导, 而点叉两笔分开记的东西更适合大量重复运算. 直到 1928 年 Dirac 写下 $i\gamma^\mu\partial_\mu\psi=m\psi$ 时, 四元数家族 (Clifford 代数) 才以更高的语言 — 旋量 — 重新登场, 这是卷三的话题.</p>
+
+  <p>所以 $\nabla$ 这把工具的历史, 是一段"足够好"打败"完美"的故事. Maxwell 的二十方程比 Heaviside 的四方程更对称 (蕴含对偶性), 但远没有四方程好算; 而能算的语言, 总是赢的语言.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>散度与旋度都是几何对象: 一个测每点的单位体积通量, 一个测每点的单位面积环量. 它们的偏导表达式 (3)(5) 是几何定义 (2)(4) 在直角坐标下的具体计算, 而不是相反. 两条恒等式 $\nabla\cdot(\nabla\times)=0$ 与 $\nabla\times(\nabla)=0$ 蕴含了"标量势"与"向量势"的存在 — 卷一里 Maxwell 推光速 $c=1/\sqrt{\mu_0\varepsilon_0}$ 用的正是 $\nabla\times\mathbf E=-\partial_t\mathbf B$ 这个旋度方程; 卷二里 Boltzmann 方程把分布函数的"流"写作 $\partial_t f+\nabla\cdot(\mathbf v f)+\dots$, 还是同一种"通量密度"概念; 卷三里规范场强 $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ 是四维时空的旋度. 下一节 Stokes 与 Gauss 定理把"小盒子求和等于大边界"这件事推到一般曲面与一般体积, 我们将看到这两个定理如何统一为微分形式语言里的同一个 $\mathrm d\omega$ — 以及为什么这是物理学最深刻的对称之一.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="02-chain-rule.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="04-stokes-gauss.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

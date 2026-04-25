@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>流形是什么? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="15-suN.html">← 上一节</a>
+  <span class="chapter-title">第 16 节 / 30 · 第 4 部分 · 流形与微分几何 · 第四卷·物理学的数学基础</span>
+  <a href="17-tangent-space.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>流形是什么?</h1>
+  <div class="sub">—— 从地球表面到时空</div>
+
+  <div class="abstract">本节从一个朴素观察出发: 我们脚下的地球是球, 但每一张地图都是一块平的纸. 人类用"局部铺平 + 重叠拼贴"的方法描绘整个球面 — 这正是数学上"流形"的雏形. 我们先把这套办法严格化, 给出拓扑流形、图、图册、光滑流形的定义; 接着用立体投影把 $S^2$ 写成一个真正的两-chart 图册, 验证 transition function 的光滑性; 最后回到物理 — 广义相对论的时空、经典力学的相空间、量子力学的射影态空间, 都是流形, 而 Riemann 在 1854 年的就职演讲里, 正是用这套语言, 第一次让"弯曲空间"可以被严肃地谈论.</div>
+
+  <p>站在草地上, 你抬头看不出地球是圆的. 哥伦布前的水手画海图, 一张一张地画, 一张图覆盖一片海域, 海域之间互相重叠 — 在重叠区, 两张图上同一片礁石的坐标可以互相换算. 没有人需要把地球"整张摊平": 人们只需要"局部铺平", 加上一本图册, 加上"在重叠区怎么换坐标"的规则.</p>
+
+  <p>这是一种了不起的数学策略. 它告诉我们: 一个对象, 即便整体上"弯", 只要它在每一小片上"看起来像 $\mathbb R^n$", 我们就可以用 $\mathbb R^n$ 上的微积分去研究它 — 一片一片地, 配上 transition function 把片之间缝起来. 这套策略的精确化, 就是流形 (manifold).</p>
+
+  <p>本节我们就从地球的两张地图开始, 严格写出"流形"的定义, 然后看时空、相空间、量子态空间为什么都是流形.</p>
+
+  <h2>一、为什么需要流形: 地球与时空的共同困境</h2>
+
+  <p>我们能够在地球上做几何 (测距、画三角形), 是因为地球表面"局部欧氏" — 在你脚下方圆几公里内, 平面几何成立得很好. 一旦尺度变大, 平面几何就出错: 球面三角形的内角和大于 $\pi$, 长度 1000 公里的"直线"已经显著不直.</p>
+
+  <p>你不能用一张平面图覆盖整个地球而不撕扯. 这不是技术问题, 是拓扑的事实: $S^2$ 与 $\mathbb R^2$ 不同胚 ($S^2$ 紧, $\mathbb R^2$ 不紧). 因此任何"地图"都只能覆盖球面的一部分, 全球必须用多张图拼接.</p>
+
+  <p>时空在广义相对论里有同样的困境. 太阳系附近的时空"局部看起来像闵氏空间 $\mathbb R^{1,3}$", 但在大尺度上, 它弯曲, 它可能有黑洞, 它可能在大爆炸处奇异. 没有一张全局坐标可以把时空摊平 — 整片时空必须用多张坐标卡 (chart), 加上"在重叠区怎么换坐标"的规则, 拼起来. 这就是<strong>第一卷 04《光的弯曲》</strong>里 Schwarzschild 度规的几何骨架.</p>
+
+  <p>这两个困境共享同一个数学结构: <em>局部欧氏, 全局可弯</em>. 把这个结构抽出来, 就得到了流形.</p>
+
+  <h2>二、定义: 拓扑流形、图、图册、光滑流形</h2>
+
+  <p>我们一步一步来. 先要求"局部欧氏" — 这是流形最本质的性质.</p>
+
+  <p><strong>定义 (1) (拓扑 $n$ 流形)</strong>. 设 $M$ 是一个 Hausdorff、第二可数的拓扑空间. 若对每个点 $p \in M$, 存在 $p$ 的开邻域 $U \subseteq M$ 与同胚映射</p>
+  $$
+  \phi: U \longrightarrow \phi(U) \subseteq \mathbb R^n, \tag{1}
+  $$
+  <p>则称 $M$ 是 $n$ 维拓扑流形, 并称 $(U, \phi)$ 为 $M$ 上的一张<strong>图 (chart)</strong>, $\phi$ 称为<strong>局部坐标</strong>.</p>
+
+  <p>"Hausdorff"保证两点可以分开 (不出现"双线"那种病态), "第二可数"保证流形不会太大 (有可数拓扑基) — 这两个技术条件是为了让后面的微积分和积分论顺利进行. 关键是 (1): <strong>每一点附近, $M$ 与 $\mathbb R^n$ 的一片同胚</strong>. 这就是"局部欧氏".</p>
+
+  <p>一张图只覆盖 $M$ 的一部分. 要描绘整个 $M$, 我们需要一组图, 它们的定义域并起来等于 $M$, 并且在重叠处互相相容.</p>
+
+  <p><strong>定义 (2) (光滑图册与光滑流形)</strong>. 设 $\mathcal A = \{(U_\alpha, \phi_\alpha)\}_{\alpha \in I}$ 是 $M$ 上的一组图, 满足</p>
+  <ol>
+    <li>$\bigcup_\alpha U_\alpha = M$ — 图册覆盖 $M$;</li>
+    <li>对任意两张重叠的图 $(U_\alpha, \phi_\alpha)$ 与 $(U_\beta, \phi_\beta)$, $U_\alpha \cap U_\beta \neq \varnothing$, transition function</li>
+  </ol>
+  $$
+  \phi_\beta \circ \phi_\alpha^{-1}: \phi_\alpha(U_\alpha \cap U_\beta) \longrightarrow \phi_\beta(U_\alpha \cap U_\beta) \tag{2}
+  $$
+  <p>是 $C^\infty$ 光滑的 ($\mathbb R^n$ 到 $\mathbb R^n$ 的开集间映射, 光滑取通常的多变量微积分意义). 则称 $\mathcal A$ 是 $M$ 的一个<strong>光滑图册</strong>, $(M, \mathcal A)$ (或习惯上简写 $M$) 称为<strong>光滑流形</strong>.</p>
+
+  <p>这条定义是流形论的心脏. 注意 transition function 是从 $\mathbb R^n$ 的开集到 $\mathbb R^n$ 的开集的映射 — 它是普通的多变量函数, 我们已经知道什么叫光滑. <strong>整个流形上的"光滑"概念, 是借 transition function 从 $\mathbb R^n$ 上"借"过来的</strong>. 这是一种漂亮的数学操作: 用我们已经会做微积分的对象 ($\mathbb R^n$), 通过"贴片+换坐标"机制, 给我们尚不会做微积分的对象 ($M$) 安装上微积分.</p>
+
+  <p>光滑性要求保证: 不论你站在哪张图里看 $M$, 你看到的微积分对象都是相同的 — 因为换图的规则本身光滑. 一个函数 $f: M \to \mathbb R$ 称为光滑, 当且仅当 $f \circ \phi_\alpha^{-1}: \phi_\alpha(U_\alpha) \to \mathbb R$ 对每一张图都光滑. 这定义独立于图册的选择.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · $S^2$ 的两-chart 立体投影图册</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>球面 $S^2$ 用两个立体投影 chart 覆盖, 直观展示"局部欧氏 + 重叠相容"</dd>
+      <dt>必含元素</dt><dd>(a) 一个 3D 球; (b) 北极 $N$ 上方一点向赤道平面投影线 (北极投影 $\phi_N$): 球去掉北极映到下方一张 $\mathbb R^2$; (c) 南极 $S$ 下方一点向赤道平面投影线 (南极投影 $\phi_S$): 球去掉南极映到另一张 $\mathbb R^2$; (d) 重叠区 = $S^2 \setminus \{N, S\}$ (除两极外整个球), 在两张 $\mathbb R^2$ 上各对应一个去掉原点的开集; (e) 一条带箭头的曲线表示 transition function $\phi_S \circ \phi_N^{-1}: \mathbb R^2 \setminus \{0\} \to \mathbb R^2 \setminus \{0\}$, $u \mapsto u/|u|^2$</dd>
+      <dt>几何精度</dt><dd>两 chart 共同覆盖 $S^2$; transition function 在 $\mathbb R^2 \setminus \{0\}$ 光滑</dd>
+      <dt>标签与公式</dt><dd>$\phi_N: S^2\setminus\{N\} \to \mathbb R^2$; $\phi_S: S^2\setminus\{S\} \to \mathbb R^2$; $\phi_S \circ \phi_N^{-1}(u) = u/|u|^2$</dd>
+      <dt>风格建议</dt><dd>白底, 球用淡灰描边 + 经纬线, 投影线用细虚线, 两张 $\mathbb R^2$ 用方框示意, transition function 用带箭头弧线连接</dd>
+    </dl>
+  </div>
+  <figcaption>图 1   $S^2$ 用两个立体投影 chart 覆盖. 这是"流形"概念最经典的具体例子.</figcaption>
+  </figure>
+
+  <h2>三、具体例子: $S^2$ 的两-chart 立体投影</h2>
+
+  <p>抽象定义说完, 我们必须立刻动手算一个例子, 看流形是怎么"长出来"的. 最经典的是球面 $S^2$, 用立体投影 (stereographic projection) 给出一个真正只有两张图的图册.</p>
+
+  <p>把 $S^2$ 写作单位球面</p>
+  $$
+  S^2 = \{(x, y, z) \in \mathbb R^3 : x^2 + y^2 + z^2 = 1\}.
+  $$
+  <p>记 $N = (0,0,1)$ 为北极, $S = (0,0,-1)$ 为南极. 我们造两张图.</p>
+
+  <p><strong>图 1 (北极投影)</strong>. 定义 $U_N = S^2 \setminus \{N\}$, 映射</p>
+  $$
+  \phi_N(x, y, z) = \left( \frac{x}{1-z}, \frac{y}{1-z} \right) \in \mathbb R^2. \tag{3}
+  $$
+  <p>几何上: 从北极出发画一条直线穿过 $(x,y,z)$, 这条线与 $z = 0$ 平面 (赤道平面) 的交点就是 $\phi_N(x,y,z)$. 注意 $z = 1$ 在 $U_N$ 中被排除, 分母不会为零.</p>
+
+  <p><strong>图 2 (南极投影)</strong>. 定义 $U_S = S^2 \setminus \{S\}$, 映射</p>
+  $$
+  \phi_S(x, y, z) = \left( \frac{x}{1+z}, \frac{y}{1+z} \right) \in \mathbb R^2.
+  $$
+  <p>这是从南极投影到赤道平面.</p>
+
+  <p>两张图覆盖 $S^2$ 吗? $U_N \cup U_S = (S^2 \setminus \{N\}) \cup (S^2 \setminus \{S\}) = S^2$, 因为没有任何点同时是北极和南极. 重叠区是 $U_N \cap U_S = S^2 \setminus \{N, S\}$, 是球减去两极 — 对应在 $\mathbb R^2$ 中是 $\mathbb R^2 \setminus \{0\}$ (因为 $\phi_N$ 把南极映到 $0$, $\phi_S$ 把北极映到 $0$).</p>
+
+  <p>现在算 transition function. 给定 $u = (u_1, u_2) = \phi_N(x,y,z) \in \mathbb R^2 \setminus \{0\}$, 我们要把它换成 $\phi_S$ 下的坐标. 直接算: 由 $u_1 = x/(1-z)$, $u_2 = y/(1-z)$, $|u|^2 = (x^2 + y^2)/(1-z)^2 = (1-z^2)/(1-z)^2 = (1+z)/(1-z)$. 所以 $|u|^2 (1-z) = 1+z$, 解得 $z = (|u|^2 - 1)/(|u|^2 + 1)$, $1+z = 2|u|^2/(|u|^2+1)$, $1-z = 2/(|u|^2+1)$. 进而 $x = (1-z) u_1 = 2u_1/(|u|^2+1)$, 同理 $y$. 代回</p>
+  $$
+  \phi_S \circ \phi_N^{-1}(u) = \left( \frac{x}{1+z}, \frac{y}{1+z} \right) = \left( \frac{u_1}{|u|^2}, \frac{u_2}{|u|^2} \right) = \frac{u}{|u|^2}. \tag{4}
+  $$
+
+  <p>这就是 $\mathbb R^2 \setminus \{0\}$ 上的<strong>反演</strong> ($u \mapsto u/|u|^2$). 反演在 $\mathbb R^2 \setminus \{0\}$ 上明显是 $C^\infty$ 光滑的 (分子分母都是多项式, 分母不为零). 所以 (3)+(4) 给出的图册满足定义 (2) 的相容条件, $S^2$ 是一个 2 维光滑流形 — 而且只用了两张图.</p>
+
+  <p>这个例子值得反复体会. 它说明: 我们不需要"看见"球面整体来给它装微积分; 我们只需要两张平面图加一个反演规则. 这正是地图册做了几百年的事情, 数学只是把它写得严密.</p>
+
+  <h2>四、更多流形 + 物理回响 + Riemann 1854</h2>
+
+  <p>同样的两-chart 构造立刻推广到 $S^n$ (取北南极立体投影). 此外, 物理学频繁出现的流形还有这些.</p>
+
+  <p><strong>环面 $T^n = (S^1)^n$</strong>. 例如 $T^2$ 是甜甜圈表面. 它是 $S^1$ 的 $n$ 次乘积, 局部还是 $\mathbb R^n$, 全局是紧的. 经典力学里 $n$ 维可积系统的相空间在能量层上往往是 $T^n$ — 这就是 Liouville–Arnold 定理的几何内容.</p>
+
+  <p><strong>实射影空间 $\mathbb{RP}^n$</strong>. 是 $\mathbb R^{n+1} \setminus \{0\}$ 模掉同伦关系 $x \sim \lambda x$ ($\lambda \neq 0$); 几何上是 $\mathbb R^{n+1}$ 中所有过原点的直线集合. $\mathbb{RP}^n$ 用 $n+1$ 张仿射 chart 覆盖.</p>
+
+  <p><strong>一般线性群 $GL(n, \mathbb R)$</strong>. 即所有 $n \times n$ 可逆矩阵. 它是 $\mathbb R^{n^2}$ 中由 $\det A \neq 0$ 给出的开集 — 因此自然是 $n^2$ 维光滑流形. 但 $GL(n)$ 还带有群运算, 而且群运算 (乘法、求逆) 关于矩阵元光滑, 所以它是<strong>李群</strong> (我们在卷四前面 13–15 节详细讨论的). 这把"群"和"流形"两个看似不相干的数学结构结合在一起.</p>
+
+  <p><strong>物理回响</strong>. 流形是现代物理的通用画布, 让我们点几处:</p>
+
+  <ul>
+    <li><strong>广义相对论的时空</strong>: 一个 4 维光滑流形 $M$, 加上一个 Lorentz 度规 $g_{\mu\nu}$ — 见<strong>第一卷 04《光的弯曲》</strong>. Schwarzschild 解给出的就是 $M$ 的一个具体几何, 而黑洞视界、视界外、内部等通过不同 chart (Schwarzschild、Eddington–Finkelstein、Kruskal) 拼接.</li>
+    <li><strong>经典力学的相空间</strong>: 一般是辛流形 $(M, \omega)$, 偶维, 带闭非退化 2-形式 $\omega$. 例如单粒子在 $\mathbb R^3$ 中的相空间是 $\mathbb R^6 \cong T^*\mathbb R^3$; 角动量耦合系统的简化相空间往往是 $S^2$ 或它的乘积. <strong>第二卷 18《简并压》</strong>讨论白矮星的物理时, 假设它是球状的, 表面就是 $S^2$.</li>
+    <li><strong>量子力学的态空间</strong>: 严格地说不是 Hilbert 空间 $\mathcal H$, 而是它的射影化 $\mathbb{CP}^{n-1} = (\mathcal H \setminus \{0\}) / (\psi \sim \lambda \psi)$ — 因为 $\psi$ 与 $\lambda \psi$ 物理上不可区分. $\mathbb{CP}^1 = S^2$ 是 Bloch 球, 单个量子比特的态空间.</li>
+    <li><strong>耦合空间与 RG 流</strong>: <strong>第三卷 18《runs coupling》</strong>把跑动耦合 $g(\mu)$ 看作"耦合空间"上的轨迹, 这个耦合空间本身是流形 — RG 方程是这个流形上的向量场.</li>
+  </ul>
+
+  <p>没有流形语言, 这些理论无法被统一地讨论. 一旦语言到位, 弯曲、对称、奇点、分岔, 都成为流形上的几何陈述, 而非凭直觉的比喻.</p>
+
+  <p><strong>历史</strong>. 流形这个词最早出现在 1854 年 6 月 10 日, Bernhard Riemann 在 Göttingen 的就职演讲《关于几何基础的假设》(<em>Über die Hypothesen, welche der Geometrie zu Grunde liegen</em>) 中. 听众里有 Gauss — 当时已是欧洲最德高望重的数学家. Riemann 没有用今天的精确语言, 但他清晰地说出: 几何对象可以是 $n$ 维"多重广延量" (Mannigfaltigkeit, 这就是 manifold 一词的来源), 它们可以弯曲, 弯曲程度可以由一个度量量度. 演讲后 Gauss 罕见地表达了赞许. 这次演讲奠定了黎曼几何, 但要等 60 年, Einstein 在 1915 年用 Riemann 的语言写出广义相对论场方程, 把"时空是 4 维 Lorentz 流形"作为物理的根本预设, Riemann 的洞见才完整地兑现成物理.</p>
+
+  <p>1936 年, Hassler Whitney 证明了一个看似技术、但意义深远的定理: 任何 $n$ 维光滑流形 $M$ 都可以光滑嵌入 $\mathbb R^{2n}$ — 即 $M$ 不必是抽象的, 它总能被实现为某个高维欧氏空间中的子集. 这告诉我们抽象流形论 (从图册出发, 不假定外嵌入) 与具体子流形论 (从 $\mathbb R^N$ 中的方程组出发) 在范畴上等价 — 但抽象的写法更简洁、更本质. 现代物理与几何, 几乎一律选择抽象写法.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>流形给"局部欧氏 + 全局可弯"的对象一个精确的家. 它把微积分从 $\mathbb R^n$ 推广到弯曲对象, 为广义相对论 (卷一 04)、经典力学相空间 (卷二)、量子态空间、RG 流 (卷三 18) 提供共同的几何画布. 下一节我们引入<strong>切空间</strong> — 流形上每点的"速度集合" — 这是把"向量"概念从 $\mathbb R^n$ 搬到弯曲流形上的关键一步, 也是把场论 (向量场、张量场) 写在弯曲时空上的起点.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="15-suN.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="17-tangent-space.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

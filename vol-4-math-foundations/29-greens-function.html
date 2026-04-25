@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Green 函数 — 一个源, 万事可解 · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="28-residues.html">← 上一节</a>
+  <span class="chapter-title">第 29 节 / 30 · 第 6 部分 · 概率、复分析与变分 · 第四卷·物理学的数学基础</span>
+  <a href="30-path-integral-math.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Green 函数 — 一个源, 万事可解</h1>
+  <div class="sub">—— 线性微分方程的"基本解"</div>
+
+  <div class="abstract">本节从一个非常具体的物理问题出发: 一个静止点电荷的电场我们会算 $\mathbf E=q\hat r/(4\pi\varepsilon_0 r^2)$, 但一团连续电荷分布 $\rho(\mathbf r)$ 的电场怎么办? 自然的想法是把它切成无穷多个点电荷, 每个用点源公式, 加起来. "点源 + 线性叠加"就是 Green 函数的全部精神. 本节先严格定义: 对于一个线性微分算子 $L$, 它的 Green 函数 $G(x,x')$ 是方程 $L_x G=\delta(x-x')$ 的解, 然后任何非齐次方程 $L\psi=f$ 的解都能写成卷积 $\psi=\int G f$. 接着我们做三个具体计算: 三维 Laplace 给出 Coulomb 势; 一维 Helmholtz 给出向外行波; Klein–Gordon 给出 Feynman 传播子. 最后回到物理: 卷三 03 的传播子、卷一 04 的弯光散射 (Born 系列)、卷一 07 的单缝衍射 (Huygens 子波), 它们的内核都是某个 Green 函数. George Green 1828 年在那本几乎没人读的小册子里, 就把这个把戏定下了.</div>
+
+  <p>上一节的留数定理告诉我们如何用一条围道把复平面上一个奇点"称重". 这一节我们要把那个工具拿出来真用一次, 但起点不是数学, 而是一个非常具体的电学问题.</p>
+
+  <p>静电学第一课就告诉我们: 一个置于原点的点电荷 $q$ 产生的标量势 $\varphi(\mathbf r)=q/(4\pi\varepsilon_0 r)$, 电场 $\mathbf E=-\nabla\varphi$. 那么一团连续电荷分布 $\rho(\mathbf r)$ 呢? 不用从头列方程 — 用线性叠加: 把分布切成无数个微元 $\mathrm dq=\rho(\mathbf r')\mathrm d^3 r'$, 每一份就是一个点电荷, 它在 $\mathbf r$ 处贡献势 $\mathrm dq/(4\pi\varepsilon_0|\mathbf r-\mathbf r'|)$, 全部相加,</p>
+
+  <p>$$
+  \varphi(\mathbf r)=\frac{1}{4\pi\varepsilon_0}\int\frac{\rho(\mathbf r')}{|\mathbf r-\mathbf r'|}\,\mathrm d^3 r'.
+  $$</p>
+
+  <p>这个公式中年级电磁学的学生人人会写, 但很少有人意识到它已经是一个 Green 函数公式: 核心 $1/(4\pi|\mathbf r-\mathbf r'|)$ 就是 Laplace 算子在三维空间的 Green 函数, 而那种"切成点源, 一一相加"的策略, 在远比静电学普遍的舞台上反复上演. Schrödinger 方程、波动方程、Klein–Gordon 方程、Dirac 方程 — 凡是线性的, 凡是有源的, 解都长这个样.</p>
+
+  <h2>一、定义: 点源响应, 与卷积出解</h2>
+
+  <p>令 $L$ 是一个作用在某个函数空间上的 <em>线性</em> 微分算子, 譬如 $L=-\nabla^2$, $L=\Box+m^2$, $L=i\hbar\partial_t-\hat H$. 我们关心的非齐次方程是</p>
+
+  <p>$$
+  L_x\,\psi(x)=f(x),\qquad x\in\Omega\subset\mathbb R^d,
+  $$</p>
+
+  <p>其中 $f$ 是给定的"源", $\psi$ 是要求的"响应", 还可能带某个边界条件 (无穷远衰减、Dirichlet、Neumann …). 我们说函数 $G(x,x')$ 是 $L$ 的一个 <em>Green 函数</em>, 如果它满足</p>
+
+  <p>$$
+  L_x\,G(x,x')=\delta^{(d)}(x-x'),\qquad \tag{1}
+  $$</p>
+
+  <p>外加同样的边界条件 (注意微分算子的下标 $L_x$ 是说算子作用在 $x$ 上, 把 $x'$ 视作参数). $\delta^{(d)}$ 是 $d$ 维 Dirac 函数, 它把"在 $x'$ 处放一个理想的、空间为零、积分为一的点源"这件事用一个无穷高的尖峰编码下来.</p>
+
+  <p>有了 $G$, 任意源 $f$ 的响应立刻能写出来:</p>
+
+  <p>$$
+  \psi(x)=\int_{\Omega} G(x,x')\,f(x')\,\mathrm d^d x'. \tag{2}
+  $$</p>
+
+  <p>验证一行: $L_x\psi(x)=\int L_x G(x,x')f(x')\,\mathrm d^d x'=\int\delta(x-x')f(x')\,\mathrm d^d x'=f(x)$, 第一个等号靠 $L$ 是线性算子可以钻进积分号, 第二个等号靠 (1), 第三个靠 $\delta$ 函数的筛选性. 整个推导只用到 $L$ 是线性 — 这就是为什么 Green 函数策略对所有线性方程通用, 对非线性方程立刻失效.</p>
+
+  <p>形式 (2) 给我们一种新眼光看物理过程: 源 $f$ 在 $x'$ 处的强度是 $f(x')$, 它以 $G(x,x')$ 这个"传播核"投到场点 $x$. 总响应是所有源点的贡献加权叠加. 把 $G$ 想成"一个在 $x'$ 处的点源能在 $x$ 处激起多大响应", 物理感就出来了.</p>
+
+  <p>(还有一个细节: 解 $\psi$ 的唯一性要求方程的齐次解 $L\psi_0=0$ 在所选边界条件下平凡, 否则 $G$ 不是唯一的, 不同 $G$ 相差一个齐次解. 边界条件不同, $G$ 不同 — 这一点等下我们专门讨论.)</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Green 函数: 点源响应与一般源的卷积构造</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>Green 函数概念图 — 一个点源的响应 (Green 函数本身) 通过线性叠加给出任意源的解</dd>
+      <dt>必含元素</dt><dd>左半: 一个标着 $\delta(x-x')$ 的尖峰符号 (一根加粗向上箭头), 下方标 $LG=\delta$; 中部: 一团从该点向外辐散的"散布"图样 (用浅色等高线或扇形射线表示) 代表 $G(x,x')$; 右半: 一条任意形状的源分布 $f(x')$ (画成连续起伏的曲线), 经过一个写着 $\int G(x,x')f(x')\mathrm dx'$ 的大箭头映到右下方的响应 $\psi(x)$ (另一条曲线); 中间用一个写着"线性叠加"的双向箭头连接左部 (单点源) 与右部 (任意源)</dd>
+      <dt>几何/示意精度</dt><dd>概念性图示, 不需精确到坐标; 但点源应清晰对齐于响应区中心, 散布图样应明显衰减以暗示典型 Green 函数的远距衰减性</dd>
+      <dt>标签与公式</dt><dd>$LG=\delta$, $\psi=G*f$, $\delta(x-x')$, $G(x,x')$, $f(x')$, $\psi(x)$</dd>
+      <dt>风格建议</dt><dd>白底, 点源用粗黑箭头, $G$ 的散布用浅蓝渐变, 任意源 $f$ 与解 $\psi$ 用深色平滑曲线, 卷积箭头用暖色 (棕红) 突出</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  Green 函数 $G(x,x')$ 是单位点源在 $x'$ 处激起的响应; 任意源 $f$ 通过卷积 $\psi(x)=\int G(x,x')f(x')\mathrm dx'$ 给出非齐次方程 $L\psi=f$ 的解.</figcaption>
+  </figure>
+
+  <h2>二、第一个范例: 三维 Laplace 与 Coulomb 势</h2>
+
+  <p>静电问题里, $L=-\nabla^2$, 方程是 Poisson 方程</p>
+
+  <p>$$
+  -\nabla^2\varphi(\mathbf r)=\rho(\mathbf r)/\varepsilon_0.
+  $$</p>
+
+  <p>(我们暂时把负号放到 $L$ 上以求一个习惯方便.) 因此要找的 Green 函数 $G(\mathbf r,\mathbf r')$ 满足 $-\nabla^2 G=\delta^{(3)}(\mathbf r-\mathbf r')$, 边界条件取"无穷远衰减为零". 由空间平移不变, $G$ 只依赖于 $\mathbf R=\mathbf r-\mathbf r'$, 进一步由旋转不变只依赖于 $r=|\mathbf R|$. 在球坐标下 $\nabla^2 G=\frac{1}{r^2}\frac{\mathrm d}{\mathrm dr}\!\left(r^2\frac{\mathrm dG}{\mathrm dr}\right)$. 在 $r\ne 0$ 处该式等于零, 解是 $G(r)=A/r+B$. 边界条件 $G\to 0$ at $r\to\infty$ 给 $B=0$, 所以 $G=A/r$.</p>
+
+  <p>定 $A$ 用 $\delta$ 函数的归一化. 把方程在小球 $|\mathbf R|\lt \epsilon$ 内积分:</p>
+
+  <p>$$
+  -\int_{|\mathbf R|\lt \epsilon}\nabla^2 G\,\mathrm d^3 R=1.
+  $$</p>
+
+  <p>Gauss 散度定理把左边变成球面通量积分: $-\oint_{|\mathbf R|=\epsilon}\nabla G\cdot\mathrm d\mathbf S=1$. 直接算 $\nabla G=-A\hat r/r^2$, 通量是 $-A/r^2\cdot 4\pi r^2|_{r=\epsilon}=-4\pi A$, 所以方程左边等于 $-(-4\pi A)=4\pi A=1$, 得 $A=1/(4\pi)$. 总之</p>
+
+  <p>$$
+  \boxed{\;G(\mathbf r,\mathbf r')=\frac{1}{4\pi|\mathbf r-\mathbf r'|}\;} \tag{3}
+  $$</p>
+
+  <p>是三维 Laplace 算子的"无穷远为零"的 Green 函数. 把 (2) 代入并把分母 $\varepsilon_0$ 还原, 解就是开篇的 Coulomb 公式 $\varphi=(4\pi\varepsilon_0)^{-1}\int\rho/|\mathbf r-\mathbf r'|\,\mathrm d^3 r'$. Newton 1687 年宣布的"万有引力 $\propto 1/r$"与 Coulomb 1785 年发现"电力 $\propto 1/r^2$" — 把它们连起来的桥, 数学上正是 (3): $1/r$ 是三维 Laplace 算子的基本解, 力的方向与大小都从这一表达式微分出来.</p>
+
+  <p>顺便注意维数: 在二维 $\nabla^2 G=\delta^{(2)}$ 给的是 $G=-\frac{1}{2\pi}\ln r$ (对数发散, 因此二维静电"势"在无穷远不能归零, 只能定义到一个常数差), 一维 $\partial_x^2 G=\delta(x)$ 给的是 $G=\frac{1}{2}|x|$. 维数变了, $G$ 的远场行为变了 — 这是为什么世界为什么是三维的物理后果之一.</p>
+
+  <h2>三、Helmholtz, Schrödinger, Klein–Gordon: Fourier 与边界条件</h2>
+
+  <p>当 $L$ 在常系数空间平移不变时, Fourier 变换是求 $G$ 的标准家伙. 思路是: 取 $\hat G(\mathbf k)=\int G(\mathbf R)e^{-i\mathbf k\cdot\mathbf R}\mathrm d^d R$, 由 $\hat\delta=1$, 方程 $L_x G=\delta$ 变成代数式</p>
+
+  <p>$$
+  \tilde L(\mathbf k)\,\hat G(\mathbf k)=1\quad\Rightarrow\quad \hat G(\mathbf k)=\frac{1}{\tilde L(\mathbf k)}, \tag{4}
+  $$</p>
+
+  <p>其中 $\tilde L(\mathbf k)$ 是把 $\partial_\mu\to ik_\mu$ 代入 $L$ 得到的多项式 (准确说: $L$ 在 Fourier 空间的乘子). 然后逆变换 $G(\mathbf R)=\int\hat G(\mathbf k)e^{i\mathbf k\cdot\mathbf R}\mathrm d^d k/(2\pi)^d$. 两道菜.</p>
+
+  <p>具体做一下三维 Helmholtz 算子 $L=\nabla^2+k_0^2$ 的 Green 函数, 它来自波动方程的频率空间形式 ($\nabla^2+k_0^2)\psi=-f$, 物理上是单色波场对源的响应. $\tilde L(\mathbf k)=-|\mathbf k|^2+k_0^2$. 所以</p>
+
+  <p>$$
+  G(\mathbf R)=\int\frac{\mathrm d^3 k}{(2\pi)^3}\frac{e^{i\mathbf k\cdot\mathbf R}}{k_0^2-|\mathbf k|^2}.
+  $$</p>
+
+  <p>用球坐标 $\mathrm d^3 k=k^2\sin\theta\,\mathrm dk\,\mathrm d\theta\,\mathrm d\phi$ 并以 $\mathbf R$ 为极轴方向, 角积分给出 $\int_0^\pi e^{ikR\cos\theta}\sin\theta\,\mathrm d\theta=2\sin(kR)/(kR)$, 因此</p>
+
+  <p>$$
+  G(R)=\frac{1}{(2\pi)^2}\int_0^\infty\frac{k^2}{k_0^2-k^2}\cdot\frac{2\sin(kR)}{kR}\,\mathrm dk=\frac{1}{2\pi^2 R}\int_0^\infty\frac{k\sin(kR)}{k_0^2-k^2}\,\mathrm dk.
+  $$</p>
+
+  <p>把 $\sin(kR)$ 写成 $(e^{ikR}-e^{-ikR})/(2i)$ 并把积分扩到 $(-\infty,\infty)$ (利用被积函数偶性), 得到 $G(R)=\frac{1}{(2\pi)^2 i R}\int_{-\infty}^\infty \frac{k e^{ikR}}{k_0^2-k^2}\,\mathrm dk$. 被积函数在 $k=\pm k_0$ 有两个极点, 它们恰恰落在实轴上 — 这意味着积分严格说是发散的, 必须靠"如何绕过极点"的选择来给出确定的答案. 不同绕法就是不同的 <em>边界条件</em>, 给出不同的 $G$:</p>
+
+  <ul>
+    <li><strong>向外波 (推迟 / 出射):</strong> 把极点 $+k_0$ 略向上推到 $+k_0+i0^+$, $-k_0$ 略向下推到 $-k_0-i0^+$, 等价于把 $k_0\to k_0+i\epsilon$. 在 $R\gt 0$ 我们闭上半圈 (因为 $e^{ikR}$ 在上半平面衰减), 围住 $+k_0+i0^+$, 留数定理给 $\int=2\pi i\cdot\mathrm{Res}_{k=k_0}=2\pi i\cdot k_0 e^{ik_0 R}/(-2k_0)=-i\pi e^{ik_0 R}$. 代回:</li>
+  </ul>
+
+  <p>$$
+  G_{\text{出射}}(R)=-\frac{e^{ik_0 R}}{4\pi R}. \tag{5}
+  $$</p>
+
+  <ul>
+    <li><strong>向内波 (超前 / 入射):</strong> 反过来推极点, 闭上半圈这次围 $-k_0$, 给 $G_{\text{入射}}=-e^{-ik_0 R}/(4\pi R)$.</li>
+    <li><strong>主值 (Kirchhoff):</strong> $\frac{1}{2}(G_{\text{出射}}+G_{\text{入射}})=-\cos(k_0 R)/(4\pi R)$, 物理上对应驻波, 即同时存在出射与入射的边界条件.</li>
+  </ul>
+
+  <p>(5) 就是大家熟悉的"球面外行波 Green 函数". 在 $k_0\to 0$ 极限下它退化到 $-1/(4\pi R)$, 与 Laplace 的 Green 函数 (3) 差一个负号 — 因为我们这里把算子取成 $\nabla^2+k_0^2$ 而不是 $-\nabla^2-k_0^2$. 这一计算同时显示一件深刻的事: <em>物理上选哪一个 Green 函数, 不由方程本身决定, 而由边界条件决定</em>. 同一个 Helmholtz 算子, 推迟 / 超前 / 主值这三种 Green 函数都满足 (1), 谁有意义看物理 — 散射问题取出射, 时间反演下取入射, 真空中的对称组合取主值.</p>
+
+  <p>同一招用到自由 Klein–Gordon 算子 $L=\Box+m^2=\partial_t^2-\nabla^2+m^2$ (取 $\hbar=c=1$), 在四维 Fourier 空间 $\tilde L(k)=-k^\mu k_\mu+m^2=-k_0^2+|\mathbf k|^2+m^2$. 因此形式上</p>
+
+  <p>$$
+  \hat G(k)=\frac{1}{m^2-k_0^2+|\mathbf k|^2}.
+  $$</p>
+
+  <p>分母在 $k_0=\pm\sqrt{|\mathbf k|^2+m^2}=\pm E_{\mathbf k}$ 处归零 — 又是实轴上的极点. 不同绕法又给不同物理: <em>推迟 Green 函数</em> $G^{\text{ret}}$ (因果, 经典电动力学波传播)、<em>超前</em> $G^{\text{adv}}$、与 <em>Feynman 传播子</em> $G_F$. Feynman 1949 年的处方是 $m^2\to m^2-i\epsilon$, 等价于把正能极点稍下推、负能极点稍上推, 对应于 $t\gt 0$ 时正频率传播 ($e^{-iEt}$, 粒子前向)、$t\lt 0$ 时负频率传播 ($e^{+iEt}$, 反粒子前向):</p>
+
+  <p>$$
+  \boxed{\;\hat G_F(k)=\frac{i}{k^2-m^2+i\epsilon}\;} \tag{6}
+  $$</p>
+
+  <p>($k^2=k_0^2-|\mathbf k|^2$ 是闵氏内积, 与上面差一个整体符号是约定). 这就是卷三 03 我们在场论里写下来的 Feynman 传播子. 它不是某个 Klein–Gordon 算子"唯一"的 Green 函数, 而是在 $\pm E_{\mathbf k}$ 极点上选了一组特定的 $\pm i\epsilon$ 处方, 使得正能量上行、负能量下行, 从而把"粒子向前传播 + 反粒子向后传播"统一到一个对象里. 卷三 03 那段"为什么是 $i\epsilon$ 而不是 $-i\epsilon$"的纠结, 在 Green 函数语言下就是一句话: 这是 Feynman 边界条件下的 Green 函数.</p>
+
+  <p>同样的策略给出时间相关 Schrödinger 方程 $(i\hbar\partial_t-\hat H)G=i\hbar\,\delta(t)\delta^{(3)}(\mathbf r)$ 的自由粒子推迟 Green 函数 (即 $\hat H=-\hbar^2\nabla^2/(2m)$, 推迟边界条件), $G^{\text{ret}}(\mathbf r,t)=\theta(t)\,(m/(2\pi i\hbar t))^{3/2}\exp(im r^2/(2\hbar t))$. 它就是路径积分的"基础砖" — 下一节我们会看到, Feynman 把这个传播子写成对所有路径求和, 把 Schrödinger 方程整体改写成一个泛函积分.</p>
+
+  <h2>四、回响、Born 系列, 与一个面包师傅的小册子</h2>
+
+  <p>Green 函数在前几卷里其实已经反复露脸, 只是没有被叫成这个名字:</p>
+
+  <ul>
+    <li><strong>卷三 03《Feynman 传播子》.</strong> 自由场两点函数 $\langle 0|T\phi(x)\phi(y)|0\rangle=iG_F(x-y)$, 我们刚刚用纯粹的 Green 函数语言把 (6) 推出来了. 微扰展开里"内线"对应 $G_F$, "外线"对应在壳的极化矢量 — 它的计算技术 (Feynman 规则) 本质上是 Wick 定理把高阶散射截面写成 $G_F$ 的乘积积分.</li>
+    <li><strong>卷一 04《光的弯曲》、卷一 07《单缝衍射》.</strong> 非均匀介质中的电磁波遇上散射体, 解可以写成 Born 系列 $\psi=\psi_0+\int G\, V\psi_0+\int G\, V\, G\, V\psi_0+\cdots$, 内核就是齐次方程 (Helmholtz 或 Schrödinger) 的出射波 Green 函数 (5). 把级数截到一阶就是 Born 近似, 它就是把"散射体被入射波激发出的二次源 $V\psi_0$"通过 Green 函数传到远场. Huygens 1690 年那条朴素原理"波前每一点是子波源, 子波叠加给下一时刻的波前", 数学化之后就是: 出射 Green 函数 $-e^{ik_0 R}/(4\pi R)$ 是子波, 表面积分 (Helmholtz–Kirchhoff 公式) 是叠加. 单缝衍射就是在缝口面元上用这个核做积分.</li>
+    <li><strong>卷二 16《介电响应》.</strong> 线性介质中 $\mathbf P(\mathbf r,t)=\int \chi(\mathbf r-\mathbf r',t-t')\mathbf E(\mathbf r',t')\mathrm d^3 r'\mathrm dt'$, 极化率 $\chi$ 实际上就是介电算子的 Green 函数, 因果性要求它是推迟 Green 函数, 它的 Fourier 变换是介电常数 $\varepsilon(\mathbf k,\omega)$ — Kramers–Kronig 关系正是该函数解析性的直接后果.</li>
+    <li><strong>多体物理.</strong> 卷三 后面我们会看到费米子两点函数 $G(\mathbf k,\omega)=\langle T\psi(\mathbf k,\omega)\psi^\dagger(\mathbf k,\omega)\rangle$ 也是同名异姓的 Green 函数, 它的极点位置告诉我们准粒子能谱与寿命. 凝聚态用 Green 函数语言把热力学、谱学、输运统一到一个工具里.</li>
+  </ul>
+
+  <p>历史上, "Green 函数"这个名字属于英国诺丁汉一位面包师之子 <em>George Green</em> (1793–1841). 他几乎完全自学成才, 早年只在镇上小学受过短暂教育; 二十多岁时一边在父亲的磨坊干活, 一边自学剑桥派的分析与法国学派的位势论. 1828 年他自费印了一本小册子 <em>An Essay on the Application of Mathematical Analysis to the Theories of Electricity and Magnetism</em>, 一共印了五十二份, 大部分送给本地订户. 在那本几乎没流通的小书里, 他第一次系统地引入了"势函数"(他在书里首创 potential 一词), 推导了现在叫做 Green 第一、第二恒等式的边界面积分公式, 并用一种"辅助函数 $G$ — 在域内满足拉普拉斯方程, 在边界上等于 $-1/(4\pi r)$"的技术求解 Dirichlet 问题. 这就是后来以他命名的 Green 函数. Green 把书印出来后回到了磨坊, 直到 1833 年四十岁才正式入剑桥读本科. 他 1841 年去世, 几乎默默无闻. 1850 年代 William Thomson (Kelvin 勋爵) 在剑桥图书馆翻到他的旧册子, 大为震惊, 把它重印传开, 才让欧洲的数学物理界知道有这么一个磨坊出来的天才. <em>Bernhard Riemann</em> 在 1857 年的电动力学讲义里独立地把这个工具推广到一般线性算子, 并把 $G$ 与边值问题的关系做成系统理论. 二十世纪 Hadamard、Sobolev、Schwartz 把 $\delta$ 函数本身放到分布论的严格地基上后, (1) 才作为分布意义下的偏微分方程被严格定义.</p>
+
+  <p>Green 1828 年那本小册子如今被认为是 19 世纪英国数学物理的奠基之作. 它的故事也提醒我们: 那个时代一个磨坊学徒能仅凭一本牛顿派教材与 Laplace、Poisson 的法语论文, 独立悟出"用一个辅助函数把任意源问题归约为点源问题"这一万能策略 — 把无穷复杂的边值问题压缩到一个对象 $G$ 上, 之后所有具体的源都靠简单卷积 (2) 还原.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Green 函数是把"线性 + 叠加"这两个字推到极致的结果: 找到点源 $\delta(x-x')$ 的响应 $G(x,x')$ 满足 $LG=\delta$ — 即定义 (1), 任意源 $f$ 的解就是卷积 $\psi=\int Gf$, 即公式 (2). 同一个算子在不同的边界条件下有不同的 Green 函数, 三维 Laplace 给出 $1/(4\pi r)$ 的 Coulomb 势 (3); 三维 Helmholtz 给出出射球面波 $-e^{ik_0 R}/(4\pi R)$ (5); Klein–Gordon 在 Feynman 处方下给出场论的传播子 (6). 这把工具把卷一 07 单缝衍射的 Huygens 子波、卷一 04 光被引力弯曲的散射 (Born 系列)、卷三 03 自由场两点函数、卷二 16 线性介质的极化响应都统一到一句话: 找到 $G$, 然后卷积. George Green 1828 年的小册子第一次写下这个把戏, Riemann 1850 年代推广, von Neumann–Schwartz 把 $\delta$ 严格化. 下一节路径积分会把这同一个传播子改写成对所有路径求和, 给我们看 Green 函数的另一面.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="28-residues.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="30-path-integral-math.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

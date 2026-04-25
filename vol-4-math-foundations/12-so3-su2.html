@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SO(3) vs SU(2) — 电子为什么需要 720° 才回到原态? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="11-group-theory.html">← 上一节</a>
+  <span class="chapter-title">第 12 节 / 30 · 第 3 部分 · 群论与对称性 · 第四卷·物理学的数学基础</span>
+  <a href="13-representations.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>SO(3) vs SU(2) — 电子为什么需要 720° 才回到原态?</h1>
+  <div class="sub">—— 半整数自旋的几何起源</div>
+
+  <div class="abstract">本节从一个悖论出发: 一个电子绕任意轴旋 360° 后, 它的自旋波函数<em>不</em>回到自己, 而是变成 $-\ket{\psi}$; 必须再转一圈, 累计 720°, 才真正复原. 这件事放在经典直觉里是荒谬的 — 三维空间里的旋转明明是一个周期 $2\pi$ 的循环, 转一周怎么会"差一个负号"? 我们的回答是: 描述电子自旋的旋转群<strong>不是</strong> $SO(3)$, 而是它的双重覆盖 $SU(2)$. 把这两个群分别从矩阵层面 (orthogonal vs unitary) 与拓扑层面 ($\pi_1=\mathbb Z_2$ vs 单连通) 写下来, 写出同态 $SU(2)\to SO(3)$ 是 2-to-1 的, 然后用 Pauli 矩阵直接计算 $e^{-i\pi\sigma_z}=-I$ — 那个困扰一切自旋 1/2 粒子的负号就在这里. 顺便讲完 Hamilton 1843 的四元数、Cartan 1913 的双重覆盖、Pauli 1925 的自旋, 同时回响到卷二 Pauli 不相容、卷三 费米场反对易这两条骨头.</div>
+
+  <p>把右手放到桌面上, 手心朝上. 绕任意一根固定轴 — 比方说从拇指穿出去 — 把手转 360°, 手回到原来的位置. 没问题, 这是常识. 但如果手心里捏着的不是水杯而是一个电子, 这件事就开始诡异: 描述这个电子的自旋态 $\ket{\psi}$ 在物理上"绕同一根轴转 360°"之后, 数学上变成 $-\ket{\psi}$; 必须再转一圈, 累计 720°, 才真正变回 $+\ket{\psi}$.</p>
+
+  <p>这听起来像是某种实验误差或者规范选择, 但它不是. 它是一个深刻的几何事实, 也是<strong>半整数自旋</strong>之所以可能存在的根源. 解释这个负号需要分清两个非常相近、但拓扑上不同的群: $SO(3)$ 与 $SU(2)$. 这一节我们要做的就是把这两个群的差别<em>抠到底</em> — 抠到它们对应的物理效应 (费米子 vs 玻色子, Pauli 不相容, "腰带技巧" 等等) 都能从一行公式里读出来.</p>
+
+  <h2>一、$SO(3)$: 三维空间真实的旋转</h2>
+
+  <p>先把 $SO(3)$ 写下来. 三维空间里一个旋转, 直观地, 是把任意向量 $\mathbf x\in\mathbb R^3$ 送到另一个向量 $R\mathbf x$, 同时<strong>保持向量长度</strong>且<strong>不翻手</strong> — 即 $|R\mathbf x|=|\mathbf x|$ 且不能把右手坐标系翻成左手. 用矩阵语言:</p>
+  <p>$$ SO(3)\;=\;\bigl\{\,R\in M_{3\times 3}(\mathbb R)\;\big|\;R^\top R=I,\;\det R=+1\,\bigr\}. \tag{1} $$</p>
+  <p>$R^\top R=I$ 是"orthogonal", 保持点积 $\mathbf x\cdot\mathbf y$, 即保长度保角度; $\det R=+1$ 把镜面反射 ($\det=-1$) 排除掉. 这个集合在矩阵乘法下闭合, 含恒等元 $I$, 含逆元 $R^{-1}=R^\top$ — 于是它是一个群. "Special Orthogonal" 三个字就是这两条 (det = 1 + 正交) 的简写.</p>
+
+  <p>$SO(3)$ 的元素可以由<em>转轴</em>加<em>转角</em>来参数化: 给定单位向量 $\hat{\mathbf n}$ (转轴) 和角度 $\theta\in[0,\pi]$ (角度), 就有唯一的 $R(\hat{\mathbf n},\theta)$. 这种参数化把 $SO(3)$ 看成一个流形 — 具体地, 把每个旋转用向量 $\theta\hat{\mathbf n}\in\mathbb R^3$ 表示, 它住在半径 $\pi$ 的球内. 但这个表示有个微妙: $\theta=\pi$ 时, $R(\hat{\mathbf n},\pi)$ 与 $R(-\hat{\mathbf n},\pi)$ 是<em>同一个</em>旋转 (绕 $\hat{\mathbf n}$ 旋 180° 与绕 $-\hat{\mathbf n}$ 旋 180° 给完全相同的矩阵). 所以这个半径 $\pi$ 球的<strong>对径点</strong>必须粘在一起, $SO(3)$ 作为流形是 $\mathbb R\mathbb P^3$ — 三维实射影空间.</p>
+
+  <p>这个粘起来的事实, 立刻把 $SO(3)$ 变得拓扑上"有点歪": 它<strong>不是单连通</strong>的. 具体说, 取一条路径 — 比方说沿 $\hat{\mathbf z}$ 轴从 $\theta=0$ 一直转到 $\theta=2\pi$. 在 $\mathbb R^3$ 参数化里, 这条路径从原点出发, 走到 $2\pi\hat{\mathbf z}$. 但 $2\pi\hat{\mathbf z}$ 等价于 $0\hat{\mathbf z}$ (转 $2\pi$ 等于不转), 所以这条路径在 $SO(3)$ 里其实是<em>闭合</em>的 — 只是它走到球面上的对径点, 而对径点被认同, 于是它在流形上回到了起点. 关键是: 这个闭环<strong>不能</strong>在 $SO(3)$ 里连续收缩到一点 — 它"穿过"了那道粘合. 但走两圈 (从 $0$ 走到 $4\pi$) 的闭环就<em>能</em>连续收缩到一点了. 用代数语言说:</p>
+  <p>$$ \pi_1\bigl(SO(3)\bigr)=\mathbb Z_2. $$</p>
+  <p>$\pi_1$ 是基本群 (loops 模同伦), 这里只有两类闭环 — 平凡的和单圈的, 而单圈走两遍变平凡. 这件事在物理上的代号是 "Dirac 剪刀"或"腰带技巧": 拿一根皮带或一把剪刀, 一头固定一头转 360° 会留一个扭, 这个扭擦不掉; 但同样的物体转 720°, 那个扭可以被来回甩动消除. 这不是把戏, 是 $\pi_1(SO(3))=\mathbb Z_2$ 的一个具象演示.</p>
+
+  <h2>二、$SU(2)$: 2×2 复幺正阵与 Pauli 矩阵</h2>
+
+  <p>现在到 $SU(2)$. 它定义在<em>复</em>二维空间上:</p>
+  <p>$$ SU(2)\;=\;\bigl\{\,U\in M_{2\times 2}(\mathbb C)\;\big|\;U^\dagger U=I,\;\det U=+1\,\bigr\}. \tag{2} $$</p>
+  <p>"Special Unitary 2": $U^\dagger U=I$ 是幺正性 (保 $\mathbb C^2$ 内积), $\det U=+1$ 把整体相位排除. 直接写下来, 这种 $U$ 总能写成</p>
+  <p>$$ U=\begin{pmatrix}\alpha&\beta\\-\bar\beta&\bar\alpha\end{pmatrix},\qquad |\alpha|^2+|\beta|^2=1. $$</p>
+  <p>把 $\alpha=a+ib$, $\beta=c+id$ 拆成实部, 那么 $a^2+b^2+c^2+d^2=1$ — 这是 $\mathbb R^4$ 里的<strong>三维球面 $S^3$</strong>. 所以 $SU(2)$ 作为流形<em>就是</em> $S^3$. $S^3$ 是单连通的: 任何闭环都可以缩成一点 (这跟 $S^2$ 一样, 但与 $S^1$ 不同). 这一点请记住, 它是整个故事的拓扑骨架.</p>
+
+  <p>用更物理的语言, $SU(2)$ 的元素都可以表为指数:</p>
+  <p>$$ U(\hat{\mathbf n},\theta)\;=\;\exp\!\Bigl(-\tfrac{i}{2}\,\theta\,\hat{\mathbf n}\!\cdot\!\boldsymbol\sigma\Bigr). \tag{3} $$</p>
+  <p>这里 $\boldsymbol\sigma=(\sigma_x,\sigma_y,\sigma_z)$ 是<strong>Pauli 矩阵</strong>三件套:</p>
+  <p>$$ \sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad \sigma_y=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}. $$</p>
+  <p>它们的代数性质很关键: 反对易 $\{\sigma_a,\sigma_b\}=2\delta_{ab}I$, 平方为 $I$, 即 $\sigma_a^2=I$. 这两条结合起来, 对任意单位向量 $\hat{\mathbf n}$, $(\hat{\mathbf n}\cdot\boldsymbol\sigma)^2=I$ — 这就是把指数 (3) 算成显式三角函数的钥匙.</p>
+
+  <p>展开 (3) 用泰勒级数, 拆奇偶项:</p>
+  <p>$$ U(\hat{\mathbf n},\theta)=\sum_k\frac{(-i\theta/2)^k}{k!}(\hat{\mathbf n}\cdot\boldsymbol\sigma)^k=\cos\!\tfrac{\theta}{2}\,I-i\sin\!\tfrac{\theta}{2}\,(\hat{\mathbf n}\cdot\boldsymbol\sigma). \tag{4} $$</p>
+  <p>这是个干净的 closed form. 注意 (4) 与 (1) 的关键差别: 公式里出现的是 $\theta/2$, 不是 $\theta$. <strong>整个 720° 的故事就藏在这个二分之一里.</strong></p>
+
+  <h2>三、同态 $SU(2)\to SO(3)$ 是 2-to-1</h2>
+
+  <p>$SU(2)$ 是复二维, $SO(3)$ 作用在实三维 — 它们怎么扯到一块? 桥梁就是 Pauli 矩阵. 任意三维实向量 $\mathbf x=(x,y,z)$ 都可以打包成一个 $2\times 2$ 厄米无迹矩阵:</p>
+  <p>$$ X=\mathbf x\!\cdot\!\boldsymbol\sigma=\begin{pmatrix}z&x-iy\\x+iy&-z\end{pmatrix},\qquad \det X=-(x^2+y^2+z^2)=-|\mathbf x|^2. $$</p>
+  <p>注意 $X^\dagger=X$, $\Tr X=0$, $\det X=-|\mathbf x|^2$. 三维向量与"厄米无迹 $2\times 2$ 矩阵"之间是一一对应.</p>
+
+  <p>现在让 $U\in SU(2)$ 作用一下: 取 $X'\equiv UXU^\dagger$. 因为 $U$ 是幺正的, $X'$ 仍然是厄米无迹的 ($\Tr X'=\Tr X=0$, $X'^\dagger=X'$), 且 $\det X'=\det X=-|\mathbf x|^2$. 所以 $X'$ 也对应一个三维向量 $\mathbf x'$, 而且 $|\mathbf x'|=|\mathbf x|$ — 这就是说, 这个 $U$ 诱导了一个保长度的线性变换, 也就是 $\mathbb R^3$ 上的一个旋转 $R$:</p>
+  <p>$$ U\,(\mathbf x\!\cdot\!\boldsymbol\sigma)\,U^\dagger\;=\;\bigl(R(U)\mathbf x\bigr)\!\cdot\!\boldsymbol\sigma. \tag{5} $$</p>
+  <p>这定义了一个映射 $\Phi:SU(2)\to SO(3)$, $U\mapsto R(U)$. 直接验证它是<em>群同态</em> (即 $\Phi(U_1 U_2)=\Phi(U_1)\Phi(U_2)$): 因为 $(U_1 U_2) X (U_1 U_2)^\dagger=U_1(U_2 X U_2^\dagger)U_1^\dagger$, 旋转复合自动成立.</p>
+
+  <p>这个映射不是单射, 而是<strong>2-to-1</strong>的. 关键观察: 取 $U=I$, 那么 $X'=X$, $R=I$. 但取 $U=-I$, 那么 $X'=(-I)X(-I)=X$, 同样 $R=I$. 也就是 $\Phi(I)=\Phi(-I)=I$. 一般地, $\Phi(U)=\Phi(-U)$, 因为前后整体加号不影响 $UXU^\dagger$. 也就是 $SU(2)$ 的两个相反元素 $U,-U$ 对应到 $SO(3)$ 的同一个旋转. 用代数地说, $\Phi$ 的核 $\ker\Phi=\{\pm I\}\cong\mathbb Z_2$, 所以</p>
+  <p>$$ SO(3)\;\cong\;SU(2)/\mathbb Z_2. $$</p>
+  <p>更几何地, $SU(2)\cong S^3$ 双重覆盖 $SO(3)\cong\mathbb R\mathbb P^3$, 这是一个标准的纤维丛事实: $\mathbb R\mathbb P^3=S^3/\{\pm 1\}$.</p>
+
+  <p>这件事的拓扑解释: $SU(2)$ 单连通 ($\pi_1(S^3)=0$), 而 $SO(3)$ 不单连通 ($\pi_1=\mathbb Z_2$). 一般来说, 如果 $G$ 是 Lie 群, $\tilde G$ 是它的<em>普遍覆盖</em> (universal cover, 单连通且覆盖 $G$), 那么 $\pi_1(G)$ 就是 $\tilde G\to G$ 的核. 这里 $\tilde G=SU(2)$, $G=SO(3)$, 核 $=\mathbb Z_2=\pi_1(SO(3))$. 一切自洽.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · $SU(2)$ 双重覆盖 $SO(3)$ 的几何</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>从拓扑上展示 $SU(2)\cong S^3$ 双重覆盖 $SO(3)\cong\mathbb R\mathbb P^3$ 的关系, 并把 360° vs 720° 的电子自旋负号对应到 $SU(2)$ 的两个不同元素 $\pm I$</dd>
+      <dt>必含元素</dt><dd>上方一个完整的球面 (代表 $S^3$, 即 $SU(2)$, 标注"单连通"), 球面上沿任意大圆画一条从北极出发的路径, 中点标 $-I$, 终点 (绕一圈回北极) 标 $+I$; 下方一个稍小的球 (代表 $SO(3)\cong\mathbb R\mathbb P^3$, 标注 "$\pi_1=\mathbb Z_2$"); 一支从上方到下方的箭头标"2-to-1, $U,-U\mapsto R$"; 上球右侧另列一个电子自旋图: 一支箭头与一个旋转角刻度, 标 "$\theta=2\pi$: $\ket{\psi}\to-\ket{\psi}$" 与 "$\theta=4\pi$: $\ket{\psi}\to+\ket{\psi}$"</dd>
+      <dt>几何/示意精度</dt><dd>双重覆盖关系正确: $SO(3)$ 一点对应 $SU(2)$ 上的两个对径点; 路径从 $\theta=0$ 沿 $S^3$ 走到 $\theta=2\pi$ 这条"弧"必须明显标出穿过 $-I$ 这一点, 而不是回到 $+I$</dd>
+      <dt>标签与公式</dt><dd>上球: $U(\theta)=\exp(-i\theta\,\hat{\mathbf n}\!\cdot\!\boldsymbol\sigma/2)$, $U(2\pi)=-I$, $U(4\pi)=+I$; 下球: $\pi_1(SO(3))=\mathbb Z_2$; 中间箭头: $SU(2)/\mathbb Z_2\cong SO(3)$</dd>
+      <dt>风格建议</dt><dd>白底, 上球与下球用不同色调 (上球冷蓝代表"复"流形, 下球暖灰代表"实"旋转), 画风仿 Penrose 的《通往实在之路》</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  $SU(2)$ 走一圈到 $-I$ — 与 $SO(3)$ 上的同一点对应, 但波函数已经多了一个负号; 再走一圈才回到真正的 $+I$.</figcaption>
+  </figure>
+
+  <h2>四、具体计算: $\theta=2\pi$ 时为什么 $U=-I$</h2>
+
+  <p>到这里, 让我们把那个负号<em>真的算出来</em>. 用 (4), 取 $\hat{\mathbf n}=\hat{\mathbf z}$, $\theta=2\pi$:</p>
+  <p>$$ U(\hat{\mathbf z},2\pi)=\cos\pi\,I-i\sin\pi\,\sigma_z=(-1)\,I-i\cdot 0\cdot\sigma_z=-I. $$</p>
+  <p>但更直接的算法是把指数级数显式展开. 先注意 $(\sigma_z)^2=I$, 所以 $\sigma_z$ 的偶次幂全是 $I$, 奇次幂全是 $\sigma_z$. 写</p>
+  <p>$$ e^{-i\pi\sigma_z}=\sum_{k=0}^\infty\frac{(-i\pi)^k}{k!}\sigma_z^k=\Bigl(\sum_{k\text{ even}}\frac{(-i\pi)^k}{k!}\Bigr)I+\Bigl(\sum_{k\text{ odd}}\frac{(-i\pi)^k}{k!}\Bigr)\sigma_z. $$</p>
+  <p>把偶项分成"$k$ 是 $4$ 的倍数"与"$k\equiv 2\pmod 4$": 前者贡献 $+\pi^k/k!$, 后者贡献 $-\pi^k/k!$, 两组合并就是 $\sum_n(-1)^n\pi^{2n}/(2n)!=\cos\pi=-1$. 同理奇项总和给 $-i\sin\pi=0$. 所以</p>
+  <p>$$ e^{-i\pi\sigma_z}=-I. $$</p>
+  <p>这就是 $\theta=2\pi$ 时的 $U$. 把它作用到任意自旋 1/2 态 $\ket{\psi}=\alpha\ket{\uparrow}+\beta\ket{\downarrow}$ 上:</p>
+  <p>$$ U(\hat{\mathbf z},2\pi)\ket{\psi}=-\ket{\psi}. $$</p>
+  <p>负号鲜明. 而 $\theta=4\pi$ (转两圈) 时,</p>
+  <p>$$ U(\hat{\mathbf z},4\pi)=e^{-i 2\pi\sigma_z}=\cos 2\pi\,I-i\sin 2\pi\,\sigma_z=+I, $$</p>
+  <p>真正回到原态. 这就是 720° 的几何/代数原因.</p>
+
+  <p>但请注意, 它在 $SO(3)$ 那边长什么样: 经过同态 (5), $U(\hat{\mathbf z},2\pi)=-I$ 与 $U(\hat{\mathbf z},0)=+I$ 都映射到 $R=I$ — 即"不动". 也就是说, 三维空间里这两个 $U$ <em>不可区分</em>, 它们都对应"位置/方向上一动不动"; 但在 $\mathbb C^2$ 那边它们差一个全局负号, 而<strong>对自旋 1/2 来说这个负号是物理上可观测的</strong> — 比如把它干涉到另一束没经历这个旋转的同种粒子上, 干涉条纹会反转 (1975 年 Werner et al. 的中子干涉实验直接看到了这件事).</p>
+
+  <p>这里的关键是"什么是表示 (representation)". $SO(3)$ 有它的"真表示"族 — 整数自旋 $\ell=0,1,2,\dots$, 即 spin-0 标量、spin-1 向量、spin-2 张量等等. 但所谓"半整数表示" $j=\frac{1}{2},\frac{3}{2},\dots$, 严格说不是 $SO(3)$ 的真表示, 只是<strong>射影表示</strong>: 群乘积 $R_1 R_2$ 与表示 $\rho(R_1)\rho(R_2)$ 之间差一个 $\pm 1$. 把 $SO(3)$ 提升到双重覆盖 $SU(2)$, 这些射影表示就成为<em>真</em>表示. 一句话: <strong>电子自旋 1/2 实际是 $SU(2)$ 的一个真表示, 而不是 $SO(3)$ 的</strong>. 这就是为什么"自旋"与"角动量"不全同 — 它们生活在不同的群上.</p>
+
+  <p>顺带, 这也解释了为什么基本费米子全是半整数自旋: 描述时空局部对称的 Lorentz 群 $SO(3,1)^+$ 也有双重覆盖 $SL(2,\mathbb C)$, 后者的有限维表示分两类 — 不变号的 (整数自旋, 玻色子) 与变号的 (半整数自旋, 费米子). 没有"中间值", 因为 $\pi_1$ 只有两个元素.</p>
+
+  <h2>五、Hamilton, Cartan, Pauli: 一段算账两次的历史</h2>
+
+  <p>$SU(2)$ 这件事在物理学里之前已经活过一次, 名字叫"四元数". William Rowan Hamilton 1843 年那个著名的桥头瞬间 (从都柏林布鲁姆桥走过, 突然意识到怎么在四维实空间里定义乘法), 写下了 $i^2=j^2=k^2=ijk=-1$. 单位四元数 $q=a+bi+cj+dk$, $a^2+b^2+c^2+d^2=1$, 在乘法下闭合 — 它构成的群 $Sp(1)$ 与 $SU(2)$ 同构, 流形也是 $S^3$. Hamilton 自己虽然不知道"双重覆盖"这种语言, 但他已经在用单位四元数表示三维旋转了, 而且他<em>注意到了</em>: 用 $q$ 与用 $-q$ 表示同一个旋转. 这就是双重覆盖的第一次目击, 只是当时还没有人把它命名.</p>
+
+  <p>命名得等到 Élie Cartan. Cartan 在 1913 年研究 Lie 代数的实形式与表示理论时, 系统地写下了所有半单 Lie 群的 (后来叫做)"自旋表示" — 它们正是要靠普遍覆盖才能拿到的那些表示, 在 $SO(n)$ 这类经典群上无法直接定义. 他把 $SO(n)$ 的双重覆盖普遍化, 命名为 $\mathrm{Spin}(n)$, 而 $\mathrm{Spin}(3)=SU(2)$ 是它的最小例子. 所以 Cartan 的工作给了"自旋"这个词以严格的几何身份 — 比 Pauli 引入物理自旋早了 12 年.</p>
+
+  <p>Pauli 1924–1925 年面对的, 是个完全独立的物理疑难: 为什么碱金属原子的双线 (e.g. 钠 D 线) 比 Sommerfeld 的相对论模型多了一倍能级? Pauli 假设电子有一个"经典上不可描述的二值自由度", 提出了不相容原理. 1925 年底 Goudsmit 与 Uhlenbeck 把这个二值自由度命名为"自旋"并把它解释成自转. 但 Pauli 一开始反对自转图像 — 因为如果电子真在自转, 表面线速度要超过光速. 他坚持自旋是<em>纯量子的</em>属性. 1927 年 Pauli 写下他著名的方程, 用 $\sigma$ 矩阵把自旋 1/2 嵌入薛定谔形式; 1928 年 Dirac 把这件事推到相对论性 — Dirac 方程里的 $\gamma$ 矩阵实际上就是把 $SU(2)\times SU(2)$ 的两份自旋粘起来的东西.</p>
+
+  <p>这段历史的 punchline: Hamilton 给了我们群 ($SU(2)\cong S^3$) 但不知道它的物理用途; Cartan 给了它的几何 (双重覆盖, 自旋表示) 但当时没物理实验; Pauli 与 Dirac 写下了自旋 1/2 但当时 (在物理学家圈里) 对这个群的几何还有相当多的混乱. 直到二战后, 这三股线索才在场论里完全合流. "Spinor"这个词 Cartan 用过, Pauli 用过, 但他们两个直到 1930 年代后期才对话上.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>电子的 720° 不是一个怪癖, 而是 $\pi_1(SO(3))=\mathbb Z_2$ 与 $SU(2)\cong S^3$ 单连通这两条拓扑事实的数学后果. 描述自旋 1/2 的不是 $SO(3)$ 的真表示而是它双重覆盖 $SU(2)$ 的真表示, 用 (3) 中那个 $\theta/2$ 直接读出 $U(2\pi)=-I$. 这件事在物理上的回响布满整本书: 卷二第 18 节《简并压》里 Pauli 不相容把白矮星撑住, 那是因为电子是费米子而费米子是半整数自旋粒子; 卷三第 4 节《二次量子化》写下费米场反对易关系 $\{\psi(x),\psi^\dagger(y)\}=\delta(x-y)$, 是同一件事的场论版本 — 反对易就是"绕一圈给负号"在多粒子算符层面的表现 (自旋–统计定理把这两件事正式连起来). 下一节进入<strong>表示论</strong>: 我们要把 $SU(2)$ 的每个不可约表示按维数 $2j+1$ 列出来, 给出 Clebsch–Gordan 系数, 看一下两个自旋 1/2 怎么合成一个 spin-0 与一个 spin-1 — 化学键、光子辐射、夸克禁闭, 全都在这张表里编号待用.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="11-group-theory.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="13-representations.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多元微分与链式法则 — 多变量的"等温曲线"怎么走? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="01-epsilon-delta.html">← 上一节</a>
+  <span class="chapter-title">第 2 节 / 30 · 第 1 部分 · 微积分与向量分析 · 第四卷·物理学的数学基础</span>
+  <a href="03-curl-divergence.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>多元微分与链式法则 — 多变量的"等温曲线"怎么走?</h1>
+  <div class="sub">—— 偏导数、全微分与热力学的"循环关系"</div>
+
+  <div class="abstract">本节从一个具体的物理场景出发: 一定量理想气体在 $(T,V,N)$ 空间沿等熵路径变化, 内能 $U$ 究竟随什么变? 这一问把多变量微分逼出了三件事 — 偏导数 $(\partial U/\partial T)_V$ 必须显式标出"固定谁", 全微分 $\mathrm{d}U$ 是一个一形式 (而非"分子分母"), 链式法则把"参数化路径"和"独立变量"的转换接到一起. 我们会严格定义偏导, 推出 Schwarz 二阶对易, 用一个具体气体算 $(\partial p/\partial V)_T$, 最后验证热力学里漂亮但乍看莫名的循环关系 $(\partial p/\partial V)_T(\partial T/\partial p)_V(\partial V/\partial T)_p=-1$. 这把锁打开后, 卷一的彩虹极值、卷二的 Legendre 变换、卷三的 RG β 函数都不再是孤立的技巧.</div>
+
+  <p>想象你提着一只可以加热又可以推拉活塞的圆筒. 缸里是 $N$ 摩尔理想气体, 你慢慢做事 — 把温度从 $T$ 抬到 $T+\mathrm{d}T$, 同时把体积从 $V$ 改到 $V+\mathrm{d}V$. 内能变了多少? 一年级微积分给你的工具是一元函数: $\mathrm{d}f=f'(x)\mathrm{d}x$. 但这里 $U$ 同时依赖 $T$ 和 $V$, 单凭一根导数符号 $\mathrm{d}U/\mathrm{d}T$ 没法回答 — 它没说 "在 $V$ 不变的前提下" 还是 "沿某条等熵线". 这正是一元微积分到多元微积分必须迈的那一步: 区分"沿哪条路走".</p>
+
+  <p>更糟的是, 热力学里常见这样的式子: $(\partial p/\partial V)_T (\partial T/\partial p)_V (\partial V/\partial T)_p=-1$. 三个偏导, 每个都看似"分子约掉分母", 直觉应当等于 $+1$, 结果却是 $-1$. 这个负号不是排版错误, 而是隐函数定理的指纹. 要把它推清楚, 我们得先把多元微分这把锁的每一根销子摸明白.</p>
+
+  <h2>一、偏导数: 必须显式标出"固定谁"</h2>
+
+  <p>设 $f:\mathbb{R}^n\to\mathbb{R}$ 在点 $\mathbf{x}_0=(x_1^0,\dots,x_n^0)$ 附近有定义. 它对第 $i$ 个变量的<strong>偏导数</strong>定义为</p>
+
+  <p>$$\frac{\partial f}{\partial x_i}(\mathbf{x}_0) := \lim_{h\to 0} \frac{f(x_1^0,\dots,x_i^0+h,\dots,x_n^0)-f(\mathbf{x}_0)}{h}, \tag{1}$$</p>
+
+  <p>其余变量保持不动. 这正是一元导数定义在第 $i$ 个坐标上的复刻. 重点不在"复刻"本身, 而在那句"其余变量保持不动" — 在数学里它是显然的, 因为我们写下的是函数 $f(x_1,\dots,x_n)$, 自变量是哪 $n$ 个一目了然. 但在物理里, 同一个量 $U$ 可以写成 $U(T,V)$ 也可以写成 $U(T,p)$ 还可以写成 $U(S,V)$ — 自变量集合不一样, 偏导也不一样. 所以热力学坚持把"被固定的变量"作下标写出: $(\partial U/\partial T)_V$ 表示固定 $V$ 求, $(\partial U/\partial T)_p$ 表示固定 $p$ 求. 两者完全不是一回事.</p>
+
+  <p>举个具体例子. 单原子理想气体的内能仅依赖 $T$: $U=\tfrac{3}{2}Nk_B T$. 那么</p>
+
+  <p>$$\left(\frac{\partial U}{\partial T}\right)_V=\frac{3}{2}Nk_B,\qquad \left(\frac{\partial U}{\partial V}\right)_T=0.$$</p>
+
+  <p>第二个等于零, 是 Joule 1845 年自由膨胀实验的核心结论 — 对理想气体, 等温下推拉活塞不改变内能. 而非理想气体, $(\partial U/\partial V)_T$ 一般不为零, 这正是焦耳-汤姆孙效应能给气体降温的来源.</p>
+
+  <h2>二、全微分: 一形式, 不是"分子分母"</h2>
+
+  <p>把上述偏导拼起来, 我们得到 $f$ 的<strong>全微分</strong>:</p>
+
+  <p>$$\mathrm{d}f = \sum_{i=1}^n \frac{\partial f}{\partial x_i}\,\mathrm{d}x_i. \tag{2}$$</p>
+
+  <p>对内能 $U(T,V)$, 这就是</p>
+
+  <p>$$\mathrm{d}U=\left(\frac{\partial U}{\partial T}\right)_V\mathrm{d}T+\left(\frac{\partial U}{\partial V}\right)_T\mathrm{d}V.$$</p>
+
+  <p>注意: $\mathrm{d}U$ 不是"$U$ 的一个无穷小变化数", 而是一个<strong>线性形式</strong> — 给我一个无穷小位移 $(\mathrm{d}T,\mathrm{d}V)$, 它返回一个数. 几何上它是切空间上的线性函数 (即一形式). 所以 $\mathrm{d}T$, $\mathrm{d}V$ 不是分子, $(\partial U/\partial T)_V$ 也不是分式 — 这是我们读热力学公式时常踩的第一个坑.</p>
+
+  <p>如果 $f$ 是某个标量场 (有定义良好的函数 $f(\mathbf{x})$), 那么 $\mathrm{d}f$ 就被称作<strong>恰当形式</strong> (exact form), 它沿任何闭合路径的积分为零. 这意味着 $f$ 从 A 到 B 的变化只看两个端点, 跟走的路径无关. 所以我们才可以说"内能是状态函数". 而功 $\delta W=-p\,\mathrm{d}V$、热 $\delta Q$ 不是状态函数 — 它们是不恰当的 "皮拉夫" 形式 (Pfaffian form), 不能写成某个 $W$ 或 $Q$ 的全微分. 卷二里 Clausius 找出 $\delta Q/T=\mathrm{d}S$ — 一个不恰当形式乘以积分因子 $1/T$ 后变成恰当形式 — 这是熵作为状态函数的诞生.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · $(T,V)$ 平面上的两条路径与全微分的路径无关性</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>多元函数 $U(T,V)$ 沿不同路径从 A 到 B 积分得相同结果, 因 $\mathrm{d}U$ 是恰当形式</dd>
+      <dt>必含元素</dt><dd>$(T,V)$ 直角坐标平面; 起点 $A=(T_0,V_0)$, 终点 $B=(T_1,V_1)$; 路径 1 — 先沿等容线 $V=V_0$ 到 $(T_1,V_0)$ 再沿等温线 $T=T_1$ 到 $B$; 路径 2 — 先沿等温线 $T=T_0$ 到 $(T_0,V_1)$ 再沿等容线 $V=V_1$ 到 $B$; 偏导箭头 — 在 A 点画水平箭头标 $(\partial U/\partial V)_T$, 竖直箭头标 $(\partial U/\partial T)_V$</dd>
+      <dt>几何/示意精度</dt><dd>两条路径形成矩形, 强调"路径选择"; 等容线水平、等温线竖直, 与 $(T,V)$ 坐标轴平行</dd>
+      <dt>标签与公式</dt><dd>左下角标全微分公式 $\mathrm{d}U=(\partial U/\partial T)_V\mathrm{d}T+(\partial U/\partial V)_T\mathrm{d}V$; 右下角标 Schwarz 关系 $\partial_T\partial_V U=\partial_V\partial_T U$</dd>
+      <dt>风格建议</dt><dd>白底, 路径 1 用深红色实线, 路径 2 用深蓝色虚线, A、B 用空心圆, 偏导箭头细灰色</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  $(T,V)$ 平面上从 A 到 B 两条不同的"折线"路径. 因 $\mathrm{d}U$ 恰当, 两条路径上的 $\int\mathrm{d}U$ 相等</figcaption>
+  </figure>
+
+  <h2>二·五、Schwarz 定理: 二阶偏导对易</h2>
+
+  <p>路径无关性还藏着一个隐含约束. 设 $f$ 在 $\mathbf{x}_0$ 附近 $C^2$ (二阶偏导连续), 那么</p>
+
+  <p>$$\frac{\partial^2 f}{\partial x_i\,\partial x_j}=\frac{\partial^2 f}{\partial x_j\,\partial x_i}. \tag{3}$$</p>
+
+  <p>这就是 1873 年 H. A. Schwarz 严格证明的二阶偏导对易性 (Clairaut 1740 年已注意到现象, Euler 也讨论过, 但严格条件由 Schwarz 给出). 反过来: 如果你写下一个候选的 "$\mathrm{d}f=A\,\mathrm{d}x+B\,\mathrm{d}y$" 但 $\partial A/\partial y\neq\partial B/\partial x$, 那么<strong>没有这种 $f$ 存在</strong> — 你写的不是恰当形式.</p>
+
+  <p>这条定理在热力学里直接生出 Maxwell 关系族. 由 $\mathrm{d}U=T\mathrm{d}S-p\mathrm{d}V$ 与 $\partial^2 U/\partial S\partial V=\partial^2 U/\partial V\partial S$ 立刻得 $(\partial T/\partial V)_S=-(\partial p/\partial S)_V$. 这种"四个偏导互换"的规律是 Maxwell 1871 年在《Theory of Heat》里整理出来的, 本质就是 Schwarz 定理在热力学势上的应用.</p>
+
+  <h2>三、链式法则: 路径与变量的接口</h2>
+
+  <p>链式法则把"沿一条路走"翻译回"独立变量怎么变". 设 $f:\mathbb{R}^n\to\mathbb{R}$ 可微, 路径 $\gamma:t\mapsto(x_1(t),\dots,x_n(t))$ 也可微, 则复合函数 $g(t):=f(\gamma(t))$ 满足</p>
+
+  <p>$$\frac{\mathrm{d}g}{\mathrm{d}t}=\sum_{i=1}^n \frac{\partial f}{\partial x_i}\bigg|_{\gamma(t)}\dot x_i(t). \tag{4}$$</p>
+
+  <p>更一般地, 若 $\mathbf{F}:\mathbb{R}^m\to\mathbb{R}^n$ 与 $\mathbf{G}:\mathbb{R}^n\to\mathbb{R}^k$ 都可微, 则复合 $\mathbf{G}\circ\mathbf{F}$ 在 $\mathbf{u}_0$ 处的<strong>雅可比矩阵</strong>是两个雅可比矩阵的乘积:</p>
+
+  <p>$$J_{\mathbf{G}\circ\mathbf{F}}(\mathbf{u}_0)=J_{\mathbf{G}}(\mathbf{F}(\mathbf{u}_0))\,J_{\mathbf{F}}(\mathbf{u}_0).$$</p>
+
+  <p>这里 $J_{\mathbf{F}}$ 是一个 $n\times m$ 矩阵, 元素 $(J_{\mathbf{F}})_{ij}=\partial F_i/\partial u_j$. 它的行列式 $\det J_{\mathbf{F}}$ (当 $m=n$) 称为<strong>雅可比行列式</strong>, 描述局部体积元的拉伸比 — 这是多元换元积分公式 $\int f\,\mathrm{d}^n x=\int f|\det J|\,\mathrm{d}^n u$ 里那个"绝对值雅可比"的来源. 我们要分清: 雅可比矩阵 (链式法则的对象) 是一整张方阵, 雅可比行列式 (换元公式的因子) 只是它的一个标量.</p>
+
+  <p>具体一点. 如果 $f(x,y)$, 而 $x=r\cos\theta$, $y=r\sin\theta$, 那么 $\partial f/\partial r=\cos\theta\cdot\partial_x f+\sin\theta\cdot\partial_y f$ — 沿径向一动, $x$ 和 $y$ 都跟着动, 链式法则把两份贡献加起来. 学过梯度的话, 这等价于 $\partial f/\partial r=\hat{r}\cdot\nabla f$ — 梯度在径向上的投影.</p>
+
+  <h2>四、具体计算: 验证热力学循环关系</h2>
+
+  <p>现在打开本节最有看头的式子: 对任意三个变量 $x,y,z$ 之间满足一条约束 $\Phi(x,y,z)=0$ (例如理想气体的状态方程 $pV-Nk_B T=0$), 它们两两的偏导满足</p>
+
+  <p>$$\left(\frac{\partial x}{\partial y}\right)_z\left(\frac{\partial y}{\partial z}\right)_x\left(\frac{\partial z}{\partial x}\right)_y=-1. \tag{5}$$</p>
+
+  <p>这是<strong>三变量循环 (cyclic) 关系</strong>, 也叫"$-1$ 关系". 推导只用一次全微分加链式法则.</p>
+
+  <p>由 $\Phi(x,y,z)=0$ 隐定义 $z$ 为 $x,y$ 的函数, 取全微分 $\Phi_x\mathrm{d}x+\Phi_y\mathrm{d}y+\Phi_z\mathrm{d}z=0$, 其中 $\Phi_x=\partial\Phi/\partial x$ 等. 把 $z$ 看成自变量, 让 $y$ 为 $x,z$ 的函数, 在 $\mathrm{d}z=0$ 切片上读: $\Phi_x\mathrm{d}x+\Phi_y\mathrm{d}y=0$, 即 $(\partial y/\partial x)_z=-\Phi_x/\Phi_y$. 同理 $(\partial z/\partial y)_x=-\Phi_y/\Phi_z$, $(\partial x/\partial z)_y=-\Phi_z/\Phi_x$. 相乘:</p>
+
+  <p>$$\left(\frac{\partial y}{\partial x}\right)_z\left(\frac{\partial z}{\partial y}\right)_x\left(\frac{\partial x}{\partial z}\right)_y=\left(-\frac{\Phi_x}{\Phi_y}\right)\left(-\frac{\Phi_y}{\Phi_z}\right)\left(-\frac{\Phi_z}{\Phi_x}\right)=-1.$$</p>
+
+  <p>翻一翻分子分母 (用 $(\partial x/\partial y)_z=1/(\partial y/\partial x)_z$ — 这是隐函数定理的另一表述), 即得式 (5).</p>
+
+  <p>负号哪儿来? 来自三个偏导每个都给一个负号, 三个负号相乘得一个负号. 物理上的解释更直白: 三个坐标里, 你顺时针沿等高线绕一圈 (固定一个变量, 改另一个), 要回到起点必然有一次"逆向", 这个逆向就贡献那个 $-$. 把它当成"绕环求循环不变量"也行.</p>
+
+  <p>代具体气体验证. 取理想气体 $pV=Nk_B T$, 三个变量 $(p,V,T)$. 算三个偏导:</p>
+
+  <p>$$\left(\frac{\partial p}{\partial V}\right)_T=-\frac{Nk_B T}{V^2}=-\frac{p}{V},\quad\left(\frac{\partial V}{\partial T}\right)_p=\frac{Nk_B}{p}=\frac{V}{T},\quad\left(\frac{\partial T}{\partial p}\right)_V=\frac{V}{Nk_B}=\frac{T}{p}.$$</p>
+
+  <p>三者相乘: $(-p/V)(V/T)(T/p)=-1$. 漂亮.</p>
+
+  <p>这条循环关系不只是好玩 — 它在实验里把"难测的偏导"转成"好测的偏导"是常用工具. 例如 $(\partial T/\partial p)_V$ (定容下温度随压强的变化, 难直接测) 可以由膨胀系数 $\alpha=(1/V)(\partial V/\partial T)_p$ 与等温压缩率 $\kappa_T=-(1/V)(\partial V/\partial p)_T$ 间接给出: $(\partial T/\partial p)_V=\kappa_T/\alpha$ — 卷二里 Clausius-Clapeyron 方程的推导就靠这一类倒腾.</p>
+
+  <h2>五、物理回响、历史与极限</h2>
+
+  <p>多元微分这把锁打开后, 我们之前在卷一、卷二、卷三里随手用的好几样工具都看清了底盘:</p>
+
+  <p><strong>卷二 · Legendre 变换.</strong> 由 $\mathrm{d}U=T\mathrm{d}S-p\mathrm{d}V$, 想换个独立变量到 $(T,V)$, 定义 Helmholtz 自由能 $F=U-TS$. 全微分给 $\mathrm{d}F=\mathrm{d}U-T\mathrm{d}S-S\mathrm{d}T=-S\mathrm{d}T-p\mathrm{d}V$ — 多余的 $T\mathrm{d}S$ 被刚好对消, 自变量自动变成 $(T,V)$. 这一步全靠全微分的运算规则, 是 Legendre 1787 年用在分析力学 (从 $L(q,\dot q)$ 到 $H(q,p)$) 上的同一招.</p>
+
+  <p><strong>卷一 · 彩虹的极值条件.</strong> 一束光在水滴里按斯涅尔 $\sin\theta_i=n\sin\theta_r$ 折射, 出射偏角 $D(\theta_i)=2(\theta_i-\theta_r)+\pi-2\theta_r$. 求极值 $\mathrm{d}D/\mathrm{d}\theta_i=0$ 时 $\theta_r$ 也跟着变 — 这就是带约束的链式法则: $\mathrm{d}D/\mathrm{d}\theta_i=\partial_{\theta_i}D+\partial_{\theta_r}D\cdot(\mathrm{d}\theta_r/\mathrm{d}\theta_i)$, 其中 $\mathrm{d}\theta_r/\mathrm{d}\theta_i=\cos\theta_i/(n\cos\theta_r)$ 由对斯涅尔关系两边求导得到. 一切都在式 (4) 的框架里.</p>
+
+  <p><strong>卷三 · RG β 函数.</strong> 跑动耦合 $\alpha(\mu)$ 满足 $\beta(\alpha)=\mathrm{d}\alpha/\mathrm{d}\ln\mu$. "$\ln\mu$" 是参数化的"路径", 链式法则给在不同方案 (scheme) 间的换算: 若 $\bar\alpha=\bar\alpha(\alpha,\mu)$, 那 $\bar\beta=(\partial\bar\alpha/\partial\alpha)\beta+(\partial\bar\alpha/\partial\ln\mu)$. 物理在 IR 渐近的固定点处, 两边的 $\beta$ 同时为零 — 这是方案无关的语言.</p>
+
+  <p>历史上多元微分的成型走了一百多年. <strong>Leibniz</strong> 1684 年在《Acta Eruditorum》上发表第一篇微积分论文时已经隐含偏微分的想法 (他用 "differentialis" 描述函数对其中一个变量变化时的变量改变), 但记号还没分化. <strong>Euler</strong> 1734 年起在弦振动方程 $\partial^2 u/\partial t^2=c^2\partial^2 u/\partial x^2$ 一类研究里大量使用偏导, 但他的记号是 $(\mathrm{d}u/\mathrm{d}x)$ 加文字说明. 现代记号 $\partial$ 是 <strong>Lagrange</strong> 1797 年的《Théorie des fonctions analytiques》正式采用的, 从此偏导和全导有了视觉区分. <strong>Schwarz</strong> 1873 年的工作把"二阶偏导对易"放在了一个干净的连续性条件下, 反例 (二阶偏导存在但不连续, 对易性失效) 也由 Peano 在 1890 年代给出. 链式法则的代数表述 — 雅可比矩阵相乘 — 由 <strong>Jacobi</strong> 1841 年在《De determinantibus functionalibus》里给出.</p>
+
+  <p>到这里, 多元微积分把"沿一条路走"和"在多变量空间里求极值"这两件事的接口建立起来了. 但还有件事没说: 物理里很多场不是数, 而是带方向的向量 (电场、流速); 它们在不同坐标下变换. 怎么把"导数"推广到向量场? 出路是<strong>梯度、散度、旋度</strong>三件套 — 它们在直角坐标下都只是偏导的组合, 但它们的几何意义 (势的方向、流出率、转动率) 是坐标无关的. 这是下一节要做的事.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节确立了多元微分的三件兵器: 偏导数 (式 1) 显式标出"固定谁", 全微分 (式 2) 是切空间上的一形式, 链式法则 (式 4) 把路径与独立变量接到一起; Schwarz 定理 (式 3) 保证二阶偏导对易, 由此生出热力学的 Maxwell 关系; 循环关系 (式 5) 是隐函数定理在三变量约束下的指纹. 我们用 $pV=Nk_BT$ 验证了 $-1$ 的来历. 在卷二的 Legendre 变换里 $F=U-TS$, 在卷一的彩虹极值里 $\mathrm{d}D/\mathrm{d}\theta_i=0$, 在卷三的 RG 流里 $\mathrm{d}\alpha/\mathrm{d}\ln\mu$ — 多元微分都是底盘. 下一节: 梯度、散度、旋度 — 当导数遇到向量场.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="01-epsilon-delta.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="03-curl-divergence.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

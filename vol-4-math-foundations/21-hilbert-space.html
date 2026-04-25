@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert 空间 — 量子态住在哪里? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="20-forms.html">← 上一节</a>
+  <span class="chapter-title">第 21 节 / 30 · 第 5 部分 · 函数空间与算符 · 第四卷·物理学的数学基础</span>
+  <a href="22-self-adjoint.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Hilbert 空间 — 量子态住在哪里?</h1>
+  <div class="sub">—— 完备的内积空间</div>
+
+  <div class="abstract">本节从一个非常具体的物理问题出发: 量子力学中的波函数 $\psi(x)$ 满足归一化条件 $\int|\psi|^2\,\mathrm dx=1$, 那么所有这样的"平方可积"函数构成的集合究竟是什么样的空间? 我们将看到, 它需要满足三件事 — 配上一个内积、由内积导出范数、且在该范数下"无洞"(即每个 Cauchy 序列收敛到空间内的元素). 这就是 Hilbert 空间. 我们严格定义内积、范数、Cauchy 序列与完备性, 给出两个核心例子 $\ell^2$ 与 $L^2(\mathbb R)$, 并通过谐振子本征态 $|n\rangle$ 看完备正交基如何把任意波包"展开". 最后我们证明这两个空间通过 Hermite 变换同构, 从而抽象的可分 Hilbert 空间 (无限维) 在同构意义下唯一. 这是 von Neumann 1929–1932 年给出量子力学严格数学基础的核心.</div>
+
+  <p>上一节我们看到, 微分形式给流形上的积分赋予了一个无坐标的、几何上自然的语言. 但我们在前几卷里反复碰到另一类空间 — 量子力学的态空间. 一个粒子在一维直线上的状态用波函数 $\psi(x)$ 描述, 我们要求 $\int_{-\infty}^{\infty}|\psi(x)|^2\,\mathrm dx=1$, 因为 $|\psi|^2$ 是概率密度, 总概率必须是 $1$. 但凡这样的函数都被允许, 而且我们还希望两个波函数能"做内积" $\langle\phi|\psi\rangle=\int\overline{\phi(x)}\psi(x)\,\mathrm dx$, 用来计算跃迁振幅与正交性.</p>
+
+  <p>这看起来跟卷四第 6–7 节里的有限维向量空间没有本质差别 — 都有内积、有正交、有基展开. 但有一个新麻烦: 函数构成的空间是无限维的, 而无限维空间一不小心就"不完备" — 一列点逼近的极限可能不再属于这个空间. 比如有理数列可以收敛到 $\sqrt 2$, 而 $\sqrt 2$ 不是有理数; 类似地, 一列连续函数可以"收敛"到一个不连续函数, 一列多项式可以收敛到一个非多项式. 量子力学要谱分解、要展开成本征态, 我们就必须要求空间"无洞", 即任意应该收敛的列真的有极限点. 这就是 Hilbert 空间多出来的那道关键性质 — <em>完备性</em>.</p>
+
+  <h2>一、内积、范数, 以及 Cauchy 序列</h2>
+
+  <p>先复习我们从第 7 节就在用的内积. 令 $\mathcal H$ 是一个复向量空间. 一个 <em>内积</em> 是映射 $\langle\cdot,\cdot\rangle:\mathcal H\times\mathcal H\to\mathbb C$, 对所有 $u,v,w\in\mathcal H$, $\alpha\in\mathbb C$, 满足:</p>
+
+  <p>$$
+  \langle u,v\rangle = \overline{\langle v,u\rangle},\quad
+  \langle u,\alpha v+w\rangle = \alpha\langle u,v\rangle+\langle u,w\rangle,\quad
+  \langle u,u\rangle\ge 0,\ \text{等于零当且仅当 }u=0. \tag{1}
+  $$</p>
+
+  <p>(我们采用物理学家约定: 第二个变量线性, 第一个共轭线性. 数学家有时反过来.) 由内积导出 <em>范数</em></p>
+
+  <p>$$
+  \|v\| := \sqrt{\langle v,v\rangle}.
+  $$</p>
+
+  <p>它满足三角不等式 $\|u+v\|\le\|u\|+\|v\|$ (这是 Cauchy–Schwarz 不等式 $|\langle u,v\rangle|\le\|u\|\|v\|$ 的一个直接后果). 范数把抽象向量"长度"具体化, 同时给出距离 $d(u,v)=\|u-v\|$, 让我们能谈"两个向量靠得多近".</p>
+
+  <p>有了距离, 就可以谈极限. 一列向量 $\{x_n\}_{n=1}^\infty\subset\mathcal H$ 称为 <em>Cauchy 序列</em>, 如果</p>
+
+  <p>$$
+  \forall\,\epsilon\gt 0,\ \exists\,N,\ \forall\,m,n\ge N: \ \|x_n-x_m\|\lt \epsilon.
+  $$</p>
+
+  <p>直观说: 序列里的元素到后来彼此越来越近, 互相挤成一团. 它的"应该"含义是序列收敛 — 但"应该"不等于"真的". 一个空间被称为 <em>完备的</em>, 如果其中每一个 Cauchy 序列都有极限 $x\in\mathcal H$ 使得 $\|x_n-x\|\to 0$. 完备性是无限维分析里最关键的"公理性"性质, 它保证了我们想要的极限点真的"在屋子里"而不是在屋外的某个空地上.</p>
+
+  <p>到这里我们就可以下定义了:</p>
+
+  <p>$$
+  \boxed{\,\mathcal H \text{ 是 \emph{Hilbert 空间} } \iff \mathcal H \text{ 是带内积 (1) 的复向量空间, 且在范数 } \|\cdot\| \text{ 下完备.}\,} \tag{2}
+  $$</p>
+
+  <p>有限维内积空间 ($\mathbb C^n$) 总是完备的, 所以是 Hilbert 空间. 真正有意思的事情发生在无限维.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Hilbert 空间作为完备内积空间, 以及完备性的反面</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>Hilbert 空间 $\mathcal H$ 作为完备内积空间; 一列 Cauchy 序列收敛到空间内的极限点; 旁边一个不完备的反例 (有理数空间) 中 Cauchy 序列收敛到空间外</dd>
+      <dt>必含元素</dt><dd>(a) 一个抽象无限维空间区域 (用一个椭圆或带波形纹理的盘表示, 内部画一些"维度方向"虚线); (b) 区域内一列点 $x_1,x_2,x_3,\ldots$ 逐渐相互靠拢, 收敛到区域<em>内部</em>的极限点 $x$; (c) 用箭头标 $\|x_n-x_m\|\to 0$ 与 $x_n\to x\in\mathcal H$; (d) 右侧画一个"残缺"区域 (空间 $\mathbb Q$, 表示有理点稀疏排布), 一列点逼近一个空点 (代表 $\sqrt 2$), 该点用空心圆表示, 显示极限不在空间里; (e) 给两侧分别贴标签"完备 (Hilbert)" 与 "不完备"</dd>
+      <dt>几何/示意精度</dt><dd>序列点逐步靠拢清晰可见 (相邻点距离按几何级数缩小); 实心点 vs 空心点对比鲜明; 极限是否在区域内一目了然</dd>
+      <dt>标签与公式</dt><dd>$\mathcal H$, $x_n$, $\|x_n-x_m\|\to 0\Rightarrow x_n\to x\in\mathcal H$; 反例方框内 $\sqrt 2\notin\mathbb Q$</dd>
+      <dt>风格建议</dt><dd>白底, 完备空间用浅蓝填充, 不完备反例用浅灰; 序列点深色实心, 极限点用红色突出, 反例的"洞"用空心圆带虚线圆圈强调</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  Hilbert 空间是完备的内积空间: 任何 Cauchy 序列都有极限点在空间内; 反例 (有理数空间) 中 Cauchy 序列可以收敛到空间外的"洞".</figcaption>
+  </figure>
+
+  <h2>二、两个范本: $\ell^2$ 与 $L^2(\mathbb R)$</h2>
+
+  <p>抽象定义需要血肉. 我们给两个最重要的无限维 Hilbert 空间.</p>
+
+  <p><strong>例 (a) — 平方可和数列空间 $\ell^2$.</strong> 取所有形如 $x=(x_1,x_2,x_3,\ldots)$ 的复数列, 其中 $\sum_{n=1}^\infty|x_n|^2\lt \infty$. 内积定义为</p>
+
+  <p>$$
+  \langle x,y\rangle = \sum_{n=1}^\infty \overline{x_n}y_n.
+  $$</p>
+
+  <p>由 Cauchy–Schwarz 知该级数绝对收敛. 完备性的证明思路是: 给定 Cauchy 序列 $\{x^{(k)}\}_k$, 每一坐标 $x^{(k)}_n$ 是 $\mathbb C$ 中的 Cauchy 数列, 因此收敛到某个 $x_n$; 用对角化论证可以证明 $x=(x_n)\in\ell^2$ 且 $x^{(k)}\to x$. (此处我们略去技术细节, 是一个经典的 $\epsilon/3$ 论证.) 这是离散版本的"无限维欧氏空间".</p>
+
+  <p><strong>例 (b) — 平方可积函数空间 $L^2(\mathbb R)$.</strong> 取所有 (Lebesgue 可测的) 复值函数 $f:\mathbb R\to\mathbb C$, 满足 $\int_{-\infty}^\infty|f(x)|^2\,\mathrm dx\lt \infty$. 内积定义为</p>
+
+  <p>$$
+  \langle f,g\rangle = \int_{-\infty}^\infty \overline{f(x)}g(x)\,\mathrm dx.
+  $$</p>
+
+  <p>这正是量子力学里波函数的空间. 完备性由 Riesz–Fischer 定理保证 — 这一定理需要 Lebesgue 积分而非 Riemann 积分, 这就是为什么 20 世纪初对积分理论的扩展 (Lebesgue 1902) 是 Hilbert 空间理论的前提.</p>
+
+  <p>(细节注: $L^2$ 严格来说是"几乎处处相等"的等价类的空间, 否则 $\|f\|=0$ 的函数不只有零函数; 物理学家通常忽略这一约定的细致.)</p>
+
+  <p>这两个空间还有一个非凡共性 — 它们都是 <em>可分</em> 的, 即都拥有可数的稠密子集, 等价地都拥有可数的完备正交基.</p>
+
+  <h2>三、完备正交基, 与谐振子的具体例子</h2>
+
+  <p>设 $\{e_n\}_{n=1}^\infty\subset\mathcal H$ 是一组向量, 称为 <em>正交规范集</em>, 如果 $\langle e_m,e_n\rangle=\delta_{mn}$. 它叫一个 <em>完备正交基</em> (有时也称希尔伯特基), 如果每一个 $v\in\mathcal H$ 都可以唯一地展开为</p>
+
+  <p>$$
+  v = \sum_{n=1}^\infty c_n e_n,\qquad c_n=\langle e_n,v\rangle, \tag{3}
+  $$</p>
+
+  <p>且部分和按范数收敛: $\|v-\sum_{n=1}^N c_n e_n\|\to 0$. 同时 Parseval 恒等式 $\|v\|^2=\sum_n|c_n|^2$ 成立 — 这就是无限维版本的"勾股定理". 一个空间是可分 Hilbert 空间, 当且仅当它有这样一组可数完备正交基.</p>
+
+  <p>来看一个具体例子. 在 $L^2(\mathbb R)$ 上, 一维量子谐振子哈密顿量 $\hat H=\tfrac{1}{2}(\hat p^2+\hat x^2)$ (取 $\hbar=m=\omega=1$) 的本征态被记作 $|n\rangle$, $n=0,1,2,\ldots$, 对应的波函数是</p>
+
+  <p>$$
+  \psi_n(x)=\frac{1}{\sqrt{2^n n!\sqrt\pi}}\,H_n(x)\,e^{-x^2/2},
+  $$</p>
+
+  <p>其中 $H_n$ 是 Hermite 多项式. 用 Hermite 多项式的正交关系 $\int H_m(x)H_n(x)e^{-x^2}\,\mathrm dx=2^n n!\sqrt\pi\,\delta_{mn}$ 直接验证</p>
+
+  <p>$$
+  \langle n|m\rangle = \int_{-\infty}^\infty\overline{\psi_n(x)}\psi_m(x)\,\mathrm dx = \delta_{nm}.
+  $$</p>
+
+  <p>这一组确实正交. 它的 <em>完备性</em> — 即每一个 $f\in L^2(\mathbb R)$ 都能展开成 $f=\sum_{n=0}^\infty c_n\psi_n$ 且部分和按 $L^2$ 范数收敛 — 是 Hermite 多项式经典理论的内容, 等价于"加权多项式 $\{x^k e^{-x^2/2}\}$ 在 $L^2(\mathbb R)$ 中稠密"这一定理 (其证明要用到 Stone–Weierstrass 或 Fourier 变换). 我们做一个具体计算把它放心地用上:</p>
+
+  <p>取一个高斯波包 $f(x)=\pi^{-1/4}e^{-x^2/2}$ (即基态本身). 直接</p>
+
+  <p>$$
+  c_0=\langle 0|f\rangle=\int\psi_0(x)f(x)\,\mathrm dx=\pi^{-1/2}\int e^{-x^2}\,\mathrm dx=1,
+  $$</p>
+
+  <p>而对 $n\ge 1$, 由正交性 $c_n=0$. 所以 $f=|0\rangle$, $\|f\|^2=|c_0|^2=1$. Parseval 验证. 一个稍移位的高斯波包 $f(x)=\pi^{-1/4}e^{-(x-a)^2/2}$ — 它就是相干态 $|\alpha\rangle$ ($\alpha=a/\sqrt 2$) — 系数变成</p>
+
+  <p>$$
+  c_n = e^{-|\alpha|^2/2}\frac{\alpha^n}{\sqrt{n!}}, \qquad
+  \|f\|^2=\sum_n |c_n|^2 = e^{-|\alpha|^2}\sum_n\frac{|\alpha|^{2n}}{n!}=1. \tag{4}
+  $$</p>
+
+  <p>系数模方满足 $|c_n|^2=e^{-|\alpha|^2}|\alpha|^{2n}/n!$, 这正是参数 $|\alpha|^2$ 的 Poisson 分布 — 相干态在 Fock 基上的占据数恰为 Poisson 分布, 对应经典激光光场的光子数统计. 一个具体的高斯波包就这样被无穷多个谐振子本征态完美地"组装"出来, 而完备性 (3) 保证了组装一定收敛.</p>
+
+  <p>反过来, 这也告诉我们一件事: $L^2(\mathbb R)$ 与 $\ell^2$ 通过 $f\leftrightarrow(c_0,c_1,c_2,\ldots)$ 这个映射是同构的. 抽象上可以证明:</p>
+
+  <p>$$
+  \text{所有可分无限维 Hilbert 空间在保内积同构意义下唯一}, \quad \mathcal H\cong\ell^2. \tag{5}
+  $$</p>
+
+  <p>这个结论惊人地干净 — 不像 Lie 群或流形那样种类繁多, 可分 Hilbert 空间 (按维数划分) 只有一个. 这是 von Neumann 1929 年证明的, 也是为什么"Hilbert 空间"作为单一概念就足以承载所有可分 QM 态空间.</p>
+
+  <h2>四、物理回响、von Neumann, 与历史</h2>
+
+  <p>完备性的物理意义至此就清楚了: 任意波包 $\psi\in L^2$ 总能展开为 $\hat H$ 的本征态级数; 谱分解 (我们将在下一节系统讨论) 收敛于 $L^2$ 范数; 期望值 $\langle\psi|\hat A|\psi\rangle$ 等可观测量是良定义的连续泛函. 没有完备性, 这些操作中的极限可能跑到空间外, 整个 QM 形式系统就站不稳.</p>
+
+  <p>这门数学在前几卷里的痕迹至少有这些:</p>
+
+  <ul>
+    <li><strong>QM 单粒子态空间.</strong> 卷三 01–02 我们写下 Schrödinger 方程时, 默认 $\psi\in L^2(\mathbb R^3)$, 时间演化 $U(t)=e^{-i\hat H t/\hbar}$ 是 $L^2$ 上的单参数酉群 (Stone 定理).</li>
+    <li><strong>二次量子化与 Fock 空间.</strong> 卷三 04 我们把单粒子 Hilbert 空间 $\mathcal H$ 张量积起来再对称/反对称化, 做成 Fock 空间 $\mathcal F=\bigoplus_{n=0}^\infty\mathcal H^{\otimes_s n}$ (玻色) 或 $\bigoplus_{n=0}^\infty\mathcal H^{\otimes_a n}$ (费米). 它本身就是一个 Hilbert 空间 — 直和与 (适当意义下的) 张量积保完备性.</li>
+    <li><strong>玻色/费米算符.</strong> 卷二 16 我们让产生湮灭算符 $a^\dagger,a$ 作用在 Fock 空间上, 它们是稠定无界算符, 必须用 Hilbert 空间的语言才能严谨表述.</li>
+    <li><strong>Bra–ket 符号.</strong> 卷四第 7 节我们已经熟悉 $\langle\phi|\psi\rangle$, 但本节才把它放在严格的无限维框架中 — Riesz 表示定理保证每个连续线性泛函都能写成内积形式, 所以"bra"作为对偶向量与"ket"作为向量的对应是同构的.</li>
+  </ul>
+
+  <p>从历史看, "Hilbert 空间"这个名字与三位人物紧密相关. <em>David Hilbert</em> (1862–1943) 在 1900 年代研究积分方程 (Fredholm 1903 之后那一波热潮) 时, 把核函数视作"无穷维矩阵", 从而开始系统讨论 $\ell^2$ 形式的空间, 给出特征展开等结论. 那个时代他的学生 <em>Erhard Schmidt</em> 在 1908 年的论文中第一次抽象地讨论了 $\ell^2$ 上的几何 — 正交、投影、基展开, 实际上把 Hilbert 工作背后的几何结构提炼了出来. 但严格的公理化、"Hilbert 空间"这个名词的固定与系统理论, 要等到 <em>John von Neumann</em> (1903–1957) 1929 年在哥廷根写的论文 <em>Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren</em>; 后续他在普林斯顿 (1930–1932) 把这套语言系统应用到量子力学, 写成 1932 年的奠基之作 <em>Mathematische Grundlagen der Quantenmechanik</em>. 这本书为海森堡的矩阵力学与薛定谔的波动力学提供了统一的数学基础: 矩阵力学住在 $\ell^2$, 波动力学住在 $L^2(\mathbb R^3)$, 而 (5) 告诉我们二者是抽象同构的同一个 Hilbert 空间. Heisenberg–Schrödinger 之争至此从形式上化解, "等价"的意思被精确地定义出来了.</p>
+
+  <p>顺带提一句, von Neumann 在同一本书里还首次把"测量"与"幺正演化"严格分开, 提出投影测量与密度算符 — 这一切都需要 Hilbert 空间的几何作底盘. 我们下一节讨论自伴算符与谱定理时会用到这些底盘.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Hilbert 空间是配上内积 (1) 且在导出范数下完备的复向量空间, 即定义 (2). 完备性保证 Cauchy 序列在空间内有极限, 让谱分解、本征展开、期望值这些 QM 操作良定义. 两个核心范本是 $\ell^2$ 与 $L^2(\mathbb R)$, 它们都可分, 并且通过 Hermite 变换 (谐振子本征态完备基, 见 (3) 与计算 (4)) 互相同构 — 进而所有可分无限维 Hilbert 空间彼此同构 (5). 这是 von Neumann 1929–1932 年统一 Heisenberg 矩阵力学 ($\ell^2$) 与 Schrödinger 波动力学 ($L^2$) 的关键. 卷三 01–02 的单粒子 QM、04 的 Fock 空间、卷二 16 的玻色费米算符都建立在这一基础之上. 下一节我们要在这基础上讨论自伴算符与谱定理 — 那是从空间走向"可观测量"的一步.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="20-forms.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="22-self-adjoint.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自伴算符与谱定理 — 测量值为什么都是实数? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="21-hilbert-space.html">← 上一节</a>
+  <span class="chapter-title">第 22 节 / 30 · 第 5 部分 · 函数空间与算符 · 第四卷·物理学的数学基础</span>
+  <a href="23-uncertainty.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>自伴算符与谱定理 — 测量值为什么都是实数?</h1>
+  <div class="sub">—— 谱测度与连续 / 离散谱</div>
+
+  <div class="abstract">本节从一个关于实验的观察出发: 仪器读出来的能量、位置、动量, 永远是实数. 量子力学却把它们写成 Hilbert 空间上的算符 — 一个把矢量映成矢量的线性映射. 怎么保证算符的"读数"是实的? 答案是要求它 <em>自伴</em> (self-adjoint). 我们将严格区分自伴与"看起来对称"的厄米 (Hermitian) 条件 — 在有限维它们是同一件事, 在无限维却差出整整一个定义域问题. 在这之后, 我们看 <em>谱定理</em> 把自伴算符写成一个谱测度的积分 $A=\int_{\sigma(A)}\lambda\,\mathrm dE_\lambda$, 其中谱可以是离散点 (谐振子能级 $\hbar\omega(n+\tfrac12)$), 也可以是连续区间 (位置 $\hat x$ 的谱是整条实轴). Stone 定理告诉我们: 自伴等价于演化算符 $e^{-iAt}$ 是幺正的 — QM 概率守恒的全部数学秘密在此. 历史上 Hilbert (1906) 处理了紧算符, von Neumann 在 1929–32 年间补全无界自伴算符的版本, 这正是量子力学公理化的诞生时刻.</div>
+
+  <p>上一节我们把状态空间从有限维抬到无限维 — Hilbert 空间 $\mathcal H$. 现在要在这空间上"测量". 实验上每一次读数 — 比如用量热计读出原子的能级跃迁释放的能量, 用磁谱仪测电子的磁矩, 用闪烁屏看电子打到屏幕的位置 — 都是一个具体的实数. 但量子力学公理告诉我们, "可观测量"不是一个数, 而是一个作用在 $\mathcal H$ 上的线性算符 $A$. 凭什么这两件事兼容?</p>
+
+  <p>第 8、9 节我们对有限维矩阵已经熟悉: 厄米矩阵 $A^\dagger=A$ 的本征值是实的, 这就够了. 但 $L^2(\mathbb R)$ 是无限维的, 算符的"本征值"未必存在于空间里 — 位置算符 $\hat x f(x)=xf(x)$ 哪有本征函数? 一个所谓的本征态 $|x_0\rangle$ 对应的应该是个 $\delta$ 函数, 而 $\delta\notin L^2$. 这一节我们就把这件事讲清楚: 自伴的精确定义、谱的三种可能 (点谱、连续谱、残余谱), 谱定理把它们一齐打包成谱测度, 以及为什么自伴 ⟺ 演化幺正.</p>
+
+  <h2>一、伴算符 — 从有限维的"转置共轭"出发</h2>
+
+  <p>先从有限维热身. 在 $\mathbb C^n$ 上一个矩阵 $A$ 的厄米伴随 $A^\dagger$ 由 $\langle Au,v\rangle=\langle u,A^\dagger v\rangle$ 定义, 具体写就是 $(A^\dagger)_{ij}=\overline{A_{ji}}$ — 转置加复共轭. 厄米 (即 $A=A^\dagger$) 当然就是矩阵满足这条等式. 这层楼上一切都好.</p>
+
+  <p>抬到 Hilbert 空间, 第一件令人不快的事是: 物理上重要的算符通常 <em>没有定义在整个 $\mathcal H$ 上</em>. 比如动量算符 $\hat p=-i\hbar\,\mathrm d/\mathrm dx$ 把可微函数映成可微函数, 但 $L^2(\mathbb R)$ 里大部分函数根本不可微. 我们必须先指定一个稠密子集 $D(A)\subset\mathcal H$ — 算符的 <em>定义域</em> — 才能谈这个算符. 然后伴随的定义就比有限维多了一层定义域的考究.</p>
+
+  <p>设 $A$ 是稠密定义的算符, $D(A)$ 是它的定义域. 我们说一个矢量 $v\in\mathcal H$ 属于 $D(A^*)$, 当且仅当存在 $w\in\mathcal H$ 使得对所有 $u\in D(A)$ 有 $\langle Au,v\rangle=\langle u,w\rangle$; 此时定义 $A^*v:=w$. 把这件事打包成定义:</p>
+
+  <p>$$
+  D(A^*)=\{v\in\mathcal H: u\mapsto\langle Au,v\rangle\text{ 在 }D(A)\text{ 上连续}\},\quad \langle Au,v\rangle=\langle u,A^*v\rangle\text{ 对一切 }u\in D(A). \tag{1}
+  $$</p>
+
+  <p>注意 $D(A^*)$ 由 $A$ 与 $D(A)$ 唯一决定, 是一个被算法读出的子空间, 不能任意指定. 现在自伴的定义就清楚了:</p>
+
+  <p>$$
+  A\text{ 自伴 (self-adjoint)} \;\iff\; A=A^*\text{ 即 }D(A)=D(A^*)\text{ 且两边作用相同}. \tag{2}
+  $$</p>
+
+  <p>所谓 <em>厄米</em> (Hermitian) 或 <em>对称</em> (symmetric) 只要求 $\langle Au,v\rangle=\langle u,Av\rangle$ 对 $u,v\in D(A)$ 成立 — 等价于 $D(A)\subseteq D(A^*)$ 且 $A^*$ 在 $D(A)$ 上与 $A$ 一致, 但允许 $D(A^*)$ 严格大于 $D(A)$. 物理文献里常常把"厄米"和"自伴"混用, 在有限维确实没区别, 但在无限维它们能差出关键的一截 — 著名的反例是: 区间 $[0,1]$ 上 $\hat p=-i\,\mathrm d/\mathrm dx$ 配定义域 $C_0^\infty(0,1)$ (端点为零的光滑函数) 是对称的但 <em>不</em> 自伴; 不同的边界条件给出不同的自伴扩张, 物理上对应不同的盒子 (一端反射、两端反射、周期).</p>
+
+  <h2>二、谱 — 从矩阵本征值到三种谱</h2>
+
+  <p>有限维我们直接谈本征值 $\det(A-\lambda I)=0$ 的根. 无限维谱的定义稍宽一点: $\lambda\in\mathbb C$ 属于 $A$ 的 <em>预解集</em> $\rho(A)$, 当 $A-\lambda I:D(A)\to\mathcal H$ 有有界逆; <em>谱</em> $\sigma(A)$ 是它的余集</p>
+
+  <p>$$
+  \sigma(A)=\mathbb C\setminus\rho(A). \tag{3}
+  $$</p>
+
+  <p>谱可以再细分为三类:</p>
+
+  <ul>
+    <li><strong>点谱</strong> $\sigma_p(A)$: $A-\lambda I$ 不单, 即 $\lambda$ 是真的本征值, 对应一个非零本征矢 $\psi\in D(A)$, $A\psi=\lambda\psi$.</li>
+    <li><strong>连续谱</strong> $\sigma_c(A)$: $A-\lambda I$ 单, 像稠密但不是整个 $\mathcal H$, 逆无界. 这里没有真的本征矢, 但有"近似本征矢" — 一列 $\psi_n\in D(A)$, $\norm{\psi_n}=1$, 而 $\norm{(A-\lambda I)\psi_n}\to 0$, 这种叫 Weyl 序列.</li>
+    <li><strong>残余谱</strong> $\sigma_r(A)$: 像不稠密. 自伴算符没有这种谱.</li>
+  </ul>
+
+  <p>第一个事实是: <em>自伴算符的谱在实轴上</em>. 证明用一行: 取 $\lambda=a+ib$, $b\ne 0$, 对 $\psi\in D(A)$ 算</p>
+
+  <p>$$
+  \norm{(A-\lambda)\psi}^2=\langle(A-a)\psi-ib\psi,(A-a)\psi-ib\psi\rangle=\norm{(A-a)\psi}^2+b^2\norm\psi^2\ge b^2\norm\psi^2,
+  $$</p>
+
+  <p>所以 $A-\lambda$ 单, 且像是闭的; 对 $\bar\lambda$ 同样的不等式说明像稠密 (否则它的正交补里有 $\bar\lambda$ 的本征矢, 自伴时与上式矛盾). 综合得 $A-\lambda$ 双射且逆有界. 因此 $\sigma(A)\subseteq\mathbb R$. 这一行就是"测量值是实数"的全部数学保证.</p>
+
+  <h2>三、三个例子 — 位置, 动量, 谐振子</h2>
+
+  <p>具体看这三个 QM 教科书算符在 $\mathcal H=L^2(\mathbb R)$ 上的谱.</p>
+
+  <p><strong>例 1 · 位置算符 $\hat x$.</strong> 定义 $(\hat x f)(x)=xf(x)$, 定义域 $D(\hat x)=\{f\in L^2:\int x^2|f|^2\lt \infty\}$ (这叫 maximal multiplication domain). 验证自伴: 取 $f,g\in D(\hat x)$,</p>
+
+  <p>$$
+  \langle\hat x f,g\rangle=\int\overline{xf(x)}g(x)\,\mathrm dx=\int\overline{f(x)}xg(x)\,\mathrm dx=\langle f,\hat x g\rangle,
+  $$</p>
+
+  <p>所以对称. 至于 $D(\hat x^*)=D(\hat x)$ 也由乘法算符的标准定理保证. 现在求谱. 假设 $\lambda\in\mathbb R$ 是本征值: $xf(x)=\lambda f(x)$ a.e., 即 $(x-\lambda)f(x)=0$ a.e. 但 $\{x=\lambda\}$ 是测度零集, 所以 $f=0$ a.e. — 没有真本征矢. 然而 $\lambda$ 仍在谱里, 因为我们能造一列 Weyl 序列 — 把指示函数 $\psi_n=\sqrt n\,\chi_{[\lambda-1/(2n),\lambda+1/(2n)]}$ 归一, 算</p>
+
+  <p>$$
+  \norm{(\hat x-\lambda)\psi_n}^2=\int_{\lambda-1/(2n)}^{\lambda+1/(2n)}(x-\lambda)^2\cdot n\,\mathrm dx=\frac{n}{3}\cdot\frac{1}{(2n)^3}\cdot 2 = \frac{1}{12n^2}\to 0.
+  $$</p>
+
+  <p>所以每一个 $\lambda\in\mathbb R$ 都在连续谱里, $\sigma(\hat x)=\mathbb R$, 而 $\sigma_p(\hat x)=\emptyset$. 物理书里写的 $\hat x|x\rangle=x|x\rangle$ 是一种方便的形式记号 — $|x\rangle$ 不是 $L^2$ 矢量, 而是装在它的某个 rigged 扩张 (Gelfand triple) 里的分布; Weyl 序列才是它的严格替身.</p>
+
+  <p><strong>例 2 · 动量算符 $\hat p=-i\hbar\,\mathrm d/\mathrm dx$.</strong> 选 Sobolev 空间 $D(\hat p)=H^1(\mathbb R)=\{f\in L^2:f'\in L^2\}$ (导数取分布意义). Fourier 变换 $\mathcal F$ 把 $\hat p$ 共轭成乘法 $\mathcal F\hat p\mathcal F^{-1}=\hbar k$, 而后者按例 1 是自伴的, 谱为 $\hbar\mathbb R=\mathbb R$. 自伴在共轭下保持, 所以 $\hat p$ 自伴, $\sigma(\hat p)=\mathbb R$ 也是纯连续谱. "动量本征态"形式上是平面波 $e^{ipx/\hbar}$, 同样不在 $L^2$ 里, 是分布. — 这里我们看到位置和动量谱的"形貌"完全一样, 只通过 Fourier 把"位置图"翻成"动量图".</p>
+
+  <p><strong>例 3 · 一维谐振子 $\hat H=\hat p^2/(2m)+\tfrac12 m\omega^2\hat x^2$.</strong> 这才是离散谱的代表. 引入降生算符 $a=\sqrt{m\omega/(2\hbar)}(\hat x+i\hat p/(m\omega))$, $a^\dagger$ 共轭, 它们满足 $[a,a^\dagger]=1$ 与</p>
+
+  <p>$$
+  \hat H=\hbar\omega\!\left(a^\dagger a+\tfrac12\right).
+  $$</p>
+
+  <p>设 $|0\rangle$ 是 $a|0\rangle=0$ 的解 — 在位置表象 $a\psi_0=0$ 给一阶 ODE $\psi_0'=-(m\omega/\hbar)x\psi_0$, 解为高斯 $\psi_0(x)=(m\omega/(\pi\hbar))^{1/4}e^{-m\omega x^2/(2\hbar)}\in L^2$. 接着定义 $|n\rangle=(n!)^{-1/2}(a^\dagger)^n|0\rangle$, 验证 $\hat H|n\rangle=\hbar\omega(n+\tfrac12)|n\rangle$, 而且这族 $\{|n\rangle\}$ 是 $L^2(\mathbb R)$ 的完备正交基 (Hermite 函数). 所以</p>
+
+  <p>$$
+  \sigma(\hat H)=\sigma_p(\hat H)=\Big\{\hbar\omega(n+\tfrac12):n=0,1,2,\ldots\Big\}, \tag{4}
+  $$</p>
+
+  <p>纯离散谱, 每个本征值都在 $L^2$ 里有真本征矢. 本征值之间的距离 $\hbar\omega$ 给固体振动模式的"声子能量"; 零点能 $\hbar\omega/2$ 在卷三 04 二次量子化和卷一 10 黑体谱里都出现过.</p>
+
+  <h2>四、谱定理 — 把算符写成谱测度的积分</h2>
+
+  <p>有限维我们把厄米矩阵对角化 $A=\sum_k\lambda_k P_k$, $P_k$ 是到本征空间的投影. 怎么把这件事推到无限维, 而且包容连续谱? 答案是把求和换成 <em>谱测度</em> 的积分.</p>
+
+  <p>一个 <em>投影值测度</em> (PVM) 是一个映射 $E:\mathcal B(\mathbb R)\to\{\mathcal H\text{ 上正交投影}\}$, 把实轴上的 Borel 集 $B$ 送到一个正交投影 $E(B)=E(B)^*=E(B)^2$, 满足 $E(\emptyset)=0$, $E(\mathbb R)=I$, 以及对不交并 $E(\sqcup B_n)=\sum_n E(B_n)$ (强收敛). 你可以把 $E(B)$ 想成"投到 $A$ 的谱位于 $B$ 那部分的本征空间". 谱定理说:</p>
+
+  <p>$$
+  \boxed{\;A=\int_{\sigma(A)}\lambda\,\mathrm dE_\lambda,\quad D(A)=\Big\{\psi:\int|\lambda|^2\,\mathrm d\langle\psi,E_\lambda\psi\rangle\lt \infty\Big\}.\;} \tag{5}
+  $$</p>
+
+  <p>具体地, 对 $\psi,\varphi\in\mathcal H$, 函数 $\lambda\mapsto\langle\psi,E((-\infty,\lambda])\varphi\rangle$ 是有界变差的, 给出复测度; (5) 中的积分按这个测度的弱积分理解. 离散谱的情形 $E$ 集中在本征值上, $E_\lambda=\sum_{\lambda_k\le\lambda}P_k$, (5) 退化到 $A=\sum_k\lambda_k P_k$. 连续谱的情形 (如 $\hat x$) $E$ 没有跳跃, $E((a,b])$ 就是把函数限制在 $(a,b]$ 上的乘法算符 $\chi_{(a,b]}\cdot$. — 注意 (5) 的几何含义: 自伴算符 = "实数轴上的一族沿谱铺开的正交投影按 $\lambda$ 加权积分".</p>
+
+  <p>这个定理还有一个等价的写法 — <em>函数演算</em>. 对任意 Borel 函数 $f:\mathbb R\to\mathbb C$, 定义</p>
+
+  <p>$$
+  f(A):=\int_{\sigma(A)}f(\lambda)\,\mathrm dE_\lambda.
+  $$</p>
+
+  <p>取 $f(\lambda)=e^{-i\lambda t}$ 给出 <em>演化算符</em></p>
+
+  <p>$$
+  U(t)=e^{-iAt}=\int_{\sigma(A)}e^{-i\lambda t}\,\mathrm dE_\lambda.
+  $$</p>
+
+  <p>因为 $|e^{-i\lambda t}|=1$ 而 $\sigma(A)\subseteq\mathbb R$, $U(t)$ 是有界的, 而且 $U(t)^*U(t)=\int|e^{-i\lambda t}|^2\,\mathrm dE_\lambda=\int 1\,\mathrm dE_\lambda=I$ — <em>幺正</em>. 反过来 Stone 定理说: 任何强连续单参数幺正群 $U(t)=e^{-iAt}$ 的生成元 $A$ 必然自伴. 所以"自伴算符"和"幺正演化"是同一件事的两面, QM 中 $U(t)=e^{-i\hat Ht/\hbar}$ 保持总概率 $\norm{\psi(t)}^2=1$ 的全部根据就在这里.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 自伴算符的谱在实轴上, 离散与连续部分</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>把谱 $\sigma(A)\subseteq\mathbb R$ 按"离散点 + 连续区间"画在数轴上, 同时示意谱测度 $E_\lambda$ 是一个非递减的投影族</dd>
+      <dt>必含元素</dt><dd>(a) 一条水平实数轴 $\mathbb R$, 标 $0$ 与刻度; (b) 数轴上方画几个离散点, 对齐谐振子能级 $\hbar\omega/2,\,3\hbar\omega/2,\,5\hbar\omega/2,\,\ldots$, 画成等间距小圆点; (c) 数轴下方画一段半实线 $[0,\infty)$ 作为自由粒子谱 $E\ge 0$, 用粗带或阴影标出"连续区间"; (d) 在数轴边给一个台阶函数 $E_\lambda$ 示意图: 在每个离散本征值处跳跃, 在连续段平滑增长, 整体非递减从 $0$ 升到 $I$; (e) 上方挂一句公式 $A=\int_{\sigma(A)}\lambda\,\mathrm dE_\lambda$</dd>
+      <dt>几何/示意精度</dt><dd>谱严格落在实轴上 (不偏离); 离散点等距; 连续段从原点向右无界; $E_\lambda$ 的台阶高度与跳跃位置一致</dd>
+      <dt>标签与公式</dt><dd>$\mathbb R$, $\sigma(A)\subseteq\mathbb R$, $\hbar\omega(n+\tfrac12)$, $E\ge 0$, $E_\lambda$, $A=\int\lambda\,\mathrm dE_\lambda$</dd>
+      <dt>风格建议</dt><dd>白底; 离散点用实心黑圆, 连续段用渐变蓝带, $E_\lambda$ 台阶曲线用红色; 数轴细黑线; 公式置于图右上角</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  自伴算符的谱在实轴上, 可以由"离散点谱 (谐振子能级) + 连续谱 (自由粒子能量)"组成. 谱测度 $E_\lambda$ 是一个非递减的正交投影族, 谱定理 (5) 把算符写成对它的积分.</figcaption>
+  </figure>
+
+  <h2>五、物理回响, 历史与开放问题</h2>
+
+  <p>把这一节的结论翻成 QM 公理就是: <em>每个可观测量是 $\mathcal H$ 上的一个 (无界) 自伴算符 $A$; 一次理想测量给出 $\sigma(A)$ 中的一个值; 测到值落在 Borel 集 $B$ 的概率是 $\langle\psi,E(B)\psi\rangle$.</em> 这正是卷三 22《detector》里那一套统计预言的来源 — 探测器读数的统计分布由谱测度直接给出. 卷一 19《波粒》里讨论的"测量过程"在这里被精确化为: 投影 $E(B)$ 把状态投到"读数在 $B$"那一支, 测量塌缩对应这个投影. 卷二 16《玻色费米》里出现的算符的谱给出"分布" — 比如多体哈密顿量的谱直接编码玻色或费米气体的态密度与配分函数.</p>
+
+  <p>具体的对照表:</p>
+  <ul>
+    <li><strong>位置测量</strong> $\hat x$, 谱 $\mathbb R$ 连续: 探测屏上每个像素都是一个 Borel 集, $E(B)$ 把 $\psi$ 限制在那个像素里; 读数概率 $\int_B|\psi(x)|^2\mathrm dx$.</li>
+    <li><strong>能量测量</strong> $\hat H$, 离散谱时给出一组分立的可能值, 例如氢原子的 Lyman、Balmer 系恰是 $\sigma(\hat H)$ 中的相邻差.</li>
+    <li><strong>角动量</strong> $\hat L^2$, 谱为 $\hbar^2\ell(\ell+1)$, $\ell=0,1,2,\ldots$, 解释了 Stern–Gerlach 那种"分立分支".</li>
+    <li><strong>时间演化</strong> $U(t)=e^{-i\hat H t/\hbar}$ 由 Stone 定理自动幺正 — 概率守恒不是一个额外要求, 是自伴的副产品.</li>
+  </ul>
+
+  <p>历史上这条路走得并不平. David Hilbert 在 1904–1906 年的"积分方程"系列论文里, 已经对紧自伴算符 (本质上是无穷维的对称矩阵) 证出了谱定理; 那一代分析学家管这叫"主轴定理"的无限维推广. 1925 年 Heisenberg 的矩阵力学和 Schrödinger 的波动力学一出, 物理学家开始把无界算符 (位置、动量、哈密顿量) 当成日常工具, 但数学基础是模糊的 — 没人确切知道 $\hat x$ 的"本征展开"到底是什么对象. 1929–1932 年 John von Neumann 在 Göttingen 系统补上这一段: 他在 1929 年的论文《Allgemeine Eigenwerttheorie Hermitescher Funktionaloperatoren》中给出无界自伴算符的谱定理与函数演算; 1932 年集大成的专著《Mathematische Grundlagen der Quantenmechanik》正式把 QM 公理化在 Hilbert 空间上, 把"可观测量 = 自伴算符"作为主要公理. 同一年 Marshall Stone 证出了关于幺正单参数群的定理, 把"自伴 ⟺ 演化幺正"这件事钉死. 这三块 (Hilbert 1906, von Neumann 1929, Stone 1932) 合在一起就是今天 QM 数学基础的脊梁.</p>
+
+  <p>开放的一截留给下一节: 即使 $\hat x$ 与 $\hat p$ 都自伴, 它们不能同时对角化 — 对易子 $[\hat x,\hat p]=i\hbar$ 非零. 谱测度 $E^x$ 与 $E^p$ 不交换. 这把我们送进 <em>不确定性</em>: 两个不交换的自伴算符, 它们的谱测度的方差有定量的下界. 这就是 23 节要做的事.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>自伴算符 $A=A^*$ (定义域相等且作用一致) 的谱在实轴上, 三种可能: 点谱 (真本征值, 例如谐振子的 $\hbar\omega(n+\tfrac12)$)、连续谱 (Weyl 序列存在但无 $L^2$ 本征矢, 例如 $\hat x$ 的整条 $\mathbb R$)、残余谱 (自伴时为空). 谱定理 (5) 把它写成谱测度积分 $A=\int\lambda\,\mathrm dE_\lambda$, 函数演算把任意 Borel 函数推上去, 给演化 $U(t)=e^{-iAt}$ — 由 Stone 定理这等价于自伴. 物理上 QM 公理 "可观测量是自伴算符, 测量值落在 $\sigma(A)$ 中的概率由谱测度给出"全部根据于此, 这是卷一 19 测量过程、卷二 16 玻色费米分布、卷三 22 探测器统计的共同基础. 历史上 Hilbert 1906 处理紧情形, von Neumann 1929 推到无界, Stone 1932 钉死演化等价 — QM 的数学基础就此奠定. 下一节我们看两个不交换的自伴算符之间的关系如何刻画"不确定性".</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="21-hilbert-space.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="23-uncertainty.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

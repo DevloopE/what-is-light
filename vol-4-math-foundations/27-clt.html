@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中心极限定理 — 为什么宏观涨落总是高斯的? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="26-probability.html">← 上一节</a>
+  <span class="chapter-title">第 27 节 / 30 · 第 6 部分 · 概率、复分析与变分 · 第四卷·物理学的数学基础</span>
+  <a href="28-residues.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>中心极限定理 — 为什么宏观涨落总是高斯的?</h1>
+  <div class="sub">—— 独立和的一个普遍极限</div>
+  <div class="abstract">把空气分子的速度、电阻里的热噪声、光子击中屏幕的位置、5 sigma 信号假设里的"测量误差", 通通画成直方图, 它们居然是同一种钟形曲线 —— Gauss 分布. 这是物理界最普遍的"巧合", 而它背后的数学就是<strong>中心极限定理</strong> (CLT). 本节先从掷一千次骰子的简单计数出发, 看到分布是怎么从平的、从离散的、从有偏的, 一路被求和压平、对称化、连续化的. 然后我们用<em>特征函数</em> $\phi_X(t) = \mathbb E[e^{itX}]$ 给一个第一性原理的证明: 把 $\phi$ 在原点 Taylor 展开, 取 $n$ 次方, 在 $n\to\infty$ 极限下其余项被压成 $0$, 只留下 $e^{-t^2/2}$ —— 标准正态的特征函数. 沿途代入一千次骰子的具体数字, 用 Brown 运动 $\langle x^2\rangle = 2Dt$ 把宏观涨落 $\sim 1/\sqrt N$ 一笔标定. 最后我们看 CLT 在哪里失效 —— Cauchy 分布、Lévy 飞行 —— 以及 de Moivre 1738 / Laplace 1812 / Lyapunov 1900 / Lindeberg-Lévy 1920s 一路把这个定理打磨严格的故事.</div>
+  <p>第 26 节我们把概率公理化了: 一个 $\sigma$-代数, 一个测度, 一些随机变量与期望. 但纯粹公理化并不能解释一件令人不安的物理事实: 任何宏观体系的涨落都长成一种特定的形状 —— 钟形, 中央高、两翼对称地指数衰减. 我们在卷二第 10 节《涨落》里直接写下 $\Delta E/\langle E\rangle \sim 1/\sqrt N$ 而没解释它为什么是 Gauss; 卷一第 19 节《波粒二象性》里单光子击中屏的统计, 多次累加后既呈现干涉条纹又叠加了 Gauss 涨落; 卷三第 25 节《5 sigma》直接假设噪声是 Gaussian. 这些假设是合理的吗? 它们的合法性来自一个具体的极限定理.</p>
+  <p>本节我们要回答这个问题. 路径是: 先看一个有限的具体例子 (掷骰子求和), 看到不同形状的分布在求和后趋于同一种形状; 把这种"趋于"严格化为分布的<strong>弱收敛</strong>; 给出 CLT 的精确表述与证明; 然后用 Brown 运动把这个抽象的极限钉成可观测的物理预言; 最后讨论它在重尾分布下的失败.</p>
+
+  <h2>一、从掷骰子到 Brown 运动: 现象的可视化</h2>
+  <p>取一枚公正六面骰子, 设单次掷出点数为随机变量 $X$, 取值 $\{1,2,3,4,5,6\}$, 每个等概率 $1/6$. 直接算
+  $$\mathbb E[X] = \frac{1+2+3+4+5+6}{6} = 3.5, \quad \mathbb E[X^2] = \frac{1+4+9+16+25+36}{6} = \frac{91}{6},$$
+  方差
+  $$\sigma^2 = \mathbb E[X^2] - (\mathbb E[X])^2 = \frac{91}{6} - \frac{49}{4} = \frac{182 - 147}{12} = \frac{35}{12} \approx 2.917.$$
+  单次的分布是<em>均匀</em>的 —— 六个长度相等的柱子, 离 Gauss 远得很. 但若把<strong>两次</strong>掷骰的总和画出来, 它从 2 到 12, 概率正比于 $\{1,2,3,4,5,6,5,4,3,2,1\}/36$ —— 一个清晰的三角形. 三次掷, 形状变成更圆滑的曲线, 顶点在 10.5 附近, 两翼像是抛物线. 五次、十次、一千次, 形状越来越像同一条钟形曲线 (图 1).</p>
+  <p>这件事的离奇之处在于: 我们从离散的、平的、对称但棱角分明的分布出发, 经过一次次"独立求和", 居然得到了同一种连续光滑的极限形状. 把任何<em>有限方差</em>的分布换上来 —— 二项的、几何的、Laplace 的 —— 都得到同一个极限. 这个普适性 (universality) 的根源, 就是 CLT.</p>
+  <p>同样的画面在物理里更直接: 把一个布朗粒子放在水里, 它的位移是 $N$ 次水分子碰撞导致的"踢"的累加. 每一次踢的方向和强度可看作独立同分布的随机变量 (近似). 经过 $N$ 步, 总位移 $X(t) = \sum_{i=1}^N \xi_i$ 的分布在 $N$ 大时呈 Gauss 形, 方差正比于 $N$ (即正比于时间 $t$), 这正是 Einstein 1905 年的结果 $\langle x^2\rangle = 2Dt$. 这里 $D$ 是扩散系数. CLT 不是数学家的洁癖 —— 它是 Brown 运动呈高斯的<strong>原因</strong>.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 求和分布在 n 增加时趋于 Gauss</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$n$ 次掷骰子总和的分布如何随 $n$ 增加而越来越像 Gauss 钟形</dd>
+      <dt>必含元素</dt><dd>四个并排或田字格排列的直方图: (a) $n=1$ 单次掷骰, 6 个等高的柱子, 平均 3.5; (b) $n=5$ 五次求和, 取值 5–30, 形状已对称且呈现钟形雏形; (c) $n=30$ 三十次求和, 取值约 30–180, 钟形已非常清楚, 中心 105; (d) $n=1000$ 一千次求和, 取值约 950–4050, 中心 3500, 标准差约 54, 形状几乎与 Gauss 重合; 每幅直方图旁边以红色虚线叠一条对应均值 $n\mu$、方差 $n\sigma^2$ 的 Gauss 拟合曲线; 第四幅图右下角加注 $S_n \to N(0,1)$</dd>
+      <dt>几何/示意精度</dt><dd>每幅直方图的柱子高度按精确二项 (或多项) 卷积的概率画, 不是手画; Gauss 拟合曲线高度按相应均值方差; 横纵坐标的相对尺度让钟形看得清楚</dd>
+      <dt>标签与公式</dt><dd>每幅图标 $n=1,\,5,\,30,\,1000$; 总图标题 "$\frac{S_n - n\mu}{\sigma\sqrt n} \to N(0,1)$"; 在 (a) 下注 $\mu=3.5,\ \sigma^2=35/12$</dd>
+      <dt>风格建议</dt><dd>白底, 直方图柱子用浅蓝色填充加深蓝边, Gauss 拟合曲线深红色虚线, 网格淡灰色, 整体偏教科书风, 字号清楚</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  $n$ 次掷骰子总和的概率分布: 从 $n=1$ 的均匀分布出发, $n$ 越大形状越靠近钟形 Gauss 曲线; CLT 说这一极限是普适的.</figcaption>
+  </figure>
+
+  <h2>二、CLT 的精确表述: 弱收敛与标准化</h2>
+  <p>要把"越来越像 Gauss"写成数学语句, 需要两件事: (i) 一种比较两个分布"是否接近"的方式, (ii) 因为求和的均值和方差都会发散 ($\mathbb E[S_n] = n\mu \to \infty$), 必须先做<em>标准化</em>, 把均值挪到 0、方差缩到 1, 再谈极限.</p>
+  <p>设 $X_1, X_2, \ldots$ 是定义在同一个概率空间上的<strong>独立同分布</strong> (i.i.d.) 随机变量, 共同的期望 $\mu = \mathbb E[X]$ 与方差 $\sigma^2 = \mathrm{Var}(X) \lt  \infty$ 有限. 定义部分和
+  $$S_n = X_1 + X_2 + \cdots + X_n, \quad Z_n = \frac{S_n - n\mu}{\sigma\sqrt n}.$$
+  记 $Z_n$ 的累积分布函数为 $F_n(z) = \mathbb P(Z_n \le z)$, 标准正态 $N(0,1)$ 的累积分布函数为 $\Phi(z) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^z e^{-u^2/2}\,du$. 我们希望 $F_n \to \Phi$. 因为 $\Phi$ 处处连续, 弱收敛在这里等价于"逐点收敛"的强陈述. 现在可以写下定理.</p>
+
+  <p><strong>定理 (1) [Lindeberg-Lévy 中心极限定理]</strong> &nbsp; 设 $X_1, X_2, \ldots$ 独立同分布, $\mathbb E[X_i] = \mu$, $\mathrm{Var}(X_i) = \sigma^2 \in (0, \infty)$. 则
+  $$Z_n = \frac{X_1 + \cdots + X_n - n\mu}{\sigma\sqrt n} \xrightarrow{d} N(0,1), \quad n \to \infty,$$
+  即对所有 $z \in \mathbb R$, $\lim_{n\to\infty}\mathbb P(Z_n \le z) = \Phi(z) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^z e^{-u^2/2}\,du$. 上面的箭头 "$\xrightarrow{d}$" 读作"按分布收敛".</p>
+
+  <p>三件事值得圈出来:</p>
+  <ul>
+    <li>条件极<em>弱</em>: 只要求 i.i.d. 且方差有限. 不需要正态性、不需要对称性、连可微性都不需要 —— 整数取值的骰子也行.</li>
+    <li>极限是<em>唯一</em>的: 不论 $X$ 的具体分布是均匀、二项还是 Laplace, 极限都是同一个 $N(0,1)$. 这是普适性.</li>
+    <li>缩放是<em>关键</em>: 不除 $\sqrt n$ 而除 $n$ 会得到 $\delta$ 函数 (大数定律); 完全不除会发散. $\sqrt n$ 是涨落的"自然刻度".</li>
+  </ul>
+
+  <p>把第三点翻译回物理: 一个由 $N$ 个独立小贡献构成的宏观量, 其涨落量级为 $\sigma\sqrt N$, 而它本身的量级为 $N\mu$, 相对涨落
+  $$\frac{\Delta}{\text{平均}} \sim \frac{\sigma\sqrt N}{N\mu} = \frac{\sigma/\mu}{\sqrt N},$$
+  即 $1/\sqrt N$ 衰减. 这正是卷二第 10 节里那条关键关系 $\langle\Delta E\rangle/\langle E\rangle \sim 1/\sqrt N$ 的数学根. 阿伏加德罗常数 $N_A \approx 6\times 10^{23}$, 一摩尔气体的相对能量涨落 $\sim 10^{-12}$, 所以热力学极限里我们看不见涨落 —— 不是涨落不存在, 是它被 $\sqrt N$ 压扁了.</p>
+
+  <h2>三、用特征函数证明 CLT</h2>
+  <p>有许多种证明 CLT 的方法 (Lindeberg 替换法、矩生成函数、Stein 方法等等), 最干净的一种用<strong>特征函数</strong>. 它把"分布的卷积"变成"特征函数的乘法", 把求和的复杂结构压缩成简单的代数操作.</p>
+  <p>对一个实值随机变量 $X$, 它的特征函数定义为
+  $$\phi_X(t) = \mathbb E[e^{itX}] = \int_{-\infty}^{\infty} e^{itx}\,dF_X(x), \quad t \in \mathbb R. \tag{2}$$
+  这本质上是分布的 Fourier 变换 (与卷四第 24 节的 Fourier 变换是同一个对象, 只是把 $\hbar = 1$ 换成 $i = i$). 它有几条立刻可证的好性质: (i) $|\phi_X(t)| \le 1$ 永真; (ii) $\phi_X(0) = 1$; (iii) 独立和的特征函数等于乘积 $\phi_{X+Y} = \phi_X \phi_Y$ (这是 Fubini 加独立性的直接结果); (iv) <em>Lévy 连续性定理</em>告诉我们: 一组分布弱收敛 $\iff$ 特征函数逐点收敛到一个在 $0$ 处连续的函数, 此函数即极限的特征函数. (iv) 是把"分布收敛"翻译成"特征函数收敛"的关键桥梁.</p>
+  <p>现在算 $Z_n$ 的特征函数. 不妨设 $\mu = 0$ (否则把 $X_i$ 替换为 $X_i - \mu$), $\sigma^2 \gt  0$. 令 $Y = X/\sigma$, 则 $\mathbb E[Y] = 0$, $\mathbb E[Y^2] = 1$. 在 $0$ 附近 Taylor 展开
+  $$\phi_Y(s) = \mathbb E[e^{isY}] = \mathbb E\bigl[1 + isY - \tfrac{1}{2}s^2 Y^2 + \cdots\bigr] = 1 + 0 - \tfrac{1}{2}s^2 + o(s^2), \quad s \to 0.$$
+  把 $s = t/\sqrt n$ 代入, 得
+  $$\phi_Y\bigl(t/\sqrt n\bigr) = 1 - \frac{t^2}{2n} + o(1/n).$$
+  $Z_n = (Y_1 + \cdots + Y_n)/\sqrt n$ 是 $n$ 个独立 $Y_i/\sqrt n$ 的和, 由独立性
+  $$\phi_{Z_n}(t) = \bigl[\phi_Y(t/\sqrt n)\bigr]^n = \Bigl[1 - \frac{t^2}{2n} + o(1/n)\Bigr]^n.$$
+  对每个固定的 $t$, 由经典极限 $(1 + a_n/n)^n \to e^a$ ( 当 $a_n \to a$ ),
+  $$\lim_{n\to\infty}\phi_{Z_n}(t) = e^{-t^2/2}.$$
+  右端正是 $N(0,1)$ 的特征函数 (这是一个标准 Gauss 积分: $\int e^{itx} e^{-x^2/2}\,dx/\sqrt{2\pi} = e^{-t^2/2}$). 由 Lévy 连续性定理, $Z_n \xrightarrow{d} N(0,1)$. 证毕.</p>
+  <p>这个证明的优雅在于: $1/\sqrt n$ 缩放<em>不是</em>魔法 —— 它正是为了让 Taylor 展开里的 $O(1/n)$ 项整齐地堆叠起来达到 $O(1)$, 而所有更高阶项 ($O(n^{-3/2})$, $O(n^{-2})$, ...) 在被 $n$ 次方放大后仍然趋零. $\sqrt n$ 是方差的"刻度", 也是 Taylor 展开的"分辨率"自洽匹配的尺度.</p>
+
+  <h2>四、具体计算: 1000 次掷骰子与 Brown 运动</h2>
+  <p>把上一节的式子代入掷骰子. 单次 $\mu = 3.5$, $\sigma^2 = 35/12$. 掷 $n=1000$ 次, 总和 $S_{1000}$ 的分布, 由 CLT 近似为 Gauss:
+  $$S_{1000} \approx N\bigl(n\mu,\, n\sigma^2\bigr) = N\bigl(3500,\, 1000 \cdot 35/12\bigr) = N(3500,\, 2916.67).$$
+  标准差 $\sigma_{S_{1000}} = \sqrt{2916.67} \approx 54.0$. 这意味着: 一千次的总和有约 $68\%$ 的概率落在 $[3446, 3554]$ 内, 约 $95\%$ 的概率落在 $[3392, 3608]$. 相对涨落 $54/3500 \approx 1.5\%$, 与 $1/\sqrt{1000} \approx 3.2\%$ 同阶 (差出去的因子是 $\sigma/\mu \approx 0.49$).</p>
+  <p>这个数字是可以亲手验证的: 写一个简单程序模拟 $10^6$ 次"千次掷骰子求和", 画直方图, 它会精确地落在上面这条 Gauss 曲线上, 哪怕单次掷骰服从的是非常离散非常平的均匀分布. 这就是 CLT 在做工.</p>
+  <p>把同样的算术搬到 Brown 运动上. 一个布朗粒子在小时间步长 $\Delta t$ 内被随机踢一步, 设单次步长是均值 0, 方差 $\sigma_{\text{step}}^2 = 2D\,\Delta t$ 的随机变量 (这个 $2D\Delta t$ 就是扩散系数的微观定义). 走 $N = t/\Delta t$ 步, 总位移
+  $$X(t) = \sum_{i=1}^N \xi_i.$$
+  $\xi_i$ 独立同分布且方差有限, CLT 给出
+  $$X(t) \approx N\bigl(0,\, N\sigma_{\text{step}}^2\bigr) = N(0,\, 2Dt),$$
+  即 $\langle X(t)^2\rangle = 2Dt$. 这是 Einstein 1905 年的 Brownian motion 公式, 也是 Perrin 1908 年用悬浮颗粒实测得到的形式. 注意: 这里 $t$ 与 $N$ 的耦合是 $t = N\Delta t$, $\sqrt N$ 缩放结合 $\Delta t \to 0$ 极限自然地把"$N$ 次离散小步"变成"连续时间扩散". 在 $\Delta t \to 0$, $N\to\infty$ 但 $N\Delta t = t$ 固定的情形, 极限分布 $N(0, 2Dt)$ 不依赖于单步分布的具体形状 —— 这就是 Brown 运动的<em>普适性</em>: 不管水分子之间的具体力学是什么, 只要单步方差有限、独立, 累积分布都是 Gauss. 严格地说, 这一普适性的连续时间版本就是 Wiener 过程 (我们在卷四第 30 节《路径积分的数学骨架》里会回头看).</p>
+  <p>同理, 黑体辐射里某个频率模的光子数涨落 $\Delta n$ 是大量独立"光子事件"的累加, $\Delta n/\langle n\rangle \sim 1/\sqrt{\langle n\rangle}$ —— 这也是 CLT. 卷三第 25 节《5 sigma》里探测器把信号假设为"高斯白噪声叠加", 哪怕单个噪声源是非高斯的, 大量独立噪声源之和也会被 CLT 高斯化. Higgs 发现的统计学语言, 根上是 Lindeberg-Lévy 1920 年代的工作.</p>
+
+  <h2>五、CLT 的边界: i.i.d. 之外与重尾分布</h2>
+  <p>CLT 的两个隐含前提是: (i) 独立同分布, (ii) 方差有限. 物理与现实里这两个条件并不总满足, 因此理解 CLT 的<em>边界</em>同样重要.</p>
+  <p><strong>放松同分布: Lindeberg 条件.</strong> 假如 $X_i$ 独立但分布不同, 各自有方差 $\sigma_i^2 \lt  \infty$, 总方差 $s_n^2 = \sum_{i=1}^n \sigma_i^2$. CLT 仍可成立, 只要满足 <em>Lindeberg 条件</em>: 对任意 $\varepsilon \gt  0$,
+  $$\frac{1}{s_n^2}\sum_{i=1}^n \mathbb E\bigl[(X_i - \mu_i)^2 \mathbf 1_{\{|X_i - \mu_i| \gt  \varepsilon s_n\}}\bigr] \to 0, \quad n \to \infty.$$
+  通俗读法: 没有哪一项的方差贡献"鹤立鸡群"地大到能压倒整体. 这个条件由 Lindeberg 1922 年给出, Lévy 同期独立得到. 一个等价但更便于检验的版本是 <em>Lyapunov 条件</em>: 对某个 $\delta \gt  0$, $s_n^{-(2+\delta)}\sum \mathbb E[|X_i-\mu_i|^{2+\delta}] \to 0$, 由 Lyapunov 1900 年发表 —— 比 Lindeberg 早, 实际上是历史上第一个完全严格的 CLT 证明. (Lyapunov 用的是另一个工具, 但思想同源.)</p>
+  <p><strong>放松独立: 弱依赖与混合.</strong> 如果 $X_i$ 之间有但仅有"短程依赖" (e.g. $\alpha$-mixing, 马尔可夫链快速忘记初值), CLT 仍可推广. 物理上这对应于平衡态附近的小涨落 —— 远距离的分子运动几乎独立, 关联函数指数衰减, 累加结果仍是 Gauss. 重整化群的"高斯不动点"在数学上对应的就是这个广义 CLT.</p>
+  <p><strong>方差发散: 重尾与稳定分布.</strong> CLT 真正的失败发生在 $\sigma^2 = \infty$ 的情形. 经典反例是<strong>Cauchy 分布</strong>, 概率密度 $p(x) = 1/[\pi(1+x^2)]$. 它的特征函数 $\phi(t) = e^{-|t|}$, 注意指数是 $|t|^1$ 而非 $t^2$. $n$ 个独立 Cauchy 之和的特征函数是 $e^{-n|t|}$, 即仍是 Cauchy (尺度乘 $n$). 更要命的是: $S_n/n$ <em>不</em>收敛到一个常数 (大数定律失败), $S_n/\sqrt n$ <em>不</em>收敛到 Gauss. 实际上 $S_n/n$ 仍然是同一个 Cauchy. Cauchy 分布的尾巴像 $1/x^2$ 一样慢, 慢到一次"大跳跃"就能主宰整个和; CLT 所依赖的"任何一项都可忽略"的精神被破坏了.</p>
+  <p>更一般地, Lévy 在 1925 年前后建立了<strong>稳定分布</strong> (stable distribution) 理论: 一个分布 $\nu$ 称为稳定的, 若独立同分布的两份变量之和经过仿射变换后仍服从同一分布 (相同的"形状"). 完整的稳定分布族 ($\alpha$-stable) 有一个参数 $\alpha \in (0, 2]$: $\alpha = 2$ 是 Gauss (有限方差), $\alpha = 1$ 是 Cauchy (重尾, 无方差), $\alpha \lt  2$ 时尾巴衰减为 $|x|^{-\alpha-1}$, 二阶矩发散. 物理上的 Lévy 飞行 (Lévy flight)、湍流间歇性、地震分布、金融极端事件, 都对应非高斯的 $\alpha$-stable, 这时"宏观涨落是高斯"的直觉<em>不</em>成立 —— 取而代之的是更宽的尾巴和更频繁的极端事件.</p>
+  <p>把这件事说到底: <strong>有限方差是 Gauss 普适性的全部条件</strong>. 数学上, 所有有限方差的 i.i.d. 求和都被吸引到 Gauss; 物理上, 大多数热力学系统、随机过程、测量误差满足这一条件, 所以"宏观涨落是高斯的". 但在长程关联、间歇性、临界现象的边缘 (临界点附近的关联函数衰减为幂律, 单点贡献可发散), CLT 的高斯不动点不再是唯一的吸引子, 出现的是非平凡的 (非高斯) 不动点 —— 这是 Wilson 重整化群分析临界指数的核心. CLT 的边界就是普适类划分的边界.</p>
+
+  <h2>六、历史: 从赌徒到现代概率论</h2>
+  <p>CLT 的故事从 17 世纪赌博问题里的二项分布开始. <strong>de Moivre</strong> 1733 年 (1738 年扩展版收入 <em>The Doctrine of Chances</em>) 在分析 $n$ 次抛硬币正面数时证明了第一个版本: 当 $n$ 大时, 二项 $\binom{n}{k}$ 的中央段近似为 $\frac{1}{\sqrt{2\pi n p q}}\exp[-(k-np)^2/(2npq)]$. 这是历史上第一个高斯函数, 比 Gauss 1809 年用它来描述测量误差还要早七十多年. de Moivre 用 Stirling 公式 $n! \approx \sqrt{2\pi n}(n/e)^n$ 直接展开, 结果就是 CLT 在二项分布上的特例.</p>
+  <p><strong>Laplace</strong> 1812 年的 <em>Théorie analytique des probabilités</em> 把 de Moivre 的结果推广到一般独立和 (虽然以现代眼光看其证明有不严格之处). Laplace 同时认识到这个定理对天文测量误差分析的核心意义 —— 大量独立小误差累加成"误差律", 即正态分布. 这是 CLT 第一次有了物理学的应用, 比 Brown 运动早一个世纪.</p>
+  <p>严格化的工作要到 19 世纪末. 切比雪夫和他的学生马尔科夫给出部分严格证明; 但真正现代意义上完全严格的 CLT 由 <strong>Lyapunov</strong> 1900-1901 年给出 (用矩方法, 假设三阶矩有界). <strong>Lindeberg</strong> 1922 年和 <strong>Lévy</strong> 1925 年独立达到了现在的最优条件 (i.i.d. 时只需二阶矩有限, 非 i.i.d. 时 Lindeberg 条件), 现代教科书给出的版本几乎都是 Lindeberg-Lévy 的形式. 同时, Lévy 在 1925 年前后系统建立了稳定分布理论, 把 CLT 看作"$\alpha = 2$ 是稳定分布特例"这件事的特例化.</p>
+  <p>有趣的是, CLT 在物理学里的"内化"几乎与它的严格化平行. Einstein 1905 年用它建立 Brown 运动的扩散方程; Smoluchowski 同年独立得到等价结果; Perrin 1908-1913 年用它实验验证阿伏加德罗常数; Langevin 1908 年的随机微分方程语言, 让 CLT 显示成"白噪声驱动的线性 ODE"; Wiener 1923 年以 Lebesgue 测度为基础严格构造连续时间布朗运动 (Wiener 过程), 把 CLT 提升到了无穷维空间 —— 这正是卷四第 30 节《路径积分的数学骨架》会用到的工具. CLT 与 Wiener 测度, 一个是离散的极限定理, 一个是连续的数学对象, 但内在是同一回事.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>中心极限定理告诉我们: 任何有限方差的独立同分布之和, 经过 $\sqrt n$ 标准化后都收敛到同一个标准正态分布. 这把"涨落 $\sim 1/\sqrt N$"从一句口号升级成精确定理, 把 Brown 运动 $\langle x^2\rangle = 2Dt$ 从经验观察升级成数学推论, 把"5 sigma 信号"里 Gauss 噪声的合法性从约定升级成普适性. 卷一第 19 节《波粒二象性》的累积干涉图样、卷二第 10 节《涨落》的 $1/\sqrt N$ 律、卷三第 25 节《5 sigma 信号》的 Gaussian error bar, 它们的数学骨架都是 Lindeberg-Lévy 1922-1925. 而 CLT 的边界 —— 重尾分布、Lévy 稳定族 —— 又划出了"非高斯普适类"的疆域, 是临界现象与重整化群里"高斯不动点 vs Wilson-Fisher 不动点"分类的雏形. 下一节我们把视线从概率分布转到复分析, 看 Feynman 传播子里"$1/(p^2 - m^2 + i\varepsilon)$"那个 $i\varepsilon$ 的几何意义如何在留数定理里现形.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="26-probability.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="28-residues.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

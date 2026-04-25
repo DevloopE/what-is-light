@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>变分法 — 从最速降线到 Euler-Lagrange 方程 · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="04-stokes-gauss.html">← 上一节</a>
+  <span class="chapter-title">第 5 节 / 30 · 第 1 部分 · 微积分与向量分析 · 第四卷·物理学的数学基础</span>
+  <a href="06-vector-space.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>变分法 — 从最速降线到 Euler-Lagrange 方程</h1>
+  <div class="sub">—— 极值原理的数学</div>
+
+  <div class="abstract">本节从 1696 年 Bernoulli 抛给整个欧洲数学界的"最速降线挑战"出发: 在重力场中, 一颗珠子从 $A$ 滑到 $B$, 走哪条曲线时间最短? 这个问题的怪异之处在于, 它要在"全部曲线"这一无穷维集合上找极小值 —— 寻常微积分里"令导数为零"那一招完全失灵. 我们将引入泛函与变分的概念, 通过给曲线 $y(x)$ 加一个微小扰动 $\epsilon\eta(x)$ 并对 $\epsilon$ 求导, 推出 Euler-Lagrange 方程. 接着我们具体求解最速降线, 看到它就是 cycloid (旋轮线); 再把同一台机器搬到经典力学的 $L=T-V$ 上, 发现 EL 方程瞬间复活成 Newton 第二定律. 最后我们指出, 这台机器在卷三里被搬上场论舞台, 推出 KG, Dirac 与 Maxwell 三大方程; 在卷一里则化身 Fermat 原理, 决定光的轨迹. 一个 19 岁的 Lagrange 在 1755 年把这套方法系统化, 从此整个物理学拥有了它的"语法".</div>
+
+  <p>把一根铁丝弯成某种形状, 在 $A$ 点放一颗光滑的小珠, 让它在重力下沿铁丝滑到下方某处的 $B$ 点. 现在问: 怎么弯这根铁丝, 才能让小珠用最短的时间从 $A$ 抵达 $B$? 直觉上仿佛"直线最短", 可是别忘了, 时间不只是路径长度的函数 —— 速度也很关键. 把铁丝先弯陡一点, 珠子立即获得高速度, 后段虽然路稍长, 但都在"高档位"上跑; 把它弯平一点, 路是短了, 速度却起不来. 哪种妥协是最优的? 这就是 Johann Bernoulli 在 1696 年 6 月号《Acta Eruditorum》上向"全世界最敏锐的数学家"抛出的"brachistochrone 挑战". 他暗讽地把英国人 (主要是 Newton) 也算在内, 把答复期限定为半年.</p>
+
+  <p>这个问题怪在哪里? 平常的极值问题, 比如"在所有矩形中, 哪一个周长固定面积最大", 答案是一个数 —— 边长. 你写下面积 $S(x)$, 求导令 $S'(x)=0$, 解出 $x$. 可现在, 问题不是要找一个数, 而是要找一条<em>曲线</em>. 全部可能的曲线构成一个无穷维空间, 在其中"求导"是什么意思? 这正是我们要建立的语言. 这门语言后来被称为<strong>变分法</strong> (calculus of variations), 它的核心方程被冠以 Euler 与 Lagrange 之名. 但它绝不只是一段历史趣事 —— 整个 Lagrange 力学、Hamilton 力学、Fermat 光学、广义相对论的爱因斯坦方程、量子场论的所有运动方程, 都是从这同一根藤上结的瓜.</p>
+
+  <h2>一、从函数到泛函: 一类新的极值问题</h2>
+
+  <p>普通微积分研究的是函数 $f:\mathbb R\to\mathbb R$, 把数 $x$ 变成数 $f(x)$, 极值问题"求 $\min f$"的工具是 $f'(x)=0$. 现在我们要研究的对象是<strong>泛函</strong> (functional) $J:\{\text{函数}\}\to\mathbb R$, 它把<em>整条曲线</em> $y(x)$ 变成一个数. 最速降线里, $J[y]$ 就是"沿曲线 $y$ 滑下所用的时间", 它对每一条候选曲线给出一个数. 我们要找的是让 $J$ 取极值的那条特殊曲线 $y_*(x)$.</p>
+
+  <p>本节的研究对象是一类标准的泛函:</p>
+
+  <p>$$ J[y] \;=\; \int_a^b L\bigl(x,\,y(x),\,y'(x)\bigr)\,\mathrm dx, \tag{1} $$</p>
+
+  <p>其中 $L$ 是一个三变量光滑函数, 称作<strong>拉格朗日量</strong> (Lagrangian) —— 这名字之后才会显出深意. 我们考虑所有满足边界条件 $y(a)=y_A$, $y(b)=y_B$ 的曲线 $y(x)$. 不同的物理或几何问题对应不同形式的 $L$: 路径长度问题里 $L=\sqrt{1+y'^2}$; 光学问题里 $L=n(x,y)\sqrt{1+y'^2}$; 力学问题里 $L=\tfrac12 m\dot q^2-V(q)$. 一切都被装进 (1) 式这个统一容器里.</p>
+
+  <p>怎么把"$f'(x)=0$"推广到泛函? Lagrange 1755 年的关键想法非常朴素: 假设 $y_*(x)$ 是真正的极值曲线, 我们沿它"扰动一下". 取任意一个在端点为零的辅助函数 $\eta(x)$, 即 $\eta(a)=\eta(b)=0$, 然后定义"扰动曲线族":</p>
+
+  <p>$$ y_\epsilon(x) \;=\; y_*(x) + \epsilon\,\eta(x). $$</p>
+
+  <p>这一家曲线由实数参数 $\epsilon$ 标记, $\epsilon=0$ 就是真极值. 把它代入泛函得到 $\Phi(\epsilon):=J[y_\epsilon]$ —— 这下变成了普通的一元实函数! 既然 $y_*$ 让 $J$ 取极值, $\Phi$ 在 $\epsilon=0$ 处必有 $\Phi'(0)=0$. 我们把这个量记作 $\delta J$, 称为<strong>第一变分</strong> (first variation):</p>
+
+  <p>$$ \delta J \;:=\; \left.\frac{\mathrm d}{\mathrm d\epsilon}\right|_{\epsilon=0} J[y_*+\epsilon\eta]. $$</p>
+
+  <p>极值条件就写成 $\delta J=0$, 而且要对<em>所有</em>满足端点为零的扰动 $\eta$ 都成立. 这就是变分法的"求导令零"—— 只不过这次的"导数"是沿无穷多个方向的方向导数全部为零.</p>
+
+  <h2>二、Euler-Lagrange 方程的推导</h2>
+
+  <p>让我们把 $\delta J=0$ 真的算出来. 对积分内的 $L$ 求 $\epsilon$ 导数, 用链式法则:</p>
+
+  <p>$$ \frac{\mathrm d}{\mathrm d\epsilon}L\bigl(x, y_*+\epsilon\eta, y_*'+\epsilon\eta'\bigr) \;=\; \frac{\partial L}{\partial y}\,\eta + \frac{\partial L}{\partial y'}\,\eta'. $$</p>
+
+  <p>在 $\epsilon=0$ 求值, 偏导都是在 $(x, y_*, y_*')$ 处计算. 于是</p>
+
+  <p>$$ \delta J \;=\; \int_a^b\!\!\left[\,\frac{\partial L}{\partial y}\,\eta(x) + \frac{\partial L}{\partial y'}\,\eta'(x)\,\right]\mathrm dx. $$</p>
+
+  <p>麻烦在第二项 —— $\eta$ 和 $\eta'$ 不是同一个东西, 我们想把它们统一. 标准技巧是<strong>分部积分</strong>: 让 $\partial L/\partial y'$ 这部分把"导数"还给 $\eta$,</p>
+
+  <p>$$ \int_a^b\frac{\partial L}{\partial y'}\,\eta'(x)\,\mathrm dx \;=\; \left[\frac{\partial L}{\partial y'}\,\eta\right]_a^b - \int_a^b\frac{\mathrm d}{\mathrm dx}\!\left(\frac{\partial L}{\partial y'}\right)\eta(x)\,\mathrm dx. $$</p>
+
+  <p>边界项消失, 因为我们要求 $\eta(a)=\eta(b)=0$. 把它代回, $\delta J$ 整理成</p>
+
+  <p>$$ \delta J \;=\; \int_a^b\!\!\left[\,\frac{\partial L}{\partial y} - \frac{\mathrm d}{\mathrm dx}\!\left(\frac{\partial L}{\partial y'}\right)\right]\eta(x)\,\mathrm dx \;=\; 0. $$</p>
+
+  <p>这要对<em>每一个</em>满足边界为零的 $\eta$ 都成立. 现在用一条关键引理 —— 变分法基本引理: 若一个连续函数 $f(x)$ 在 $[a,b]$ 上, 对所有端点为零的光滑 $\eta(x)$ 都满足 $\int_a^b f\eta\,\mathrm dx=0$, 则 $f\equiv 0$. (证明: 反证. 若某点 $x_0$ 处 $f\gt 0$, 在其邻域取一只非负"鼓包" $\eta$, 积分必为正, 矛盾.) 应用这条引理, 中括号必恒为零, 得到</p>
+
+  <p>$$ \boxed{\;\frac{\partial L}{\partial y} - \frac{\mathrm d}{\mathrm dx}\!\left(\frac{\partial L}{\partial y'}\right) \;=\; 0.\;} \tag{2} $$</p>
+
+  <p>这就是<strong>Euler-Lagrange 方程</strong> (EL 方程). 它把"在无穷维空间求极值"这个原本难以下手的问题, 化为一条标准的二阶常微分方程. 注意它的结构: 偏导 $\partial L/\partial y'$ 再被 $\mathrm d/\mathrm dx$ 求一次, 总阶数是 2 ——所以 EL 通常是关于 $y(x)$ 的二阶 ODE, 边界条件 $y(a)=y_A, y(b)=y_B$ 恰好给出唯一解. Euler 1744 年的《Methodus inveniendi lineas curvas...》第一次写下它的几何版本; Lagrange 1755 年才用上面这种简洁的"加扰动取微商"程序, 给它一个干净的解析推导 —— 那年他 19 岁.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 变分原理: 从扰动族中挑出 EL 极值曲线</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>变分原理 —— 多条邻近路径中只有一条让 $J[y]$ 取极值</dd>
+      <dt>必含元素</dt><dd>起点 $A=(a,y_A)$ 与终点 $B=(b,y_B)$; 多条满足端点条件的邻近曲线 $y_*(x)+\epsilon\eta(x)$ (浅灰); 极值曲线 $y_*(x)$ (黑色加粗); 公式标注 $\delta J=0$ 与 EL 方程</dd>
+      <dt>几何精度</dt><dd>所有邻近曲线在 $A,B$ 端点严格重合 (体现 $\eta(a)=\eta(b)=0$), 中段相互错开; 极值曲线居于这些扰动的"中心"</dd>
+      <dt>标签与公式</dt><dd>左下方注 $J[y]=\int_a^b L\,\mathrm dx$, 中央书 $\delta J=0$, 右下方注 EL 方程 $\partial_y L-\tfrac{\mathrm d}{\mathrm dx}\partial_{y'}L=0$</dd>
+      <dt>风格建议</dt><dd>白底; 极值曲线黑粗实线 (1.2pt); 邻近曲线浅灰 (0.4pt) 三到五条; 端点小黑圆点; 公式正衬线</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  在所有满足端点条件的曲线中, 只有让第一变分 $\delta J$ 为零的那一条 (黑色加粗) 是泛函的稳定点 —— 它由 Euler-Lagrange 方程刻画.</figcaption>
+  </figure>
+
+  <h2>三、最速降线: cycloid 的现身</h2>
+
+  <p>把上面的机器搬到 Bernoulli 的原始问题上. 让 $A$ 位于坐标原点, $B$ 在右下方, 取 $y$ 轴向下为正 (这样势能降低对应 $y$ 增大, 算起来方便). 由能量守恒, 珠子从静止开始下落到深度 $y$ 处, 速度为 $v=\sqrt{2gy}$. 沿曲线 $y(x)$ 的弧长元 $\mathrm ds=\sqrt{1+y'^2}\,\mathrm dx$, 所以从 $A$ 到 $B$ 的总时间</p>
+
+  <p>$$ T[y] \;=\; \int_0^{x_B}\frac{\mathrm ds}{v} \;=\; \int_0^{x_B}\frac{\sqrt{1+y'^2}}{\sqrt{2gy}}\,\mathrm dx. $$</p>
+
+  <p>对照 (1) 式, 这里的拉格朗日量 $L(y, y') = \sqrt{(1+y'^2)/(2gy)}$ 不显含 $x$. 对这种 $L$, EL 方程允许一个简洁的"首次积分" —— Beltrami 恒等式: 若 $\partial L/\partial x=0$, 则 $L - y'(\partial L/\partial y')$ 沿极值曲线为常数. 我们直接套用. 计算 $\partial L/\partial y' = y'/\sqrt{2gy(1+y'^2)}$, 于是</p>
+
+  <p>$$ L - y'\frac{\partial L}{\partial y'} \;=\; \frac{1}{\sqrt{2gy(1+y'^2)}} \;=\; \text{const}. $$</p>
+
+  <p>把常数记作 $1/\sqrt{2g\cdot 2R}$ (这样写是为了让 $R$ 拥有几何意义), 得到</p>
+
+  <p>$$ y\,(1+y'^2) \;=\; 2R. $$</p>
+
+  <p>这是一条非线性一阶 ODE. 我们换成参数方程的形式来解它. 试代入 $y = R(1-\cos\theta)$, 那么 $\mathrm dy = R\sin\theta\,\mathrm d\theta$. 由 $y(1+y'^2)=2R$ 解出 $y' = \sqrt{(2R-y)/y} = \sqrt{(1+\cos\theta)/(1-\cos\theta)} = \cot(\theta/2)$. 又 $y' = \mathrm dy/\mathrm dx$, 所以 $\mathrm dx = \mathrm dy/y' = R\sin\theta\,\tan(\theta/2)\,\mathrm d\theta = R(1-\cos\theta)\,\mathrm d\theta$, 积分得 $x = R(\theta-\sin\theta)$. 收齐:</p>
+
+  <p>$$ x(\theta) \;=\; R(\theta-\sin\theta), \qquad y(\theta) \;=\; R(1-\cos\theta). $$</p>
+
+  <p>这正是<strong>cycloid (旋轮线)</strong> —— 一只半径为 $R$ 的圆轮在水平直线上滚动时, 轮缘上某固定点划出的轨迹. 答案如此漂亮, 以至于 Bernoulli 在公布解答时写道: "我以一个等价于解析的几何论证证明了, 我所追寻的最速降线就是惠更斯的等时曲线". 等时曲线 (tautochrone) 是同一条 cycloid 的另一面: 不论从哪一点放下小珠, 它到达底端所用的时间相同 —— 这是惠更斯 1659 年为单摆寻找完美等时性时发现的几何奇迹. 同一条曲线身兼最快与等时之名, 这是 17 世纪几何留给后世最美的礼物之一.</p>
+
+  <p>顺便代一组数. 取 $A=(0,0), B=(1\,\text{m},0.5\,\text{m})$, 数值求出 $R\approx 0.573\,\text{m}, \theta_B\approx 2.412\,\text{rad}$. 沿 cycloid 的下滑时间 $T_*\approx 0.583\,\text{s}$; 沿直线 (斜面) 下滑时间为 $T_{\text{straight}}\approx 0.640\,\text{s}$. cycloid 比直线快了大约 9% —— 看似不多, 但它已经胜过<em>所有可能的曲线</em>. 这是变分法第一次, 也最具示范意义的胜利.</p>
+
+  <h2>四、回到 Newton: $L=T-V$ 与场方程</h2>
+
+  <p>现在做一件让人浑身一震的事. 把 EL 机器对准经典力学. 对一个一维质点 $q(t)$, 取拉格朗日量</p>
+
+  <p>$$ L \;=\; T - V \;=\; \tfrac12 m\dot q^2 - V(q), $$</p>
+
+  <p>其中 $T$ 是动能, $V$ 是势能. 这里独立变量是时间 $t$, "曲线"是 $q(t)$, $\dot q := \mathrm dq/\mathrm dt$ 充当上面的 $y'$. 把 EL 方程 (2) 抄过来:</p>
+
+  <p>$$ \frac{\partial L}{\partial q} - \frac{\mathrm d}{\mathrm dt}\!\left(\frac{\partial L}{\partial \dot q}\right) \;=\; 0. $$</p>
+
+  <p>分别算: $\partial L/\partial q = -V'(q)$, $\partial L/\partial \dot q = m\dot q$, 后者再对 $t$ 求导给出 $m\ddot q$. 代入得</p>
+
+  <p>$$ -V'(q) - m\ddot q \;=\; 0 \quad\Longleftrightarrow\quad m\ddot q \;=\; -V'(q) \;=\; F. $$</p>
+
+  <p>正是 <strong>Newton 第二定律</strong>! 一个本来用来解最速降线的纯数学公式, 当它接受 $L=T-V$ 这个具体输入, 立刻吐回整个 Newton 力学. 等价地说, Newton 力学等价于一条变分原理 —— 真实的运动轨迹使<strong>作用量</strong></p>
+
+  <p>$$ S[q] \;=\; \int_{t_1}^{t_2} L\bigl(q,\dot q, t\bigr)\,\mathrm dt $$</p>
+
+  <p>取极值, $\delta S = 0$. 这就是<strong>Hamilton 原理</strong> (1834). 它的妙处:</p>
+
+  <ol>
+    <li>不依赖坐标系. 你愿意用直角坐标 $q=x$ 还是极坐标 $q=\theta$, 还是某种古怪的广义坐标 $q$, 都可以. EL 方程的形状对所有坐标系一致 —— 这正是约束系统、刚体、流体的优越分析框架.</li>
+    <li>把"力"这个矢量概念换成了标量 $L$. 标量更容易对称分析. Noether 定理就藏在这里 —— 每一个让 $L$ 不变的连续对称对应一条守恒流, 平移对称给动量守恒, 时间平移给能量守恒, 转动对称给角动量守恒.</li>
+    <li>立刻可以推广到任意自由度. 把 $q$ 换成 $(q^1,\dots,q^n)$, 每个坐标都得一条 EL 方程; 再继续推广, 把"坐标"换成"场" $\phi(x,t)$, 拉格朗日量变成<strong>拉格朗日密度</strong> $\mathcal L(\phi, \partial_\mu\phi)$, EL 方程升级为</li>
+  </ol>
+
+  <p>$$ \frac{\partial\mathcal L}{\partial\phi} - \partial_\mu\!\left(\frac{\partial\mathcal L}{\partial(\partial_\mu\phi)}\right) \;=\; 0. \tag{3} $$</p>
+
+  <p>这正是卷三第一节《拉格朗日密度》开篇要的核心: 取 $\mathcal L=\tfrac12(\partial_\mu\phi)^2-\tfrac12 m^2\phi^2$, (3) 式吐出 Klein-Gordon 方程; 取 $\mathcal L=\bar\psi(i\gamma^\mu\partial_\mu-m)\psi$, 吐出 Dirac 方程; 取 $\mathcal L=-\tfrac14 F_{\mu\nu}F^{\mu\nu}$, 吐出 Maxwell 方程. 同一个 (3), 三种输入, 三大方程 —— 这就是为什么"现代物理学的语法是变分法".</p>
+
+  <p>而且不止此. 卷一第一节里我们用 Fermat 原理 $\delta\!\int n\,\mathrm ds=0$ 推导光走直线/折射定律, 那时其实已经在做变分; 那条路径满足的 EL 方程, 解出来正是几何光学的程函方程. 卷二章节里讲到广义相对论的测地线 $\delta\!\int\mathrm ds=0$, 它的 EL 方程就是测地线方程; 而 Einstein 场方程本身, 又是 Einstein-Hilbert 作用量 $S=\int R\sqrt{-g}\,\mathrm d^4x$ 的变分. 一路追溯到 Feynman 的路径积分 $\int e^{iS/\hbar}\mathcal D q$ —— 当 $\hbar\to 0$, 稳定相位法挑出 $\delta S=0$ 的经典路径, 量子又一次回到经典.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>变分法把"在所有曲线/场构形中找极值"这一类无穷维问题, 经由 $\delta J=0$ 约化为一条二阶 ODE 或 PDE —— Euler-Lagrange 方程 (2). 这是物理学最具统御力的数学语言之一: 卷一第一节的 Fermat 原理 $\delta\!\int n\,\mathrm ds=0$ 决定光的几何; Hamilton 原理 $\delta\!\int L\,\mathrm dt=0$ 在经典力学里复现 Newton 方程; 卷三第一节的拉格朗日密度通过 (3) 式同时给出 KG/Dirac/Maxwell, 进而是整个量子场论的运动方程; 路径积分让我们看到, 经典极值原理只是量子相位干涉在 $\hbar\to 0$ 下的鞍点近似. Bernoulli 1696 年那只滑下铁丝的小珠, 在 Lagrange 19 岁的笔下化身为整个物理学的语法 —— 下一节我们将看到, 把"曲线"作为基本对象抽出来, 就走向了向量空间这一更普适的代数舞台.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="04-stokes-gauss.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="06-vector-space.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

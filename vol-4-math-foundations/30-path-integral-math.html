@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>路径积分的数学骨架 · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="29-greens-function.html">← 上一节</a>
+  <span class="chapter-title">第 30 节 / 30 · 第 6 部分 · 概率、复分析与变分 · 第四卷·物理学的数学基础</span>
+  <a href="#" class="disabled" aria-disabled="true">下一节 →</a>
+</nav>
+
+<article>
+  <h1>路径积分的数学骨架</h1>
+  <div class="sub">—— Wiener 测度、Trotter 公式与 Wick 转动</div>
+
+  <div class="abstract">本节是第四卷末篇, 我们处理一个曾经让数学家头大几十年的问题: Feynman 1948 写下的 $\int\mathcal D\phi\,e^{iS/\hbar}$ 究竟是什么? 它对"所有路径"求和, 但路径空间是无限维的, 上面没有 Lebesgue 测度. 我们会先回到 Wiener 1923 — 在 Brown 运动里, 他给连续路径空间装上一个真正的概率测度; 然后证明 Trotter 乘积公式 $e^{(A+B)t}=\lim(e^{At/n}e^{Bt/n})^n$, 把 Schrödinger 演化切片插完备基, 得到 Feynman 的振荡积分; 最后通过 Wick 转动 $t\to-i\tau$ 把振荡因子 $e^{iS/\hbar}$ 变成衰减因子 $e^{-S_E/\hbar}$, 这就是 Wiener 测度的 Boltzmann 投影. 走完一遭, 我们顺便把整卷 30 节的脉络回望一遍 — 从 ε-δ 一路走到对路径求和.</div>
+
+  <p>1948 年, Richard Feynman 在 Reviews of Modern Physics 上发表《Space-Time Approach to Non-Relativistic Quantum Mechanics》, 用一句惊人的方式重写了量子力学: 粒子从 $x_0$ 跑到 $x_f$ 的概率幅, 等于"对所有连接两点的路径求和", 每条路径加权 $e^{iS[x]/\hbar}$. 公式漂亮得不像话, 物理学家从此再也没放下过它 — 量子场论里 $\int\mathcal D\phi\,e^{iS}$ 几乎是规范场量子化的唯一通用语言.</p>
+
+  <p>但数学家盯着这行字一头雾水: 路径空间 $C([0,T])$ 是无限维的, 没有平移不变测度 (Lebesgue 测度只能定义在有限维); "$\mathcal D x$"到底是什么? "对所有路径求积"凭什么收敛? 振荡积分 $\int e^{iS/\hbar}$ 在无限维上根本不绝对收敛.</p>
+
+  <p>更糟的是, 2 维标量场的路径积分 1980 年代由 James Glimm 与 Arthur Jaffe 严格构造出来, 但 4 维 Yang-Mills 至今仍是悬赏百万的 Clay 千禧问题之一. 物理学家用得很爽, 数学家在地基上摸索了七十多年.</p>
+
+  <p>本节的目标不是把所有困难讲完, 而是给出"骨架": 路径积分背后真正严格的对象是什么? 答案是 <strong>Wiener 测度</strong> — 一个比 Feynman 振荡积分更老、更可靠的物体, 它通过 Wick 转动把 Feynman 的"虚拟测度"还原为真概率测度. 整套机器靠三件零件: Wiener 1923 的 Brown 运动测度、Trotter 1959 的乘积公式、Kac 1949 的 Feynman-Kac 公式.</p>
+
+  <h2>一、Wiener 测度: 给路径装上概率</h2>
+
+  <p>先放下量子力学, 看一个 1923 年的问题: 给定花粉颗粒在水中做 Brown 运动, 起点 $x_0=0$, 时间 $t\in[0,T]$, 我们想问"这条颗粒走出的轨迹"作为一个连续函数 $\omega:[0,T]\to\mathbb R^n$, 服从什么概率分布?</p>
+
+  <p>有限维的版本好处理: 取 $0=t_0\lt t_1\lt \cdots\lt t_N=T$, 由 Brown 运动的独立增量与高斯性质,</p>
+  $$
+  P\bigl(\omega(t_1)\in dx_1,\ldots,\omega(t_N)\in dx_N\bigr) = \prod_{k=1}^N \frac{1}{(2\pi(t_k-t_{k-1}))^{n/2}}\exp\!\Bigl(-\frac{|x_k-x_{k-1}|^2}{2(t_k-t_{k-1})}\Bigr)\, dx_k. \tag{1}
+  $$
+  <p>每个增量 $\omega(t_k)-\omega(t_{k-1})$ 是均值零、方差 $t_k-t_{k-1}$ 的独立高斯; 联合密度就是这些高斯的乘积. 公式 (1) 在每个有限维投影上都是正常的 Lebesgue 概率密度, 总积分为 1.</p>
+
+  <p>问题是: 我们想要的是<em>整条路径</em>的概率分布, 不是任何有限个时刻的快照. Wiener 1923 在 MIT 用 Kolmogorov 一致性定理 (其实当时 Kolmogorov 还没写, Wiener 用了相当原始的方法) 证明: 这族有限维分布是<em>一致的</em> — 把 $N+1$ 维边缘化掉某个 $t_k$, 得到的是 $N$ 维分布; 由此可以拼出唯一一个概率测度 $\mu_W$ 定义在<strong>整个连续路径空间</strong> $C([0,T],\mathbb R^n)$ 上, 使每个有限维投影恰为 (1).</p>
+
+  <p>这个 $\mu_W$ 就是 <strong>Wiener 测度</strong>. 它不是 Lebesgue 那样的"等权重"测度, 而是高斯加权: 跳跃越剧烈的路径权重越小, 平滑路径权重大. 重要的是, $\mu_W$ 给出了无穷维空间上的真概率测度, 总测度为 1, 一切积分按照标准 Lebesgue 积分论展开 — 没有"$\mathcal D x$"的暧昧.</p>
+
+  <p>顺带一个反直觉的事实: $\mu_W$-几乎处处的路径处处不可微, Hölder 指数严格小于 $1/2$. 我们直觉中"光滑曲线"在 Brown 运动里测度为零. 这告诉我们, 路径积分里"求和的对象"几乎全是粗糙路径 — 经典轨道是测度零的边缘情况, 量子涨落才是主角. 这与<strong>第二卷 22《H 定理》</strong>里描述的微观涨落图像完全一致.</p>
+
+  <h2>二、Trotter 公式与时间切片</h2>
+
+  <p>Wiener 测度处理的是扩散方程 $\partial_t u = \tfrac12\Delta u$, 不是 Schrödinger 方程 $i\hbar\partial_t\psi = \hat H\psi$. 怎么连上?</p>
+
+  <p>关键是 Trotter 1959 的乘积公式. 它处理一个老问题: 给两个算符 $A, B$, $e^{A+B}$ 一般不等于 $e^A e^B$ (因为它们不对易, BCH 公式给出修正). 但极限下:</p>
+
+  <p><strong>定理 (2) (Trotter 乘积公式)</strong>. 对 Hilbert 空间上的自伴算符 $A, B$, 满足 $A+B$ 也本质自伴, 则对任意 $t$ 与态 $|\psi\rangle$,</p>
+  $$
+  e^{-i(A+B)t}|\psi\rangle = \lim_{n\to\infty}\bigl(e^{-iAt/n}\,e^{-iBt/n}\bigr)^n |\psi\rangle. \tag{2}
+  $$
+
+  <p>直觉上很自然: 在很短的时间 $\Delta t = t/n$ 里, BCH 修正项是 $O(\Delta t^2)$, 累计 $n$ 次贡献 $O(\Delta t) = O(1/n)\to 0$. 严格证明需要域问题的细致分析 (Kato 与 Trotter 各自有版本), 但物理上不妨当作"小步长泰勒展开"理解.</p>
+
+  <p>把 (2) 用到 Schrödinger 演化 $\hat H = \hat T + \hat V = \hat p^2/2m + V(\hat x)$:</p>
+  $$
+  e^{-i\hat H t/\hbar} = \lim_{n\to\infty}\bigl(e^{-i\hat V \Delta t/\hbar}\,e^{-i\hat T \Delta t/\hbar}\bigr)^n,\qquad \Delta t = t/n.
+  $$
+
+  <p>每个 $e^{-i\hat V\Delta t/\hbar}$ 在位置表象里是一个简单的相位乘法 ($V$ 与 $\hat x$ 同对易), 而 $e^{-i\hat T\Delta t/\hbar}$ 在动量表象里是相位乘法. 在每两个之间插入位置完备基 $\int|x\rangle\langle x|\,dx = \mathbf 1$, 与动量完备基 $\int|p\rangle\langle p|\,dp = \mathbf 1$. 矩阵元 $\langle x_k|e^{-i\hat T\Delta t/\hbar}|x_{k-1}\rangle$ 用一次高斯积分算得</p>
+  $$
+  \langle x_k|e^{-i\hat T\Delta t/\hbar}|x_{k-1}\rangle = \Bigl(\frac{m}{2\pi i\hbar\Delta t}\Bigr)^{1/2}\exp\!\Bigl(\frac{im(x_k-x_{k-1})^2}{2\hbar\Delta t}\Bigr).
+  $$
+  <p>把 $n$ 步连乘, 整个传播子写成</p>
+  $$
+  K(x_f,T;x_0,0) = \lim_{n\to\infty}\Bigl(\frac{m}{2\pi i\hbar\Delta t}\Bigr)^{n/2}\!\!\int\prod_{k=1}^{n-1}dx_k\,\exp\!\Bigl[\frac{i}{\hbar}\sum_{k=1}^n\Bigl(\frac{m(x_k-x_{k-1})^2}{2\Delta t} - V(x_k)\Delta t\Bigr)\Bigr].
+  $$
+
+  <p>方括号里是离散版本的作用量 $S_n = \sum\bigl(\tfrac12 m\dot x^2 - V\bigr)\Delta t \to \int_0^T L\,dt = S[x]$, 整个外部前因子是 Feynman 把"测度 $\mathcal D x$"形式化的结果. 这就是<strong>第三卷 02《路径积分》</strong>开篇直接使用的公式. 注意: 上式作为<em>振荡</em>积分在无限维极限下并不绝对收敛, 它只在"乘积公式 + 有限维高斯逐次积分"的算法意义下定义. 这是 Feynman "$\mathcal D x$" 永远稍微暧昧的根源.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · Trotter 切片: 从离散步骤到路径求和</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>把时间区间 $[0,T]$ 切成 $N$ 等份, 每个分点插入位置完备基, 得到从 $x_0$ 到 $x_f$ 的折线路径; $N\to\infty$ 极限给出 Feynman 路径积分; 旁注 Trotter 乘积公式与 Wick 转动</dd>
+      <dt>必含元素</dt><dd>(a) 横轴时间 $t$ 从 $0$ 到 $T$, 纵轴位置 $x$; 起点 $(x_0,0)$ 加圆点标 "$x_0$", 终点 $(x_f,T)$ 加圆点标 "$x_f$"; 时间轴等分为 $N$ 段, 各分点 $t_k$ 用竖虚线; 每条竖虚线上画 3-5 个小空心圆代表"插入完备基 $\int|x_k\rangle\langle x_k|\,dx_k$"; (b) 在分点之间画 4-6 条不同折线 (蓝色细线), 全连 $x_0$ 与 $x_f$, 表示 Trotter 切片下的"折线路径"; (c) 右侧附 Trotter 公式 $e^{-i\hat H t/\hbar}=\lim_{n\to\infty}(e^{-i\hat V\Delta t/\hbar}e^{-i\hat T\Delta t/\hbar})^n$ 与 $K=\int\mathcal D x\,e^{iS/\hbar}$; (d) 下方一条小箭头标 "Wick: $t\to-i\tau$", 指向另一行 $\mu_W$ Wiener 测度示意 (一条粗糙锯齿曲线)</dd>
+      <dt>几何精度</dt><dd>时间切片严格均匀 $\Delta t = T/N$; 折线在每个分点经过任意 $x_k$ 值, 演示"对中间点积分"; 折线密度向 $N\to\infty$ 极限暗示</dd>
+      <dt>标签与公式</dt><dd>$\Delta t = T/N$; 公式 (2) Trotter; $K = \int\mathcal D x\,\exp(iS/\hbar)$; Wick: $t\to-i\tau$, $e^{iS/\hbar}\to e^{-S_E/\hbar}$</dd>
+      <dt>风格建议</dt><dd>白底, 时间轴用浅灰虚线分隔, 折线用蓝色, 起终点用红色实心圆, Wiener 锯齿曲线用棕色细线</dd>
+    </dl>
+  </div>
+  <figcaption>图 1   Trotter 切片把连续演化分解为 $N$ 步; 每个分点插入完备基, 极限 $N\to\infty$ 给出对所有路径求和. 通过 Wick 转动, 振荡相位 $e^{iS/\hbar}$ 变成 Wiener 测度的 Boltzmann 因子 $e^{-S_E/\hbar}$.</figcaption>
+  </figure>
+
+  <h2>三、自由粒子: 一个完整的路径积分计算</h2>
+
+  <p>来一次具体计算把骨架填满. 考虑一维自由粒子, $V=0$, $\hat H = \hat p^2/2m$. 路径积分变成纯高斯</p>
+  $$
+  K(x_f,T;x_0,0) = \lim_{n\to\infty}\Bigl(\frac{m}{2\pi i\hbar\Delta t}\Bigr)^{n/2}\!\!\int dx_1\cdots dx_{n-1}\exp\!\Bigl[\frac{im}{2\hbar\Delta t}\sum_{k=1}^n(x_k-x_{k-1})^2\Bigr],
+  $$
+  <p>固定 $x_0, x_n=x_f$. 这是 $(n-1)$ 重高斯积分, 可以归纳算出. 关键技巧: 二次型 $\sum(x_k-x_{k-1})^2$ 是中间点 $x_1,\ldots,x_{n-1}$ 的正定二次型. 用一次配方就把 $x_1$ 积掉, 留下 $x_0,x_2,\ldots$ 的同型表达式, 系数变了一个倍数. 归纳下去:</p>
+
+  <p>第一次对 $x_1$ 积分:</p>
+  $$
+  \int dx_1 \exp\!\Bigl[\frac{im}{2\hbar\Delta t}\bigl((x_1-x_0)^2 + (x_2-x_1)^2\bigr)\Bigr] = \Bigl(\frac{2\pi i\hbar\Delta t}{m}\cdot\frac{1}{2}\Bigr)^{1/2}\exp\!\Bigl[\frac{im(x_2-x_0)^2}{2\hbar\cdot 2\Delta t}\Bigr],
+  $$
+  <p>验证: 内层是关于 $x_1$ 的二次型 $\tfrac{im}{\hbar\Delta t}x_1^2 - \tfrac{im}{\hbar\Delta t}(x_0+x_2)x_1 + \text{const}$, 配方后的高斯积分给出标准结果. 关键观察: 积掉 $x_1$ 之后, 剩下的形式与原来同构, 只是<em>时间步长翻倍</em> ($\Delta t\to 2\Delta t$), 系数前因子积一个 $1/\sqrt 2$.</p>
+
+  <p>归纳: 积掉 $x_1,\ldots,x_{n-1}$ 后, $\Delta t\to n\Delta t = T$, 前因子合计</p>
+  $$
+  \Bigl(\frac{m}{2\pi i\hbar\Delta t}\Bigr)^{n/2}\cdot\Bigl(\frac{2\pi i\hbar\Delta t}{m}\Bigr)^{(n-1)/2}\cdot\frac{1}{\sqrt n} = \Bigl(\frac{m}{2\pi i\hbar T}\Bigr)^{1/2},
+  $$
+  <p>极限 $n\to\infty$ 时这个表达式不依赖 $n$, 美得不像极限. 最终</p>
+  $$
+  K_{\rm free}(x_f,T;x_0,0) = \sqrt{\frac{m}{2\pi i\hbar T}}\exp\!\Bigl(\frac{im(x_f-x_0)^2}{2\hbar T}\Bigr).
+  $$
+
+  <p>这正是自由粒子 Schrödinger 方程的传播子 — 验证: 它满足 $i\hbar\partial_T K = -\tfrac{\hbar^2}{2m}\partial_{x_f}^2 K$, 初始条件 $K(x_f,0;x_0,0) = \delta(x_f-x_0)$ (高斯在 $T\to 0$ 退化为狄拉克 $\delta$). 同时它的相位恰是经典作用量 $S_{\rm cl} = m(x_f-x_0)^2/(2T)$ — 自由粒子作用量在端点固定时只取经典值, 没有量子修正前因子. 这是路径积分给出的最干净结果, 物理学家爱不释手.</p>
+
+  <p>从严格性角度看, 上面这个计算本身没问题 (有限维高斯逐步积分), 极限也存在; 麻烦的是 $V\neq 0$ 时振荡积分在中间步骤里不绝对收敛, 我们依赖的是 Trotter (2) 在算符意义下的极限, 而不是积分本身的逐点收敛.</p>
+
+  <h2>四、Wick 转动、Feynman-Kac 与未完成的 4D</h2>
+
+  <p>怎么把路径积分严格化? 把振荡相位变成衰减因子. <strong>Wick 转动</strong> $t\to -i\tau$ ($\tau\gt 0$ 为 Euclid 时间) 把 $e^{iS/\hbar}$ 变成</p>
+  $$
+  e^{iS/\hbar}\Big|_{t\to -i\tau} = \exp\!\Bigl(-\frac{1}{\hbar}\int_0^\beta\Bigl[\tfrac12 m\Bigl(\frac{dx}{d\tau}\Bigr)^2 + V(x)\Bigr]d\tau\Bigr) = e^{-S_E/\hbar},
+  $$
+  <p>其中 $S_E$ 是 Euclidean 作用量, 严格非负. 现在每条路径的权重是正实数 $\le 1$, 绝对可积, 路径积分摇身一变成为 Wiener 测度 $\mu_W$ 上的"Boltzmann 加权积分". 这是<strong>第三卷 20《Wick 转动》</strong>的数学根: Lorentzian 转 Euclidean 等价于 Feynman 振荡测度转 Wiener 概率测度.</p>
+
+  <p>具体地, Mark Kac 1949 证明的 <strong>Feynman-Kac 公式</strong>:</p>
+  $$
+  \bigl(e^{-(\hat H_E)t/\hbar}\phi\bigr)(x_0) = \mathbb E_{x_0}\Bigl[\phi(\omega(t))\,\exp\!\Bigl(-\tfrac{1}{\hbar}\int_0^t V(\omega(s))\,ds\Bigr)\Bigr],
+  $$
+  <p>其中 $\hat H_E = -\tfrac{\hbar^2}{2m}\Delta + V$ 是 Euclidean Hamiltonian, 期望值对从 $x_0$ 出发的 Brown 运动 $\omega$ (即 Wiener 测度) 取. 这个公式把扩散方程 (热方程加势) 的解写成 Wiener 测度上的真正期望值 — 一切都是 Lebesgue 积分意义下严格的, 不再有"$\mathcal D x$"暧昧.</p>
+
+  <p>Feynman-Kac 给的不是 Schrödinger 方程的解, 是它 Wick 转过去的版本; 但 Wick 转动可以反方向解析延拓回 Lorentzian (在适当的解析性假设下), 所以严格的 Euclidean 路径积分配上解析延拓, 给出严格的 Lorentzian 量子力学. 这套机器在 1960-70 年代由 Edward Nelson, Konrad Osterwalder, Robert Schrader 等人系统发展, 形成 <strong>构造场论</strong> (constructive QFT). 1981 年 Glimm 与 Jaffe 的专著 <em>Quantum Physics: A Functional Integral Point of View</em> 总结了这一进路, 给出 2 维标量场 $\phi^4_2$ 的严格存在性.</p>
+
+  <p>但 4 维呢? Yang-Mills 场的路径积分在 4 维至今没有严格定义 — 这是 Clay Mathematics Institute 七大千禧问题之一. 物理上我们对 4 维 QCD 的预言精度是百万分之几, 数学上我们连这个积分存在不存在都没证明. 这种"物理用得欢、数学摸黑墙"的状态, 是当代理论物理与数学物理之间最尴尬也最迷人的间隙之一.</p>
+
+  <p><strong>历史回望</strong>. Norbert Wiener 1923 年在 MIT 把 Brown 运动严格化, 论文标题《Differential-Space》(《差分空间》), 第一次写下连续路径空间上的概率测度. 当时他 29 岁, 物理学家普遍把 Brown 运动看作 Einstein 1905 年的"已经讲完"的话题, 没人觉得需要无穷维测度论 — 但 Wiener 觉得需要, 而且二十多年后这成了量子力学的数学骨架. Feynman 1948 写路径积分时并不知道 Wiener 在做什么, 他的灵感来自 Dirac 1933 年那篇 8 页的论文《Lagrangian in Quantum Mechanics》. Trotter 1959 的乘积公式是更晚的事, 它把 Feynman 的"切片图像"严格化. Glimm-Jaffe 在 1980 年代把整个机器装上 QFT — 那一代人很多最终拿了菲尔兹奖, 但 4 维仍然空着.</p>
+
+  <h2>五、第四卷的回望: 30 节走过的数学</h2>
+
+  <p>本节也是第四卷的末篇. 我们用一段做总结. 第四卷 30 节, 自下而上建立物理学需要的数学:</p>
+
+  <p><strong>第 1-5 节 (分析基础)</strong>: 从<strong>第 01《ε-δ 极限》</strong>开始, 给"无穷小"以严格定义; <strong>02《链式法则》</strong>支撑物理里所有"做变量替换"的运动; <strong>03-04《Curl/Div/Stokes/Gauss》</strong>把 Maxwell 方程写成几何不变形式; <strong>05《变分法》</strong>给最小作用量原理一个分析根.</p>
+
+  <p><strong>第 6-10 节 (线性代数)</strong>: <strong>06《向量空间》</strong>抽象出"叠加态"的几何; <strong>07《Bra-ket》</strong>给 Dirac 记号严格的内积空间解读; <strong>08-09《本征值/对角化》</strong>是量子力学测量假设的代数引擎; <strong>10《张量积》</strong>处理多体 Hilbert 空间, 是<strong>第二卷《纠缠》</strong>的数学根.</p>
+
+  <p><strong>第 11-15 节 (群论)</strong>: <strong>11《群论》到 15《SU(N)》</strong>从对称性出发, 建立 $SO(3), SU(2), SU(3)$ 等物理里最常出现的李群与表示理论 — 它们直接支撑<strong>第三卷《标准模型》</strong>的规范结构.</p>
+
+  <p><strong>第 16-20 节 (微分几何)</strong>: <strong>16《流形》到 20《微分形式》</strong>给广义相对论与规范场论一个共同的几何语言, 联络、曲率、形式都是<strong>第二卷《广相》</strong>与<strong>第三卷《Yang-Mills》</strong>的骨架.</p>
+
+  <p><strong>第 21-25 节 (函数空间与算符)</strong>: <strong>21《Hilbert 空间》到 25《Sobolev/Distributions》</strong>处理 QM 与场论必需的无穷维分析 — 自伴算符、谱定理、Cauchy-Schwarz 给的不确定性原理、Fourier 变换桥接位置/动量.</p>
+
+  <p><strong>第 26-30 节 (概率、复分析与变分)</strong>: <strong>26《测度与概率》到 30《路径积分》</strong>把统计物理与量子场论的"求和"严格化 — 从单个随机变量, 到柯西积分公式, 到留数定理, 到 Green 函数, 最后落到本节的 Wiener 测度.</p>
+
+  <p>三十节走完, 一条线索浮现: <em>物理是关于守恒、对称与极值的讨论, 数学提供让这些讨论可推、可算、可证的语言</em>. 没有 Hilbert 空间, "态"是模糊的; 没有 Lie 代数, "对称"是手势; 没有微分形式, "场"是坐标依赖的; 没有 Wiener 测度, "对所有路径求和"是符号. 数学不是物理的装饰, 是它的骨架.</p>
+
+  <p>同时 — 也是物理学家最容易忽视的一点 — 数学并不总是"拿来即用". Wiener 早 Feynman 25 年就写下了路径测度, 但量子力学要等到 1948 年才知道自己需要这个东西; 黎曼 1854 年就建立了流形几何, Einstein 要等到 1915 年才发现这是引力的语言. <em>数学常常先于物理</em>: 它在等物理来用. 反过来, 物理也不时给数学制造难题 — 4 维 Yang-Mills 的存在性、δ 函数的严格化, 都是物理逼着数学家发明新工具的例子. 两个学科之间是双向的礼物交换.</p>
+
+  <p>第四卷写完, 我们已经看清整个《光之书》的支撑面: 第一卷《光与电》、第二卷《引力与时空》、第三卷《粒子与场》站在第四卷给出的数学地基上, 而每一卷又反过来给数学带来新的问题. 这是物理学最深层的乐趣 — 它一头是自然的真实, 一头是数学的纯粹, 中间靠人的好奇心穿针引线.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Feynman 路径积分 $\int\mathcal D x\,e^{iS/\hbar}$ 作为符号好用, 作为数学对象暧昧 — 路径空间是无限维, 没有 Lebesgue 测度. 严格化的关键是 Wiener 1923 在 Brown 运动里给出的 $\mu_W$: 通过 Kolmogorov 一致性定理, 从有限维高斯分布拼出无穷维概率测度. Trotter 1959 公式 $e^{-i\hat H t/\hbar} = \lim(e^{-i\hat V\Delta t/\hbar}e^{-i\hat T\Delta t/\hbar})^n$ 把 Schrödinger 演化切片成可算的有限维积分, 极限即"对路径求和". Wick 转动 $t\to-i\tau$ 把振荡相位变成衰减因子, Feynman 路径积分变成 Wiener 测度上的 Boltzmann 期望 (Feynman-Kac), 这是<strong>第三卷 20《Wick 转动》</strong>的数学根. 自由粒子做完整计算给出 $K = \sqrt{m/2\pi i\hbar T}\exp(im(x_f-x_0)^2/2\hbar T)$. 2 维场论 1981 年由 Glimm-Jaffe 严格化, 4 维 Yang-Mills 仍是 Clay 千禧问题. 整卷 30 节, 从 ε-δ 走到对路径求和, 数学一步步把物理变得可推、可算 — 它不是物理的装饰, 是骨架.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="29-greens-function.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="#" class="disabled" aria-disabled="true">下一节 →</a>
+</nav>
+
+</body>
+</html>

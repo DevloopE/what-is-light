@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>切空间与切丛 — "速度"在弯曲流形上怎么定义? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="16-manifolds.html">← 上一节</a>
+  <span class="chapter-title">第 17 节 / 30 · 第 4 部分 · 流形与微分几何 · 第四卷·物理学的数学基础</span>
+  <a href="18-metric-curvature.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>切空间与切丛 — "速度"在弯曲流形上怎么定义?</h1>
+  <div class="sub">—— 流形上的方向</div>
+  <div class="abstract">在欧氏空间 $\mathbb R^3$ 里, 一个粒子的位置 $\mathbf x$ 与速度 $\dot{\mathbf x}$ 是同一种东西 — 都是 $\mathbb R^3$ 里的向量. 但当我们把粒子约束在一个弯曲的流形上 (e.g. 球面 $S^2$), "位置" 是流形上的点, "速度" 却不再是流形里的元素 — 它指向流形之外. 本文从这个矛盾出发, 引入 <strong>切空间</strong> $T_pM$: 在每一点 $p$ 处给出一个 $n$ 维向量空间, 让速度有处可栖. 我们用三种等价方式定义切向量 (曲线的速度 / 函数的方向导数 / 局部坐标的形式和), 推出局部坐标基 $\partial/\partial x^i$, 把所有切空间粘成一个新的流形 — <strong>切丛</strong> $TM$. 沿途看到一个具体例子: $S^2$ 上一点的切平面 $\cong \mathbb R^2$, 以及矢量场作为切丛的截面. 这门数学把 GR 的能动张量 $T^{\mu\nu}$、卷三《running coupling》里的相空间流, 都安顿在了恰当的舞台上.</div>
+  <p>上一节我们造好了 <strong>流形</strong>: 一个局部像 $\mathbb R^n$、整体可以弯曲的空间. 但只造好"位置"还不够. 物理学里几乎一切动力学都要谈速度、动量、力 — 这些是带方向的量. 在 $\mathbb R^3$ 里我们从来不区分"点"和"向量": 都是三个数 $(x,y,z)$. 但在球面上, 你站在赤道某点 $p$, 想往东走 — 这个"往东"是什么? 它不可能是球面上的另一个点 (那是位移而不是速度), 也不可能直接写成 $\mathbb R^3$ 里的向量 (那个向量将穿出球面). 速度必须生活在一个新的、与点 $p$ 配对的空间里. 这个空间就是切空间 $T_pS^2$, 它在 $p$ 处与球面相切, 是一张二维平面.</p>
+  <p>本节我们从这个朴素的几何画面出发, 一步步把"切向量"从图形抽象成代数: 它是函数的<strong>方向导数算子</strong>; 它在局部坐标下展开为 $X^i \partial_i$ 的形式; 把所有点处的切空间合成一个 $2n$ 维的新流形, 叫切丛 $TM$. 这样一来, 矢量场就是 $M\to TM$ 的一个截面 — 在每个点 $p$ 上"挑出"一个切向量. 这套语言是后面讲度量、联络、曲率的全部基石.</p>
+
+  <h2>一、从弧长曲线到方向导数: 切向量的三种等价面孔</h2>
+  <p>设 $M$ 是一个 $n$ 维光滑流形, $p\in M$ 是一个固定点. 我们想给"在 $p$ 处的切向量"一个干净的定义. 最直观的尝试有三种, 它们彼此等价 — 选哪一种取决于你想做什么.</p>
+
+  <p><strong>面孔 A · 曲线的速度.</strong> 想象一条光滑曲线 $\gamma:(-\varepsilon,\varepsilon)\to M$, 其中 $\gamma(0)=p$. 在 $\mathbb R^n$ 里我们直接写 $\dot\gamma(0) = \lim_{t\to 0}(\gamma(t)-\gamma(0))/t$ — 但流形上没有"减法". 解决办法是把"速度"定义成<strong>等价类</strong>: 两条曲线 $\gamma_1,\gamma_2$ 在 $p$ 处<em>切</em>等价, 当且仅当对任意局部坐标卡 $\varphi$, 都有 $(\varphi\circ\gamma_1)'(0) = (\varphi\circ\gamma_2)'(0)$. 这不依赖坐标卡的选择 (链式法则保证). 一个等价类就是一个切向量.</p>
+
+  <p><strong>面孔 B · 方向导数 (derivation).</strong> 我们注意到: 给定一条曲线 $\gamma$ 和一个光滑函数 $f:M\to\mathbb R$, 复合函数 $f\circ\gamma:(-\varepsilon,\varepsilon)\to\mathbb R$ 在 $0$ 处可导. 这个数 $\frac{d}{dt}\big|_{t=0} f(\gamma(t))$ 只依赖于 $\gamma$ 的等价类和 $f$ — 不依赖具体的曲线. 这就启发我们把切向量直接看作<strong>对函数的算子</strong>:</p>
+
+  <p>$$\boxed{\;X_p : C^\infty(M) \to \mathbb R, \quad X_p f = \frac{d}{dt}\Big|_{t=0} f(\gamma(t)).\;} \tag{1}$$</p>
+
+  <p>这个算子有两条性质:</p>
+  <ul>
+    <li><strong>线性:</strong> $X_p(af+bg) = aX_p f + bX_p g$</li>
+    <li><strong>Leibniz 法则:</strong> $X_p(fg) = (X_p f)\,g(p) + f(p)\,(X_p g)$</li>
+  </ul>
+
+  <p>反过来, 任何一个满足这两条性质的线性映射 $X_p:C^\infty(M)\to\mathbb R$ 都可以由某条曲线产生 (这是一个不平凡的代数事实, 我们略去证明). 这给出了切向量的代数定义:</p>
+
+  <p><strong>定义 (2) [切向量]</strong> &nbsp; 一个<em>在 $p$ 处的切向量</em>是一个满足线性与 Leibniz 法则的映射 $X_p:C^\infty(M)\to\mathbb R$. 所有这样的 $X_p$ 构成一个向量空间, 称为 $M$ 在 $p$ 处的<strong>切空间</strong> $T_p M$.</p>
+
+  <p><strong>面孔 C · 局部坐标下的形式和.</strong> 在一个坐标卡 $(U,\varphi)$ 下, 用 $x^1,\ldots,x^n$ 记坐标, 那么对任意函数 $f$, 链式法则告诉我们</p>
+
+  <p>$$X_p f = \sum_{i=1}^n \frac{d(\varphi\circ\gamma)^i}{dt}\Big|_0 \cdot \frac{\partial(f\circ\varphi^{-1})}{\partial x^i}(\varphi(p)) =: \sum_i X^i \, \partial_i\big|_p f.$$</p>
+
+  <p>把 $\partial_i\big|_p := \partial/\partial x^i\big|_p$ 看作算子, 它就是"沿第 $i$ 条坐标线的方向导数". 那么</p>
+
+  <p>$$X_p = X^i\, \partial_i\big|_p, \qquad X^i \in \mathbb R \tag{3}$$</p>
+
+  <p>(本卷开始用 Einstein 求和约定: 上下重复指标自动求和.) 这就是切向量在坐标下的"具体形式" — 一组 $n$ 个数 $X^1,\ldots,X^n$, 加上一组基 $\{\partial_i\big|_p\}$. 三种面孔 A、B、C 指同一个对象 — 切向量.</p>
+
+  <h2>二、$T_pM$ 是 $n$ 维向量空间: 维数对了, 才像速度</h2>
+
+  <p>从面孔 C 我们立刻看出: $\{\partial_1\big|_p,\ldots,\partial_n\big|_p\}$ 是 $T_pM$ 的一组基. 任何 $X_p\in T_pM$ 都唯一写成 $X^i\partial_i\big|_p$ — 加法和数乘都是逐分量的. 所以</p>
+
+  <p>$$\dim T_pM = \dim M = n.$$</p>
+
+  <p>这一点恰好印证了我们对"速度"的直觉: 在一个 $n$ 维空间里, 一个粒子在某点的速度应当有 $n$ 个独立的分量. 维数对了, 物理就有了立足之地.</p>
+
+  <p>注意 $T_pM$ 与坐标卡的选择无关 — 但它的"基" $\{\partial_i\big|_p\}$ 当然依赖于卡. 换一个坐标卡 $\tilde x^j(x)$, 同一个切向量 $X_p$ 在两组基下的分量满足</p>
+
+  <p>$$\tilde X^j = \frac{\partial \tilde x^j}{\partial x^i}\bigg|_p X^i.$$</p>
+
+  <p>这个变换规则就是物理书里说的"切向量的<strong>逆变</strong>变换" — "逆变"是历史上的叫法, 因为它的变换矩阵跟坐标本身的变换矩阵互逆 (相对于函数的偏导数 $\partial f/\partial x^i$). 切向量是第 $(1,0)$ 型张量.</p>
+
+  <p>对偶地, 在 $T_pM$ 上的线性泛函组成<strong>余切空间</strong> $T_p^*M$, 它也是 $n$ 维. 函数 $f$ 在 $p$ 处的微分 $df_p\in T_p^*M$ 由 $df_p(X_p) := X_p f$ 定义. 余切空间的对偶基是 $\{dx^1\big|_p, \ldots, dx^n\big|_p\}$, 满足 $dx^i(\partial_j) = \delta^i_j$. 余切向量是<strong>协变</strong>的, 即 $(1,0)$-型张量的对偶, 也叫 $(0,1)$-型. 把这两个空间堆叠张量, 就得到了任意 $(p,q)$-型张量 — 这是后面讲度量、Riemann 张量的语言准备.</p>
+
+  <h2>三、具体例子: 球面 $S^2$ 上的切平面</h2>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · $S^2$ 上一点的切平面与两条坐标方向的切向量</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$S^2$ 上某点 $p$ 处的切平面 $T_pS^2$, 上面有两个坐标基切向量与一条经过 $p$ 的曲线</dd>
+      <dt>必含元素</dt><dd>一个三维球面 (透视画法); 球面上一点 $p$ (放在赤道附近); 在 $p$ 处的切平面 (一个浅蓝色圆盘附在球外, 与球面在 $p$ 处相切); 两个切向量 $\partial_\theta, \partial_\phi$ 从 $p$ 出发, 躺在切平面内, 互相正交; 一条经过 $p$ 的光滑曲线 $\gamma(t)$ 沿球面延伸; 该曲线在 $p$ 处的速度向量 $\dot\gamma(0)$ 也躺在切平面内, 与 $\partial_\theta, \partial_\phi$ 不共线</dd>
+      <dt>几何/示意精度</dt><dd>切平面与球面在 $p$ 处真的相切 (法向量 $\hat n$ 垂直于切平面); 三个切向量都严格落在切平面内; 球面用网格线显示纬度/经度以暗示 $\theta,\phi$ 坐标</dd>
+      <dt>标签与公式</dt><dd>球面标 $S^2$; 点标 $p$; 切平面标 $T_pS^2 \cong \mathbb R^2$; 两个基向量标 $\partial_\theta, \partial_\phi$; 曲线标 $\gamma$; 速度向量标 $\dot\gamma(0) = X^i\partial_i$</dd>
+      <dt>风格建议</dt><dd>白底, 球面用浅灰渐变 + 经纬网, 切平面浅蓝半透明, 切向量用红/蓝箭头, 曲线用深绿; 几何线条 1pt, 标签衬线体</dd>
+    </dl>
+  </div>
+  <figcaption>图 1 &nbsp; $S^2$ 上一点的切平面: 流形外的"切平面"是直观图像, 流形内的代数定义 (1)–(3) 是它的本体.</figcaption>
+  </figure>
+
+  <p>取 $M = S^2 = \{(x,y,z)\in\mathbb R^3 : x^2+y^2+z^2 = 1\}$. 用球坐标 $(\theta,\phi)$ 把球面参数化:</p>
+
+  <p>$$\mathbf r(\theta,\phi) = (\sin\theta\cos\phi,\;\sin\theta\sin\phi,\;\cos\theta), \quad 0\lt \theta\lt \pi,\;0\le\phi\lt 2\pi.$$</p>
+
+  <p>这是一个坐标卡 (覆盖去掉两极的开集). 在这个卡里, 切空间的局部基是</p>
+
+  <p>$$\partial_\theta\big|_p = \frac{\partial\mathbf r}{\partial\theta}, \qquad \partial_\phi\big|_p = \frac{\partial\mathbf r}{\partial\phi}.$$</p>
+
+  <p>取一个具体点: 赤道东经 $0^\circ$, 即 $\theta=\pi/2,\phi=0$, 对应 $\mathbb R^3$ 中的 $(1,0,0)$. 计算两个基切向量在 $\mathbb R^3$ 中的"嵌入像":</p>
+
+  <p>$$\partial_\theta\big|_p = (\cos\theta\cos\phi,\;\cos\theta\sin\phi,\;-\sin\theta)\big|_{(\pi/2,0)} = (0,0,-1),$$</p>
+  <p>$$\partial_\phi\big|_p = (-\sin\theta\sin\phi,\;\sin\theta\cos\phi,\;0)\big|_{(\pi/2,0)} = (0,1,0).$$</p>
+
+  <p>这两个向量都垂直于位置向量 $(1,0,0)$ — 这正说明它们在 $p$ 处与球面相切. 它们张成 $T_pS^2 \cong \mathbb R^2$, 一个二维向量空间. 任何 $X_p\in T_pS^2$ 都可写为</p>
+
+  <p>$$X_p = X^\theta\,\partial_\theta\big|_p + X^\phi\,\partial_\phi\big|_p.$$</p>
+
+  <p>具体地: 想象一个粒子沿赤道向东匀速运动, 即 $\gamma(t) = (\cos t, \sin t, 0)$, 显然 $\gamma(0)=p$. 计算它的速度: 在球坐标下, $(\theta(t),\phi(t)) = (\pi/2, t)$, 所以 $X^\theta = 0, X^\phi = 1$, 即 $X_p = \partial_\phi\big|_p = (0,1,0)$ — 朝东 $y$-方向. 这就是切向量的"曲线速度"面孔 A 与"分量展开"面孔 C 的具体兑现.</p>
+
+  <p>留意: 我们把 $\partial_\theta,\partial_\phi$ 写成了 $\mathbb R^3$ 中的列向量, 这只是因为 $S^2$ 恰好嵌入在 $\mathbb R^3$ 里. 抽象地讲, $T_pS^2$ 不必嵌入到任何外空间 — 它是 (1) 中那个对函数求方向导数的算子集合. 这种"内禀"的视角对广义相对论至关重要, 那里的四维时空并不嵌入在更高维的平直空间中.</p>
+
+  <h2>四、切丛 $TM$、矢量场与推前</h2>
+
+  <p>每个点 $p$ 都有一个切空间 $T_pM$. 把它们全部并起来:</p>
+
+  <p>$$TM := \bigsqcup_{p\in M} T_pM = \{(p,X_p) : p\in M,\; X_p\in T_pM\}.$$</p>
+
+  <p>这个 $TM$ 不仅是一个集合, 还自然地承载了一个 $2n$ 维的光滑流形结构: 用 $M$ 上一个坐标卡 $(U,x^i)$ 上的局部坐标 $(x^1,\ldots,x^n; X^1,\ldots,X^n)$, 前 $n$ 个数描述点 $p$, 后 $n$ 个数描述切向量 $X_p = X^i\partial_i$ 在该卡下的分量. 卡之间的过渡映射光滑 (链式法则保证). 这就是<strong>切丛</strong> $TM$. 它有一个自然的投影 $\pi:TM\to M$, $(p,X_p)\mapsto p$.</p>
+
+  <p>有了切丛, "速度场" 就有了归属:</p>
+
+  <p><strong>定义 (4) [矢量场]</strong> &nbsp; $M$ 上的一个 (光滑) <em>矢量场</em> 是切丛的一个光滑截面 $X:M\to TM$, 即 $\pi\circ X = \text{id}_M$, 通俗地: 在每点 $p$ 处指定一个切向量 $X(p)\in T_pM$, 且这种指定光滑地依赖于 $p$.</p>
+
+  <p>在局部坐标下, $X = X^i(x)\,\partial_i$, 其中 $X^i(x)$ 是 $n$ 个光滑函数. 这正是经典力学里"流场"、流体力学里"流速场"、电磁学里"$\mathbf E$ 场" 的内禀写法.</p>
+
+  <p><strong>推前 (push-forward).</strong> 若 $\mathbf f:M\to N$ 是两个流形之间的光滑映射, 它在每一点 $p$ 处诱导一个线性映射</p>
+
+  <p>$$\mathbf f_*: T_pM \to T_{f(p)}N,\qquad (\mathbf f_* X_p)(g) := X_p(g\circ \mathbf f),$$</p>
+
+  <p>对任意 $g\in C^\infty(N)$. 这个 $\mathbf f_*$ 在局部坐标下就是<strong>Jacobi 矩阵</strong> $\partial f^a/\partial x^i$. 它把 "速度" 从源流形搬到目标流形 — 很自然: 如果 $\gamma$ 是 $M$ 上经过 $p$ 的曲线, 那 $\mathbf f\circ\gamma$ 就是 $N$ 上经过 $\mathbf f(p)$ 的曲线, 它们的速度对应着 $\mathbf f_*$. 推前是把"链式法则"几何化的结果. 对偶地, 函数与微分形式从 $N$ 上"拉回" (pull-back) 到 $M$ 上 — 我们留到外微分形式那一节展开.</p>
+
+  <h2>五、物理回响、历史与下一站</h2>
+
+  <p><strong>物理回响.</strong> 切丛与切空间是一切现代物理几何化的基石.</p>
+  <ul>
+    <li>卷三第 18 节《running coupling》谈到耦合常数在能量尺度上的演化, 那是一个相空间 $TM$ 上的流; 重整化群方程 $\mu\,d g/d\mu = \beta(g)$ 中的 $d g/d\mu$ 正是流形 (耦合常数空间) 上的切向量场.</li>
+    <li>卷一第 03 节《彩虹》中讨论了光线在水滴里的折射方向; 那里"出射方向"就是球面 $S^2$ (单位速度方向) 上的一个切向量, 这是 Descartes 找到 42° 出射角的几何骨架.</li>
+    <li>广义相对论中, 时空 $M$ 是一个四维 Lorentz 流形. 物质的能量动量张量 $T^{\mu\nu}$ 是切丛的一个 (2,0)-型张量场: 在每点 $p$, 它是 $T_pM\otimes T_pM$ 上的元素. Einstein 场方程 $G_{\mu\nu}=8\pi G\, T_{\mu\nu}$ 把几何 (Ricci) 与物质 (能动) 都写在同一个张量丛上 — 没有切丛就写不出场方程.</li>
+    <li>分析力学里的"广义速度" $\dot q^i$ 严格地说就是切丛 $TQ$ 上的坐标 (位形空间 $Q$ 通常是一个流形, 如刚体的 $SO(3)$); Lagrangian $L:TQ\to\mathbb R$ 是定义在切丛上的函数.</li>
+  </ul>
+
+  <p><strong>历史.</strong> 切空间的现代代数定义 (公式 (1)–(2)) 经过了几十年才成形. <strong>Levi-Civita</strong> 在 1917 年研究曲面上的"平行移动"时, 第一次把切向量从外部嵌入剥离出来 — 但他还在用张量分量的语言. <strong>Élie Cartan</strong> 1922 年起发展张量分析与外微分形式系统, 把切向量与协变/逆变张量提到了核心地位; 他的"活动标架法" (méthode du repère mobile) 把每点的切空间当作一个独立的几何场所, 是现代纤维丛思想的雏形. <strong>Hassler Whitney</strong> 1935 年正式引入"切丛"作为独立的拓扑空间, 给切向量一个不依赖嵌入的内禀定义; 1936 年他还证明了任何 $n$ 维流形都可以嵌入到 $\mathbb R^{2n}$ 里. 把切空间定义为"对函数的方向导数算子" (Leibniz 法则) 的代数化处理, 则是 1950 年代 Chevalley、Koszul 等人在代数几何与同调代数中推广的语言. 这套语言今天写在每一本微分几何教材的第二章.</p>
+
+  <p><strong>下一站.</strong> 切空间只是给了我们"方向"的舞台, 但还没有"长度"和"角度". 要量两个切向量的夹角, 要算曲线的长度, 要分清"测地线" — 我们需要在每个 $T_pM$ 上额外配一个内积 $g_p(\cdot,\cdot)$. 这个把内积光滑地铺满整个流形的构造叫<strong>Riemann 度量</strong>; 它的"曲率" 即是流形偏离平直的精确度量. 这就是下一节《度量与曲率》的主题.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>切空间 $T_pM$ 是流形 $M$ 在每一点处配的一个 $n$ 维向量空间, 用来安顿"速度"、"动量"、"力"这一切带方向的物理量. 它有三副等价的面孔: 曲线的速度等价类、对函数的方向导数算子 (满足 Leibniz 法则)、局部坐标下的形式和 $X^i\partial_i$. 把所有点的切空间堆成 $TM$, 它本身是一个 $2n$ 维流形, 矢量场就是它的截面. 这套语言把卷一彩虹里的"出射方向"、卷三 RG 流里的"耦合空间速度"、广义相对论里的能动张量都写在了同一个舞台 — 切丛 — 之上. Cartan、Whitney、Levi-Civita 在 1917-1935 年的工作把"切"这个原本几何的、依赖嵌入的概念, 提升为流形上内禀的代数对象, 让现代规范场论与广义相对论的几何化成为可能. 下一节加上度量, 就能开始量长度、量角度、量曲率.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="16-manifolds.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="18-metric-curvature.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

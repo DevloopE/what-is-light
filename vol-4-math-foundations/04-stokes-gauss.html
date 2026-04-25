@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stokes 与 Gauss 定理 — 怎么把"微观守恒"和"宏观流量"接起来? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="03-curl-divergence.html">← 上一节</a>
+  <span class="chapter-title">第 4 节 / 30 · 第 1 部分 · 微积分与向量分析 · 第四卷·物理学的数学基础</span>
+  <a href="05-variational.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>Stokes 与 Gauss 定理 — 怎么把"微观守恒"和"宏观流量"接起来?</h1>
+  <div class="sub">—— 边界与体积的对偶</div>
+
+  <div class="abstract">本节从一条最熟悉的微观守恒律 —— 电荷连续性方程 $\partial_t\rho + \nabla\cdot\mathbf J = 0$ —— 出发. 它表面上是关于场的微分方程, 但物理意义只有翻成"任意闭合体积内的电荷变化等于流过表面的电流"才直观. 完成这步翻译的, 就是 Gauss 散度定理. 我们会先以"切碎—相消"的几何思路推出 Gauss 与 Stokes 两个定理, 再代入一个具体例子 —— 用 Gauss 定理推 Coulomb 定律, 把对称性和场强直接挂上钩. 最后我们指出: 这两个定理只是流形上一条更高的恒等式 $\int_M \mathrm d\omega = \int_{\partial M}\omega$ 的特例, 而这条恒等式正是"物理无内点": 一切观测都发生在边界上.</div>
+
+  <p>设想你拿着一只氢气球, 小心地把它放进一只透明的塑料箱里, 然后封上盖. 一段时间过去, 气球漏了, 氢气慢慢扩散到整个箱子. 这是一种朴素的"守恒": 箱里气体总量在内部漂移, 但只要箱子是密封的, 总量不变. 现在把箱子戳一个小洞, 你立刻明白了什么叫"流出": 总量的减少率, 等于洞口单位时间漏出的氢气. 这条朴素观察 —— 体积内总量的减少率 = 流过边界的通量 —— 不需要任何方程就成立, 它甚至是"守恒"这个词本身的定义.</p>
+
+  <p>但是物理学家偏偏要把这条几何明白的事实, 写成一条微分方程: 连续性方程 $\partial_t\rho + \nabla\cdot\mathbf J = 0$. 这种"微分形式"的好处是局部、可代入到 Maxwell 方程组里参与运算; 缺点是它把那条直观的体积-表面对偶藏起来了. 反过来, 如果只看积分形式 $\frac{\mathrm d}{\mathrm dt}\!\int_V \rho = -\!\oint_{\partial V}\mathbf J\cdot\mathrm d\mathbf A$, 几何意义清楚, 但局部的"场遵循什么方程"又不显形. 怎么把两者接起来, 怎么把"切一刀"得到的微观信息, 一路汇总成对整个边界的宏观陈述? 这正是 Gauss 散度定理与 Stokes 定理回答的问题. 它们看起来只是两条积分公式, 实则是连续介质物理整个语言的语法骨架.</p>
+
+  <h2>一、Gauss 散度定理: 体积积分等于边界通量</h2>
+
+  <p>Gauss 散度定理的标准陈述是这样的. 在一个紧致的三维区域 $V\subset\mathbb R^3$ 上, 给定一个连续可微的向量场 $\mathbf F(\mathbf r)$, 它的散度沿体积的积分等于该向量场在边界曲面 $\partial V$ 上的通量:</p>
+
+  <p>$$ \int_V (\nabla\cdot\mathbf F)\,\mathrm dV \;=\; \oint_{\partial V} \mathbf F\cdot\mathrm d\mathbf A. \tag{1} $$</p>
+
+  <p>这里 $\mathrm d\mathbf A$ 是边界的有向面元, 方向取外法向. 上一节我们把"散度"定义成"单位体积通量的极限", $(\nabla\cdot\mathbf F)(\mathbf r) = \lim_{V\to 0} \frac{1}{V}\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$. 这个极限定义本身就在低声暗示 (1) 式: 散度是"无限小盒子的通量密度"; 把无限小盒子拼起来, 通量密度的体积积分自然就等于整体通量. 我们把这个直觉做严格.</p>
+
+  <p>取定一个区域 $V$, 把它切成 $N$ 块小盒子 $V_1, V_2, \dots, V_N$. 对每一块, 由散度的定义有 $\int_{V_i} \nabla\cdot\mathbf F\,\mathrm dV \approx \oint_{\partial V_i}\mathbf F\cdot\mathrm d\mathbf A$. 把所有这些等式加起来:</p>
+
+  <p>$$ \sum_{i=1}^N \int_{V_i}\nabla\cdot\mathbf F\,\mathrm dV \;=\; \sum_{i=1}^N \oint_{\partial V_i}\mathbf F\cdot\mathrm d\mathbf A. $$</p>
+
+  <p>左边求和等于 $\int_V \nabla\cdot\mathbf F\,\mathrm dV$, 这没有疑义. 右边的求和则发生一件漂亮的事: 任意两个相邻盒子 $V_i, V_j$ 共享一个内部面, 这个面在 $V_i$ 上方向取一种法向, 在 $V_j$ 上方向恰好相反 (因为各取自己的"外法向"). 所以这两份贡献 $\mathbf F\cdot\mathrm d\mathbf A$ 等大反号, 在求和中互相抵消! 唯一剩下来的, 是那些没有"邻居"的面 —— 也就是整个 $V$ 的外边界 $\partial V$. 于是右边变成 $\oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$. 让小盒子的尺度趋于零, 上面的近似都成为等式, 我们便得到 (1) 式. 这种"切碎—内边界相消—只剩外边界"的论证, 是 Stokes 类定理共有的灵魂, 我们后面还要再用一次.</p>
+
+  <h2>二、Stokes 定理: 旋度面积分等于环路积分</h2>
+
+  <p>Stokes 定理是 Gauss 定理在低一维的兄弟. 设 $S\subset\mathbb R^3$ 是一片有边界的光滑曲面, 边界曲线记作 $\partial S$. 对一个连续可微的向量场 $\mathbf F$, 它的旋度沿 $S$ 的面积分等于 $\mathbf F$ 沿 $\partial S$ 的环路积分:</p>
+
+  <p>$$ \int_S (\nabla\times\mathbf F)\cdot\mathrm d\mathbf A \;=\; \oint_{\partial S} \mathbf F\cdot\mathrm d\mathbf l. \tag{2} $$</p>
+
+  <p>方向规则是右手规则: 右手四指沿 $\partial S$ 的方向卷, 大拇指就指向 $\mathrm d\mathbf A$ 的方向. 推导思路完全平行 (1) 式: 把曲面 $S$ 切成许多小片 $S_1, \dots, S_N$. 上一节我们把旋度的法向分量定义为"单位面积环路积分的极限", $(\nabla\times\mathbf F)\cdot\hat n = \lim_{S\to 0}\frac{1}{S}\oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$. 因此每一小片都满足 $\int_{S_i}\nabla\times\mathbf F\cdot\mathrm d\mathbf A \approx \oint_{\partial S_i}\mathbf F\cdot\mathrm d\mathbf l$. 求和后, 任意相邻小片共享一段内部边界, 而这一段在两片上以相反方向被走过 —— 一阶贡献抵消. 只剩下整片曲面的外边界 $\partial S$, 这就是 (2) 式.</p>
+
+  <p>把 (2) 式限制到 $\mathbb R^2$, 即 $\mathbf F = (P, Q, 0)$ 在 $xy$ 平面的二维区域 $D$ 上, $\mathrm d\mathbf A = \hat z\,\mathrm dA$, 旋度的 $z$ 分量是 $\partial_x Q - \partial_y P$, 你立即得到 Green 定理:</p>
+
+  <p>$$ \int_D \!\Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\mathrm dA \;=\; \oint_{\partial D}(P\,\mathrm dx + Q\,\mathrm dy). $$</p>
+
+  <p>所以 Green 不是独立定理, 它是 Stokes 在 $\mathbb R^2$ 的特例. 这种"高维定理把低维定理包进去"的层级关系, 暗示着背后还有一个统一. 在第二十节我们会看到, 它们其实都是流形上的广义 Stokes 定理 $\int_M \mathrm d\omega = \int_{\partial M}\omega$ 的具体写法 —— 只是把 0-form, 1-form, 2-form, 3-form 各取一个分量, 就分别写成牛顿-莱布尼茨、Green、Stokes、Gauss.</p>
+
+<figure class="diagram-placeholder">
+<div class="placeholder-box">
+  <span class="tag">TikZ 待渲染</span>
+  <h4>图 1 · 散度定理与 Stokes 定理的几何</h4>
+  <dl class="tikz-req">
+    <dt>主题</dt><dd>体积-边界 与 曲面-边界 两组对偶图示, 上下并列</dd>
+    <dt>必含元素</dt><dd>上图: 一个三维体积 $V$ (近椭球或方块) 与其边界曲面 $\partial V$, 体积内若干向量场箭头由内指外, 边界上密集的法向通量箭头, 在右上侧标注 $\int_V \nabla\cdot\mathbf F\,\mathrm dV = \oint_{\partial V}\mathbf F\cdot\mathrm d\mathbf A$. 下图: 一片碟形或鞍形二维曲面 $S$ 与其闭合边界曲线 $\partial S$, 曲面上若干代表 $\nabla\times\mathbf F$ 的法向小箭头, 边界曲线上箭头表示线积分方向, 旁边小图示意右手规则, 标注 $\int_S(\nabla\times\mathbf F)\cdot\mathrm d\mathbf A = \oint_{\partial S}\mathbf F\cdot\mathrm d\mathbf l$.</dd>
+    <dt>几何精度</dt><dd>体积/边界关系正确, 法向方向取外法向; 曲面与边界的右手规则方向一致</dd>
+    <dt>标签与公式</dt><dd>两条主要定理 (1)(2) 各以小卡片置于对应图旁</dd>
+    <dt>风格建议</dt><dd>白底, 体积用半透明灰色填充, 边界用粗线; 向量箭头用统一的细线带头</dd>
+  </dl>
+</div>
+<figcaption>图 1  Gauss 散度定理与 Stokes 定理的对偶几何: "体积内的散度" = "边界上的通量"; "曲面上的旋度" = "边界上的环路". 把区域切碎、内部边界相消, 只剩下外边界的贡献.</figcaption>
+</figure>
+
+  <h2>三、推 Coulomb: 一个具体应用</h2>
+
+  <p>抽象的 (1) 式立刻可以兑换成具体的电学结果. 我们就来用 Gauss 定理重新导出 Coulomb 定律, 看它如何把"对称性"直接翻译成"场的具体形式".</p>
+
+  <p>把一个静止的点电荷 $q$ 放在原点. 由于空间各向同性 (这是物理输入), 电场必然只与 $r = |\mathbf r|$ 有关, 且只有径向分量, 写作 $\mathbf E(\mathbf r) = E(r)\,\hat r$. 取一个以原点为中心、半径 $R$ 的球面 $S_R$ 作为 Gauss 面, 它的外法向就是 $\hat r$, 面元为 $\mathrm d\mathbf A = \hat r\,R^2\sin\theta\,\mathrm d\theta\,\mathrm d\varphi$. 通量是</p>
+
+  <p>$$ \oint_{S_R}\mathbf E\cdot\mathrm d\mathbf A \;=\; \int_0^\pi\!\!\int_0^{2\pi} E(R)\cdot R^2 \sin\theta\,\mathrm d\theta\,\mathrm d\varphi \;=\; 4\pi R^2\,E(R). $$</p>
+
+  <p>另一边, Maxwell 方程 $\nabla\cdot\mathbf E = \rho/\varepsilon_0$ 经 Gauss 定理变成积分形式: $\oint_{\partial V}\mathbf E\cdot\mathrm d\mathbf A = Q_{\text{enc}}/\varepsilon_0$, 其中 $Q_{\text{enc}}$ 是 $V$ 内总电荷. 在我们的设定里 $Q_{\text{enc}} = q$. 两边相等给出</p>
+
+  <p>$$ E(R) \;=\; \frac{1}{4\pi\varepsilon_0}\frac{q}{R^2}. \tag{3} $$</p>
+
+  <p>这正是 Coulomb 场强. 注意我们没有做任何"积分技巧": 球对称把场的方向锁死, Gauss 定理把发散方程的局部条件转成球面通量的代数, 剩下的只是除以一个面积. 同样的几何在卷一关于 Olbers 佯谬的洋葱壳积分里出现过 —— 我们当时把宇宙各向同性下来自距离 $r$ 的恒星照度按 $4\pi r^2$ 的壳层数密度积分, 那其实就是把 Gauss 定理倒过来用: 已知通量, 算源密度.</p>
+
+  <p>用同一招还能推 Ampère 定律. 取一根载流 $I$ 的无限长直导线, 由柱对称磁场只能是切向 $\mathbf B = B(\rho)\,\hat\varphi$. 取以导线为轴、半径 $\rho$ 的小圆作 Stokes 面 $S$, 它的边界 $\partial S$ 是同心圆, $\oint_{\partial S}\mathbf B\cdot\mathrm d\mathbf l = 2\pi\rho\,B(\rho)$. 由 Ampère 律的微分形式 $\nabla\times\mathbf B = \mu_0 \mathbf J$ 经 Stokes 定理转成 $\oint_{\partial S}\mathbf B\cdot\mathrm d\mathbf l = \mu_0 I_{\text{enc}}$, 立刻得 $B(\rho) = \mu_0 I/(2\pi\rho)$. 物理实质同样是: 对称性锁死方向, Stokes 定理把局部环量翻成宏观环路积分.</p>
+
+  <p>这里不动声色地藏着一条恒等式 $\nabla\cdot(\nabla\times\mathbf F) = 0$. 把它代入 (1) 式, 立得 $\oint_{\partial V}(\nabla\times\mathbf F)\cdot\mathrm d\mathbf A = 0$: 任意闭合曲面上, 旋度场的通量为零. 反过来, 把这条结果应用到 Maxwell 方程 $\nabla\times\mathbf B - \mu_0\varepsilon_0\partial_t\mathbf E = \mu_0\mathbf J$ 两边取散度, 立刻自动给出连续性方程 $\partial_t\rho + \nabla\cdot\mathbf J = 0$ —— 电荷守恒不是独立公设, 而是 Maxwell 方程组结构的必然推论. 这就是几何学的力量.</p>
+
+  <h2>四、双重表述, 历史与一般化</h2>
+
+  <p>把 (1) 式抬到时空里, 写成相对论协变的形式, 就是连续性方程 $\partial_\mu j^\mu = 0$ 的等价积分版本. 设 $j^\mu = (\rho, \mathbf J)$ 是四流, $\Sigma$ 是时空中一个闭合三维超曲面, $\mathrm d\Sigma_\mu$ 是其有向面元, 则 Gauss 定理在 Minkowski 时空里说</p>
+
+  <p>$$ \oint_\Sigma j^\mu\,\mathrm d\Sigma_\mu \;=\; 0 \qquad\Longleftrightarrow\qquad \partial_\mu j^\mu = 0. $$</p>
+
+  <p>把 $\Sigma$ 取成"$t = t_1$ 到 $t = t_2$ 的两片空间切片 + 远处侧壁", 远处通量为零, 立得 $\int_{t_1}\rho\,\mathrm d^3x = \int_{t_2}\rho\,\mathrm d^3x$ —— 总电荷是时间无关的不变量. 这就是物理学里"守恒律的双重表述": $\partial_\mu j^\mu = 0$ 是微观的、局部的、便于代入运动方程; $\oint j^\mu\mathrm d\Sigma_\mu = 0$ 是宏观的、积分的、便于物理解释. 它们之间架桥的, 是 Gauss 定理. 在卷三里 Noether 定理的"任意连续对称→守恒流"这条线索, 最后兑换成可观测量, 用的正是这条积分形式.</p>
+
+  <p>这两条定理的物理回响远远不止于此. 卷一里我们用洋葱壳法处理 Olbers 佯谬, 在背后偷偷用了一次 Gauss 定理 (体积内星辰发出的总光通量等于无穷远球面上的能流); 卷一里 Maxwell 方程组的积分形式 —— Gauss 定律 $\oint\mathbf E\cdot\mathrm d\mathbf A = Q/\varepsilon_0$, Ampère 定律 $\oint\mathbf B\cdot\mathrm d\mathbf l = \mu_0 I$ —— 完全是 (1)(2) 在电磁场上的具体写法; 卷二里热力学第二定律的 Clausius 形式 $\oint \mathrm dQ/T \le 0$, 看上去和向量分析无关, 但它本质上也是"沿一条闭合路径的量为零或非正" 的边界论证, 与 Stokes 定理的"环路 $=$ 内部"思路一脉相承.</p>
+
+  <p>历史上, 这两条定理的胚胎是分头出现的. Gauss 在 1813 年研究静电学时就用了体积-表面的转换, 但他没把它写成今天这样的"定理"形式 —— 他更关心具体的引力位势问题. 真正把它系统化的是 1828 年的 Green: 他在一本只印了 51 本的小册子《数学分析在电磁学上的应用》里, 引入了今天叫作 Green 函数与 Green 定理的两件法宝, 把势论彻底解析化. 这本小册子默默无闻地躺了二十年, 直到 William Thomson (后来的 Kelvin 勋爵) 在巴黎一家旧书店淘到一本, 才把它推到主流视野. 至于 Stokes 定理本身, 它最早出现在 1854 年剑桥大学 Smith Prize 的考试题里 —— Stokes 在题面里直接写下要考生证明的等式. 这道题的题目流传下来, 才有了今天的命名. 历史的吊诡在于: Stokes 当年写题目, 灵感正是来自 Thomson 私下里给他的一封信, 而 Thomson 那时大概脑子里转的还是 Green 的小册子. 数学就这样从一个人传到另一个人, 沿着一条断断续续的路最终汇成今天教科书上一段简洁的文字.</p>
+
+  <p>这两条定理还会被进一步统一. 在第二十节我们将系统地讲流形上的微分形式, 那时会看到一条更高的恒等式</p>
+
+  <p>$$ \int_M \mathrm d\omega \;=\; \int_{\partial M}\omega, $$</p>
+
+  <p>它把牛顿-莱布尼茨 ($M$ 是一段区间)、Green ($M$ 是平面区域)、Stokes ($M$ 是曲面)、Gauss ($M$ 是体积) 全部并入同一条公式. 这种"维度无关"的写法, 不只是数学上的整洁, 更是相对论与规范场论的语言基础: 在那里, 时空可能是四维或更高维的弯曲流形, 你不再有正交坐标系下方便的 $\nabla\cdot$ 与 $\nabla\times$, 但 $\mathrm d\omega = 0$ 这种陈述仍然成立. 卷三里最后一节 Yang-Mills 方程的几何化形式, 用的就是这条普适的 Stokes.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>Gauss 散度定理与 Stokes 定理把"局部场的微分性质"翻成"全局边界上的通量与环量". 它们解决的是物理学家最常遇到的翻译问题: 微分写法便于代入方程, 积分写法便于物理解释; 这两条定理把它们绑成等价物. 一旦掌握"切碎—内部相消—只剩外边界"这条思路, Coulomb 定律、Ampère 定律、电荷守恒、Olbers 佯谬都成了同一个几何骨架的不同投影. 在卷一卷二卷三里, 我们已经多次借用过它们; 在第二十节我们会看到, 这两条定理只是流形上 $\int_M \mathrm d\omega = \int_{\partial M}\omega$ 的两个低维特例 —— 而这条普适的 Stokes 定理, 正是相对论与规范场论得以脱开坐标的根本原因. 下一节我们换一种风景: 看看变分原理是怎么把"光走极值路径"推广成整套力学的.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="03-curl-divergence.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="05-variational.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

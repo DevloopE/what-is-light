@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>度规与曲率 — Einstein 方程左边那一团是什么? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="17-tangent-space.html">← 上一节</a>
+  <span class="chapter-title">第 18 节 / 30 · 第 4 部分 · 流形与微分几何 · 第四卷·物理学的数学基础</span>
+  <a href="19-connection.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>度规与曲率 — Einstein 方程左边那一团是什么?</h1>
+  <div class="sub">—— Riemann 张量与标量曲率</div>
+
+  <div class="abstract">本节从 Einstein 场方程 $G_{\mu\nu} = 8\pi G\,T_{\mu\nu}/c^4$ 的左边出发, 追问"几何"两字到底是什么数学. 上一节我们已经把切空间装上每个流形点; 这里继续装上一层: 度规 $g_{ij}$ — 它在每个切空间里给一个内积, 因而给"长度"和"角度". 我们会在球面 $S^2$ 上把度规写出来, 由它推测地线方程, 然后引入 Riemann 曲率张量 $R^a{}_{bcd}$ — 它真正衡量"这块流形是否平", 计算方式是把一个向量沿一个小回路平行运输回来看它转了多少角. 缩并一次得 Ricci $R_{ab}$, 缩并两次得标量 $R$, 再做一处由 Bianchi 恒等式锁住的组合, 就是 Einstein 张量 $G_{ab}=R_{ab}-\tfrac12 g_{ab}R$. 我们在 $S^2$ 上代具体数字算出 $K=1/R^2$, 也写下 Schwarzschild 黑洞度规的形状, 落回卷一 04《光的弯曲》的 $\alpha=4GM/(bc^2)$.</div>
+
+  <p>广义相对论的核心方程只有一行:
+  $$ G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu}. $$
+  右边 $T_{\mu\nu}$ 是物质的能量动量张量 — 卷三里我们见过它, 描述能量、动量、应力如何在时空中分布. 左边那一团 $G_{\mu\nu}$ 叫 Einstein 张量, 它纯粹是<em>几何</em>: 给一片时空, 它就有一个值, 与里面的物质无关. 整套广义相对论用的就是这一行 — 但要把这一行的符号都讲清楚, 需要的数学是: 流形、切空间 (上一节)、<strong>度规、联络、曲率</strong>. 本节把度规和曲率讲透, 联络留给下一节深入.</p>
+
+  <p>读者不需要事先会黎曼几何. 我们的策略和前面一样 — 从一个看得见摸得着的几何例子 (球面 $S^2$) 起步, 把度规、测地线、曲率一个个写下来代数字算, 再把这些概念抽象成一般流形上的张量公式. 球面这一个例子里几乎所有结构都同时出现, 它是这门数学最好的训练场.</p>
+
+  <h2>一、度规: 给每点切空间一个内积</h2>
+
+  <p>上一节我们说, 流形 $M$ 上每点 $p$ 都有一个切空间 $T_p M$ — 它是一个真正的向量空间, 长着 $n$ 维. 但仅有"向量空间"还不能讲长度: 同一个向量空间可以配不同的内积, 长度、角度、垂直性都跟着改变. 要让流形真正"有几何", 还得在每点切空间里挑一个内积, 而且让这个内积在点之间光滑变化. 这就是<strong>度规 (metric)</strong>.</p>
+
+  <p>具体地, 在局部坐标 $\{x^i\}$ 下, 切空间的基底是偏导算子 $\partial_i = \partial/\partial x^i$ (上一节). 一个向量 $v=v^i\partial_i$ 配上另一个 $w=w^j\partial_j$, 它们的内积就由一组对称的系数 $g_{ij}(p)$ 给出:</p>
+
+  <p>$$
+  \langle v,w\rangle_p = g_{ij}(p)\, v^i\, w^j,\qquad g_{ij} = g_{ji},\quad \det(g_{ij})\neq 0. \tag{1}
+  $$</p>
+
+  <p>$g_{ij}$ 是<em>度规张量</em> (rank-2 对称协变张量), 在每个点都是一个非退化对称矩阵. 在物理应用里, 我们经常把它写在线元 (line element) 形式下:
+  $$ \mathrm{d}s^2 = g_{ij}\,\mathrm{d}x^i\,\mathrm{d}x^j, $$
+  意思是: 沿坐标差 $(\mathrm{d}x^i)$ 走一小段, 真正的几何长度平方是 $\mathrm{d}s^2$. 这个表达把度规和"如何量长度"直接连起来.</p>
+
+  <p>正定的 $g_{ij}$ (所有特征值同号) 给出 Riemann 流形, 例如曲面、$\mathbb R^n$ 上的欧氏度规. 不定的 (一个负、其余正) 给出 Lorentz 流形 — 时空就是 4 维 Lorentz 流形, 度规签名 $(-,+,+,+)$ (或反过来), 这把"光锥"内置进了几何里. 卷三 20《Wick 转动》里那个 $\mathrm{i}t \to \tau$ 的把戏, 数学上就是把 Lorentz 度规 $\mathrm{diag}(-1,1,1,1)$ 切到 Euclidean 度规 $\mathrm{diag}(1,1,1,1)$, 把双曲计算变成椭圆计算.</p>
+
+  <p><strong>具体例子: 球面 $S^2$</strong>. 把半径为 $R$ 的球面用经纬坐标 $(\theta,\phi)$ 参数化, 其中 $\theta\in(0,\pi)$ 是与北极的极角, $\phi\in[0,2\pi)$ 是经度. 球面上一段微小位移在三维欧氏空间里是
+  $$ \mathrm{d}\vec r = R\,(\cos\theta\cos\phi\,\mathrm{d}\theta-\sin\theta\sin\phi\,\mathrm{d}\phi,\ \cos\theta\sin\phi\,\mathrm{d}\theta+\sin\theta\cos\phi\,\mathrm{d}\phi,\ -\sin\theta\,\mathrm{d}\theta), $$
+  把它的模平方算出来 (展开 + 用 $\sin^2+\cos^2=1$):
+  $$ \mathrm{d}s^2 = \mathrm{d}\vec r\cdot\mathrm{d}\vec r = R^2\big(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2\big). \tag{2} $$
+  所以球面的度规分量是 $g_{\theta\theta}=R^2$, $g_{\phi\phi}=R^2\sin^2\theta$, $g_{\theta\phi}=g_{\phi\theta}=0$. 这一行 (2) 是本节后面所有计算的起点.</p>
+
+  <p>度规一旦给定, 它就把"角度、长度、体积、垂直性"全部固定下来. 比如赤道 ($\theta=\pi/2$) 上一段 $\mathrm{d}\phi$ 的弧长是 $\mathrm d s=R\,\mathrm{d}\phi$ (跟我们日常的认识一致), 而北极 ($\theta=0$) 附近 $\mathrm d s=R\sin\theta\,\mathrm d\phi\to 0$ — 同样的经度差在不同纬度对应不同弧长, 这是地图投影变形的根源.</p>
+
+  <h2>二、测地线: 局部最直的曲线</h2>
+
+  <p>有了度规, 第一件能做的几何就是定义"测地线 (geodesic)" — <em>局部最直 / 局部最短</em>的曲线. 给定两点, 我们让一条曲线 $x^i(\lambda)$ 连它们, 把弧长泛函
+  $$ L[x] = \int \sqrt{g_{ij}\,\dot x^i\,\dot x^j}\,\mathrm{d}\lambda $$
+  对路径变分, 极值条件 (Euler–Lagrange, 卷四 05《变分法》) 给出测地线方程:
+  $$ \frac{\mathrm d^2 x^a}{\mathrm d\tau^2} + \Gamma^{a}{}_{bc}\,\frac{\mathrm d x^b}{\mathrm d\tau}\frac{\mathrm d x^c}{\mathrm d\tau} = 0, \tag{3} $$
+  其中 $\tau$ 是仿射参数 (用弧长参数化时), $\Gamma^a{}_{bc}$ 是<em>Christoffel 符号</em>, 由度规及其偏导显式地写出:
+  $$ \Gamma^a{}_{bc} = \tfrac12\,g^{ad}\big(\partial_b g_{dc} + \partial_c g_{db} - \partial_d g_{bc}\big). $$
+  ($g^{ad}$ 是逆度规, 满足 $g^{ad}g_{db}=\delta^a{}_b$.) Christoffel 符号不是张量 — 它在坐标变换下多出一项不齐次项, 但它正是描述"切空间在点与点之间如何被'平移'"的工具, 下一节我们会把它升级成<em>联络 (connection)</em>.</p>
+
+  <p>方程 (3) 的物理含义在 Lorentz 流形上特别清楚: 自由下落粒子的世界线就是测地线 — Einstein 等效原理的几何版本. 卷一里"行星绕日"的椭圆轨道、"光线被太阳偏折 $\alpha=4GM/(bc^2)$"都是 Schwarzschild 度规下测地线方程 (3) 的具体解.</p>
+
+  <p>在球面上代入度规 (2) 把 $\Gamma$ 算出来 (留作练习的口气数 — 我们这就动手): 唯一非零的 Christoffel 符号是
+  $$ \Gamma^\theta{}_{\phi\phi} = -\sin\theta\cos\theta,\qquad \Gamma^\phi{}_{\theta\phi} = \Gamma^\phi{}_{\phi\theta} = \cot\theta. $$
+  代入测地线方程, 解出来的就是<strong>大圆</strong> — 球面上半径等于 $R$ 的圆. 赤道 $(\theta=\pi/2,\ \phi=\phi(\tau))$ 显然是测地线 ($\Gamma^\theta_{\phi\phi}\sin\theta\cos\theta$ 在赤道恰为零). 一般来说, 任何一个过球心的平面与球面的交线都是测地线. 飞机在地球上飞"最短航线"飞的就是大圆 — 北京到纽约的最短路径不在常见地图上是直线.</p>
+
+  <h2>三、Riemann 曲率张量与平行运输</h2>
+
+  <p>测地线让我们知道"什么是直", 但还不能直接告诉我们"流形是不是平". 关键的判据是: 把一个向量沿一个闭回路<strong>平行运输 (parallel transport)</strong> 回到原点, 它若回到自身, 流形是平的; 若多转了一个角度, 流形就有曲率, 多转的角度正好与回路面积成正比, 比例系数就是 Riemann 曲率张量.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 球面上的测地线 (大圆) 与正曲率三角形</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>球面 $S^2$ 上的测地线 = 大圆, 三段大圆围成的三角形内角和大于 $180^\circ$, 正曲率 $K=1/R^2$ 的几何含义</dd>
+      <dt>必含元素</dt><dd>一颗三维球 (半径 $R$, 微透视); 一条横向大圆 (赤道) 与一条纵向大圆 (子午线) 标为"测地线"; 由两段子午线 + 一段赤道围成的"球面三角形"用阴影或半透明色填充, 三个顶点 (其中一个是北极, 另两个在赤道上分别夹一个直角); 一个箭头沿这个三角形回路平行运输, 从同一点出发又回到同一点但相对原方向转了一个角度 (用淡色虚线画出该角度差)</dd>
+      <dt>几何精度</dt><dd>大圆位于球心所在平面, 三角形顶角和因正曲率而严格大于 $180^\circ$ (北极顶角随赤道弧长变化, 如 $90^\circ+90^\circ+90^\circ=270^\circ$); 平行运输沿三角形回路的角偏差等于三角形面积乘以 Gauss 曲率</dd>
+      <dt>标签与公式</dt><dd>球面附 $\mathrm{d}s^2 = R^2(\mathrm{d}\theta^2 + \sin^2\theta\,\mathrm{d}\phi^2)$; 球内或球边附 Gauss 曲率 $K = 1/R^2$ (常数); 三角形旁附"内角和 $\gt  180^\circ$"; 平行运输回路旁附"$\Delta\Phi = K\cdot$面积"</dd>
+      <dt>风格建议</dt><dd>白底, 球用浅灰描边 + 淡渐变模拟 3D, 大圆用深色实线, 三角形阴影一种暖色, 平行运输箭头一种冷色, 标签与公式用浅灰矩形托底</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  球面上的大圆 (测地线) 与三段大圆围成的三角形 — 内角和大于 $180^\circ$ 是正曲率的可见后果.</figcaption>
+  </figure>
+
+  <p>具体定义如下. 在向量场之间, 我们有一个由联络 $\Gamma$ 给出的"协变导数" $\nabla_a$ — 它告诉你在曲线上"如何把一个向量送到下一点而不让它'扭'". <strong>Riemann 张量</strong> $R^a{}_{bcd}$ 由两个协变导数的不交换性定义:</p>
+
+  <p>$$
+  R^a{}_{bcd}\,V^b \;=\; (\nabla_c\nabla_d - \nabla_d\nabla_c)\,V^a, \tag{4}
+  $$</p>
+
+  <p>展开就是
+  $$ R^a{}_{bcd} = \partial_c \Gamma^a{}_{db} - \partial_d \Gamma^a{}_{cb} + \Gamma^a{}_{ce}\Gamma^e{}_{db} - \Gamma^a{}_{de}\Gamma^e{}_{cb}. $$
+  $R^a{}_{bcd}=0$ 在所有点都成立 $\Leftrightarrow$ 流形是平的 (局部可以选一组坐标使 $g_{ij}$ 处处变成 $\mathrm{diag}(\pm 1)$). $R^a{}_{bcd}\neq 0$ 就是"弯".</p>
+
+  <p>从 $R^a{}_{bcd}$ 缩并一次, 得到 <strong>Ricci 张量</strong>:
+  $$ R_{ab} = R^c{}_{acb}. $$
+  再用度规升一个指标缩, 得到<strong>标量曲率</strong>:
+  $$ R = g^{ab}\,R_{ab}. $$
+  然后做一个看似奇怪却唯一自洽的组合, 得到<strong>Einstein 张量</strong>:
+  $$ G_{ab} = R_{ab} - \tfrac12\, g_{ab}\,R. \tag{5} $$
+  这个组合的妙处在于它<em>自动</em>满足
+  $$ \nabla^a G_{ab} = 0, $$
+  这是 <strong>Bianchi 恒等式</strong> $\nabla_e R^a{}_{bcd}+\nabla_c R^a{}_{bde}+\nabla_d R^a{}_{bec}=0$ 缩并两次的直接推论. 因此 $G_{ab}=8\pi G T_{ab}/c^4$ 自动跟<em>能量动量守恒</em> $\nabla^a T_{ab}=0$ 兼容 — Einstein 当年正是看中了 $G_{ab}$ 这一性质, 才把它放在场方程左边. 别的"几何组合"放上去, 都会与守恒律打架.</p>
+
+  <h2>四、动手算: 球面 $S^2$ 的 Gauss 曲率 = $1/R^2$</h2>
+
+  <p>把球面 $S^2$ 当成训练场, 把抽象的 (4)–(5) 化成具体数字. 用 (2) 的度规, 加上之前给的 Christoffel 符号 $\Gamma^\theta{}_{\phi\phi}=-\sin\theta\cos\theta$, $\Gamma^\phi{}_{\theta\phi}=\cot\theta$ (其余为零), 我们直接算 $R^\theta{}_{\phi\theta\phi}$:</p>
+
+  <p>$$ R^\theta{}_{\phi\theta\phi} = \partial_\theta \Gamma^\theta{}_{\phi\phi} - \partial_\phi \Gamma^\theta{}_{\theta\phi} + \Gamma^\theta{}_{\theta e}\Gamma^e{}_{\phi\phi} - \Gamma^\theta{}_{\phi e}\Gamma^e{}_{\theta\phi}. $$</p>
+
+  <p>逐项: $\partial_\theta(-\sin\theta\cos\theta)=-(\cos^2\theta-\sin^2\theta)=\sin^2\theta-\cos^2\theta$; $\Gamma^\theta{}_{\theta\phi}=0$ 故 $\partial_\phi$ 那项为零; $\Gamma^\theta{}_{\theta e}$ 全为零, 第三项为零; 第四项 $\Gamma^\theta{}_{\phi\phi}\Gamma^\phi{}_{\theta\phi}=(-\sin\theta\cos\theta)\cdot\cot\theta = -\cos^2\theta$, 加上负号变 $+\cos^2\theta$. 总和:
+  $$ R^\theta{}_{\phi\theta\phi} = \sin^2\theta - \cos^2\theta + \cos^2\theta = \sin^2\theta. $$
+  其余非零分量由对称性确定. 缩并求 Ricci:
+  $$ R_{\phi\phi} = R^c{}_{\phi c\phi} = R^\theta{}_{\phi\theta\phi} = \sin^2\theta,\qquad R_{\theta\theta} = R^\phi{}_{\theta\phi\theta} = 1. $$
+  标量曲率
+  $$ R = g^{\theta\theta}R_{\theta\theta} + g^{\phi\phi}R_{\phi\phi} = \frac{1}{R^2}\cdot 1 + \frac{1}{R^2\sin^2\theta}\cdot\sin^2\theta = \frac{2}{R^2}. $$
+  二维曲面的标量曲率 $R$ 跟 <strong>Gauss 曲率</strong> $K$ 关系是 $R=2K$, 所以
+  $$ K = \frac{1}{R^2}, \tag{6} $$
+  这正是球面的 Gauss 曲率 $K=1/R^2$ — 一个常数, 球越大越平 (符合直觉, 地球表面在小尺度看起来几乎是平的). 二维上 Riemann 张量的全部信息正好就是这一个数, 写成张量形式是
+  $$ R_{abcd} = K\,(g_{ac}g_{bd} - g_{ad}g_{bc}). $$
+  如果改取一个真正<strong>平的</strong>流形 (例如圆柱面, 它的内蕴度规也是 $\mathrm{d}s^2=\mathrm{d}u^2+\mathrm{d}v^2$, 与平面一样), 同样的算法会给出 $R^a{}_{bcd}=0$ — 圆柱"看起来弯"是<em>外蕴</em>嵌入欧氏空间的弯, 与<em>内蕴</em>几何无关. 这个区别正是 Gauss 1827 年那篇<em>Disquisitiones generales</em>的核心: 曲率是<em>内蕴</em>的.</p>
+
+  <p>同样的几何在球面三角形上有一个漂亮的对应: 一个面积为 $A$ 的球面三角形, 其三个内角之和为
+  $$ \alpha+\beta+\gamma = \pi + K A = \pi + \frac{A}{R^2}, $$
+  比 $\pi$ 多出来的部分就是<em>角缺陷 = $K\times$ 面积</em>. 取北极 + 赤道上 $\phi=0$ 与 $\phi=\pi/2$ 两点构成的三角形, 三个顶角都是 $90^\circ$, 内角和 $270^\circ = 180^\circ + 90^\circ$, 多出来的 $90^\circ = \pi/2$ 弧度对应面积 $A=\pi R^2/2$ — 正好是球面 $4\pi R^2$ 的 $1/8$, 与"三个互相垂直的大圆把球面切成 8 个等份"对得上.</p>
+
+  <h2>五、Schwarzschild 度规与卷一的回响</h2>
+
+  <p>把以上几何往时空里搬, 4 维 Lorentz 流形上, 真空中静态球对称解就是 1916 年 Karl Schwarzschild 算出的:
+  $$ \mathrm{d}s^2 = -\Big(1-\frac{2GM}{r c^2}\Big) c^2\,\mathrm{d}t^2 + \Big(1-\frac{2GM}{r c^2}\Big)^{-1}\mathrm{d}r^2 + r^2\big(\mathrm{d}\theta^2+\sin^2\theta\,\mathrm{d}\phi^2\big). \tag{7} $$
+  在大 $r$ 处 ($2GM/rc^2\to 0$) 它退回平 Minkowski 度规; 在 $r=2GM/c^2 \equiv r_s$ 处 $g_{tt}\to 0$, $g_{rr}\to\infty$ — 这就是事件视界 (黑洞表面). 解出测地线方程 (3) 得到光的弯曲, 偏角恰好是
+  $$ \alpha = \frac{4GM}{b c^2}, $$
+  其中 $b$ 是冲量参数 (光线最近点到黑洞中心的距离). 这一行就是卷一 04《光的弯曲》给的那个公式 — 那里我们直接代了 (因为还没到讲度规的时候), 这里它由几何 (7) 经测地线方程 (3) 推出. 1919 年 Eddington 在西非和巴西测日全食, 验证了恒星位置的偏移与该公式相符, 是广义相对论第一次实验确认.</p>
+
+  <p>把右边的 $T_{\mu\nu}$ 取为零 (真空) 算 Einstein 张量, 可以验证 (7) 满足 $G_{\mu\nu}=0$. 这是一个非平凡的几何 — Riemann 张量本身不为零 (有潮汐力, 让自由下落的物体相对位移), 但 Ricci 张量和标量曲率 $R$ 都为零, $G_{\mu\nu}=R_{\mu\nu}-\tfrac12 g_{\mu\nu} R=0$. "Ricci-平但 Riemann 不平"的几何就是真空中存在的引力 — 它带不走能量动量, 但带得走<em>潮汐</em>.</p>
+
+  <p><strong>更广的回响</strong>. 卷一 04 用 $\alpha=4GM/(bc^2)$ 但没推, 这一行的背后正是 (7) + (3); 卷三 20《Wick 转动》Euclidean 度规 $\mathrm{diag}(1,1,1,1)$ 与 Lorentz 度规 $\mathrm{diag}(-1,1,1,1)$ 的切换, 数学上是改 $g_{ij}$ 的签名; 弦论假设时空是 10 维或 11 维流形, 多出来的 6 或 7 维卷起来成"Calabi–Yau 流形" — 度规 $g_{ij}$ 满足 Ricci-平条件 $R_{ij}=0$, 上述 (5) 中的几何机器全套搬过去用. 标量场在弯曲时空里的拉格朗日量也用度规 $\sqrt{-g}$ 给出体积元.</p>
+
+  <h2>六、历史与下一节: 从 Gauss 到 Einstein</h2>
+
+  <p>这门数学的源头是<strong>Carl Friedrich Gauss</strong> 1827 年的《Disquisitiones generales circa superficies curvas》(关于曲面的一般研究). Gauss 当时在汉诺威王国做大地测量, 实地测山头之间的角差, 自然要研究地球表面这块"两维曲面"的几何. 他的<em>定理 egregium</em> (奇妙定理) 证明: Gauss 曲率 $K$ 只取决于度规 $g_{ij}$, 与曲面如何嵌入三维空间无关. 这是"内蕴几何"概念的开山 — 球面是"内蕴弯"的, 圆柱面是"内蕴平"的, 跟它们怎么放在三维空间里看着像无关.</p>
+
+  <p>1854 年, 28 岁的 <strong>Bernhard Riemann</strong> 在 Göttingen 做就职演说《Über die Hypothesen, welche der Geometrie zu Grunde liegen》(论几何之基础假设), 把 Gauss 的工作从 2 维曲面推广到任意 $n$ 维"流形", 引入度规 $g_{ij}$ 作为基本几何对象, 也定义了我们今天叫 Riemann 张量的高维曲率. Gauss 在场, 演讲后只说了一句"非常深刻". 这篇演讲后来公认是微分几何的开山之作 — 它把"几何"从欧氏空间解放了出来.</p>
+
+  <p>1869 年, 德国数学家 <strong>Elwin Bruno Christoffel</strong> 引入今天叫 Christoffel 符号的 $\Gamma^a{}_{bc}$, 解决了"两个不同坐标下度规如何变换"的实际计算问题. 这套符号到 1900 年前后被意大利学派 (Ricci-Curbastro 与 Levi-Civita) 系统化为<em>张量微积分 (absolute differential calculus)</em>.</p>
+
+  <p>1913 年, <strong>Albert Einstein</strong> 在苏黎世跟同学 <strong>Marcel Grossmann</strong> 合作 — Grossmann 是数学家, 他向 Einstein 介绍了 Ricci 与 Levi-Civita 的张量微积分. 经过两年艰难的"Einstein–Grossmann 草案"和 1915 年最后两个月的冲刺 (与 Hilbert 几乎同时), Einstein 写下了场方程 $G_{\mu\nu}=8\pi G T_{\mu\nu}/c^4$. 那个左边的 $G_{\mu\nu}$, 就是 Riemann–Christoffel 几十年发展起来的几何机器最自然的产物.</p>
+
+  <p>下一节我们会把"联络 $\Gamma^a{}_{bc}$"独立讲清楚 — 它是上面 (4) 里那个"协变导数 $\nabla$"的本来面目, 也是把"切空间在不同点之间如何相比"这件事完整数学化的关键. 标准模型里的规范场 $A^a_\mu$ 与广义相对论里的 $\Gamma^a{}_{bc}$ 数学上是同一类东西 — 都是"主丛上的联络" — 这件事我们从下一节开始展开.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节把"几何"两字落到三个张量上: 度规 $g_{ij}$ (1) 给长度和角度, 测地线方程 (3) 给"局部最直", Riemann 张量 (4) 给"是否真的弯". 缩并一次得 Ricci, 缩并两次得标量, 再做 (5) 这个由 Bianchi 恒等式锁住的组合 $G_{ab}=R_{ab}-\tfrac12 g_{ab}R$ — 这就是 Einstein 方程左边那一团. 在球面 $S^2$ 上一路代到底得到 Gauss 曲率 $K=1/R^2$ (6); 时空中真空球对称解就是 Schwarzschild 度规 (7), 它的测地线给出卷一 04 用过的光偏折 $\alpha=4GM/(bc^2)$. Gauss 1827、Riemann 1854、Christoffel 1869、Einstein–Grossmann 1913 — 这条数学链花了近 90 年才到 GR; 下一节我们继续把"联络 $\Gamma$"独立讲清楚, 它把"度规 + 曲率"的全部结构组织成一套真正可计算的几何机器.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="17-tangent-space.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="19-connection.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

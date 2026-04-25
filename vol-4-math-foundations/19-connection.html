@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>联络与协变导数 — 平行运输绕一圈为什么变了方向? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="18-metric-curvature.html">← 上一节</a>
+  <span class="chapter-title">第 19 节 / 30 · 第 4 部分 · 流形与微分几何 · 第四卷·物理学的数学基础</span>
+  <a href="20-forms.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>联络与协变导数 — 平行运输绕一圈为什么变了方向?</h1>
+  <div class="sub">—— GR 与 gauge 理论的共同语言</div>
+  <div class="abstract">在球面上拿一支箭头, 沿赤道走四分之一圈, 再沿经线上到北极, 再沿另一条经线下到起点 —— 我们小心翼翼地"不让它转动", 它却转了 90 度. 这个尴尬的实验告诉我们: 弯曲流形上没有一个先天的"平行"概念, 必须额外指定一条规则, 我们叫它<strong>联络</strong> $\nabla$. 本节先从球面平行运输的失败出发, 抽象出仿射联络与 Christoffel 符号; 再要求度规相容与无挠, 锁定 Levi-Civita 联络; 最后把同样的思想从切丛搬到规范丛, 得到 $D_\mu = \partial_\mu + igA_\mu$ 与场强 $F_{\mu\nu}$. 一根 Aharonov-Bohm 相位的具体计算与一段球面三角形的角缺, 会把"曲率即不闭合"这件事钉在数字上.</div>
+  <p>第 18 节我们已经把度规 $g_{\mu\nu}$ 和 Riemann 曲率张量并排摆好, 看上去万事俱备. 但仔细想一想, 还有一件最朴素的事还没有定义: 在弯曲的流形上, 怎样把不同点的向量比较? 在 $\mathbb{R}^n$ 上这个问题不存在 —— 任意两点的切空间都"平行"地堆在欧氏空间里, 我们甚至默认它们是同一个空间. 一旦流形弯了, 不同点的切空间是不同的向量空间, 像球面上北极的切平面与赤道的切平面之间没有规范的同构. 要谈"沿曲线把向量搬过去"就要补一条规则; 这条规则就是联络.</p>
+  <p>这一节就是要把这条规则讲清楚, 并且把它和我们在卷三里已经偷偷用过的"协变导数 $D_\mu = \partial_\mu + ieA_\mu$"统一起来 —— 它们其实是同一件事在两个不同纤维丛上的体现.</p>
+
+  <h2>一、球面上的失败实验: 为什么需要联络</h2>
+  <p>把一支红色箭头放在赤道上, 让它指向北方. 我们想做的事很卑微: 沿三条测地线 (赤道一段, 一条经线, 另一条经线) 走一个三角形, 每一步都"不让箭头转". 把"不转"操作化为: 在每一段测地线上, 箭头与该测地线切向量的夹角保持不变 —— 这是 Levi-Civita 1917 年关于平行运输的提议.</p>
+  <p>具体走一遍. 第一段, 沿赤道从 $\lambda = 0$ 走到 $\lambda = \pi/2$ (这里 $\lambda$ 是经度). 起点箭头朝北, 与赤道垂直; 在赤道这条大圆上, 箭头始终垂直于切向量, 到达终点时仍朝北. 第二段, 沿经线 $\lambda = \pi/2$ 从赤道一路上到北极. 沿经线走时, 切向量恰好与"朝北"同向, 因此箭头始终与切向量平行, 到北极时箭头沿原经线方向. 第三段, 从北极沿经线 $\lambda = 0$ 下来回到起点. 这条新经线在北极与原经线相差 90 度, 而箭头是"沿原经线方向"的, 所以从北极看, 箭头与新经线的切向量成 90 度角. 沿这条新经线把这个夹角保持下来, 箭头到达起点时, 已经不再朝北, 而是朝东 —— 整整转了 $\pi/2$.</p>
+  <p>这件事告诉我们两件相互关联的事: (a) 球面上根本没有一个内蕴的、与路径无关的"平行"概念, 所以"平行"必须是一个额外定义; (b) 一旦定义好平行, 沿闭合回路转回来的旋转角就是曲率的度量. 后者可以用 Gauss-Bonnet 检验: 球面三角形三个内角都是 $\pi/2$, 内角和 $3\pi/2$, 角缺 $\pi/2$, 恰好等于刚才那 90 度的旋转. 这不是巧合, 而是 $S^2$ 半径为 $R$ 时面积 $A = R^2 \cdot \pi/2$ 与 Gauss 曲率 $K = 1/R^2$ 的乘积:
+  $$\int K\,dA = \pi/2. \tag{1}$$</p>
+  <p>为了在一般流形上把这个游戏玩起来, 我们需要一个数学对象, 它告诉我们"无穷小地把一个向量沿哪个方向搬一步是什么样子". 这就是仿射联络.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 球面上的平行运输与规范类比</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$S^2$ 上的平行运输不闭合, 与 EM 规范联络沿闭合 loop 的相位累积</dd>
+      <dt>必含元素</dt><dd>左侧: 一个 3D 球面, 标出赤道、北极、两条相距 90° 的经线; 一条闭合三角形路径 (赤道一段 + 经线一段 + 另一经线一段); 起点处一支红色向量, 终点处同一支向量已转 90°; 沿路径的中间状态用淡红色虚线箭头标出. 右侧: 一个二维 EM 类比 — 一个圆形 loop, 中央一段竖直磁场柱 (Aharonov-Bohm 螺线管), 沿 loop 标 $A_\mu \, dx^\mu$ 的累积箭头, 在 loop 终点处累积出相位 $\phi = e\Phi/\hbar$</dd>
+      <dt>几何精度</dt><dd>球面三角形为标准 $\pi/2$-$\pi/2$-$\pi/2$ 三角形, 内角和等于 $3\pi/2$, 角缺等于平行运输的旋转角 $\pi/2$</dd>
+      <dt>标签与公式</dt><dd>$\nabla_X Y$ (球面附近), $\Gamma^k_{ij}$ (经纬切向量交点), $D_\mu = \partial_\mu + igA_\mu$ (右侧 loop 上), $F_{\mu\nu}$ (磁通柱中央), 起终点角度差 $\Delta\theta = \pi/2$</dd>
+      <dt>风格建议</dt><dd>白底, 球面 3D 浅灰渐变, 经纬细黑实线, 路径加粗深棕实线, 向量箭头红色, EM 类比 loop 蓝色, 磁通柱橙色阴影; 整体偏教科书风</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  左侧球面闭合三角形上, 一支红色向量沿三段大圆"平行运输", 回到起点已转 90 度; 右侧把同一思想搬到规范丛上, AB 螺线管之外路径绕一圈给波函数留下相位 $\phi = e\Phi/\hbar$</figcaption>
+  </figure>
+
+  <h2>二、仿射联络与 Christoffel 符号</h2>
+  <p>在流形 $M$ 上, 设 $X, Y$ 是光滑向量场. 一个<strong>仿射联络</strong>是一个映射
+  $$\nabla : \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M), \quad (X, Y) \mapsto \nabla_X Y, \tag{2}$$
+  满足三条公理: (i) 对第一个变元 $C^\infty(M)$-线性, $\nabla_{fX+gZ}Y = f\nabla_X Y + g\nabla_Z Y$; (ii) 对第二个变元 $\mathbb{R}$-线性; (iii) 满足 Leibniz 法则 $\nabla_X(fY) = (Xf)Y + f\nabla_X Y$. 直观读法: $\nabla_X Y$ 是 "$Y$ 沿 $X$ 方向的协变导数". 第一条公理告诉我们 $\nabla_X Y$ 在每一点 $p$ 只依赖 $X|_p$ 而非 $X$ 在邻域的延拓 (这正是"导数是矢量"的几何表达); 第三条公理使它能像普通导数一样作用在乘积上.</p>
+  <p>选一组局部坐标 $\{x^i\}$, 把切向量基 $\{\partial_i\}$ 中"两个基向量之间"的协变导数展开:
+  $$\nabla_{\partial_i}\partial_j = \Gamma^k_{ij}\partial_k. \tag{3}$$
+  这些 $\Gamma^k_{ij}$ 就是 <strong>Christoffel 符号</strong> (在一般联络下是 $n^3$ 个独立函数). 一旦确定, 任意 $X = X^i\partial_i$, $Y = Y^j\partial_j$ 的协变导数就拼出来了:
+  $$\nabla_X Y = X^i\bigl(\partial_i Y^k + \Gamma^k_{ij}Y^j\bigr)\partial_k.$$
+  括号里的对象 $\partial_i Y^k + \Gamma^k_{ij}Y^j$ 就是分量级写法 $\nabla_i Y^k$. 关键: $\Gamma$ 不是张量 —— 它在坐标变换下含有非齐次项 (这正是为了把普通导数 $\partial_i Y^k$ 修正成张量导数). 但联络 $\nabla$ 本身是几何对象.</p>
+  <p>有了 $\nabla$, "平行运输"立刻可定义: 沿曲线 $\gamma(t)$, 一个向量场 $V(t)$ 称为沿 $\gamma$ 平行, 若 $\nabla_{\dot\gamma}V = 0$. 写成分量, $\dot{V}^k + \Gamma^k_{ij}\dot\gamma^i V^j = 0$, 这是一个一阶 ODE, 给定起点的 $V$ 就唯一确定终点的 $V$. 球面那个游戏现在变成了具体的 ODE 求解; 球面上有限的旋转 $\pi/2$ 就是这个 ODE 沿三段测地线积分出来的结果.</p>
+  <p>一个流形上可以有<strong>很多</strong>不同的联络, 对应不同的"平行"概念. 物理上我们要从中挑一个最自然的.</p>
+
+  <h2>三、Levi-Civita: 用度规锁定唯一的联络</h2>
+  <p>在黎曼流形 $(M, g)$ 上, 我们有度规 —— 一个内积. 一旦有了度规, 自然地希望平行运输能保持向量长度和两向量之间的夹角. 这就是<strong>度规相容</strong>条件 $\nabla g = 0$, 即对任意 $X, Y, Z$:
+  $$X\bigl(g(Y, Z)\bigr) = g(\nabla_X Y, Z) + g(Y, \nabla_X Z).$$
+  另一条要求叫<strong>无挠</strong>: $\nabla_X Y - \nabla_Y X = [X, Y]$, 等价于 $\Gamma^k_{ij} = \Gamma^k_{ji}$ 在坐标基下对称. 几何上无挠表示"无穷小平行四边形闭合" —— 你沿 $X$ 走一小步再沿 $Y$ 走一小步, 与反过来走, 终点重合 (没有"挠率"在中间扭一下).</p>
+  <p>黎曼几何的<strong>基本定理</strong> (Fundamental Theorem of Riemannian Geometry) 说: 满足度规相容与无挠的联络<strong>存在且唯一</strong>, 称为 Levi-Civita 联络. 它的 Christoffel 符号由度规直接给出:
+  $$\Gamma^k_{ij} = \tfrac{1}{2}g^{kl}\bigl(\partial_i g_{lj} + \partial_j g_{li} - \partial_l g_{ij}\bigr).$$
+  这个公式是 Levi-Civita 1917 年那篇论文的结晶, 此前 Christoffel 1869 年已经从二次型不变量的研究里发现这组符号; Levi-Civita 给了它纯几何的诠释: 平行运输. 他和 Ricci-Curbastro 发展的"绝对微分演算"正是 Einstein 1915 年构造广义相对论时的语言 —— Einstein 在给好友的信里说过, 没有 Ricci-Levi-Civita 的工具, GR 几乎不可能写下来.</p>
+  <p>把曲率"不闭合"用联络写出来, 就是 <strong>Riemann 曲率张量</strong>:
+  $$R(X, Y)Z = \nabla_X\nabla_Y Z - \nabla_Y\nabla_X Z - \nabla_{[X, Y]}Z.$$
+  这等价于第 18 节用度规偏导数写的那个庞大表达式; 联络版本干净得多, 也直接告诉我们曲率是"协变导数对易子的反称化". 沿一个无穷小回路 $\partial_i \to \partial_j \to -\partial_i \to -\partial_j$ 平行运输向量 $Z^l$, 转角恰为 $R^l{}_{kij}Z^k\,dx^i\wedge dx^j$ —— 球面三角形的 90 度旋转就是这个公式在有限尺度的积分.</p>
+  <p>在球面 $S^2$ 半径 $R$ 上, 用 $(\theta, \varphi)$ 坐标, $g = R^2(d\theta^2 + \sin^2\theta\,d\varphi^2)$. 算出 $\Gamma^\theta_{\varphi\varphi} = -\sin\theta\cos\theta$, $\Gamma^\varphi_{\theta\varphi} = \cot\theta$, 其余为零. 沿一段 $\theta = \theta_0$ 的纬线 (从 $\varphi_1$ 到 $\varphi_2$) 平行运输 $V = V^\theta\partial_\theta + V^\varphi\partial_\varphi$, 解 ODE 可得运输算子是绕该点法线的旋转, 旋转角 $\Delta\alpha = \cos\theta_0(\varphi_2 - \varphi_1)$. 第一节的三角形 (赤道 + 两经线) 中, 赤道段 $\theta_0 = \pi/2$, $\cos\theta_0 = 0$, 没有旋转 (与我们手算一致); 两段经线在球的两极相接, 经线之间 90 度的角差直接体现到向量的最终方向上 —— 总旋转 $\pi/2$, 与 $\int K\,dA$ 等同.</p>
+
+  <h2>四、把同样的故事搬到规范丛: $D_\mu$ 与 $F_{\mu\nu}$</h2>
+  <p>切丛只是<strong>纤维丛</strong>这一大类对象中的一种. 一般地, 在每一点 $p \in M$ 上贴一个"内部空间" $V_p$ (与某个对称群 $G$ 相关), 整体构成一个丛 $E \to M$. 物理上这内部空间常常是: U(1) 相位 (复数模长 1, 圆周), SU(2) (弱同位旋), SU(3) (色). 沿一条曲线把"内部向量"搬过去, 就需要规范联络.</p>
+  <p>选 $G$ 的一组生成元 $T^a$ (Lie 代数 $\mathfrak{g}$ 的基底), 一个<strong>规范联络</strong>是一个 $\mathfrak{g}$-取值的 1-form $A = A_\mu^a T^a\,dx^\mu$. 协变导数作用在带规范荷 $g$ 的场 $\psi$ 上为:
+  $$D_\mu \psi = \partial_\mu \psi + igA_\mu\psi, \tag{4}$$
+  这里 $A_\mu = A_\mu^a T^a$ 是矩阵 (对 U(1) 退化为标量). 其几何含义与切丛的 $\nabla$ 一模一样: 规定"内部向量"沿一段路径的平行运输. 沿曲线 $\gamma$, 平行运输算子是路径序的指数 $U_\gamma = \mathcal{P}\exp\bigl(-ig\int_\gamma A_\mu\,dx^\mu\bigr)$, U(1) 时退化为简单指数. 沿闭合回路这个算子一般不等于恒等, 留下一个相位 (U(1)) 或一个矩阵 (非阿贝尔), 这正是规范曲率的有限版本.</p>
+  <p>规范曲率 (即场强) 由 $F = dA + igA\wedge A$ 给出, 写成分量:
+  $$F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu + ig[A_\mu, A_\nu]. \tag{5}$$
+  对 U(1) 而言, $[A_\mu, A_\nu] = 0$, $F_{\mu\nu}$ 退化成 Maxwell 张量 $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$, 包含电场磁场. 对 SU(2), SU(3) 这种非阿贝尔群, 多出来的 $[A_\mu, A_\nu]$ 项使场自身带规范荷 —— 胶子彼此互动, 这就是夸克禁闭的源头.</p>
+  <p>来一段具体计算: <strong>Aharonov-Bohm 相位</strong>. 取一根无限长的螺线管, 内部均匀磁场 $\mathbf{B}$, 总磁通 $\Phi = \int_S \mathbf{B}\cdot d\mathbf{S}$. 螺线管外 $\mathbf{B} = 0$, 但矢势 $\mathbf{A}$ 不能取零 (否则磁通也为零). 让一束电子从源头出发, 一边绕螺线管左侧, 一边绕右侧, 在屏幕上重合干涉. 沿任意一条路径 $\gamma$, 波函数获得相位
+  $$\psi \to \psi \exp\Bigl(\frac{ie}{\hbar}\int_\gamma \mathbf{A}\cdot d\mathbf{l}\Bigr).$$
+  两条路径的相位差, 由 Stokes 定理变成沿封闭回路的环量, 等于穿过回路的磁通 $\Phi$:
+  $$\Delta\phi = \frac{e}{\hbar}\oint \mathbf{A}\cdot d\mathbf{l} = \frac{e\Phi}{\hbar}.$$
+  代入数字: 若 $\Phi = \Phi_0 \equiv h/(2e) \approx 2.07\times 10^{-15}$ Wb (磁通量子, 超导体内的基本单位), 则 $\Delta\phi = \pi$ —— 干涉条纹整移半个周期. Aharonov 与 Bohm 1959 年提出此判别, 1986 年外村彰 (Akira Tonomura) 用电子全息显微镜在一个直径只有几微米的超导环外做实验, 以毫差水平证实了这就是规范联络在量子力学层面留下的物理印记. 几何上, $e\Phi/\hbar$ 就是规范联络沿闭合 loop 的 holonomy, 与球面三角形上向量的 90 度旋转是同一件事.</p>
+  <p>把这条线索串起来, 联络在物理学中的统一地位就清晰了: 卷三 05 节《最小耦合》里我们写的 $\partial_\mu \to D_\mu = \partial_\mu + ieA_\mu$, 现在看就是把 $\mathbb{R}^n$ 上"普通"的偏导改成"规范丛上"的协变导数, 让它在规范变换 $\psi \to e^{i\alpha(x)}\psi$ 下保持齐性. 广义相对论的<strong>测地线</strong>方程 $\nabla_{\dot\gamma}\dot\gamma = 0$, 也只是同一个协变导数作用到切向量场上 —— 自由下落的粒子是切丛上的"平行运输"曲线. 卷一 04 节《光弯曲》里 $\alpha = 4GM/(bc^2)$ 那个角度的推导, 其核心就是用 Schwarzschild 度规算 Christoffel 符号, 再求测地线方程: 联络是把度规"几何"转译为"动力学"的桥梁. 没有它, 度规张量只是一堆数; 有了它, 度规告诉粒子怎么走.</p>
+  <p>历史上, Élie Cartan 1922 年把仿射联络一般化, 引入了带挠率的联络与活动标架方法, 写出了"Cartan 结构方程"$\Omega = d\omega + \omega\wedge\omega$ —— 这正是 (5) 式的几何抽象, 比 Yang-Mills 早了 32 年. 1954 年杨振宁与 Mills 在试图把同位旋"局域化"时重新发现了同一个非阿贝尔结构, 写下了 $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu - ig[A_\mu, A_\nu]$. 当时杨与 Mills 没意识到这与 Cartan 几何完全等价 —— 直到 1970 年代吴大峻与杨振宁的"字典"清楚地把规范场与纤维丛上的联络一一对应. 那张著名的"杨-吴字典"指出: 物理学家说"势 $A_\mu$", 数学家说"主丛上的联络"; 物理学家说"场强 $F_{\mu\nu}$", 数学家说"曲率 2-form". 仿佛两群人各自走山的两面, 在山顶迎头撞上.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节给出了"联络"的两副面孔: 切丛上的仿射联络 $\nabla$ (Levi-Civita 在度规相容 + 无挠下唯一) 与规范丛上的规范联络 $A_\mu$ (协变导数 $D_\mu = \partial_\mu + igA_\mu$). 它们都在解决同一个问题: 在"内部空间"逐点不同的几何里, 怎样无歧义地把不同点的向量比较? 它们沿闭合回路的不闭合度量 —— Riemann 曲率张量与场强 $F_{\mu\nu}$ —— 都是同一个数学对象 (主丛上联络的曲率 2-form). 联络这把钥匙打开了三扇门: 卷一 04《光弯曲》里 Christoffel 符号驱动测地线; 卷二的弯曲时空动力学要靠 $\nabla_\mu T^{\mu\nu} = 0$ 守恒; 卷三 05《最小耦合》以及整个 Yang-Mills 理论, 都是把规范联络写进作用量的产物. 下一节我们将进入<strong>微分形式</strong>—— $A_\mu\,dx^\mu$ 与 $F_{\mu\nu}\,dx^\mu\wedge dx^\nu$ 都是它的实例 —— 把外微分 $d$ 与楔积 $\wedge$ 这套优雅的语言完整地建立起来.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="18-metric-curvature.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="20-forms.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

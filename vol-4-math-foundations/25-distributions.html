@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>δ 函数与广义函数 — 一个"无限尖"凭什么合法? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="24-fourier.html">← 上一节</a>
+  <span class="chapter-title">第 25 节 / 30 · 第 5 部分 · 函数空间与算符 · 第四卷·物理学的数学基础</span>
+  <a href="26-probability.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>δ 函数与广义函数 — 一个"无限尖"凭什么合法?</h1>
+  <div class="sub">—— Schwartz 的分布理论</div>
+  <div class="abstract">考虑一个理想的点电荷, 全部电荷量 $q$ 集中在原点. 它的电荷密度 $\rho(\mathbf r)$ 是什么? 处处为零, 但全空间积分得 $q$ — 没有任何普通函数能同时满足这两条. Dirac 1927 年照样写下 $\delta(x)$, 用得风生水起; 数学家则坚持 "这不是函数". 本文从这个矛盾出发, 引入 Laurent Schwartz 1950 年给出的严格答案: $\delta$ 不是函数, 而是<strong>分布 (distribution)</strong> — 一个作用在<em>测试函数</em>空间上的连续线性泛函. 我们定义测试函数空间 $\mathcal D$ 与 Schwartz 类 $\mathcal S$, 给出分布的定义, 推出"分布可以无限次微分"这一关键性质 (Heaviside 阶跃的导数恰好是 $\delta$), 算一个具体的高斯极限, 写出 $\delta$ 的 Fourier 表示. 这套语言把卷一《Feynman 传播子》方程 $(\Box+m^2)G = -i\delta^4$、点电荷 $\rho = q\delta^3$、量子力学的位置 "本征态" $\ket{x}$ 全都安顿在了同一个数学家庭里.</div>
+  <p>上一节我们看到了 Fourier 变换把"频率"从信号里梳理出来. 但 Fourier 那一套有个尴尬的对偶: 一个无限延伸的纯单频信号 $e^{ikx}$ 既不在 $L^1$ 也不在 $L^2$ — 它的 Fourier 像应当是 "在 $k$ 处一根无限尖的针", 也就是 $\delta(k-k_0)$. Dirac 在 1927 年的 QM 论文里直接把它写出来用, 整套薛定谔方程的解析就此通畅. 但严格说来, 没有一个普通函数 $f:\mathbb R\to\mathbb R$ 能 "处处为零, 在一点无限大, 总积分为 1". 数学家们看着这个 $\delta$ 摇头, 工程师们却用得越来越熟练. </p>
+  <p>这种 "用着对、定义不上" 的张力一直撑到 1945 年前后, 法国数学家 Laurent Schwartz 找到了正确的视角: 不要把 $\delta$ 看成 "把数 $x$ 送到值 $\delta(x)$" 的对应, 而看成 "把光滑函数 $\phi$ 送到数 $\phi(0)$" 的<em>泛函</em>. 这个泛函是线性的、连续的, 且可以无限次微分. Schwartz 把这种对象叫做<strong>分布</strong> (distribution), 也叫<strong>广义函数</strong>. 1950 年他凭这套理论拿到 Fields 奖. 本文我们从头建立这门数学.</p>
+
+  <h2>一、为什么 $\delta$ 不能是函数: 一个不可能性论证</h2>
+
+  <p>先把麻烦说清楚. 物理学家想要的 $\delta(x)$ 应当满足三件事:</p>
+  <ul>
+    <li>$\delta(x) = 0$, 当 $x\ne 0$</li>
+    <li>$\delta(0) = +\infty$ (某种意义下的 "无限大")</li>
+    <li>$\int_{-\infty}^{+\infty}\delta(x)\,dx = 1$</li>
+  </ul>
+
+  <p>但任何在标准 Lebesgue 意义下定义的函数, 只要除了一个零测度集都为零, 它的积分就一定是零 — 单点 $\{0\}$ 是测度零集. 所以前两条 (除一点外恒零) 与第三条 (积分为一) 直接矛盾. 在 "函数 = 数到数的对应" 这个框架里, $\delta$ 不存在.</p>
+
+  <p>Schwartz 的关键观察是: 物理学里我们其实从来不关心 $\delta(x)$ 在某一点的<em>值</em>, 我们只关心它和别的函数<em>积分起来</em>是多少. 比如点电荷的电势是</p>
+
+  <p>$$\phi(\mathbf r) = \int \frac{\rho(\mathbf r')}{4\pi\varepsilon_0|\mathbf r-\mathbf r'|}\, d^3r' = \int \frac{q\,\delta^3(\mathbf r')}{4\pi\varepsilon_0|\mathbf r-\mathbf r'|}\, d^3r' = \frac{q}{4\pi\varepsilon_0|\mathbf r|}.$$</p>
+
+  <p>这里 $\delta^3$ 只是从被积函数里 "挑出" $\mathbf r'=0$ 处的值. 它不是被求值, 它是<em>求值算子</em>. 既然如此, 我们干脆把 $\delta$ 直接定义成 "求值算子": 给我一个光滑函数 $\phi$, 我返回 $\phi(0)$. 这样就不需要谈 "$\delta$ 在某点的值是多少" 这种没意义的问题 — $\delta$ 干脆就<strong>不是</strong>那种东西, 它是另一种数学对象.</p>
+
+  <h2>二、测试函数空间与分布的定义</h2>
+
+  <p>要把 "求值算子" 严格化, 先要选定它作用在哪些函数上. 这些函数我们叫<strong>测试函数</strong>. 选择标准是: 它们要 "好到不能再好", 这样我们对它们做无论什么粗野的操作都能成立.</p>
+
+  <p><strong>定义 (1) [测试函数空间]</strong> &nbsp; 我们用两类测试函数空间. 第一类是 $\mathcal D := C_c^\infty(\mathbb R)$, 即<em>光滑且紧支撑</em>的函数 — 任意阶可微, 且在某一有限区间外恒为零. 第二类是 <strong>Schwartz 空间</strong></p>
+
+  <p>$$\mathcal S := \{\phi\in C^\infty(\mathbb R) :\sup_{x\in\mathbb R} |x|^m |\phi^{(n)}(x)| \lt  \infty,\ \forall m,n\ge 0\}.$$</p>
+
+  <p>$\mathcal S$ 里的函数光滑, 而且它本身和它的任意阶导数衰减得比任何多项式都快 — 高斯函数 $e^{-x^2}$ 是一个典型代表. 显然 $\mathcal D\subset\mathcal S$. 这两个空间各自配备一个合适的拓扑 (我们略去技术细节), 使得 "光滑函数序列 $\phi_n\to 0$" 这件事是定义良好的.</p>
+
+  <p><strong>定义 (2) [分布]</strong> &nbsp; 一个<em>分布</em> (定义在 $\mathcal D$ 上) 是一个连续线性泛函 $T:\mathcal D\to\mathbb C$, 写作 $\langle T,\phi\rangle$ 或 (符号上) $\int T(x)\phi(x)\,dx$. 全体这样的泛函构成空间 $\mathcal D'$. 类似地, $\mathcal S$ 上的连续线性泛函称为<strong>缓增分布</strong> (tempered distribution), 全体记 $\mathcal S'$ — 后者是为 Fourier 变换准备的.</p>
+
+  <p>这定义看起来抽象, 落到具体例子立刻清晰. 第一个例子就是 $\delta$ 本身:</p>
+
+  <p>$$\boxed{\;\langle \delta,\phi\rangle := \phi(0).\;}\tag{3}$$</p>
+
+  <p>它显然是线性的 ($\phi+\psi$ 取零点等于 $\phi(0)+\psi(0)$); 它也连续 (若 $\phi_n\to 0$ 则 $\phi_n(0)\to 0$). 这就是 $\delta$ 的<em>定义</em> — 严格、有限、毫不神秘.</p>
+
+  <p>第二个例子: 任何普通的局部可积函数 $f$ 都可以看成一个分布 $T_f$, 通过</p>
+
+  <p>$$\langle T_f,\phi\rangle := \int_{-\infty}^{+\infty} f(x)\phi(x)\,dx.$$</p>
+
+  <p>所以 "普通函数" 是 "分布" 的特殊情形. 分布是<em>更宽</em>的家庭. 这就解释了 "广义函数" 这个译名 — generalized function — 它推广了函数的概念.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · $\delta$ 函数作为高斯序列的极限</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>$\delta$ 函数作为窄高斯序列的极限 (序列收敛意义下)</dd>
+      <dt>必含元素</dt><dd>四条高斯曲线 $\sigma=1,0.5,0.1,0.01$, 越窄越高, 全部归一化为单位积分; 极限处用一根从 $x=0$ 处指向 $+\infty$ 的垂直箭头标 "$\delta(x)$"; 旁边画 $\delta'(x)$ 为带 "双瓣" 的极限 — 一个偶极子结构 (一正一负紧贴的两个尖峰)</dd>
+      <dt>几何精度</dt><dd>每条高斯曲线下的面积均为 $1$ (高度 $\propto 1/\sigma$, 半宽 $\propto\sigma$); 极限箭头位于 $x=0$</dd>
+      <dt>标签与公式</dt><dd>$\delta(x) = \lim_{\sigma\to 0}\dfrac{1}{\sigma\sqrt{2\pi}}e^{-x^2/2\sigma^2}$; $\langle\delta,\phi\rangle = \phi(0)$; 旁注 $\delta'$: $\langle\delta',\phi\rangle = -\phi'(0)$</dd>
+      <dt>风格建议</dt><dd>白底, 黑色坐标轴, 几条高斯曲线用同色不同灰阶, 极限箭头醒目, 偶极子结构画在一个独立子图里</dd>
+    </dl>
+  </div>
+  <figcaption>图 1 &nbsp; 把 $\delta$ 看成 "越窄越高、积分始终为一的高斯序列" 的形式极限. 严格地说, 极限对象不是函数而是分布 — 它只对配对 $\langle\delta,\phi\rangle$ 给出有限值 $\phi(0)$.</figcaption>
+  </figure>
+
+  <h2>三、分布的微分: 为什么 Heaviside 阶跃的导数是 $\delta$</h2>
+
+  <p>分布最有力的性质是: 它<strong>可以被无限次微分</strong>, 哪怕原本的对应 "函数" 根本不可微. 思路是把微分这件事 "转嫁" 到测试函数上 — 测试函数本来就光滑, 怎么折腾都没事.</p>
+
+  <p>对一个普通可微函数 $f$, 用分部积分 (因为 $\phi$ 紧支撑, 边界项消失):</p>
+
+  <p>$$\int f'(x)\phi(x)\,dx = -\int f(x)\phi'(x)\,dx.$$</p>
+
+  <p>等式左边只用到 $f$, 右边只用到 $\phi$ 的导数. 我们干脆把右边作为<em>分布意义下的导数</em>的<strong>定义</strong>:</p>
+
+  <p>$$\boxed{\;\langle T',\phi\rangle := -\langle T,\phi'\rangle.\;}\tag{4}$$</p>
+
+  <p>由于测试函数 $\phi$ 是光滑的, $\phi'$ 也在 $\mathcal D$ 里, 所以右边总有意义. 这给出: <strong>每个分布都有任意阶的分布导数</strong>. 几乎是免费的.</p>
+
+  <p><strong>具体计算: $\theta'(x) = \delta(x)$.</strong> &nbsp; 设 $\theta(x)$ 是 Heaviside 阶跃函数 — $x\gt 0$ 时为 $1$, 否则为 $0$. 它在 $x=0$ 处不连续, 古典意义下不可微. 但作为分布:</p>
+
+  <p>$$\langle \theta',\phi\rangle = -\langle\theta,\phi'\rangle = -\int_0^{+\infty}\phi'(x)\,dx = -[\phi(x)]_0^{+\infty} = -(0 - \phi(0)) = \phi(0).$$</p>
+
+  <p>(这里用了 $\phi$ 在 $\mathcal D$ 中紧支撑, 所以 $\phi(+\infty)=0$.) 但 $\phi(0) = \langle\delta,\phi\rangle$. 于是</p>
+
+  <p>$$\langle \theta',\phi\rangle = \langle\delta,\phi\rangle\quad \forall\phi\in\mathcal D \quad\Longrightarrow\quad \theta' = \delta.$$</p>
+
+  <p>这是 Heaviside 在 1893 年凭直觉操作的算式 — 他没法证明, 但电报工程师都用. 五十几年后 Schwartz 给出严格意义.</p>
+
+  <p>同样地, $\delta$ 的导数 $\delta'$ 也有意义: $\langle\delta',\phi\rangle = -\langle\delta,\phi'\rangle = -\phi'(0)$. 它把测试函数的导数在原点取值, 物理上对应一个<strong>偶极子</strong> (dipole) 的密度. $\delta''$ 对应一个四极子, 等等. 整个多极展开在分布语言里几行就讲完.</p>
+
+  <h2>四、序列收敛与 Fourier 表示: $\delta$ 的两副面孔</h2>
+
+  <p>分布另一个有用的性质是<strong>序列收敛</strong>: 如果一族普通函数 $f_\sigma$ 满足对每个 $\phi\in\mathcal D$ 都有 $\langle f_\sigma,\phi\rangle\to\langle T,\phi\rangle$ ($\sigma\to 0$), 我们就说 $f_\sigma\to T$ (在分布意义下). 这给了我们一个 "伪装成函数极限" 的 $\delta$.</p>
+
+  <p><strong>高斯极限.</strong> &nbsp; 取 $g_\sigma(x):=\frac{1}{\sigma\sqrt{2\pi}}\exp(-x^2/2\sigma^2)$ — 一族归一化的高斯, 越窄越高, 但积分始终为 $1$. 对任意 $\phi\in\mathcal S$, 我们用 Taylor 展开:</p>
+
+  <p>$$\langle g_\sigma,\phi\rangle = \int g_\sigma(x)\phi(x)\,dx = \int g_\sigma(x)\big[\phi(0) + x\phi'(0) + O(x^2)\big]\,dx.$$</p>
+
+  <p>第一项 $= \phi(0)\cdot\int g_\sigma = \phi(0)$; 第二项 $= \phi'(0)\cdot\int xg_\sigma = 0$ (高斯是偶函数); 第三项是 $O(\sigma^2)$, $\sigma\to 0$ 时消失. 所以</p>
+
+  <p>$$\lim_{\sigma\to 0}\langle g_\sigma,\phi\rangle = \phi(0) = \langle\delta,\phi\rangle.$$</p>
+
+  <p>即 $g_\sigma\xrightarrow{\sigma\to 0}\delta$ (作为分布). 这就是为什么物理书里常常写</p>
+
+  <p>$$\delta(x) = \lim_{\sigma\to 0}\frac{1}{\sigma\sqrt{2\pi}}e^{-x^2/2\sigma^2}.$$</p>
+
+  <p>严格地说, 这不是函数极限 (左右都不是函数), 而是分布意义下的弱极限. 同样的事情用 Lorentzian, 用 sinc, 用矩形脉冲都成立 — $\delta$ 是无数 "正则化序列" 的共同极限.</p>
+
+  <p><strong>Fourier 表示.</strong> &nbsp; 由于 $\mathcal S$ 在 Fourier 变换下<em>不动</em> (高斯类的"快衰减"是被 Fourier 保持的好性质), Fourier 变换可以无歧义地推广到缓增分布 $\mathcal S'$ 上. 对任意 $T\in\mathcal S'$ 与 $\phi\in\mathcal S$, 定义 $\langle\hat T,\phi\rangle := \langle T,\hat\phi\rangle$ — 把变换转嫁给测试函数. 这样我们就可以问 "$\delta$ 的 Fourier 变换是什么":</p>
+
+  <p>$$\langle\hat\delta,\phi\rangle = \langle\delta,\hat\phi\rangle = \hat\phi(0) = \int\phi(x)\,dx = \langle 1,\phi\rangle.$$</p>
+
+  <p>所以 $\hat\delta = 1$ — 一个常数. 反过来, 把 1 反 Fourier 回去:</p>
+
+  <p>$$\delta(x) = \frac{1}{2\pi}\int_{-\infty}^{+\infty}e^{ikx}\,dk.$$</p>
+
+  <p>这就是物理学家熟悉的那个 "完备性关系". 它在普通函数意义下完全发散 — 但在分布意义下严格成立. 卷一《Feynman 传播子》里的 $(\Box+m^2)G(x) = -i\delta^4(x)$ 之所以可以 Fourier 化为 $G(k) = i/(k^2-m^2+i\varepsilon)$, 全靠这一条等式作为底盘.</p>
+
+  <h2>五、物理回响与 Schwartz 的位置</h2>
+
+  <p>分布理论一旦建立, 物理学里许多 "看着不严谨" 的操作立刻得到合法身份:</p>
+
+  <ul>
+    <li><strong>点电荷与点质量:</strong> 经典电动力学中 $\rho(\mathbf r) = q\delta^3(\mathbf r)$, GR 中 $T_{\mu\nu}\propto m\,\delta^3(\mathbf r)$ — 它们都不是函数, 但作为分布给出正确的电势与时空场.</li>
+    <li><strong>Green 函数与传播子:</strong> 卷一 03《Feynman 传播子》里, Klein–Gordon 算子 $\Box+m^2$ 的逆用 $\delta^4$ 来定义: $(\Box+m^2)G = -i\delta^4$. 整个 QFT 的散射振幅都建立在这个分布方程上.</li>
+    <li><strong>位置 "本征态" $\ket{x}$:</strong> 量子力学里 $\hat x\ket{x} = x\ket{x}$, 配合 $\langle x|x'\rangle = \delta(x-x')$. 这个 $\ket{x}$ 不是 Hilbert 空间里的向量 (内积发散), 但作为分布意义下的对象 (rigged Hilbert space, Gel'fand 三元组) 完全合法 — 而这正是 Dirac bra-ket 形式严谨化的结果.</li>
+    <li><strong>共振峰与探测器分辨率:</strong> 卷三 25《5 sigma》里, 一个新粒子在不变质量谱上理想是一根 $\delta$ 类峰; 实际上被探测器分辨率 (一个有限宽度的高斯核) 卷积成一个 Gaussian 峰. 整套 "信号 vs 背景" 的统计语言, 几乎可以用 $\delta * G_\sigma = G_\sigma$ 这种分布卷积来翻译.</li>
+  </ul>
+
+  <p><strong>历史的弧.</strong> &nbsp; 1893 年, Oliver Heaviside 在工程电信书里写下 "操作微积" — 他直接对阶跃函数微分, 得到 "$\delta$" 作为副产品, 用来求解线路的瞬态响应. 数学界拒绝这套形式. 1927 年 Paul Dirac 在 QM 论文里再次使用 $\delta(x)$, 并给出我们今天熟悉的所有性质 ($\int\delta\phi = \phi(0)$, $\delta(ax)=\delta(x)/|a|$, 等等), 但仍然没有数学家的承认. 一直到 1945 年前后, Laurent Schwartz 在巴黎注意到: 把所有这种 "形式对象" 看成<em>测试函数空间上的连续线性泛函</em>, 一切就豁然开朗 — 微分、Fourier 变换、卷积、乘以光滑函数, 统统在这套语言里有定义. 1950 年他凭《Théorie des distributions》拿到 Fields 奖. 这是 20 世纪数学少数几次直接 "为物理学补课" 的事件之一: 物理学家的 hack 被翻译成定理.</p>
+
+  <p>顺带提一下, 分布理论也有它的<em>边界</em>. 两个分布一般不能相乘 — $\delta(x)\cdot\delta(x)$ 没意义 (这是为什么量子场论的 UV 发散难处理: 场算符是分布, 分布的乘积一般不是分布; 重整化的本质就是从这种发散中找出物理上有限的部分). Hörmander、Sato 后来发展的<em>波前集</em>与<em>超函数</em>理论部分挽救了这一点 — 但那是另一个故事.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>"$\delta$ 不是函数, 是泛函". 这一念之转把卷一《Feynman 传播子》中的 $(\Box+m^2)G=-i\delta^4$、电动力学中的点电荷 $\rho=q\delta^3$、QM 的位置本征态 $\ket{x}$、卷三《5 sigma》里被探测器卷积平滑掉的理想 $\delta$ 峰, 全部安顿在了同一个数学家庭里 — 缓增分布 $\mathcal S'$. 它打开的更深一层是: 物理意义上的 "场" 一开始就该被理解为分布而非函数, 量子场是分布值的随机变量; 重整化、维数正规化、Wightman 公理化, 都建立在这个起点上. 下一节我们走向另一类 "看不见但确实存在" 的对象 — 概率与测度 — 看 Kolmogorov 怎么把硬币、骰子、量子涨落统一成同一种数学.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="24-fourier.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="26-probability.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

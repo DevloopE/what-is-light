@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第四卷 · 物理学的数学基础 — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  .part-header {
+    margin: 2.4em 0 0.6em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    font-size: 1.05em;
+  }
+  .part-header .part-num {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-size: 0.72em;
+    padding: 2px 9px;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+  }
+  .part-header .part-blurb {
+    display: block;
+    font-size: 0.82em;
+    font-weight: 400;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="toc">
+<header class="chapter-header">
+  <span class="tag">第四卷</span>
+  <h1>物理学的数学基础</h1>
+  <div class="subtitle">—— 三十节</div>
+</header>
+
+<p class="intro">
+前三卷的物理一路用了不少数学 — 极限、向量场的旋度散度、矩阵的本征值、群、流形、Hilbert 空间、Fourier 变换、留数定理、路径积分... 这些数学有的在大学一年级就学过, 有的属于"听说过但没真懂". 本卷把它们一一拆开, 但**不要求读者是数学专业**: 每一节从一个具体的物理问题或几何例子出发, 自下而上严格地建立这门数学, 然后指出它在前三卷哪里被怎么用. 风格仍与第一卷一致 — 从问题出发, 第一性原理推导, 落到一个能算出来的具体结果.
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>微积分与向量分析
+  <span class="part-blurb">从瞬时速度的 ε-δ 严格化, 到向量场的旋度、散度、Stokes、Euler-Lagrange</span>
+</div>
+<ol class="toc-list">
+  <li><a href="01-epsilon-delta.html"><span class="title">极限究竟是什么?</span><span class="sub">—— 从瞬时速度到 ε-δ 定义</span></a></li>
+  <li><a href="02-chain-rule.html"><span class="title">多元微分与链式法则 — 多变量的"等温曲线"怎么走?</span><span class="sub">—— 偏导数、全微分与热力学的"循环关系"</span></a></li>
+  <li><a href="03-curl-divergence.html"><span class="title">向量场的旋度与散度 — Maxwell 方程组里的算子从哪来?</span><span class="sub">—— 通量密度与环量密度</span></a></li>
+  <li><a href="04-stokes-gauss.html"><span class="title">Stokes 与 Gauss 定理 — 怎么把"微观守恒"和"宏观流量"接起来?</span><span class="sub">—— 边界与体积的对偶</span></a></li>
+  <li><a href="05-variational.html"><span class="title">变分法 — 从最速降线到 Euler-Lagrange 方程</span><span class="sub">—— 极值原理的数学</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>线性代数与算符
+  <span class="part-blurb">把 QM 的"叠加"做成数学; 内积、本征值、对角化、张量积</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-vector-space.html"><span class="title">向量空间与基 — 把"叠加原理"做成数学</span><span class="sub">—— 公理、线性独立、维度</span></a></li>
+  <li><a href="07-bra-ket.html"><span class="title">内积、对偶、Bra-Ket — Dirac 的"括号"对应数学的什么?</span><span class="sub">—— Riesz 表示定理与对偶空间</span></a></li>
+  <li><a href="08-eigenvalues.html"><span class="title">本征值与本征向量 — 测量值从哪来?</span><span class="sub">—— 旋转的不变方向, QM 算符的本征谱</span></a></li>
+  <li><a href="09-diagonalization.html"><span class="title">对角化与谱分解 — $H = \sum E_n |n\rangle\langle n|$ 凭什么?</span><span class="sub">—— 厄米算符的谱定理</span></a></li>
+  <li><a href="10-tensor-product.html"><span class="title">张量积与复合系统 — 两个 qubit 为什么是 4 维?</span><span class="sub">—— 缠绕的数学根源</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>群论与对称性
+  <span class="part-blurb">从平面旋转到 SU(N), 把"对称变换"系统化</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-group-theory.html"><span class="title">什么是群?</span><span class="sub">—— 从平面旋转开始</span></a></li>
+  <li><a href="12-so3-su2.html"><span class="title">SO(3) vs SU(2) — 电子为什么需要 720° 才回到原态?</span><span class="sub">—— 半整数自旋的几何起源</span></a></li>
+  <li><a href="13-representations.html"><span class="title">群表示 — 物理量在对称变换下怎么变?</span><span class="sub">—— 不可约表示与角动量阶梯</span></a></li>
+  <li><a href="14-lie-groups.html"><span class="title">Lie 群与 Lie 代数 — 怎么把"连续对称"线性化?</span><span class="sub">—— 单位元处的切空间与指数映射</span></a></li>
+  <li><a href="15-suN.html"><span class="title">SU(N) 与基本表示 — SU(2) 是同位旋, SU(3) 是颜色, 一般规律是什么?</span><span class="sub">—— 维数 N²-1 的来源</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>流形与微分几何
+  <span class="part-blurb">从地球表面到弯曲时空, 把"局部欧氏"装成全局结构</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-manifolds.html"><span class="title">流形是什么?</span><span class="sub">—— 从地球表面到时空</span></a></li>
+  <li><a href="17-tangent-space.html"><span class="title">切空间与切丛 — "速度"在弯曲流形上怎么定义?</span><span class="sub">—— 流形上的方向</span></a></li>
+  <li><a href="18-metric-curvature.html"><span class="title">度规与曲率 — Einstein 方程左边那一团是什么?</span><span class="sub">—— Riemann 张量与标量曲率</span></a></li>
+  <li><a href="19-connection.html"><span class="title">联络与协变导数 — 平行运输绕一圈为什么变了方向?</span><span class="sub">—— GR 与 gauge 理论的共同语言</span></a></li>
+  <li><a href="20-forms.html"><span class="title">微分形式与外微分 — 怎么把 Maxwell 方程组写成两行?</span><span class="sub">—— $dF=0,\ d{\star}F=J$</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>函数空间与算符
+  <span class="part-blurb">QM 的 Hilbert 空间、Fourier 变换、不确定性原理的数学根</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-hilbert-space.html"><span class="title">Hilbert 空间 — 量子态住在哪里?</span><span class="sub">—— 完备的内积空间</span></a></li>
+  <li><a href="22-self-adjoint.html"><span class="title">自伴算符与谱定理 — 测量值为什么都是实数?</span><span class="sub">—— 谱测度与连续 / 离散谱</span></a></li>
+  <li><a href="23-uncertainty.html"><span class="title">不确定性原理的数学根 — $\Delta x \Delta p \ge \hbar/2$ 凭什么?</span><span class="sub">—— Cauchy-Schwarz 与 Robertson 不等式</span></a></li>
+  <li><a href="24-fourier.html"><span class="title">Fourier 变换 — 时间和频率, 位置和动量, 凭什么是同一对象的两种语言?</span><span class="sub">—— 对偶变量与 Plancherel 定理</span></a></li>
+  <li><a href="25-distributions.html"><span class="title">δ 函数与广义函数 — 一个"无限尖"凭什么合法?</span><span class="sub">—— Schwartz 的分布理论</span></a></li>
+</ol>
+
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>概率、复分析与变分
+  <span class="part-blurb">为什么涨落总是高斯的, Feynman 传播子怎么算积分, 路径积分的数学骨架</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-probability.html"><span class="title">概率与期望 — 从骰子到 QM 测量</span><span class="sub">—— 概率空间的公理化</span></a></li>
+  <li><a href="27-clt.html"><span class="title">中心极限定理 — 为什么宏观涨落总是高斯的?</span><span class="sub">—— 独立和的一个普遍极限</span></a></li>
+  <li><a href="28-residues.html"><span class="title">复分析与留数定理 — Feynman 传播子的积分怎么算?</span><span class="sub">—— 围道、极点、留数</span></a></li>
+  <li><a href="29-greens-function.html"><span class="title">Green 函数 — 一个源, 万事可解</span><span class="sub">—— 线性微分方程的"基本解"</span></a></li>
+  <li><a href="30-path-integral-math.html"><span class="title">路径积分的数学骨架</span><span class="sub">—— Wiener 测度、Trotter 公式与 Wick 转动</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第四卷 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

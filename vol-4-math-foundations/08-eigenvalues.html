@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本征值与本征向量 — 测量值从哪来? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="07-bra-ket.html">← 上一节</a>
+  <span class="chapter-title">第 8 节 / 30 · 第 2 部分 · 线性代数与算符 · 第四卷·物理学的数学基础</span>
+  <a href="09-diagonalization.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>本征值与本征向量 — 测量值从哪来?</h1>
+  <div class="sub">—— 旋转的不变方向, QM 算符的本征谱</div>
+  <div class="abstract">本节从一个简单的几何观察出发: 大多数线性变换会把向量"扭"成另一个方向, 但总有少数特殊的向量, 在变换之下方向不变, 只是被拉长或缩短. 这些方向叫本征向量, 拉伸因子叫本征值. 我们先用一个 $2\times 2$ 矩阵作几何直观, 再写下特征多项式 $\det(A-\lambda I)=0$ 这个找本征值的标准武器, 接着代入 Pauli 矩阵 $\sigma_z$ 把本征值与本征态算到底, 最后讨论厄米矩阵的关键性质 (本征值实, 本征向量正交) — 正是这两条让 Born 规则得以成立: 在 QM 中"测量算符 $\hat A$"得到的数, 就是 $\hat A$ 的本征值.</div>
+
+  <p>上一节我们把抽象的右矢 $\ket{\psi}$ 与对偶的左矢 $\bra{\psi}$ 接到了一起, 学会了用算符 $\hat A$ 在希尔伯特空间里推动一个态. 但 QM 的实验家在乎的从来不是态被怎么推, 而是仪表上读出的那个数. 测自旋 $S_z$, 仪表读 $+\hbar/2$ 或 $-\hbar/2$; 测氢原子能级, 仪表读 $-13.6\,\mathrm{eV}, -3.4\,\mathrm{eV}, \ldots$. 这些数从哪儿来? Born 规则的回答简短得像一句口号: <em>测量 $\hat A$ 的可能结果是 $\hat A$ 的本征值, 测出哪一个, 系统就坍缩到对应的本征向量上.</em> 这是把整个量子力学的"读数"问题, 押到一个纯线性代数概念上 — 本征值与本征向量. 它究竟是什么?</p>
+
+  <h2>一、变换之下方向不变的向量</h2>
+
+  <p>我们先抛开量子力学, 在二维平面 $\mathbb R^2$ 上玩一个游戏. 取矩阵
+  $$ A=\begin{pmatrix}2&1\\0&3\end{pmatrix}. $$
+  它对每个列向量 $v=(x,y)^\top$ 给出 $Av$. 若 $v=(1,0)^\top$, 算 $Av=(2,0)^\top$ — 方向没变, 长度被拉成 $2$ 倍. 若 $v=(1,1)^\top$, 算 $Av=(3,3)^\top$ — 方向也没变, 长度变 $3$ 倍. 但若 $v=(1,2)^\top$, 算 $Av=(4,6)^\top=(4,6)^\top$, 与 $(1,2)$ 的方向 $(1:2)$ 已不再相同 ($4:6=2:3$). </p>
+
+  <p>这正是本征向量的特征: 大多数方向在 $A$ 作用下被扭转, 而极个别的特殊方向只是被拉伸. 形式化地写下定义.</p>
+
+  <p><strong>定义 (本征值与本征向量).</strong> 设 $A$ 是 $n\times n$ 复矩阵. 若存在非零向量 $v\in\mathbb C^n$ 与标量 $\lambda\in\mathbb C$, 使得
+  $$ A v = \lambda v,\qquad v\ne 0,\tag{1} $$
+  则 $\lambda$ 叫做 $A$ 的<strong>本征值</strong>, $v$ 叫做对应于 $\lambda$ 的<strong>本征向量</strong>. 所有满足 $Av=\lambda v$ 的 $v$ 加上零向量, 构成一个线性子空间, 叫做 $\lambda$ 的<strong>本征空间</strong> $E_\lambda=\ker(A-\lambda I)$.</p>
+
+  <p>"$v\ne 0$"这个限制不是装饰: 零向量被任何 $\lambda$ "本征"都成立, 那就什么也没说. 强行排除它, 才让本征值变成一个有内容的数.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 本征向量: 矩阵作用下方向不变的特殊向量</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>在二维平面上, 一个非对称矩阵 $A$ 作用于若干向量, 大部分方向被扭转, 极少数方向只被拉伸 — 这些就是本征向量.</dd>
+      <dt>必含元素</dt><dd>(a) 一张坐标网格的二维平面 $\mathbb R^2$; (b) 三到四个普通向量 (灰色细箭头) 与它们经 $A$ 作用后的像 (灰色虚线箭头, 方向已改变); (c) 两个特殊向量 (红色加粗箭头) 沿 $A$ 的两个本征方向, 与它们经 $A$ 作用后的像 (同方向但长度拉伸为 $\lambda_1$ 倍, $\lambda_2$ 倍, 仍然加粗红色); (d) 一个角落里写着矩阵 $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$.</dd>
+      <dt>几何精度</dt><dd>本征向量 $v_1=(1,0)$ 与 $v_2=(1,1)$ 经 $A$ 作用方向严格不变, 长度严格拉成 $\lambda_1=2,\lambda_2=3$ 倍; 普通向量的像方向必须明显与原向量不同.</dd>
+      <dt>标签与公式</dt><dd>红色本征向量旁标 $\lambda_1=2$ 与 $\lambda_2=3$; 主公式 $A v=\lambda v$ 居中放在图上方.</dd>
+      <dt>风格建议</dt><dd>白底, 浅灰网格, 普通向量灰色细线, 本征向量红色加粗, 像箭头用同色虚线, 标签用衬线字体.</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  矩阵 $A$ 作用于各向量: 大多数方向被扭转, 红色本征方向只被拉伸 $\lambda$ 倍.</figcaption>
+  </figure>
+
+  <h2>二、特征多项式: 找本征值的代数武器</h2>
+
+  <p>定义里 (1) 式看起来需要"猜"出 $v$ 才能验证. 实际上有一条系统的途径. 把 (1) 改写为
+  $$ (A-\lambda I)\,v=0. $$
+  这是一个齐次线性方程组. 它有非零解 $v$ 的充要条件, 由克莱默定理告诉我们: 系数矩阵的行列式为零. 于是
+  $$ p_A(\lambda):=\det(A-\lambda I)=0.\tag{2} $$
+  $p_A(\lambda)$ 是 $\lambda$ 的 $n$ 次多项式, 叫做 $A$ 的<strong>特征多项式</strong>; 它的根就是 $A$ 的全体本征值. 在复数域里, 由代数基本定理, $p_A$ 一定有 $n$ 个根 (按重数计), 因此 $A$ 必有 $n$ 个本征值 — 这是为什么 QM 偏要在复数域里玩.</p>
+
+  <p>有了本征值 $\lambda$, 把它代回 $(A-\lambda I)v=0$, 解这个齐次方程组就给出本征向量. 这是机械化的两步:</p>
+
+  <ol>
+    <li>解 $\det(A-\lambda I)=0$ 求 $\lambda$.</li>
+    <li>对每个 $\lambda$, 解 $(A-\lambda I)v=0$ 求 $v$.</li>
+  </ol>
+
+  <p>这里有两个常被混淆的"重数". <strong>代数重数</strong> $m_a(\lambda)$ 是 $\lambda$ 作为特征多项式根的重数; <strong>几何重数</strong> $m_g(\lambda)=\dim E_\lambda$ 是本征空间的维数, 也即对应于 $\lambda$ 的线性独立本征向量个数. 永远有 $1\le m_g(\lambda)\le m_a(\lambda)$. 当所有本征值都满足等号 $m_g=m_a$ 时, $A$ 拥有 $n$ 个线性独立的本征向量, 可以"对角化" — 这是下一节的主题.</p>
+
+  <p>但等号未必成立. 取
+  $$ N=\begin{pmatrix}0&1\\0&0\end{pmatrix}. $$
+  特征多项式 $\det(N-\lambda I)=\lambda^2$, 唯一本征值 $\lambda=0$, 代数重数 $2$. 解 $Nv=0$, 得 $v=(x,0)^\top$, 本征空间是一维的, 几何重数 $1$. 此时 $1\lt 2$, $N$ 不可对角化 — 这种"差额"在物理上对应共振中的临界阻尼、有耗散系统的退化等微妙现象.</p>
+
+  <h2>三、具体计算 — Pauli 矩阵 $\sigma_z$ 与一个旋转</h2>
+
+  <p>把机器开起来. 第一台例子是自旋 $1/2$ 的 $z$ 分量算符 (略去 $\hbar/2$ 因子) — Pauli 矩阵
+  $$ \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}. $$
+  特征多项式
+  $$ p(\lambda)=\det(\sigma_z-\lambda I)=(1-\lambda)(-1-\lambda)=\lambda^2-1, $$
+  根为 $\lambda=\pm 1$. 代回求本征向量.</p>
+
+  <p>对 $\lambda=+1$: $(\sigma_z-I)v=\begin{pmatrix}0&0\\0&-2\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=0$, 给出 $b=0$, 故 $v_+=\begin{pmatrix}1\\0\end{pmatrix}$, 这正是 $\ket{\uparrow}$.</p>
+
+  <p>对 $\lambda=-1$: $(\sigma_z+I)v=\begin{pmatrix}2&0\\0&0\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=0$, 给出 $a=0$, 故 $v_-=\begin{pmatrix}0\\1\end{pmatrix}$, 这正是 $\ket{\downarrow}$.</p>
+
+  <p>本征值 $\pm 1$ 加上前面省去的 $\hbar/2$, 就是 Stern-Gerlach 实验真正测到的两条裂分线 $\pm\hbar/2$. 自旋 $z$ 分量为什么"只能"取两个值, 在数学上等价于一句话: $\sigma_z$ 这个 $2\times 2$ 厄米矩阵, 特征多项式只有两个根. 二选一不是经验, 是代数.</p>
+
+  <p>第二台例子是平面绕原点的旋转矩阵
+  $$ R(\theta)=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}. $$
+  特征多项式 $p(\lambda)=(\cos\theta-\lambda)^2+\sin^2\theta$. 解出 $\lambda=\cos\theta\pm i\sin\theta=e^{\pm i\theta}$. 当 $\theta\ne 0,\pi$, 这是一对共轭复数本征值, <em>没有实本征向量</em> — 与几何直觉一致: 平面绕原点真正旋转时, 没有任何实向量被保持方向. 但若把维数提到三维, $R_z(\theta)$ 多出一个本征值 $1$, 对应于 $z$ 轴 — 那是旋转的不变方向, 经典力学里叫"主轴". 复本征值 $e^{\pm i\theta}$ 在物理上也并非废物: 它们正是把一个旋转写成 $e^{-i\theta J_z/\hbar}$ 形式时, 角动量算符 $J_z$ 的本征值现身的入口.</p>
+
+  <h2>四、厄米矩阵的两条铁律 — Born 规则的代数后台</h2>
+
+  <p>QM 中可观测量对应的算符是<strong>厄米</strong>的: $\hat A^\dagger=\hat A$. 这个限制立刻给出两条决定性的性质.</p>
+
+  <p><strong>性质 A (实本征值).</strong> 若 $\hat A$ 厄米, 则其本征值都是实数.</p>
+  <p>证明很短. 设 $\hat A v=\lambda v$, $v\ne 0$. 取内积 $\bra{v}\hat A\ket{v}=\lambda\braket{v}{v}$. 同时由厄米性 $\bra{v}\hat A\ket{v}=\bra{v}\hat A^\dagger\ket{v}=\overline{\bra{v}\hat A\ket{v}}=\overline\lambda\braket{v}{v}$. 因 $\braket{v}{v}\gt 0$, 得 $\lambda=\overline\lambda$, 即 $\lambda\in\mathbb R$.</p>
+
+  <p><strong>性质 B (正交本征向量).</strong> 若 $\hat A$ 厄米且 $\lambda_1\ne\lambda_2$, 则对应本征向量正交: $\braket{v_1}{v_2}=0$.</p>
+  <p>证明: $\bra{v_1}\hat A\ket{v_2}=\lambda_2\braket{v_1}{v_2}$, 同时 $\bra{v_1}\hat A\ket{v_2}=\overline{\bra{v_2}\hat A\ket{v_1}}=\overline{\lambda_1\braket{v_2}{v_1}}=\lambda_1\braket{v_1}{v_2}$ (用了 $\lambda_1$ 实). 两式相减得 $(\lambda_1-\lambda_2)\braket{v_1}{v_2}=0$, 因 $\lambda_1\ne\lambda_2$, 故 $\braket{v_1}{v_2}=0$.</p>
+
+  <p>这两条铁律决定了 QM 测量为什么"自洽":</p>
+  <ul>
+    <li>仪表的读数是实数 — 性质 A 保证可观测量算符的本征值实.</li>
+    <li>不同读数对应的态是相互排斥的 (一次测到 $\uparrow$ 就与 $\downarrow$ 无关) — 性质 B 保证不同本征值的本征态正交.</li>
+    <li>任何态都可以分解为本征态的叠加 (谱定理, 见下一节), 这就给了 Born 规则一个天然的基: $\ket\psi=\sum_n c_n\ket{v_n}$, 测得 $\lambda_n$ 的概率就是 $|c_n|^2$.</li>
+  </ul>
+
+  <h2>五、历史: 从二次曲面的主轴到无限维谱</h2>
+
+  <p>本征值这个概念诞生于一个看似无关的几何问题: 一个二次曲面 (椭球、双曲面) 由对称矩阵 $S$ 给出 $x^\top S x=\mathrm{const}$, 怎么找它的<em>主轴</em>? Cauchy 在 1829 年的论文 <em>Sur l'équation à l'aide de laquelle on détermine les inégalités séculaires des mouvements des planètes</em> 里完整解决了这个问题: 主轴方向就是 $S$ 的本征向量, 沿主轴的伸缩比例就是本征值的平方根. 他还证明了对称矩阵的本征值必为实 — 后来推广为厄米矩阵的性质 A. "principal axes"这个词组今天仍在使用, 它直接连到刚体力学中的转动惯量主轴.</p>
+
+  <p>1904 年, Hilbert 把本征值理论从有限维推到无限维 — 把矩阵换成积分算符 $K$, 把 $Av=\lambda v$ 换成 $\int K(s,t)\phi(t)\,dt=\lambda\phi(s)$. 他证明对称核的积分算符仍有可数无穷个实本征值, 并给出对应的本征函数构成的正交基 (Hilbert-Schmidt 定理). 这是泛函分析的开端; 二十年后, 当 Schrödinger 写下 $\hat H\psi=E\psi$ 时, 他用的正是 Hilbert 的工具箱 — 把氢原子能级问题翻译成微分算符 $\hat H$ 的本征值问题. 1932 年 von Neumann 在 <em>Mathematische Grundlagen der Quantenmechanik</em> 中系统化这套语言, 把谱理论 (本征值的连续推广) 立成 QM 的数学基础.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本征值与本征向量是把"测量"翻译成线性代数的钥匙. 卷三第 4 节《二次量子化》中粒子数算符 $\hat N\ket n=n\ket n$, 整数本征值 $n$ 即可观测的粒子数; 卷一第 17 节《黑体辐射》Planck 振子哈密顿 $\hat H\ket n=\hbar\omega(n+\tfrac12)\ket n$, 等距本征谱 $\hbar\omega$ 给了 Planck 量子化以严格的代数解释; 卷二第 22 节《H 定理》中线性化碰撞算符的本征值给出弛豫到平衡的衰减率, 实部决定时间尺度. 这些都源于同一行公式 $Av=\lambda v$. 下一节我们要回答, 一个矩阵在什么条件下有"完整的本征基", 以及怎么把它写成对角形 — 那是把 Born 规则变成可计算配方的最后一步.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="07-bra-ket.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="09-diagonalization.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

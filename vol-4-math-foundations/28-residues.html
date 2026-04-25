@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>复分析与留数定理 — Feynman 传播子的积分怎么算? · 第四卷·物理学的数学基础</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="27-clt.html">← 上一节</a>
+  <span class="chapter-title">第 28 节 / 30 · 第 6 部分 · 概率、复分析与变分 · 第四卷·物理学的数学基础</span>
+  <a href="29-greens-function.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>复分析与留数定理 — Feynman 传播子的积分怎么算?</h1>
+  <div class="sub">—— 围道、极点、留数</div>
+  <div class="abstract">写一个 QFT 教材的人最先头疼的事, 是处处冒出来的积分 $\int \mathrm{d}\omega/(\omega^2 - E^2 + i\epsilon)$. 在实轴上分母直接为零, 普通 Riemann 积分发散, 但答案又必须有意义 —— 因为它就是 Feynman 传播子. 解决方法是把积分变量 $\omega$ 看成复数, 把实轴的积分"补"成上半平面或下半平面的闭合围道, 然后用留数公式一击拿下. 本节先从复函数的"解析"是什么开始, 走过 Cauchy-Riemann 方程、Cauchy 定理、Cauchy 公式, 来到 Laurent 展开与留数, 最后写出留数定理 $\oint f\,\mathrm{d}z = 2\pi i\sum\mathrm{Res}$, 并把它代入两个具体积分: $\int_{-\infty}^\infty \mathrm{d}x/(x^2+1) = \pi$ 与 Feynman 传播子的 $i\epsilon$ 处方. 一段 Cauchy 1820 年代的"复积分预见因果性"小史会把今天的工具与 Riemann 1851 年的曲面思想串起来.</div>
+  <p>第 27 节我们用 Fourier 分析与高斯积分把中心极限定理钉死了. 现在换一个口味: 同样是"积分", 但被积函数在实轴上有奇点, 想避开这个奇点你怎么避? 物理上的典型场景是格林函数 — 它必然在能量壳上 ($\omega = \pm E$) 发散, 因为它就是描述"信号被这个频率激发"的传播子. 单纯地从 $-\infty$ 积到 $+\infty$ 没办法, 但答案明显应该存在, 因为它对应一个具体的物理过程. 一个数学家会说: 把积分搬到复平面上去. 一旦把 $\omega$ 视为复数, 被积函数在实轴附近的奇点就成了"二维平面里的一个点", 可以绕开. 而绕得对不对、绕成顺时针还是逆时针, 直接对应传播子的<strong>因果结构</strong> — 是先入射后散射 (推迟), 还是先散射后入射 (超前), 还是 Feynman 那种两边混合的"正频走前进, 负频走后退"处方. 这正是物理学家最早被复分析吸引的原因.</p>
+  <p>这门数学的奇妙在于: 一个仅仅满足"复可微"(holomorphic) 的函数, 一旦确定下来, 就被它在任意一个小邻域里的值完全锁死了 —— 这就是<strong>解析延拓</strong>的强力性, 与实变函数的"局部信息根本无法决定整体"形成鲜明对比. 留数定理是这个强力性的一个直接产物: 一个解析函数在一块区域里的奇点完全决定了它沿任意闭合围道的积分.</p>
+
+  <h2>一、复可微: Cauchy-Riemann 方程</h2>
+  <p>设 $f: U \subset \mathbb{C} \to \mathbb{C}$ 是定义在开集 $U$ 上的复函数. 写 $z = x + iy$, $f(z) = u(x, y) + iv(x, y)$. 我们说 $f$ 在 $z_0 \in U$ <strong>复可微</strong> (在 $U$ 上处处复可微则称<strong>解析</strong>或 holomorphic), 若极限
+  $$f'(z_0) = \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h}, \quad h \in \mathbb{C} \tag{1}$$
+  存在, 且与 $h$ 趋于 $0$ 的方向无关. 这第二个要求至关重要: 复数 $h$ 可以从任何方向趋零 — 沿实轴、沿虚轴、沿任意斜线 — 极限值都得是同一个. 实变函数中我们只要求左右导数相等, 而复变要求"二维平面上一切方向"的导数都相等, 苛刻得多.</p>
+  <p>把 $h$ 限制为实轴方向 $h = \Delta x$ 与虚轴方向 $h = i\Delta y$, 分别写出极限并令两者相等, 立刻得到 <strong>Cauchy-Riemann 方程</strong>:
+  $$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}. \tag{2}$$
+  反过来, 若 $u, v$ 连续可微且满足 (2), 则 $f = u + iv$ 处处复可微. 这个方程组的物理读法是: 解析函数 $f$ 的实部与虚部都是<strong>调和函数</strong> ($\Delta u = 0$, $\Delta v = 0$), 而且互为<strong>共轭调和</strong>(它们的等值线处处正交). 我们在卷一 09 节《静电势的边值问题》里见过一次 — 二维静电问题里, 复势 $w(z) = \phi(x,y) + i\psi(x,y)$ 的实部是势, 虚部是流函数, $\psi = \mathrm{const}$ 给出电力线, $\phi = \mathrm{const}$ 给出等势面, 两者正交. Cauchy-Riemann 方程其实就是 Laplace 方程在二维的"开方".</p>
+  <p>具体例子: $f(z) = z^2 = (x^2 - y^2) + i(2xy)$. 验证: $\partial_x u = 2x = \partial_y v$, $\partial_y u = -2y = -\partial_x v$. ✓ 所以 $z^2$ 处处解析, $f'(z) = 2z$. 反例: $f(z) = \bar z = x - iy$. 这里 $u = x$, $v = -y$, $\partial_x u = 1$ 但 $\partial_y v = -1$, 不相等, 所以共轭函数 $\bar z$ 处处不解析 — 即使作为 $\mathbb{R}^2 \to \mathbb{R}^2$ 的映射它光滑得很. 这条分界线把"复变函数论"与"普通的二变量微积分"截然分开.</p>
+
+  <h2>二、Cauchy 定理与 Cauchy 公式</h2>
+  <p>从 (2) 出发, 对一条简单闭合曲线 $C$ (逆时针为正) 围出的区域 $D \subset U$, 用 Green 定理把闭线积分变面积分:
+  $$\oint_C f(z)\,\mathrm{d}z = \oint_C (u + iv)(\mathrm{d}x + i\,\mathrm{d}y) = \oint_C (u\,\mathrm{d}x - v\,\mathrm{d}y) + i\oint_C (v\,\mathrm{d}x + u\,\mathrm{d}y).$$
+  Green 定理给出第一项 $= -\iint_D (\partial_x v + \partial_y u)\,\mathrm{d}A$, 第二项 $= \iint_D (\partial_x u - \partial_y v)\,\mathrm{d}A$. 由 (2), 两个被积函数都为零, 故 $\oint_C f\,\mathrm{d}z = 0$. 这就是 <strong>Cauchy 定理</strong>:
+  <em>解析函数沿单连通区域内任意闭合曲线的积分为零</em>. Cauchy 1825 年发表此结果时, 用的语言还远没有今天清晰, 但他立刻意识到这条定理对计算实积分的威力 — 他自己用它处理过若干弹性力学里的奇异积分.</p>
+  <p>把 Cauchy 定理稍加变形, 选 $g(z) = f(z)/(z - z_0)$, 在 $z_0$ 处它有奇点; 围道把 $z_0$ 包在里头, 在 $z_0$ 周围抠一个半径 $\rho$ 的小圆 $C_\rho$ (顺时针, 与外面 $C$ 反向), 整体构成一个不含 $z_0$ 的二连通区域. Cauchy 定理给 $\oint_C g - \oint_{C_\rho^{\text{ccw}}} g = 0$. 在小圆 $C_\rho$ 上设 $z = z_0 + \rho e^{i\theta}$, $\mathrm{d}z = i\rho e^{i\theta}\,\mathrm{d}\theta$, 代入 $g = f(z)/(\rho e^{i\theta})$:
+  $$\oint_{C_\rho^{\text{ccw}}} \frac{f(z)}{z - z_0}\,\mathrm{d}z = \int_0^{2\pi} \frac{f(z_0 + \rho e^{i\theta})}{\rho e^{i\theta}}\cdot i\rho e^{i\theta}\,\mathrm{d}\theta = i\int_0^{2\pi} f(z_0 + \rho e^{i\theta})\,\mathrm{d}\theta.$$
+  令 $\rho \to 0$, 由 $f$ 连续, 上式 $\to 2\pi i\,f(z_0)$. 于是得到 <strong>Cauchy 积分公式</strong>:
+  $$f(z_0) = \frac{1}{2\pi i}\oint_C \frac{f(z)}{z - z_0}\,\mathrm{d}z. \tag{3}$$
+  这条公式有点惊人: 一个解析函数在区域内任一点 $z_0$ 的值, 完全由它在<strong>边界</strong>上的取值决定 — 区域内部"什么也没说"的部分, 实际上被边界全权代表. 这正是解析函数的"刚性"在最直白的表达. 卷三 03《Feynman 传播子》里, 知道传播子在能量轴上的奇点结构, 我们就能完整重构它在整个复平面上的形状; 卷一 13《相速群速》里, Kramers-Kronig 关系 — 介电函数实部由虚部的全谱决定, 反之亦然 — 也是 Cauchy 公式在物理因果性约束下的直接产物.</p>
+
+  <figure class="diagram-placeholder">
+  <div class="placeholder-box">
+    <span class="tag">TikZ 待渲染</span>
+    <h4>图 1 · 复平面上的围道与留数</h4>
+    <dl class="tikz-req">
+      <dt>主题</dt><dd>复平面上的闭合围道积分 + 留数 + Feynman $i\epsilon$ 处方</dd>
+      <dt>必含元素</dt><dd>复平面 (实轴 Re $z$ 横向 + 虚轴 Im $z$ 纵向); 三个极点用 $\times$ 标记 (一个在上半平面, 一个在下半平面, 一个在原点附近); 一条闭合的逆时针围道 (沿实轴一段 + 上半平面大半圆) 包围上半平面那一个极点; 围道箭头标方向 (逆时针为正); 公式 $\oint f\,\mathrm{d}z = 2\pi i\sum\mathrm{Res}(f, z_k)$ 标在围道旁; 右侧子图标 Feynman $i\epsilon$ 处方: 实轴上 $\pm E$ 两个极点, 一个被微移到上半平面 ($-E + i\epsilon$), 一个被微移到下半平面 ($+E - i\epsilon$)</dd>
+      <dt>几何/示意精度</dt><dd>围道方向逆时针 = 正方向; 极点位置与文中第三节例 1 一致 (主例的极点在 $z = i$); 上半平面大半圆封口足够大显示 $R \to \infty$ 极限</dd>
+      <dt>标签与公式</dt><dd>$\oint f\,\mathrm{d}z = 2\pi i\sum\mathrm{Res}$; $\mathrm{Res}(f, z_0) = a_{-1}$; $\frac{1}{z^2 + 1}$ 标在围道附近; 右侧 $i\epsilon$ 子图标 $\omega^2 - E^2 + i\epsilon$ 与极点位置 $\omega = \pm(E - i\epsilon')$</dd>
+      <dt>风格建议</dt><dd>白底, 极点用红色 $\times$, 围道箭头红色, 实轴一段被半圆补足用深棕色, 公式黑色; 整体偏教科书风</dd>
+    </dl>
+  </div>
+  <figcaption>图 1  左图: 复平面上的逆时针围道沿实轴 $[-R, R]$ 加一道上半圆封口, 围住单个极点 $z = i$, 留数定理给出 $2\pi i\cdot\mathrm{Res} = \pi$. 右图: Feynman $i\epsilon$ 处方把实轴上的两个极点 $\pm E$ 微移成"正频在下半平面、负频在上半平面", 决定围道封口的方向</figcaption>
+  </figure>
+
+  <h2>三、Laurent 展开、留数与留数定理</h2>
+  <p>解析函数在<strong>圆盘</strong>上有 Taylor 展开 $f(z) = \sum_{n=0}^\infty a_n(z - z_0)^n$ — 这是 Cauchy 公式的直接推论. 但物理上更常见的情形是: 函数有一个孤立奇点, 我们希望在<strong>环域</strong> $0 \lt  |z - z_0| \lt  R$ 上展开. 推广方法是 <strong>Laurent 展开</strong>: 在环域 $r \lt  |z - z_0| \lt  R$ 上, 解析函数可写成
+  $$f(z) = \sum_{n=-\infty}^{\infty} a_n(z - z_0)^n, \quad a_n = \frac{1}{2\pi i}\oint_{|z - z_0| = \rho} \frac{f(z)}{(z - z_0)^{n+1}}\,\mathrm{d}z, \tag{4}$$
+  其中 $\rho \in (r, R)$. 推导思路: 把 Cauchy 公式 (3) 用到环域内 — 边界由外圆 (逆时针) 加内圆 (顺时针) 组成 — 然后在两个圆上分别用几何级数展开 $\frac{1}{w - z_0}$, 一个展正幂, 一个展负幂, 拼起来就是 (4).</p>
+  <p>负幂部分 $\sum_{n=1}^\infty a_{-n}(z - z_0)^{-n}$ 称为奇异部. 它的存在区分孤立奇点的类型: (a) 全部 $a_{-n} = 0$ — 可去奇点, $f$ 实际上在 $z_0$ 解析; (b) 只有有限多个 $a_{-n}$ 非零 — 极点, 阶数等于最大的非零负下标; (c) 无穷多个 $a_{-n}$ 非零 — 本性奇点 (如 $e^{1/z}$ 在 $z = 0$). 物理学几乎只与极点打交道.</p>
+  <p>系数 $a_{-1}$ 在所有 $a_n$ 中地位特殊: 它是<strong>留数</strong> $\mathrm{Res}(f, z_0)$. 为什么特殊? 因为对 $n \neq -1$, $(z - z_0)^n$ 沿任何包围 $z_0$ 的小圆积分都为零 (用极坐标: $\oint (\rho e^{i\theta})^n\cdot i\rho e^{i\theta}\,\mathrm{d}\theta = i\rho^{n+1}\int_0^{2\pi} e^{i(n+1)\theta}\,\mathrm{d}\theta$, 当 $n + 1 \neq 0$ 这积分为零); 唯独 $n = -1$ 时, $\oint (z - z_0)^{-1}\,\mathrm{d}z = 2\pi i$. 把 Laurent 展开沿小圆逐项积分, 只有 $a_{-1}$ 那一项活下来:
+  $$\oint_{|z - z_0| = \rho} f(z)\,\mathrm{d}z = 2\pi i\cdot a_{-1} = 2\pi i\cdot\mathrm{Res}(f, z_0).$$
+  把 Cauchy 定理 (零围出区域积分 = 0) 与上式合起来, 对一条任意闭合曲线 $C$ 围出的区域 $D$ 内有限个孤立奇点 $z_1, \ldots, z_n$, 结果是
+  $$\boxed{\oint_C f(z)\,\mathrm{d}z = 2\pi i\sum_{k=1}^n \mathrm{Res}(f, z_k).} \tag{5}$$
+  这就是 <strong>留数定理</strong>. 它把"沿一条复杂曲线积分"约化为"在每个奇点处算一个数 (留数), 求和". 实操上, 算留数有一个简便公式: 对一阶极点 $z_0$, $\mathrm{Res}(f, z_0) = \lim_{z \to z_0} (z - z_0)f(z)$; 对 $m$ 阶极点, $\mathrm{Res}(f, z_0) = \frac{1}{(m-1)!}\lim_{z \to z_0} \frac{\mathrm{d}^{m-1}}{\mathrm{d}z^{m-1}}\bigl[(z - z_0)^m f(z)\bigr]$.</p>
+
+  <h2>四、三个具体积分: 从 $\int\mathrm{d}x/(x^2+1)$ 到 Feynman 传播子</h2>
+  <p><strong>例 1: 经典验证.</strong> 计算 $I = \int_{-\infty}^\infty \mathrm{d}x/(x^2 + 1)$. 这个积分的初等解是 $\arctan x\Big|_{-\infty}^\infty = \pi$, 我们用留数法重新走一遍, 把刀磨利. 把 $x$ 推广为复变量 $z$, 被积函数 $f(z) = 1/(z^2 + 1) = 1/[(z - i)(z + i)]$ 在 $z = \pm i$ 各有一个一阶极点. 选围道 $C_R$ 由实轴段 $[-R, R]$ 加上半平面大半圆 $\Gamma_R$ 闭合 (逆时针). 当 $R$ 充分大, 围道内只包含 $z = i$ 这一个极点.</p>
+  <p>留数: $\mathrm{Res}(f, i) = \lim_{z \to i} (z - i)\cdot\frac{1}{(z - i)(z + i)} = \frac{1}{2i}$. 由 (5),
+  $$\oint_{C_R} \frac{\mathrm{d}z}{z^2 + 1} = 2\pi i\cdot\frac{1}{2i} = \pi.$$
+  这个等式对任何 $R \gt  1$ 都成立. 现在分析两段贡献. 实轴段 $\to \int_{-\infty}^\infty \mathrm{d}x/(x^2+1) = I$ 当 $R \to \infty$. 大半圆段: 在 $\Gamma_R$ 上 $|z| = R$, $|z^2 + 1| \geq R^2 - 1$, 故 $\bigl|\int_{\Gamma_R} f\,\mathrm{d}z\bigr| \leq \pi R\cdot\frac{1}{R^2 - 1} \to 0$. 所以 $I + 0 = \pi$, <strong>$I = \pi$</strong>. 检查通过. 注意这里关键的判断: 大半圆贡献趋零必须分子比分母低足够阶 — 这是 <strong>Jordan 引理</strong>的雏形 — 否则我们闭不上围道, 整个方法失效.</p>
+  <p><strong>例 2: 高斯加余弦.</strong> 计算 $J(k) = \int_{-\infty}^\infty e^{-x^2}\cos(kx)\,\mathrm{d}x$. 这个积分在第 27 节 (CLT 那一节) 我们用配方法做过, 答案 $\sqrt{\pi}\,e^{-k^2/4}$. 现在用复分析重做. 写 $\cos(kx) = \Re e^{ikx}$, 故 $J(k) = \Re \int_{-\infty}^\infty e^{-x^2 + ikx}\,\mathrm{d}x$. 配方: $-x^2 + ikx = -(x - ik/2)^2 - k^2/4$. 这看起来要做变量代换 $z = x - ik/2$, 但这是把积分路径从实轴平移到 $\Im z = -k/2$ 那条水平线 $L$ 上 — 在复平面里这是一条新围道! 被积函数 $g(z) = e^{-z^2}$ 在整个复平面解析 (它是整函数, 没有极点), 所以 Cauchy 定理告诉我们: 在实轴与 $L$ 之间圈一个长矩形, 沿矩形的积分为零. 矩形的左右两端贡献 (在 $\Re z = \pm R$ 上, $|e^{-z^2}| = e^{-R^2 + (k/2)^2}$ 衰减极快) 当 $R \to \infty$ 趋零. 故实轴积分 = $L$ 上积分 = $e^{-k^2/4}\int_{-\infty}^\infty e^{-u^2}\,\mathrm{d}u = \sqrt{\pi}\,e^{-k^2/4}$. 与配方法一致. 这个例子展示了"路径平移"的技巧: 没有极点的话, 围道可以自由移动, 我们就能把一个"难看"的积分变成一个"标准"的高斯积分.</p>
+  <p><strong>例 3: Feynman 传播子.</strong> 这是本节的主菜. 一维情形, 我们想算
+  $$G_F(t) = \int_{-\infty}^\infty \frac{\mathrm{d}\omega}{2\pi}\,\frac{e^{-i\omega t}}{\omega^2 - E^2 + i\epsilon},$$
+  其中 $E \gt  0$ 是能量, $\epsilon \to 0^+$ 是 Feynman 1949 年指定的小正虚数 ($i\epsilon$ 处方). 把分母分解: $\omega^2 - E^2 + i\epsilon = (\omega - \omega_+)(\omega - \omega_-)$, 其中
+  $$\omega_\pm = \pm\sqrt{E^2 - i\epsilon} \approx \pm E \mp i\epsilon',\quad \epsilon' = \epsilon/(2E) \gt  0.$$
+  也就是 $\omega_+ \approx E - i\epsilon'$ 在<strong>下半平面</strong>, $\omega_- \approx -E + i\epsilon'$ 在<strong>上半平面</strong>. $i\epsilon$ 这个看似笔误的小项, 把两个极点从实轴上各踢一脚, 进入了不同的半平面. 这就是 Feynman 处方的几何含义.</p>
+  <p>下一步是闭围道. 因子 $e^{-i\omega t}$ 决定了我们应该往哪个方向闭. 写 $\omega = \omega_R + i\omega_I$, $|e^{-i\omega t}| = e^{\omega_I t}$. 对 $t \gt  0$ (向未来传播), 要让大半圆贡献趋零, 需 $\omega_I \to -\infty$, 也就是<strong>下半平面</strong>闭合 (顺时针, 围道方向取负). 此时围道只包住 $\omega_+ = E - i\epsilon'$ 这一个极点. 留数:
+  $$\mathrm{Res}\biggl(\frac{e^{-i\omega t}}{(\omega - \omega_+)(\omega - \omega_-)}, \omega_+\biggr) = \frac{e^{-iE t}}{\omega_+ - \omega_-} = \frac{e^{-iE t}}{2E}.$$
+  由 (5) 加顺时针的负号, $G_F(t) = (-2\pi i)/(2\pi)\cdot e^{-iE t}/(2E) = -i\,e^{-iE t}/(2E)$.</p>
+  <p>对 $t \lt  0$ (向过去传播), 要让大半圆贡献趋零需 $\omega_I \to +\infty$, 上半平面闭合 (逆时针). 围道包住 $\omega_-$, 留数 $= e^{+iE|t|}/(-2E)$, 故 $G_F(t) = (2\pi i)/(2\pi)\cdot[-e^{iE|t|}/(2E)] = -i\,e^{-iE|t|}/(2E)$ (注意 $t \lt  0$ 时 $e^{iE|t|} = e^{-iEt}$). 合并两段:
+  $$G_F(t) = -\frac{i}{2E}\bigl[\Theta(t)e^{-iE t} + \Theta(-t)e^{+iE t}\bigr]. \tag{6}$$
+  这就是 Feynman 传播子的实空间形式. 物理读法: 正能量分量 $e^{-iEt}$ 只对 $t \gt  0$ 传播 (粒子向前), 负能量分量 $e^{+iEt}$ 只对 $t \lt  0$ 传播 (反粒子向后), 这正是 Feynman-Stückelberg 关于反粒子的诠释. 留数定理在这里不只算积分, 还把"因果性的处方"翻译成了"极点该往哪个半平面踢"的几何选择.</p>
+  <p>对照其他处方: 如果两个极点都被踢到下半平面 ($\omega \to \omega - i\epsilon$ 整体下移), 围道在上半平面闭合时 $t \gt  0$ 没有极点, $G_R(t) = 0$ 对 $t \lt  0$, 这是<strong>推迟传播子</strong>; 都踢上半平面则得到<strong>超前传播子</strong>; 一上一下的 Feynman 处方在量子场论里独占鳌头, 因为它对应"真空作为初末态"的费曼路径积分边界条件.</p>
+  <p>历史上, Cauchy 1820 年代在弹性力学与流体力学的实积分计算中发展了围道方法; 1825 年的 <em>Mémoire sur les intégrales définies prises entre des limites imaginaires</em> 是留数定理的诞生地, 但当时他用的还不是"留数"这个名字, 概念被后人 (尤其是 1843 年发表 Laurent 展开的 Pierre Laurent) 整理成今天的形式. Riemann 1851 年的博士论文 <em>Grundlagen für eine allgemeine Theorie der Functionen einer veränderlichen complexen Größe</em> 把"复函数 = 多值函数 + 黎曼面"的思想立起来: $\sqrt{z}$, $\log z$ 等多值对象, 在合适的覆盖面上变成单值解析函数. 这把复分析从"算积分的工具"升级为"几何的语言". 物理学家在 19 世纪末就开始大量使用它处理流体边界 (Joukowski 翼型) 与电磁场, 但它真正进入量子物理是 1928 年 Sommerfeld 处理边界值问题时的"鞍点法"与"最速下降法" — 这两个名字不过是留数定理 + Cauchy 公式在指数因子下的具体使用. Feynman 在 1949 年那篇定义传播子的论文里, 把 $i\epsilon$ 处方写得云淡风轻, 但每一位读到那篇论文的物理学家心里都明白: 这是 Cauchy 二十年代留下的那把钥匙, 配上 Riemann 半个世纪后磨好的刀刃, 在量子场论的门上轻轻一拧, 锁就开了.</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>本节从复可微的定义出发 (Cauchy-Riemann 方程 (2)), 推得 Cauchy 定理 (闭围道积分 = 0) 与 Cauchy 公式 (3) (边界值决定内部值), 再借 Laurent 展开 (4) 把孤立奇点的局部信息浓缩为留数 $a_{-1}$, 终止于留数定理 (5) $\oint = 2\pi i\sum\mathrm{Res}$. 这条工具链在物理学中的着陆点遍地: 卷三 03《Feynman 传播子》直接用 $i\epsilon$ 处方与留数算出 (6) 式; 卷二 23《FDT》Kubo 公式中的 contour integration 把响应函数的因果性写进围道方向; 卷一 13《相速群速》中的 dispersion relations 与 Kramers-Kronig 恒等式, 是 Cauchy 公式在物理因果性约束下的直接体现. 留数定理在物理学家手里之所以好用, 是因为它把一个解析问题 (实轴上奇异积分) 翻译成了一个代数问题 (在几个极点处算几个数). 下一节我们将进入<strong>格林函数</strong> — 留数定理是它的引擎, 处方是它的方向盘 — 把"传播子"作为偏微分方程的核函数完整地建立起来.</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="27-clt.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="29-greens-function.html">下一节 →</a>
+</nav>
+
+</body>
+</html>
