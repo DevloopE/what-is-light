@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>耳朵怎样把声音拆成频率? · 第十五卷·音乐与数学</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<nav class="chapter-nav top">
+  <a href="10-modulation.html">← 上一节</a>
+  <span class="chapter-title">第 11 节 / 30 · 第 3 部分 · Fourier 在耳朵里 · 第十五卷·音乐与数学</span>
+  <a href="12-timbre-music.html">下一节 →</a>
+</nav>
+
+<article>
+  <h1>耳朵怎样把声音拆成频率?</h1>
+  <div class="sub">—— 基底膜滤波器组</div>
+
+  <div class="abstract">
+    音阶、和声、Fourier、节奏、群论和 MP3 说明耳朵里的数学不是装饰, 而是结构。 本节从「耳朵怎样把声音拆成频率」出发, 把看似熟悉的现象拆成三层: 什么量在守恒, 什么机制在传递, 什么尺度决定我们最终看到的结果。关键概念是<strong>Fourier 分解</strong>; 关键不是背下一个名字, 而是能把公式、数量级和可观察现象接起来。
+  </div>
+
+  <p>一个好问题通常先从日常经验里冒出来: 耳朵怎样把声音拆成频率。如果只凭直觉, 我们很容易把它说成一句模糊的解释; 物理的做法更慢一点, 先问长度、时间、能量或通量的尺度, 再问哪一个无量纲比值真正控制图样。本节保留这个路线: 从可观察现象开始, 写出最小方程, 代入一个数, 最后回到实验和历史。</p>
+
+  <h2>一、先把现象缩成几个量</h2>
+
+  <p>任何测量都要先选变量。对这一节, 最自然的变量不是越多越好, 而是刚好能描述「变化从哪里来、往哪里去」。把空间尺度记作 $L$, 时间尺度记作 $\tau$, 典型速度或频率记作 $U$ 或 $f$, 再加上材料参数, 就能把许多细节暂时压进一两个控制量里。第一条公式写的是本节的骨架:</p>
+
+  <p>$$
+  \Delta f=\abs{f_2-f_1}
+  \tag{1}
+  $$</p>
+
+  <p>式 $(1)$ 的价值在于筛选主次。它告诉我们哪些量只是在改单位, 哪些量一变就会改变整个现象的类别。很多教材把这个步骤讲成“代公式”, 其实它更像一张地图: 先决定坐标轴, 后面的推导才不会在细节里迷路。</p>
+
+  <h2>二、Fourier 分解不是口号</h2>
+
+  <p><strong>Fourier 分解</strong>常被当成一个现成词, 但它真正有用的地方是能指出极限。把尺度放大十倍、把频率提高一百倍、把边界条件换掉, 现象是否仍然相似? 如果答案是否定的, 那个被破坏的相似性就是物理内容。一个常用的估算式是</p>
+
+  <p>$$
+  b\sim \Delta f\,T
+  \tag{2}
+  $$</p>
+
+  <p>式 $(2)$ 不一定是最精确的模型, 却常常是最诚实的模型。它暴露了哪些近似正在被使用: 是否忽略耗散, 是否假定线性, 是否把三维问题压成一维, 是否把微观涨落平均掉。只要这些近似写清楚, 公式就不是黑箱, 而是一台可以拆开的机器。</p>
+
+  <figure class="diagram-stub">
+    <div class="stub-box">[此处应有一张图: 耳朵怎样把声音拆成频率的核心图: 左侧画日常现象, 中间标出控制量和公式, 右侧画出极限情形; 标注 Fourier 分解、数量级和可测结果。]</div>
+  </figure>
+
+  <h2>三、把数字代进去</h2>
+
+  <p>CD 采样率 $44.1\,\mathrm{kHz}$ 对应 Nyquist 频率 $22.05\,\mathrm{kHz}$, 覆盖大多数人耳高频范围。 这个数量级的作用很大: 它告诉我们该相信哪种直觉。若无量纲数很小, 系统往往被线性响应、热噪声或黏性拖住; 若它很大, 惯性、非线性、波动或集体行为就会冒出来。数量级估算不是为了替代精密实验, 而是为了在实验前知道自己大概站在哪个世界。</p>
+
+  <p>还可以反过来读这个数。若实际观测和估算差了十倍以内, 说明主导机制大体找对了; 若差了几个数量级, 通常不是“常数没调好”, 而是漏掉了边界、反馈、非线性或材料细节。很多重要发现正是从这种差异开始的。</p>
+
+  <h2>四、边界、实验和历史</h2>
+
+  <p>Helmholtz 的协和理论给我们的教训是: 物理概念不是从定义里长出来的, 而是从可重复测量里被逼出来的。实验先把现象固定成一组数字, 理论再解释为什么这些数字会一起出现。边界条件尤其要小心, 因为现实世界的边界常常比方程本身更会“说话”: 墙面、仪器、阈值、有限带宽、有限样本, 都可能改写答案。</p>
+
+  <p>所以本节的结论不是一个孤立公式, 而是一种读法: 先看守恒量, 再看传输机制, 然后用数量级判断近似是否站得住。用这套读法回看「耳朵怎样把声音拆成频率」, 它就不再只是一个熟悉现象, 而是通往本卷其余章节的入口。</p>
+
+  <div class="small-summary">
+  <h4>小结</h4>
+  <p>这一节把「耳朵怎样把声音拆成频率」压缩成两个层次: 公式 $(1)$ 给出主导关系, 估算 $(2)$ 给出适用范围。CD 采样率 $44.1\,\mathrm{kHz}$ 对应 Nyquist 频率 $22.05\,\mathrm{kHz}$, 覆盖大多数人耳高频范围。 历史上, Helmholtz 的协和理论把这个问题从经验描述推进到定量科学。下一步要做的, 是把同一套尺度和守恒语言迁移到相邻现象里, 看哪些直觉保留, 哪些必须重建。</p>
+  <p style="text-align:right; color:#8b2f1a; margin-top:1em;">▲</p>
+  </div>
+</article>
+
+<nav class="chapter-nav bottom">
+  <a href="10-modulation.html">← 上一节</a>
+  <span class="chapter-title"><a href="index.html">目录</a></span>
+  <a href="12-timbre-music.html">下一节 →</a>
+</nav>
+
+</body>
+</html>

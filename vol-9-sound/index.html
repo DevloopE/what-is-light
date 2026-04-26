@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第九卷·声音是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第九卷</span>
+  <h1>声音是什么?</h1>
+  <div class="subtitle">—— Sound · 三十节</div>
+</header>
+
+<p class="intro">
+嗓音、琴弦、房间、超声和声呐都只是压力扰动在介质里传播。 本卷按六个部分展开: 声波方程 → 频谱与音色 → 共鸣与房间 → 超声/声呐 → Doppler → 回声消除. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>声波的骨架
+  <span class="part-blurb">压强、速度、波长、能量</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-pressure-wave.html"><span class="title">声音为什么必须有介质?</span><span class="sub">—— 压强扰动与纵波</span></a></li>
+  <li><a href="02-speed-of-sound.html"><span class="title">声速为什么不是无限大?</span><span class="sub">—— 弹性模量与密度</span></a></li>
+  <li><a href="03-loudness.html"><span class="title">响度为什么用分贝而不是帕斯卡?</span><span class="sub">—— 对数标尺与听阈</span></a></li>
+  <li><a href="04-impedance.html"><span class="title">声音遇到墙为什么会反射?</span><span class="sub">—— 声阻抗匹配</span></a></li>
+  <li><a href="05-beats.html"><span class="title">两个很近的音为什么会一下一下地响?</span><span class="sub">—— 拍频与相干叠加</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>嗓音与乐器
+  <span class="part-blurb">声带、弦、管、膜</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-voice.html"><span class="title">人声为什么能从低音滑到高音?</span><span class="sub">—— 声带张力与共鸣腔</span></a></li>
+  <li><a href="07-string.html"><span class="title">琴弦为什么只喜欢某些频率?</span><span class="sub">—— 驻波与边界条件</span></a></li>
+  <li><a href="08-flute.html"><span class="title">长笛为什么靠一根空气柱发声?</span><span class="sub">—— 开管模态</span></a></li>
+  <li><a href="09-drum.html"><span class="title">鼓面的音为什么不按整数倍排列?</span><span class="sub">—— 二维膜的本征模</span></a></li>
+  <li><a href="10-timbre.html"><span class="title">同一个音高的小提琴和长笛为什么不同?</span><span class="sub">—— 谐波包络与瞬态</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>房间声学
+  <span class="part-blurb">混响、驻波、扩散、吸声</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-room-modes.html"><span class="title">小房间里为什么有些低音特别轰?</span><span class="sub">—— 房间本征模</span></a></li>
+  <li><a href="12-reverberation.html"><span class="title">混响时间为什么决定大厅气质?</span><span class="sub">—— Sabine 公式</span></a></li>
+  <li><a href="13-opera-hall.html"><span class="title">为什么歌剧院能让没麦克风的声音传很远?</span><span class="sub">—— 早期反射与清晰度</span></a></li>
+  <li><a href="14-echo.html"><span class="title">回声和混响有什么区别?</span><span class="sub">—— 延迟时间与听觉融合</span></a></li>
+  <li><a href="15-noise-control.html"><span class="title">吸音材料为什么不能简单等于隔音材料?</span><span class="sub">—— 耗散与质量定律</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>移动、探测与成像
+  <span class="part-blurb">Doppler、超声、声呐</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-doppler.html"><span class="title">救护车经过时音高为什么会变?</span><span class="sub">—— Doppler 频移</span></a></li>
+  <li><a href="17-ultrasound.html"><span class="title">超声为什么能看见胎儿?</span><span class="sub">—— 回波时间与阻抗差</span></a></li>
+  <li><a href="18-sonar.html"><span class="title">声呐为什么能量海底深度?</span><span class="sub">—— 时间飞行测距</span></a></li>
+  <li><a href="19-shock-sound.html"><span class="title">音爆为什么是一条锥面?</span><span class="sub">—— Mach 锥</span></a></li>
+  <li><a href="20-bat-echolocation.html"><span class="title">蝙蝠为什么要发扫频声?</span><span class="sub">—— 分辨率与带宽</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>信号处理
+  <span class="part-blurb">频谱、采样、降噪、回声消除</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-fourier-ear.html"><span class="title">耳朵是不是一台 Fourier 分析仪?</span><span class="sub">—— 基底膜的频率映射</span></a></li>
+  <li><a href="22-sampling.html"><span class="title">录音为什么需要采样率?</span><span class="sub">—— Nyquist 极限</span></a></li>
+  <li><a href="23-mp3-audio.html"><span class="title">MP3 为什么能丢掉很多声音还听不出来?</span><span class="sub">—— 掩蔽效应</span></a></li>
+  <li><a href="24-echo-cancel.html"><span class="title">视频通话怎样消掉自己的回声?</span><span class="sub">—— 自适应滤波</span></a></li>
+  <li><a href="25-noise-cancel.html"><span class="title">降噪耳机为什么要发反相声?</span><span class="sub">—— 相消干涉</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>边界与极限
+  <span class="part-blurb">非线性、热噪声、生物听觉</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-nonlinear-sound.html"><span class="title">声音什么时候不再线性叠加?</span><span class="sub">—— 大振幅与谐波生成</span></a></li>
+  <li><a href="27-thermal-noise.html"><span class="title">安静房间为什么也有噪声底?</span><span class="sub">—— 热涨落</span></a></li>
+  <li><a href="28-hearing-range.html"><span class="title">人耳为什么大约听 20 Hz 到 20 kHz?</span><span class="sub">—— 耳蜗几何与毛细胞</span></a></li>
+  <li><a href="29-infrasound.html"><span class="title">次声波为什么能传很远?</span><span class="sub">—— 吸收与波长</span></a></li>
+  <li><a href="30-sound-underwater.html"><span class="title">水下声音为什么跑得更快也更远?</span><span class="sub">—— 高体积模量与低耗散</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第九卷·声音是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

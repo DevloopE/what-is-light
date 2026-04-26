@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十四卷·天气是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十四卷</span>
+  <h1>天气是什么?</h1>
+  <div class="subtitle">—— Weather · 三十节</div>
+</header>
+
+<p class="intro">
+天气是旋转行星上的湿空气流体力学, 从海风、云、闪电到飓风和气候强迫。 本卷按六个部分展开: 辐射收支 → 对流与云 → Coriolis → Hadley 环流 → 风暴 → 气候和预报. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>大气的账本
+  <span class="part-blurb">辐射、压强、温度、湿度</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-atmosphere-weight.html"><span class="title">空气为什么有压强?</span><span class="sub">—— 静力平衡</span></a></li>
+  <li><a href="02-radiation-balance.html"><span class="title">地球为什么不是越来越热?</span><span class="sub">—— 入射阳光与红外辐射</span></a></li>
+  <li><a href="03-lapse-rate.html"><span class="title">高山上为什么更冷?</span><span class="sub">—— 绝热递减率</span></a></li>
+  <li><a href="04-humidity.html"><span class="title">湿度为什么随温度剧烈改变?</span><span class="sub">—— Clausius-Clapeyron</span></a></li>
+  <li><a href="05-cloud-white-weather.html"><span class="title">云为什么白而雨云黑?</span><span class="sub">—— 多重散射与光路</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>风从哪里来
+  <span class="part-blurb">压强梯度、Coriolis、边界层</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-wind.html"><span class="title">风为什么会吹?</span><span class="sub">—— 压强梯度力</span></a></li>
+  <li><a href="07-coriolis.html"><span class="title">Coriolis 力为什么能改变风向?</span><span class="sub">—— 旋转参考系</span></a></li>
+  <li><a href="08-geostrophic.html"><span class="title">高空风为什么沿等压线吹?</span><span class="sub">—— 地转平衡</span></a></li>
+  <li><a href="09-sea-breeze.html"><span class="title">海风为什么下午更明显?</span><span class="sub">—— 热力环流</span></a></li>
+  <li><a href="10-jet-stream.html"><span class="title">急流为什么绕着地球跑?</span><span class="sub">—— 温度梯度与热成风</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>全球环流
+  <span class="part-blurb">Hadley、季风、洋气耦合</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-hadley-cells.html"><span class="title">Hadley 环流为什么只到副热带?</span><span class="sub">—— 角动量与稳定度</span></a></li>
+  <li><a href="12-trade-winds.html"><span class="title">信风为什么偏东?</span><span class="sub">—— Hadley 加 Coriolis</span></a></li>
+  <li><a href="13-monsoon.html"><span class="title">季风为什么会翻转?</span><span class="sub">—— 陆海热容差</span></a></li>
+  <li><a href="14-rossby-waves.html"><span class="title">天气图上的大波浪为什么向西传播?</span><span class="sub">—— Rossby 波</span></a></li>
+  <li><a href="15-el-nino.html"><span class="title">厄尔尼诺为什么能改变全球天气?</span><span class="sub">—— 海气耦合</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>云、雨、雪和电
+  <span class="part-blurb">凝结、降水、雪花、闪电</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-convection.html"><span class="title">热空气为什么会长成雷暴云?</span><span class="sub">—— 浮力与 CAPE</span></a></li>
+  <li><a href="17-rain.html"><span class="title">雨滴为什么不会无限长大?</span><span class="sub">—— 终端速度与破碎</span></a></li>
+  <li><a href="18-snowflakes.html"><span class="title">雪花为什么总有六角影子?</span><span class="sub">—— 冰晶晶格</span></a></li>
+  <li><a href="19-lightning.html"><span class="title">闪电怎样把空气击穿?</span><span class="sub">—— 电场与等离子体</span></a></li>
+  <li><a href="20-rainbow-weather.html"><span class="title">雨后彩虹为什么总在背太阳方向?</span><span class="sub">—— 水滴光学</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>风暴
+  <span class="part-blurb">气旋、飓风、龙卷、锋面</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-cyclone.html"><span class="title">温带气旋为什么有冷暖锋?</span><span class="sub">—— 斜压不稳定</span></a></li>
+  <li><a href="22-hurricane-spin.html"><span class="title">飓风为什么在南北半球转向相反?</span><span class="sub">—— Coriolis 与角动量</span></a></li>
+  <li><a href="23-hurricane-energy.html"><span class="title">飓风的发动机是什么?</span><span class="sub">—— 海温和潜热</span></a></li>
+  <li><a href="24-tornado.html"><span class="title">龙卷风为什么能缩到这么细?</span><span class="sub">—— 涡管拉伸</span></a></li>
+  <li><a href="25-storm-surge.html"><span class="title">风暴潮为什么常比风更致命?</span><span class="sub">—— 风应力与低压抬水</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>预报与气候
+  <span class="part-blurb">混沌、模式、强迫、反馈</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-forecast-chaos.html"><span class="title">天气预报为什么越往后越难?</span><span class="sub">—— Lorenz 混沌</span></a></li>
+  <li><a href="27-data-assimilation.html"><span class="title">预报模式怎样吃进观测?</span><span class="sub">—— 资料同化</span></a></li>
+  <li><a href="28-climate-vs-weather.html"><span class="title">天气和气候到底差在哪?</span><span class="sub">—— 初值问题与边值问题</span></a></li>
+  <li><a href="29-climate-forcing.html"><span class="title">气候强迫为什么用 W/m² 计量?</span><span class="sub">—— 辐射收支</span></a></li>
+  <li><a href="30-feedbacks.html"><span class="title">水汽和冰雪为什么会放大变化?</span><span class="sub">—— 反馈回路</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十四卷·天气是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

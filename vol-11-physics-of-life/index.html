@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十一卷·生命的物理 — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十一卷</span>
+  <h1>生命的物理</h1>
+  <div class="subtitle">—— Physics of Life · 三十节</div>
+</header>
+
+<p class="intro">
+细胞大小、扩散、ATP、蛋白折叠、神经脉冲和鸟群都受物理尺度约束。 本卷按六个部分展开: 细胞尺度 → 扩散与低 Re → ATP 和分子机器 → 生物力学 → 神经与信息 → 标度律. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>细胞为什么是这个尺寸
+  <span class="part-blurb">扩散、表面积、噪声</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-cell-size.html"><span class="title">细胞为什么常在 1 到 10 微米?</span><span class="sub">—— 扩散时间与表面积</span></a></li>
+  <li><a href="02-diffusion.html"><span class="title">扩散为什么能养活细胞却养不活鲸鱼?</span><span class="sub">—— $L^2$ 时间尺度</span></a></li>
+  <li><a href="03-membrane.html"><span class="title">细胞膜为什么要薄到纳米?</span><span class="sub">—— 电容、屏障与自组装</span></a></li>
+  <li><a href="04-crowding.html"><span class="title">细胞里为什么像拥挤的胶体汤?</span><span class="sub">—— 排斥体积与有效浓度</span></a></li>
+  <li><a href="05-thermal-noise-life.html"><span class="title">热噪声为什么既帮忙又捣乱?</span><span class="sub">—— $k_B T$ 的尺度</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>低 Reynolds 数世界
+  <span class="part-blurb">细菌、纤毛、黏性支配</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-low-re.html"><span class="title">低 Reynolds 数世界有多奇怪?</span><span class="sub">—— 时间反演与黏性</span></a></li>
+  <li><a href="07-bacterial-flagella.html"><span class="title">细菌鞭毛为什么像螺旋桨?</span><span class="sub">—— 非互易运动</span></a></li>
+  <li><a href="08-cilia.html"><span class="title">纤毛为什么要分有效 stroke 和恢复 stroke?</span><span class="sub">—— 近壁流体力学</span></a></li>
+  <li><a href="09-blood-capillary.html"><span class="title">毛细血管里红细胞为什么要变形?</span><span class="sub">—— 黏弹性与阻力</span></a></li>
+  <li><a href="10-mucus.html"><span class="title">黏液为什么既能流又能挡?</span><span class="sub">—— 非牛顿材料</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>能量与分子机器
+  <span class="part-blurb">ATP、马达、棘轮</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-atp.html"><span class="title">ATP 为什么像细胞的零钱?</span><span class="sub">—— 自由能账本</span></a></li>
+  <li><a href="12-molecular-motor.html"><span class="title">马达蛋白怎样把热运动整流?</span><span class="sub">—— Brownian ratchet</span></a></li>
+  <li><a href="13-ion-pump.html"><span class="title">离子泵为什么能逆浓度梯度搬运?</span><span class="sub">—— 化学势差</span></a></li>
+  <li><a href="14-photosynthesis-life.html"><span class="title">光合作用怎样把光子变成化学势?</span><span class="sub">—— 激发能转移</span></a></li>
+  <li><a href="15-enzyme.html"><span class="title">酶为什么能加速反应却不改平衡?</span><span class="sub">—— 活化能与过渡态</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>形状、骨架与运动
+  <span class="part-blurb">蛋白、膜、骨骼、飞行</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-protein-folding.html"><span class="title">蛋白质为什么能折成特定形状?</span><span class="sub">—— 能量地形</span></a></li>
+  <li><a href="17-cytoskeleton.html"><span class="title">细胞骨架为什么既硬又可重组?</span><span class="sub">—— 持久长度与动态不稳定</span></a></li>
+  <li><a href="18-bone-scaling.html"><span class="title">大动物的骨头为什么相对更粗?</span><span class="sub">—— 平方立方律</span></a></li>
+  <li><a href="19-bird-v.html"><span class="title">鸟为什么排成 V 字飞?</span><span class="sub">—— 诱导阻力与上洗</span></a></li>
+  <li><a href="20-fish-school.html"><span class="title">鱼群为什么会像一个整体转弯?</span><span class="sub">—— 局域规则与集体模</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>神经与信息
+  <span class="part-blurb">动作电位、噪声、编码</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-action-potential.html"><span class="title">神经脉冲为什么是尖峰而不是连续电压?</span><span class="sub">—— Hodgkin-Huxley 动力学</span></a></li>
+  <li><a href="22-synapse.html"><span class="title">突触为什么带有概率?</span><span class="sub">—— 囊泡释放与噪声</span></a></li>
+  <li><a href="23-retina.html"><span class="title">视网膜为什么先压缩信息再传给大脑?</span><span class="sub">—— 带宽约束</span></a></li>
+  <li><a href="24-hearing-hair-cell.html"><span class="title">毛细胞为什么能放大微小振动?</span><span class="sub">—— 主动过程</span></a></li>
+  <li><a href="25-brain-energy.html"><span class="title">大脑为什么这么耗能?</span><span class="sub">—— 离子梯度维护</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>标度与演化
+  <span class="part-blurb">代谢、生态、鲁棒性</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-kleiber.html"><span class="title">Kleiber 的 $3/4$ 次方律从哪里来?</span><span class="sub">—— 运输网络标度</span></a></li>
+  <li><a href="27-temperature-life.html"><span class="title">温度为什么能改变生命节奏?</span><span class="sub">—— Arrhenius 因子</span></a></li>
+  <li><a href="28-morphogenesis.html"><span class="title">胚胎图案怎样自己长出来?</span><span class="sub">—— 反应扩散</span></a></li>
+  <li><a href="29-robustness.html"><span class="title">生命系统为什么能抗扰动?</span><span class="sub">—— 反馈与稳态</span></a></li>
+  <li><a href="30-origin-life.html"><span class="title">生命起源的物理门槛是什么?</span><span class="sub">—— 非平衡耗散结构</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十一卷·生命的物理 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

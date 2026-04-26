@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十五卷·音乐与数学 — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十五卷</span>
+  <h1>音乐与数学</h1>
+  <div class="subtitle">—— Music and Math · 三十节</div>
+</header>
+
+<p class="intro">
+音阶、和声、Fourier、节奏、群论和 MP3 说明耳朵里的数学不是装饰, 而是结构。 本卷按六个部分展开: 泛音列 → 音程与调律 → Fourier 与音色 → 乐器耦合 → 节奏/群 → 压缩与信号处理. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>音高和比例
+  <span class="part-blurb">频率、八度、泛音</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-pitch-frequency.html"><span class="title">音高为什么对应频率?</span><span class="sub">—— 周期与感知</span></a></li>
+  <li><a href="02-octave.html"><span class="title">八度为什么听起来像同一个音?</span><span class="sub">—— 频率翻倍</span></a></li>
+  <li><a href="03-overtone-series.html"><span class="title">泛音列为什么支配音色和和声?</span><span class="sub">—— 整数倍频</span></a></li>
+  <li><a href="04-cents.html"><span class="title">为什么音程要用 cents 量?</span><span class="sub">—— 对数音高</span></a></li>
+  <li><a href="05-beats-music.html"><span class="title">调音时的拍频从哪里来?</span><span class="sub">—— 近频相干</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>调律
+  <span class="part-blurb">纯律、五度圈、平均律</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-pythagorean.html"><span class="title">Pythagorean 调律为什么从五度开始?</span><span class="sub">—— $3:2$ 的堆叠</span></a></li>
+  <li><a href="07-comma.html"><span class="title">五度圈为什么合不拢?</span><span class="sub">—— Pythagorean comma</span></a></li>
+  <li><a href="08-just-intonation.html"><span class="title">纯律为什么在和弦里甜?</span><span class="sub">—— 小整数比</span></a></li>
+  <li><a href="09-equal-temperament.html"><span class="title">十二平均律牺牲了什么?</span><span class="sub">—— 均分八度</span></a></li>
+  <li><a href="10-modulation.html"><span class="title">转调为什么需要折中调律?</span><span class="sub">—— 全局一致性</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>Fourier 在耳朵里
+  <span class="part-blurb">频谱、包络、音色</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-fourier-music.html"><span class="title">耳朵怎样把声音拆成频率?</span><span class="sub">—— 基底膜滤波器组</span></a></li>
+  <li><a href="12-timbre-music.html"><span class="title">为什么同频率不同乐器不一样?</span><span class="sub">—— 频谱包络</span></a></li>
+  <li><a href="13-attack-decay.html"><span class="title">音头为什么决定乐器身份?</span><span class="sub">—— 瞬态信息</span></a></li>
+  <li><a href="14-dissonance.html"><span class="title">不协和为什么会刺耳?</span><span class="sub">—— 临界带与拍频</span></a></li>
+  <li><a href="15-missing-fundamental.html"><span class="title">缺了基频为什么还能听出音高?</span><span class="sub">—— 周期性推断</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>乐器物理
+  <span class="part-blurb">弦、管、板、耦合</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-string-modes-music.html"><span class="title">弦乐器为什么需要琴箱?</span><span class="sub">—— 模态耦合与辐射</span></a></li>
+  <li><a href="17-wind-instrument.html"><span class="title">管乐器怎样选出一个音?</span><span class="sub">—— 空气柱共振</span></a></li>
+  <li><a href="18-reed.html"><span class="title">簧片为什么会自激振动?</span><span class="sub">—— 负阻与反馈</span></a></li>
+  <li><a href="19-piano.html"><span class="title">钢琴为什么要调伸展八度?</span><span class="sub">—— 弦刚度与非谐性</span></a></li>
+  <li><a href="20-ensemble.html"><span class="title">乐器为什么能合奏而不糊成一团?</span><span class="sub">—— 谱占位与动态</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>节奏和结构
+  <span class="part-blurb">周期、群、对称、模式</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-rhythm.html"><span class="title">节奏为什么是时间里的几何?</span><span class="sub">—— 周期格点</span></a></li>
+  <li><a href="22-polyrhythm.html"><span class="title">复节奏为什么会形成大周期?</span><span class="sub">—— 最小公倍数</span></a></li>
+  <li><a href="23-scales-group.html"><span class="title">音阶能不能看成群论?</span><span class="sub">—— 模 12 加法</span></a></li>
+  <li><a href="24-symmetry-music.html"><span class="title">倒影和逆行为什么像音乐里的对称操作?</span><span class="sub">—— 变换群</span></a></li>
+  <li><a href="25-information-music.html"><span class="title">音乐为什么需要重复也需要惊喜?</span><span class="sub">—— 熵与预测</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>录音与压缩
+  <span class="part-blurb">采样、滤波、MP3、空间声</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-sampling-music.html"><span class="title">数字音乐为什么需要采样定理?</span><span class="sub">—— Nyquist-Shannon</span></a></li>
+  <li><a href="27-filtering.html"><span class="title">均衡器到底在改什么?</span><span class="sub">—— 频率响应</span></a></li>
+  <li><a href="28-mp3.html"><span class="title">MP3 为什么能变小那么多?</span><span class="sub">—— 心理声学掩蔽</span></a></li>
+  <li><a href="29-reverb-music.html"><span class="title">混响为什么能给音乐空间感?</span><span class="sub">—— 卷积</span></a></li>
+  <li><a href="30-spatial-audio.html"><span class="title">耳机怎样伪造空间方向?</span><span class="sub">—— HRTF</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十五卷·音乐与数学 · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

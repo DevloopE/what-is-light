@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十三卷·运动是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十三卷</span>
+  <h1>运动是什么?</h1>
+  <div class="subtitle">—— Motion · 三十节</div>
+</header>
+
+<p class="intro">
+弹球、台球、行星、摆和三体问题把守恒律、作用量和混沌连成一条线。 本卷按六个部分展开: 运动学 → Newton 定律 → 能量/动量 → 转动/振动 → 轨道 → 作用量与混沌. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>从位置到速度
+  <span class="part-blurb">轨迹、加速度、参考系</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-position-time.html"><span class="title">运动为什么需要参考系?</span><span class="sub">—— 位置、时间与坐标</span></a></li>
+  <li><a href="02-velocity.html"><span class="title">速度和速率为什么不是一回事?</span><span class="sub">—— 矢量与路径</span></a></li>
+  <li><a href="03-acceleration.html"><span class="title">加速度为什么可以改变方向而不改变快慢?</span><span class="sub">—— 圆周运动</span></a></li>
+  <li><a href="04-free-fall.html"><span class="title">落体为什么不管轻重一起落?</span><span class="sub">—— 等加速度</span></a></li>
+  <li><a href="05-projectile.html"><span class="title">抛体为什么走抛物线?</span><span class="sub">—— 水平匀速与竖直落体</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>力与守恒
+  <span class="part-blurb">Newton、功、能量、动量</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-newton-laws.html"><span class="title">Newton 定律到底定义了什么?</span><span class="sub">—— 力、质量与惯性</span></a></li>
+  <li><a href="07-friction.html"><span class="title">摩擦力为什么有时帮忙有时耗能?</span><span class="sub">—— 接触与耗散</span></a></li>
+  <li><a href="08-work-energy.html"><span class="title">功和能量为什么能替代力的细节?</span><span class="sub">—— 路径积分</span></a></li>
+  <li><a href="09-momentum.html"><span class="title">动量为什么在碰撞里更好用?</span><span class="sub">—— 冲量守恒</span></a></li>
+  <li><a href="10-center-of-mass.html"><span class="title">质心为什么像整个系统的代表?</span><span class="sub">—— 内力相消</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>碰撞与转动
+  <span class="part-blurb">台球、角动量、刚体</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-billiards.html"><span class="title">台球碰撞为什么能算得很准?</span><span class="sub">—— 弹性碰撞</span></a></li>
+  <li><a href="12-bounce.html"><span class="title">弹跳球为什么越跳越低?</span><span class="sub">—— 恢复系数</span></a></li>
+  <li><a href="13-rotation.html"><span class="title">转动为什么有自己的惯性?</span><span class="sub">—— 转动惯量</span></a></li>
+  <li><a href="14-angular-momentum.html"><span class="title">花滑运动员收手为什么转得更快?</span><span class="sub">—— 角动量守恒</span></a></li>
+  <li><a href="15-gyroscope.html"><span class="title">陀螺为什么不马上倒下?</span><span class="sub">—— 进动</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>振动
+  <span class="part-blurb">弹簧、摆、共振、阻尼</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-spring.html"><span class="title">弹簧为什么产生正弦运动?</span><span class="sub">—— 简谐振子</span></a></li>
+  <li><a href="17-pendulum.html"><span class="title">摆为什么能当钟?</span><span class="sub">—— 小角近似</span></a></li>
+  <li><a href="18-damping.html"><span class="title">振动为什么会停下来?</span><span class="sub">—— 阻尼与品质因子</span></a></li>
+  <li><a href="19-resonance-motion.html"><span class="title">共振为什么能把桥晃起来?</span><span class="sub">—— 驱动频率</span></a></li>
+  <li><a href="20-normal-modes.html"><span class="title">多个物体连在一起怎样一起振?</span><span class="sub">—— 正则模</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>天体运动
+  <span class="part-blurb">轨道、潮汐、逃逸、摄动</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-orbit.html"><span class="title">行星为什么不会掉进太阳?</span><span class="sub">—— 引力与横向速度</span></a></li>
+  <li><a href="22-kepler.html"><span class="title">Kepler 三定律从哪里来?</span><span class="sub">—— 反平方力</span></a></li>
+  <li><a href="23-escape.html"><span class="title">逃逸速度为什么不需要持续加速?</span><span class="sub">—— 能量零点</span></a></li>
+  <li><a href="24-tides-motion.html"><span class="title">潮汐为什么每天来两次?</span><span class="sub">—— 引力梯度</span></a></li>
+  <li><a href="25-precession-motion.html"><span class="title">轨道为什么会慢慢转动?</span><span class="sub">—— 摄动与相对论修正</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>作用量与混沌
+  <span class="part-blurb">最小作用、相空间、三体</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-least-action.html"><span class="title">自然真的走最省力的路吗?</span><span class="sub">—— 作用量原理</span></a></li>
+  <li><a href="27-phase-space.html"><span class="title">相空间为什么比轨迹更完整?</span><span class="sub">—— 状态的几何</span></a></li>
+  <li><a href="28-three-body.html"><span class="title">三体问题为什么没有简单公式?</span><span class="sub">—— 非线性耦合</span></a></li>
+  <li><a href="29-chaos.html"><span class="title">混沌为什么不是随机?</span><span class="sub">—— 初值敏感性</span></a></li>
+  <li><a href="30-everyday-experiments.html"><span class="title">厨房里怎样验证运动定律?</span><span class="sub">—— 可重复实验与误差</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十三卷·运动是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

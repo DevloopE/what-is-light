@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十七卷·测量是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十七卷</span>
+  <h1>测量是什么?</h1>
+  <div class="subtitle">—— Measurement · 三十节</div>
+</header>
+
+<p class="intro">
+米、秒、千克、GPS、温度计、误差棒和宇宙距离共同说明: 测量是把世界接到标准上。 本卷按六个部分展开: SI 标准 → 时间和频率 → 长度/质量/电学 → 传感器 → 误差和噪声 → GPS/宇宙尺度. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>标准从哪里来
+  <span class="part-blurb">单位、定义、可复现</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-standards.html"><span class="title">为什么测量需要标准?</span><span class="sub">—— 可追溯性</span></a></li>
+  <li><a href="02-meter.html"><span class="title">米为什么来自光速?</span><span class="sub">—— 长度变成时间</span></a></li>
+  <li><a href="03-second.html"><span class="title">秒为什么来自铯原子?</span><span class="sub">—— 频率标准</span></a></li>
+  <li><a href="04-kilogram.html"><span class="title">千克为什么来自 Planck 常数?</span><span class="sub">—— Kibble balance</span></a></li>
+  <li><a href="05-si-units.html"><span class="title">SI 单位为什么要固定常数?</span><span class="sub">—— 人造物到自然常数</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>日常仪器
+  <span class="part-blurb">尺、秤、温度计、传感器</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-ruler.html"><span class="title">尺子为什么也需要校准?</span><span class="sub">—— 热膨胀与刻度</span></a></li>
+  <li><a href="07-scale.html"><span class="title">体重秤量的是质量还是重量?</span><span class="sub">—— 力传感器</span></a></li>
+  <li><a href="08-thermometer.html"><span class="title">温度计到底在测什么?</span><span class="sub">—— 热平衡</span></a></li>
+  <li><a href="09-pressure-gauge.html"><span class="title">压力表为什么能读出气体状态?</span><span class="sub">—— 弹性形变</span></a></li>
+  <li><a href="10-camera-meter.html"><span class="title">相机测光为什么会被骗?</span><span class="sub">—— 动态范围</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>误差和噪声
+  <span class="part-blurb">误差棒、统计、系统偏差</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-error-bars.html"><span class="title">误差棒为什么不是装饰?</span><span class="sub">—— 不确定度</span></a></li>
+  <li><a href="12-random-error.html"><span class="title">多测几次为什么能变准?</span><span class="sub">—— $1/\sqrt{N}$</span></a></li>
+  <li><a href="13-systematic-error.html"><span class="title">系统误差为什么不会被平均掉?</span><span class="sub">—— 校准偏差</span></a></li>
+  <li><a href="14-signal-noise.html"><span class="title">信号和噪声怎样分开?</span><span class="sub">—— SNR</span></a></li>
+  <li><a href="15-resolution-precision.html"><span class="title">分辨率和精度为什么不同?</span><span class="sub">—— 仪器最小刻度</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>空间和导航
+  <span class="part-blurb">三角测量、GPS、惯导</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-triangulation.html"><span class="title">三角测量为什么能量远处?</span><span class="sub">—— 视差几何</span></a></li>
+  <li><a href="17-gps.html"><span class="title">GPS 为什么需要四颗卫星?</span><span class="sub">—— 时间偏差也要解</span></a></li>
+  <li><a href="18-relativity-gps.html"><span class="title">GPS 为什么必须修正相对论?</span><span class="sub">—— 钟速差</span></a></li>
+  <li><a href="19-accelerometer.html"><span class="title">手机怎样知道自己在转?</span><span class="sub">—— 加速度计和陀螺</span></a></li>
+  <li><a href="20-lidar-measure.html"><span class="title">激光雷达怎样把时间变成距离?</span><span class="sub">—— 飞行时间</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>微观测量
+  <span class="part-blurb">原子、质子、量子极限</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-atom-size.html"><span class="title">原子大小怎么知道?</span><span class="sub">—— 散射与光谱</span></a></li>
+  <li><a href="22-proton-size.html"><span class="title">质子半径怎么量?</span><span class="sub">—— 电子/缪子氢与散射</span></a></li>
+  <li><a href="23-electron-charge.html"><span class="title">电子电荷为什么能单个测?</span><span class="sub">—— Millikan 油滴</span></a></li>
+  <li><a href="24-quantum-limit.html"><span class="title">测量会不会扰动被测物?</span><span class="sub">—— 量子极限</span></a></li>
+  <li><a href="25-weak-signal.html"><span class="title">极弱信号怎样被锁相放大?</span><span class="sub">—— 相干积分</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>宇宙尺度
+  <span class="part-blurb">距离阶梯、红移、模型</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-cosmic-distances.html"><span class="title">宇宙距离怎么知道?</span><span class="sub">—— 距离阶梯</span></a></li>
+  <li><a href="27-parallax-stars.html"><span class="title">恒星视差为什么这么难?</span><span class="sub">—— 角度极小</span></a></li>
+  <li><a href="28-standard-candle.html"><span class="title">标准烛光为什么能当尺?</span><span class="sub">—— 亮度距离</span></a></li>
+  <li><a href="29-redshift-distance.html"><span class="title">红移为什么能估距离?</span><span class="sub">—— Hubble-Lemaitre 定律</span></a></li>
+  <li><a href="30-measurement-philosophy.html"><span class="title">测量是不是发现一个数?</span><span class="sub">—— 模型、标准与世界</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十七卷·测量是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

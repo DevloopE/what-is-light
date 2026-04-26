@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第八卷·流体是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第八卷</span>
+  <h1>流体是什么?</h1>
+  <div class="subtitle">—— Fluids · 三十节</div>
+</header>
+
+<p class="intro">
+水槽里的水、烟圈、浴缸涡、帆和冲击波都在同一套方程里相遇。 本卷按六个部分展开: Reynolds 数 → Navier-Stokes → Bernoulli → 涡与不稳定 → 冲击波 → 湍流和天气. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>日常流动与尺度
+  <span class="part-blurb">水槽、管道、黏性、边界层</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-sink-water.html"><span class="title">水槽里的水为什么不是一整块滑过去?</span><span class="sub">—— 黏性、剪切与无滑移边界</span></a></li>
+  <li><a href="02-reynolds-number.html"><span class="title">Reynolds 数到底在比什么?</span><span class="sub">—— 惯性与黏性的量纲战争</span></a></li>
+  <li><a href="03-pipe-flow.html"><span class="title">水管里的流量为什么对半径这么敏感?</span><span class="sub">—— Poiseuille 定律与层流</span></a></li>
+  <li><a href="04-draining-vortex.html"><span class="title">浴缸漩涡为什么会自己收紧?</span><span class="sub">—— 角动量守恒与涡线拉伸</span></a></li>
+  <li><a href="05-boundary-layer.html"><span class="title">为什么飞机外面只有一层薄薄的空气很重要?</span><span class="sub">—— Prandtl 边界层</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>Navier-Stokes 直觉
+  <span class="part-blurb">守恒、压力、黏性、能量</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-continuity.html"><span class="title">连续性方程在说什么?</span><span class="sub">—— 质量守恒与流量</span></a></li>
+  <li><a href="07-navier-stokes.html"><span class="title">Navier-Stokes 方程为什么这么难?</span><span class="sub">—— 加速度、压力和黏性</span></a></li>
+  <li><a href="08-pressure.html"><span class="title">压力真的只是向下压吗?</span><span class="sub">—— 各向同性应力与压强梯度</span></a></li>
+  <li><a href="09-bernoulli.html"><span class="title">水流快的地方压强为什么低?</span><span class="sub">—— Bernoulli 方程的边界</span></a></li>
+  <li><a href="10-vorticity.html"><span class="title">涡量到底是不是旋转?</span><span class="sub">—— 局部自旋与整体环流</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>涡、波与不稳定
+  <span class="part-blurb">烟圈、涡街、混合层</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-smoke-rings.html"><span class="title">烟圈为什么能飞那么远?</span><span class="sub">—— 涡环的自推进</span></a></li>
+  <li><a href="12-karman-vortices.html"><span class="title">桥后的涡街为什么会排成两列?</span><span class="sub">—— Karman 稳定图样</span></a></li>
+  <li><a href="13-kelvin-helmholtz.html"><span class="title">云边为什么会卷成波浪?</span><span class="sub">—— Kelvin-Helmholtz 不稳定</span></a></li>
+  <li><a href="14-rayleigh-taylor.html"><span class="title">重流体压在轻流体上会怎样?</span><span class="sub">—— Rayleigh-Taylor 指状结构</span></a></li>
+  <li><a href="15-mixing.html"><span class="title">牛奶倒进咖啡为什么越搅越快混?</span><span class="sub">—— 拉伸、折叠与扩散</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>升力、阻力与可压缩流
+  <span class="part-blurb">帆、翼、喷嘴、激波</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-sail-lift.html"><span class="title">帆船为什么能逆风斜着走?</span><span class="sub">—— 升力与表观风</span></a></li>
+  <li><a href="17-airfoil.html"><span class="title">机翼升力来自 Bernoulli 还是 Newton?</span><span class="sub">—— 环量与下洗</span></a></li>
+  <li><a href="18-drag.html"><span class="title">阻力为什么有时和速度平方成正比?</span><span class="sub">—— 压差阻力与摩擦阻力</span></a></li>
+  <li><a href="19-shock-waves.html"><span class="title">冲击波为什么像一道墙?</span><span class="sub">—— Mach 数与守恒跃迁</span></a></li>
+  <li><a href="20-nozzles.html"><span class="title">喷嘴为什么会把气体加速到超声速?</span><span class="sub">—— Laval 喷管</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>湍流
+  <span class="part-blurb">级联、谱、壁面、计算</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-transition.html"><span class="title">层流为什么突然变乱?</span><span class="sub">—— 扰动放大与转捩</span></a></li>
+  <li><a href="22-kolmogorov.html"><span class="title">Kolmogorov 的 $5/3$ 次方律从哪里来?</span><span class="sub">—— 惯性区与能量级联</span></a></li>
+  <li><a href="23-wall-turbulence.html"><span class="title">管道湍流为什么有对数速度剖面?</span><span class="sub">—— 壁面尺度与摩擦速度</span></a></li>
+  <li><a href="24-turbulent-mixing.html"><span class="title">湍流为什么能把气味迅速摊开?</span><span class="sub">—— 涡扩散率</span></a></li>
+  <li><a href="25-cfd.html"><span class="title">计算机为什么还算不准所有流体?</span><span class="sub">—— 网格、尺度与闭合</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>地球上的流体
+  <span class="part-blurb">海洋、大气、血流、工程</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-weather-flow.html"><span class="title">天气为什么本质上是流体问题?</span><span class="sub">—— 旋转、分层与浮力</span></a></li>
+  <li><a href="27-ocean-currents.html"><span class="title">洋流为什么能绕半个地球?</span><span class="sub">—— 风应力与地转平衡</span></a></li>
+  <li><a href="28-blood-flow.html"><span class="title">血液为什么不是简单的水?</span><span class="sub">—— 非牛顿流体与细胞尺度</span></a></li>
+  <li><a href="29-river-meanders.html"><span class="title">河流为什么会蛇行?</span><span class="sub">—— 二次流与泥沙输运</span></a></li>
+  <li><a href="30-microfluidics.html"><span class="title">微流控为什么像没有惯性的世界?</span><span class="sub">—— 低 Reynolds 数机器</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第八卷·流体是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>

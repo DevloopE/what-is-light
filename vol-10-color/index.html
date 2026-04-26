@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第十卷·颜色是什么? — 三十节</title>
+<link rel="stylesheet" href="style.css">
+<script>
+  window.MathJax = { tex: { inlineMath:[['$','$']], displayMath:[['$$','$$']], tags:'ams', macros: { slashed: ['{\\not{#1}}', 1], slash: ['{\\not{#1}}', 1], bra: ['\\langle{#1}|', 1], ket: ['|{#1}\\rangle', 1], braket: ['\\langle{#1}|{#2}\\rangle', 2], abs: ['\\left|{#1}\\right|', 1], norm: ['\\left\\|{#1}\\right\\|', 1], Tr: ['\\operatorname{Tr}', 0], Im: ['\\operatorname{Im}', 0], Re: ['\\operatorname{Re}', 0] } }, svg: {fontCache:'global'} };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="toc">
+<nav class="breadcrumb"><a href="../">← DevCollection</a></nav>
+<header class="chapter-header">
+  <span class="tag">第十卷</span>
+  <h1>颜色是什么?</h1>
+  <div class="subtitle">—— Color · 三十节</div>
+</header>
+
+<p class="intro">
+彩虹、蓝天、孔雀羽毛、CMYK、金属光泽和荧光把光谱、材料和视觉绑在一起。 本卷按六个部分展开: 光谱 → 散射 → 色觉 → RGB/CMYK → 结构色/金属 → 荧光和植物. 每一节都从一个具体问题出发, 用一两个方程和一个数量级估算把概念落到可观察世界。
+</p>
+
+<div class="part-header">
+  <span class="part-num">第 1 部分</span>光谱与眼睛
+  <span class="part-blurb">波长、视锥、色度</span>
+</div>
+<ol class="toc-list" start="1">
+  <li><a href="01-spectrum-color.html"><span class="title">颜色是不是波长?</span><span class="sub">—— 光谱与知觉的分工</span></a></li>
+  <li><a href="02-cone-cells.html"><span class="title">三种视锥为什么够用了?</span><span class="sub">—— 三刺激与 metamer</span></a></li>
+  <li><a href="03-color-blindness.html"><span class="title">色盲为什么常分不清红和绿?</span><span class="sub">—— 视锥响应曲线重叠</span></a></li>
+  <li><a href="04-white-light.html"><span class="title">白光为什么可以由很多光谱凑出来?</span><span class="sub">—— 等色与色度图</span></a></li>
+  <li><a href="05-color-constancy.html"><span class="title">同一张纸为什么在黄灯下还像白的?</span><span class="sub">—— 颜色恒常性</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 2 部分</span>天空、彩虹与散射
+  <span class="part-blurb">折射、散射、偏振</span>
+</div>
+<ol class="toc-list" start="6">
+  <li><a href="06-rainbow.html"><span class="title">彩虹为什么有固定角度?</span><span class="sub">—— 折射、反射与色散</span></a></li>
+  <li><a href="07-blue-sky.html"><span class="title">天空为什么是蓝的?</span><span class="sub">—— Rayleigh 散射</span></a></li>
+  <li><a href="08-sunset.html"><span class="title">夕阳为什么发红?</span><span class="sub">—— 长路径大气滤波</span></a></li>
+  <li><a href="09-cloud-white.html"><span class="title">云为什么是白的?</span><span class="sub">—— Mie 散射与多重散射</span></a></li>
+  <li><a href="10-polarized-sky.html"><span class="title">天空光为什么会偏振?</span><span class="sub">—— 散射几何</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 3 部分</span>颜料与显示
+  <span class="part-blurb">RGB、CMYK、吸收、混合</span>
+</div>
+<ol class="toc-list" start="11">
+  <li><a href="11-rgb-cmyk.html"><span class="title">RGB 和 CMYK 为什么一个加一个减?</span><span class="sub">—— 发光混色与吸收混色</span></a></li>
+  <li><a href="12-pigments.html"><span class="title">颜料为什么会有自己的颜色?</span><span class="sub">—— 分子能级与选择吸收</span></a></li>
+  <li><a href="13-printing.html"><span class="title">印刷为什么用青品黄黑四种墨?</span><span class="sub">—— 光谱缺口与黑版</span></a></li>
+  <li><a href="14-display-gamut.html"><span class="title">显示器为什么显示不出所有颜色?</span><span class="sub">—— 色域三角形</span></a></li>
+  <li><a href="15-camera-color.html"><span class="title">相机为什么要猜颜色?</span><span class="sub">—— Bayer 滤镜与去马赛克</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 4 部分</span>材料颜色
+  <span class="part-blurb">金属、能带、纳米结构</span>
+</div>
+<ol class="toc-list" start="16">
+  <li><a href="16-metallic.html"><span class="title">金属为什么看起来金属?</span><span class="sub">—— 自由电子与高反射率</span></a></li>
+  <li><a href="17-gold-color.html"><span class="title">黄金为什么偏黄而银偏白?</span><span class="sub">—— 相对论能带修正</span></a></li>
+  <li><a href="18-structural-color.html"><span class="title">孔雀羽毛为什么不靠颜料也发蓝绿?</span><span class="sub">—— 结构色</span></a></li>
+  <li><a href="19-thin-film.html"><span class="title">油膜为什么会出现彩纹?</span><span class="sub">—— 薄膜干涉</span></a></li>
+  <li><a href="20-photonic-crystal.html"><span class="title">光子晶体为什么能禁掉某些颜色?</span><span class="sub">—— 带隙的光学版本</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 5 部分</span>发光与变色
+  <span class="part-blurb">荧光、磷光、热辐射、化学</span>
+</div>
+<ol class="toc-list" start="21">
+  <li><a href="21-fluorescence.html"><span class="title">荧光笔为什么会发亮?</span><span class="sub">—— Stokes 位移</span></a></li>
+  <li><a href="22-phosphorescence.html"><span class="title">夜光材料为什么能慢慢发光?</span><span class="sub">—— 亚稳态与禁戒跃迁</span></a></li>
+  <li><a href="23-blackbody-color.html"><span class="title">热铁为什么从红变白?</span><span class="sub">—— 黑体谱与温度</span></a></li>
+  <li><a href="24-led.html"><span class="title">LED 的颜色由什么决定?</span><span class="sub">—— 半导体带隙</span></a></li>
+  <li><a href="25-chemiluminescence.html"><span class="title">冷光为什么可以不热?</span><span class="sub">—— 化学反应直接造激发态</span></a></li>
+</ol>
+<div class="part-header">
+  <span class="part-num">第 6 部分</span>自然与生命
+  <span class="part-blurb">叶子、动物、伪装、信号</span>
+</div>
+<ol class="toc-list" start="26">
+  <li><a href="26-green-leaf.html"><span class="title">叶子为什么是绿的?</span><span class="sub">—— 叶绿素吸收谱</span></a></li>
+  <li><a href="27-animal-color.html"><span class="title">动物花纹为什么常常很鲜艳?</span><span class="sub">—— 性选择与警戒色</span></a></li>
+  <li><a href="28-camouflage.html"><span class="title">伪装为什么不是简单变成背景色?</span><span class="sub">—— 边缘、纹理与视觉模型</span></a></li>
+  <li><a href="29-iridescence.html"><span class="title">有些颜色为什么会随角度变?</span><span class="sub">—— 相干与方向性</span></a></li>
+  <li><a href="30-color-measurement.html"><span class="title">颜色怎样被仪器测量?</span><span class="sub">—— 光谱仪与标准观察者</span></a></li>
+</ol>
+
+<p style="margin-top: 3em; font-size: .85em; color: var(--muted); text-align: center; font-family: var(--sans);">
+  第十卷·颜色是什么? · 共 30 节
+</p>
+
+</div>
+</body>
+</html>
